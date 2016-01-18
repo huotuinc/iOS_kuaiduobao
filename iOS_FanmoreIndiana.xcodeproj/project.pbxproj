@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
+		6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53E1C4C8E9F00D6B567 /* XLPlainFlowLayout.m */; };
+		6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */; };
+		6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */; };
 		60DD429F1C43A8F90041572F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD429E1C43A8F90041572F /* main.m */; };
 		60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42A11C43A8F90041572F /* AppDelegate.m */; };
 		60DD42A81C43A8F90041572F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A61C43A8F90041572F /* Main.storyboard */; };
@@ -33,6 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6031C53A1C4C89B900D6B567 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
+		6031C53B1C4C89B900D6B567 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; wrapsLines = 0; };
+		6031C53D1C4C8E9F00D6B567 /* XLPlainFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlainFlowLayout.h; sourceTree = "<group>"; };
+		6031C53E1C4C8E9F00D6B567 /* XLPlainFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLPlainFlowLayout.m; sourceTree = "<group>"; };
+		6031C5401C4C922600D6B567 /* HomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewCell.h; sourceTree = "<group>"; };
+		6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
+		6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		60DD429A1C43A8F90041572F /* iOS_FanmoreIndiana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FanmoreIndiana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DD429E1C43A8F90041572F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60DD42A01C43A8F90041572F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +105,8 @@
 		6031C5371C4C82C300D6B567 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				6031C53A1C4C89B900D6B567 /* HomeController.h */,
+				6031C53B1C4C89B900D6B567 /* HomeController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -108,6 +121,11 @@
 		6031C5391C4C82C300D6B567 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6031C5401C4C922600D6B567 /* HomeCollectionViewCell.h */,
+				6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */,
+				6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */,
+				6031C53D1C4C8E9F00D6B567 /* XLPlainFlowLayout.h */,
+				6031C53E1C4C8E9F00D6B567 /* XLPlainFlowLayout.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -276,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
+				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,8 +320,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
+				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
+				6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

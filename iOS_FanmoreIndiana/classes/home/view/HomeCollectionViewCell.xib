@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="175" height="255"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="175" height="255"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TxG-bT-laP">
+                        <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="TxG-bT-laP" secondAttribute="height" id="0nZ-mk-gyE"/>
+                        </constraints>
+                    </imageView>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pTp-Bu-LBd">
+                        <rect key="frame" x="5" y="245" width="99" height="2"/>
+                    </progressView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrZ-lA-BYN">
+                        <rect key="frame" x="109" y="222" width="61" height="28"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="加入清单"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开奖进度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRJ-uh-392">
+                        <rect key="frame" x="5" y="225" width="99" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="apple iPhone6S 16G 颜色随机" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1f-hA-yLV">
+                        <rect key="frame" x="5" y="180" width="165" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="pTp-Bu-LBd" firstAttribute="top" secondItem="CRJ-uh-392" secondAttribute="bottom" constant="5" id="1WZ-47-Uvn"/>
+                <constraint firstAttribute="trailing" secondItem="TxG-bT-laP" secondAttribute="trailing" id="3AQ-ad-sL0"/>
+                <constraint firstItem="TxG-bT-laP" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.6" constant="1" id="6DD-Gx-NCT"/>
+                <constraint firstItem="SrZ-lA-BYN" firstAttribute="leading" secondItem="CRJ-uh-392" secondAttribute="trailing" constant="5" id="6Lg-o2-kw8"/>
+                <constraint firstItem="pTp-Bu-LBd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="CZj-56-zP5"/>
+                <constraint firstAttribute="trailing" secondItem="V1f-hA-yLV" secondAttribute="trailing" constant="5" id="D2d-IX-bmf"/>
+                <constraint firstItem="V1f-hA-yLV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="HZK-2X-oZe"/>
+                <constraint firstItem="SrZ-lA-BYN" firstAttribute="width" secondItem="TxG-bT-laP" secondAttribute="width" multiplier="0.35" id="Jik-mS-ORW"/>
+                <constraint firstAttribute="trailing" secondItem="SrZ-lA-BYN" secondAttribute="trailing" constant="5" id="M1y-Nn-PDu"/>
+                <constraint firstItem="pTp-Bu-LBd" firstAttribute="width" secondItem="CRJ-uh-392" secondAttribute="width" id="cAi-ex-u5M"/>
+                <constraint firstAttribute="bottom" secondItem="pTp-Bu-LBd" secondAttribute="bottom" constant="8" id="gJt-kB-5tH"/>
+                <constraint firstItem="TxG-bT-laP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kjd-Ex-t0h"/>
+                <constraint firstItem="CRJ-uh-392" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="lb0-Ze-fy0"/>
+                <constraint firstItem="V1f-hA-yLV" firstAttribute="top" secondItem="TxG-bT-laP" secondAttribute="bottom" constant="5" id="lo0-vc-3WC"/>
+                <constraint firstItem="TxG-bT-laP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rxY-5o-CHx"/>
+                <constraint firstAttribute="bottom" secondItem="SrZ-lA-BYN" secondAttribute="bottom" constant="5" id="uUH-pw-FrJ"/>
+            </constraints>
+            <size key="customSize" width="175" height="255"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="6DD-Gx-NCT"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="joinList" destination="SrZ-lA-BYN" id="LiB-lB-Pe1"/>
+            </connections>
+            <point key="canvasLocation" x="258.5" y="359.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
