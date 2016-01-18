@@ -11,7 +11,6 @@
 		60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42A11C43A8F90041572F /* AppDelegate.m */; };
 		60DD42A81C43A8F90041572F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A61C43A8F90041572F /* Main.storyboard */; };
 		60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A91C43A8F90041572F /* Assets.xcassets */; };
-		60DD42AD1C43A8F90041572F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42AB1C43A8F90041572F /* LaunchScreen.storyboard */; };
 		60DD42B81C43A8F90041572F /* iOS_FanmoreIndianaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42B71C43A8F90041572F /* iOS_FanmoreIndianaTests.m */; };
 		60DD42C31C43A8F90041572F /* iOS_FanmoreIndianaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42C21C43A8F90041572F /* iOS_FanmoreIndianaUITests.m */; };
 /* End PBXBuildFile section */
@@ -40,7 +39,6 @@
 		60DD42A11C43A8F90041572F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		60DD42A71C43A8F90041572F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60DD42A91C43A8F90041572F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		60DD42AC1C43A8F90041572F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60DD42AE1C43A8F90041572F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60DD42B31C43A8F90041572F /* iOS_FanmoreIndianaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_FanmoreIndianaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DD42B71C43A8F90041572F /* iOS_FanmoreIndianaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOS_FanmoreIndianaTests.m; sourceTree = "<group>"; };
@@ -78,8 +76,40 @@
 		6031C5351C4C818400D6B567 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				6031C5361C4C82C300D6B567 /* home */,
 			);
 			path = classes;
+			sourceTree = "<group>";
+		};
+		6031C5361C4C82C300D6B567 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				6031C5371C4C82C300D6B567 /* controller */,
+				6031C5381C4C82C300D6B567 /* model */,
+				6031C5391C4C82C300D6B567 /* view */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		6031C5371C4C82C300D6B567 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		6031C5381C4C82C300D6B567 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		6031C5391C4C82C300D6B567 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		60DD42911C43A8F90041572F = {
@@ -110,7 +140,6 @@
 				60DD42A11C43A8F90041572F /* AppDelegate.m */,
 				60DD42A61C43A8F90041572F /* Main.storyboard */,
 				60DD42A91C43A8F90041572F /* Assets.xcassets */,
-				60DD42AB1C43A8F90041572F /* LaunchScreen.storyboard */,
 				60DD42AE1C43A8F90041572F /* Info.plist */,
 				60DD429D1C43A8F90041572F /* Supporting Files */,
 			);
@@ -246,7 +275,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60DD42AD1C43A8F90041572F /* LaunchScreen.storyboard in Resources */,
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 			);
@@ -316,14 +344,6 @@
 				60DD42A71C43A8F90041572F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		60DD42AB1C43A8F90041572F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				60DD42AC1C43A8F90041572F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
