@@ -8,7 +8,7 @@
 
 #import "HomeController.h"
 #import "XLPlainFlowLayout.h"
-#import "HomeCollectionViewCell.h"†
+#import "HomeCollectionViewCell.h"
 
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
