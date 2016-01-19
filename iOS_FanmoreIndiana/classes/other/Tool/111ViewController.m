@@ -1,22 +1,21 @@
 //
-//  DetailController.m
+//  111ViewController.m
 //  iOS_FanmoreIndiana
 //
 //  Created by 刘琛 on 16/1/19.
 //  Copyright © 2016年 刘琛. All rights reserved.
 //
 
-#import "DetailController.h"
+#import "111ViewController.h"
 
-@interface DetailController ()
+@interface _11ViewController ()
 
 @end
 
-@implementation DetailController
+@implementation _11ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     // Do any additional setup after loading the view.
 }
 
