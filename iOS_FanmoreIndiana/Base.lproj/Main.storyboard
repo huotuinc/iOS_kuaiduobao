@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--首页-->
         <scene sceneID="tkz-IG-qy0">
             <objects>
                 <navigationController id="QZH-QC-WXt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kEb-ag-XtP"/>
+                    <tabBarItem key="tabBarItem" title="首页" id="kEb-ag-XtP"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6c1-ul-HfI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="-88" y="1854"/>
         </scene>
-        <!--Home Controller-->
+        <!--首页-->
         <scene sceneID="Q0j-Is-9uj">
             <objects>
-                <viewController storyboardIdentifier="HomeController" id="cDx-lj-HKa" customClass="HomeController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeController" title="首页" id="cDx-lj-HKa" customClass="HomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hwm-wg-1nf"/>
                         <viewControllerLayoutGuide type="bottom" id="XPm-4E-68u"/>
@@ -88,31 +88,10 @@
                     <view key="view" contentMode="scaleToFill" id="B03-jK-U3D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WtD-S8-71E">
-                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="otZ-fx-VIk">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="WtD-S8-71E" firstAttribute="top" secondItem="Hwm-wg-1nf" secondAttribute="bottom" id="5kI-Gk-6tK"/>
-                            <constraint firstItem="WtD-S8-71E" firstAttribute="leading" secondItem="B03-jK-U3D" secondAttribute="leading" id="QeQ-Ew-Gtx"/>
-                            <constraint firstAttribute="trailing" secondItem="WtD-S8-71E" secondAttribute="trailing" id="Vnp-1s-eM5"/>
-                            <constraint firstItem="XPm-4E-68u" firstAttribute="top" secondItem="WtD-S8-71E" secondAttribute="bottom" id="fY1-0I-rLF"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mfx-Cg-eho"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="collectionView" destination="WtD-S8-71E" id="FR7-y3-uCf"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXx-h1-iVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

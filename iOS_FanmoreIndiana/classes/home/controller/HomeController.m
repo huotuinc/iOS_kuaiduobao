@@ -12,7 +12,7 @@
 
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic)  UICollectionView *collectionView;
 
 @end
 
@@ -25,19 +25,22 @@ static NSString *topIdentify = @"topIdentify";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor grayColor];
-    self.collectionView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+    self.view.backgroundColor = [UIColor redColor];
+
     
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
-    flowLayout.naviHeight = 0;
+    flowLayout.naviHeight = 64;
     flowLayout.minimumInteritemSpacing = 0.5;
     flowLayout.minimumLineSpacing = 1;
     flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
-    [self.collectionView setCollectionViewLayout:flowLayout];
+    
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 44) collectionViewLayout:flowLayout];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
