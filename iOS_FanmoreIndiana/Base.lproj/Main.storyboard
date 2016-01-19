@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--首页-->
+        <!--夺宝-->
         <scene sceneID="tkz-IG-qy0">
             <objects>
                 <navigationController id="QZH-QC-WXt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="kEb-ag-XtP"/>
+                    <tabBarItem key="tabBarItem" title="夺宝" image="zhuanqu_b" id="kEb-ag-XtP"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6c1-ul-HfI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -235,4 +235,7 @@
             <point key="canvasLocation" x="-1010" y="620"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="zhuanqu_b" width="24" height="24"/>
+    </resources>
 </document>

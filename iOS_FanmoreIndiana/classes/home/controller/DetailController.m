@@ -8,7 +8,7 @@
 
 #import "DetailController.h"
 
-@interface DetailController ()
+@interface DetailController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
