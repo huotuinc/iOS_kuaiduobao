@@ -81,9 +81,9 @@ static NSString *topIdentify = @"topIdentify";
         
         
         if (indexPath.row % 2) {
-            //            cell.backgroundColor = [UIColor redColor];
+            
         }else {
-            //            cell.backgroundColor = [UIColor greenColor];
+            
         }
         
         return cell;

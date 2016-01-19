@@ -12,12 +12,14 @@
 		6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */; };
 		6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */; };
 		6031C5461C4CE63E00D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
+		606E79E41C4DDE43000F3027 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 606E79E31C4DDE43000F3027 /* DetailController.m */; };
 		60DD429F1C43A8F90041572F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD429E1C43A8F90041572F /* main.m */; };
 		60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42A11C43A8F90041572F /* AppDelegate.m */; };
 		60DD42A81C43A8F90041572F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A61C43A8F90041572F /* Main.storyboard */; };
 		60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A91C43A8F90041572F /* Assets.xcassets */; };
 		60DD42B81C43A8F90041572F /* iOS_FanmoreIndianaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42B71C43A8F90041572F /* iOS_FanmoreIndianaTests.m */; };
 		60DD42C31C43A8F90041572F /* iOS_FanmoreIndianaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42C21C43A8F90041572F /* iOS_FanmoreIndianaUITests.m */; };
+		C9CF1CC78893266A12F317B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3CD9155C4F68979E05568 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
 		6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		6031C5451C4CDF9900D6B567 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		606E79E21C4DDE43000F3027 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
+		606E79E31C4DDE43000F3027 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		60DD429A1C43A8F90041572F /* iOS_FanmoreIndiana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FanmoreIndiana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DD429E1C43A8F90041572F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60DD42A01C43A8F90041572F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +63,9 @@
 		60DD42BE1C43A8F90041572F /* iOS_FanmoreIndianaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_FanmoreIndianaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DD42C21C43A8F90041572F /* iOS_FanmoreIndianaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOS_FanmoreIndianaUITests.m; sourceTree = "<group>"; };
 		60DD42C41C43A8F90041572F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CF8A6CDA904B4E69164FB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8CA3CD9155C4F68979E05568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBDCA98E09B43FC480BFFCD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9CF1CC78893266A12F317B6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +149,8 @@
 			children = (
 				6031C53A1C4C89B900D6B567 /* HomeController.h */,
 				6031C53B1C4C89B900D6B567 /* HomeController.m */,
+				606E79E21C4DDE43000F3027 /* DetailController.h */,
+				606E79E31C4DDE43000F3027 /* DetailController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -171,6 +181,8 @@
 				60DD42B61C43A8F90041572F /* iOS_FanmoreIndianaTests */,
 				60DD42C11C43A8F90041572F /* iOS_FanmoreIndianaUITests */,
 				60DD429B1C43A8F90041572F /* Products */,
+				806B927F4258F3C39C4A6FFC /* Pods */,
+				E0B37D9DF7A0608E3113872A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +237,23 @@
 			path = iOS_FanmoreIndianaUITests;
 			sourceTree = "<group>";
 		};
+		806B927F4258F3C39C4A6FFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CF8A6CDA904B4E69164FB16 /* Pods.debug.xcconfig */,
+				DEBDCA98E09B43FC480BFFCD /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E0B37D9DF7A0608E3113872A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8CA3CD9155C4F68979E05568 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,9 +261,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60DD42C71C43A8F90041572F /* Build configuration list for PBXNativeTarget "iOS_FanmoreIndiana" */;
 			buildPhases = (
+				00DD9B9CB788EAE18A2CBBB4 /* Check Pods Manifest.lock */,
 				60DD42961C43A8F90041572F /* Sources */,
 				60DD42971C43A8F90041572F /* Frameworks */,
 				60DD42981C43A8F90041572F /* Resources */,
+				9CCF02E30F39B3600BB29057 /* Embed Pods Frameworks */,
+				6DAD6C243DB527EC9BF7251C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,6 +382,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00DD9B9CB788EAE18A2CBBB4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6DAD6C243DB527EC9BF7251C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CCF02E30F39B3600BB29057 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60DD42961C43A8F90041572F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -357,6 +437,7 @@
 			files = (
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
+				606E79E41C4DDE43000F3027 /* DetailController.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */,
@@ -491,6 +572,7 @@
 		};
 		60DD42C81C43A8F90041572F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CF8A6CDA904B4E69164FB16 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = /Users/liuchen/Desktop/New_Fanmore_Take_Treasure/iOS_FanmoreIndiana/PrefixHeader.pch;
@@ -504,6 +586,7 @@
 		};
 		60DD42C91C43A8F90041572F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEBDCA98E09B43FC480BFFCD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = /Users/liuchen/Desktop/New_Fanmore_Take_Treasure/iOS_FanmoreIndiana/PrefixHeader.pch;
