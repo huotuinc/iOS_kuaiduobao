@@ -86,10 +86,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6029AB161C4DD85300198FE3 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				6029AB171C4DD85300198FE3 /* lib */,
+				6029AB181C4DD85300198FE3 /* Tool */,
+				6029AB191C4DD85300198FE3 /* 扩展 */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		6029AB171C4DD85300198FE3 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		6029AB181C4DD85300198FE3 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		6029AB191C4DD85300198FE3 /* 扩展 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "扩展";
+			sourceTree = "<group>";
+		};
 		6031C5351C4C818400D6B567 /* classes */ = {
 			isa = PBXGroup;
 			children = (
 				6031C5361C4C82C300D6B567 /* home */,
+				6029AB161C4DD85300198FE3 /* other */,
 			);
 			path = classes;
 			sourceTree = "<group>";
