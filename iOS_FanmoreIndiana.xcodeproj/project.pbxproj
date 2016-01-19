@@ -255,7 +255,7 @@
 		6029AB161C4DD85300198FE3 /* other */ = {
 			isa = PBXGroup;
 			children = (
-				60584F0C1C4E228D00F23B95 /* Encryption */,
+				60584F0C1C4E228D00F23B95 /* https://gitcafe.com/hottech/New_Fanmore_Take_Treasure.git */,
 				60FFF3111C4E1C5500A93D7E /* libraries */,
 				60FFF2C81C4E1B5400A93D7E /* AFNetworking */,
 				6029AB171C4DD85300198FE3 /* lib */,
@@ -348,7 +348,7 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		60584F0C1C4E228D00F23B95 /* Encryption */ = {
+		60584F0C1C4E228D00F23B95 /* https://gitcafe.com/hottech/New_Fanmore_Take_Treasure.git */ = {
 			isa = PBXGroup;
 			children = (
 				60584F0D1C4E228D00F23B95 /* Base64Util.h */,
@@ -359,6 +359,7 @@
 				60584F121C4E228D00F23B95 /* MD5Encryption.h */,
 				60584F131C4E228D00F23B95 /* MD5Encryption.m */,
 			);
+			name = "https://gitcafe.com/hottech/New_Fanmore_Take_Treasure.git";
 			path = Encryption;
 			sourceTree = "<group>";
 		};
