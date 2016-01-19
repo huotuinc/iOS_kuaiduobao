@@ -14,8 +14,8 @@
 
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width
 
-
-
+#define MainUrl @""
+#define MKMainUrl @""
 
 #define LoginStatus @"LoginStatus" //登录标志
 #define LoginSuccess @"success" //登陆成功
