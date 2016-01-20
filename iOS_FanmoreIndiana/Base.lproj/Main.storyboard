@@ -285,7 +285,6 @@
                         <outlet property="password" destination="c9i-9i-zIg" id="ZUS-bR-CrD"/>
                         <outlet property="phoneRegister" destination="2au-jk-WYE" id="Ix7-or-SOX"/>
                         <outlet property="qqLogin" destination="82n-LI-OEm" id="IRg-El-5uf"/>
-                        <outlet property="register" destination="2au-jk-WYE" id="DzD-XJ-f3H"/>
                         <outlet property="userName" destination="YH6-Cp-CJY" id="Cg9-Wi-8Px"/>
                         <outlet property="weixinLogin" destination="MDm-E4-Nk2" id="waH-bq-Blh"/>
                     </connections>

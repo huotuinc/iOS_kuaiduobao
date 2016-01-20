@@ -9,7 +9,7 @@
 #import "LoginController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 
-@interface LoginController ()
+@interface LoginController ()<UITextFieldDelegate>
 
 @end
 
@@ -19,12 +19,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"登录";
-//    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
+    self.userName.delegate = self;
+    self.password.delegate = self;
+
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"取消" style:UIBarButtonItemStylePlain handler:^(id sender) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
+    
+    self.login.layer.cornerRadius = 5;
+    
+    self.phoneRegister.layer.borderWidth = 1;
+    self.phoneRegister.layer.borderColor = [UIColor redColor].CGColor;
+    self.phoneRegister.layer.cornerRadius = 5;
+    
+    
+    
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.userName resignFirstResponder];
+    
+    [self.password resignFirstResponder];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
