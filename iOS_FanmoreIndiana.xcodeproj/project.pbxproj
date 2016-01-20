@@ -25,6 +25,7 @@
 		60584F201C4E285500F23B95 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60584F1F1C4E285500F23B95 /* libstdc++.tbd */; };
 		60584F221C4E285C00F23B95 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60584F211C4E285C00F23B95 /* libz.tbd */; };
 		60584F241C4E286700F23B95 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60584F231C4E286700F23B95 /* libicucore.tbd */; };
+		60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F261C4E39FD00F23B95 /* TabBarController.m */; };
 		606E79E41C4DDE43000F3027 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 606E79E31C4DDE43000F3027 /* DetailController.m */; };
 		60DD429F1C43A8F90041572F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD429E1C43A8F90041572F /* main.m */; };
 		60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42A11C43A8F90041572F /* AppDelegate.m */; };
@@ -125,6 +126,8 @@
 		60584F1F1C4E285500F23B95 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		60584F211C4E285C00F23B95 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		60584F231C4E286700F23B95 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		60584F251C4E39FD00F23B95 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		60584F261C4E39FD00F23B95 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		606E79E21C4DDE43000F3027 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		606E79E31C4DDE43000F3027 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		60DD429A1C43A8F90041572F /* iOS_FanmoreIndiana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FanmoreIndiana.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -353,6 +356,8 @@
 				6031C53B1C4C89B900D6B567 /* HomeController.m */,
 				606E79E21C4DDE43000F3027 /* DetailController.h */,
 				606E79E31C4DDE43000F3027 /* DetailController.m */,
+				60584F251C4E39FD00F23B95 /* TabBarController.h */,
+				60584F261C4E39FD00F23B95 /* TabBarController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -857,6 +862,7 @@
 				60584F071C4E225B00F23B95 /* NSDictionary+HuoBanMallSign.m in Sources */,
 				60FFF3001C4E1B5400A93D7E /* UIButton+AFNetworking.m in Sources */,
 				60FFF3021C4E1B5400A93D7E /* UIProgressView+AFNetworking.m in Sources */,
+				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
 				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,

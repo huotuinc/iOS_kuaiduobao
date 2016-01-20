@@ -66,8 +66,8 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     flowLayout.minimumInteritemSpacing = 0.5;
     flowLayout.minimumLineSpacing = 1;
     flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
-//
-//    
+
+    
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 44) collectionViewLayout:flowLayout];
     self.collectionView.tag=100;
     self.collectionView.delegate = self;

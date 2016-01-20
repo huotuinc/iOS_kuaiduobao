@@ -7,6 +7,7 @@
 //
 
 #import "LoginController.h"
+#import <UIBarButtonItem+BlocksKit.h>
 
 @interface LoginController ()
 
@@ -17,6 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"登录";
+//    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"取消" style:UIBarButtonItemStylePlain handler:^(id sender) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
