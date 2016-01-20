@@ -128,17 +128,25 @@
                                             <constraint firstAttribute="height" constant="1" id="mLR-hL-2fO"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82n-LI-OEm">
-                                        <rect key="frame" x="197" y="21" width="53" height="58"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="82n-LI-OEm">
+                                        <rect key="frame" x="185" y="20" width="50" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="r8s-hM-pFN"/>
+                                            <constraint firstAttribute="width" constant="50" id="sgp-Te-hnO"/>
+                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDm-E4-Nk2">
-                                        <rect key="frame" x="79" y="21" width="53" height="58"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MDm-E4-Nk2">
+                                        <rect key="frame" x="75" y="20" width="50" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="ZM7-Nu-PGc"/>
+                                            <constraint firstAttribute="height" constant="60" id="kBu-IB-bmd"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="RLW-sE-gLV" secondAttribute="trailing" constant="15" id="0Sy-ir-V1v"/>
-                                    <constraint firstItem="MDm-E4-Nk2" firstAttribute="centerX" secondItem="5vM-kk-cY8" secondAttribute="centerX" id="5u3-3T-mKj"/>
+                                    <constraint firstItem="MDm-E4-Nk2" firstAttribute="centerX" secondItem="5vM-kk-cY8" secondAttribute="centerX" constant="-60" id="5u3-3T-mKj"/>
                                     <constraint firstAttribute="height" constant="100" id="6kz-qo-ng5"/>
                                     <constraint firstItem="RLW-sE-gLV" firstAttribute="centerY" secondItem="8hP-JI-QmY" secondAttribute="centerY" id="Fj3-ug-Jh5"/>
                                     <constraint firstItem="MDm-E4-Nk2" firstAttribute="centerY" secondItem="5vM-kk-cY8" secondAttribute="centerY" id="I8a-6C-pEb"/>
@@ -146,7 +154,9 @@
                                     <constraint firstItem="8hP-JI-QmY" firstAttribute="leading" secondItem="xQj-kQ-H1h" secondAttribute="trailing" constant="20" id="XJQ-pV-gNN"/>
                                     <constraint firstItem="RLW-sE-gLV" firstAttribute="leading" secondItem="8hP-JI-QmY" secondAttribute="trailing" constant="20" id="XaL-6I-x3M"/>
                                     <constraint firstItem="8hP-JI-QmY" firstAttribute="centerX" secondItem="5vM-kk-cY8" secondAttribute="centerX" id="Xuu-ea-N8P"/>
+                                    <constraint firstItem="82n-LI-OEm" firstAttribute="centerY" secondItem="5vM-kk-cY8" secondAttribute="centerY" id="eEn-eg-5a5"/>
                                     <constraint firstItem="8hP-JI-QmY" firstAttribute="top" secondItem="5vM-kk-cY8" secondAttribute="top" id="kYG-Uf-ZFq"/>
+                                    <constraint firstItem="82n-LI-OEm" firstAttribute="centerX" secondItem="5vM-kk-cY8" secondAttribute="centerX" constant="50" id="m4k-sX-UnB"/>
                                     <constraint firstItem="8hP-JI-QmY" firstAttribute="centerY" secondItem="xQj-kQ-H1h" secondAttribute="centerY" id="umA-ZB-VIx"/>
                                 </constraints>
                             </view>
