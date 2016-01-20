@@ -26,7 +26,7 @@ static NSString *topIdentify = @"topIdentify";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor redColor];
+//    self.view.backgroundColor = [UIColor redColor];
 
     
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
@@ -34,7 +34,7 @@ static NSString *topIdentify = @"topIdentify";
     flowLayout.minimumInteritemSpacing = 0.5;
     flowLayout.minimumLineSpacing = 1;
     flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
-    
+
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 44) collectionViewLayout:flowLayout];
     self.collectionView.delegate = self;

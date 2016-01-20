@@ -18,8 +18,8 @@
 #define MKMainUrl @""
 
 #define LoginStatus @"LoginStatus" //登录标志
-#define LoginSuccess @"success" //登陆成功
-#define LoginFailure @"failure" //登陆失败
+#define Success @"Success" //成功
+#define Failure @"Failure" //失败
 
 
 // Include any system framework and library headers here that should be included in all compilation units.
