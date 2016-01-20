@@ -68,8 +68,16 @@
 		60FFF33B1C4E1C5500A93D7E /* ShareSDKExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FFF32E1C4E1C5500A93D7E /* ShareSDKExtension.framework */; };
 		60FFF33C1C4E1C5500A93D7E /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60FFF32F1C4E1C5500A93D7E /* ShareSDKUI.bundle */; };
 		60FFF33D1C4E1C5500A93D7E /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FFF3301C4E1C5500A93D7E /* ShareSDKUI.framework */; };
-		60FFF3401C4E1C6D00A93D7E /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FFF33F1C4E1C6D00A93D7E /* UserLoginTool.m */; };
 		C9CF1CC78893266A12F317B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3CD9155C4F68979E05568 /* libPods.a */; };
+		F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */; };
+		F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */; };
+		F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */; };
+		F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */; };
+		F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD041C4E50A3005F05AC /* HomeFourBtnCView.xib */; };
+		F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD0F1C4E5317005F05AC /* DCPicScrollView.m */; };
+		F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD111C4E5317005F05AC /* DCWebImageManager.m */; };
+		F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */; };
+		F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,11 +215,27 @@
 		60FFF32E1C4E1C5500A93D7E /* ShareSDKExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKExtension.framework; sourceTree = "<group>"; };
 		60FFF32F1C4E1C5500A93D7E /* ShareSDKUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKUI.bundle; sourceTree = "<group>"; };
 		60FFF3301C4E1C5500A93D7E /* ShareSDKUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKUI.framework; sourceTree = "<group>"; };
-		60FFF33E1C4E1C6D00A93D7E /* UserLoginTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginTool.h; path = ../lib/UserLoginTool.h; sourceTree = "<group>"; };
-		60FFF33F1C4E1C6D00A93D7E /* UserLoginTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginTool.m; path = ../lib/UserLoginTool.m; sourceTree = "<group>"; };
 		7CF8A6CDA904B4E69164FB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8CA3CD9155C4F68979E05568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEBDCA98E09B43FC480BFFCD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadCollectionViewCell.h; sourceTree = "<group>"; };
+		F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCollectionViewCell.m; sourceTree = "<group>"; };
+		F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeadCollectionViewCell.xib; sourceTree = "<group>"; };
+		F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FMLableStyle.h"; sourceTree = "<group>"; };
+		F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FMLableStyle.m"; sourceTree = "<group>"; };
+		F290AD021C4E50A3005F05AC /* HomeFourBtnCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFourBtnCView.h; sourceTree = "<group>"; };
+		F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFourBtnCView.m; sourceTree = "<group>"; };
+		F290AD041C4E50A3005F05AC /* HomeFourBtnCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeFourBtnCView.xib; sourceTree = "<group>"; };
+		F290AD0A1C4E5104005F05AC /* Measure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Measure.h; sourceTree = "<group>"; };
+		F290AD0B1C4E5104005F05AC /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		F290AD0C1C4E5104005F05AC /* Font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		F290AD0E1C4E5317005F05AC /* DCPicScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPicScrollView.h; sourceTree = "<group>"; };
+		F290AD0F1C4E5317005F05AC /* DCPicScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPicScrollView.m; sourceTree = "<group>"; };
+		F290AD101C4E5317005F05AC /* DCWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCWebImageManager.h; sourceTree = "<group>"; };
+		F290AD111C4E5317005F05AC /* DCWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCWebImageManager.m; sourceTree = "<group>"; };
+		F290AD171C4E6811005F05AC /* labelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = labelCollectionViewCell.h; sourceTree = "<group>"; };
+		F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = labelCollectionViewCell.m; sourceTree = "<group>"; };
+		F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = labelCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +295,10 @@
 		6029AB171C4DD85300198FE3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				F290AD0D1C4E5317005F05AC /* DCPicscrollView */,
+				F290AD0A1C4E5104005F05AC /* Measure.h */,
+				F290AD0B1C4E5104005F05AC /* Color.h */,
+				F290AD0C1C4E5104005F05AC /* Font.h */,
 				60FFF30B1C4E1B6000A93D7E /* WXUtil.h */,
 				60FFF30C1C4E1B6000A93D7E /* WXUtil.mm */,
 			);
@@ -280,8 +308,6 @@
 		6029AB181C4DD85300198FE3 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				60FFF33E1C4E1C6D00A93D7E /* UserLoginTool.h */,
-				60FFF33F1C4E1C6D00A93D7E /* UserLoginTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -297,6 +323,8 @@
 				60584F061C4E225B00F23B95 /* NSString+EXTERN.m */,
 				60FFF30E1C4E1B8800A93D7E /* UITableView+CJ.h */,
 				60FFF30F1C4E1B8800A93D7E /* UITableView+CJ.m */,
+				F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */,
+				F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */,
 			);
 			path = "扩展";
 			sourceTree = "<group>";
@@ -349,6 +377,15 @@
 				6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */,
 				6031C53D1C4C8E9F00D6B567 /* XLPlainFlowLayout.h */,
 				6031C53E1C4C8E9F00D6B567 /* XLPlainFlowLayout.m */,
+				F290AD021C4E50A3005F05AC /* HomeFourBtnCView.h */,
+				F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */,
+				F290AD041C4E50A3005F05AC /* HomeFourBtnCView.xib */,
+				F290AD171C4E6811005F05AC /* labelCollectionViewCell.h */,
+				F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */,
+				F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */,
+				F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */,
+				F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */,
+				F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -615,6 +652,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F290AD0D1C4E5317005F05AC /* DCPicscrollView */ = {
+			isa = PBXGroup;
+			children = (
+				F290AD0E1C4E5317005F05AC /* DCPicScrollView.h */,
+				F290AD0F1C4E5317005F05AC /* DCPicScrollView.m */,
+				F290AD101C4E5317005F05AC /* DCWebImageManager.h */,
+				F290AD111C4E5317005F05AC /* DCWebImageManager.m */,
+			);
+			path = DCPicscrollView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -723,7 +771,10 @@
 			files = (
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
+				F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */,
+				F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */,
 				60FFF2FB1C4E1B5400A93D7E /* LICENSE in Resources */,
+				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
 				60FFF3321C4E1C5500A93D7E /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				60FFF3381C4E1C5500A93D7E /* ShareSDK.bundle in Resources */,
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
@@ -803,13 +854,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				60FFF2F71C4E1B5400A93D7E /* AFURLConnectionOperation.m in Sources */,
+				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
 				60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */,
 				60FFF3031C4E1B5400A93D7E /* UIRefreshControl+AFNetworking.m in Sources */,
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
+				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60584F071C4E225B00F23B95 /* NSDictionary+HuoBanMallSign.m in Sources */,
 				60FFF3001C4E1B5400A93D7E /* UIButton+AFNetworking.m in Sources */,
 				60FFF3021C4E1B5400A93D7E /* UIProgressView+AFNetworking.m in Sources */,
 				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
+				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
 				60FFF2FF1C4E1B5400A93D7E /* UIAlertView+AFNetworking.m in Sources */,
@@ -821,15 +875,17 @@
 				60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */,
 				60FFF2F81C4E1B5400A93D7E /* AFURLRequestSerialization.m in Sources */,
 				60FFF3011C4E1B5400A93D7E /* UIImageView+AFNetworking.m in Sources */,
+				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
 				60FFF2F61C4E1B5400A93D7E /* AFSecurityPolicy.m in Sources */,
 				60FFF2FE1C4E1B5400A93D7E /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				60FFF2FD1C4E1B5400A93D7E /* AFNetworkActivityIndicatorManager.m in Sources */,
 				60FFF2F21C4E1B5400A93D7E /* AFHTTPRequestOperation.m in Sources */,
+				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				60FFF2FA1C4E1B5400A93D7E /* AFURLSessionManager.m in Sources */,
-				60FFF3401C4E1C6D00A93D7E /* UserLoginTool.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				60FFF2FC1C4E1B5400A93D7E /* README.md in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
+				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
 				60584F161C4E228D00F23B95 /* MD5Encryption.m in Sources */,
 				60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */,
 				60FFF2F41C4E1B5400A93D7E /* AFHTTPSessionManager.m in Sources */,
