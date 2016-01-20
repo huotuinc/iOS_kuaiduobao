@@ -9,6 +9,10 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#import "Measure.h"
+#import "Color.h"
+#import "Font.h"
+#import "UILabel+FMLableStyle.h"
 
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
 
