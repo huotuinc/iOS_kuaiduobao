@@ -14,6 +14,8 @@
 #import "HomeFourBtnCView.h"
 #import "labelCollectionViewCell.h"
 #import "HomeHeadCollectionViewCell.h"
+#import "TenViewController.h"
+#import "FL_Button.h"
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;
@@ -24,6 +26,8 @@
 @property (strong, nonatomic)  UIView *headView;//头部视图
 @property (strong, nonatomic)  UIView *clearView;//分割的View
 @property (strong, nonatomic)  NSTimer *timer;//定时器
+@property (strong , nonatomic) UIImageView *imageVRed;//中间四个选项 下划线
+@property (strong , nonatomic) UIView *viewChoice;//中间四个选项
 
 @property (strong, nonatomic)  UIImageView *imageV;//头部视图-提醒
 
@@ -49,9 +53,9 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
-  }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -118,7 +122,20 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeFourBtnCView" owner:nil options:nil];
     _fourBtnView=[nib firstObject];
     _fourBtnView.frame=CGRectMake(0,ADAPT_HEIGHT(280), SCREEN_WIDTH, ADAPT_HEIGHT(160));
-
+    for (int i =0; i<4; i++) {
+        UIImageView *imageV=[_fourBtnView viewWithTag:200+i];
+        imageV.userInteractionEnabled=YES;
+    }
+#warning  分类
+    [_fourBtnView.imageVClass bk_whenTapped:^{
+    LWLog(@"点击了分类");
+    }];
+#warning 10元专区
+    [_fourBtnView.imageTen bk_whenTapped:^{
+        TenViewController *ten=[[TenViewController alloc]init];
+        [self.navigationController pushViewController:ten animated:YES];
+    }];
+    
     
     _imageVNotice=[[UIImageView alloc]initWithFrame:CGRectMake(20, ADAPT_HEIGHT(440)+5, 30, 30)];
     _imageVNotice.image=[UIImage imageNamed:@"news"];
@@ -127,6 +144,7 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     
     _clearView=[[UIView alloc]initWithFrame:CGRectMake(0, ADAPT_HEIGHT(440)+40, SCREEN_WIDTH, clearHeight)];
     _clearView.backgroundColor=[UIColor yellowColor];
+    _headView.backgroundColor=[UIColor clearColor];
     
     [_headView addSubview:_headScrollView];
     [_headView addSubview:_fourBtnView];
@@ -231,7 +249,6 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     else{
         labelCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:cellLabel forIndexPath:indexPath];
         cell.labelMain.text=_arrTitle[indexPath.row%10];
-//        cell.userInteractionEnabled=NO;
         return cell;
         
     }
@@ -245,7 +262,81 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     if (collectionView.tag == 100) {
         if (kind == UICollectionElementKindSectionHeader) {
             UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify forIndexPath:indexPath];
-            view.backgroundColor = [UIColor blueColor];
+            NSArray *arr=@[@"人气",@"最新",@"进度",@"总需人次"];
+            _viewChoice=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+            for (int i=0; i<4; i++) {
+                FL_Button *button = [FL_Button fl_shareButton];
+                [button setTitle:arr[i] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+                button.titleLabel.font = [UIFont systemFontOfSize:14];
+                button.status = FLAlignmentStatusCenter;
+                button.frame=CGRectMake(SCREEN_WIDTH/4*i, 0, SCREEN_WIDTH/4, 43);
+                button.tag=100+i;
+                if (i==3) {
+                    [button setImage:[UIImage imageNamed:@"paixu"] forState:UIControlStateNormal];
+                    [button setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
+                }
+                static NSInteger num=0;//记录总需人数的点击次数
+                [button bk_whenTapped:^{
+                    for (int i = 0; i< 4; i++) {
+                        FL_Button *btn =[_viewChoice viewWithTag:100+i];
+                        btn.selected=NO;
+                    }
+                    if (button.tag != 103) {
+                        num =0;
+                        FL_Button *buttonTotal=[_viewChoice viewWithTag:103];
+                        [buttonTotal setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
+                        button.selected=YES;
+                        [UIView animateWithDuration:0.3f animations:^{
+                            _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
+                        }];
+#warning 人气点击方法
+                        if (button.tag ==100) {
+                            NSLog(@"点击了人气");
+                        }
+#warning 最新点击方法
+                        if (button.tag ==101) {
+                            NSLog(@"点击了最新");
+                        }
+#warning 进度点击方法
+                        if (button.tag ==102) {
+                            NSLog(@"点击了进度");
+                        }
+                    }else{
+#warning 总需人次第一次点击
+                        //总需人次的第一次点击
+                        button.selected=YES;
+                        if (num %2 ==0) {
+                            [button setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
+                            NSLog(@"总需人次的第一次点击");
+                        }
+#warning 总需人次第二次点击
+                        //总需人次的第二次点击
+                        else{
+                            [button setImage:[UIImage imageNamed:@"paixu_a"] forState:UIControlStateSelected];
+                            NSLog(@"总需人次的第二次点击");
+                            
+                        }
+                        [UIView animateWithDuration:0.3f animations:^{
+                            _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
+                        }];
+                        num ++;
+                        
+                    }
+                    
+                }];
+                
+                [_viewChoice addSubview:button];
+            }
+            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, _viewChoice.frame.size.height-1, SCREEN_WIDTH, 1)];
+            imageVBack.image=[UIImage imageNamed:@"line_huise"];
+            _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, _viewChoice.frame.size.height-1, SCREEN_WIDTH/4*4/5, 1)];
+            _imageVRed.image=[UIImage imageNamed:@"line_red"];
+            [_viewChoice addSubview:imageVBack];
+            [_viewChoice addSubview:_imageVRed];
+            [view addSubview:_viewChoice];
+            view.backgroundColor=[UIColor whiteColor];
             return view;
         }
         return nil;
