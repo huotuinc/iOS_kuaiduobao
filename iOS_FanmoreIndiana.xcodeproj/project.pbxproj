@@ -69,8 +69,13 @@
 		60FFF33C1C4E1C5500A93D7E /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60FFF32F1C4E1C5500A93D7E /* ShareSDKUI.bundle */; };
 		60FFF33D1C4E1C5500A93D7E /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FFF3301C4E1C5500A93D7E /* ShareSDKUI.framework */; };
 		C9CF1CC78893266A12F317B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3CD9155C4F68979E05568 /* libPods.a */; };
+		F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */; };
+		F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD991C50B482004C9467 /* TenViewController.m */; };
+		F20DDD9E1C50B4B0004C9467 /* TenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */; };
+		F20DDD9F1C50B4B0004C9467 /* TenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20DDD9D1C50B4B0004C9467 /* TenTableViewCell.xib */; };
 		F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */; };
 		F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */; };
+		F25875A21C4FB407007967DC /* FL_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = F25875A11C4FB407007967DC /* FL_Button.m */; };
 		F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */; };
 		F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */; };
 		F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD041C4E50A3005F05AC /* HomeFourBtnCView.xib */; };
@@ -218,9 +223,18 @@
 		7CF8A6CDA904B4E69164FB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8CA3CD9155C4F68979E05568 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEBDCA98E09B43FC480BFFCD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F20DDD921C50B14E004C9467 /* UIButton+FMButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+FMButtonStyle.h"; sourceTree = "<group>"; };
+		F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+FMButtonStyle.m"; sourceTree = "<group>"; };
+		F20DDD981C50B482004C9467 /* TenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenViewController.h; sourceTree = "<group>"; };
+		F20DDD991C50B482004C9467 /* TenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenViewController.m; sourceTree = "<group>"; };
+		F20DDD9B1C50B4B0004C9467 /* TenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenTableViewCell.h; sourceTree = "<group>"; };
+		F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenTableViewCell.m; sourceTree = "<group>"; };
+		F20DDD9D1C50B4B0004C9467 /* TenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TenTableViewCell.xib; sourceTree = "<group>"; };
 		F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadCollectionViewCell.h; sourceTree = "<group>"; };
 		F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCollectionViewCell.m; sourceTree = "<group>"; };
 		F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeadCollectionViewCell.xib; sourceTree = "<group>"; };
+		F25875A01C4FB407007967DC /* FL_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FL_Button.h; sourceTree = "<group>"; };
+		F25875A11C4FB407007967DC /* FL_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FL_Button.m; sourceTree = "<group>"; };
 		F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FMLableStyle.h"; sourceTree = "<group>"; };
 		F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FMLableStyle.m"; sourceTree = "<group>"; };
 		F290AD021C4E50A3005F05AC /* HomeFourBtnCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFourBtnCView.h; sourceTree = "<group>"; };
@@ -295,6 +309,7 @@
 		6029AB171C4DD85300198FE3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				F258759F1C4FB407007967DC /* FL_Button */,
 				F290AD0D1C4E5317005F05AC /* DCPicscrollView */,
 				F290AD0A1C4E5104005F05AC /* Measure.h */,
 				F290AD0B1C4E5104005F05AC /* Color.h */,
@@ -325,6 +340,8 @@
 				60FFF30F1C4E1B8800A93D7E /* UITableView+CJ.m */,
 				F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */,
 				F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */,
+				F20DDD921C50B14E004C9467 /* UIButton+FMButtonStyle.h */,
+				F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */,
 			);
 			path = "扩展";
 			sourceTree = "<group>";
@@ -358,6 +375,8 @@
 				606E79E31C4DDE43000F3027 /* DetailController.m */,
 				60584F251C4E39FD00F23B95 /* TabBarController.h */,
 				60584F261C4E39FD00F23B95 /* TabBarController.m */,
+				F20DDD981C50B482004C9467 /* TenViewController.h */,
+				F20DDD991C50B482004C9467 /* TenViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -386,6 +405,9 @@
 				F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */,
 				F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */,
 				F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */,
+				F20DDD9B1C50B4B0004C9467 /* TenTableViewCell.h */,
+				F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */,
+				F20DDD9D1C50B4B0004C9467 /* TenTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -652,6 +674,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F258759F1C4FB407007967DC /* FL_Button */ = {
+			isa = PBXGroup;
+			children = (
+				F25875A01C4FB407007967DC /* FL_Button.h */,
+				F25875A11C4FB407007967DC /* FL_Button.m */,
+			);
+			path = FL_Button;
+			sourceTree = "<group>";
+		};
 		F290AD0D1C4E5317005F05AC /* DCPicscrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,6 +764,7 @@
 				TargetAttributes = {
 					60DD42991C43A8F90041572F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Q3B3AD6JJH;
 					};
 					60DD42B21C43A8F90041572F = {
 						CreatedOnToolsVersion = 7.2;
@@ -776,6 +808,7 @@
 				60FFF2FB1C4E1B5400A93D7E /* LICENSE in Resources */,
 				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
 				60FFF3321C4E1C5500A93D7E /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				F20DDD9F1C50B4B0004C9467 /* TenTableViewCell.xib in Resources */,
 				60FFF3381C4E1C5500A93D7E /* ShareSDK.bundle in Resources */,
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 				60FFF3341C4E1C5500A93D7E /* WeiboSDK.bundle in Resources */,
@@ -860,6 +893,7 @@
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60584F071C4E225B00F23B95 /* NSDictionary+HuoBanMallSign.m in Sources */,
+				F20DDD9E1C50B4B0004C9467 /* TenTableViewCell.m in Sources */,
 				60FFF3001C4E1B5400A93D7E /* UIButton+AFNetworking.m in Sources */,
 				60FFF3021C4E1B5400A93D7E /* UIProgressView+AFNetworking.m in Sources */,
 				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
@@ -883,11 +917,14 @@
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				60FFF2FA1C4E1B5400A93D7E /* AFURLSessionManager.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
+				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
 				60FFF2FC1C4E1B5400A93D7E /* README.md in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
+				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
 				60584F161C4E228D00F23B95 /* MD5Encryption.m in Sources */,
 				60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */,
+				F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */,
 				60FFF2F41C4E1B5400A93D7E /* AFHTTPSessionManager.m in Sources */,
 				6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */,
 				60FFF3041C4E1B5400A93D7E /* UIWebView+AFNetworking.m in Sources */,
@@ -1027,6 +1064,8 @@
 			baseConfigurationReference = 7CF8A6CDA904B4E69164FB16 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/QQSDK",
@@ -1044,6 +1083,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndiana";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -1053,6 +1093,8 @@
 			baseConfigurationReference = DEBDCA98E09B43FC480BFFCD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/QQSDK",
@@ -1070,6 +1112,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndiana";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Release;
