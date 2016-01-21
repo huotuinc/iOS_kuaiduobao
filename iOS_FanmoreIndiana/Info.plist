@@ -18,8 +18,76 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>newfanmore2015</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wb1994677353</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent101066212</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxadee5477e854a778</string>
+				<string>wx8ba33b7341047b58</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxaeda2d5603b12302</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mqqopensdkapiV2</string>
+		<string>mqqapi</string>
+		<string>sinaweibo</string>
+		<string>sinaweibohd</string>
+		<string>sinaweibosso</string>
+		<string>sinaweibohdsso</string>
+		<string>weibosdk</string>
+		<string>weibosdk2</string>
+		<string>wechat</string>
+		<string>weixin</string>
+		<string>mqzoneopensdk</string>
+		<string>mqzoneopensdkapi</string>
+		<string>mqzoneopensdkapi19</string>
+		<string>mqzoneopensdkapiV2</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>mqqopensdkapiV2,</string>
+		<string>mqqopensdkapiV3</string>
+		<string>wtloginmqq2</string>
+		<string>mqqwpa</string>
+		<string>mqzone</string>
+		<string>mqq</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

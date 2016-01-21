@@ -18,8 +18,12 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *phoneRegister;
 
-@property (weak, nonatomic) IBOutlet UIImageView *weixinLogin;
+@property (weak, nonatomic) IBOutlet UIButton *weixinLogin;
 
-@property (weak, nonatomic) IBOutlet UIImageView *qqLogin;
+@property (weak, nonatomic) IBOutlet UIButton *qqLogin;
+
+- (IBAction)loginWithWeixin:(id)sender;
+
+- (IBAction)loginWithQQ:(id)sender;
 
 @end

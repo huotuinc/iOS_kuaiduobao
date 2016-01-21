@@ -8,6 +8,9 @@
 
 #import "LoginController.h"
 #import <UIBarButtonItem+BlocksKit.h>
+#import <ShareSDK/ShareSDK.h>
+#import <SVProgressHUD.h>
+#import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 
 @interface LoginController ()<UITextFieldDelegate>
 
@@ -18,6 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
     self.title = @"登录";
     
     self.userName.delegate = self;
@@ -33,8 +39,6 @@
     self.phoneRegister.layer.borderWidth = 1;
     self.phoneRegister.layer.borderColor = [UIColor redColor].CGColor;
     self.phoneRegister.layer.cornerRadius = 5;
-    
-    
     
 }
 
@@ -61,4 +65,40 @@
 }
 */
 
+- (IBAction)loginWithWeixin:(id)sender {
+    
+//    [SSEThirdPartyLoginHelper loginByPlatform:SSDKPlatformTypeWechat onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
+//        
+//    } onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
+//        if (state == SSDKResponseStateSuccess) {
+//            LWLog(@"%@",user);
+//        }else {
+//            LWLog(@"%@",error);
+//        }
+//    }];
+    
+    
+    [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        if (state == SSDKResponseStateSuccess) {
+            LWLog(@"%@",user);
+        }else {
+            LWLog(@"%@",error);
+        }
+    }];
+    
+    
+}
+
+- (IBAction)loginWithQQ:(id)sender {
+    
+    [ShareSDK getUserInfo:SSDKPlatformTypeQQ onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        if (state == SSDKResponseStateSuccess) {
+            LWLog(@"%@",user);
+//            user.uid
+        }else {
+//            [SVProgressHUD showErrorWithStatus:@"QQ授权失败"];
+        }
+    }];
+    
+}
 @end
