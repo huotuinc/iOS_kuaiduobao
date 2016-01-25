@@ -22,6 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *qqLogin;
 
+- (IBAction)userNameAndPasswordLogin:(id)sender;
+
 - (IBAction)loginWithWeixin:(id)sender;
 
 - (IBAction)loginWithQQ:(id)sender;
