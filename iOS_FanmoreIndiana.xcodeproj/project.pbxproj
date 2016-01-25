@@ -62,9 +62,22 @@
 		F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */; };
 		F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD991C50B482004C9467 /* TenViewController.m */; };
 		F20DDD9E1C50B4B0004C9467 /* TenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */; };
-		F20DDD9F1C50B4B0004C9467 /* TenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20DDD9D1C50B4B0004C9467 /* TenTableViewCell.xib */; };
 		F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */; };
 		F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */; };
+		F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3B91C522E34002AB5FC /* DetailWinnerCView.m */; };
+		F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3BA1C522E34002AB5FC /* DetailWinnerCView.xib */; };
+		F23DE3CF1C522E34002AB5FC /* DetailWayBCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3BC1C522E34002AB5FC /* DetailWayBCView.m */; };
+		F23DE3D01C522E34002AB5FC /* DetailWayBCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3BD1C522E34002AB5FC /* DetailWayBCView.xib */; };
+		F23DE3D11C522E34002AB5FC /* DetailBottomCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3BF1C522E34002AB5FC /* DetailBottomCView.m */; };
+		F23DE3D21C522E34002AB5FC /* DetailBottomCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3C01C522E34002AB5FC /* DetailBottomCView.xib */; };
+		F23DE3D31C522E34002AB5FC /* DetailNextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3C21C522E34002AB5FC /* DetailNextTableViewCell.m */; };
+		F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3C31C522E34002AB5FC /* DetailNextTableViewCell.xib */; };
+		F23DE3D51C522E34002AB5FC /* DetailProgressCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3C51C522E34002AB5FC /* DetailProgressCView.m */; };
+		F23DE3D61C522E34002AB5FC /* DetailProgressCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3C61C522E34002AB5FC /* DetailProgressCView.xib */; };
+		F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3C81C522E34002AB5FC /* DetailAttendListMainTableViewCell.m */; };
+		F23DE3D81C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3C91C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib */; };
+		F23DE3D91C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */; };
+		F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */; };
 		F25875A21C4FB407007967DC /* FL_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = F25875A11C4FB407007967DC /* FL_Button.m */; };
 		F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */; };
 		F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */; };
@@ -201,6 +214,27 @@
 		F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadCollectionViewCell.h; sourceTree = "<group>"; };
 		F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCollectionViewCell.m; sourceTree = "<group>"; };
 		F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeadCollectionViewCell.xib; sourceTree = "<group>"; };
+		F23DE3B81C522E34002AB5FC /* DetailWinnerCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWinnerCView.h; sourceTree = "<group>"; };
+		F23DE3B91C522E34002AB5FC /* DetailWinnerCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWinnerCView.m; sourceTree = "<group>"; };
+		F23DE3BA1C522E34002AB5FC /* DetailWinnerCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailWinnerCView.xib; sourceTree = "<group>"; };
+		F23DE3BB1C522E34002AB5FC /* DetailWayBCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWayBCView.h; sourceTree = "<group>"; };
+		F23DE3BC1C522E34002AB5FC /* DetailWayBCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWayBCView.m; sourceTree = "<group>"; };
+		F23DE3BD1C522E34002AB5FC /* DetailWayBCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailWayBCView.xib; sourceTree = "<group>"; };
+		F23DE3BE1C522E34002AB5FC /* DetailBottomCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBottomCView.h; sourceTree = "<group>"; };
+		F23DE3BF1C522E34002AB5FC /* DetailBottomCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailBottomCView.m; sourceTree = "<group>"; };
+		F23DE3C01C522E34002AB5FC /* DetailBottomCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailBottomCView.xib; sourceTree = "<group>"; };
+		F23DE3C11C522E34002AB5FC /* DetailNextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNextTableViewCell.h; sourceTree = "<group>"; };
+		F23DE3C21C522E34002AB5FC /* DetailNextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNextTableViewCell.m; sourceTree = "<group>"; };
+		F23DE3C31C522E34002AB5FC /* DetailNextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNextTableViewCell.xib; sourceTree = "<group>"; };
+		F23DE3C41C522E34002AB5FC /* DetailProgressCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailProgressCView.h; sourceTree = "<group>"; };
+		F23DE3C51C522E34002AB5FC /* DetailProgressCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailProgressCView.m; sourceTree = "<group>"; };
+		F23DE3C61C522E34002AB5FC /* DetailProgressCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailProgressCView.xib; sourceTree = "<group>"; };
+		F23DE3C71C522E34002AB5FC /* DetailAttendListMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAttendListMainTableViewCell.h; sourceTree = "<group>"; };
+		F23DE3C81C522E34002AB5FC /* DetailAttendListMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAttendListMainTableViewCell.m; sourceTree = "<group>"; };
+		F23DE3C91C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendListMainTableViewCell.xib; sourceTree = "<group>"; };
+		F23DE3CA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAttendListFirstTableViewCell.h; sourceTree = "<group>"; };
+		F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAttendListFirstTableViewCell.m; sourceTree = "<group>"; };
+		F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendListFirstTableViewCell.xib; sourceTree = "<group>"; };
 		F25875A01C4FB407007967DC /* FL_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FL_Button.h; sourceTree = "<group>"; };
 		F25875A11C4FB407007967DC /* FL_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FL_Button.m; sourceTree = "<group>"; };
 		F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FMLableStyle.h"; sourceTree = "<group>"; };
@@ -380,6 +414,27 @@
 				F20DDD9B1C50B4B0004C9467 /* TenTableViewCell.h */,
 				F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */,
 				F20DDD9D1C50B4B0004C9467 /* TenTableViewCell.xib */,
+				F23DE3B81C522E34002AB5FC /* DetailWinnerCView.h */,
+				F23DE3B91C522E34002AB5FC /* DetailWinnerCView.m */,
+				F23DE3BA1C522E34002AB5FC /* DetailWinnerCView.xib */,
+				F23DE3BB1C522E34002AB5FC /* DetailWayBCView.h */,
+				F23DE3BC1C522E34002AB5FC /* DetailWayBCView.m */,
+				F23DE3BD1C522E34002AB5FC /* DetailWayBCView.xib */,
+				F23DE3BE1C522E34002AB5FC /* DetailBottomCView.h */,
+				F23DE3BF1C522E34002AB5FC /* DetailBottomCView.m */,
+				F23DE3C01C522E34002AB5FC /* DetailBottomCView.xib */,
+				F23DE3C11C522E34002AB5FC /* DetailNextTableViewCell.h */,
+				F23DE3C21C522E34002AB5FC /* DetailNextTableViewCell.m */,
+				F23DE3C31C522E34002AB5FC /* DetailNextTableViewCell.xib */,
+				F23DE3C41C522E34002AB5FC /* DetailProgressCView.h */,
+				F23DE3C51C522E34002AB5FC /* DetailProgressCView.m */,
+				F23DE3C61C522E34002AB5FC /* DetailProgressCView.xib */,
+				F23DE3C71C522E34002AB5FC /* DetailAttendListMainTableViewCell.h */,
+				F23DE3C81C522E34002AB5FC /* DetailAttendListMainTableViewCell.m */,
+				F23DE3C91C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib */,
+				F23DE3CA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.h */,
+				F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */,
+				F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -764,8 +819,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F23DE3D61C522E34002AB5FC /* DetailProgressCView.xib in Resources */,
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
+				F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */,
+				F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
+				F23DE3D81C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib in Resources */,
 				604C62761C50C57900569F0B /* ShareSDKUI.bundle in Resources */,
 				F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */,
 				F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */,
@@ -776,6 +835,7 @@
 				F20DDD9F1C50B4B0004C9467 /* TenTableViewCell.xib in Resources */,
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 				604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */,
+				F23DE3D21C522E34002AB5FC /* DetailBottomCView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,6 +909,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
+				F23DE3D31C522E34002AB5FC /* DetailNextTableViewCell.m in Sources */,
+				F23DE3D11C522E34002AB5FC /* DetailBottomCView.m in Sources */,
 				60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */,
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				60525F601C50F8A000CC4528 /* UIButton+CountDown.m in Sources */,
@@ -870,6 +932,7 @@
 				60525F671C51C9D800CC4528 /* UserLoginTool.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
+				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
