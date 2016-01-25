@@ -15,6 +15,8 @@
 #import "labelCollectionViewCell.h"
 #import "HomeHeadCollectionViewCell.h"
 #import "TenViewController.h"
+#import "DetailViewController.h"
+#import "ClassViewController.h"
 #import "FL_Button.h"
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -109,7 +111,6 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     
     _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(460)+labelHeight)];
     self.headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) WithImageUrls:_arrURLString];
-    NSLog(@"%f",ADAPT_HEIGHT(280));
     //占位图片,你可以在下载图片失败处修改占位图片
     //        _headScrollView.placeImage = [UIImage imageNamed:@""];
     //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
@@ -126,16 +127,21 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
         UIImageView *imageV=[_fourBtnView viewWithTag:200+i];
         imageV.userInteractionEnabled=YES;
     }
-#warning  分类
+#pragma mark 分类
     [_fourBtnView.imageVClass bk_whenTapped:^{
-    LWLog(@"点击了分类");
+        ClassViewController *class=[[ClassViewController alloc]init];
+        [self.navigationController pushViewController:class animated:YES];
     }];
-#warning 10元专区
+#pragma mark 10元专区
     [_fourBtnView.imageTen bk_whenTapped:^{
         TenViewController *ten=[[TenViewController alloc]init];
         [self.navigationController pushViewController:ten animated:YES];
     }];
-    
+#pragma mark 晒单
+    [_fourBtnView.imageVShow bk_whenTapped:^{
+        DetailViewController *detail=[[DetailViewController alloc]init];
+        [self.navigationController pushViewController:detail animated:YES];
+    }];
     
     _imageVNotice=[[UIImageView alloc]initWithFrame:CGRectMake(20, ADAPT_HEIGHT(440)+5, 30, 30)];
     _imageVNotice.image=[UIImage imageNamed:@"news"];
