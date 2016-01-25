@@ -11,6 +11,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <SVProgressHUD.h>
 #import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
+#import "MD5Encryption.h"
 
 @interface LoginController ()<UITextFieldDelegate>
 
@@ -55,28 +56,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)userNameAndPasswordLogin:(id)sender {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"username"] = self.userName.text;
+    
+    dic[@"password"] = [MD5Encryption md5by32:self.password.text];
+    
+    [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+    } failure:^(NSError *error) {
+        
+        LWLog(@"%@",error);
+        
+    }];
+    
 }
-*/
 
 - (IBAction)loginWithWeixin:(id)sender {
-    
-//    [SSEThirdPartyLoginHelper loginByPlatform:SSDKPlatformTypeWechat onUserSync:^(SSDKUser *user, SSEUserAssociateHandler associateHandler) {
-//        
-//    } onLoginResult:^(SSDKResponseState state, SSEBaseUser *user, NSError *error) {
-//        if (state == SSDKResponseStateSuccess) {
-//            LWLog(@"%@",user);
-//        }else {
-//            LWLog(@"%@",error);
-//        }
-//    }];
-    
     
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
         if (state == SSDKResponseStateSuccess) {
@@ -94,9 +94,9 @@
     [ShareSDK getUserInfo:SSDKPlatformTypeQQ onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
         if (state == SSDKResponseStateSuccess) {
             LWLog(@"%@",user);
-//            user.uid
+
         }else {
-//            [SVProgressHUD showErrorWithStatus:@"QQ授权失败"];
+
         }
     }];
     

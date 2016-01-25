@@ -13,8 +13,10 @@
 #import "Color.h"
 #import "Font.h"
 #import "UILabel+FMLableStyle.h"
-
-
+#import "UIButton+FMButtonStyle.h"
+#import <UIView+BlocksKit.h>
+#import "UserLoginTool.h"
+#import "UserModel.h"
 
 /**微信支付*/
 #define WeiXinPaySigNkey @"NzfP6pfeljyHeY08LO9p8YAKZCGLz8akO4lCGdXZOGnVsJqfo8jeuYB7C0GoFJGEKZMDVGKWYnbbJj3pCpvJzd4iY7bVglaNz54XAD26tiCr5DZGLjZFoRxbqe8i3HT5"
@@ -44,9 +46,31 @@
 
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width
 
-#define MainUrl @""
-#define MKMainUrl @""
+#define MainUrl @"http://192.168.1.41:8080/duobao/app/"
+#define MKMainUrl @"192.168.1.41:8080/duobao/app"
 
+#define UserInfo @"UserInfo"
+
+
+/**时间*/
+#define apptimesSince1970 [NSString stringWithFormat:@"%.0f",([[[NSDate alloc] init] timeIntervalSince1970]*1000)]
+
+//网络请求的固定参数
+#define HTYMRSCREAT @"4165a8d240b29af3f41818d10599d0d1"  //火图安全网络请求安全协议
+
+/**平台*/
+#define OPERATION_parame @"YMR2015APP"
+
+/**应用版本号*/
+#define AppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+/**设备唯一号*/
+#define  DeviceNo ([[UIDevice currentDevice].identifierForVendor UUIDString])
+
+/**APP token */
+#define AppToken @"AppToken"
+
+/********登陆标志************/
 #define LoginStatus @"LoginStatus" //登录标志
 #define Success @"Success" //成功
 #define Failure @"Failure" //失败
