@@ -28,9 +28,9 @@ PODS:
   - pop (1.0.8)
   - Reachability (3.1.1)
   - RESideMenu (4.0.7)
-  - SDWebImage (3.7.4):
-    - SDWebImage/Core (= 3.7.4)
-  - SDWebImage/Core (3.7.4)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SHXMLParser (1.1.0)
   - SSToolkit (1.0.4)
   - SSZipArchive (1.0.1)
@@ -80,7 +80,7 @@ SPEC CHECKSUMS:
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
-  SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SHXMLParser: 3e5ada336541b3e5b8d66046a14c2bf49742c62e
   SSToolkit: f75a749d3ccb3f9b32bb135c24958fc4265374e7
   SSZipArchive: 5f30a0af2cb3d48c0ff83b1e18029f7041ac3c38
