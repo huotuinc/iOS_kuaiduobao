@@ -567,6 +567,7 @@
                     <connections>
                         <outlet property="logo" destination="tsr-4I-6ur" id="QTS-9m-jzn"/>
                         <outlet property="nickName" destination="l9T-ZY-xFg" id="VIT-3J-SVo"/>
+                        <outlet property="phone" destination="VWV-aS-feP" id="FLe-V3-7pp"/>
                         <outlet property="user" destination="xF0-rD-Qdx" id="tk3-my-Au7"/>
                         <outlet property="userId" destination="ewp-rC-0Si" id="J8D-1j-gam"/>
                     </connections>
@@ -1295,6 +1296,12 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="logo" destination="94U-p7-FAL" id="s36-PB-nYk"/>
+                        <outlet property="nickName" destination="2gM-Nl-h7Z" id="MMU-Bz-URS"/>
+                        <outlet property="phone" destination="n9S-K7-doo" id="cLd-f9-QFw"/>
+                        <outlet property="userID" destination="VKl-hl-ImH" id="9f3-v8-zcQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNT-2O-1zl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
