@@ -107,7 +107,18 @@
     [ShareSDK getUserInfo:SSDKPlatformTypeQQ onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
         if (state == SSDKResponseStateSuccess) {
             LWLog(@"%@",user);
-
+            
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            dic[@"username"] = user.nickname;
+            dic[@"unionId"] = user.uid;
+            dic[@"head"] = user.icon;
+            dic[@"type"] = @"2";
+            
+            [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
+                LWLog(@"%@",json);
+            } failure:^(NSError *error) {
+                LWLog(@"%@",error);
+            }];
         }else {
 
         }
