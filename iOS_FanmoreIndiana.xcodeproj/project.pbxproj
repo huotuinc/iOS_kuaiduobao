@@ -26,9 +26,7 @@
 		604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 604C627A1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle */; };
 		604C628B1C50C61800569F0B /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 604C627E1C50C61800569F0B /* libWeiboSDK.a */; };
 		604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 604C62881C50C61800569F0B /* WeiboSDK.bundle */; };
-		60525F601C50F8A000CC4528 /* UIButton+CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F5F1C50F8A000CC4528 /* UIButton+CountDown.m */; };
 		60525F631C51BF0E00CC4528 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F621C51BF0E00CC4528 /* UserModel.m */; };
-		60525F671C51C9D800CC4528 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F661C51C9D800CC4528 /* UserLoginTool.m */; };
 		60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F061C4E225B00F23B95 /* NSString+EXTERN.m */; };
 		60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F0A1C4E225F00F23B95 /* UIViewController+NAV.m */; };
 		60584F141C4E228D00F23B95 /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F0E1C4E228D00F23B95 /* Base64Util.m */; };
@@ -92,6 +90,9 @@
 		F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD111C4E5317005F05AC /* DCWebImageManager.m */; };
 		F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */; };
 		F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */; };
+		F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F661C51C9D800CC4528 /* UserLoginTool.m */; };
+		F2FF346F1C560D9F00558C13 /* DetailAttendCountCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */; };
+		F2FF34701C560D9F00558C13 /* DetailAttendCountCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +267,9 @@
 		F290AD171C4E6811005F05AC /* labelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = labelCollectionViewCell.h; sourceTree = "<group>"; };
 		F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = labelCollectionViewCell.m; sourceTree = "<group>"; };
 		F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = labelCollectionViewCell.xib; sourceTree = "<group>"; };
+		F2FF346C1C560D9F00558C13 /* DetailAttendCountCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAttendCountCView.h; sourceTree = "<group>"; };
+		F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAttendCountCView.m; sourceTree = "<group>"; };
+		F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendCountCView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +461,9 @@
 				F262E8AA1C55C42D00141EBC /* ClassBTableViewCell.h */,
 				F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */,
 				F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */,
+				F2FF346C1C560D9F00558C13 /* DetailAttendCountCView.h */,
+				F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */,
+				F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -852,7 +859,6 @@
 				F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */,
 				F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */,
 				F23DE3D01C522E34002AB5FC /* DetailWayBCView.xib in Resources */,
-				60FFF2FB1C4E1B5400A93D7E /* LICENSE in Resources */,
 				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
@@ -863,6 +869,7 @@
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 				604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */,
 				F23DE3D21C522E34002AB5FC /* DetailBottomCView.xib in Resources */,
+				F2FF34701C560D9F00558C13 /* DetailAttendCountCView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,7 +942,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60FFF2F71C4E1B5400A93D7E /* AFURLConnectionOperation.m in Sources */,
+				F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */,
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
@@ -945,12 +952,10 @@
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
-				60584F071C4E225B00F23B95 /* NSDictionary+HuoBanMallSign.m in Sources */,
 				F23DE3D51C522E34002AB5FC /* DetailProgressCView.m in Sources */,
-				60FFF3001C4E1B5400A93D7E /* UIButton+AFNetworking.m in Sources */,
-				60FFF3021C4E1B5400A93D7E /* UIProgressView+AFNetworking.m in Sources */,
 				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
 				60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */,
+				F2FF346F1C560D9F00558C13 /* DetailAttendCountCView.m in Sources */,
 				60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */,
 				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
@@ -958,19 +963,13 @@
 				60584F141C4E228D00F23B95 /* Base64Util.m in Sources */,
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
 				F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */,
-				60FFF2F91C4E1B5400A93D7E /* AFURLResponseSerialization.m in Sources */,
 				F23DE3CF1C522E34002AB5FC /* DetailWayBCView.m in Sources */,
 				60584F151C4E228D00F23B95 /* GTMBase64.m in Sources */,
 				60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */,
 				60EB31A81C55C892006C070B /* OtherUserController.m in Sources */,
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
-				60FFF2F61C4E1B5400A93D7E /* AFSecurityPolicy.m in Sources */,
-				60A1FB8F1C50867300F8DC4F /* RegisterThirdController.m in Sources */,
-				60FFF2FE1C4E1B5400A93D7E /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
-				60FFF2FD1C4E1B5400A93D7E /* AFNetworkActivityIndicatorManager.m in Sources */,
-				60FFF2F21C4E1B5400A93D7E /* AFHTTPRequestOperation.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
@@ -986,10 +985,7 @@
 				6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */,
 				60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */,
 				60EB31A51C55C86C006C070B /* FanmoreUserController.m in Sources */,
-				60FFF3041C4E1B5400A93D7E /* UIWebView+AFNetworking.m in Sources */,
 				F23DE3D91C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m in Sources */,
-				60FFF2F51C4E1B5400A93D7E /* AFNetworkReachabilityManager.m in Sources */,
-				60FFF2F31C4E1B5400A93D7E /* AFHTTPRequestOperationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
