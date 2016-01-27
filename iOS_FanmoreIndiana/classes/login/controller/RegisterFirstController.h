@@ -13,5 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *security;
 @property (weak, nonatomic) IBOutlet UIButton *getSecurtity;
 @property (weak, nonatomic) IBOutlet UIButton *next;
+- (IBAction)getSecurtityCode:(id)sender;
+
+- (IBAction)goNext:(id)sender;
 
 @end

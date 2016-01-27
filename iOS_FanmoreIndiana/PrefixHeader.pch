@@ -14,7 +14,7 @@
 #import "Font.h"
 #import <UIView+BlocksKit.h>
 #import "UIButton+FMButtonStyle.h"
-
+#import <MJExtension.h>
 #import "UILabel+FMLableStyle.h"
 #import "UIButton+FMButtonStyle.h"
 #import <UIView+BlocksKit.h>

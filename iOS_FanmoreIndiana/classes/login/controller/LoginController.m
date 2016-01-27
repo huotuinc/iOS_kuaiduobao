@@ -12,6 +12,7 @@
 #import <SVProgressHUD.h>
 #import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 #import "MD5Encryption.h"
+#import <MJExtension.h>
 
 @interface LoginController ()<UITextFieldDelegate>
 
@@ -67,6 +68,9 @@
     [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@""]];
+        }
         
     } failure:^(NSError *error) {
         
@@ -90,6 +94,9 @@
             
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
+                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                    [self loginSuccessWith:json[@""]];
+                }
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
             }];
@@ -116,6 +123,9 @@
             
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
+                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                    [self loginSuccessWith:json[@"resultData"]];
+                }
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
             }];
@@ -125,4 +135,21 @@
     }];
     
 }
+
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    NSLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
+
 @end

@@ -10,4 +10,15 @@
 
 @interface UserModel : NSObject
 
+@property (nonatomic, assign) BOOL enabled;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *mobile;
+@property (nonatomic, assign) BOOL mobileBanded;
+@property (nonatomic, strong) NSNumber *money;
+@property (nonatomic, strong) NSString *realName;
+@property (nonatomic, strong) NSString *token;
+@property (nonatomic, strong) NSNumber *userFormType;
+@property (nonatomic, strong) NSString *userHead;
+@property (nonatomic, strong) NSString *username;
+
 @end
