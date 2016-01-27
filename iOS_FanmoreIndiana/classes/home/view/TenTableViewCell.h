@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//200
 @interface TenTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *viewBase;
 @property (weak, nonatomic) IBOutlet UIView *viewMain;

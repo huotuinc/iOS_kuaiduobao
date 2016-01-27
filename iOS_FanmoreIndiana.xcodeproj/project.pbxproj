@@ -27,9 +27,7 @@
 		604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 604C627A1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle */; };
 		604C628B1C50C61800569F0B /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 604C627E1C50C61800569F0B /* libWeiboSDK.a */; };
 		604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 604C62881C50C61800569F0B /* WeiboSDK.bundle */; };
-		60525F601C50F8A000CC4528 /* UIButton+CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F5F1C50F8A000CC4528 /* UIButton+CountDown.m */; };
 		60525F631C51BF0E00CC4528 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F621C51BF0E00CC4528 /* UserModel.m */; };
-		60525F671C51C9D800CC4528 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F661C51C9D800CC4528 /* UserLoginTool.m */; };
 		60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F061C4E225B00F23B95 /* NSString+EXTERN.m */; };
 		60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F0A1C4E225F00F23B95 /* UIViewController+NAV.m */; };
 		60584F141C4E228D00F23B95 /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F0E1C4E228D00F23B95 /* Base64Util.m */; };
@@ -43,7 +41,6 @@
 		60584F221C4E285C00F23B95 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60584F211C4E285C00F23B95 /* libz.tbd */; };
 		60584F241C4E286700F23B95 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60584F231C4E286700F23B95 /* libicucore.tbd */; };
 		60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F261C4E39FD00F23B95 /* TabBarController.m */; };
-		606E79E41C4DDE43000F3027 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 606E79E31C4DDE43000F3027 /* DetailController.m */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */; };
@@ -65,7 +62,6 @@
 		C9CF1CC78893266A12F317B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3CD9155C4F68979E05568 /* libPods.a */; };
 		F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */; };
 		F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD991C50B482004C9467 /* TenViewController.m */; };
-		F20DDD9E1C50B4B0004C9467 /* TenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */; };
 		F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */; };
 		F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */; };
 		F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3B91C522E34002AB5FC /* DetailWinnerCView.m */; };
@@ -83,6 +79,14 @@
 		F23DE3D91C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */; };
 		F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */; };
 		F25875A21C4FB407007967DC /* FL_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = F25875A11C4FB407007967DC /* FL_Button.m */; };
+		F262E8991C55B36500141EBC /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8981C55B36500141EBC /* DetailViewController.m */; };
+		F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E89E1C55C0B900141EBC /* TenTableViewCell.m */; };
+		F262E8A11C55C0B900141EBC /* TenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E89F1C55C0B900141EBC /* TenTableViewCell.xib */; };
+		F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8A31C55C24500141EBC /* ClassViewController.m */; };
+		F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8A61C55C41B00141EBC /* ClassATableViewCell.m */; };
+		F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8A71C55C41B00141EBC /* ClassATableViewCell.xib */; };
+		F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */; };
+		F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */; };
 		F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */; };
 		F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */; };
 		F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD041C4E50A3005F05AC /* HomeFourBtnCView.xib */; };
@@ -90,6 +94,9 @@
 		F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD111C4E5317005F05AC /* DCWebImageManager.m */; };
 		F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */; };
 		F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */; };
+		F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F661C51C9D800CC4528 /* UserLoginTool.m */; };
+		F2FF346F1C560D9F00558C13 /* DetailAttendCountCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */; };
+		F2FF34701C560D9F00558C13 /* DetailAttendCountCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,8 +181,6 @@
 		60584F231C4E286700F23B95 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		60584F251C4E39FD00F23B95 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		60584F261C4E39FD00F23B95 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
-		606E79E21C4DDE43000F3027 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
-		606E79E31C4DDE43000F3027 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -220,9 +225,6 @@
 		F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+FMButtonStyle.m"; sourceTree = "<group>"; };
 		F20DDD981C50B482004C9467 /* TenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenViewController.h; sourceTree = "<group>"; };
 		F20DDD991C50B482004C9467 /* TenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenViewController.m; sourceTree = "<group>"; };
-		F20DDD9B1C50B4B0004C9467 /* TenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenTableViewCell.h; sourceTree = "<group>"; };
-		F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenTableViewCell.m; sourceTree = "<group>"; };
-		F20DDD9D1C50B4B0004C9467 /* TenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TenTableViewCell.xib; sourceTree = "<group>"; };
 		F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadCollectionViewCell.h; sourceTree = "<group>"; };
 		F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCollectionViewCell.m; sourceTree = "<group>"; };
 		F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeadCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -249,6 +251,19 @@
 		F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendListFirstTableViewCell.xib; sourceTree = "<group>"; };
 		F25875A01C4FB407007967DC /* FL_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FL_Button.h; sourceTree = "<group>"; };
 		F25875A11C4FB407007967DC /* FL_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FL_Button.m; sourceTree = "<group>"; };
+		F262E8971C55B36500141EBC /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		F262E8981C55B36500141EBC /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		F262E89D1C55C0B900141EBC /* TenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenTableViewCell.h; sourceTree = "<group>"; };
+		F262E89E1C55C0B900141EBC /* TenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenTableViewCell.m; sourceTree = "<group>"; };
+		F262E89F1C55C0B900141EBC /* TenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TenTableViewCell.xib; sourceTree = "<group>"; };
+		F262E8A21C55C24500141EBC /* ClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassViewController.h; sourceTree = "<group>"; };
+		F262E8A31C55C24500141EBC /* ClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassViewController.m; sourceTree = "<group>"; };
+		F262E8A51C55C41B00141EBC /* ClassATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassATableViewCell.h; sourceTree = "<group>"; };
+		F262E8A61C55C41B00141EBC /* ClassATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassATableViewCell.m; sourceTree = "<group>"; };
+		F262E8A71C55C41B00141EBC /* ClassATableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassATableViewCell.xib; sourceTree = "<group>"; };
+		F262E8AA1C55C42D00141EBC /* ClassBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBTableViewCell.h; sourceTree = "<group>"; };
+		F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBTableViewCell.m; sourceTree = "<group>"; };
+		F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassBTableViewCell.xib; sourceTree = "<group>"; };
 		F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FMLableStyle.h"; sourceTree = "<group>"; };
 		F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FMLableStyle.m"; sourceTree = "<group>"; };
 		F290AD021C4E50A3005F05AC /* HomeFourBtnCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFourBtnCView.h; sourceTree = "<group>"; };
@@ -264,6 +279,9 @@
 		F290AD171C4E6811005F05AC /* labelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = labelCollectionViewCell.h; sourceTree = "<group>"; };
 		F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = labelCollectionViewCell.m; sourceTree = "<group>"; };
 		F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = labelCollectionViewCell.xib; sourceTree = "<group>"; };
+		F2FF346C1C560D9F00558C13 /* DetailAttendCountCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAttendCountCView.h; sourceTree = "<group>"; };
+		F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAttendCountCView.m; sourceTree = "<group>"; };
+		F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendCountCView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,12 +407,14 @@
 			children = (
 				6031C53A1C4C89B900D6B567 /* HomeController.h */,
 				6031C53B1C4C89B900D6B567 /* HomeController.m */,
-				606E79E21C4DDE43000F3027 /* DetailController.h */,
-				606E79E31C4DDE43000F3027 /* DetailController.m */,
+				F262E8971C55B36500141EBC /* DetailViewController.h */,
+				F262E8981C55B36500141EBC /* DetailViewController.m */,
 				60584F251C4E39FD00F23B95 /* TabBarController.h */,
 				60584F261C4E39FD00F23B95 /* TabBarController.m */,
 				F20DDD981C50B482004C9467 /* TenViewController.h */,
 				F20DDD991C50B482004C9467 /* TenViewController.m */,
+				F262E8A21C55C24500141EBC /* ClassViewController.h */,
+				F262E8A31C55C24500141EBC /* ClassViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -423,9 +443,9 @@
 				F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */,
 				F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */,
 				F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */,
-				F20DDD9B1C50B4B0004C9467 /* TenTableViewCell.h */,
-				F20DDD9C1C50B4B0004C9467 /* TenTableViewCell.m */,
-				F20DDD9D1C50B4B0004C9467 /* TenTableViewCell.xib */,
+				F262E89D1C55C0B900141EBC /* TenTableViewCell.h */,
+				F262E89E1C55C0B900141EBC /* TenTableViewCell.m */,
+				F262E89F1C55C0B900141EBC /* TenTableViewCell.xib */,
 				F23DE3B81C522E34002AB5FC /* DetailWinnerCView.h */,
 				F23DE3B91C522E34002AB5FC /* DetailWinnerCView.m */,
 				F23DE3BA1C522E34002AB5FC /* DetailWinnerCView.xib */,
@@ -447,6 +467,15 @@
 				F23DE3CA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.h */,
 				F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */,
 				F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */,
+				F262E8A51C55C41B00141EBC /* ClassATableViewCell.h */,
+				F262E8A61C55C41B00141EBC /* ClassATableViewCell.m */,
+				F262E8A71C55C41B00141EBC /* ClassATableViewCell.xib */,
+				F262E8AA1C55C42D00141EBC /* ClassBTableViewCell.h */,
+				F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */,
+				F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */,
+				F2FF346C1C560D9F00558C13 /* DetailAttendCountCView.h */,
+				F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */,
+				F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -841,6 +870,7 @@
 			files = (
 				F23DE3D61C522E34002AB5FC /* DetailProgressCView.xib in Resources */,
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
+				F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */,
 				F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */,
 				F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
@@ -857,6 +887,7 @@
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 				604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */,
 				F23DE3D21C522E34002AB5FC /* DetailBottomCView.xib in Resources */,
+				F2FF34701C560D9F00558C13 /* DetailAttendCountCView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +960,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */,
+				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
+				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
 				F23DE3D31C522E34002AB5FC /* DetailNextTableViewCell.m in Sources */,
 				F23DE3D11C522E34002AB5FC /* DetailBottomCView.m in Sources */,
@@ -937,10 +971,10 @@
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
 				60525F601C50F8A000CC4528 /* UIButton+CountDown.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
-				F20DDD9E1C50B4B0004C9467 /* TenTableViewCell.m in Sources */,
 				F23DE3D51C522E34002AB5FC /* DetailProgressCView.m in Sources */,
 				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
 				60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */,
+				F2FF346F1C560D9F00558C13 /* DetailAttendCountCView.m in Sources */,
 				60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */,
 				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
@@ -957,7 +991,8 @@
 				60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */,
 				60EB31A81C55C892006C070B /* OtherUserController.m in Sources */,
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
-				60525F671C51C9D800CC4528 /* UserLoginTool.m in Sources */,
+				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
+				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
@@ -1119,7 +1154,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOS_FanmoreIndiana/PrefixHeader.pch;
 				INFOPLIST_FILE = iOS_FanmoreIndiana/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1149,7 +1184,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOS_FanmoreIndiana/PrefixHeader.pch;
 				INFOPLIST_FILE = iOS_FanmoreIndiana/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
