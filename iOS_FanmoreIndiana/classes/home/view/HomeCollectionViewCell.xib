@@ -21,8 +21,11 @@
                             <constraint firstAttribute="width" secondItem="TxG-bT-laP" secondAttribute="height" id="0nZ-mk-gyE"/>
                         </constraints>
                     </imageView>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pTp-Bu-LBd">
-                        <rect key="frame" x="5" y="245" width="99" height="2"/>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pTp-Bu-LBd">
+                        <rect key="frame" x="5" y="237" width="99" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="K6P-n2-8BL"/>
+                        </constraints>
                     </progressView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrZ-lA-BYN">
                         <rect key="frame" x="109" y="222" width="61" height="28"/>
@@ -30,7 +33,7 @@
                         <state key="normal" title="加入清单"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开奖进度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRJ-uh-392">
-                        <rect key="frame" x="5" y="225" width="99" height="15"/>
+                        <rect key="frame" x="5" y="219" width="99" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,12 +44,19 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6t2-8V-5om">
+                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="6xl-sB-C9W"/>
+                            <constraint firstAttribute="width" constant="30" id="BRf-ff-eFv"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="pTp-Bu-LBd" firstAttribute="top" secondItem="CRJ-uh-392" secondAttribute="bottom" constant="5" id="1WZ-47-Uvn"/>
+                <constraint firstItem="pTp-Bu-LBd" firstAttribute="top" secondItem="CRJ-uh-392" secondAttribute="bottom" constant="3" id="1WZ-47-Uvn"/>
                 <constraint firstAttribute="trailing" secondItem="TxG-bT-laP" secondAttribute="trailing" id="3AQ-ad-sL0"/>
                 <constraint firstItem="TxG-bT-laP" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.6" constant="1" id="6DD-Gx-NCT"/>
                 <constraint firstItem="SrZ-lA-BYN" firstAttribute="leading" secondItem="CRJ-uh-392" secondAttribute="trailing" constant="5" id="6Lg-o2-kw8"/>
@@ -57,9 +67,11 @@
                 <constraint firstAttribute="trailing" secondItem="SrZ-lA-BYN" secondAttribute="trailing" constant="5" id="M1y-Nn-PDu"/>
                 <constraint firstItem="pTp-Bu-LBd" firstAttribute="width" secondItem="CRJ-uh-392" secondAttribute="width" id="cAi-ex-u5M"/>
                 <constraint firstAttribute="bottom" secondItem="pTp-Bu-LBd" secondAttribute="bottom" constant="8" id="gJt-kB-5tH"/>
+                <constraint firstItem="6t2-8V-5om" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ho7-NW-aNC"/>
                 <constraint firstItem="TxG-bT-laP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kjd-Ex-t0h"/>
                 <constraint firstItem="CRJ-uh-392" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="lb0-Ze-fy0"/>
                 <constraint firstItem="V1f-hA-yLV" firstAttribute="top" secondItem="TxG-bT-laP" secondAttribute="bottom" constant="5" id="lo0-vc-3WC"/>
+                <constraint firstItem="6t2-8V-5om" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ok3-yW-Xfx"/>
                 <constraint firstItem="TxG-bT-laP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rxY-5o-CHx"/>
                 <constraint firstAttribute="bottom" secondItem="SrZ-lA-BYN" secondAttribute="bottom" constant="5" id="uUH-pw-FrJ"/>
             </constraints>
@@ -70,7 +82,12 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="imageVGoods" destination="TxG-bT-laP" id="mgU-IZ-CR1"/>
+                <outlet property="imageVState" destination="6t2-8V-5om" id="ZZe-Cl-422"/>
                 <outlet property="joinList" destination="SrZ-lA-BYN" id="LiB-lB-Pe1"/>
+                <outlet property="labelName" destination="V1f-hA-yLV" id="w0d-6P-hB2"/>
+                <outlet property="labelProgress" destination="CRJ-uh-392" id="ffu-5u-b80"/>
+                <outlet property="viewProgress" destination="pTp-Bu-LBd" id="J7N-Dl-c6q"/>
             </connections>
             <point key="canvasLocation" x="258.5" y="359.5"/>
         </collectionViewCell>

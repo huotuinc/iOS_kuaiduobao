@@ -17,7 +17,7 @@
     for (int i=0; i<4; i++) {
         UILabel *label=[self viewWithTag:100+i];
         label.text=arrTitle[i];
-        [UILabel changeLabel:label AndFont:17 AndColor:[UIColor blackColor]];
+        [UILabel changeLabel:label AndFont:24 AndColor:COLOR_TEXT_TITILE];
     }
     NSArray *arrImage=@[@"home_content_fenlei",@"home_content_zhuanqu",@"home_content_shaidan",@"home_content_wenti"];
     for (int i=0; i<4; i++) {

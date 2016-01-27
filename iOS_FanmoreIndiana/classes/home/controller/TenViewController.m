@@ -8,7 +8,7 @@
 
 #import "TenViewController.h"
 #import "TenTableViewCell.h"
-
+#import "AppGoodsListModel.h"
 
 
 static NSString *cellTenMain=@"cellTenMain";
@@ -17,6 +17,7 @@ static NSString *cellTenMain=@"cellTenMain";
 
 @property (nonatomic,strong) UITableView *tableView;
 
+@property (nonatomic, strong) NSMutableArray *appGoodsList;
 
 @end
 
@@ -26,13 +27,76 @@ static NSString *cellTenMain=@"cellTenMain";
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    self.view.backgroundColor=[UIColor whiteColor];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    [self createBarButtonItem];
-    [self createTableView];
+    _appGoodsList=[NSMutableArray array];
+    [self getAppGoodsList];
+}
+#pragma mark 网络请求专区商品列表
+/**
+ *  下拉刷新
+ */
+- (void)getAppGoodsList {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"step"] = @10;
+    
+    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.appGoodsList removeAllObjects];
+            [self.appGoodsList addObjectsFromArray:temp];
+            [self createTableView];
+            [_tableView reloadData];
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        [_tableView.mj_header endRefreshing];
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
+
+/**
+ *  上拉加载更多
+ */
+- (void)getMoreGoodsList {
+    AppGoodsListModel *model = [self.appGoodsList lastObject];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"step"] = @10;
+    
+    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.appGoodsList addObjectsFromArray:temp];
+            
+            [_tableView reloadData];
+        }
+        [_tableView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        LWLog (@"%@",error);
+    }];
+    
 }
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
@@ -64,6 +128,21 @@ static NSString *cellTenMain=@"cellTenMain";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TenTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellTenMain forIndexPath:indexPath];
+    AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
+    model=_appGoodsList[indexPath.row];
+    cell.labelTitle.text=model.title;
+    cell.labelTotal.text=[NSString stringWithFormat:@"总需%d",[model.toAmount integerValue]];
+    cell.labelRest.text=[NSString stringWithFormat:@"剩余%d",[model.remainAmount integerValue]];
+    CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
+    cell.viewProgress.progress=percent;
+    [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
+    if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:5]]) {
+        cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_b"];
+    }
+    if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:10]]) {
+        cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_a"];
+    }
+    
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
     
@@ -71,7 +150,7 @@ static NSString *cellTenMain=@"cellTenMain";
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _appGoodsList.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

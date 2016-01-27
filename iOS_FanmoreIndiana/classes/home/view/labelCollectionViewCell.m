@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [UILabel changeLabel:_labelMain AndFont:26 AndColor:[UIColor grayColor]];
+    [UILabel changeLabel:_labelMain AndFont:26 AndColor:COLOR_TEXT_DATE];
     _labelMain.backgroundColor=[UIColor whiteColor];
 }
 

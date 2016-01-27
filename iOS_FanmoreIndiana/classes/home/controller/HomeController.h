@@ -10,4 +10,7 @@
 
 @interface HomeController : UIViewController
 
+@property (nonatomic, assign) NSNumber *type;
+
+
 @end

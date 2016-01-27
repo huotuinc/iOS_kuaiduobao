@@ -25,7 +25,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-vc-89w">
                                         <rect key="frame" x="0.0" y="25" width="720" height="155"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weixin" translatesAutoresizingMaskIntoConstraints="NO" id="q9H-U7-3Sj">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q9H-U7-3Sj">
                                                 <rect key="frame" x="0.0" y="0.0" width="155" height="155"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="q9H-U7-3Sj" secondAttribute="height" multiplier="1:1" id="1Z6-Yt-R3a"/>
@@ -106,7 +106,7 @@
                                             <constraint firstItem="DWN-Km-xkA" firstAttribute="top" secondItem="uEc-vc-89w" secondAttribute="top" id="rDh-zj-VCK"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhuanqu_a" translatesAutoresizingMaskIntoConstraints="NO" id="f85-tl-wyJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f85-tl-wyJ">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="f85-tl-wyJ" secondAttribute="height" multiplier="1:1" id="ltX-jO-Hdu"/>
@@ -156,8 +156,4 @@
             <point key="canvasLocation" x="448" y="265"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="weixin" width="48" height="64"/>
-        <image name="zhuanqu_a" width="24" height="24"/>
-    </resources>
 </document>

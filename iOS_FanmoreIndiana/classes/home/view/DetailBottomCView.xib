@@ -34,7 +34,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9tO-SL-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="655" height="1"/>
+                                <rect key="frame" x="0.0" y="0.0" width="750" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="hxg-OD-tgw"/>
                                 </constraints>
@@ -43,6 +43,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9tO-SL-NEC" firstAttribute="top" secondItem="8XW-ih-9DL" secondAttribute="top" id="ARP-LW-BTU"/>
+                            <constraint firstAttribute="trailing" secondItem="9tO-SL-NEC" secondAttribute="trailing" id="BYz-BS-k8Q"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="leading" secondItem="9tO-SL-NEC" secondAttribute="trailing" id="EyO-Ec-RNI"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="width" secondItem="8XW-ih-9DL" secondAttribute="width" multiplier="290:750" id="IC4-Z7-Gfn"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="height" secondItem="8XW-ih-9DL" secondAttribute="height" multiplier="70:100" id="JlC-ER-B1q"/>
@@ -57,6 +58,11 @@
                             <constraint firstItem="v0e-jd-j94" firstAttribute="height" secondItem="z30-MT-A96" secondAttribute="height" id="wYd-te-vzT"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="centerY" secondItem="z30-MT-A96" secondAttribute="centerY" id="yqC-Sb-UVg"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EyO-Ec-RNI"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <constraints>

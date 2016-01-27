@@ -11,7 +11,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _imageVSign.image=[UIImage imageNamed:@"zhuanqu_a"];
 
     
     _labelTitle.numberOfLines=0;

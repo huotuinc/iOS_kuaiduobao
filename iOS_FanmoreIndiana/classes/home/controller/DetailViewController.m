@@ -14,6 +14,7 @@
 #import "DetailAttendCountCView.h"
 #import "DetailBottomCView.h"
 #import "DetailWinnerCView.h"
+#import "DetailTimeCView.h"
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 @interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -24,8 +25,9 @@ static NSString * cellDTMain=@"cellDTMain";
 @property (strong, nonatomic) UIView * titleView;//标题视图
 @property (strong, nonatomic) UIProgressView * progressView;//标题视图
 @property (strong, nonatomic) DetailAttendCountCView * countView;//参加次数视图
-@property (strong, nonatomic) DetailBottomCView * bottomView;//参底部选项视图
-@property (strong, nonatomic) DetailWinnerCView * winnerView;//参底部选项视图
+@property (strong, nonatomic) DetailBottomCView * bottomView;//底部选项视图
+@property (strong, nonatomic) DetailWinnerCView * winnerView;//获奖者
+@property (strong, nonatomic) DetailTimeCView * timeView;//揭晓倒计时
 
 @end
 
@@ -44,14 +46,17 @@ static NSString * cellDTMain=@"cellDTMain";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+
     self.view.backgroundColor=[UIColor whiteColor];
-    _titleString=@"              但那是肯定那是靠近的那首多少级啊客户的撒空间互动大时间快点哈萨fcjbvcxvbcxvjbcxbvsdhfgds发的设计开发的时间回复的事发生的卡号发克";
-    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:_titleString].height;
+    _titleString=@"              Apple/苹果 iPhone6 全新未激活4.7寸美版 港版三网苹果6正品手机";
+    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:_titleString].height;
     [self createDataArray];
     [self createHeadView];
     [self createBottomView];
@@ -67,7 +72,7 @@ static NSString * cellDTMain=@"cellDTMain";
 #pragma mark 构建头部视图
 -(void)createHeadView{
     NSInteger num =0;
-    
+//已经结束
     if (num == 0) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight)];
         
@@ -76,16 +81,24 @@ static NSString * cellDTMain=@"cellDTMain";
             printf("第%zd张图片\n",index);
         }];
         //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 2.0f;
+        _headScrollView.AutoScrollDelay = 0.0f;
+        
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
+        _titleView.backgroundColor=[UIColor whiteColor];
+        [self createTitleLabel];
+        [self createStateLabel];
         
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailWinnerCView" owner:nil options:nil];
         _winnerView= [nib firstObject];
         _winnerView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(360));
         
         [_headView addSubview:_headScrollView];
+        [_headView addSubview:_titleView];
         [_headView addSubview:_winnerView];
         
-    }else{
+    }
+//正在抽奖
+    if (num == 1) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -93,17 +106,16 @@ static NSString * cellDTMain=@"cellDTMain";
             printf("第%zd张图片\n",index);
         }];
         //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 2.0f;
+        _headScrollView.AutoScrollDelay = 0.0f;
         
-        _titleView = [[UIView alloc]initWithFrame:CGRectMake(20, ADAPT_HEIGHT(390), SCREEN_WIDTH-40, _titleStrHeight)];
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
-        
         [self createTitleLabel];
         [self createStateLabel];
         
-        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
-        _progressView= [nib firstObject];
-        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailTimeCView" owner:nil options:nil];
+        _timeView= [nib firstObject];
+        _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
@@ -120,11 +132,55 @@ static NSString * cellDTMain=@"cellDTMain";
             _countView.viewNext.hidden=NO;
         }
         
+        [_headView addSubview:_headScrollView];
+        [_headView addSubview:_titleView];
+        [_headView addSubview:_timeView];
+        [_headView addSubview:_countView];
+    }
+//正在进行
+    if (num == 2) {
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
+        
+        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
+        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
+            printf("第%zd张图片\n",index);
+        }];
+        //default is 2.0f,如果小于0.5不自动播放
+        _headScrollView.AutoScrollDelay = 2.0f;
+        
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
+        _titleView.backgroundColor=[UIColor whiteColor];
+        
+        [self createTitleLabel];
+        [self createStateLabel];
+        
+        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
+        _progressView= [nib firstObject];
+        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        
+        NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
+        _countView= [nibA firstObject];
+        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        if (_titleArray.count > 0) {
+            _countView.labelCount.text=@"登陆 以查看您的夺宝号码";
+            _countView.labelCount.hidden=NO;
+            _countView.labelA.hidden=YES;
+            _countView.labelB.hidden=YES;
+            _countView.viewNext.hidden=YES;
+        }else{
+            _countView.labelCount.hidden=YES;
+            _countView.labelA.hidden=NO;
+            _countView.labelB.hidden=NO;
+            _countView.viewNext.hidden=NO;
+        }
         [_headView addSubview:_countView];
         [_headView addSubview:_progressView];
         [_headView addSubview:_titleView];
         [_headView addSubview:_headScrollView];
     }
+        
+    
+    
     
 }
 #pragma mark 底部选项
@@ -182,9 +238,13 @@ static NSString * cellDTMain=@"cellDTMain";
     DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
     if (indexPath.section == 0) {
         cell.labelTitle.text=_titleArray[indexPath.row];
+        if (indexPath.row == 0) {
+            cell.labelAdvice.text=@"建议wifi下查看";
+        }
     }else{
         cell.labelTitle.text=@"所有参与记录";
-        cell.labelAdvice.text=@"建议wifi下查看";
+        cell.labelAdvice.text=@"(2016 - 10 - 12 16 : 50 :47 开始)";
+    
     }
     return cell;
 }

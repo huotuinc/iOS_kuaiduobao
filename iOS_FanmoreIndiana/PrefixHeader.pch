@@ -9,18 +9,22 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+
 #import "Measure.h"
 #import "Color.h"
 #import "Font.h"
 #import <UIView+BlocksKit.h>
 #import "UIButton+FMButtonStyle.h"
 
+#import "UIImageView+WebCache.h"
 #import "UILabel+FMLableStyle.h"
 #import "UIButton+FMButtonStyle.h"
 #import <UIView+BlocksKit.h>
 #import "UserLoginTool.h"
 #import "UserModel.h"
-
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "SVProgressHUD.h"
 /**微信支付*/
 #define WeiXinPaySigNkey @"NzfP6pfeljyHeY08LO9p8YAKZCGLz8akO4lCGdXZOGnVsJqfo8jeuYB7C0GoFJGEKZMDVGKWYnbbJj3pCpvJzd4iY7bVglaNz54XAD26tiCr5DZGLjZFoRxbqe8i3HT5"
 #define WeiXinPARTNERKEY @"18076bf2a8bf9479f2cddeec13fd2ec0"
@@ -51,8 +55,8 @@
 
 
 /***服务器地址***/
-#define MainUrl @"http://192.168.1.41:8080/duobao/app/"
-#define MKMainUrl @"192.168.1.41:8080/duobao/app"
+#define MainUrl @"http://192.168.3.13:8080/duobao/app/"
+#define MKMainUrl @"192.168.3.13:8080/duobao/app"
 
 #define UserInfo @"UserInfo"
 

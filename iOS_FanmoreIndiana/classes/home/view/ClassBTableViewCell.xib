@@ -18,13 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="640" height="99"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3x-m0-RtF">
-                                <rect key="frame" x="20" y="39" width="42" height="21"/>
+                                <rect key="frame" x="10" y="39" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A2K-DN-fgP">
-                                <rect key="frame" x="20" y="98" width="620" height="1"/>
+                                <rect key="frame" x="10" y="98" width="630" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="8fE-7M-Fqc"/>
                                 </constraints>
@@ -32,7 +32,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="m3x-m0-RtF" firstAttribute="leading" secondItem="2x1-Xd-Ap7" secondAttribute="leading" constant="20" id="BBd-eh-EVf"/>
+                            <constraint firstItem="m3x-m0-RtF" firstAttribute="leading" secondItem="2x1-Xd-Ap7" secondAttribute="leading" constant="10" id="BBd-eh-EVf"/>
                             <constraint firstAttribute="trailing" secondItem="A2K-DN-fgP" secondAttribute="trailing" id="Ril-dt-a9O"/>
                             <constraint firstAttribute="bottom" secondItem="A2K-DN-fgP" secondAttribute="bottom" id="Tj0-Xl-3Jt"/>
                             <constraint firstItem="m3x-m0-RtF" firstAttribute="centerY" secondItem="2x1-Xd-Ap7" secondAttribute="centerY" id="wtX-36-Jbd"/>
