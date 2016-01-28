@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailBottomDoneCView : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *buttonGo;
+@property (weak, nonatomic) IBOutlet UILabel *labelNew;
+@property (weak, nonatomic) IBOutlet UIImageView *imageVLine;
 
 @end

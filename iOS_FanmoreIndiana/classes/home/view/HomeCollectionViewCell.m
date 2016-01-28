@@ -17,7 +17,6 @@
     [UIButton changeButton:_joinList AndFont:24 AndTitleColor:COLOR_SHINE_RED AndBackgroundColor:[UIColor whiteColor] AndBorderColor:COLOR_SHINE_RED AndCornerRadius:3 AndBorderWidth:1];
     
     _viewProgress.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-    _viewProgress.layer.cornerRadius=5;
     _viewProgress.clipsToBounds=YES;
     //设置进度条颜色
     _viewProgress.trackTintColor=COLOR_PROGRESS_B;
@@ -25,6 +24,11 @@
     _viewProgress.progress=0.7;
     //设置进度条上进度的颜色
     _viewProgress.progressTintColor=COLOR_PROGRESS_A;
+}
+-(void)drawRect:(CGRect)rect{
+    _viewProgress.layer.cornerRadius=_viewProgress.frame.size.height/2;
+
+
 }
 
 - (void)layoutSubviews {

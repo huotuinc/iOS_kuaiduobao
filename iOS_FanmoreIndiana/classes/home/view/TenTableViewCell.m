@@ -17,17 +17,25 @@
     _labelTitle.text=@"网易云音乐都发生的发的说说的服务渐渐离开";
     
     _viewProgress.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-    _viewProgress.layer.cornerRadius=5;
     _viewProgress.clipsToBounds=YES;
     //设置进度条颜色
-    _viewProgress.trackTintColor=[UIColor grayColor];
+    _viewProgress.trackTintColor=COLOR_PROGRESS_B;
     //设置进度默认值，这个相当于百分比，范围在0~1之间，不可以设置最大最小值
     _viewProgress.progress=0.7;
     //设置进度条上进度的颜色
-    _viewProgress.progressTintColor=[UIColor orangeColor];
-
-    [UIButton changeButton:_buttonAdd AndFont:26 AndTitleColor:[UIColor redColor] AndBackgroundColor:[UIColor whiteColor] AndBorderColor:[UIColor redColor] AndCornerRadius:3 AndBorderWidth:1];
+    _viewProgress.progressTintColor=COLOR_PROGRESS_A;
+    [UILabel changeLabel:_labelTotal AndFont:24 AndColor:COLOR_BUTTON_ORANGE]
+    ;
+    [UILabel changeLabel:_labelRest AndFont:24 AndColor:COLOR_SHINE_BLUE];
+    [UILabel changeLabel:_labelTitle AndFont:28 AndColor:COLOR_TEXT_TITILE];
+    [UIButton changeButton:_buttonAdd AndFont:24 AndTitleColor:[UIColor redColor] AndBackgroundColor:[UIColor whiteColor] AndBorderColor:[UIColor redColor] AndCornerRadius:3 AndBorderWidth:1];
     
+    _labelTitle.numberOfLines=0;
+    
+}
+-(void)drawRect:(CGRect)rect{
+    _viewProgress.layer.cornerRadius=_viewProgress.frame.size.height/2;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

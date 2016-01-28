@@ -72,6 +72,7 @@
 		F23B96811C58600500A5A420 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F23B96741C58600500A5A420 /* NSObject+MJCoding.m */; };
 		F23B96821C58600500A5A420 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F23B96761C58600500A5A420 /* NSObject+MJKeyValue.m */; };
 		F23B96831C58600500A5A420 /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F23B96781C58600500A5A420 /* NSObject+MJMember.m */; };
+		F23B96891C58E1E700A5A420 /* AppGoodsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F23B96881C58E1E700A5A420 /* AppGoodsDetailModel.m */; };
 		F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3B91C522E34002AB5FC /* DetailWinnerCView.m */; };
 		F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3BA1C522E34002AB5FC /* DetailWinnerCView.xib */; };
 		F23DE3CF1C522E34002AB5FC /* DetailWayBCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3BC1C522E34002AB5FC /* DetailWayBCView.m */; };
@@ -257,6 +258,8 @@
 		F23B96761C58600500A5A420 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
 		F23B96771C58600500A5A420 /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
 		F23B96781C58600500A5A420 /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
+		F23B96871C58E1E700A5A420 /* AppGoodsDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGoodsDetailModel.h; path = iOS_FanmoreIndiana/classes/other/lib/AppGoodsDetailModel.h; sourceTree = SOURCE_ROOT; };
+		F23B96881C58E1E700A5A420 /* AppGoodsDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppGoodsDetailModel.m; path = iOS_FanmoreIndiana/classes/other/lib/AppGoodsDetailModel.m; sourceTree = SOURCE_ROOT; };
 		F23DE3B81C522E34002AB5FC /* DetailWinnerCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWinnerCView.h; sourceTree = "<group>"; };
 		F23DE3B91C522E34002AB5FC /* DetailWinnerCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWinnerCView.m; sourceTree = "<group>"; };
 		F23DE3BA1C522E34002AB5FC /* DetailWinnerCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailWinnerCView.xib; sourceTree = "<group>"; };
@@ -460,6 +463,8 @@
 			children = (
 				F23B870B1C5854BB00A5A420 /* AppGoodsListModel.h */,
 				F23B870C1C5854BB00A5A420 /* AppGoodsListModel.m */,
+				F23B96871C58E1E700A5A420 /* AppGoodsDetailModel.h */,
+				F23B96881C58E1E700A5A420 /* AppGoodsDetailModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1083,6 +1088,7 @@
 				60525F631C51BF0E00CC4528 /* UserModel.m in Sources */,
 				60584F161C4E228D00F23B95 /* MD5Encryption.m in Sources */,
 				60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */,
+				F23B96891C58E1E700A5A420 /* AppGoodsDetailModel.m in Sources */,
 				F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */,
 				6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */,
 				60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */,

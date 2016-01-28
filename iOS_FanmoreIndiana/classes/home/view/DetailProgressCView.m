@@ -13,7 +13,6 @@
 - (void)awakeFromNib {
     // Initialization code
     _viewProgress.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-    _viewProgress.layer.cornerRadius=5;
     _viewProgress.clipsToBounds=YES;
     //设置进度条颜色
     _viewProgress.trackTintColor=COLOR_PROGRESS_B;
@@ -27,6 +26,10 @@
     [UILabel changeLabel:_labelTital AndFont:24 AndColor:COLOR_TEXT_CONTENT];
 }
 
+- (void)drawRect:(CGRect)rect {
+    _viewProgress.layer.cornerRadius=_viewProgress.frame.size.height/2;
+
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

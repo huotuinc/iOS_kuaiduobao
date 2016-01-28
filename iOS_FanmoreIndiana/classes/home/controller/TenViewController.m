@@ -131,8 +131,15 @@ static NSString *cellTenMain=@"cellTenMain";
     AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
     model=_appGoodsList[indexPath.row];
     cell.labelTitle.text=model.title;
-    cell.labelTotal.text=[NSString stringWithFormat:@"总需%d",[model.toAmount integerValue]];
-    cell.labelRest.text=[NSString stringWithFormat:@"剩余%d",[model.remainAmount integerValue]];
+    
+    NSMutableAttributedString *attStringA = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"总需 %ld",(long)[model.toAmount integerValue]]];
+    [attStringA addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0,2)];
+    cell.labelTotal.attributedText=attStringA;
+    
+    NSMutableAttributedString *attStringB = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"剩余 %ld",(long)[model.remainAmount integerValue]]];
+    [attStringB addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0,2)];
+    cell.labelRest.attributedText=attStringB;
+
     CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
     cell.viewProgress.progress=percent;
     [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];

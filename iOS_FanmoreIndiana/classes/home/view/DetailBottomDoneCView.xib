@@ -3,17 +3,72 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DetailBottomDoneCView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="750" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="750" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nl-lF-G0F">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="99"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hit-e3-ggC">
+                                <rect key="frame" x="530" y="15" width="200" height="69"/>
+                                <state key="normal" title="立即前往"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新一期正火热进行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3N-LU-cmP">
+                                <rect key="frame" x="10" y="39" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="alj-Bq-3Co">
+                                <rect key="frame" x="0.0" y="0.0" width="750" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="YGo-HW-Y01"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="alj-Bq-3Co" firstAttribute="leading" secondItem="1nl-lF-G0F" secondAttribute="leading" id="6bE-QZ-HSJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Hit-e3-ggC" secondAttribute="trailing" constant="20" id="NM6-bK-e6c"/>
+                            <constraint firstItem="K3N-LU-cmP" firstAttribute="centerY" secondItem="1nl-lF-G0F" secondAttribute="centerY" id="OOD-Pd-vrf"/>
+                            <constraint firstItem="K3N-LU-cmP" firstAttribute="leading" secondItem="1nl-lF-G0F" secondAttribute="leading" constant="10" id="V4c-4Q-zdv"/>
+                            <constraint firstAttribute="trailing" secondItem="alj-Bq-3Co" secondAttribute="trailing" id="XNv-Wa-0BI"/>
+                            <constraint firstItem="Hit-e3-ggC" firstAttribute="leading" secondItem="alj-Bq-3Co" secondAttribute="trailing" id="jgo-nO-aq6"/>
+                            <constraint firstItem="Hit-e3-ggC" firstAttribute="width" secondItem="1nl-lF-G0F" secondAttribute="width" multiplier="200:750" id="oC1-UF-Flh"/>
+                            <constraint firstItem="alj-Bq-3Co" firstAttribute="leading" secondItem="K3N-LU-cmP" secondAttribute="trailing" id="ob3-wE-BfW"/>
+                            <constraint firstItem="alj-Bq-3Co" firstAttribute="top" secondItem="1nl-lF-G0F" secondAttribute="top" id="uFq-s8-fUE"/>
+                            <constraint firstItem="Hit-e3-ggC" firstAttribute="centerY" secondItem="1nl-lF-G0F" secondAttribute="centerY" id="y1t-1t-w6I"/>
+                            <constraint firstItem="Hit-e3-ggC" firstAttribute="height" secondItem="1nl-lF-G0F" secondAttribute="height" multiplier="70:100" id="y9v-UK-tlB"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ob3-wE-BfW"/>
+                                <exclude reference="jgo-nO-aq6"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1nl-lF-G0F" secondAttribute="trailing" id="PAX-Ly-CHU"/>
+                    <constraint firstItem="1nl-lF-G0F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="T4A-ux-PQw"/>
+                    <constraint firstAttribute="bottom" secondItem="1nl-lF-G0F" secondAttribute="bottom" id="gYA-CC-TTW"/>
+                    <constraint firstItem="1nl-lF-G0F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qjC-ZC-AyO"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonGo" destination="Hit-e3-ggC" id="iLT-6h-8cK"/>
+                <outlet property="imageVLine" destination="alj-Bq-3Co" id="dOZ-Xb-1pK"/>
+                <outlet property="labelNew" destination="K3N-LU-cmP" id="EDH-VR-v4c"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

@@ -476,6 +476,9 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         DetailViewController *detail=[[DetailViewController alloc]init];
+        AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
+        model=_appGoodsList[indexPath.row];
+        detail.goodsId=model.pid;
         [self.navigationController pushViewController:detail animated:YES];    }
 }
 

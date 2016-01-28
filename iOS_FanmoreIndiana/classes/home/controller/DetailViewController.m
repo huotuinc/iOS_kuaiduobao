@@ -15,6 +15,7 @@
 #import "DetailBottomCView.h"
 #import "DetailWinnerCView.h"
 #import "DetailTimeCView.h"
+#import "AppGoodsDetailModel.h"
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 @interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -23,11 +24,14 @@ static NSString * cellDTMain=@"cellDTMain";
 @property (strong, nonatomic) UITableView * tableView;
 @property (strong, nonatomic)  DCPicScrollView *headScrollView;//头部视图-轮播视图
 @property (strong, nonatomic) UIView * titleView;//标题视图
-@property (strong, nonatomic) UIProgressView * progressView;//标题视图
+@property (strong, nonatomic) DetailProgressCView * progressView;//进度视图
 @property (strong, nonatomic) DetailAttendCountCView * countView;//参加次数视图
 @property (strong, nonatomic) DetailBottomCView * bottomView;//底部选项视图
 @property (strong, nonatomic) DetailWinnerCView * winnerView;//获奖者
 @property (strong, nonatomic) DetailTimeCView * timeView;//揭晓倒计时
+
+@property (nonatomic, strong) NSMutableArray *goodsDetailList;
+@property (nonatomic, strong) AppGoodsDetailModel *detailModel;
 
 @end
 
@@ -53,15 +57,76 @@ static NSString * cellDTMain=@"cellDTMain";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    _goodsDetailList=[NSMutableArray array];
 
     self.view.backgroundColor=[UIColor whiteColor];
-    _titleString=@"              Apple/苹果 iPhone6 全新未激活4.7寸美版 港版三网苹果6正品手机";
-    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:_titleString].height;
+//    _titleString=@"              Apple/苹果 iPhone6 全新未激活4.7寸美版 港版三网苹果6正品手机";
+
+    [self getGoodsDetailList];
     [self createDataArray];
-    [self createHeadView];
     [self createBottomView];
-    [self createTableView];
 }
+#pragma mark 网络请求商品列表
+/**
+ *  下拉刷新
+ */
+- (void)getGoodsDetailList {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"goodsId"] = self.goodsId;
+    
+    [UserLoginTool loginRequestGet:@"getGoodsDetail" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            _detailModel = [AppGoodsDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
+            
+//            [self.goodsDetailList removeAllObjects];
+//            [self.goodsDetailList addObject:model];
+            [self createHeadView];
+            [self createTableView];
+            [_tableView reloadData];
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        [_tableView.mj_header endRefreshing];
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
+
+/**
+ *  上拉加载更多
+ */
+- (void)getMoreGoodsDetailList {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"goodsId"] = self.goodsId;
+    
+    [UserLoginTool loginRequestGet:@"getGoodsDetail" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            AppGoodsDetailModel *model = [AppGoodsDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
+            
+            [self.goodsDetailList addObject:model];
+            
+            [_tableView reloadData];
+        }
+        [_tableView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        LWLog (@"%@",error);
+    }];
+    
+}
+
+
 -(void)createDataArray{
     _titleArray=[NSMutableArray arrayWithArray:@[@"图文详情",@"往期揭晓",@"晒单分享"]];
     _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
@@ -71,7 +136,8 @@ static NSString * cellDTMain=@"cellDTMain";
 }
 #pragma mark 构建头部视图
 -(void)createHeadView{
-    NSInteger num =0;
+    NSInteger num =[_detailModel.status integerValue];
+    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"              %@",_detailModel.title]].height;
 //已经结束
     if (num == 0) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight)];
@@ -98,7 +164,7 @@ static NSString * cellDTMain=@"cellDTMain";
         
     }
 //正在抽奖
-    if (num == 1) {
+    if (num == 2) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -138,7 +204,7 @@ static NSString * cellDTMain=@"cellDTMain";
         [_headView addSubview:_countView];
     }
 //正在进行
-    if (num == 2) {
+    if (num == 1) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -157,12 +223,17 @@ static NSString * cellDTMain=@"cellDTMain";
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
         _progressView= [nib firstObject];
         _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _progressView.labelRest.text=[NSString stringWithFormat:@"%@",_detailModel.remainAmount];
+        _progressView.labelTital.text=[NSString stringWithFormat:@"%@",_detailModel.toAmount];
+        _progressView.labelTerm.text=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+        CGFloat percent=(_detailModel.toAmount.floatValue -_detailModel.remainAmount.floatValue)/(_detailModel.toAmount.floatValue);
+        _progressView.viewProgress.progress=percent;
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
         _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
-        if (_titleArray.count > 0) {
-            _countView.labelCount.text=@"登陆 以查看您的夺宝号码";
+        if (_detailModel.numbers.count > 0) {
+            _countView.labelCount.text=[NSString stringWithFormat:@"%@",_detailModel.numbers[2]];
             _countView.labelCount.hidden=NO;
             _countView.labelA.hidden=YES;
             _countView.labelB.hidden=YES;
@@ -192,7 +263,12 @@ static NSString * cellDTMain=@"cellDTMain";
 }
 -(void)createStateLabel{
     _titleStateLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _titleStrHeight/_titleLineCount*3,_titleStrHeight/_titleLineCount)];
-    _titleStateLabel.text=@"进行中";
+    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+        _titleStateLabel.text=@"进行中";
+    }
+    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:12]]) {
+        _titleStateLabel.text=@"已揭晓";
+    }
     _titleStateLabel.textAlignment=NSTextAlignmentCenter;
     _titleStateLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
     _titleStateLabel.layer.borderWidth=1;
@@ -204,7 +280,7 @@ static NSString * cellDTMain=@"cellDTMain";
 -(void)createTitleLabel{
     
     _titleLabel=[[UILabel alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, _titleStrHeight)];
-    _titleLabel.text=_titleString;
+    _titleLabel.text=[NSString stringWithFormat:@"              %@",_detailModel.title];
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
     _titleLabel.numberOfLines=0;
     
@@ -294,6 +370,11 @@ static NSString * cellDTMain=@"cellDTMain";
     return ceil(size.height / label.font.lineHeight);
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.tabBarController.tabBar.hidden=NO;
+    
+}
 
 /*
 #pragma mark - Navigation
