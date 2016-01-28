@@ -18,8 +18,10 @@
 #import "UILabel+FMLableStyle.h"
 #import "UIButton+FMButtonStyle.h"
 #import <UIView+BlocksKit.h>
+#import "UITableView+CJ.h"
 #import "UserLoginTool.h"
 #import "UserModel.h"
+#import <SVProgressHUD.h>
 
 /**微信支付*/
 #define WeiXinPaySigNkey @"NzfP6pfeljyHeY08LO9p8YAKZCGLz8akO4lCGdXZOGnVsJqfo8jeuYB7C0GoFJGEKZMDVGKWYnbbJj3pCpvJzd4iY7bVglaNz54XAD26tiCr5DZGLjZFoRxbqe8i3HT5"
@@ -54,7 +56,6 @@
 #define MainUrl @"http://192.168.1.41:8080/duobao/app/"
 #define MKMainUrl @"192.168.1.41:8080/duobao/app"
 
-#define UserInfo @"UserInfo"
 
 
 /**时间*/
@@ -74,6 +75,11 @@
 
 /**APP token */
 #define AppToken @"AppToken"
+
+/**************************/
+#define CannelLoginFailure @"CannelLogin" //取消登陆
+#define UserInfo @"UserInfo"
+#define GlobalInfo @"GlobalInfo"
 
 /********登陆标志************/
 #define LoginStatus @"LoginStatus" //登录标志

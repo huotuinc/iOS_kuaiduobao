@@ -41,6 +41,9 @@
 		60584F221C4E285C00F23B95 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60584F211C4E285C00F23B95 /* libz.tbd */; };
 		60584F241C4E286700F23B95 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60584F231C4E286700F23B95 /* libicucore.tbd */; };
 		60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60584F261C4E39FD00F23B95 /* TabBarController.m */; };
+		605E158C1C59A8AB00DBF8BA /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605E158B1C59A8AB00DBF8BA /* SettingController.m */; };
+		605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 605E158E1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m */; };
+		605E15921C5A0EB500DBF8BA /* GlobalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 605E15911C5A0EB500DBF8BA /* GlobalModel.m */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */; };
@@ -181,6 +184,12 @@
 		60584F231C4E286700F23B95 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		60584F251C4E39FD00F23B95 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		60584F261C4E39FD00F23B95 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		605E158A1C59A8AB00DBF8BA /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		605E158B1C59A8AB00DBF8BA /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		605E158D1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MonitorNetWork.h"; sourceTree = "<group>"; };
+		605E158E1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MonitorNetWork.m"; sourceTree = "<group>"; };
+		605E15901C5A0EB500DBF8BA /* GlobalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalModel.h; sourceTree = "<group>"; };
+		605E15911C5A0EB500DBF8BA /* GlobalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalModel.m; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -363,6 +372,8 @@
 		6029AB191C4DD85300198FE3 /* 扩展 */ = {
 			isa = PBXGroup;
 			children = (
+				605E158D1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.h */,
+				605E158E1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m */,
 				60B5A3661C51FDE900E4C7BB /* NSDictionary+EXTERN.h */,
 				60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */,
 				60584F091C4E225F00F23B95 /* UIViewController+NAV.h */,
@@ -589,6 +600,8 @@
 				60EB31A41C55C86C006C070B /* FanmoreUserController.m */,
 				60EB31A61C55C892006C070B /* OtherUserController.h */,
 				60EB31A71C55C892006C070B /* OtherUserController.m */,
+				605E158A1C59A8AB00DBF8BA /* SettingController.h */,
+				605E158B1C59A8AB00DBF8BA /* SettingController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -706,6 +719,8 @@
 				60525F621C51BF0E00CC4528 /* UserModel.m */,
 				601769A41C589121009E503F /* AdressModel.h */,
 				601769A51C589121009E503F /* AdressModel.m */,
+				605E15901C5A0EB500DBF8BA /* GlobalModel.h */,
+				605E15911C5A0EB500DBF8BA /* GlobalModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -883,6 +898,8 @@
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
 				604C62711C50C57900569F0B /* ShareSDK.bundle in Resources */,
+				F262E8A11C55C0B900141EBC /* TenTableViewCell.xib in Resources */,
+				F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */,
 				F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */,
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 				604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */,
@@ -969,7 +986,7 @@
 				60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */,
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
-				60525F601C50F8A000CC4528 /* UIButton+CountDown.m in Sources */,
+				F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				F23DE3D51C522E34002AB5FC /* DetailProgressCView.m in Sources */,
 				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
@@ -984,10 +1001,12 @@
 				60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */,
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
 				F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */,
+				605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */,
 				F23DE3CF1C522E34002AB5FC /* DetailWayBCView.m in Sources */,
 				60584F151C4E228D00F23B95 /* GTMBase64.m in Sources */,
-				606E79E41C4DDE43000F3027 /* DetailController.m in Sources */,
+				605E15921C5A0EB500DBF8BA /* GlobalModel.m in Sources */,
 				601769A61C589121009E503F /* AdressModel.m in Sources */,
+				605E158C1C59A8AB00DBF8BA /* SettingController.m in Sources */,
 				60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */,
 				60EB31A81C55C892006C070B /* OtherUserController.m in Sources */,
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,

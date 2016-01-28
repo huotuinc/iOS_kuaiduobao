@@ -7,6 +7,7 @@
 //
 
 #import "ForgetThirdController.h"
+#import <UIBarButtonItem+BlocksKit.h>
 
 @interface ForgetThirdController ()
 
@@ -17,6 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.title = @"忘记密码";
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

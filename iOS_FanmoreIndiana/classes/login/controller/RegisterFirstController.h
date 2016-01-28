@@ -11,9 +11,10 @@
 @interface RegisterFirstController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *security;
-@property (weak, nonatomic) IBOutlet UIButton *getSecurtity;
+@property (weak, nonatomic) IBOutlet UILabel *countdown;
 @property (weak, nonatomic) IBOutlet UIButton *next;
-- (IBAction)getSecurtityCode:(id)sender;
+
+- (void)getSecurtityCode;
 
 - (IBAction)goNext:(id)sender;
 

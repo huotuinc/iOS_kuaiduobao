@@ -7,6 +7,8 @@
 //
 
 #import "ForgetFirstController.h"
+#import "ForgetSecondController.h"
+
 
 @interface ForgetFirstController ()
 
@@ -16,12 +18,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
+    self.title = @"忘记密码";
+    
+    self.next.layer.cornerRadius = 5;
+    
+    [self.userName becomeFirstResponder];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.userName resignFirstResponder];
+    
 }
 
 /*
@@ -34,4 +50,25 @@
 }
 */
 
+- (IBAction)doNext:(UIButton *)sender {
+    
+    if (self.userName.text.length != 0) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"phone"] = self.userName.text;
+        
+        [UserLoginTool loginRequestGet:@"checkPhone" parame:dic success:^(id json) {
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                ForgetSecondController *second = [story instantiateViewControllerWithIdentifier:@"ForgetSecondController"];
+                
+                [self.navigationController pushViewController:second animated:YES];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    }
+    
+    
+}
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "GlobalModel.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
@@ -74,6 +74,35 @@
                  break;
          }
      }];
+    
+    
+    [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            GlobalModel *global = [GlobalModel mj_objectWithKeyValues:json[@"resultData"][@"global"]];
+            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            NSString *fileName = [path stringByAppendingPathComponent:GlobalInfo];
+            [NSKeyedArchiver archiveRootObject:global toFile:fileName];
+            
+            if (![json[@"resultData"][@"user"] isKindOfClass:[NSNull class]]) {
+                
+                UserModel *user = [UserModel mj_objectWithKeyValues:json[@"resultData"][@"user"]];
+                NSLog(@"userModel: %@",user);
+                
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+                [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+                //保存新的token
+                [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+            }
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
+    
     return YES;
 }
 

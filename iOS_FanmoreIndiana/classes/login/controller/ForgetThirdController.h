@@ -10,4 +10,6 @@
 
 @interface ForgetThirdController : UIViewController
 
+@property (nonatomic, strong) NSString *userName;
+
 @end

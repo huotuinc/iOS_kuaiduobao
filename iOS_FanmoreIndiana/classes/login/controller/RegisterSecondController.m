@@ -23,6 +23,12 @@
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     self.registerButton.layer.cornerRadius = 5;
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    
+    [self.password becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,6 +39,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.password resignFirstResponder];
     
 }
 
@@ -48,11 +60,34 @@
         
         [UserLoginTool loginRequestPostWithFile:@"reg" parame:dic success:^(id json) {
             LWLog(@"%@",json);
-            [self dismissViewControllerAnimated:YES completion:nil];
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                [self loginSuccessWith:json[@"resultData"]];
+            }else {
+                
+            }
+           
         } failure:^(NSError *error) {
             LWLog(@"%@",error);
         } withFileKey:nil];
     }
     
 }
+
+
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    NSLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    //保存新的token
+    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
 @end

@@ -10,4 +10,13 @@
 
 @interface ForgetSecondController : UIViewController
 
+@property (nonatomic, strong) NSString *userName;
+@property (weak, nonatomic) IBOutlet UITextField *phone;
+@property (weak, nonatomic) IBOutlet UITextField *security;
+@property (weak, nonatomic) IBOutlet UILabel *countCode;
+@property (weak, nonatomic) IBOutlet UIButton *next;
+
+
+- (IBAction)doNext:(id)sender;
+
 @end

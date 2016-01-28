@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ForgetFirstController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *userName;
+@property (weak, nonatomic) IBOutlet UIButton *next;
+- (IBAction)doNext:(UIButton *)sender;
 
 @end
