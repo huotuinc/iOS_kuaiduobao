@@ -11,7 +11,7 @@
 @interface DetailProgressCView : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *labelTerm;
 @property (weak, nonatomic) IBOutlet UIProgressView *viewProgress;
-@property (weak, nonatomic) IBOutlet UILabel *labelTital;
+@property (weak, nonatomic) IBOutlet UILabel *labelTotal;
 @property (weak, nonatomic) IBOutlet UILabel *labelRest;
 
 @end

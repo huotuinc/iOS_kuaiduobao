@@ -35,9 +35,29 @@ static NSString *cellTenMain=@"cellTenMain";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [self createBarButtonItem];
+    [self createBarButtonItem];
+    
     _appGoodsList=[NSMutableArray array];
     [self getAppGoodsList];
+}
+-(void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
+    
+    UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonR setBackgroundImage:[UIImage imageNamed:@"more_gray"]forState:UIControlStateNormal];
+    [buttonR addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
+    self.navigationItem.rightBarButtonItem=bbiR;
+}
+-(void)clickLightButton{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)clickRightButton{
+
 }
 #pragma mark 网络请求专区商品列表
 /**
@@ -107,23 +127,7 @@ static NSString *cellTenMain=@"cellTenMain";
     
 }
 
--(void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 18, 18)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
-    
-//    UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 18, 18)];
-//    [buttonR setBackgroundImage:[UIImage imageNamed:@"common_title_top_more"]forState:UIControlStateNormal];
-//    [buttonR addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
-//    self.navigationItem.rightBarButtonItem=bbiR;
-}
--(void)clickLightButton{
-    [self.navigationController popViewControllerAnimated:YES];
 
-}
 #pragma mark UITableViewDelegate
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     

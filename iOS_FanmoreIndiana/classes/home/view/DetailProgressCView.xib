@@ -80,7 +80,7 @@
             <connections>
                 <outlet property="labelRest" destination="0u1-JL-xjP" id="696-gB-GbZ"/>
                 <outlet property="labelTerm" destination="3C6-VO-Htw" id="bYm-4G-Q0B"/>
-                <outlet property="labelTital" destination="fck-6A-2mC" id="5uE-DK-vE7"/>
+                <outlet property="labelTotal" destination="fck-6A-2mC" id="7T4-xA-mC2"/>
                 <outlet property="viewProgress" destination="7h4-Hl-uFd" id="S1y-Vz-4lN"/>
             </connections>
             <point key="canvasLocation" x="267" y="277"/>

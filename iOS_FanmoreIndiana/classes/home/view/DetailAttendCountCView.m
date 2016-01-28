@@ -12,9 +12,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _viewBack.backgroundColor=[UIColor grayColor];
+    _viewBack.backgroundColor=COLOR_BACK_MAIN;
     _viewBack.layer.cornerRadius=3;
     _viewBack.layer.masksToBounds=YES;
+    [UILabel changeLabel:_labelA AndFont:24 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelB AndFont:24 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelCount AndFont:24 AndColor:COLOR_TEXT_DATE];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

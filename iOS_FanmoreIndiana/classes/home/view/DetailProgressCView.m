@@ -21,9 +21,9 @@
     //设置进度条上进度的颜色
     _viewProgress.progressTintColor=COLOR_PROGRESS_A;
     
-    [UILabel changeLabel:_labelRest AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelRest AndFont:24 AndColor:COLOR_SHINE_BLUE];
     [UILabel changeLabel:_labelTerm AndFont:24 AndColor:COLOR_TEXT_CONTENT];
-    [UILabel changeLabel:_labelTital AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelTotal AndFont:24 AndColor:COLOR_TEXT_CONTENT];
 }
 
 - (void)drawRect:(CGRect)rect {

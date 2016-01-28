@@ -60,6 +60,7 @@
 		F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD991C50B482004C9467 /* TenViewController.m */; };
 		F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */; };
 		F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */; };
+		F237A5981C59C52A00F91B45 /* DetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F237A5971C59C52A00F91B45 /* DetailWebViewController.m */; };
 		F23B870D1C5854BB00A5A420 /* AppGoodsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F23B870C1C5854BB00A5A420 /* AppGoodsListModel.m */; };
 		F23B96791C58600500A5A420 /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = F23B96631C58600500A5A420 /* MJArgument.m */; };
 		F23B967A1C58600500A5A420 /* MJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = F23B96651C58600500A5A420 /* MJConst.m */; };
@@ -233,6 +234,8 @@
 		F21986A41C4F288500966A2C /* HomeHeadCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadCollectionViewCell.h; sourceTree = "<group>"; };
 		F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCollectionViewCell.m; sourceTree = "<group>"; };
 		F21986A61C4F288500966A2C /* HomeHeadCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeadCollectionViewCell.xib; sourceTree = "<group>"; };
+		F237A5961C59C52A00F91B45 /* DetailWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWebViewController.h; sourceTree = "<group>"; };
+		F237A5971C59C52A00F91B45 /* DetailWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWebViewController.m; sourceTree = "<group>"; };
 		F23B870B1C5854BB00A5A420 /* AppGoodsListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppGoodsListModel.h; path = iOS_FanmoreIndiana/classes/home/view/AppGoodsListModel.h; sourceTree = SOURCE_ROOT; };
 		F23B870C1C5854BB00A5A420 /* AppGoodsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppGoodsListModel.m; path = iOS_FanmoreIndiana/classes/home/view/AppGoodsListModel.m; sourceTree = SOURCE_ROOT; };
 		F23B96621C58600500A5A420 /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				F20DDD991C50B482004C9467 /* TenViewController.m */,
 				F262E8A21C55C24500141EBC /* ClassViewController.h */,
 				F262E8A31C55C24500141EBC /* ClassViewController.m */,
+				F237A5961C59C52A00F91B45 /* DetailWebViewController.h */,
+				F237A5971C59C52A00F91B45 /* DetailWebViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1039,6 +1044,7 @@
 				F23B96821C58600500A5A420 /* NSObject+MJKeyValue.m in Sources */,
 				F23B96831C58600500A5A420 /* NSObject+MJMember.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
+				F237A5981C59C52A00F91B45 /* DetailWebViewController.m in Sources */,
 				F23B96791C58600500A5A420 /* MJArgument.m in Sources */,
 				F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */,
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,

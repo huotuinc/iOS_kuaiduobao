@@ -16,6 +16,7 @@
 #import "DetailWinnerCView.h"
 #import "DetailTimeCView.h"
 #import "AppGoodsDetailModel.h"
+#import "DetailWebViewController.h"
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 @interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -57,6 +58,7 @@ static NSString * cellDTMain=@"cellDTMain";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [self createBarButtonItem];
     _goodsDetailList=[NSMutableArray array];
 
     self.view.backgroundColor=[UIColor whiteColor];
@@ -66,6 +68,16 @@ static NSString * cellDTMain=@"cellDTMain";
     [self createDataArray];
     [self createBottomView];
 }
+-(void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
+}
+-(void)clickLightButton{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark 网络请求商品列表
 /**
  *  下拉刷新
@@ -74,8 +86,7 @@ static NSString * cellDTMain=@"cellDTMain";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"goodsId"] = self.goodsId;
-    
-    [UserLoginTool loginRequestGet:@"getGoodsDetail" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:@"getGoodsDetailByGoodsId" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
@@ -107,7 +118,7 @@ static NSString * cellDTMain=@"cellDTMain";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"goodsId"] = self.goodsId;
     
-    [UserLoginTool loginRequestGet:@"getGoodsDetail" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:@"getGoodsDetailByGoodsId" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
@@ -137,9 +148,9 @@ static NSString * cellDTMain=@"cellDTMain";
 #pragma mark 构建头部视图
 -(void)createHeadView{
     NSInteger num =[_detailModel.status integerValue];
-    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"              %@",_detailModel.title]].height;
+    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]].height;
 //已经结束
-    if (num == 0) {
+    if (num == 2) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -164,7 +175,7 @@ static NSString * cellDTMain=@"cellDTMain";
         
     }
 //正在抽奖
-    if (num == 2) {
+    if (num == 1) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -204,7 +215,7 @@ static NSString * cellDTMain=@"cellDTMain";
         [_headView addSubview:_countView];
     }
 //正在进行
-    if (num == 1) {
+    if (num == 0) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -223,9 +234,11 @@ static NSString * cellDTMain=@"cellDTMain";
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
         _progressView= [nib firstObject];
         _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
-        _progressView.labelRest.text=[NSString stringWithFormat:@"%@",_detailModel.remainAmount];
-        _progressView.labelTital.text=[NSString stringWithFormat:@"%@",_detailModel.toAmount];
-        _progressView.labelTerm.text=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+        NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"剩余: %@",_detailModel.remainAmount]];
+        [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(0, 3)];
+        _progressView.labelRest.attributedText=attString;
+        _progressView.labelTotal.text=[NSString stringWithFormat:@"总需: %@人次",_detailModel.toAmount];
+        _progressView.labelTerm.text=[NSString stringWithFormat:@"期号: %@",_detailModel.issueId];
         CGFloat percent=(_detailModel.toAmount.floatValue -_detailModel.remainAmount.floatValue)/(_detailModel.toAmount.floatValue);
         _progressView.viewProgress.progress=percent;
         
@@ -233,11 +246,17 @@ static NSString * cellDTMain=@"cellDTMain";
         _countView= [nibA firstObject];
         _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         if (_detailModel.numbers.count > 0) {
-            _countView.labelCount.text=[NSString stringWithFormat:@"%@",_detailModel.numbers[2]];
-            _countView.labelCount.hidden=NO;
-            _countView.labelA.hidden=YES;
-            _countView.labelB.hidden=YES;
-            _countView.viewNext.hidden=YES;
+            NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",_detailModel.numbers.count]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",_detailModel.numbers.count].length)];
+            _countView.labelA.attributedText=attString;
+            _countView.labelB.text=@"点击查看号码";
+            _countView.labelCount.hidden=YES;
+            _countView.labelA.hidden=NO;
+            _countView.labelB.hidden=NO;
+            _countView.viewNext.hidden=NO;
+            [_countView.viewNext bk_whenTapped:^{
+                LWLog(@"0000000");
+            }];
         }else{
             _countView.labelCount.hidden=YES;
             _countView.labelA.hidden=NO;
@@ -263,7 +282,7 @@ static NSString * cellDTMain=@"cellDTMain";
 }
 -(void)createStateLabel{
     _titleStateLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _titleStrHeight/_titleLineCount*3,_titleStrHeight/_titleLineCount)];
-    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
         _titleStateLabel.text=@"进行中";
     }
     if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:12]]) {
@@ -280,7 +299,9 @@ static NSString * cellDTMain=@"cellDTMain";
 -(void)createTitleLabel{
     
     _titleLabel=[[UILabel alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, _titleStrHeight)];
-    _titleLabel.text=[NSString stringWithFormat:@"              %@",_detailModel.title];
+    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(14+_detailModel.title.length+1,_detailModel.character.length)];
+    _titleLabel.attributedText=attString;
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
     _titleLabel.numberOfLines=0;
     
@@ -323,6 +344,15 @@ static NSString * cellDTMain=@"cellDTMain";
     
     }
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section ==0) {
+        if (indexPath.row == 1) {
+            DetailWebViewController *web=[[DetailWebViewController alloc]init];
+            web.webURL=_detailModel.link;
+            [self.navigationController pushViewController:web animated:YES];
+        }
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return ADAPT_HEIGHT(50);

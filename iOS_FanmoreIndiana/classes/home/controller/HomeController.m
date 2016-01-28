@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong) NSMutableArray *appGoodsList;
 
+@property (nonatomic, strong) NSNumber *lastSort;
+
 
 
 @end
@@ -54,6 +56,7 @@ static NSString *cellHead = @"homeCellHead";
 
 static CGFloat labelHeight = 20;//中奖信息CollectionView高度
 static CGFloat clearHeight = 10;//中奖信息CollectionView高度
+static NSInteger num=0;//记录总需人数的点击次数
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -61,6 +64,7 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    self.view.backgroundColor=[UIColor whiteColor];
 }
 
 - (void)viewDidLoad {
@@ -86,11 +90,10 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
     
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 44) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 64) collectionViewLayout:flowLayout];
     self.collectionView.tag=100;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
@@ -98,13 +101,13 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
-
+    [self setupRefresh];
 }
 - (void)setupRefresh
 {
     
     
-    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewShareList)];
+    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getGoodsList)];
     _collectionView.mj_header = headRe;
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
@@ -117,7 +120,7 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     
-    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShareList)];
+    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
     _collectionView.mj_footer = Footer;
     
     //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
@@ -129,7 +132,7 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
  *  下拉刷新
  */
 - (void)getGoodsList {
-    
+    [SVProgressHUD show];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = self.type;
     dic[@"lastSort"]= @0;
@@ -142,7 +145,7 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
             
             LWLog(@"%@",json[@"resultDescription"]);
             NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
+            self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
             [self createMainCollectionView];
@@ -150,8 +153,8 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
+        [SVProgressHUD dismiss];
         [_collectionView.mj_header endRefreshing];
-        
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     }];
@@ -165,9 +168,9 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
     AppGoodsListModel *model = [self.appGoodsList lastObject];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = self.type;
-    dic[@"lastSort"]= model.pid;
+    dic[@"lastSort"]= self.lastSort;
     
-    [UserLoginTool loginRequestGet:@"searchShareList" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:@"getGoodsListByIndex" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
@@ -176,8 +179,12 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
             NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.appGoodsList addObjectsFromArray:temp];
-            
+            LWLog(@"%@",json[@"resultDescription"]);
+
             [_collectionView reloadData];
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+
         }
         [_collectionView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
@@ -398,7 +405,6 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
                     [button setImage:[UIImage imageNamed:@"paixu"] forState:UIControlStateNormal];
                     [button setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
                 }
-                static NSInteger num=0;//记录总需人数的点击次数
                 [button bk_whenTapped:^{
                     for (int i = 0; i< 4; i++) {
                         FL_Button *btn =[_viewChoice viewWithTag:100+i];
@@ -408,8 +414,6 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
                         num =0;
                         FL_Button *buttonTotal=[_viewChoice viewWithTag:103];
                         [buttonTotal setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
-                        FL_Button *buttonSelected=[_viewChoice viewWithTag:100 + [self.type integerValue] - 1];
-                        buttonSelected.selected=YES;
                         [UIView animateWithDuration:0.3f animations:^{
                             _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
                         }];
@@ -453,7 +457,16 @@ static CGFloat clearHeight = 10;//中奖信息CollectionView高度
                 }];
                 
                 [_viewChoice addSubview:button];
+                
+
             }
+            
+            FL_Button *buttonSelected=[_viewChoice viewWithTag:100 + [self.type integerValue] - 1];
+            buttonSelected.selected=YES;
+            [UIView animateWithDuration:0.3f animations:^{
+                _imageVRed.center=CGPointMake(buttonSelected.center.x,_imageVRed.center.y );
+            }];
+            
             UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, _viewChoice.frame.size.height-1, SCREEN_WIDTH, 1)];
             imageVBack.image=[UIImage imageNamed:@"line_huise"];
             _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, _viewChoice.frame.size.height-1, SCREEN_WIDTH/4*4/5, 1)];

@@ -140,8 +140,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="j3v-lw-xQr"/>
                                         <exclude reference="uiV-19-ytk"/>
+                                        <exclude reference="j3v-lw-xQr"/>
                                     </mask>
                                 </variation>
                             </view>
