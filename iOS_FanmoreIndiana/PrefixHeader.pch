@@ -9,6 +9,7 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+
 #import "Measure.h"
 #import "Color.h"
 #import "Font.h"
@@ -53,8 +54,8 @@
 
 
 /***服务器地址***/
-#define MainUrl @"http://192.168.1.41:8080/duobao/app/"
-#define MKMainUrl @"192.168.1.41:8080/duobao/app"
+#define MainUrl @"http://192.168.3.13:8080/duobao/app/"
+#define MKMainUrl @"192.168.3.13:8080/duobao/app"
 
 
 

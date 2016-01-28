@@ -20,19 +20,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="750" height="129"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Grq-yY-UfW">
-                                <rect key="frame" x="20" y="25" width="79" height="79"/>
+                                <rect key="frame" x="10" y="25" width="79" height="79"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Grq-yY-UfW" secondAttribute="height" multiplier="1:1" id="t5f-da-FRr"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKf-mc-v6h">
-                                <rect key="frame" x="119" y="54" width="42" height="21"/>
+                                <rect key="frame" x="109" y="54" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Snd-77-RSR">
-                                <rect key="frame" x="119" y="128" width="631" height="1"/>
+                                <rect key="frame" x="109" y="128" width="641" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="oIB-SL-Ith"/>
                                 </constraints>
@@ -44,7 +44,7 @@
                             <constraint firstItem="Grq-yY-UfW" firstAttribute="centerY" secondItem="ZS5-cc-x9u" secondAttribute="centerY" id="HCB-vS-bva"/>
                             <constraint firstItem="Snd-77-RSR" firstAttribute="leading" secondItem="sKf-mc-v6h" secondAttribute="leading" id="MEU-Vt-SPv"/>
                             <constraint firstItem="sKf-mc-v6h" firstAttribute="centerY" secondItem="Grq-yY-UfW" secondAttribute="centerY" id="Yz2-8m-toH"/>
-                            <constraint firstItem="Grq-yY-UfW" firstAttribute="leading" secondItem="ZS5-cc-x9u" secondAttribute="leading" constant="20" id="dSI-mf-Mi0"/>
+                            <constraint firstItem="Grq-yY-UfW" firstAttribute="leading" secondItem="ZS5-cc-x9u" secondAttribute="leading" constant="10" id="dSI-mf-Mi0"/>
                             <constraint firstAttribute="trailing" secondItem="Snd-77-RSR" secondAttribute="trailing" id="hal-NZ-Qnk"/>
                             <constraint firstItem="Grq-yY-UfW" firstAttribute="height" secondItem="ZS5-cc-x9u" secondAttribute="height" multiplier="80:130" id="hbY-La-1lr"/>
                             <constraint firstItem="sKf-mc-v6h" firstAttribute="leading" secondItem="Grq-yY-UfW" secondAttribute="trailing" constant="20" id="yZ8-XS-qwz"/>

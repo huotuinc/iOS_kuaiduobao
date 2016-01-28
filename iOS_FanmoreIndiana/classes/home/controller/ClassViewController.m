@@ -31,10 +31,22 @@ static NSString *cellClassB=@"cellClassB";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self createBarButtonItem];
     // Do any additional setup after loading the view.
     [self createTitleArray];
     [self createTableView];
 }
+-(void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
+}
+-(void)clickLightButton{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void) createTitleArray{
     _titleArray = [NSMutableArray arrayWithArray:@[@"全部商品",@"分类浏览",@"十元夺宝",@"手机平板",@"电脑办公",@"数码影音",@"女性时尚",@"美食天地",@"潮流新品",@"其它商品"]];
 

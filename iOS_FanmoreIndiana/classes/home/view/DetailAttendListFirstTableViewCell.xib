@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLz-MB-7Pm">
-                        <rect key="frame" x="20" y="0.0" width="730" height="99"/>
+                        <rect key="frame" x="10" y="0.0" width="740" height="99"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UzR-jL-Wbu">
                                 <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="29" width="116" height="41"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -64,7 +64,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="mLz-MB-7Pm" secondAttribute="bottom" id="Rbi-or-PqC"/>
-                    <constraint firstItem="mLz-MB-7Pm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="djA-2r-tDV"/>
+                    <constraint firstItem="mLz-MB-7Pm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="djA-2r-tDV"/>
                     <constraint firstItem="mLz-MB-7Pm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="frL-Tx-zET"/>
                     <constraint firstAttribute="trailing" secondItem="mLz-MB-7Pm" secondAttribute="trailing" id="wjh-xe-9qk"/>
                 </constraints>

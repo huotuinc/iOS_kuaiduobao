@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSv-0o-x6u">
-                        <rect key="frame" x="20" y="0.0" width="730" height="119"/>
+                        <rect key="frame" x="10" y="0.0" width="740" height="119"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Shy-4G-fPW">
                                 <rect key="frame" x="39" y="0.0" width="1" height="119"/>
@@ -32,7 +32,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-g4-sSP">
-                                <rect key="frame" x="99" y="0.0" width="631" height="119"/>
+                                <rect key="frame" x="99" y="0.0" width="641" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="静静静静经济囧囧囧囧囧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHW-lH-eU1">
                                         <rect key="frame" x="0.0" y="0.0" width="187" height="35"/>
@@ -86,7 +86,7 @@
                     <constraint firstItem="vSv-0o-x6u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="45i-gu-bF5"/>
                     <constraint firstAttribute="trailing" secondItem="vSv-0o-x6u" secondAttribute="trailing" id="6ZV-ZT-4lK"/>
                     <constraint firstAttribute="bottom" secondItem="vSv-0o-x6u" secondAttribute="bottom" id="VrN-in-zUL"/>
-                    <constraint firstItem="vSv-0o-x6u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="i63-BV-6G0"/>
+                    <constraint firstItem="vSv-0o-x6u" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="i63-BV-6G0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

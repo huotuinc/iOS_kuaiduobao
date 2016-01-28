@@ -14,6 +14,9 @@
 #import "DetailAttendCountCView.h"
 #import "DetailBottomCView.h"
 #import "DetailWinnerCView.h"
+#import "DetailTimeCView.h"
+#import "AppGoodsDetailModel.h"
+#import "DetailWebViewController.h"
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 @interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -22,10 +25,14 @@ static NSString * cellDTMain=@"cellDTMain";
 @property (strong, nonatomic) UITableView * tableView;
 @property (strong, nonatomic)  DCPicScrollView *headScrollView;//头部视图-轮播视图
 @property (strong, nonatomic) UIView * titleView;//标题视图
-@property (strong, nonatomic) UIProgressView * progressView;//标题视图
+@property (strong, nonatomic) DetailProgressCView * progressView;//进度视图
 @property (strong, nonatomic) DetailAttendCountCView * countView;//参加次数视图
-@property (strong, nonatomic) DetailBottomCView * bottomView;//参底部选项视图
-@property (strong, nonatomic) DetailWinnerCView * winnerView;//参底部选项视图
+@property (strong, nonatomic) DetailBottomCView * bottomView;//底部选项视图
+@property (strong, nonatomic) DetailWinnerCView * winnerView;//获奖者
+@property (strong, nonatomic) DetailTimeCView * timeView;//揭晓倒计时
+
+@property (nonatomic, strong) NSMutableArray *goodsDetailList;
+@property (nonatomic, strong) AppGoodsDetailModel *detailModel;
 
 @end
 
@@ -44,19 +51,93 @@ static NSString * cellDTMain=@"cellDTMain";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [self createBarButtonItem];
+    _goodsDetailList=[NSMutableArray array];
+
     self.view.backgroundColor=[UIColor whiteColor];
-    _titleString=@"              但那是肯定那是靠近的那首多少级啊客户的撒空间互动大时间快点哈萨fcjbvcxvbcxvjbcxbvsdhfgds发的设计开发的时间回复的事发生的卡号发克";
-    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:_titleString].height;
+//    _titleString=@"              Apple/苹果 iPhone6 全新未激活4.7寸美版 港版三网苹果6正品手机";
+
+    [self getGoodsDetailList];
     [self createDataArray];
-    [self createHeadView];
     [self createBottomView];
-    [self createTableView];
 }
+-(void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
+}
+-(void)clickLightButton{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark 网络请求商品列表
+/**
+ *  下拉刷新
+ */
+- (void)getGoodsDetailList {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"goodsId"] = self.goodsId;
+    [UserLoginTool loginRequestGet:@"getGoodsDetailByGoodsId" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            _detailModel = [AppGoodsDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
+            
+//            [self.goodsDetailList removeAllObjects];
+//            [self.goodsDetailList addObject:model];
+            [self createHeadView];
+            [self createTableView];
+            [_tableView reloadData];
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        [_tableView.mj_header endRefreshing];
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
+
+/**
+ *  上拉加载更多
+ */
+- (void)getMoreGoodsDetailList {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"goodsId"] = self.goodsId;
+    
+    [UserLoginTool loginRequestGet:@"getGoodsDetailByGoodsId" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            AppGoodsDetailModel *model = [AppGoodsDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
+            
+            [self.goodsDetailList addObject:model];
+            
+            [_tableView reloadData];
+        }
+        [_tableView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        LWLog (@"%@",error);
+    }];
+    
+}
+
+
 -(void)createDataArray{
     _titleArray=[NSMutableArray arrayWithArray:@[@"图文详情",@"往期揭晓",@"晒单分享"]];
     _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
@@ -66,9 +147,10 @@ static NSString * cellDTMain=@"cellDTMain";
 }
 #pragma mark 构建头部视图
 -(void)createHeadView{
-    NSInteger num =0;
-    
-    if (num == 0) {
+    NSInteger num =[_detailModel.status integerValue];
+    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]].height;
+//已经结束
+    if (num == 2) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -76,16 +158,24 @@ static NSString * cellDTMain=@"cellDTMain";
             printf("第%zd张图片\n",index);
         }];
         //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 2.0f;
+        _headScrollView.AutoScrollDelay = 0.0f;
+        
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
+        _titleView.backgroundColor=[UIColor whiteColor];
+        [self createTitleLabel];
+        [self createStateLabel];
         
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailWinnerCView" owner:nil options:nil];
         _winnerView= [nib firstObject];
         _winnerView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(360));
         
         [_headView addSubview:_headScrollView];
+        [_headView addSubview:_titleView];
         [_headView addSubview:_winnerView];
         
-    }else{
+    }
+//正在抽奖
+    if (num == 1) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
@@ -93,17 +183,16 @@ static NSString * cellDTMain=@"cellDTMain";
             printf("第%zd张图片\n",index);
         }];
         //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 2.0f;
+        _headScrollView.AutoScrollDelay = 0.0f;
         
-        _titleView = [[UIView alloc]initWithFrame:CGRectMake(20, ADAPT_HEIGHT(390), SCREEN_WIDTH-40, _titleStrHeight)];
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
-        
         [self createTitleLabel];
         [self createStateLabel];
         
-        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
-        _progressView= [nib firstObject];
-        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailTimeCView" owner:nil options:nil];
+        _timeView= [nib firstObject];
+        _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
@@ -120,11 +209,68 @@ static NSString * cellDTMain=@"cellDTMain";
             _countView.viewNext.hidden=NO;
         }
         
+        [_headView addSubview:_headScrollView];
+        [_headView addSubview:_titleView];
+        [_headView addSubview:_timeView];
+        [_headView addSubview:_countView];
+    }
+//正在进行
+    if (num == 0) {
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
+        
+        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
+        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
+            printf("第%zd张图片\n",index);
+        }];
+        //default is 2.0f,如果小于0.5不自动播放
+        _headScrollView.AutoScrollDelay = 2.0f;
+        
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
+        _titleView.backgroundColor=[UIColor whiteColor];
+        
+        [self createTitleLabel];
+        [self createStateLabel];
+        
+        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
+        _progressView= [nib firstObject];
+        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"剩余: %@",_detailModel.remainAmount]];
+        [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(0, 3)];
+        _progressView.labelRest.attributedText=attString;
+        _progressView.labelTotal.text=[NSString stringWithFormat:@"总需: %@人次",_detailModel.toAmount];
+        _progressView.labelTerm.text=[NSString stringWithFormat:@"期号: %@",_detailModel.issueId];
+        CGFloat percent=(_detailModel.toAmount.floatValue -_detailModel.remainAmount.floatValue)/(_detailModel.toAmount.floatValue);
+        _progressView.viewProgress.progress=percent;
+        
+        NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
+        _countView= [nibA firstObject];
+        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        if (_detailModel.numbers.count > 0) {
+            NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",_detailModel.numbers.count]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",_detailModel.numbers.count].length)];
+            _countView.labelA.attributedText=attString;
+            _countView.labelB.text=@"点击查看号码";
+            _countView.labelCount.hidden=YES;
+            _countView.labelA.hidden=NO;
+            _countView.labelB.hidden=NO;
+            _countView.viewNext.hidden=NO;
+            [_countView.viewNext bk_whenTapped:^{
+                LWLog(@"0000000");
+            }];
+        }else{
+            _countView.labelCount.hidden=YES;
+            _countView.labelA.hidden=NO;
+            _countView.labelB.hidden=NO;
+            _countView.viewNext.hidden=NO;
+        }
         [_headView addSubview:_countView];
         [_headView addSubview:_progressView];
         [_headView addSubview:_titleView];
         [_headView addSubview:_headScrollView];
     }
+        
+    
+    
     
 }
 #pragma mark 底部选项
@@ -136,7 +282,12 @@ static NSString * cellDTMain=@"cellDTMain";
 }
 -(void)createStateLabel{
     _titleStateLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _titleStrHeight/_titleLineCount*3,_titleStrHeight/_titleLineCount)];
-    _titleStateLabel.text=@"进行中";
+    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+        _titleStateLabel.text=@"进行中";
+    }
+    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:12]]) {
+        _titleStateLabel.text=@"已揭晓";
+    }
     _titleStateLabel.textAlignment=NSTextAlignmentCenter;
     _titleStateLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
     _titleStateLabel.layer.borderWidth=1;
@@ -148,7 +299,9 @@ static NSString * cellDTMain=@"cellDTMain";
 -(void)createTitleLabel{
     
     _titleLabel=[[UILabel alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, _titleStrHeight)];
-    _titleLabel.text=_titleString;
+    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(14+_detailModel.title.length+1,_detailModel.character.length)];
+    _titleLabel.attributedText=attString;
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
     _titleLabel.numberOfLines=0;
     
@@ -182,11 +335,24 @@ static NSString * cellDTMain=@"cellDTMain";
     DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
     if (indexPath.section == 0) {
         cell.labelTitle.text=_titleArray[indexPath.row];
+        if (indexPath.row == 0) {
+            cell.labelAdvice.text=@"建议wifi下查看";
+        }
     }else{
         cell.labelTitle.text=@"所有参与记录";
-        cell.labelAdvice.text=@"建议wifi下查看";
+        cell.labelAdvice.text=@"(2016 - 10 - 12 16 : 50 :47 开始)";
+    
     }
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section ==0) {
+        if (indexPath.row == 1) {
+            DetailWebViewController *web=[[DetailWebViewController alloc]init];
+            web.webURL=_detailModel.link;
+            [self.navigationController pushViewController:web animated:YES];
+        }
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return ADAPT_HEIGHT(50);
@@ -234,6 +400,11 @@ static NSString * cellDTMain=@"cellDTMain";
     return ceil(size.height / label.font.lineHeight);
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.tabBarController.tabBar.hidden=NO;
+    
+}
 
 /*
 #pragma mark - Navigation

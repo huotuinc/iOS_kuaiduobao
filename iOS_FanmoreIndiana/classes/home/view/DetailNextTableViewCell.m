@@ -12,8 +12,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _imageVNext.image=[UIImage imageNamed:@"back_gray"];
-    
+    _imageVNext.image=[UIImage imageNamed:@"jinru"];
+    [UILabel changeLabel:_labelTitle AndFont:30 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelAdvice AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

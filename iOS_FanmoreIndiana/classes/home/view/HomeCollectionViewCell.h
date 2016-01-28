@@ -10,5 +10,12 @@
 
 @interface HomeCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIButton *joinList;
+@property (weak, nonatomic) IBOutlet UIImageView *imageVGoods;
+@property (weak, nonatomic) IBOutlet UILabel *labelName;
+@property (weak, nonatomic) IBOutlet UILabel *labelProgress;
+@property (weak, nonatomic) IBOutlet UIProgressView *viewProgress;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageVState;
+
 
 @end
