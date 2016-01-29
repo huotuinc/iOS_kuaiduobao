@@ -31,6 +31,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.tabBarController.tabBar.hidden = YES;
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

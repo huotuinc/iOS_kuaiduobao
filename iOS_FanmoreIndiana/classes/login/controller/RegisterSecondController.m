@@ -52,12 +52,12 @@
     
     NSString *passwordNumber = self.password.text;
     if ([passwordNumber isEqualToString:@""]) {
-        [SVProgressHUD showErrorWithStatus:@"手机号不能为空"];
+        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
     }else {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"password"] = [MD5Encryption md5by32:passwordNumber];
         dic[@"phone"] = self.phone;
-        
+        dic[@"type"] = @1;
         [UserLoginTool loginRequestPostWithFile:@"reg" parame:dic success:^(id json) {
             LWLog(@"%@",json);
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {

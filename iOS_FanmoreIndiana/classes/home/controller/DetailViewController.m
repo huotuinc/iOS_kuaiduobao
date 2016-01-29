@@ -17,6 +17,7 @@
 #import "DetailTimeCView.h"
 #import "AppGoodsDetailModel.h"
 #import "DetailWebViewController.h"
+#import <MJRefresh.h>
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 @interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>

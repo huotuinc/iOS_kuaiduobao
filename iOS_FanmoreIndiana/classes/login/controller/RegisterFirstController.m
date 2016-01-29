@@ -11,6 +11,7 @@
 #import "UIButton+CountDown.h"
 #import <SVProgressHUD.h>
 #import <UIView+BlocksKit.h>
+#import "GlobalModel.h"
 
 @interface RegisterFirstController ()<UIAlertViewDelegate,UITextFieldDelegate>
 
@@ -29,6 +30,7 @@
     [self.countdown bk_whenTapped:^{
         [self getSecurtityCode];
     }];
+    
     self.next.layer.cornerRadius = 5;
     
     self.title = @"快速注册";
@@ -102,7 +104,8 @@
         params[@"phone"] = self.phone.text;
         params[@"type"] = @1;
         params[@"codeType"] = @1;
-
+        
+        
         [UserLoginTool loginRequestGet:@"sendSMS" parame:params success:^(NSDictionary * json) {
             
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {

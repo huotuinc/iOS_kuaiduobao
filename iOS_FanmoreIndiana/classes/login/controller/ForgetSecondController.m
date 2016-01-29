@@ -8,6 +8,7 @@
 
 #import "ForgetSecondController.h"
 #import <UIBarButtonItem+BlocksKit.h>
+#import "ForgetThirdController.h"
 
 @interface ForgetSecondController ()
 
@@ -19,10 +20,15 @@
     [super viewDidLoad];
     self.title = @"忘记密码";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回登陆" style:UIBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
     
+    self.countCode.layer.cornerRadius = 5;
+    self.countCode.layer.masksToBounds = YES;
+    
+    self.next.layer.cornerRadius = 5;
+//    self.countCode.userInteractionEnabled = YES;≥
     [self.countCode bk_whenTapped:^{
         [self getSecurtityCode];
     }];
@@ -46,11 +52,12 @@
         
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"phone"] = phoneNumber;
-        dic[@"type"] = @1;
+        dic[@"type"] = @2;
         dic[@"codeType"] = @0;
+        dic[@"userName"] = self.userName;
         
         [UserLoginTool loginRequestGet:@"sendSMS" parame:dic success:^(id json) {
-            
+            LWLog(@"%@",json);
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==53014) {
                 
                 [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
@@ -69,6 +76,8 @@
                 
             }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1){
                 [self settime];
+            }else {
+                [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
             }
             
         } failure:^(NSError *error) {
@@ -79,6 +88,43 @@
 
 
 - (IBAction)doNext:(id)sender {
+    
+    
+    if (!self.security.text.length) {//验证码不能为空
+        
+        [SVProgressHUD showErrorWithStatus:@"验证码不能为空"];
+        return;
+    }else if (!self.phone.text.length) {//手机号不能为空
+        
+        [SVProgressHUD showErrorWithStatus:@"手机号不能为空"];
+        return;
+    }else {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"phone"] = self.phone.text;
+        dic[@"authcode"] = self.security.text;
+        dic[@"type"] = @2;
+        [UserLoginTool loginRequestPostWithFile:@"checkAuthCode" parame:dic success:^(id json) {
+            
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] ==  53007) {
+                
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@", json[@"resultDescription"]]];
+                return ;
+            }
+            
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                
+                UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                ForgetThirdController *next = [story instantiateViewControllerWithIdentifier:@"ForgetThirdController"];
+                next.userName = self.userName;
+                [self.navigationController pushViewController:next animated:YES];
+            }
+            
+        } failure:^(NSError *error) {
+            
+        } withFileKey:nil];
+    }
+    
+    
 }
 
 /**

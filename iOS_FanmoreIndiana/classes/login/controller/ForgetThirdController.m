@@ -8,6 +8,7 @@
 
 #import "ForgetThirdController.h"
 #import <UIBarButtonItem+BlocksKit.h>
+#import "MD5Encryption.h"
 
 @interface ForgetThirdController ()
 
@@ -21,9 +22,12 @@
     
     self.title = @"忘记密码";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回" style:UIBarButtonItemStylePlain handler:^(id sender) {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回登陆" style:UIBarButtonItemStylePlain handler:^(id sender) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
+    
+    self.next.layer.cornerRadius = 5;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,4 +45,31 @@
 }
 */
 
+- (IBAction)resetPassword:(id)sender {
+    
+    NSString *passwordNumber = self.passwrod.text;
+    if ([passwordNumber isEqualToString:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
+    }else {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"password"] = [MD5Encryption md5by32:passwordNumber];
+        dic[@"phone"] = self.userName;
+        
+        [UserLoginTool loginRequestPostWithFile:@"forgetPassword" parame:dic success:^(id json) {
+            LWLog(@"%@",json);
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"密码重设成功"];
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }else {
+                
+            }
+            
+        } failure:^(NSError *error) {
+            LWLog(@"%@",error);
+        } withFileKey:nil];
+    }
+    
+}
 @end
