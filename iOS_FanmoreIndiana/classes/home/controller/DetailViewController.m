@@ -372,7 +372,7 @@ static NSString * cellDTMain=@"cellDTMain";
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section ==0) {
-        if (indexPath.row == 1) {
+        if (indexPath.row == 0) {
             DetailWebViewController *web=[[DetailWebViewController alloc]init];
             web.webURL=_detailModel.link;
             [self.navigationController pushViewController:web animated:YES];

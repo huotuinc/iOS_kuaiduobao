@@ -30,15 +30,15 @@
 @property (strong, nonatomic)  UIView *clearView;//分割的View
 @property (strong, nonatomic)  NSTimer *timer;//定时器
 @property (strong , nonatomic) UIImageView *imageVRed;//中间四个选项 下划线
-@property (strong , nonatomic) UIView *viewChoice;//中间四个选项
+@property (weak , nonatomic) UIView *viewChoice;//中间四个选项
 @property (strong, nonatomic)  UIImageView *imageV;//头部视图-提醒
 
 @property (nonatomic, strong) NSMutableArray *appGoodsList;
 
 @property (nonatomic, strong) NSNumber *lastSort;
 
-
-
+@property (nonatomic, assign) BOOL isLoadView;
+@property (nonatomic, assign) BOOL isFirstLoad;
 @end
 
 @implementation HomeController{
@@ -57,9 +57,7 @@ static NSString *cellHead = @"homeCellHead";
 static CGFloat labelHeight = 20;//中奖信息CollectionView高度
 static CGFloat clearHeight = 10;//中奖信息CollectionView高度
 static NSInteger num=0;//记录总需人数的点击次数
-static NSInteger homeNumber=0;//记录总需人数的点击次数
-static NSInteger orderNumberNow=0;//记录排序的上次点击
-static NSInteger orderNumberAgo=0;//记录排序的当前
+static NSInteger orderNumberNow=0;//记录排序的当前点击
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -67,13 +65,15 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-    self.view.backgroundColor=[UIColor whiteColor];
+    self.view.backgroundColor=COLOR_BACK_MAIN;
     [self getGoodsList];
 
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isFirstLoad = YES;
+
     self.type = [NSNumber numberWithInteger:1];
     _appGoodsList=[NSMutableArray array];
     
@@ -82,8 +82,7 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
     [self createArrURLString];
     [self createHeadView];
 
-
-    
+    self.isLoadView = NO;
 
 }
 -(void)createMainCollectionView{
@@ -98,6 +97,7 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
     self.collectionView.tag=100;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor=COLOR_BACK_MAIN;
     [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
@@ -152,24 +152,9 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
             self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
-            if (homeNumber == 0) {
-                [_collectionView reloadData];
-                LWLog(@"_collectionView reloadData");
-                homeNumber++;
-            }
-            if (orderNumberNow == 1) {
-                NSMutableArray *arr=[NSMutableArray array];
-                for (int i=1; i<10; i++) {
-                    NSIndexPath *indexPath=[NSIndexPath indexPathForItem:i inSection:1];
-                    [arr addObject:indexPath];
-                }
-                [_collectionView reloadItemsAtIndexPaths:arr];
-                
-//                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:1];
-//                [_collectionView reloadSections:indexSet];
-                
-//                orderNumberNow = 0;
-            }
+            [_collectionView reloadData];
+            LWLog(@"_collectionView reloadData");
+
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -272,15 +257,13 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
     [self createLableCollectionView];
     
     _clearView=[[UIView alloc]initWithFrame:CGRectMake(0, ADAPT_HEIGHT(440)+40, SCREEN_WIDTH, clearHeight)];
-    _clearView.backgroundColor=[UIColor yellowColor];
-    _headView.backgroundColor=[UIColor clearColor];
+    _clearView.backgroundColor=COLOR_BACK_MAIN;
     
     [_headView addSubview:_headScrollView];
     [_headView addSubview:_fourBtnView];
     [_headView addSubview:_imageVNotice];
     [_headView addSubview:_labelCollectionView];
     [_headView addSubview:_clearView];
-//    [self.view addSubview:_headView];
 }
 -(void)createLableCollectionView{
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -293,7 +276,6 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
     
     _labelCollectionView  = [[UICollectionView alloc]initWithFrame:CGRectMake(_imageVNotice.frame.origin.x+_imageVNotice.frame.size.width+5 , ADAPT_HEIGHT(440)+10, SCREEN_WIDTH-_imageVNotice.frame.origin.x-_imageVNotice.frame.size.width-5-20,labelHeight)collectionViewLayout:viewlayout];
     [_labelCollectionView registerNib:[UINib nibWithNibName:@"labelCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellLabel];
-//    _labelCollectionView.userInteractionEnabled=NO;
     
     _labelCollectionView.delegate = self;
     _labelCollectionView.dataSource = self;
@@ -408,9 +390,19 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
 {
     if (collectionView.tag == 100) {
         if (kind == UICollectionElementKindSectionHeader) {
+            
             UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify forIndexPath:indexPath];
             NSArray *arr=@[@"人气",@"最新",@"进度",@"总需人次"];
-            _viewChoice=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+            
+            if (_viewChoice != nil) {
+                [_viewChoice removeFromSuperview];
+                _viewChoice = nil;
+            }
+            
+            UIView* localView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+            
+//            _viewChoice=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+            
             for (int i=0; i<4; i++) {
                 FL_Button *button = [FL_Button fl_shareButton];
                 [button setTitle:arr[i] forState:UIControlStateNormal];
@@ -426,111 +418,110 @@ static NSInteger orderNumberAgo=0;//记录排序的当前
                 }
                 [button bk_whenTapped:^{
                     for (int i = 0; i< 4; i++) {
-                        FL_Button *btn =[_viewChoice viewWithTag:100+i];
+                        FL_Button *btn =[localView viewWithTag:100+i];
                         btn.selected=NO;
                     }
                     button.selected = YES;
                     if (button.tag != 103) {
                         num =0;
-                        FL_Button *buttonTotal=[_viewChoice viewWithTag:103];
-                        [buttonTotal setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
-                        [UIView animateWithDuration:0.3f animations:^{
-                            _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
-                        }];
 #warning 人气点击方法
                         if (button.tag ==100) {
-                            orderNumberAgo=0;
                             self.type = [NSNumber numberWithInteger:1];
-                            [self getGoodsList];
-                            orderNumberNow = 1;
+                            orderNumberNow = 0;
                         }
 #warning 最新点击方法
                         if (button.tag ==101) {
-                            orderNumberAgo=1;
-
                             self.type = [NSNumber numberWithInteger:2];
-                            [self getGoodsList];
                             orderNumberNow = 1;
 
                         }
 #warning 进度点击方法
                         if (button.tag ==102) {
-                            orderNumberAgo=2;
-
                             self.type = [NSNumber numberWithInteger:3];
-                            [self getGoodsList];
-                            orderNumberNow = 1;
+                            orderNumberNow = 2;
                         }
+                        [UIView animateWithDuration:0.3f animations:^{
+                        }];
+                        [UIView animateWithDuration:0.3f animations:^{
+                            _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
+                        } completion:^(BOOL finished) {
+                            [self getGoodsList];
+                        }];
                     }else{
 #warning 总需人次第一次点击
                         //总需人次的第一次点击
                         button.selected=YES;
                         if (num %2 ==0) {
-                            orderNumberAgo=3;
                             LWLog(@"总需人次的第一次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
                             self.type = [NSNumber numberWithInteger:4];
                             [self getGoodsList];
-                            orderNumberNow = 1;
+                            orderNumberNow = 3;
 }
 #warning 总需人次第二次点击
                         //总需人次的第二次点击
                         else{
-                            orderNumberAgo=3;
-
                             LWLog(@"总需人次的第二次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_a"] forState:UIControlStateSelected];
                             self.type = [NSNumber numberWithInteger:5];
-                            [self getGoodsList];
-                            orderNumberNow = 1;
+                            
+                            orderNumberNow = 4;
 
                         }
                         [UIView animateWithDuration:0.3f animations:^{
-                            _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
                         }];
+                        [UIView animateWithDuration:0.3f animations:^{
+                            _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
+                        } completion:^(BOOL finished) {
+                            [self getGoodsList];
+                        }];
+
                         num ++;
                         
                     }
                     
                 }];
                 
-                [_viewChoice addSubview:button];
-                
+                [localView addSubview:button];
 
             }
             
-            _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, _viewChoice.frame.size.height-1, SCREEN_WIDTH/4*4/5, 1)];
-            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, _viewChoice.frame.size.height-1, SCREEN_WIDTH, 1)];
+            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
             imageVBack.image=[UIImage imageNamed:@"line_huise"];
             _imageVRed.image=[UIImage imageNamed:@"line_red"];
-            FL_Button *buttonAgo=[_viewChoice viewWithTag:100 + orderNumberAgo];
-            buttonAgo.selected=YES;
-            _imageVRed.center=CGPointMake(buttonAgo.center.x,_imageVRed.center.y );
 
+            [localView addSubview:imageVBack];
+            [localView addSubview:_imageVRed];
             
+            if (_isFirstLoad == YES) {
+                FL_Button *buttonHot=[localView viewWithTag:100];
+                buttonHot.selected=YES;
+                _isFirstLoad = NO;
+                _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, localView.frame.size.height-1, SCREEN_WIDTH/4*4/5, 1)];
+            }else{
+                if (orderNumberNow >3) {
+                    FL_Button *buttonClicked=[localView viewWithTag:100 + orderNumberNow - 1];
+                    [buttonClicked setImage:[UIImage imageNamed:@"paixu_a"] forState:UIControlStateSelected];
+                    buttonClicked.selected=YES;
+                }else{
+                    FL_Button *buttonClicked=[localView viewWithTag:100 + orderNumberNow ];
+                    buttonClicked.selected=YES;
+                    if (orderNumberNow == 3) {
+                        [buttonClicked setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
+
+                    }
+                }
             
-            [_viewChoice addSubview:imageVBack];
-            [_viewChoice addSubview:_imageVRed];
+            }
+
+                [view addSubview:localView];
+                _viewChoice = localView;
+                
+                view.backgroundColor=[UIColor whiteColor];
             
-//            if ( homeNumber == 0) {
-//                FL_Button *buttonHot=[_viewChoice viewWithTag:100 ];
-//                buttonHot.selected=YES;
-//                _imageVRed.center=CGPointMake(buttonHot.center.x,_imageVRed.center.y );
-//            }
+                return view;
+          
             
-            
-            
-//            FL_Button *buttonSelected=[_viewChoice viewWithTag:100 + [self.type integerValue] - 1];
-//            buttonSelected.selected=YES;
-//            [UIView animateWithDuration:5.0f animations:^{
-//                _imageVRed.center=CGPointMake(buttonSelected.center.x,_imageVRed.center.y );
-//            }];
-            
-            
-            [view addSubview:_viewChoice];
-            view.backgroundColor=[UIColor whiteColor];
-        
-            return view;
         }
         return nil;
     }
