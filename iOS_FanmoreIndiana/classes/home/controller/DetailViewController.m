@@ -78,6 +78,30 @@ static NSString * cellDTMain=@"cellDTMain";
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (void)setupRefresh
+{
+    
+    
+    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getGoodsDetailList)];
+    _tableView.mj_header = headRe;
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
+    //#warning 自动刷新(一进入程序就下拉刷新)
+    //    [self.tableView headerBeginRefreshing];
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+    //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    
+    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsDetailList)];
+    _tableView.mj_footer = Footer;
+    
+    //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
+    
+    
+}
 #pragma mark 网络请求商品列表
 /**
  *  下拉刷新
@@ -153,7 +177,7 @@ static NSString * cellDTMain=@"cellDTMain";
     if (num == 2) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight)];
         
-        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
+        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
             printf("第%zd张图片\n",index);
         }];
@@ -178,7 +202,7 @@ static NSString * cellDTMain=@"cellDTMain";
     if (num == 1) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
-        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
+        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
             printf("第%zd张图片\n",index);
         }];
@@ -218,7 +242,7 @@ static NSString * cellDTMain=@"cellDTMain";
     if (num == 0) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
-        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_arrURLString];
+        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
             printf("第%zd张图片\n",index);
         }];
@@ -258,10 +282,10 @@ static NSString * cellDTMain=@"cellDTMain";
                 LWLog(@"0000000");
             }];
         }else{
-            _countView.labelCount.hidden=YES;
-            _countView.labelA.hidden=NO;
-            _countView.labelB.hidden=NO;
-            _countView.viewNext.hidden=NO;
+            _countView.labelCount.hidden=NO;
+            _countView.labelA.hidden=YES;
+            _countView.labelB.hidden=YES;
+            _countView.viewNext.hidden=YES;
         }
         [_headView addSubview:_countView];
         [_headView addSubview:_progressView];
@@ -318,6 +342,7 @@ static NSString * cellDTMain=@"cellDTMain";
     _tableView.delegate=self;
     _tableView.dataSource=self;
     [self.view addSubview:_tableView];
+    [self setupRefresh];
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

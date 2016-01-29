@@ -57,6 +57,9 @@ static NSString *cellHead = @"homeCellHead";
 static CGFloat labelHeight = 20;//中奖信息CollectionView高度
 static CGFloat clearHeight = 10;//中奖信息CollectionView高度
 static NSInteger num=0;//记录总需人数的点击次数
+static NSInteger homeNumber=0;//记录总需人数的点击次数
+static NSInteger orderNumberNow=0;//记录排序的上次点击
+static NSInteger orderNumberAgo=0;//记录排序的当前
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -65,19 +68,20 @@ static NSInteger num=0;//记录总需人数的点击次数
     self.navigationController.navigationBar.translucent=NO;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self getGoodsList];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.type = [NSNumber numberWithInteger:1];
     _appGoodsList=[NSMutableArray array];
-
-    [self getGoodsList];
     
+    [self createMainCollectionView];
+
     [self createArrURLString];
     [self createHeadView];
 
-    self.view.backgroundColor = [UIColor whiteColor];
 
     
 
@@ -148,8 +152,24 @@ static NSInteger num=0;//记录总需人数的点击次数
             self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
-            [self createMainCollectionView];
-            [_collectionView reloadData];
+            if (homeNumber == 0) {
+                [_collectionView reloadData];
+                LWLog(@"_collectionView reloadData");
+                homeNumber++;
+            }
+            if (orderNumberNow == 1) {
+                NSMutableArray *arr=[NSMutableArray array];
+                for (int i=1; i<10; i++) {
+                    NSIndexPath *indexPath=[NSIndexPath indexPathForItem:i inSection:1];
+                    [arr addObject:indexPath];
+                }
+                [_collectionView reloadItemsAtIndexPaths:arr];
+                
+//                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:1];
+//                [_collectionView reloadSections:indexSet];
+                
+//                orderNumberNow = 0;
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -165,8 +185,7 @@ static NSInteger num=0;//记录总需人数的点击次数
  *  上拉加载更多
  */
 - (void)getMoreGoodsList {
-    AppGoodsListModel *model = [self.appGoodsList lastObject];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = self.type;
     dic[@"lastSort"]= self.lastSort;
     
@@ -410,6 +429,7 @@ static NSInteger num=0;//记录总需人数的点击次数
                         FL_Button *btn =[_viewChoice viewWithTag:100+i];
                         btn.selected=NO;
                     }
+                    button.selected = YES;
                     if (button.tag != 103) {
                         num =0;
                         FL_Button *buttonTotal=[_viewChoice viewWithTag:103];
@@ -419,33 +439,51 @@ static NSInteger num=0;//记录总需人数的点击次数
                         }];
 #warning 人气点击方法
                         if (button.tag ==100) {
+                            orderNumberAgo=0;
                             self.type = [NSNumber numberWithInteger:1];
-                            [self getGoodsList];                        }
+                            [self getGoodsList];
+                            orderNumberNow = 1;
+                        }
 #warning 最新点击方法
                         if (button.tag ==101) {
+                            orderNumberAgo=1;
+
                             self.type = [NSNumber numberWithInteger:2];
                             [self getGoodsList];
+                            orderNumberNow = 1;
+
                         }
 #warning 进度点击方法
                         if (button.tag ==102) {
+                            orderNumberAgo=2;
+
                             self.type = [NSNumber numberWithInteger:3];
-                            [self getGoodsList];                        }
+                            [self getGoodsList];
+                            orderNumberNow = 1;
+                        }
                     }else{
 #warning 总需人次第一次点击
                         //总需人次的第一次点击
                         button.selected=YES;
                         if (num %2 ==0) {
+                            orderNumberAgo=3;
                             LWLog(@"总需人次的第一次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
                             self.type = [NSNumber numberWithInteger:4];
-                            [self getGoodsList];                        }
+                            [self getGoodsList];
+                            orderNumberNow = 1;
+}
 #warning 总需人次第二次点击
                         //总需人次的第二次点击
                         else{
+                            orderNumberAgo=3;
+
                             LWLog(@"总需人次的第二次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_a"] forState:UIControlStateSelected];
                             self.type = [NSNumber numberWithInteger:5];
                             [self getGoodsList];
+                            orderNumberNow = 1;
+
                         }
                         [UIView animateWithDuration:0.3f animations:^{
                             _imageVRed.center=CGPointMake(button.center.x,_imageVRed.center.y );
@@ -461,18 +499,34 @@ static NSInteger num=0;//记录总需人数的点击次数
 
             }
             
-            FL_Button *buttonSelected=[_viewChoice viewWithTag:100 + [self.type integerValue] - 1];
-            buttonSelected.selected=YES;
-            [UIView animateWithDuration:0.3f animations:^{
-                _imageVRed.center=CGPointMake(buttonSelected.center.x,_imageVRed.center.y );
-            }];
-            
+            _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, _viewChoice.frame.size.height-1, SCREEN_WIDTH/4*4/5, 1)];
             UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, _viewChoice.frame.size.height-1, SCREEN_WIDTH, 1)];
             imageVBack.image=[UIImage imageNamed:@"line_huise"];
-            _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, _viewChoice.frame.size.height-1, SCREEN_WIDTH/4*4/5, 1)];
             _imageVRed.image=[UIImage imageNamed:@"line_red"];
+            FL_Button *buttonAgo=[_viewChoice viewWithTag:100 + orderNumberAgo];
+            buttonAgo.selected=YES;
+            _imageVRed.center=CGPointMake(buttonAgo.center.x,_imageVRed.center.y );
+
+            
+            
             [_viewChoice addSubview:imageVBack];
             [_viewChoice addSubview:_imageVRed];
+            
+//            if ( homeNumber == 0) {
+//                FL_Button *buttonHot=[_viewChoice viewWithTag:100 ];
+//                buttonHot.selected=YES;
+//                _imageVRed.center=CGPointMake(buttonHot.center.x,_imageVRed.center.y );
+//            }
+            
+            
+            
+//            FL_Button *buttonSelected=[_viewChoice viewWithTag:100 + [self.type integerValue] - 1];
+//            buttonSelected.selected=YES;
+//            [UIView animateWithDuration:5.0f animations:^{
+//                _imageVRed.center=CGPointMake(buttonSelected.center.x,_imageVRed.center.y );
+//            }];
+            
+            
             [view addSubview:_viewChoice];
             view.backgroundColor=[UIColor whiteColor];
         
