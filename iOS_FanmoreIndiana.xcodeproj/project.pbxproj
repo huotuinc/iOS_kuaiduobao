@@ -44,6 +44,8 @@
 		605E158C1C59A8AB00DBF8BA /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605E158B1C59A8AB00DBF8BA /* SettingController.m */; };
 		605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 605E158E1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m */; };
 		605E15921C5A0EB500DBF8BA /* GlobalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 605E15911C5A0EB500DBF8BA /* GlobalModel.m */; };
+		606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 606CA1D81C5B431900613E6A /* WinningCell.m */; };
+		606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606CA1D91C5B431900613E6A /* WinningCell.xib */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */; };
@@ -197,6 +199,9 @@
 		605E158E1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MonitorNetWork.m"; sourceTree = "<group>"; };
 		605E15901C5A0EB500DBF8BA /* GlobalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalModel.h; sourceTree = "<group>"; };
 		605E15911C5A0EB500DBF8BA /* GlobalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalModel.m; sourceTree = "<group>"; };
+		606CA1D71C5B431900613E6A /* WinningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningCell.h; sourceTree = "<group>"; };
+		606CA1D81C5B431900613E6A /* WinningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningCell.m; sourceTree = "<group>"; };
+		606CA1D91C5B431900613E6A /* WinningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinningCell.xib; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -647,6 +652,9 @@
 		60B5A36C1C520A5500E4C7BB /* view */ = {
 			isa = PBXGroup;
 			children = (
+				606CA1D71C5B431900613E6A /* WinningCell.h */,
+				606CA1D81C5B431900613E6A /* WinningCell.m */,
+				606CA1D91C5B431900613E6A /* WinningCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -919,6 +927,7 @@
 				F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */,
 				F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */,
 				F2573F481C57218900EEB851 /* DetailTimeCView.xib in Resources */,
+				606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */,
 				F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
 				F23DE3D81C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib in Resources */,
@@ -1048,6 +1057,7 @@
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
+				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
