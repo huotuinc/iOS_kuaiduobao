@@ -12,6 +12,9 @@
 #import <SVProgressHUD.h>
 #import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 #import "MD5Encryption.h"
+#import <MJExtension.h>
+#import "TabBarController.h"
+#import "AppDelegate.h"
 
 @interface LoginController ()<UITextFieldDelegate>
 
@@ -32,7 +35,13 @@
 
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"取消" style:UIBarButtonItemStylePlain handler:^(id sender) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//        TabBarController *login = app.tabbar;
+//        login.tabBarController.selectedIndex = 0;
+        [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
     }];
     
     self.login.layer.cornerRadius = 5;
@@ -67,6 +76,9 @@
     [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@"resultData"]];
+        }
         
     } failure:^(NSError *error) {
         
@@ -90,6 +102,9 @@
             
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
+                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                    [self loginSuccessWith:json[@"resultData"]];
+                }
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
             }];
@@ -116,6 +131,9 @@
             
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
+                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                    [self loginSuccessWith:json[@"resultData"]];
+                }
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
             }];
@@ -125,4 +143,22 @@
     }];
     
 }
+
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    NSLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    //保存新的token
+    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
+
 @end

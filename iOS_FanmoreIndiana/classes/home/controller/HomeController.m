@@ -19,6 +19,8 @@
 #import "ClassViewController.h"
 #import "FL_Button.h"
 #import "AppGoodsListModel.h"
+#import <MJRefresh.h>
+#import <UIImageView+WebCache.h>
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;

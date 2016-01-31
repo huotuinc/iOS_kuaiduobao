@@ -1,25 +1,24 @@
 //
-//  OtherUserController.m
+//  SettingController.m
 //  iOS_FanmoreIndiana
 //
-//  Created by 刘琛 on 16/1/25.
+//  Created by 刘琛 on 16/1/28.
 //  Copyright © 2016年 刘琛. All rights reserved.
 //
 
-#import "OtherUserController.h"
-#import "UserModel.h"
-#import <UIButton+WebCache.h>
+#import "SettingController.h"
+#import "UIViewController+MonitorNetWork.h"
 
-@interface OtherUserController ()
-
-@property (nonatomic, strong) UserModel *userInfo;
+@interface SettingController ()
 
 @end
 
-@implementation OtherUserController
+@implementation SettingController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.tabBarController.tabBar setHidden:YES];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -28,32 +27,21 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.tabBarController.tabBar.hidden = YES;
-    
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
-    self.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
-    
-    [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:self.userInfo.userHead] forState:UIControlStateNormal];
-    self.userID.text = self.userInfo.userId;
-    self.nickName.text = self.userInfo.realName;
-    self.phone.text = self.userInfo.mobile;
-    
-    [self.tableView removeSpaces];
-}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2) {
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [[NSUserDefaults standardUserDefaults] setObject:Failure forKey:LoginStatus];
+        [UIViewController ToRemoveSandBoxDate];
+    }
+}
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Incomplete implementation, return the number of sections

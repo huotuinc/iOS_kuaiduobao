@@ -1,41 +1,38 @@
 //
-//  RegisterFirstController.m
+//  ForgetSecondController.m
 //  iOS_FanmoreIndiana
 //
-//  Created by 刘琛 on 16/1/21.
+//  Created by 刘琛 on 16/1/26.
 //  Copyright © 2016年 刘琛. All rights reserved.
 //
 
-#import "RegisterFirstController.h"
-#import "RegisterSecondController.h"
-#import "UIButton+CountDown.h"
-#import <SVProgressHUD.h>
-#import <UIView+BlocksKit.h>
-#import "GlobalModel.h"
+#import "ForgetSecondController.h"
+#import <UIBarButtonItem+BlocksKit.h>
+#import "ForgetThirdController.h"
 
-@interface RegisterFirstController ()<UIAlertViewDelegate,UITextFieldDelegate>
+@interface ForgetSecondController ()
 
 @end
 
-@implementation RegisterFirstController
+@implementation ForgetSecondController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"忘记密码";
     
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"返回登陆" style:UIBarButtonItemStylePlain handler:^(id sender) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
     
-    self.countdown.layer.masksToBounds = YES;
-    self.countdown.layer.cornerRadius = 5;
-    [self.countdown bk_whenTapped:^{
+    self.countCode.layer.cornerRadius = 5;
+    self.countCode.layer.masksToBounds = YES;
+    
+    self.next.layer.cornerRadius = 5;
+//    self.countCode.userInteractionEnabled = YES;≥
+    [self.countCode bk_whenTapped:^{
         [self getSecurtityCode];
     }];
     
-    self.next.layer.cornerRadius = 5;
-    
-    self.title = @"快速注册";
-    
-    [self.phone becomeFirstResponder];
     
 }
 
@@ -43,14 +40,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    [self.phone resignFirstResponder];
-    
-    [self.security resignFirstResponder];
-}
-
 
 - (void)getSecurtityCode {
     
@@ -60,66 +49,46 @@
     }else if (![self checkTel:phoneNumber]) {
         [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
     }else {
-    
+        
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"phone"] = phoneNumber;
-        dic[@"type"] = @1;
+        dic[@"type"] = @2;
         dic[@"codeType"] = @0;
-    
-            [UserLoginTool loginRequestGet:@"sendSMS" parame:dic success:^(id json) {
+        dic[@"userName"] = self.userName;
         
-                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==53014) {
-            
-                    [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
-                    return ;
-                }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==54001) {
-            
-                    [SVProgressHUD showErrorWithStatus:@"该账号已被注册"];
-                    return ;
-                }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==55001){
-                    
-                    if ([json[@"resultData"][@"voiceAble"] intValue]) {
-                        UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"验证码提示" message:@"短信通到不稳定，是否尝试语言通道" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-                        [a show];
-                    }
-            
-            
-                }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1){
-                    [self settime];
-                }
-        
-            } failure:^(NSError *error) {
-        
-        }];
-    }
-}
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 0) {
-        
-        //网络请求获取验证码
-        NSMutableDictionary * params = [NSMutableDictionary dictionary];
-        params[@"phone"] = self.phone.text;
-        params[@"type"] = @1;
-        params[@"codeType"] = @1;
-        
-        
-        [UserLoginTool loginRequestGet:@"sendSMS" parame:params success:^(NSDictionary * json) {
-            
-            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+        [UserLoginTool loginRequestGet:@"sendSMS" parame:dic success:^(id json) {
+            LWLog(@"%@",json);
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==53014) {
                 
+                [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+                return ;
+            }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==54001) {
+                
+                [SVProgressHUD showErrorWithStatus:@"该账号已被注册"];
+                return ;
+            }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==55001){
+                
+                if ([json[@"resultData"][@"voiceAble"] intValue]) {
+                    UIAlertView * a = [[UIAlertView alloc] initWithTitle:@"验证码提示" message:@"短信通到不稳定，是否尝试语言通道" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+                    [a show];
+                }
+                
+                
+            }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1){
+                [self settime];
+            }else {
+                [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
             }
             
         } failure:^(NSError *error) {
             
-
         }];
     }
 }
 
-- (IBAction)goNext:(id)sender {
+
+- (IBAction)doNext:(id)sender {
+    
     
     if (!self.security.text.length) {//验证码不能为空
         
@@ -133,7 +102,7 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"phone"] = self.phone.text;
         dic[@"authcode"] = self.security.text;
-        
+        dic[@"type"] = @2;
         [UserLoginTool loginRequestPostWithFile:@"checkAuthCode" parame:dic success:^(id json) {
             
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] ==  53007) {
@@ -145,10 +114,8 @@
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                 
                 UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                RegisterSecondController *next = [story instantiateViewControllerWithIdentifier:@"RegisterSecondController"];
-//                next.navigationItem.backBarButtonItem = self.navigationItem.backBarButtonItem;
-                next.phone = self.phone.text;
-                
+                ForgetThirdController *next = [story instantiateViewControllerWithIdentifier:@"ForgetThirdController"];
+                next.userName = self.userName;
                 [self.navigationController pushViewController:next animated:YES];
             }
             
@@ -158,23 +125,7 @@
     }
     
     
-    
 }
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    if (textField == self.security) {
-        if (range.location>= 4){
-            return NO;
-        }
-    }else {
-        if (range.location>= 11){
-            return NO;
-        }
-    }
-    return YES;
-}
-
 
 /**
  *  验证手机号的正则表达式
@@ -205,10 +156,10 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                [self.countdown setText:@"验证码"];
+                [self.countCode setText:@"验证码"];
                 //                [captchaBtn setTitle:@"" forState:UIControlStateNormal];
                 //                [captchaBtn setBackgroundImage:[UIImage imageNamed:@"resent_icon"] forState:UIControlStateNormal];
-                self.countdown.userInteractionEnabled = YES;
+                self.countCode.userInteractionEnabled = YES;
             });
         }else{
             //            int minutes = timeout / 60;
@@ -217,8 +168,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 //                NSLog(@"____%@",strTime);
-                [self.countdown setText:[NSString stringWithFormat:@"%@s",strTime]];
-                self.countdown.userInteractionEnabled = NO;
+                [self.countCode setText:[NSString stringWithFormat:@"%@s",strTime]];
+                self.countCode.userInteractionEnabled = NO;
                 
             });
             timeout--;

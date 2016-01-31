@@ -12,5 +12,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *logo;
 @property (weak, nonatomic) IBOutlet UILabel *nickname;
 @property (weak, nonatomic) IBOutlet UIButton *message;
+@property (weak, nonatomic) IBOutlet UILabel *money;
+
+- (IBAction)userAction:(id)sender;
 
 @end

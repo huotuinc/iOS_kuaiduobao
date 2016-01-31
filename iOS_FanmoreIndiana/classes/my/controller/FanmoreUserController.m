@@ -7,8 +7,12 @@
 //
 
 #import "FanmoreUserController.h"
+#import "UserModel.h"
+#import <UIButton+WebCache.h>
 
 @interface FanmoreUserController ()
+
+@property (nonatomic, strong) UserModel *userInfo;
 
 @end
 
@@ -17,12 +21,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.tabBarController.tabBar.hidden = YES;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    self.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
+    [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:self.userInfo.userHead] forState:UIControlStateNormal];
+    self.userId.text = self.userInfo.userId;
+    self.user.text = self.userInfo.username;
+    self.nickName.text = self.userInfo.realName;
+    self.phone.text = self.userInfo.mobile;
+    
+    [self.tableView removeSpaces];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -9,7 +9,7 @@
 #import "TenViewController.h"
 #import "TenTableViewCell.h"
 #import "AppGoodsListModel.h"
-
+#import <UIImageView+WebCache.h>
 
 static NSString *cellTenMain=@"cellTenMain";
 

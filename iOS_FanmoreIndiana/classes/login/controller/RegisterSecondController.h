@@ -10,4 +10,14 @@
 
 @interface RegisterSecondController : UIViewController
 
+
+@property (nonatomic, strong) NSString *phone;
+
+@property (weak, nonatomic) IBOutlet UITextField *password;
+
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+
+- (IBAction)registerUser:(id)sender;
+
+
 @end

@@ -21,9 +21,7 @@
  *  导航栏颜色
  */
 //导航栏A 颜色
-#define COLOR_NAVBAR [UIColor colorWithRed:238/255.0f green:98/255.0f blue:23/255.0f alpha:1]
-
-
+#define COLOR_NAVBAR_A [UIColor colorWithRed:0.933 green:0.384 blue:0.090 alpha:1.000]
 
 /**
  *  进度条颜色
