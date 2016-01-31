@@ -879,9 +879,6 @@
                                                 <constraint firstItem="ePp-U5-dS1" firstAttribute="width" secondItem="ePp-U5-dS1" secondAttribute="height" multiplier="1:1" id="e2b-v7-7vy"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="hn6-Fe-fWk" kind="push" id="S36-fq-20e"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ssb-SI-5wh">
                                         <rect key="frame" x="0.0" y="364" width="320" height="44"/>
@@ -1026,6 +1023,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hn6-Fe-fWk" kind="push" id="7yh-zL-5fD"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4nd-jZ-ofm">
                                         <rect key="frame" x="0.0" y="559" width="320" height="44"/>
@@ -1122,10 +1122,10 @@
             </objects>
             <point key="canvasLocation" x="320" y="1854"/>
         </scene>
-        <!--View Controller-->
+        <!--Winning View Controller-->
         <scene sceneID="eyI-sQ-gu8">
             <objects>
-                <viewController id="hn6-Fe-fWk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WinningViewController" id="hn6-Fe-fWk" customClass="WinningViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7ho-KF-TNJ"/>
                         <viewControllerLayoutGuide type="bottom" id="d71-Pp-sWF"/>
