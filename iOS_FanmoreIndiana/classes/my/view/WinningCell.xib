@@ -51,7 +51,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000079" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdP-GE-R8i">
                                 <rect key="frame" x="170" y="90" width="58" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.93333333330000001" green="0.38431372549999998" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本期参与：3人次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jC-P1-Yyo">
@@ -66,10 +66,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eq9-Se-8jb">
+                                <rect key="frame" x="0.0" y="149" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Lp3-OR-aha"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="d36-sX-YsQ" secondAttribute="trailing" constant="45" id="13r-2I-EN8"/>
+                            <constraint firstItem="Eq9-Se-8jb" firstAttribute="leading" secondItem="Aai-ly-KH6" secondAttribute="leading" id="3mS-7V-oxy"/>
                             <constraint firstItem="9I5-Yr-hum" firstAttribute="top" secondItem="oRi-ZA-7ZR" secondAttribute="bottom" constant="3" id="4Jq-BM-HiK"/>
                             <constraint firstItem="ZJz-TE-aiN" firstAttribute="top" secondItem="9I5-Yr-hum" secondAttribute="bottom" constant="3" id="6vL-hQ-e0k"/>
                             <constraint firstItem="rK2-NY-kTF" firstAttribute="top" secondItem="Aai-ly-KH6" secondAttribute="top" constant="15" id="80f-Wt-pAE"/>
@@ -85,9 +93,11 @@
                             <constraint firstItem="blW-BD-rS1" firstAttribute="top" secondItem="1jC-P1-Yyo" secondAttribute="bottom" constant="3" id="dd9-fL-lwc"/>
                             <constraint firstItem="oRi-ZA-7ZR" firstAttribute="leading" secondItem="d36-sX-YsQ" secondAttribute="leading" id="gZ8-Mt-7TI"/>
                             <constraint firstItem="1jC-P1-Yyo" firstAttribute="top" secondItem="ZJz-TE-aiN" secondAttribute="bottom" constant="3" id="gaF-jU-mZ1"/>
+                            <constraint firstAttribute="bottom" secondItem="Eq9-Se-8jb" secondAttribute="bottom" id="njS-9w-KBt"/>
                             <constraint firstItem="ZJz-TE-aiN" firstAttribute="top" secondItem="9I5-Yr-hum" secondAttribute="bottom" constant="2" id="pNL-94-RxI"/>
                             <constraint firstItem="WdP-GE-R8i" firstAttribute="bottom" secondItem="ZJz-TE-aiN" secondAttribute="bottom" id="qQ7-Xa-XVJ"/>
                             <constraint firstItem="1jC-P1-Yyo" firstAttribute="leading" secondItem="ZJz-TE-aiN" secondAttribute="leading" id="vkk-AW-xki"/>
+                            <constraint firstAttribute="trailing" secondItem="Eq9-Se-8jb" secondAttribute="trailing" id="wgK-w9-j4l"/>
                             <constraint firstAttribute="height" constant="150" id="z2f-ec-puh"/>
                             <constraint firstItem="blW-BD-rS1" firstAttribute="leading" secondItem="1jC-P1-Yyo" secondAttribute="leading" id="zDo-Ru-OeL"/>
                         </constraints>
@@ -104,11 +114,14 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDr-qF-IKf">
                                 <rect key="frame" x="275" y="10" width="90" height="26"/>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.38431372549999998" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="b27-Ht-1c9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="确认收货地址"/>
+                                <state key="normal" title="确认收货地址">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,6 +143,17 @@
                     <constraint firstAttribute="bottom" secondItem="DVd-sm-9a2" secondAttribute="bottom" constant="10" id="xXa-zV-6yy"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="Image" destination="rK2-NY-kTF" id="26V-Li-Tma"/>
+                <outlet property="confirm" destination="MDr-qF-IKf" id="8QQ-72-YqK"/>
+                <outlet property="joinCount" destination="1jC-P1-Yyo" id="u4Y-ai-FhA"/>
+                <outlet property="joinId" destination="oRi-ZA-7ZR" id="kUJ-cF-iok"/>
+                <outlet property="luckyNum" destination="WdP-GE-R8i" id="nN7-hn-vUy"/>
+                <outlet property="name" destination="d36-sX-YsQ" id="nPD-uQ-bzd"/>
+                <outlet property="person" destination="9I5-Yr-hum" id="c5M-Cd-YuP"/>
+                <outlet property="time" destination="blW-BD-rS1" id="5rH-8X-hj9"/>
+            </connections>
             <point key="canvasLocation" x="437.5" y="402.5"/>
         </tableViewCell>
     </objects>

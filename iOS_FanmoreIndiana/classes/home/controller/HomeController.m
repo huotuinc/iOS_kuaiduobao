@@ -69,6 +69,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
     [self getGoodsList];
+    
+    self.tabBarController.tabBar.hidden = NO;
 
 }
 
@@ -163,6 +165,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         [SVProgressHUD dismiss];
         [_collectionView.mj_header endRefreshing];
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         LWLog(@"%@",error);
     }];
     
@@ -194,6 +197,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }
         [_collectionView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         LWLog (@"%@",error);
     }];
     

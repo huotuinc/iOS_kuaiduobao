@@ -13,6 +13,7 @@
 		6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */; };
 		6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */; };
 		6031C5461C4CE63E00D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
+		604926271C5EF3590092D231 /* RechargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 604926261C5EF3590092D231 /* RechargeController.m */; };
 		604C626E1C50C57900569F0B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 604C62611C50C57900569F0B /* libWeChatSDK.a */; };
 		604C626F1C50C57900569F0B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 604C62621C50C57900569F0B /* read_me.txt */; };
 		604C62701C50C57900569F0B /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604C62661C50C57900569F0B /* MOBFoundation.framework */; };
@@ -48,8 +49,14 @@
 		606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606CA1D91C5B431900613E6A /* WinningCell.xib */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
+		60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AF18EF1C5DAFFB0002388D /* WinningController.m */; };
+		60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AF18F91C5E0CCA0002388D /* RechargeCell.m */; };
+		60AF18FC1C5E0CCA0002388D /* RechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60AF18FA1C5E0CCA0002388D /* RechargeCell.xib */; };
 		60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */; };
 		60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A36E1C520B3900E4C7BB /* MineController.m */; };
+		60B683871C5F3AA100EDF671 /* RedPacketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B683861C5F3AA100EDF671 /* RedPacketController.m */; };
+		60B6838B1C603F5500EDF671 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B683891C603F5500EDF671 /* RedPacketCell.m */; };
+		60B6838C1C603F5500EDF671 /* RedPacketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B6838A1C603F5500EDF671 /* RedPacketCell.xib */; };
 		60DD429F1C43A8F90041572F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD429E1C43A8F90041572F /* main.m */; };
 		60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42A11C43A8F90041572F /* AppDelegate.m */; };
 		60DD42A81C43A8F90041572F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A61C43A8F90041572F /* Main.storyboard */; };
@@ -139,6 +146,8 @@
 		6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
 		6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		6031C5451C4CDF9900D6B567 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		604926251C5EF3590092D231 /* RechargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeController.h; sourceTree = "<group>"; };
+		604926261C5EF3590092D231 /* RechargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeController.m; sourceTree = "<group>"; };
 		604C62611C50C57900569F0B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		604C62621C50C57900569F0B /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		604C62631C50C57900569F0B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -206,10 +215,20 @@
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
 		60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSecondController.m; sourceTree = "<group>"; };
+		60AF18EE1C5DAFFB0002388D /* WinningController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningController.h; sourceTree = "<group>"; };
+		60AF18EF1C5DAFFB0002388D /* WinningController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningController.m; sourceTree = "<group>"; };
+		60AF18F81C5E0CCA0002388D /* RechargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeCell.h; sourceTree = "<group>"; };
+		60AF18F91C5E0CCA0002388D /* RechargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeCell.m; sourceTree = "<group>"; };
+		60AF18FA1C5E0CCA0002388D /* RechargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RechargeCell.xib; sourceTree = "<group>"; };
 		60B5A3661C51FDE900E4C7BB /* NSDictionary+EXTERN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EXTERN.h"; sourceTree = "<group>"; };
 		60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EXTERN.m"; sourceTree = "<group>"; };
 		60B5A36D1C520B3900E4C7BB /* MineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineController.h; sourceTree = "<group>"; };
 		60B5A36E1C520B3900E4C7BB /* MineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineController.m; sourceTree = "<group>"; };
+		60B683851C5F3AA100EDF671 /* RedPacketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketController.h; sourceTree = "<group>"; };
+		60B683861C5F3AA100EDF671 /* RedPacketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketController.m; sourceTree = "<group>"; };
+		60B683881C603F5500EDF671 /* RedPacketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
+		60B683891C603F5500EDF671 /* RedPacketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketCell.m; sourceTree = "<group>"; };
+		60B6838A1C603F5500EDF671 /* RedPacketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketCell.xib; sourceTree = "<group>"; };
 		60DD429A1C43A8F90041572F /* iOS_FanmoreIndiana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FanmoreIndiana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DD429E1C43A8F90041572F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60DD42A01C43A8F90041572F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -638,6 +657,12 @@
 				60EB31A71C55C892006C070B /* OtherUserController.m */,
 				605E158A1C59A8AB00DBF8BA /* SettingController.h */,
 				605E158B1C59A8AB00DBF8BA /* SettingController.m */,
+				60AF18EE1C5DAFFB0002388D /* WinningController.h */,
+				60AF18EF1C5DAFFB0002388D /* WinningController.m */,
+				604926251C5EF3590092D231 /* RechargeController.h */,
+				604926261C5EF3590092D231 /* RechargeController.m */,
+				60B683851C5F3AA100EDF671 /* RedPacketController.h */,
+				60B683861C5F3AA100EDF671 /* RedPacketController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -655,6 +680,12 @@
 				606CA1D71C5B431900613E6A /* WinningCell.h */,
 				606CA1D81C5B431900613E6A /* WinningCell.m */,
 				606CA1D91C5B431900613E6A /* WinningCell.xib */,
+				60AF18F81C5E0CCA0002388D /* RechargeCell.h */,
+				60AF18F91C5E0CCA0002388D /* RechargeCell.m */,
+				60AF18FA1C5E0CCA0002388D /* RechargeCell.xib */,
+				60B683881C603F5500EDF671 /* RedPacketCell.h */,
+				60B683891C603F5500EDF671 /* RedPacketCell.m */,
+				60B6838A1C603F5500EDF671 /* RedPacketCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -935,11 +966,13 @@
 				F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */,
 				F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */,
 				F23DE3D01C522E34002AB5FC /* DetailWayBCView.xib in Resources */,
+				60B6838C1C603F5500EDF671 /* RedPacketCell.xib in Resources */,
 				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
 				604C62711C50C57900569F0B /* ShareSDK.bundle in Resources */,
 				F2573F431C57062C00EEB851 /* DetailBottomDoneCView.xib in Resources */,
+				60AF18FC1C5E0CCA0002388D /* RechargeCell.xib in Resources */,
 				F262E8A11C55C0B900141EBC /* TenTableViewCell.xib in Resources */,
 				F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */,
 				F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */,
@@ -1022,6 +1055,7 @@
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F237A5981C59C52A00F91B45 /* DetailWebViewController.m in Sources */,
 				F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */,
+				60B6838B1C603F5500EDF671 /* RedPacketCell.m in Sources */,
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
@@ -1033,6 +1067,7 @@
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
 				F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
+				60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */,
 				F23DE3D51C522E34002AB5FC /* DetailProgressCView.m in Sources */,
 				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
 				60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */,
@@ -1040,6 +1075,7 @@
 				60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */,
 				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
+				60B683871C5F3AA100EDF671 /* RedPacketController.m in Sources */,
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
 				60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */,
 				60584F141C4E228D00F23B95 /* Base64Util.m in Sources */,
@@ -1058,6 +1094,7 @@
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
+				604926271C5EF3590092D231 /* RechargeController.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
@@ -1065,6 +1102,7 @@
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
+				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
 				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
 				60525F631C51BF0E00CC4528 /* UserModel.m in Sources */,
