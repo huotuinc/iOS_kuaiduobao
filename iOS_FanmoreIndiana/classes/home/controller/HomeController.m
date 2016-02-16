@@ -109,6 +109,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];
 }
+
 - (void)setupRefresh
 {
     

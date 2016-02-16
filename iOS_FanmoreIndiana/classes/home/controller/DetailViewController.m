@@ -17,6 +17,9 @@
 #import "DetailTimeCView.h"
 #import "AppGoodsDetailModel.h"
 #import "DetailWebViewController.h"
+#import "DetailPastViewController.h"
+#import "DetailShareViewController.h"
+#import "DetailNumberViewController.h"
 #import <MJRefresh.h>
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
@@ -280,10 +283,16 @@ static NSString * cellDTMain=@"cellDTMain";
             _countView.labelB.hidden=NO;
             _countView.viewNext.hidden=NO;
             [_countView.viewNext bk_whenTapped:^{
-                LWLog(@"0000000");
+                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
+                number.numberArray = _detailModel.numbers;
+                [self.navigationController pushViewController:number animated:YES];
             }];
         }else{
             _countView.labelCount.hidden=NO;
+            _countView.userInteractionEnabled=YES;
+            [_countView.labelCount bk_whenTapped:^{
+                LWLog(@"****");
+            }];
             _countView.labelA.hidden=YES;
             _countView.labelB.hidden=YES;
             _countView.viewNext.hidden=YES;
@@ -377,6 +386,14 @@ static NSString * cellDTMain=@"cellDTMain";
             DetailWebViewController *web=[[DetailWebViewController alloc]init];
             web.webURL=_detailModel.link;
             [self.navigationController pushViewController:web animated:YES];
+        }
+        if (indexPath.row == 1) {
+            DetailPastViewController *past=[[DetailPastViewController alloc]init];
+            [self.navigationController pushViewController:past animated:YES];
+        }
+        if (indexPath.row == 2) {
+            DetailShareViewController *share=[[DetailShareViewController alloc]init];
+            [self.navigationController pushViewController:share animated:YES];
         }
     }
 }
