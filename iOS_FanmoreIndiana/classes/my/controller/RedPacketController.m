@@ -17,8 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.tabBarController.tabBar.hidden = NO;
+    
     
     self.slider = [[UIView alloc] initWithFrame:CGRectMake(0, 33, KScreenWidth / 2, 2)];
     UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth / 8, 0, KScreenWidth / 4, 2)];
@@ -31,6 +30,12 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.953 alpha:1.000];
     
     self.snatch.layer.cornerRadius = 5;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.tabBarController.tabBar.hidden = YES;
 }
 
 
@@ -67,6 +72,8 @@
         [UIView animateWithDuration:0.15 animations:^{
             self.slider.frame = CGRectMake(0, _slider.frame.origin.y, KScreenWidth / 2, 2);
             self.slider.tag = 1001;
+            [self.possess setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [self.used setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }];
     }
     
@@ -78,6 +85,8 @@
         [UIView animateWithDuration:0.15 animations:^{
             self.slider.frame = CGRectMake(KScreenWidth / 2, _slider.frame.origin.y, KScreenWidth / 2, 2);
             self.slider.tag = 1000;
+            [self.used setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [self.possess setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }];
     }
     
