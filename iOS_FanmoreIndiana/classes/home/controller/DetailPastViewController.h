@@ -10,4 +10,7 @@
 
 @interface DetailPastViewController : UIViewController
 
+@property (nonatomic, assign) NSNumber *goodsId;
+@property (nonatomic, assign) NSNumber *lastId;//上一页的最后一个期号
+
 @end

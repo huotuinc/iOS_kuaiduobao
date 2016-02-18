@@ -13,10 +13,12 @@
 - (void)awakeFromNib {
     // Initialization code
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
+    _viewBase.backgroundColor=COLOR_BACK_MAIN;
+    [UILabel changeLabel:_labelDate AndFont:24 AndColor:COLOR_TEXT_CONTENT];
 }
 -(void)drawRect:(CGRect)rect{
     _labelDate.layer.cornerRadius=_labelDate.frame.size.height/2;
-    _labelDate.layer.borderColor=[UIColor grayColor].CGColor;
+    _labelDate.layer.borderColor=COLOR_BACK_MAIN.CGColor;
     _labelDate.layer.borderWidth=1;
     _labelDate.layer.masksToBounds=YES;
 

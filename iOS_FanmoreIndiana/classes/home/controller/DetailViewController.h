@@ -11,6 +11,9 @@
 @interface DetailViewController : UIViewController
 
 @property (nonatomic, assign) NSNumber *goodsId;
+@property (nonatomic, assign) NSNumber *issueId;
+@property (nonatomic, assign) NSNumber *lastId;
+@property (nonatomic, assign) NSNumber *whichAPI;
 
 
 @end

@@ -20,9 +20,13 @@
 #import "DetailPastViewController.h"
 #import "DetailShareViewController.h"
 #import "DetailNumberViewController.h"
+#import "AppBuyListModel.h"
+#import "DetailAttendListFirstTableViewCell.h"
 #import <MJRefresh.h>
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
+static NSString * cellDFirst=@"cellDFirst";
+
 @interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIView * headView;
@@ -36,7 +40,11 @@ static NSString * cellDTMain=@"cellDTMain";
 @property (strong, nonatomic) DetailTimeCView * timeView;//揭晓倒计时
 
 @property (nonatomic, strong) NSMutableArray *goodsDetailList;
+@property (nonatomic, strong) NSMutableArray *buyList;
+
 @property (nonatomic, strong) AppGoodsDetailModel *detailModel;
+@property (nonatomic, strong) AppBuyListModel *buyModel;
+
 
 @end
 
@@ -48,6 +56,7 @@ static NSString * cellDTMain=@"cellDTMain";
     NSString *_titleString;//标题内容
     CGFloat _titleStrHeight;//标题高度
     NSInteger _titleLineCount;//标题行数
+    NSMutableString * _API;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -64,10 +73,17 @@ static NSString * cellDTMain=@"cellDTMain";
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     [self createBarButtonItem];
     _goodsDetailList=[NSMutableArray array];
+    _buyList=[NSMutableArray array];
+    self.lastId = [NSNumber numberWithInteger:0];
+    
 
     self.view.backgroundColor=[UIColor whiteColor];
 //    _titleString=@"              Apple/苹果 iPhone6 全新未激活4.7寸美版 港版三网苹果6正品手机";
-
+    if ([self.whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+        _API=[[NSMutableString alloc]initWithString:@"getGoodsDetailByGoodsId"];
+    }else{
+        _API=[[NSMutableString alloc]initWithString:@"getGoodsDetailByIssueId"];
+    }
     [self getGoodsDetailList];
     [self createDataArray];
     [self createBottomView];
@@ -113,15 +129,19 @@ static NSString * cellDTMain=@"cellDTMain";
 - (void)getGoodsDetailList {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"goodsId"] = self.goodsId;
-    [UserLoginTool loginRequestGet:@"getGoodsDetailByGoodsId" parame:dic success:^(id json) {
+    if ([_whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+        dic[@"goodsId"] = self.goodsId;
+    }else{
+        dic[@"issueId"] = self.issueId;
+    }
+    [UserLoginTool loginRequestGet:_API parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             LWLog(@"%@",json[@"resultDescription"]);
-            _detailModel = [AppGoodsDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
+            _detailModel = [AppGoodsDetailModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             
 //            [self.goodsDetailList removeAllObjects];
 //            [self.goodsDetailList addObject:model];
@@ -144,17 +164,20 @@ static NSString * cellDTMain=@"cellDTMain";
  */
 - (void)getMoreGoodsDetailList {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"goodsId"] = self.goodsId;
-    
-    [UserLoginTool loginRequestGet:@"getGoodsDetailByGoodsId" parame:dic success:^(id json) {
+    if (_buyList.count > 0) {
+        AppBuyListModel *model = [_buyList lastObject];
+        self.lastId = model.pid;
+    }
+    dic[@"issueId"] = self.issueId;
+    dic[@"lastId"] = self.lastId;
+    [UserLoginTool loginRequestGet:@"getBuyList" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            NSArray *temp = [AppBuyListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
-            AppGoodsDetailModel *model = [AppGoodsDetailModel objectWithKeyValues:json[@"resultData"][@"data"]];
-            
-            [self.goodsDetailList addObject:model];
+            [self.buyList addObjectsFromArray:temp];
             
             [_tableView reloadData];
         }
@@ -196,15 +219,51 @@ static NSString * cellDTMain=@"cellDTMain";
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailWinnerCView" owner:nil options:nil];
         _winnerView= [nib firstObject];
         _winnerView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(360));
+        _winnerView.labelWinnerA.text=_detailModel.awardingUserName;
+        _winnerView.labelCity.text=[NSString stringWithFormat:@"( %@ IP%@ )",_detailModel.awardingUserCityName,_detailModel.awardingUserIp];
+        _winnerView.labelIDA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserId];
+        _winnerView.labelTermA.text=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+        _winnerView.labelAttendA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserBuyCount];
+        _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm;ss"];
+        _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
+        [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead]];
+        
+        if (_detailModel.numbers.count > 0) {
+            NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
+            _countView.labelA.attributedText=attString;
+            _countView.labelB.text=@"点击查看号码";
+            _countView.labelCount.hidden=YES;
+            _countView.labelA.hidden=NO;
+            _countView.labelB.hidden=NO;
+            _countView.viewNext.hidden=NO;
+            [_countView.viewNext bk_whenTapped:^{
+                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
+                number.numberArray = _detailModel.numbers;
+                number.goodsName=_detailModel.title;
+                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+                [self.navigationController pushViewController:number animated:YES];
+            }];
+        }else{
+            _countView.labelCount.hidden=NO;
+            _countView.userInteractionEnabled=YES;
+            [_countView.labelCount bk_whenTapped:^{
+                LWLog(@"****");
+            }];
+            _countView.labelA.hidden=YES;
+            _countView.labelB.hidden=YES;
+            _countView.viewNext.hidden=YES;
+        }
         
         [_headView addSubview:_headScrollView];
         [_headView addSubview:_titleView];
         [_headView addSubview:_winnerView];
+        [_headView addSubview:_countView];
         
     }
 //正在抽奖
     if (num == 1) {
-        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+3)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
@@ -220,21 +279,38 @@ static NSString * cellDTMain=@"cellDTMain";
         
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailTimeCView" owner:nil options:nil];
         _timeView= [nib firstObject];
-        _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _timeView.labelIssueA.text=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+        _timeView.labelEndTimeA.text=[self changeTheTimeStamps:_detailModel.remainSecond andTheDateFormat:@"HH:ss:mm"];
+        _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
-        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
-        if (_titleArray.count > 0) {
-            _countView.labelCount.hidden=NO;
-            _countView.labelA.hidden=YES;
-            _countView.labelB.hidden=YES;
-            _countView.viewNext.hidden=YES;
-        }else{
+        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        if (_detailModel.numbers.count > 0) {
+            NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
+            _countView.labelA.attributedText=attString;
+            _countView.labelB.text=@"点击查看号码";
             _countView.labelCount.hidden=YES;
             _countView.labelA.hidden=NO;
             _countView.labelB.hidden=NO;
             _countView.viewNext.hidden=NO;
+            [_countView.viewNext bk_whenTapped:^{
+                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
+                number.numberArray = _detailModel.numbers;
+                number.goodsName=_detailModel.title;
+                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+                [self.navigationController pushViewController:number animated:YES];
+            }];
+        }else{
+            _countView.labelCount.hidden=NO;
+            _countView.userInteractionEnabled=YES;
+            [_countView.labelCount bk_whenTapped:^{
+                LWLog(@"****");
+            }];
+            _countView.labelA.hidden=YES;
+            _countView.labelB.hidden=YES;
+            _countView.viewNext.hidden=YES;
         }
         
         [_headView addSubview:_headScrollView];
@@ -267,6 +343,7 @@ static NSString * cellDTMain=@"cellDTMain";
         _progressView.labelRest.attributedText=attString;
         _progressView.labelTotal.text=[NSString stringWithFormat:@"总需: %@人次",_detailModel.toAmount];
         _progressView.labelTerm.text=[NSString stringWithFormat:@"期号: %@",_detailModel.issueId];
+        self.issueId = _detailModel.issueId;
         CGFloat percent=(_detailModel.toAmount.floatValue -_detailModel.remainAmount.floatValue)/(_detailModel.toAmount.floatValue);
         _progressView.viewProgress.progress=percent;
         
@@ -274,8 +351,8 @@ static NSString * cellDTMain=@"cellDTMain";
         _countView= [nibA firstObject];
         _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         if (_detailModel.numbers.count > 0) {
-            NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",_detailModel.numbers.count]];
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",_detailModel.numbers.count].length)];
+            NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
             _countView.labelA.attributedText=attString;
             _countView.labelB.text=@"点击查看号码";
             _countView.labelCount.hidden=YES;
@@ -285,6 +362,8 @@ static NSString * cellDTMain=@"cellDTMain";
             [_countView.viewNext bk_whenTapped:^{
                 DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
                 number.numberArray = _detailModel.numbers;
+                number.goodsName=_detailModel.title;
+                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
                 [self.navigationController pushViewController:number animated:YES];
             }];
         }else{
@@ -319,7 +398,10 @@ static NSString * cellDTMain=@"cellDTMain";
     if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
         _titleStateLabel.text=@"进行中";
     }
-    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:12]]) {
+    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+        _titleStateLabel.text=@"倒计时";
+    }
+    if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:2]]) {
         _titleStateLabel.text=@"已揭晓";
     }
     _titleStateLabel.textAlignment=NSTextAlignmentCenter;
@@ -348,9 +430,11 @@ static NSString * cellDTMain=@"cellDTMain";
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-ADAPT_HEIGHT(100)) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"DetailAttendListMainTableViewCell" bundle:nil] forCellReuseIdentifier:cellDTMain];
     [_tableView registerNib:[UINib nibWithNibName:@"DetailNextTableViewCell" bundle:nil] forCellReuseIdentifier:cellDNext];
+    [_tableView registerNib:[UINib nibWithNibName:@"DetailAttendListFirstTableViewCell" bundle:nil] forCellReuseIdentifier:cellDFirst];
     _tableView.tableHeaderView=_headView;
     _tableView.delegate=self;
     _tableView.dataSource=self;
+    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     [self setupRefresh];
     
@@ -360,25 +444,59 @@ static NSString * cellDTMain=@"cellDTMain";
     if (section == 0) {
         return 3;
     }else{
-        return 1;
+        if (_buyList.count > 0) {
+            return 1 + 1 +_buyList.count;
+        }else{
+            return 1;
+        }
     }
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
+//    UITableViewCell *_cell;
     if (indexPath.section == 0) {
+        DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
         cell.labelTitle.text=_titleArray[indexPath.row];
         if (indexPath.row == 0) {
-            cell.labelAdvice.text=@"建议wifi下查看";
+                cell.labelAdvice.text=@"建议wifi下查看";
         }
-    }else{
-        cell.labelTitle.text=@"所有参与记录";
-        cell.labelAdvice.text=@"(2016 - 10 - 12 16 : 50 :47 开始)";
-    
+        return cell;
     }
-    return cell;
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
+            cell.labelTitle.text=@"所有参与记录";
+            cell.labelAdvice.text=[NSString stringWithFormat:@"( %@开始 )",[self changeTheTimeStamps:_detailModel.firstBuyTime andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"]];
+            return cell;
+        }
+        if (indexPath.row == 1) {
+            DetailAttendListFirstTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDFirst forIndexPath:indexPath];
+            AppBuyListModel *model=_buyList[0];
+            cell.labelDate.text=[self changeTheTimeStamps:model.date andTheDateFormat:@"  yyyy-MM-dd  "];
+            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        if (indexPath.row>1 && _buyList.count>0) {
+            DetailAttendListMainTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDTMain forIndexPath:indexPath];
+            AppBuyListModel *model=_buyList[indexPath.row - 2];
+            cell.labelName.text=model.nickName;
+            cell.labelCity.text=[NSString stringWithFormat:@"( %@ IP:%@ )",model.city,model.ip];
+            
+            NSString *dateString=[self changeTheTimeStamps:model.date andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSMutableAttributedString *AttributedStr=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"参与了%@人次 %@",model.attendAmount,dateString]];
+            [AttributedStr addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(0, 5+[NSString stringWithFormat:@"%@",model.attendAmount].length)];
+            [AttributedStr addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_ORANGE range:NSMakeRange(3, [NSString stringWithFormat:@"%@",model.attendAmount].length)];
+            
+            cell.labelDate.attributedText=AttributedStr;
+            
+            [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl]];
+            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+    }
+    return nil;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section ==0) {
@@ -389,10 +507,14 @@ static NSString * cellDTMain=@"cellDTMain";
         }
         if (indexPath.row == 1) {
             DetailPastViewController *past=[[DetailPastViewController alloc]init];
+            past.goodsId = _detailModel.pid;
+            past.lastId = _detailModel.issueId;
             [self.navigationController pushViewController:past animated:YES];
         }
         if (indexPath.row == 2) {
             DetailShareViewController *share=[[DetailShareViewController alloc]init];
+            share.goodsId = _detailModel.pid;
+            share.lastId = _detailModel.issueId;
             [self.navigationController pushViewController:share animated:YES];
         }
     }
@@ -402,6 +524,17 @@ static NSString * cellDTMain=@"cellDTMain";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return ADAPT_HEIGHT(120);
+}
+// 去掉UItableview headerview黏性(sticky)
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat sectionHeaderHeight = 40;
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    }
+    else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -442,6 +575,24 @@ static NSString * cellDTMain=@"cellDTMain";
     
     return ceil(size.height / label.font.lineHeight);
 }
+/**
+ *  13位时间戳转为正常时间(可设置样式)
+ *
+ *  @param time 时间戳
+ *
+ *  @return
+ */
+-(NSString *)changeTheTimeStamps:(NSNumber *)time andTheDateFormat:(NSString *)dateFormat{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:dateFormat];
+    //将13位时间戳转为正常时间格式
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue]/1000]];
+    return str;
+}
+
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//500
+//500 imageV tag 200-203
 @interface DetailShareTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *viewBase;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVHead;

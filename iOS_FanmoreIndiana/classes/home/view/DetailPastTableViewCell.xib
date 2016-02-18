@@ -163,12 +163,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageVHead" destination="AH7-rH-5hU" id="1Xg-lL-xnH"/>
-                <outlet property="labekWinner" destination="BU3-8K-1Ab" id="iQY-1c-TuF"/>
-                <outlet property="labelAttedn" destination="sdC-Tv-wYQ" id="uKc-Ly-Ne8"/>
+                <outlet property="labelAttend" destination="sdC-Tv-wYQ" id="QVw-wa-vFb"/>
                 <outlet property="labelCity" destination="xyu-6H-Arn" id="3rO-hM-YCb"/>
                 <outlet property="labelID" destination="PPg-Cj-aUF" id="8g1-gc-Y5h"/>
                 <outlet property="labelItem" destination="7q4-xc-WuL" id="6KU-58-wKm"/>
                 <outlet property="labelNumber" destination="w2m-SG-W4q" id="Q5I-Q6-WvO"/>
+                <outlet property="labelWinner" destination="BU3-8K-1Ab" id="8Ef-7o-PAA"/>
                 <outlet property="viewItem" destination="wRK-9h-21O" id="69F-sZ-nl7"/>
                 <outlet property="viewMain" destination="zKH-cz-vvs" id="H5R-HJ-47x"/>
             </connections>

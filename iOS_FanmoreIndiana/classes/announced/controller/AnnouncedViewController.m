@@ -10,6 +10,7 @@
 #import "XLPlainFlowLayout.h"
 #import "AnnouncedCollectionViewCell.h"
 #import "AppNewOpenListModel.h"
+#import "DetailViewController.h"
 static NSString *cellAMain=@"cellAMain";
 @interface AnnouncedViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic)  UICollectionView *collectionView;
@@ -74,7 +75,7 @@ static NSString *cellAMain=@"cellAMain";
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     AppNewOpenListModel *new = [self.openList lastObject];
 
-    dic[@"lastId"] = new.pid;
+    dic[@"lastId"] = @0;
     
     [SVProgressHUD show];
 
@@ -85,7 +86,7 @@ static NSString *cellAMain=@"cellAMain";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             LWLog(@"%@",json[@"resultDescription"]);
-            NSArray *temp = [AppNewOpenListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            NSArray *temp = [AppNewOpenListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.openList removeAllObjects];
             [self.openList addObjectsFromArray:temp];
@@ -107,9 +108,10 @@ static NSString *cellAMain=@"cellAMain";
  */
 - (void)getMoreOpenList {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"step"] = @10;
+    AppNewOpenListModel * model = [_openList lastObject];
+    dic[@"lastId"] = model.issueId;
     
-    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:@"getNewOpenList" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
@@ -213,6 +215,13 @@ static NSString *cellAMain=@"cellAMain";
     AnnouncedCollectionViewCell *tmpCell = (AnnouncedCollectionViewCell *)cell;
     
     tmpCell.m_isDisplayed = NO;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    DetailViewController *detail=[[DetailViewController alloc]init];
+    AppNewOpenListModel *model = _openList[indexPath.item];
+    detail.issueId=model.issueId;
+    detail.whichAPI=[NSNumber numberWithInteger:2];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

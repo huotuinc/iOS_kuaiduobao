@@ -36,24 +36,27 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="静静静静经济囧囧囧囧囧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHW-lH-eU1">
                                         <rect key="frame" x="0.0" y="0.0" width="187" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( 杭州市 IP172.0.0.1)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmt-fT-NFP">
                                         <rect key="frame" x="0.0" y="35" width="152" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参与了3人次  2015-12-11  14:30:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3I-lM-oqT">
                                         <rect key="frame" x="0.0" y="70" width="268" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="sHW-lH-eU1" firstAttribute="top" secondItem="ex8-g4-sSP" secondAttribute="top" id="0sE-5S-k28"/>
                                     <constraint firstItem="sHW-lH-eU1" firstAttribute="leading" secondItem="ex8-g4-sSP" secondAttribute="leading" id="5Mv-Bs-fL0"/>
@@ -67,7 +70,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Shy-4G-fPW" secondAttribute="bottom" id="2Px-IZ-0JT"/>
                             <constraint firstItem="8E7-d6-iLD" firstAttribute="top" secondItem="vSv-0o-x6u" secondAttribute="top" id="CtE-mf-z21"/>
@@ -95,6 +98,7 @@
                 <outlet property="labelCity" destination="vmt-fT-NFP" id="cvX-To-DWS"/>
                 <outlet property="labelDate" destination="n3I-lM-oqT" id="tvv-GW-yBO"/>
                 <outlet property="labelName" destination="sHW-lH-eU1" id="Ffh-sU-p75"/>
+                <outlet property="viewBase" destination="H2p-sc-9uM" id="9HS-JJ-oMC"/>
             </connections>
         </tableViewCell>
     </objects>

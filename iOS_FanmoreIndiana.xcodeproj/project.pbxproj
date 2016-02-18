@@ -81,7 +81,6 @@
 		F23BEFF51C5F322E00E87042 /* DetailNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23BEFF41C5F322E00E87042 /* DetailNumberViewController.m */; };
 		F23BEFFC1C5F338F00E87042 /* DetailNumberHeadCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F23BEFF71C5F338F00E87042 /* DetailNumberHeadCView.m */; };
 		F23BEFFD1C5F338F00E87042 /* DetailNumberHeadCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23BEFF81C5F338F00E87042 /* DetailNumberHeadCView.xib */; };
-		F23BEFFE1C5F338F00E87042 /* DetailNumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23BEFFA1C5F338F00E87042 /* DetailNumberTableViewCell.m */; };
 		F23BF00E1C5F4C3100E87042 /* AnnouncedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23BF00D1C5F4C3100E87042 /* AnnouncedViewController.m */; };
 		F23BF0121C5F4C4B00E87042 /* AnnouncedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23BF0101C5F4C4B00E87042 /* AnnouncedCollectionViewCell.m */; };
 		F23BF0131C5F4C4B00E87042 /* AnnouncedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23BF0111C5F4C4B00E87042 /* AnnouncedCollectionViewCell.xib */; };
@@ -99,6 +98,13 @@
 		F23DE3D81C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3C91C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib */; };
 		F23DE3D91C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */; };
 		F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */; };
+		F24119611C74057D00C2B07E /* DetailPastingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F241195F1C74057D00C2B07E /* DetailPastingTableViewCell.m */; };
+		F24119621C74057D00C2B07E /* DetailPastingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24119601C74057D00C2B07E /* DetailPastingTableViewCell.xib */; };
+		F24119651C74440300C2B07E /* AppShareListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F24119641C74440300C2B07E /* AppShareListModel.m */; };
+		F24119681C74526100C2B07E /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24119671C74526100C2B07E /* ShareViewController.m */; };
+		F241196B1C74552000C2B07E /* AppCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F241196A1C74552000C2B07E /* AppCategoryListModel.m */; };
+		F24119711C74648900C2B07E /* DetailNumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F241196F1C74648900C2B07E /* DetailNumberTableViewCell.m */; };
+		F24119721C74648900C2B07E /* DetailNumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24119701C74648900C2B07E /* DetailNumberTableViewCell.xib */; };
 		F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2573F401C57062C00EEB851 /* DetailBottomDoneCView.m */; };
 		F2573F431C57062C00EEB851 /* DetailBottomDoneCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2573F411C57062C00EEB851 /* DetailBottomDoneCView.xib */; };
 		F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2573F451C57218900EEB851 /* DetailTimeCView.m */; };
@@ -112,7 +118,9 @@
 		F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8A71C55C41B00141EBC /* ClassATableViewCell.xib */; };
 		F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */; };
 		F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */; };
+		F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F271EAF61C72B896003E782D /* AppBuyListModel.m */; };
 		F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F277EF591C60A073007D4F8D /* AppNewOpenListModel.m */; };
+		F28651D51C731789004E0357 /* AppPastListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F28651D41C731789004E0357 /* AppPastListModel.m */; };
 		F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */; };
 		F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */; };
 		F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD041C4E50A3005F05AC /* HomeFourBtnCView.xib */; };
@@ -284,8 +292,6 @@
 		F23BEFF61C5F338F00E87042 /* DetailNumberHeadCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNumberHeadCView.h; sourceTree = "<group>"; };
 		F23BEFF71C5F338F00E87042 /* DetailNumberHeadCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNumberHeadCView.m; sourceTree = "<group>"; };
 		F23BEFF81C5F338F00E87042 /* DetailNumberHeadCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNumberHeadCView.xib; sourceTree = "<group>"; };
-		F23BEFF91C5F338F00E87042 /* DetailNumberTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNumberTableViewCell.h; sourceTree = "<group>"; };
-		F23BEFFA1C5F338F00E87042 /* DetailNumberTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNumberTableViewCell.m; sourceTree = "<group>"; };
 		F23BF00C1C5F4C3100E87042 /* AnnouncedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncedViewController.h; sourceTree = "<group>"; };
 		F23BF00D1C5F4C3100E87042 /* AnnouncedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncedViewController.m; sourceTree = "<group>"; };
 		F23BF00F1C5F4C4B00E87042 /* AnnouncedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncedCollectionViewCell.h; sourceTree = "<group>"; };
@@ -312,6 +318,18 @@
 		F23DE3CA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAttendListFirstTableViewCell.h; sourceTree = "<group>"; };
 		F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAttendListFirstTableViewCell.m; sourceTree = "<group>"; };
 		F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendListFirstTableViewCell.xib; sourceTree = "<group>"; };
+		F241195E1C74057D00C2B07E /* DetailPastingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPastingTableViewCell.h; sourceTree = "<group>"; };
+		F241195F1C74057D00C2B07E /* DetailPastingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPastingTableViewCell.m; sourceTree = "<group>"; };
+		F24119601C74057D00C2B07E /* DetailPastingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailPastingTableViewCell.xib; sourceTree = "<group>"; };
+		F24119631C74440300C2B07E /* AppShareListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppShareListModel.h; sourceTree = "<group>"; };
+		F24119641C74440300C2B07E /* AppShareListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppShareListModel.m; sourceTree = "<group>"; };
+		F24119661C74526100C2B07E /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		F24119671C74526100C2B07E /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		F24119691C74552000C2B07E /* AppCategoryListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCategoryListModel.h; sourceTree = "<group>"; };
+		F241196A1C74552000C2B07E /* AppCategoryListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCategoryListModel.m; sourceTree = "<group>"; };
+		F241196E1C74648900C2B07E /* DetailNumberTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNumberTableViewCell.h; sourceTree = "<group>"; };
+		F241196F1C74648900C2B07E /* DetailNumberTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNumberTableViewCell.m; sourceTree = "<group>"; };
+		F24119701C74648900C2B07E /* DetailNumberTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNumberTableViewCell.xib; sourceTree = "<group>"; };
 		F2573F3F1C57062C00EEB851 /* DetailBottomDoneCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBottomDoneCView.h; sourceTree = "<group>"; };
 		F2573F401C57062C00EEB851 /* DetailBottomDoneCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailBottomDoneCView.m; sourceTree = "<group>"; };
 		F2573F411C57062C00EEB851 /* DetailBottomDoneCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailBottomDoneCView.xib; sourceTree = "<group>"; };
@@ -333,8 +351,12 @@
 		F262E8AA1C55C42D00141EBC /* ClassBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBTableViewCell.h; sourceTree = "<group>"; };
 		F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBTableViewCell.m; sourceTree = "<group>"; };
 		F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassBTableViewCell.xib; sourceTree = "<group>"; };
+		F271EAF51C72B896003E782D /* AppBuyListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBuyListModel.h; sourceTree = "<group>"; };
+		F271EAF61C72B896003E782D /* AppBuyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBuyListModel.m; sourceTree = "<group>"; };
 		F277EF581C60A073007D4F8D /* AppNewOpenListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNewOpenListModel.h; sourceTree = "<group>"; };
 		F277EF591C60A073007D4F8D /* AppNewOpenListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppNewOpenListModel.m; sourceTree = "<group>"; };
+		F28651D31C731789004E0357 /* AppPastListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppPastListModel.h; sourceTree = "<group>"; };
+		F28651D41C731789004E0357 /* AppPastListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppPastListModel.m; sourceTree = "<group>"; };
 		F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FMLableStyle.h"; sourceTree = "<group>"; };
 		F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FMLableStyle.m"; sourceTree = "<group>"; };
 		F290AD021C4E50A3005F05AC /* HomeFourBtnCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFourBtnCView.h; sourceTree = "<group>"; };
@@ -481,6 +503,8 @@
 			children = (
 				6031C53A1C4C89B900D6B567 /* HomeController.h */,
 				6031C53B1C4C89B900D6B567 /* HomeController.m */,
+				F24119661C74526100C2B07E /* ShareViewController.h */,
+				F24119671C74526100C2B07E /* ShareViewController.m */,
 				F262E8971C55B36500141EBC /* DetailViewController.h */,
 				F262E8981C55B36500141EBC /* DetailViewController.m */,
 				60584F251C4E39FD00F23B95 /* TabBarController.h */,
@@ -560,14 +584,18 @@
 				F23BEFE61C5F279800E87042 /* DetailPastTableViewCell.h */,
 				F23BEFE71C5F279800E87042 /* DetailPastTableViewCell.m */,
 				F23BEFE81C5F279800E87042 /* DetailPastTableViewCell.xib */,
+				F241195E1C74057D00C2B07E /* DetailPastingTableViewCell.h */,
+				F241195F1C74057D00C2B07E /* DetailPastingTableViewCell.m */,
+				F24119601C74057D00C2B07E /* DetailPastingTableViewCell.xib */,
 				F23BEFEE1C5F2F5D00E87042 /* DetailShareTableViewCell.h */,
 				F23BEFEF1C5F2F5D00E87042 /* DetailShareTableViewCell.m */,
 				F23BEFF01C5F2F5D00E87042 /* DetailShareTableViewCell.xib */,
 				F23BEFF61C5F338F00E87042 /* DetailNumberHeadCView.h */,
 				F23BEFF71C5F338F00E87042 /* DetailNumberHeadCView.m */,
 				F23BEFF81C5F338F00E87042 /* DetailNumberHeadCView.xib */,
-				F23BEFF91C5F338F00E87042 /* DetailNumberTableViewCell.h */,
-				F23BEFFA1C5F338F00E87042 /* DetailNumberTableViewCell.m */,
+				F241196E1C74648900C2B07E /* DetailNumberTableViewCell.h */,
+				F241196F1C74648900C2B07E /* DetailNumberTableViewCell.m */,
+				F24119701C74648900C2B07E /* DetailNumberTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -847,6 +875,14 @@
 				F23688AE1C72B6DB00EF2762 /* AppGoodsDetailModel.m */,
 				F23688AF1C72B6DB00EF2762 /* AppGoodsListModel.h */,
 				F23688B01C72B6DB00EF2762 /* AppGoodsListModel.m */,
+				F271EAF51C72B896003E782D /* AppBuyListModel.h */,
+				F271EAF61C72B896003E782D /* AppBuyListModel.m */,
+				F28651D31C731789004E0357 /* AppPastListModel.h */,
+				F28651D41C731789004E0357 /* AppPastListModel.m */,
+				F24119631C74440300C2B07E /* AppShareListModel.h */,
+				F24119641C74440300C2B07E /* AppShareListModel.m */,
+				F24119691C74552000C2B07E /* AppCategoryListModel.h */,
+				F241196A1C74552000C2B07E /* AppCategoryListModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1027,12 +1063,14 @@
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
 				F23DE3D81C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib in Resources */,
 				604C62761C50C57900569F0B /* ShareSDKUI.bundle in Resources */,
+				F24119721C74648900C2B07E /* DetailNumberTableViewCell.xib in Resources */,
 				F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */,
 				F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */,
 				F23BEFF21C5F2F5D00E87042 /* DetailShareTableViewCell.xib in Resources */,
 				F23DE3D01C522E34002AB5FC /* DetailWayBCView.xib in Resources */,
 				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				F24119621C74057D00C2B07E /* DetailPastingTableViewCell.xib in Resources */,
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
 				604C62711C50C57900569F0B /* ShareSDK.bundle in Resources */,
 				F2573F431C57062C00EEB851 /* DetailBottomDoneCView.xib in Resources */,
@@ -1128,6 +1166,7 @@
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
 				F23DE3D31C522E34002AB5FC /* DetailNextTableViewCell.m in Sources */,
 				F23DE3D11C522E34002AB5FC /* DetailBottomCView.m in Sources */,
+				F24119611C74057D00C2B07E /* DetailPastingTableViewCell.m in Sources */,
 				60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */,
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
@@ -1144,12 +1183,14 @@
 				F23688B11C72B6DB00EF2762 /* AppGoodsDetailModel.m in Sources */,
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
 				60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */,
+				F24119711C74648900C2B07E /* DetailNumberTableViewCell.m in Sources */,
 				60584F141C4E228D00F23B95 /* Base64Util.m in Sources */,
 				60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */,
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
 				F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */,
 				605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */,
 				F23DE3CF1C522E34002AB5FC /* DetailWayBCView.m in Sources */,
+				F24119681C74526100C2B07E /* ShareViewController.m in Sources */,
 				60584F151C4E228D00F23B95 /* GTMBase64.m in Sources */,
 				605E15921C5A0EB500DBF8BA /* GlobalModel.m in Sources */,
 				601769A61C589121009E503F /* AdressModel.m in Sources */,
@@ -1163,16 +1204,19 @@
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
+				F24119651C74440300C2B07E /* AppShareListModel.m in Sources */,
+				F28651D51C731789004E0357 /* AppPastListModel.m in Sources */,
+				F241196B1C74552000C2B07E /* AppCategoryListModel.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
+				F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */,
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
 				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
 				60525F631C51BF0E00CC4528 /* UserModel.m in Sources */,
 				60584F161C4E228D00F23B95 /* MD5Encryption.m in Sources */,
-				F23BEFFE1C5F338F00E87042 /* DetailNumberTableViewCell.m in Sources */,
 				F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */,
 				60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */,
 				F23BF00E1C5F4C3100E87042 /* AnnouncedViewController.m in Sources */,

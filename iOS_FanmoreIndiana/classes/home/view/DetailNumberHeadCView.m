@@ -12,6 +12,16 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [UILabel changeLabel:_labelTitle AndFont:28 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelItem AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelAttend AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+    
+    _viewBase.layer.borderColor=COLOR_BACK_MAIN.CGColor;
+    _viewBase.layer.borderWidth=1;
+    _viewBase.backgroundColor=COLOR_BACK_MAIN;
+    _viewBase.layer.masksToBounds=YES;
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

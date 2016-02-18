@@ -1,27 +1,23 @@
 //
-//  DetailShareViewController.m
+//  ShareViewController.m
 //  iOS_FanmoreIndiana
 //
-//  Created by che on 16/2/1.
+//  Created by che on 16/2/17.
 //  Copyright © 2016年 刘琛. All rights reserved.
 //
 
-#import "DetailShareViewController.h"
+#import "ShareViewController.h"
 #import "DetailShareTableViewCell.h"
 #import "AppShareListModel.h"
-static NSString *cellDShare=@"cellDShare";
-@interface DetailShareViewController ()<UITableViewDataSource,UITableViewDelegate>
+static NSString *cellShare=@"cellShare";
+@interface ShareViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *shareList;
 
-
 @end
 
-@implementation DetailShareViewController
-
-
-
+@implementation ShareViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -82,9 +78,8 @@ static NSString *cellDShare=@"cellDShare";
 - (void)getShareList {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"goodsId"] = self.goodsId;
     dic[@"lastId"] = @0;
-    [UserLoginTool loginRequestGet:@"getShareOrderListByGoodsId" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:@"getShareOrderList" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
@@ -113,10 +108,9 @@ static NSString *cellDShare=@"cellDShare";
  */
 - (void)getMoreShareList {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"goodsId"] = self.goodsId;
     AppShareListModel *model=[_shareList lastObject];
     dic[@"lastId"] =model.pid;
-    [UserLoginTool loginRequestGet:@"getShareOrderListByGoodsId" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:@"getShareOrderList" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
@@ -149,7 +143,7 @@ static NSString *cellDShare=@"cellDShare";
 
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
-    [_tableView registerNib:[UINib nibWithNibName:@"DetailShareTableViewCell" bundle:nil] forCellReuseIdentifier:cellDShare];
+    [_tableView registerNib:[UINib nibWithNibName:@"DetailShareTableViewCell" bundle:nil] forCellReuseIdentifier:cellShare];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -161,7 +155,7 @@ static NSString *cellDShare=@"cellDShare";
 #pragma mark UITableViewDelegate
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    DetailShareTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDShare forIndexPath:indexPath];
+    DetailShareTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellShare forIndexPath:indexPath];
     AppShareListModel *model = _shareList[indexPath.row];
     [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
     cell.labelDate.text=[self changeTheTimeStamps:model.time andTheDateFormat:@"MM-dd HH:mm"];

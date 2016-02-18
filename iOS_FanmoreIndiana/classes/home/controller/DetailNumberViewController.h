@@ -11,5 +11,8 @@
 @interface DetailNumberViewController : UIViewController
 
 @property (nonatomic ,strong) NSMutableArray *numberArray;
+@property (nonatomic ,copy) NSString *goodsName;
+@property (nonatomic ,copy) NSString *issueId;
+
 
 @end

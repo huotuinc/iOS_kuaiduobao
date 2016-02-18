@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *labelAdvice;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVNext;
+@property (weak, nonatomic) IBOutlet UIImageView *imageVLine;
 
 @end

@@ -13,10 +13,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelItem;
 @property (weak, nonatomic) IBOutlet UIView *viewItem;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVHead;
-@property (weak, nonatomic) IBOutlet UILabel *labekWinner;
+@property (weak, nonatomic) IBOutlet UILabel *labelWinner;
 @property (weak, nonatomic) IBOutlet UILabel *labelCity;
 @property (weak, nonatomic) IBOutlet UILabel *labelID;
 @property (weak, nonatomic) IBOutlet UILabel *labelNumber;
-@property (weak, nonatomic) IBOutlet UILabel *labelAttedn;
+@property (weak, nonatomic) IBOutlet UILabel *labelAttend;
 
 @end

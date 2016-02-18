@@ -11,5 +11,6 @@
 @interface DetailAttendListFirstTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageVLine;
 @property (weak, nonatomic) IBOutlet UILabel *labelDate;
+@property (weak, nonatomic) IBOutlet UIView *viewBase;
 
 @end

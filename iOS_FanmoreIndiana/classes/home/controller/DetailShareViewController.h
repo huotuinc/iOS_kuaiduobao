@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//商品往期晒单
 @interface DetailShareViewController : UIViewController
+
+@property (nonatomic, assign) NSNumber *goodsId;
+@property (nonatomic, assign) NSNumber *lastId;//上一页的最后一个期号
 
 @end

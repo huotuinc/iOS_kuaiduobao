@@ -10,7 +10,7 @@
 #import "DetailNumberHeadCView.h"
 #import "DetailNumberTableViewCell.h"
 
-static NSString *cellDNumber=@"cellDNumber";
+static NSString *cellDNumbers=@"cellDNumbers";
 
 @interface DetailNumberViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView *tableView;
@@ -45,6 +45,7 @@ static NSString *cellDNumber=@"cellDNumber";
     self.navigationItem.leftBarButtonItem=bbiL;
 }
 -(void)clickLightButton{
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 //中奖号码
@@ -52,12 +53,17 @@ static NSString *cellDNumber=@"cellDNumber";
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailNumberHeadCView" owner:nil options:nil];
     _headView=[nib firstObject];
     _headView.frame=CGRectMake(0, 64, SCREEN_WIDTH, ADAPT_HEIGHT(180));
+    _headView.labelTitle.text=self.goodsName;
+    _headView.labelItem.text = [NSString stringWithFormat:@"期号: %@",self.issueId];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"参与了%ld人次, 以下是所有夺宝号码:",self.numberArray.count]];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(3, [NSString stringWithFormat:@"%ld",self.numberArray.count].length)];
+    _headView.labelAttend.attributedText=attString;
     
 }
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
 
-    [_tableView registerNib:[UINib nibWithNibName:@"DetailNumberTableViewCell" bundle:nil] forCellReuseIdentifier:cellDNumber];
+    [_tableView registerNib:[UINib nibWithNibName:@"DetailNumberTableViewCell" bundle:nil] forCellReuseIdentifier:cellDNumbers];
     _tableView.delegate=self;
     _tableView.dataSource=self;
         _tableView.tableHeaderView=_headView;
@@ -67,17 +73,18 @@ static NSString *cellDNumber=@"cellDNumber";
 }
 #pragma mark UITableViewDelegate
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DetailNumberTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNumber forIndexPath:indexPath];
+    DetailNumberTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellDNumbers forIndexPath:indexPath];
+
     if (_numberArray.count > (indexPath.row + 1) *5 ) {
         for (int i =0 ; i<5; i++) {
             UILabel *label=[cell viewWithTag:100+i];
-            label.text=_numberArray[indexPath.row*5 + i];
+            label.text=[NSString stringWithFormat:@"%@",_numberArray[indexPath.row*5 + i]];
         }
     }else{
         int rest = (int)(_numberArray.count -indexPath.row *5);
         for (int j =0; j< rest; j++) {
             UILabel *label=[cell viewWithTag:100+j];
-            label.text=_numberArray[indexPath.row *5 + j];
+            label.text=[NSString stringWithFormat:@"%@",_numberArray[indexPath.row *5 + j]];
         }
         for (int j =rest; j< 5; j++) {
             UILabel *label=[cell viewWithTag:100+j];
