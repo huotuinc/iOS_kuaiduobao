@@ -1,14 +1,14 @@
 //
-//  WinningCell.m
+//  RedPacketCell.m
 //  iOS_FanmoreIndiana
 //
-//  Created by 刘琛 on 16/1/29.
+//  Created by 刘琛 on 16/2/2.
 //  Copyright © 2016年 刘琛. All rights reserved.
 //
 
-#import "WinningCell.h"
+#import "RedPacketCell.h"
 
-@implementation WinningCell
+@implementation RedPacketCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -19,12 +19,5 @@
 
     // Configure the view for the selected state
 }
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    self.confirm.layer.cornerRadius = 5; 
-}
-
 
 @end
