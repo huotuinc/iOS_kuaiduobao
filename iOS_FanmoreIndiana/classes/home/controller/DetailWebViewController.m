@@ -23,7 +23,7 @@
 -(void)createWebView{
     _webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webURL]]];
-    [self.view addSubview:_webView];
+    [self.view addSubview:_webView]; 
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

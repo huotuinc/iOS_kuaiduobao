@@ -54,7 +54,6 @@
 		60AF18FC1C5E0CCA0002388D /* RechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60AF18FA1C5E0CCA0002388D /* RechargeCell.xib */; };
 		60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */; };
 		60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A36E1C520B3900E4C7BB /* MineController.m */; };
-		60B683871C5F3AA100EDF671 /* RedPacketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B683861C5F3AA100EDF671 /* RedPacketController.m */; };
 		60B6838B1C603F5500EDF671 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B683891C603F5500EDF671 /* RedPacketCell.m */; };
 		60B6838C1C603F5500EDF671 /* RedPacketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B6838A1C603F5500EDF671 /* RedPacketCell.xib */; };
 		60DD429F1C43A8F90041572F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD429E1C43A8F90041572F /* main.m */; };
@@ -135,6 +134,8 @@
 		F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD111C4E5317005F05AC /* DCWebImageManager.m */; };
 		F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */; };
 		F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */; };
+		F2C7A4CE1C756E37002E08FA /* HomeSearchCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7A4CC1C756E37002E08FA /* HomeSearchCView.m */; };
+		F2C7A4CF1C756E37002E08FA /* HomeSearchCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C7A4CD1C756E37002E08FA /* HomeSearchCView.xib */; };
 		F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 60525F661C51C9D800CC4528 /* UserLoginTool.m */; };
 		F2FF346F1C560D9F00558C13 /* DetailAttendCountCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */; };
 		F2FF34701C560D9F00558C13 /* DetailAttendCountCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */; };
@@ -391,6 +392,9 @@
 		F290AD171C4E6811005F05AC /* labelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = labelCollectionViewCell.h; sourceTree = "<group>"; };
 		F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = labelCollectionViewCell.m; sourceTree = "<group>"; };
 		F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = labelCollectionViewCell.xib; sourceTree = "<group>"; };
+		F2C7A4CB1C756E37002E08FA /* HomeSearchCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchCView.h; sourceTree = "<group>"; };
+		F2C7A4CC1C756E37002E08FA /* HomeSearchCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchCView.m; sourceTree = "<group>"; };
+		F2C7A4CD1C756E37002E08FA /* HomeSearchCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeSearchCView.xib; sourceTree = "<group>"; };
 		F2FF346C1C560D9F00558C13 /* DetailAttendCountCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAttendCountCView.h; sourceTree = "<group>"; };
 		F2FF346D1C560D9F00558C13 /* DetailAttendCountCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAttendCountCView.m; sourceTree = "<group>"; };
 		F2FF346E1C560D9F00558C13 /* DetailAttendCountCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendCountCView.xib; sourceTree = "<group>"; };
@@ -555,6 +559,9 @@
 				F290AD021C4E50A3005F05AC /* HomeFourBtnCView.h */,
 				F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */,
 				F290AD041C4E50A3005F05AC /* HomeFourBtnCView.xib */,
+				F2C7A4CB1C756E37002E08FA /* HomeSearchCView.h */,
+				F2C7A4CC1C756E37002E08FA /* HomeSearchCView.m */,
+				F2C7A4CD1C756E37002E08FA /* HomeSearchCView.xib */,
 				F290AD171C4E6811005F05AC /* labelCollectionViewCell.h */,
 				F290AD181C4E6811005F05AC /* labelCollectionViewCell.m */,
 				F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */,
@@ -1085,6 +1092,7 @@
 			files = (
 				F23DE3D61C522E34002AB5FC /* DetailProgressCView.xib in Resources */,
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
+				F2C7A4CF1C756E37002E08FA /* HomeSearchCView.xib in Resources */,
 				F23BEFFD1C5F338F00E87042 /* DetailNumberHeadCView.xib in Resources */,
 				F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */,
 				F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */,
@@ -1246,6 +1254,7 @@
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
+				F2C7A4CE1C756E37002E08FA /* HomeSearchCView.m in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
 				F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */,
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,

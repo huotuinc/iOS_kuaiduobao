@@ -78,9 +78,9 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="3Yq-gf-2hO"/>
-                                <exclude reference="7hi-Mo-7lw"/>
                                 <exclude reference="21n-Za-U1Q"/>
                                 <exclude reference="OGy-3y-jtb"/>
+                                <exclude reference="7hi-Mo-7lw"/>
                             </mask>
                         </variation>
                     </view>

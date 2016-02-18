@@ -22,9 +22,11 @@
 #import <MJRefresh.h>
 #import <UIImageView+WebCache.h>
 #import "ShareViewController.h"
+#import "HomeSearchCView.h"
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;
+@property (strong, nonatomic)  HomeSearchCView *searchV;//搜索框
 @property (strong, nonatomic)  DCPicScrollView *headScrollView;//头部视图-轮播视图
 @property (strong, nonatomic)  HomeFourBtnCView *fourBtnView;//头部视图-四个按钮
 @property (strong, nonatomic)  UICollectionView *labelCollectionView;//头部视图-中奖信息
@@ -66,6 +68,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor orangeColor]];
     self.navigationController.navigationBar.translucent=NO;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
@@ -77,11 +80,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor yellowColor]];
+
     self.isFirstLoad = YES;
 
     self.type = [NSNumber numberWithInteger:1];
     _appGoodsList=[NSMutableArray array];
-    
+    [self createBarButtonItem];
+//    [self createSearchView];
     [self createMainCollectionView];
 
     [self createArrURLString];
@@ -89,6 +95,33 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     self.isLoadView = NO;
 
+}
+- (void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"shezhi"] forState:UIControlStateNormal];
+    [buttonL bk_whenTapped:^{
+        NSLog(@"点击左");
+    }];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
+    
+    UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
+    [buttonR bk_whenTapped:^{
+        NSLog(@"点击右");
+    }];
+    UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
+    self.navigationItem.rightBarButtonItem=bbiR;
+}
+- (void)createSearchView{
+    NSArray *nib= [[NSBundle mainBundle]loadNibNamed:@"HomeSearchCView" owner:nil options:nil];
+    _searchV=[nib firstObject];
+    _searchV.frame=CGRectMake(0, 0, ADAPT_WIDTH(540) , 40);
+    UIView *viewSearch=[[UIView alloc]initWithFrame:_searchV.frame];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapTheSearchView)];
+    [viewSearch addGestureRecognizer:tap];
+    self.navigationItem.titleView=_searchV;
+    [self.view addSubview:viewSearch];
 }
 -(void)createMainCollectionView{
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
