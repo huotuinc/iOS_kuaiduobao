@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmD-lc-3Lt">
-                                <rect key="frame" x="35" y="47" width="10" height="12"/>
+                                <rect key="frame" x="35" y="44" width="10" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nmD-lc-3Lt" firstAttribute="bottom" secondItem="Lhd-sJ-WSm" secondAttribute="bottom" id="3x3-KX-aaH"/>
+                            <constraint firstItem="nmD-lc-3Lt" firstAttribute="bottom" secondItem="Lhd-sJ-WSm" secondAttribute="bottom" constant="-3" id="3x3-KX-aaH"/>
                             <constraint firstItem="nmD-lc-3Lt" firstAttribute="leading" secondItem="Lhd-sJ-WSm" secondAttribute="trailing" constant="2" id="54A-9f-EON"/>
                             <constraint firstItem="UbJ-8G-gzi" firstAttribute="leading" secondItem="mue-R6-mAT" secondAttribute="leading" id="Cnh-2N-YQb"/>
                             <constraint firstItem="dMv-aw-1Rc" firstAttribute="centerX" secondItem="mue-R6-mAT" secondAttribute="centerX" id="KUH-Iq-LXC"/>

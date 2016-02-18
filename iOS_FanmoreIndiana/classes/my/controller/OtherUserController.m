@@ -9,6 +9,7 @@
 #import "OtherUserController.h"
 #import "UserModel.h"
 #import <UIButton+WebCache.h>
+#import "AdressController.h"
 
 @interface OtherUserController ()
 
@@ -54,6 +55,15 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 4) {
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
+        [self.navigationController pushViewController:address animated:YES];
+    }
+}
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Incomplete implementation, return the number of sections

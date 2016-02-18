@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="KGk-i7-Jjw" customClass="AddressCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王立" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kui-gb-hPI">
+                        <rect key="frame" x="10" y="14" width="28" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[默认]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLn-QB-lDL">
+                        <rect key="frame" x="10" y="46" width="28" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杭州市滨江区智慧e谷B座4楼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FV-9j-SsA">
+                        <rect key="frame" x="41" y="58" width="155" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bianji" translatesAutoresizingMaskIntoConstraints="NO" id="Yyq-Ph-Jlj">
+                        <rect key="frame" x="290" y="31" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Bo9-UR-usj"/>
+                            <constraint firstAttribute="width" constant="20" id="Way-Xq-RrD"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123456789" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzj-yU-lvU">
+                        <rect key="frame" x="204" y="16" width="66" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Yyq-Ph-Jlj" firstAttribute="leading" secondItem="mzj-yU-lvU" secondAttribute="trailing" constant="20" id="3dv-CZ-Vvj"/>
+                    <constraint firstItem="8FV-9j-SsA" firstAttribute="leading" secondItem="kLn-QB-lDL" secondAttribute="trailing" constant="3" id="5iL-D3-QU4"/>
+                    <constraint firstAttribute="trailing" secondItem="Yyq-Ph-Jlj" secondAttribute="trailing" constant="10" id="D4W-W0-jbc"/>
+                    <constraint firstItem="kLn-QB-lDL" firstAttribute="top" secondItem="kui-gb-hPI" secondAttribute="bottom" constant="15" id="L07-Uv-oXw"/>
+                    <constraint firstItem="kui-gb-hPI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="L4k-mi-9Io"/>
+                    <constraint firstItem="Yyq-Ph-Jlj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fyR-XW-baA"/>
+                    <constraint firstItem="kLn-QB-lDL" firstAttribute="leading" secondItem="kui-gb-hPI" secondAttribute="leading" id="iIh-cf-FMV"/>
+                    <constraint firstAttribute="bottom" secondItem="8FV-9j-SsA" secondAttribute="bottom" constant="10" id="sJQ-MK-MSV"/>
+                    <constraint firstItem="kui-gb-hPI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="sSp-ka-5kO"/>
+                    <constraint firstItem="mzj-yU-lvU" firstAttribute="bottom" secondItem="kui-gb-hPI" secondAttribute="bottom" id="vvw-MJ-l1k"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="404" y="349"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="bianji" width="20" height="20"/>
+    </resources>
+</document>
