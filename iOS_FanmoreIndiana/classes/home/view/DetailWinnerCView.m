@@ -17,7 +17,7 @@
     _imageVHead.image=[UIImage imageNamed:@"error"];
     _viewMain.backgroundColor=[UIColor cyanColor];
     _viewBase.layer.borderWidth=1;
-    _viewBase.layer.borderColor=[UIColor grayColor].CGColor;
+    _viewBase.layer.borderColor=COLOR_BACK_MAIN.CGColor;
     _viewBase.layer.masksToBounds=YES;
     for ( int i= 0; i<8; i++) {
         UILabel *label=[self viewWithTag:100+i];
@@ -32,7 +32,10 @@
     [UIButton changeButton:_buttonContent AndFont:28 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:[UIColor clearColor] AndBorderColor:[UIColor whiteColor] AndCornerRadius:3 AndBorderWidth:1];
 
 }
-
+-(void)drawRect:(CGRect)rect{
+    _imageVHead.layer.cornerRadius=_imageVHead.frame.size.height/2;
+    _imageVHead.clipsToBounds=YES;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

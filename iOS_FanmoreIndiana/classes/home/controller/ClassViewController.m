@@ -9,13 +9,14 @@
 #import "ClassViewController.h"
 #import "ClassATableViewCell.h"
 #import "ClassBTableViewCell.h"
+#import "AppCategoryListModel.h"
 static NSString *cellClassA=@"cellClassA";
 static NSString *cellClassB=@"cellClassB";
 
 @interface ClassViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSMutableArray *titleArray;
+@property (nonatomic,strong) NSMutableArray *titleList;
 
 
 @end
@@ -27,15 +28,43 @@ static NSString *cellClassB=@"cellClassB";
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
+    self.view.backgroundColor=[UIColor whiteColor];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _titleList = [NSMutableArray array];
     [self createBarButtonItem];
     // Do any additional setup after loading the view.
-    [self createTitleArray];
-    [self createTableView];
+    [self getTitleList];
 }
+- (void)getTitleList {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"lastId"] = @0;
+    [UserLoginTool loginRequestGet:@"getShareOrderList" parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            NSArray *temp = [AppCategoryListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.titleList removeAllObjects];
+            [self.titleList addObjectsFromArray:temp];
+            [self createTableView];
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
+
+
 -(void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
@@ -47,10 +76,10 @@ static NSString *cellClassB=@"cellClassB";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void) createTitleArray{
-    _titleArray = [NSMutableArray arrayWithArray:@[@"全部商品",@"分类浏览",@"十元夺宝",@"手机平板",@"电脑办公",@"数码影音",@"女性时尚",@"美食天地",@"潮流新品",@"其它商品"]];
-
-}
+//-(void) createTitleArray{
+//    _titleArray = [NSMutableArray arrayWithArray:@[@"全部商品",@"分类浏览",@"十元夺宝",@"手机平板",@"电脑办公",@"数码影音",@"女性时尚",@"美食天地",@"潮流新品",@"其它商品"]];
+//
+//}
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"ClassATableViewCell" bundle:nil]forCellReuseIdentifier:cellClassA];
@@ -63,25 +92,31 @@ static NSString *cellClassB=@"cellClassB";
 }
 #pragma mark UITableViewDelegate
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (indexPath.row == 0) {
         ClassATableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellClassA forIndexPath:indexPath];
-        cell.labelClass.text=_titleArray[indexPath.row];
+        cell.labelClass.text=@"全部商品";
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
-    }else{
+    }
+    if (indexPath.row == 1) {
         ClassBTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellClassB forIndexPath:indexPath];
-        cell.labelClassB.text=_titleArray[indexPath.row];
+        cell.labelClassB.text=@"分类浏览";
+        cell.labelClassB.font=[UIFont systemFontOfSize:FONT_SIZE(22)];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
-    
-    
-    
-    
+    if (indexPath.row >1){
+        ClassBTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellClassB forIndexPath:indexPath];
+        AppCategoryListModel *model =_titleList[indexPath.row - 2];
+        cell.labelClassB.text=model.title;
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    return nil;
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _titleArray.count ;
+    return _titleList.count +1 ;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {

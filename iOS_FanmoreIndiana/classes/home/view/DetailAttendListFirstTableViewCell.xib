@@ -40,7 +40,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yJ0-7E-SVJ" firstAttribute="leading" secondItem="mLz-MB-7Pm" secondAttribute="leading" id="6ZK-Dd-z26"/>
                             <constraint firstItem="UzR-jL-Wbu" firstAttribute="top" secondItem="mLz-MB-7Pm" secondAttribute="top" id="BQd-N9-gcv"/>
@@ -62,6 +62,7 @@
                         </variation>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="mLz-MB-7Pm" secondAttribute="bottom" id="Rbi-or-PqC"/>
                     <constraint firstItem="mLz-MB-7Pm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="djA-2r-tDV"/>
@@ -72,6 +73,7 @@
             <connections>
                 <outlet property="imageVLine" destination="r9P-oe-8uh" id="YWz-PV-Jum"/>
                 <outlet property="labelDate" destination="yJ0-7E-SVJ" id="NdW-D5-amk"/>
+                <outlet property="viewBase" destination="H2p-sc-9uM" id="VaT-p4-DQ1"/>
             </connections>
             <point key="canvasLocation" x="280" y="177.5"/>
         </tableViewCell>

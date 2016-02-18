@@ -21,6 +21,7 @@
 #import "AppGoodsListModel.h"
 #import <MJRefresh.h>
 #import <UIImageView+WebCache.h>
+#import "ShareViewController.h"
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;
@@ -111,6 +112,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];
 }
+
 - (void)setupRefresh
 {
     
@@ -152,7 +154,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             LWLog(@"%@",json[@"resultDescription"]);
-            NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
@@ -185,7 +187,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
-            NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.appGoodsList addObjectsFromArray:temp];
             LWLog(@"%@",json[@"resultDescription"]);
@@ -254,7 +256,16 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }];
 #pragma mark 晒单
     [_fourBtnView.imageVShow bk_whenTapped:^{
+        ShareViewController *share=[[ShareViewController alloc]init];
+        [self.navigationController pushViewController:share animated:YES];
         
+    }];
+#pragma mark 分享
+    [_fourBtnView.imageVHelp bk_whenTapped:^{
+        DetailViewController *detail=[[DetailViewController alloc]init];
+        detail.issueId=[NSNumber numberWithInteger:100000002];
+        detail.whichAPI=[NSNumber numberWithInteger:2];
+        [self.navigationController pushViewController:detail animated:YES];
     }];
     
     _imageVNotice=[[UIImageView alloc]initWithFrame:CGRectMake(20, ADAPT_HEIGHT(440)+5, 30, 30)];
@@ -543,6 +554,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
         model=_appGoodsList[indexPath.row];
         detail.goodsId=model.pid;
+        detail.whichAPI=[NSNumber numberWithInteger:1];
         [self.navigationController pushViewController:detail animated:YES];    }
 }
 

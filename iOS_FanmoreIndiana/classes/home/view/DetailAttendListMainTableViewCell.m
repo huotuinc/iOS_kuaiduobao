@@ -14,12 +14,18 @@
     // Initialization code
     _imageVHead.image=[UIImage imageNamed:@"tou"];
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
-    [UILabel changeLabel:_labelName AndFont:24 AndColor:COLOR_TEXT_CONTENT];
-    [UILabel changeLabel:_labelCity AndFont:24 AndColor:COLOR_TEXT_CONTENT];
-    [UILabel changeLabel:_labelDate AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelName AndFont:24 AndColor:COLOR_SHINE_BLUE];
+    [UILabel changeLabel:_labelCity AndFont:24 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelDate AndFont:24 AndColor:COLOR_TEXT_DATE];
+    _viewBase.backgroundColor=COLOR_BACK_MAIN;
 
 }
 
+-(void)drawRect:(CGRect)rect{
+    _imageVHead.layer.cornerRadius=_imageVHead.frame.size.height/2;
+    _imageVHead.clipsToBounds=YES;
+    
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

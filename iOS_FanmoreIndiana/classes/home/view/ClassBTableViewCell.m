@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     // Initialization code
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
+    [UILabel changeLabel:_labelClassB AndFont:24 AndColor:COLOR_TEXT_DATE];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

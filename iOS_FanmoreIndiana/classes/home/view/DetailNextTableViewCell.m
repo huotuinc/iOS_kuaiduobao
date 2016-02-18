@@ -15,6 +15,7 @@
     _imageVNext.image=[UIImage imageNamed:@"jinru"];
     [UILabel changeLabel:_labelTitle AndFont:30 AndColor:COLOR_TEXT_CONTENT];
     [UILabel changeLabel:_labelAdvice AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+    _imageVLine.image=[UIImage imageNamed:@"line_huise"];
 
 }
 
