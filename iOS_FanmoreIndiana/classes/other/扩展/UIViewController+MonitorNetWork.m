@@ -34,7 +34,8 @@
 }
 
 + (void)ToRemoveSandBoxDate{
-    
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:AppToken];
+
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSFileManager * fileManager = [NSFileManager defaultManager];
     NSArray * fileName = [fileManager contentsOfDirectoryAtPath:path error:nil];
@@ -48,7 +49,7 @@
         [fileManager removeItemAtPath:[path stringByAppendingPathComponent:cc] error:&error];
         if (error) {
             
-//            NSLog(@"%@",error.description);
+
         }
     }
  

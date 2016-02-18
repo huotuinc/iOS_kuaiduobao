@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *noneLabel;
 @property (weak, nonatomic) IBOutlet UIButton *snatch;
 - (IBAction)snatchAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

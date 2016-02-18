@@ -7,12 +7,16 @@
 //
 
 #import "RedPacketController.h"
+#import "RedPacketCell.h"
 
-@interface RedPacketController ()
+@interface RedPacketController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
 @implementation RedPacketController
+
+static NSString *redPacketIdentify = @"redPactetIdentify";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +34,9 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.953 alpha:1.000];
     
     self.snatch.layer.cornerRadius = 5;
+    
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"RedPacketCell" bundle:nil] forCellReuseIdentifier:redPacketIdentify];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -98,4 +105,28 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
     
 }
+
+#pragma mark -tableView 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 114;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    RedPacketCell *cell = [tableView dequeueReusableCellWithIdentifier:redPacketIdentify forIndexPath:indexPath];
+    return  cell;
+}
+
+
+
 @end

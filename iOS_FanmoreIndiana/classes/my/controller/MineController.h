@@ -13,8 +13,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *nickname;
 @property (weak, nonatomic) IBOutlet UIButton *message;
 @property (weak, nonatomic) IBOutlet UILabel *money;
+@property (weak, nonatomic) IBOutlet UIButton *pay;
 
 - (IBAction)userAction:(id)sender;
+
+- (IBAction)payAction:(id)sender;
 
 
 

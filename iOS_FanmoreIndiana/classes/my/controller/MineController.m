@@ -13,6 +13,7 @@
 #import <UIButton+WebCache.h>
 #import "FanmoreUserController.h"
 #import "OtherUserController.h"
+#import "PayController.h"
 
 @interface MineController ()
 
@@ -25,6 +26,8 @@
     
     
     self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
+    
+    self.pay.layer.cornerRadius = 5;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -174,5 +177,12 @@
 */
 
 - (IBAction)userAction:(id)sender {
+}
+
+- (IBAction)payAction:(id)sender {
+    
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PayController *payC = [story instantiateViewControllerWithIdentifier:@"PayController"];
+    [self.navigationController pushViewController:payC animated:YES];
 }
 @end
