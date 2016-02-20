@@ -12,6 +12,8 @@
 
 @interface AdressController ()<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic, strong) NSMutableArray *addressList;
+
 @end
 
 @implementation AdressController
@@ -20,6 +22,8 @@ static NSString *addressIdentify = @"addressIdnetify";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.addressList = [NSMutableArray array];
     
     self.title = @"地址列表";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加地址" style:UIBarButtonItemStylePlain handler:^(id sender) {
@@ -30,9 +34,34 @@ static NSString *addressIdentify = @"addressIdnetify";
     [self.tableView registerNib:[UINib nibWithNibName:@"AddressCell" bundle:nil] forCellReuseIdentifier:addressIdentify];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self getNewAddressList];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)getNewAddressList {
+    
+    [UserLoginTool loginRequestGet:@"getMyAddressList" parame:nil success:^(id json) {
+//        SVProgressHUD 
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+             
+            
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+
+    } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
+        LWLog(@"%@",error);
+    }];
 }
 
 #pragma mark -tableView 

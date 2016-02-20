@@ -38,7 +38,7 @@
     if (indexPath.section == 2) {
         
         [self.navigationController popToRootViewControllerAnimated:YES];
-        [[NSUserDefaults standardUserDefaults] setObject:Failure forKey:LoginStatus];
+       
         [UIViewController ToRemoveSandBoxDate];
     }
 }

@@ -57,8 +57,8 @@
 
 
 /***服务器地址***/
-#define MainUrl @"http://192.168.3.250:8080/duobao/app/"
-#define MKMainUrl @"192.168.3.250:8080/duobao/app"
+#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
+#define MKMainUrl @"192.168.3.22:8080/duobao/app"
 
 
 
@@ -77,8 +77,12 @@
 /**设备唯一号*/
 #define  DeviceNo ([[UIDevice currentDevice].identifierForVendor UUIDString])
 
+/**判断iOS版本*/
+#define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
+
 /**APP token */
 #define AppToken @"AppToken"
+
 
 /**************************/
 #define CannelLoginFailure @"CannelLogin" //取消登陆

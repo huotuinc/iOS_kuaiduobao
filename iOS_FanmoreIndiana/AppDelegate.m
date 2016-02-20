@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GlobalModel.h"
+#import "UIViewController+MonitorNetWork.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 //#import <AlipaySDK/AlipaySDK.h>
@@ -97,6 +98,8 @@
                 //保存新的token
                 [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
             }
+        }else if ([json[@"resultCode"] intValue] == 56001) {
+            [UIViewController ToRemoveSandBoxDate];
         }
         
     } failure:^(NSError *error) {
