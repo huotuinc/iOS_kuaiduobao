@@ -1812,36 +1812,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="2Wp-il-QMa">
-                                        <rect key="frame" x="0.0" y="120" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Wp-il-QMa" id="dWj-31-HIy">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省市区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-Z9-j2H">
-                                                    <rect key="frame" x="25" y="21" width="42" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浙江省杭州市滨江区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFn-Je-J0u">
-                                                    <rect key="frame" x="92" y="21" width="126" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="CFn-Je-J0u" firstAttribute="leading" secondItem="eNb-Z9-j2H" secondAttribute="trailing" constant="25" id="HBf-8M-tSO"/>
-                                                <constraint firstItem="CFn-Je-J0u" firstAttribute="centerY" secondItem="dWj-31-HIy" secondAttribute="centerY" id="Pj1-6X-bOt"/>
-                                                <constraint firstItem="eNb-Z9-j2H" firstAttribute="centerY" secondItem="dWj-31-HIy" secondAttribute="centerY" id="kuN-qr-aRs"/>
-                                                <constraint firstItem="eNb-Z9-j2H" firstAttribute="leading" secondItem="dWj-31-HIy" secondAttribute="leading" constant="25" id="sW5-Qa-sp0"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="mo2-ok-Xdu">
-                                        <rect key="frame" x="0.0" y="180" width="320" height="120"/>
+                                        <rect key="frame" x="0.0" y="120" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mo2-ok-Xdu" id="p4d-dZ-zJV">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
@@ -1879,7 +1851,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Lei-Xw-TkW">
-                                        <rect key="frame" x="0.0" y="300" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="240" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lei-Xw-TkW" id="fqd-Ge-4VP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>

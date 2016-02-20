@@ -23,6 +23,7 @@ static NSString *rechargeIdentify = @"rechargeIdentify";
     
     self.tabBarController.tabBar.hidden = YES;
     
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     UITableView *table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) style:UITableViewStylePlain];
     table.delegate = self;

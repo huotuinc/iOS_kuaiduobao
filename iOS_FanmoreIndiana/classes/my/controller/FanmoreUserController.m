@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     
-    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
 }
 

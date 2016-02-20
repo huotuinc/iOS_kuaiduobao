@@ -7,12 +7,8 @@
 //
 
 #import "AddAddressController.h"
-
-@interface AddAddressController ()<UIPickerViewDelegate,UIPickerViewDataSource>
-
-@property (nonatomic, strong) NSArray *provinceArray;
-@property (nonatomic, strong) NSArray *cityArray;
-@property (nonatomic, strong) NSArray *districtArray;
+#import <UIBarButtonItem+BlocksKit.h>
+@interface AddAddressController ()
 
 @end
 
@@ -21,16 +17,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 216, KScreenWidth, 216)];
-    _pickerView.delegate = self;
-    _pickerView.dataSource = self;
-    [self.view addSubview:_pickerView];
-    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"保存" style:UIBarButtonItemStylePlain handler:^(id sender) {
+        
+    }];
+
 }
 
-- (void)_initPickerData {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"plist"];
+- (void)addNewAddress {
+    if (_personName.text != nil) {
+        [SVProgressHUD showErrorWithStatus:@"请输入用户名"];
+    }else if (_personIphone.text != nil) {
+        [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+    }
 }
+
+
+/**
+ *  验证手机号的正则表达式
+ */
+-(BOOL) checkTel:(NSString *) phoneNumber{
+    NSString *regex = @"^(1)\\d{10}$";
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:phoneNumber];
+    
+    if (!isMatch) {
+        return NO;
+    }
+    return YES;
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {

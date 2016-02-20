@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *personIphone;
 @property (weak, nonatomic) IBOutlet UITextView *detailAddress;
 @property (weak, nonatomic) IBOutlet UISwitch *defaultAddress;
-@property (nonatomic, strong) UIPickerView *pickerView;
+
 
 @end

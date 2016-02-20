@@ -25,6 +25,7 @@
     [super viewDidLoad];
     
     
+    
     self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
     
     self.pay.layer.cornerRadius = 5;

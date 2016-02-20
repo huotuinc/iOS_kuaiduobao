@@ -8,6 +8,7 @@
 
 #import "AdressController.h"
 #import "AddressCell.h"
+#import "AddAddressController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 
 @interface AdressController ()<UITableViewDataSource,UITableViewDelegate>
@@ -27,7 +28,9 @@ static NSString *addressIdentify = @"addressIdnetify";
     
     self.title = @"地址列表";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加地址" style:UIBarButtonItemStylePlain handler:^(id sender) {
-        
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        AddAddressController *add = [story instantiateViewControllerWithIdentifier:@"AddAddressController"];
+        [self.navigationController pushViewController:add animated:YES];
     }];
     
     self.tableView.editing = YES;
