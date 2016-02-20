@@ -33,6 +33,7 @@
 		600DA59F1C75C7EC007DAB27 /* RedPacketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600DA59E1C75C7EC007DAB27 /* RedPacketController.m */; };
 		601769A61C589121009E503F /* AdressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601769A51C589121009E503F /* AdressModel.m */; };
 		602BB5DD1C77FD9700C29F74 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 602BB5DC1C77FD9700C29F74 /* city.plist */; };
+		602BB5E01C7861CB00C29F74 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 602BB5DF1C7861CB00C29F74 /* AddressModel.m */; };
 		6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
 		6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53E1C4C8E9F00D6B567 /* XLPlainFlowLayout.m */; };
 		6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */; };
@@ -302,6 +303,8 @@
 		601769A41C589121009E503F /* AdressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressModel.h; sourceTree = "<group>"; };
 		601769A51C589121009E503F /* AdressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressModel.m; sourceTree = "<group>"; };
 		602BB5DC1C77FD9700C29F74 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
+		602BB5DE1C7861CB00C29F74 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		602BB5DF1C7861CB00C29F74 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		6031C53A1C4C89B900D6B567 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
 		6031C53B1C4C89B900D6B567 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		6031C53D1C4C8E9F00D6B567 /* XLPlainFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlainFlowLayout.h; sourceTree = "<group>"; };
@@ -1041,6 +1044,8 @@
 			children = (
 				600042B11C746CA400CEDC7A /* PayModel.h */,
 				600042B21C746CA400CEDC7A /* PayModel.m */,
+				602BB5DE1C7861CB00C29F74 /* AddressModel.h */,
+				602BB5DF1C7861CB00C29F74 /* AddressModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1535,6 +1540,7 @@
 				60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */,
 				600042981C744C5D00CEDC7A /* DataSigner.m in Sources */,
 				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
+				602BB5E01C7861CB00C29F74 /* AddressModel.m in Sources */,
 				6000429A1C744C5D00CEDC7A /* MD5DataSigner.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
 				F23688B11C72B6DB00EF2762 /* AppGoodsDetailModel.m in Sources */,
