@@ -238,6 +238,30 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
 }
 
+#pragma mark  网络加入购物车
+
+-(void)joinShoppingCart {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"issueId"] = self.issueId;
+
+    [UserLoginTool loginRequestPostWithFile:@"joinShoppingCart" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }else {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+        
+        
+    } withFileKey:nil];
+    
+    
+}
+
+
 -(void)createArrURLString{
     _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
                                                    @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
@@ -415,7 +439,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_BLUE range:NSMakeRange(5,percentString.length)];
             cell.labelProgress.attributedText = attString;
             [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
-            
+            [cell.joinList bk_whenTapped:^{
+                //加入购物车
+                self.issueId = model.pid;
+                [self joinShoppingCart];
+            }];
             if (indexPath.row % 2) {
                 
             }else {
@@ -476,17 +504,20 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                         num =0;
 #warning 人气点击方法
                         if (button.tag ==100) {
+                            [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:1];
                             orderNumberNow = 0;
                         }
 #warning 最新点击方法
                         if (button.tag ==101) {
+                            [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:2];
                             orderNumberNow = 1;
 
                         }
 #warning 进度点击方法
                         if (button.tag ==102) {
+                            [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:3];
                             orderNumberNow = 2;
                         }
@@ -502,6 +533,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                         //总需人次的第一次点击
                         button.selected=YES;
                         if (num %2 ==0) {
+                            [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             LWLog(@"总需人次的第一次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
                             self.type = [NSNumber numberWithInteger:4];
@@ -511,6 +543,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #warning 总需人次第二次点击
                         //总需人次的第二次点击
                         else{
+                            [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             LWLog(@"总需人次的第二次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_a"] forState:UIControlStateSelected];
                             self.type = [NSNumber numberWithInteger:5];

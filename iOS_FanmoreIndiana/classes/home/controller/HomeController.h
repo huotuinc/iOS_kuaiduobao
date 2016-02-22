@@ -11,6 +11,7 @@
 @interface HomeController : UIViewController
 
 @property (nonatomic, assign) NSNumber *type;
+@property (nonatomic, assign) NSNumber *issueId;//加入购物车 商品issueId
 
 
 @end
