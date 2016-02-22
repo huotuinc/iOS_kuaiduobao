@@ -74,6 +74,7 @@
 		6066B0B81C73175600B0A73C /* PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6066B0B71C73175600B0A73C /* PayController.m */; };
 		606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 606CA1D81C5B431900613E6A /* WinningCell.m */; };
 		606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606CA1D91C5B431900613E6A /* WinningCell.xib */; };
+		6073E1511C7AEC1F005AD927 /* MineShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6073E1501C7AEC1F005AD927 /* MineShareController.m */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AF18EF1C5DAFFB0002388D /* WinningController.m */; };
@@ -380,6 +381,8 @@
 		606CA1D71C5B431900613E6A /* WinningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningCell.h; sourceTree = "<group>"; };
 		606CA1D81C5B431900613E6A /* WinningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningCell.m; sourceTree = "<group>"; };
 		606CA1D91C5B431900613E6A /* WinningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinningCell.xib; sourceTree = "<group>"; };
+		6073E14F1C7AEC1F005AD927 /* MineShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineShareController.h; sourceTree = "<group>"; };
+		6073E1501C7AEC1F005AD927 /* MineShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineShareController.m; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -1035,6 +1038,8 @@
 				60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */,
 				60F154A11C76B7D60043ED3F /* ChangePhoneController.h */,
 				60F154A21C76B7D60043ED3F /* ChangePhoneController.m */,
+				6073E14F1C7AEC1F005AD927 /* MineShareController.h */,
+				6073E1501C7AEC1F005AD927 /* MineShareController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1556,6 +1561,7 @@
 				605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */,
 				F23DE3CF1C522E34002AB5FC /* DetailWayBCView.m in Sources */,
 				F24119681C74526100C2B07E /* ShareViewController.m in Sources */,
+				6073E1511C7AEC1F005AD927 /* MineShareController.m in Sources */,
 				60584F151C4E228D00F23B95 /* GTMBase64.m in Sources */,
 				605E15921C5A0EB500DBF8BA /* GlobalModel.m in Sources */,
 				601769A61C589121009E503F /* AdressModel.m in Sources */,

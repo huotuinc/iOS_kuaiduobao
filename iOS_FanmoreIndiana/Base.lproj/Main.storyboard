@@ -821,7 +821,7 @@
                                                     <rect key="frame" x="107" y="0.0" width="107" height="80"/>
                                                     <subviews>
                                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jiexiao" translatesAutoresizingMaskIntoConstraints="NO" id="oT3-dh-P3c">
-                                                            <rect key="frame" x="28" y="15" width="50" height="50"/>
+                                                            <rect key="frame" x="29" y="15" width="50" height="50"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1013,6 +1013,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9rq-BE-pNh" kind="push" id="Jqg-qV-hMf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1225,6 +1228,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcR-mE-2eZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="320" y="3162"/>
+        </scene>
+        <!--Mine Share Controller-->
+        <scene sceneID="jKZ-h2-qxH">
+            <objects>
+                <viewController storyboardIdentifier="MineShareController" id="9rq-BE-pNh" customClass="MineShareController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iCd-G9-6cE"/>
+                        <viewControllerLayoutGuide type="bottom" id="im5-2B-EIL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VhI-K8-A8i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A82-e9-YRw">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9rq-BE-pNh" id="EDO-Vk-jdP"/>
+                                    <outlet property="delegate" destination="9rq-BE-pNh" id="SBH-cK-xtb"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="A82-e9-YRw" firstAttribute="top" secondItem="iCd-G9-6cE" secondAttribute="bottom" id="F1J-0Y-Jc1"/>
+                            <constraint firstAttribute="trailing" secondItem="A82-e9-YRw" secondAttribute="trailing" id="X7w-2Z-MnM"/>
+                            <constraint firstItem="im5-2B-EIL" firstAttribute="top" secondItem="A82-e9-YRw" secondAttribute="bottom" id="qjo-5g-orj"/>
+                            <constraint firstItem="A82-e9-YRw" firstAttribute="leading" secondItem="VhI-K8-A8i" secondAttribute="leading" id="x2X-EC-knW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="C2f-wN-3YY"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="A82-e9-YRw" id="v3d-qR-oOR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3D-32-g6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="777" y="3162"/>
         </scene>
         <!--Winning Controller-->
         <scene sceneID="eyI-sQ-gu8">
