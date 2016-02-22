@@ -23,6 +23,7 @@
 #import "AppBuyListModel.h"
 #import "DetailAttendListFirstTableViewCell.h"
 #import <MJRefresh.h>
+#import "DetailBottomDoneCView.h"
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 static NSString * cellDFirst=@"cellDFirst";
@@ -36,6 +37,7 @@ static NSString * cellDFirst=@"cellDFirst";
 @property (strong, nonatomic) DetailProgressCView * progressView;//进度视图
 @property (strong, nonatomic) DetailAttendCountCView * countView;//参加次数视图
 @property (strong, nonatomic) DetailBottomCView * bottomView;//底部选项视图
+@property (strong, nonatomic) DetailBottomDoneCView * bottomDoneView;//底部选项视图
 @property (strong, nonatomic) DetailWinnerCView * winnerView;//获奖者
 @property (strong, nonatomic) DetailTimeCView * timeView;//揭晓倒计时
 
@@ -122,7 +124,7 @@ static NSString * cellDFirst=@"cellDFirst";
     
     
 }
-#pragma mark 网络请求商品列表
+#pragma mark 网络请求详情列表
 /**
  *  下拉刷新
  */
@@ -168,7 +170,7 @@ static NSString * cellDFirst=@"cellDFirst";
         AppBuyListModel *model = [_buyList lastObject];
         self.lastId = model.pid;
     }
-    dic[@"issueId"] = self.issueId;
+    dic[@"issueId"] = _detailModel.issueId;
     dic[@"lastId"] = self.lastId;
     [UserLoginTool loginRequestGet:@"getBuyList" parame:dic success:^(id json) {
         
@@ -176,7 +178,7 @@ static NSString * cellDFirst=@"cellDFirst";
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             NSArray *temp = [AppBuyListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
+            LWLog(@"resultDescription");
             [self.buyList addObjectsFromArray:temp];
             
             [_tableView reloadData];
@@ -388,10 +390,26 @@ static NSString * cellDFirst=@"cellDFirst";
 }
 #pragma mark 底部选项
 -(void)createBottomView{
-    NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
-    _bottomView=[nib firstObject];
-    _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
-    [self.view addSubview:_bottomView];
+    
+    if ([_whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+        NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
+        _bottomView=[nib firstObject];
+        _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
+        [self.view addSubview:_bottomView];
+    }else{
+        NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomDoneCView" owner:nil options:nil];
+        _bottomDoneView=[nib firstObject];
+        _bottomDoneView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
+        [_bottomDoneView.buttonGo bk_whenTapped:^{
+            DetailViewController *detail = [[DetailViewController alloc]init];
+            detail.whichAPI = [NSNumber numberWithInteger:1];
+            detail.goodsId = _detailModel.pid;
+            [self.navigationController pushViewController:detail animated:YES];
+        }];
+        [self.view addSubview:_bottomDoneView];
+        
+    }
+    
 }
 -(void)createStateLabel{
     _titleStateLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _titleStrHeight/_titleLineCount*3,_titleStrHeight/_titleLineCount)];

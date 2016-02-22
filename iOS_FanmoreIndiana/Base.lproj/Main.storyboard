@@ -1521,10 +1521,10 @@
             </objects>
             <point key="canvasLocation" x="320" y="701"/>
         </scene>
-        <!--View Controller-->
+        <!--List View Controller-->
         <scene sceneID="wY4-M5-zum">
             <objects>
-                <viewController id="Fu4-X8-Kpo" sceneMemberID="viewController">
+                <viewController id="Fu4-X8-Kpo" customClass="ListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MMX-tF-iWX"/>
                         <viewControllerLayoutGuide type="bottom" id="7WD-Tu-CQU"/>
