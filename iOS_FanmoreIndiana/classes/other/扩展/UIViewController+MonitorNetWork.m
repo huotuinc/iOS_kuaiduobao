@@ -34,6 +34,7 @@
 }
 
 + (void)ToRemoveSandBoxDate{
+    [[NSUserDefaults standardUserDefaults] setObject:Failure forKey:LoginStatus];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:AppToken];
 
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

@@ -10,8 +10,9 @@
 #import "UserModel.h"
 #import <UIButton+WebCache.h>
 #import "AdressController.h"
+#import "ChangeNickNameController.h"
 
-@interface FanmoreUserController ()<UITableViewDelegate,UITableViewDataSource>
+@interface FanmoreUserController ()<UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UserModel *userInfo;
 
@@ -57,75 +58,158 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 5) {
-        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
-        [self.navigationController pushViewController:address animated:YES];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    switch (indexPath.row) {
+        case 0:
+        {
+            if (IsIos8) {
+                
+                UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+                UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                }];
+                UIAlertAction * photo = [UIAlertAction actionWithTitle:@"从本地相册选择图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+                    pc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+                    pc.delegate = self;
+                    pc.allowsEditing = YES;
+                    [self presentViewController:pc animated:YES completion:nil];
+                }];
+                UIAlertAction * ceme  = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+                    pc.allowsEditing = YES;
+                    pc.sourceType=UIImagePickerControllerSourceTypeCamera;
+                    pc.delegate = self;
+                    [self presentViewController:pc animated:YES completion:nil];
+                }];
+                [alertVc addAction:photo];
+                [alertVc addAction:ceme];
+                [alertVc addAction:action];
+                [self presentViewController:alertVc animated:YES completion:nil];
+            }else{
+                
+                UIActionSheet * aa = [[UIActionSheet alloc] initWithTitle:@"选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册",@"相机", nil];
+                [aa showInView:self.view];
+                
+            }
+            break;
+        }
+        case 3:
+        {
+            ChangeNickNameController *nick = [story instantiateViewControllerWithIdentifier:@"ChangeNickNameController"];
+            [self.navigationController pushViewController:nick animated:YES];
+            break;
+        }
+        case 5:
+        {
+            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
+            [self.navigationController pushViewController:address animated:YES];
+            break;
+        }
+        default:
+            break;
     }
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+#pragma mark 拍照
+/**
+ *  拍照
+ *
+ *  @param picker
+ *  @param info
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
-    // Configure the cell...
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
-    return cell;
+    UIImage *photoImage = nil;
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]){
+        // 判断，图片是否允许修改
+        if ([picker allowsEditing]){
+            //获取用户编辑之后的图像
+            photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        } else {
+            // 照片的元数据参数
+            photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        }
+    }
+    //    [self.logo setImage:photoImage forState:UIControlStateNormal];
+    NSData *data = nil;
+    if (UIImagePNGRepresentation(photoImage) == nil) {
+        
+        data = UIImageJPEGRepresentation(photoImage, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(photoImage);
+    }
+    
+    NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+        NSMutableDictionary * params = [NSMutableDictionary dictionary];
+        params[@"profileType"] = @"0";
+        params[@"profileData"] = imagefile;
+        [SVProgressHUD showWithStatus:@"头像上传中，请稍候"];
+        
+        
+        [UserLoginTool loginRequestPostWithFile:@"updateProfile" parame:params success:^(id json) {
+            [SVProgressHUD dismiss];
+            
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                //                [self loginSuccessWith:json[@"resultData"]];
+                UserModel *user = [UserModel mj_objectWithKeyValues:json[@"resultData"][@"user"]];
+                NSLog(@"userModel: %@",user);
+                [self.logo sd_setImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+                [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+                //保存新的token
+                [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+                //                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+        } failure:^(NSError *error) {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
+            //            NSLog(@"%@",error.description);
+        } withFileKey:@"profiledata"];
+        
+    }];
+    
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+/**
+ *  取消拍照
+ *
+ *  @param picker
+ */
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+/**
+ *    相机掉出
+ *
+ *  @param actionSheet <#actionSheet description#>
+ *  @param buttonIndex <#buttonIndex description#>
+ */
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+        pc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        pc.delegate = self;
+        pc.allowsEditing = YES;
+        [self presentViewController:pc animated:YES completion:nil];
+        
+    }else if(buttonIndex == 1) {
+        
+        UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+        pc.allowsEditing = YES;
+        pc.sourceType=UIImagePickerControllerSourceTypeCamera;
+        pc.delegate = self;
+        [self presentViewController:pc animated:YES completion:nil];
+    }
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

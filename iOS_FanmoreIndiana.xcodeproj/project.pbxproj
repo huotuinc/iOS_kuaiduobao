@@ -29,7 +29,9 @@
 		600042AE1C744D8500CEDC7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600042AD1C744D8500CEDC7A /* UIKit.framework */; };
 		600042B01C744D8E00CEDC7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600042AF1C744D8E00CEDC7A /* Foundation.framework */; };
 		600042B31C746CA400CEDC7A /* PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 600042B21C746CA400CEDC7A /* PayModel.m */; };
+		600DA59F1C75C7EC007DAB27 /* RedPacketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600DA59E1C75C7EC007DAB27 /* RedPacketController.m */; };
 		601769A61C589121009E503F /* AdressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601769A51C589121009E503F /* AdressModel.m */; };
+		602BB5DD1C77FD9700C29F74 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 602BB5DC1C77FD9700C29F74 /* city.plist */; };
 		6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
 		6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53E1C4C8E9F00D6B567 /* XLPlainFlowLayout.m */; };
 		6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */; };
@@ -90,9 +92,12 @@
 		60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EB31E91C57610C006C070B /* ForgetFirstController.m */; };
 		60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EB31EC1C5764B9006C070B /* ForgetSecondController.m */; };
 		60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EB31EF1C5764E2006C070B /* ForgetThirdController.m */; };
+		60F154A01C76A8F90043ED3F /* ChangeNickNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */; };
+		60F154A31C76B7D60043ED3F /* ChangePhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F154A21C76B7D60043ED3F /* ChangePhoneController.m */; };
 		60F389EC1C7566AE0080D759 /* AdressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389EB1C7566AE0080D759 /* AdressController.m */; };
 		60F389F31C7567050080D759 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389F11C7567050080D759 /* AddressCell.m */; };
 		60F389F41C7567050080D759 /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F389F21C7567050080D759 /* AddressCell.xib */; };
+		60F389F71C75AEE80080D759 /* AddAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389F61C75AEE80080D759 /* AddAddressController.m */; };
 		60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FFF2C61C4E19CC00A93D7E /* LoginController.m */; };
 		60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60FFF30C1C4E1B6000A93D7E /* WXUtil.mm */; };
 		60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FFF30F1C4E1B8800A93D7E /* UITableView+CJ.m */; };
@@ -296,8 +301,11 @@
 		600042AF1C744D8E00CEDC7A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		600042B11C746CA400CEDC7A /* PayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayModel.h; path = ../../login/model/PayModel.h; sourceTree = "<group>"; };
 		600042B21C746CA400CEDC7A /* PayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayModel.m; path = ../../login/model/PayModel.m; sourceTree = "<group>"; };
+		600DA59D1C75C7EC007DAB27 /* RedPacketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketController.h; sourceTree = "<group>"; };
+		600DA59E1C75C7EC007DAB27 /* RedPacketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketController.m; sourceTree = "<group>"; };
 		601769A41C589121009E503F /* AdressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressModel.h; sourceTree = "<group>"; };
 		601769A51C589121009E503F /* AdressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressModel.m; sourceTree = "<group>"; };
+		602BB5DC1C77FD9700C29F74 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		6031C53A1C4C89B900D6B567 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
 		6031C53B1C4C89B900D6B567 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		6031C53D1C4C8E9F00D6B567 /* XLPlainFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlainFlowLayout.h; sourceTree = "<group>"; };
@@ -386,8 +394,6 @@
 		60B5A3671C51FDEA00E4C7BB /* NSDictionary+EXTERN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EXTERN.m"; sourceTree = "<group>"; };
 		60B5A36D1C520B3900E4C7BB /* MineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineController.h; sourceTree = "<group>"; };
 		60B5A36E1C520B3900E4C7BB /* MineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineController.m; sourceTree = "<group>"; };
-		60B683851C5F3AA100EDF671 /* RedPacketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketController.h; sourceTree = "<group>"; };
-		60B683861C5F3AA100EDF671 /* RedPacketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketController.m; sourceTree = "<group>"; };
 		60B683881C603F5500EDF671 /* RedPacketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
 		60B683891C603F5500EDF671 /* RedPacketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketCell.m; sourceTree = "<group>"; };
 		60B6838A1C603F5500EDF671 /* RedPacketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketCell.xib; sourceTree = "<group>"; };
@@ -414,11 +420,17 @@
 		60EB31EC1C5764B9006C070B /* ForgetSecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetSecondController.m; sourceTree = "<group>"; };
 		60EB31EE1C5764E2006C070B /* ForgetThirdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetThirdController.h; sourceTree = "<group>"; };
 		60EB31EF1C5764E2006C070B /* ForgetThirdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetThirdController.m; sourceTree = "<group>"; };
+		60F1549E1C76A8F90043ED3F /* ChangeNickNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeNickNameController.h; sourceTree = "<group>"; };
+		60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeNickNameController.m; sourceTree = "<group>"; };
+		60F154A11C76B7D60043ED3F /* ChangePhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneController.h; sourceTree = "<group>"; };
+		60F154A21C76B7D60043ED3F /* ChangePhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneController.m; sourceTree = "<group>"; };
 		60F389EA1C7566AE0080D759 /* AdressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressController.h; sourceTree = "<group>"; };
 		60F389EB1C7566AE0080D759 /* AdressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressController.m; sourceTree = "<group>"; };
 		60F389F01C7567050080D759 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
 		60F389F11C7567050080D759 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		60F389F21C7567050080D759 /* AddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
+		60F389F51C75AEE80080D759 /* AddAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressController.h; sourceTree = "<group>"; };
+		60F389F61C75AEE80080D759 /* AddAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressController.m; sourceTree = "<group>"; };
 		60FFF2C51C4E19CC00A93D7E /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		60FFF2C61C4E19CC00A93D7E /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		60FFF30B1C4E1B6000A93D7E /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
@@ -1024,17 +1036,23 @@
 				60EB31A61C55C892006C070B /* OtherUserController.h */,
 				60EB31A71C55C892006C070B /* OtherUserController.m */,
 				60AF18EE1C5DAFFB0002388D /* WinningController.h */,
+				60AF18EF1C5DAFFB0002388D /* WinningController.m */,
 				605E158A1C59A8AB00DBF8BA /* SettingController.h */,
 				605E158B1C59A8AB00DBF8BA /* SettingController.m */,
-				60AF18EF1C5DAFFB0002388D /* WinningController.m */,
 				604926251C5EF3590092D231 /* RechargeController.h */,
 				604926261C5EF3590092D231 /* RechargeController.m */,
-				60B683851C5F3AA100EDF671 /* RedPacketController.h */,
-				60B683861C5F3AA100EDF671 /* RedPacketController.m */,
+				600DA59D1C75C7EC007DAB27 /* RedPacketController.h */,
+				600DA59E1C75C7EC007DAB27 /* RedPacketController.m */,
 				6066B0B61C73175500B0A73C /* PayController.h */,
 				6066B0B71C73175600B0A73C /* PayController.m */,
 				60F389EA1C7566AE0080D759 /* AdressController.h */,
 				60F389EB1C7566AE0080D759 /* AdressController.m */,
+				60F389F51C75AEE80080D759 /* AddAddressController.h */,
+				60F389F61C75AEE80080D759 /* AddAddressController.m */,
+				60F1549E1C76A8F90043ED3F /* ChangeNickNameController.h */,
+				60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */,
+				60F154A11C76B7D60043ED3F /* ChangePhoneController.h */,
+				60F154A21C76B7D60043ED3F /* ChangePhoneController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1099,6 +1117,7 @@
 				6031C5451C4CDF9900D6B567 /* PrefixHeader.pch */,
 				60DD42A91C43A8F90041572F /* Assets.xcassets */,
 				60DD42AE1C43A8F90041572F /* Info.plist */,
+				602BB5DC1C77FD9700C29F74 /* city.plist */,
 				60DD429D1C43A8F90041572F /* Supporting Files */,
 			);
 			path = iOS_FanmoreIndiana;
@@ -1461,6 +1480,7 @@
 				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				F24119621C74057D00C2B07E /* DetailPastingTableViewCell.xib in Resources */,
+				602BB5DD1C77FD9700C29F74 /* city.plist in Resources */,
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
 				604C62711C50C57900569F0B /* ShareSDK.bundle in Resources */,
 				F2573F431C57062C00EEB851 /* DetailBottomDoneCView.xib in Resources */,
@@ -1548,6 +1568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
+				F23BF0121C5F4C4B00E87042 /* AnnouncedCollectionViewCell.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F21E82E21C7813B100C732F1 /* ListViewController.m in Sources */,
 				F23BEFFC1C5F338F00E87042 /* DetailNumberHeadCView.m in Sources */,
@@ -1559,10 +1580,13 @@
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
 				F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */,
+				60F154A31C76B7D60043ED3F /* ChangePhoneController.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
 				F23DE3D31C522E34002AB5FC /* DetailNextTableViewCell.m in Sources */,
+				60F154A01C76A8F90043ED3F /* ChangeNickNameController.m in Sources */,
 				F23DE3D11C522E34002AB5FC /* DetailBottomCView.m in Sources */,
 				6000429D1C744C5D00CEDC7A /* RSADataSigner.m in Sources */,
+				F24119611C74057D00C2B07E /* DetailPastingTableViewCell.m in Sources */,
 				60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */,
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
@@ -1601,6 +1625,7 @@
 				60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */,
 				600042991C744C5D00CEDC7A /* DataVerifier.m in Sources */,
 				60EB31A81C55C892006C070B /* OtherUserController.m in Sources */,
+				60F389F71C75AEE80080D759 /* AddAddressController.m in Sources */,
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
 				600042971C744C5D00CEDC7A /* base64.m in Sources */,
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
@@ -1630,9 +1655,12 @@
 				F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */,
 				60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */,
 				6000429E1C744C5D00CEDC7A /* RSADataVerifier.m in Sources */,
+				F23BF00E1C5F4C3100E87042 /* AnnouncedViewController.m in Sources */,
+				F23BEFF51C5F322E00E87042 /* DetailNumberViewController.m in Sources */,
 				F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */,
 				F2C7A4D21C75AD49002E08FA /* DetailNumberViewController.m in Sources */,
 				6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */,
+				600DA59F1C75C7EC007DAB27 /* RedPacketController.m in Sources */,
 				F23BEFED1C5F2D2C00E87042 /* DetailShareViewController.m in Sources */,
 				60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */,
 				60EB31A51C55C86C006C070B /* FanmoreUserController.m in Sources */,
