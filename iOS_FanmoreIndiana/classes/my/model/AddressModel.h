@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString *details;
 @property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, strong) NSString *receiver;
+@property (nonatomic, strong) NSNumber *addressId;
 
 @end

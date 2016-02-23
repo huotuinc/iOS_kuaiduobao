@@ -8,7 +8,8 @@
 
 #import "AddAddressController.h"
 #import <UIBarButtonItem+BlocksKit.h>
-@interface AddAddressController ()
+#import "UITableView+CJ.h"
+@interface AddAddressController ()<UITableViewDelegate>
 
 @end
 
@@ -21,9 +22,25 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"保存" style:UIBarButtonItemStylePlain handler:^(id sender) {
         
         [self addNewAddress];
+        
     }];
+    
+    [self.tableView removeSpaces];
 
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (_temp == 0) {
+        self.personName.text = _model.receiver;
+        self.personIphone.text = _model.mobile;
+        self.detailAddress.text = _model.details;
+        self.defaultAddress.on = _model.defaultAddress;
+    }
+}
+
+
+
 
 - (void)addNewAddress {
     if (_personName.text == nil) {
@@ -35,7 +52,13 @@
     }else {
         if ([self checkTel:_personIphone.text]) {
             
-            [self postAddressToServer];
+            if (_temp == 1) {
+                //增加新地址
+                [self postAddressToServer];
+            }else if (_temp == 0) {
+                //修改老地址
+                [self updateAddressToServer];
+            }
             
         }else {
             [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
@@ -52,6 +75,31 @@
     
     [UserLoginTool loginRequestPostWithFile:@"addMyAddress" parame:dic success:^(id json) {
         LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            [SVProgressHUD showSuccessWithStatus:@"地址增加成功"];
+
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    } withFileKey:nil];
+}
+
+
+- (void)updateAddressToServer {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"receiver"] = self.personName.text;
+    dic[@"mobile"] = self.personIphone.text;
+    dic[@"details"] = self.detailAddress.text;
+    dic[@"defaultAddress"] = @(self.defaultAddress.on);
+    dic[@"addressId"] = self.model.addressId;
+    
+    [UserLoginTool loginRequestPostWithFile:@"updateAddress" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     } withFileKey:nil];
@@ -74,6 +122,12 @@
     return YES;
 }
 
+#pragma mark tableView selecet
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 
 

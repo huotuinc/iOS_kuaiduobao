@@ -99,7 +99,7 @@
             [self.navigationController pushViewController:nick animated:YES];
             break;
         }
-        case 5:
+        case 4:
         {
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];

@@ -8,6 +8,7 @@
 
 #import "AdressController.h"
 #import "AddressCell.h"
+#import "AddressModel.h"
 #import "AddAddressController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 
@@ -30,11 +31,13 @@ static NSString *addressIdentify = @"addressIdnetify";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加地址" style:UIBarButtonItemStylePlain handler:^(id sender) {
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         AddAddressController *add = [story instantiateViewControllerWithIdentifier:@"AddAddressController"];
+        add.temp = 1;
         [self.navigationController pushViewController:add animated:YES];
     }];
     
-    self.tableView.editing = YES;
+//    self.tableView.editing = YES;
     [self.tableView registerNib:[UINib nibWithNibName:@"AddressCell" bundle:nil] forCellReuseIdentifier:addressIdentify];
+    [self.tableView removeSpaces];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,14 +52,19 @@ static NSString *addressIdentify = @"addressIdnetify";
 
 - (void)getNewAddressList {
     
+    [SVProgressHUD showWithStatus:@"数据加载中"];
+    
     [UserLoginTool loginRequestGet:@"getMyAddressList" parame:nil success:^(id json) {
-//        SVProgressHUD 
+        [SVProgressHUD dismiss];
         LWLog(@"%@",json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-            
-             
-            
+            [self.addressList removeAllObjects];
+            if (![json[@"resultData"] isKindOfClass:[NSNull class]]) {
+                NSArray *array = [AddressModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+                [self.addressList addObjectsFromArray:array];
+                [self.tableView reloadData];
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -74,16 +82,29 @@ static NSString *addressIdentify = @"addressIdnetify";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 84;
+    return 60;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return _addressList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:addressIdentify forIndexPath:indexPath];
+    cell.model = _addressList[indexPath.row];
+    [cell.exchanage bk_whenTapped:^{
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        AddAddressController *add = [story instantiateViewControllerWithIdentifier:@"AddAddressController"];
+        add.temp = 0;
+        add.model = _addressList[indexPath.row];
+        [self.navigationController pushViewController:add animated:YES];
+    }];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

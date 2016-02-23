@@ -14,6 +14,8 @@
 #import "FanmoreUserController.h"
 #import "OtherUserController.h"
 #import "PayController.h"
+#import "DetailViewController.h"
+#import "AppGoodsListModel.h"
 
 @interface MineController ()
 
@@ -30,11 +32,18 @@
     
     self.pay.layer.cornerRadius = 5;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.goahead bk_whenTapped:^{
+
+    }];
+
+    [self.announced bk_whenTapped:^{
+
+    }];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.record bk_whenTapped:^{
+
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

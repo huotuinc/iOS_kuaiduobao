@@ -35,7 +35,7 @@ static NSString *payIdentify = @"payIdentifty";
     
     self.selectPay = 0;
     
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+//    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     
     [self _initPayButtons];
 

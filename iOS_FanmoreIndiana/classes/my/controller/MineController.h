@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *message;
 @property (weak, nonatomic) IBOutlet UILabel *money;
 @property (weak, nonatomic) IBOutlet UIButton *pay;
+@property (weak, nonatomic) IBOutlet UIImageView *goahead;
+@property (weak, nonatomic) IBOutlet UIImageView *announced;
+@property (weak, nonatomic) IBOutlet UIImageView *record;
 
 - (IBAction)userAction:(id)sender;
 

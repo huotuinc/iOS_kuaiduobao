@@ -20,7 +20,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bianji" translatesAutoresizingMaskIntoConstraints="NO" id="Yyq-Ph-Jlj">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bianji" translatesAutoresizingMaskIntoConstraints="NO" id="Yyq-Ph-Jlj">
                         <rect key="frame" x="290" y="20" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Bo9-UR-usj"/>
@@ -39,19 +39,32 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HPJ-mc-nqx">
+                        <rect key="frame" x="270" y="0.0" width="50" height="59"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Yyq-Ph-Jlj" firstAttribute="leading" secondItem="mzj-yU-lvU" secondAttribute="trailing" constant="20" id="3dv-CZ-Vvj"/>
                     <constraint firstAttribute="trailing" secondItem="Yyq-Ph-Jlj" secondAttribute="trailing" constant="10" id="D4W-W0-jbc"/>
                     <constraint firstItem="kui-gb-hPI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="L4k-mi-9Io"/>
                     <constraint firstItem="8FV-9j-SsA" firstAttribute="leading" secondItem="kui-gb-hPI" secondAttribute="leading" id="VeA-XY-Pnj"/>
+                    <constraint firstAttribute="bottom" secondItem="HPJ-mc-nqx" secondAttribute="bottom" id="XO0-ld-RiD"/>
                     <constraint firstItem="Yyq-Ph-Jlj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fyR-XW-baA"/>
+                    <constraint firstAttribute="trailing" secondItem="HPJ-mc-nqx" secondAttribute="trailing" id="lr4-Ph-Vx4"/>
+                    <constraint firstItem="HPJ-mc-nqx" firstAttribute="leading" secondItem="mzj-yU-lvU" secondAttribute="trailing" id="md8-oc-WTe"/>
+                    <constraint firstItem="HPJ-mc-nqx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="osI-6X-4Sr"/>
                     <constraint firstAttribute="bottom" secondItem="8FV-9j-SsA" secondAttribute="bottom" constant="10" id="sJQ-MK-MSV"/>
                     <constraint firstItem="kui-gb-hPI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="sSp-ka-5kO"/>
                     <constraint firstItem="mzj-yU-lvU" firstAttribute="bottom" secondItem="kui-gb-hPI" secondAttribute="bottom" id="vvw-MJ-l1k"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="404" y="337"/>
+            <connections>
+                <outlet property="address" destination="8FV-9j-SsA" id="Owb-i8-Nse"/>
+                <outlet property="exchanage" destination="HPJ-mc-nqx" id="f7K-5V-B85"/>
+                <outlet property="nema" destination="kui-gb-hPI" id="B9k-Va-dbh"/>
+                <outlet property="phone" destination="mzj-yU-lvU" id="dMG-4z-obG"/>
+            </connections>
+            <point key="canvasLocation" x="422" y="335"/>
         </tableViewCell>
     </objects>
     <resources>
