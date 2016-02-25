@@ -16,6 +16,7 @@
 #import "PayController.h"
 #import "DetailViewController.h"
 #import "AppGoodsListModel.h"
+#import "RecordController.h"
 
 @interface MineController ()
 
@@ -32,17 +33,28 @@
     
     self.pay.layer.cornerRadius = 5;
     
+    
+    
     [self.goahead bk_whenTapped:^{
-
+        [self pushToRecordVCWithType:1];
     }];
 
     [self.announced bk_whenTapped:^{
-
+        [self pushToRecordVCWithType:2];
     }];
     
     [self.record bk_whenTapped:^{
-
+        [self pushToRecordVCWithType:0];
     }];
+    
+}
+
+- (void)pushToRecordVCWithType:(NSInteger)type {
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RecordController *record = [story instantiateViewControllerWithIdentifier:@"RecordController"];
+    record.selectMark = type;
+    [self.navigationController pushViewController:record animated:YES];
     
 }
 
@@ -119,6 +131,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0;
 }
+
+
 
 
 //

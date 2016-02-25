@@ -182,6 +182,17 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="attendLabel" destination="zlN-MK-Lgv" id="Dz2-DA-KE5"/>
+                <outlet property="issueLabel" destination="Nqv-go-I3Y" id="wNi-ke-2oB"/>
+                <outlet property="lucky" destination="pwJ-YM-6nt" id="iDo-6X-PrK"/>
+                <outlet property="name" destination="uOD-iJ-Qfo" id="6Ck-OU-ACJ"/>
+                <outlet property="picture" destination="XAV-Bs-puJ" id="gkW-VM-1Ag"/>
+                <outlet property="time" destination="CU6-jZ-yh4" id="Qt7-Zx-ylv"/>
+                <outlet property="toAmountLabel" destination="O0n-pY-8Xd" id="Q1K-Uy-IFj"/>
+                <outlet property="winnerAmount" destination="LpB-yG-j5t" id="ymH-H7-Q4Y"/>
+                <outlet property="winnerName" destination="w0f-g0-NPC" id="EXj-Xl-sEr"/>
+            </connections>
             <point key="canvasLocation" x="284.5" y="300.5"/>
         </tableViewCell>
     </objects>
