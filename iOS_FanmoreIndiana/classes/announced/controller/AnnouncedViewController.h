@@ -10,4 +10,8 @@
 
 @interface AnnouncedViewController : UIViewController
 
+@property (nonatomic, strong) NSNumber *curType;
+
+@property (nonatomic, strong) NSNumber *lastId;
+
 @end

@@ -23,6 +23,11 @@
 #import <UIImageView+WebCache.h>
 #import "ShareViewController.h"
 #import "HomeSearchCView.h"
+#import "SearchViewController.h"
+#import "PayViewController.h"//
+#import "DetailShareNextViewController.h"//
+#import "AppNoticeListModel.h"
+#import "AppSlideListModel.h"
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;
@@ -39,6 +44,9 @@
 @property (strong, nonatomic)  UIImageView *imageV;//头部视图-提醒
 
 @property (nonatomic, strong) NSMutableArray *appGoodsList;
+@property (nonatomic, strong) NSMutableArray *appNoticeList;
+@property (nonatomic, strong) NSMutableArray *appSlideList;
+@property (nonatomic, strong) NSMutableArray *arrURLString;
 
 @property (nonatomic, strong) NSNumber *lastSort;
 
@@ -47,8 +55,7 @@
 @end
 
 @implementation HomeController{
-    NSMutableArray *_arrURLString;
-    NSMutableArray *_arrTitle;
+
 
 }
 
@@ -72,7 +79,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.navigationController.navigationBar.translucent=NO;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
-    [self getGoodsList];
+    
+    [self createBarButtonItem];
+    [self createSearchView];
+
     
     self.tabBarController.tabBar.hidden = NO;
 
@@ -83,18 +93,59 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor yellowColor]];
 
     self.isFirstLoad = YES;
-
-    self.type = [NSNumber numberWithInteger:1];
-    _appGoodsList=[NSMutableArray array];
-    [self createBarButtonItem];
-//    [self createSearchView];
-    [self createMainCollectionView];
-
-    [self createArrURLString];
-    [self createHeadView];
-
     self.isLoadView = NO;
 
+    _appGoodsList=[NSMutableArray array];
+    _appNoticeList=[NSMutableArray array];
+    _appSlideList=[NSMutableArray array];
+    _arrURLString=[NSMutableArray array];
+    
+    self.type = [NSNumber numberWithInteger:1];
+    // 创建操作队列
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    // 线程A
+    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+        [self getAppNoticeList];
+ 
+    }];
+    // 线程B
+    NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
+        [self getAppSlideList];
+    }];
+    
+    // 线程C
+    NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
+        [self createHeadView];
+//        [NSThread sleepForTimeInterval:2];
+
+    }];
+    
+    // 线程D
+    NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
+//        [self createMainCollectionView];
+        [self getGoodsList];
+
+//        [NSThread sleepForTimeInterval:2];
+
+    }];
+    
+    [op3 addDependency:op1];
+    [op3 addDependency:op2];
+    [op4 addDependency:op3];
+    
+    // 为队列添加线程
+    [queue addOperation:op1];
+    [queue addOperation:op2];
+    [queue addOperation:op3];
+    [queue addOperation:op4];
+
+//    [self getAppSlideList];
+//    [self createMainCollectionView];
+//    [self getGoodsList];
+//    [self getAppNoticeList];
+//    [self createHeadView];
+//    [self createBarButtonItem];
+//    [self createSearchView];
 }
 - (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -108,20 +159,21 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
-        NSLog(@"点击右");
-    }];
+        DetailShareNextViewController *shareNext = [[DetailShareNextViewController alloc] init];
+        [self.navigationController pushViewController:shareNext animated:YES];    }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
 }
 - (void)createSearchView{
     NSArray *nib= [[NSBundle mainBundle]loadNibNamed:@"HomeSearchCView" owner:nil options:nil];
     _searchV=[nib firstObject];
-    _searchV.frame=CGRectMake(0, 0, ADAPT_WIDTH(540) , 40);
-    UIView *viewSearch=[[UIView alloc]initWithFrame:_searchV.frame];
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapTheSearchView)];
-    [viewSearch addGestureRecognizer:tap];
+    _searchV.frame=CGRectMake(0, 0, ADAPT_WIDTH(540) , ADAPT_HEIGHT(60));
+    [_searchV.viewSearch bk_whenTapped:^{
+    UISearchController *search = [[UISearchController alloc] init];
+    [self.navigationController pushViewController:search animated:YES];
+}];
+    
     self.navigationItem.titleView=_searchV;
-    [self.view addSubview:viewSearch];
 }
 -(void)createMainCollectionView{
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
@@ -170,6 +222,61 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     
 }
+
+#pragma mark 网络请求中奖通知列表
+
+- (void)getAppNoticeList {
+    
+    [UserLoginTool loginRequestGet:@"getNoticeList" parame:nil success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            NSArray *temp = [AppNoticeListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            [self.appNoticeList removeAllObjects];
+            [self.appNoticeList addObjectsFromArray:temp];
+            [_labelCollectionView reloadData];
+            
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
+
+#pragma mark 网络顶部轮播视图列表
+
+- (void)getAppSlideList{
+
+    [UserLoginTool loginRequestGet:@"getSlideList" parame:nil success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            NSArray *temp = [AppSlideListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            [self.appSlideList removeAllObjects];
+            [self.appSlideList addObjectsFromArray:temp];
+            for (int i =0; i<_appSlideList.count; i++) {
+                AppSlideListModel *model = _appSlideList[i];
+                [_arrURLString addObject:model.pictureUrl];
+            }
+            [_collectionView reloadData];
+
+            
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
 #pragma mark 网络请求商品列表
 /**
  *  下拉刷新
@@ -191,7 +298,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
-            [_collectionView reloadData];
+            if (!_collectionView) {
+                [self createMainCollectionView];
+            }else {
+                [_collectionView reloadData];
+            }
             LWLog(@"_collectionView reloadData");
 
         }else{
@@ -251,10 +362,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
         }
+        [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        
+        [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
+
         
     } withFileKey:nil];
     
@@ -263,28 +376,28 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
 
 -(void)createArrURLString{
-    _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
-                                                   @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
-                                                   @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
-                                                   @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"]];
-    _arrTitle=[NSMutableArray arrayWithArray:@[@"恭喜000中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜111中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜222中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜333中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜444中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜555中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜666中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜777中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜888中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-                                               @"恭喜999中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖"]];
+//    _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
+//                                                   @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
+//                                                   @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
+//                                                   @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"]];
+//    _arrTitle=[NSMutableArray arrayWithArray:@[@"恭喜000中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜111中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜222中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜333中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜444中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜555中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜666中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜777中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜888中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
+//                                               @"恭喜999中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖"]];
 }
 -(void)createHeadView{
     
     _imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(440)+labelHeight+clearHeight+10)];
     _imageV.image=[UIImage imageNamed:@"buy_fukuan_red"];
-    
-    _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(460)+labelHeight)];
-    self.headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) WithImageUrls:_arrURLString];
+//    
+//    _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(460)+labelHeight)];
+    _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) WithImageUrls:_arrURLString];
     //占位图片,你可以在下载图片失败处修改占位图片
     //        _headScrollView.placeImage = [UIImage imageNamed:@""];
     //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
@@ -299,6 +412,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     _fourBtnView.frame=CGRectMake(0,ADAPT_HEIGHT(280), SCREEN_WIDTH, ADAPT_HEIGHT(160));
     for (int i =0; i<4; i++) {
         UIImageView *imageV=[_fourBtnView viewWithTag:200+i];
+        
         imageV.userInteractionEnabled=YES;
     }
 #pragma mark 分类
@@ -309,6 +423,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark 10元专区
     [_fourBtnView.imageTen bk_whenTapped:^{
         TenViewController *ten=[[TenViewController alloc]init];
+        ten.step = [NSNumber numberWithInteger:10];
         [self.navigationController pushViewController:ten animated:YES];
     }];
 #pragma mark 晒单
@@ -320,9 +435,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark 分享
     [_fourBtnView.imageVHelp bk_whenTapped:^{
         DetailViewController *detail=[[DetailViewController alloc]init];
-        detail.issueId=[NSNumber numberWithInteger:100000002];
-        detail.whichAPI=[NSNumber numberWithInteger:2];
-        [self.navigationController pushViewController:detail animated:YES];
+//        detail.issueId=[NSNumber numberWithInteger:100000002];
+//        detail.whichAPI=[NSNumber numberWithInteger:2];
+//        [self.navigationController pushViewController:detail animated:YES];
+//        PayViewController *pay = [[PayViewController alloc] init];
+//        [self.navigationController pushViewController:pay animated:YES];
+        
     }];
     
     _imageVNotice=[[UIImageView alloc]initWithFrame:CGRectMake(20, ADAPT_HEIGHT(440)+5, 30, 30)];
@@ -333,11 +451,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     _clearView=[[UIView alloc]initWithFrame:CGRectMake(0, ADAPT_HEIGHT(440)+40, SCREEN_WIDTH, clearHeight)];
     _clearView.backgroundColor=COLOR_BACK_MAIN;
     
-    [_headView addSubview:_headScrollView];
-    [_headView addSubview:_fourBtnView];
-    [_headView addSubview:_imageVNotice];
-    [_headView addSubview:_labelCollectionView];
-    [_headView addSubview:_clearView];
+//    [_headView addSubview:_headScrollView];
+//    [_headView addSubview:_fourBtnView];
+//    [_headView addSubview:_imageVNotice];
+//    [_headView addSubview:_labelCollectionView];
+//    [_headView addSubview:_clearView];
 }
 -(void)createLableCollectionView{
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -363,7 +481,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     //创建一个 cell 的注册方式 必须写上
     //  设置时钟动画 定时器
     //    _isDragging=NO;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(update:) userInfo:nil repeats:YES];
     //  将定时器添加到主线程
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 
@@ -399,7 +517,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }
     }
     else{
-        return 1000*1000;
+        if (_appGoodsList == nil) {
+            [self getAppNoticeList];
+            return _appNoticeList.count  ;
+
+        }else {
+            return _appNoticeList.count * 10000 ;
+
+        }
     }
     
     
@@ -411,6 +536,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     if (collectionView.tag == 100) {
         if (indexPath.section == 0) {
             HomeHeadCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellHead forIndexPath:indexPath ];
+            if (!_headScrollView) {
+                [self createHeadView];
+            }
             [cell addSubview:_headScrollView];
             [cell addSubview:_fourBtnView];
             [cell addSubview:_imageVNotice];
@@ -441,8 +569,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
             [cell.joinList bk_whenTapped:^{
                 //加入购物车
-                self.issueId = model.pid;
-                [self joinShoppingCart];
+                NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+                if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+                    self.issueId = model.issueId;
+                    [self joinShoppingCart];
+                }else{
+#pragma mark 加入购物车 未登陆
+                }
             }];
             if (indexPath.row % 2) {
                 
@@ -455,9 +589,29 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }
     else{
         labelCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:cellLabel forIndexPath:indexPath];
-        cell.labelMain.text=_arrTitle[indexPath.row%10];
-        return cell;
-        
+        if (indexPath.item >= _appNoticeList.count) {
+            NSInteger i = indexPath.item % _appNoticeList.count;
+            AppNoticeListModel *model =_appNoticeList[i];
+            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+1, model.title.length)];
+            cell.labelMain.attributedText = attString;
+            return cell;
+
+        }
+    else {
+            AppNoticeListModel *model =_appNoticeList[indexPath.item];
+            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+1, model.title.length)];
+            cell.labelMain.attributedText = attString;
+            return cell;
+
+
+        }
+//
     }
     
     
@@ -656,5 +810,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     
 }
+
+
 
 @end

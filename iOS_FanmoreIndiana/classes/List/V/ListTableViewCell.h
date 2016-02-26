@@ -27,6 +27,7 @@ typedef void(^LQQCartBlock)(BOOL select);
 typedef void(^LQQNumChange)();
 
 @interface ListTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imageVLine;
 @property (weak, nonatomic) IBOutlet UIButton *buttonSelected;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVGoods;
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
@@ -43,7 +44,7 @@ typedef void(^LQQNumChange)();
 
 
 //数量
-@property (nonatomic,assign)BOOL isSelected;
+@property (nonatomic,assign)BOOL isCellSelect;
 @property (nonatomic,copy)LQQCartBlock cartBlock;
 @property (nonatomic,copy)LQQNumChange numAddBlock;
 @property (nonatomic,copy)LQQNumChange numCutBlock;

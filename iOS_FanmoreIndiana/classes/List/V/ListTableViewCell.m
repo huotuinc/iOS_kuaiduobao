@@ -69,6 +69,7 @@
     [_buttonSelected addTarget:self action:@selector(clickButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     _buttonSelected.selected = self.isSelected;
     
+    _imageVLine.image = [UIImage imageNamed:@"line_huise"];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(KeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
@@ -90,11 +91,13 @@
         [self storeWeakValueWithData:data indexPath:indexPath];
         
         CartModel *model = (CartModel*)data;
+        self.isCellSelect = model.isSelect;
+
         [_imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
         _labelTitle.text=model.title;
         _labelRest.text=[NSString stringWithFormat:@"剩余%@人次",model.remainAmount];
         _labelTotal.text=[NSString stringWithFormat:@"总需%@人次",model.areaAmount];
-        _textFNumber.text=[NSString stringWithFormat:@"%@",model.attendAmount];
+        _textFNumber.text=[NSString stringWithFormat:@"%@",model.buyAmount];
         _textFNumber.tag = 300 + indexPath.row;
         if (![model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:1]]) {
             _labelNotice.text = [NSString stringWithFormat:@"只支持%@的倍数",model.areaAmount];
@@ -102,7 +105,7 @@
             _labelNotice.text = @"";
             
         }
-        _buttonSelected.selected = self.isSelected;
+        _buttonSelected.selected = self.isCellSelect;
 
         
     }

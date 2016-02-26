@@ -3,37 +3,71 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="KGk-i7-Jjw" customClass="HomeSearchCView">
-            <rect key="frame" x="0.0" y="0.0" width="464" height="94"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="HomeSearchCView">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="464" height="93"/>
+                <rect key="frame" x="0.0" y="0.0" width="540" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <searchBar contentMode="redraw" misplaced="YES" placeholder="请输入关键字" translatesAutoresizingMaskIntoConstraints="NO" id="I8Z-aF-DMJ">
-                        <rect key="frame" x="0.0" y="0.0" width="464" height="93"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <scopeButtonTitles>
-                            <string>Title</string>
-                            <string>Title</string>
-                        </scopeButtonTitles>
-                    </searchBar>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZq-vt-aZ6">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="59"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rME-D5-LiU">
+                                <rect key="frame" x="59" y="0.0" width="481" height="59"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eeq-P3-UjT">
+                                <rect key="frame" x="0.0" y="0.0" width="59" height="59"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Eeq-P3-UjT" secondAttribute="height" multiplier="1:1" id="mQg-9f-ztr"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rME-D5-LiU" secondAttribute="trailing" id="2MV-Pp-2cw"/>
+                            <constraint firstItem="rME-D5-LiU" firstAttribute="leading" secondItem="Eeq-P3-UjT" secondAttribute="trailing" id="KBP-Lq-OiX"/>
+                            <constraint firstItem="Eeq-P3-UjT" firstAttribute="leading" secondItem="jZq-vt-aZ6" secondAttribute="leading" id="a5D-7J-PAi"/>
+                            <constraint firstAttribute="bottom" secondItem="rME-D5-LiU" secondAttribute="bottom" id="k4U-4K-KcQ"/>
+                            <constraint firstItem="Eeq-P3-UjT" firstAttribute="top" secondItem="jZq-vt-aZ6" secondAttribute="top" id="seS-6m-dkg"/>
+                            <constraint firstItem="rME-D5-LiU" firstAttribute="top" secondItem="jZq-vt-aZ6" secondAttribute="top" id="vMS-R2-Res"/>
+                            <constraint firstAttribute="bottom" secondItem="Eeq-P3-UjT" secondAttribute="bottom" id="yeg-vh-JOj"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bob-ei-V8T">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="59"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="I8Z-aF-DMJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="EXn-e9-RBW"/>
-                    <constraint firstAttribute="trailing" secondItem="I8Z-aF-DMJ" secondAttribute="trailing" id="Hf9-bz-bKJ"/>
-                    <constraint firstAttribute="bottom" secondItem="I8Z-aF-DMJ" secondAttribute="bottom" id="gsB-E2-HpO"/>
-                    <constraint firstItem="I8Z-aF-DMJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oBv-eu-QQe"/>
+                    <constraint firstItem="Bob-ei-V8T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5GD-tl-Sr3"/>
+                    <constraint firstItem="jZq-vt-aZ6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="B1a-4h-JX4"/>
+                    <constraint firstAttribute="bottom" secondItem="Bob-ei-V8T" secondAttribute="bottom" id="DSq-A2-F4R"/>
+                    <constraint firstItem="jZq-vt-aZ6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JDL-lL-yG9"/>
+                    <constraint firstItem="Bob-ei-V8T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VT6-IH-Q9i"/>
+                    <constraint firstAttribute="bottom" secondItem="jZq-vt-aZ6" secondAttribute="bottom" id="dP3-AR-WCU"/>
+                    <constraint firstAttribute="trailing" secondItem="Bob-ei-V8T" secondAttribute="trailing" id="jAp-R9-aTS"/>
+                    <constraint firstAttribute="trailing" secondItem="jZq-vt-aZ6" secondAttribute="trailing" id="wns-Tc-mZG"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="searchBar" destination="I8Z-aF-DMJ" id="wPl-mO-bk9"/>
+                <outlet property="imageVSearch" destination="Eeq-P3-UjT" id="GQP-h4-4xw"/>
+                <outlet property="textFSearch" destination="rME-D5-LiU" id="LDu-2u-MCP"/>
+                <outlet property="viewBase" destination="jZq-vt-aZ6" id="raP-ts-0W3"/>
+                <outlet property="viewSearch" destination="Bob-ei-V8T" id="A1v-kl-5KN"/>
             </connections>
-            <point key="canvasLocation" x="277" y="210"/>
+            <point key="canvasLocation" x="239" y="310"/>
         </tableViewCell>
     </objects>
 </document>

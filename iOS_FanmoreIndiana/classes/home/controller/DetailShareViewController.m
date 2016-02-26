@@ -9,6 +9,7 @@
 #import "DetailShareViewController.h"
 #import "DetailShareTableViewCell.h"
 #import "AppShareListModel.h"
+#import "DetailShareNextViewController.h"
 static NSString *cellDShare=@"cellDShare";
 @interface DetailShareViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -95,8 +96,11 @@ static NSString *cellDShare=@"cellDShare";
             
             [self.shareList removeAllObjects];
             [self.shareList addObjectsFromArray:temp];
-            [self createTableView];
-            [_tableView reloadData];
+            if (_tableView) {
+                [self createTableView];
+            }else {
+                [_tableView reloadData];
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -191,7 +195,10 @@ static NSString *cellDShare=@"cellDShare";
     return ADAPT_HEIGHT(500);
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    AppShareListModel *model = _shareList[indexPath.row];
+    DetailShareNextViewController *next =[[DetailShareNextViewController alloc] init];
+    next.shareId = model.pid;
+    [self.navigationController pushViewController:next animated:YES];
 }
 
 /**

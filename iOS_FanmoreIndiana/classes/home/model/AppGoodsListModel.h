@@ -17,5 +17,7 @@
 @property (nonatomic, strong) NSNumber *stepAmount;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSNumber *toAmount;
+@property (nonatomic, strong) NSNumber *issueId;
+
 
 @end

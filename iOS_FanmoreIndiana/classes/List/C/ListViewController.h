@@ -10,4 +10,6 @@
 
 @interface ListViewController : UIViewController
 
+@property (nonatomic, strong) NSNumber *shoppingCartId;
+
 @end

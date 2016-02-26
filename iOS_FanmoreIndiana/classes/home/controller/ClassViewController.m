@@ -10,6 +10,7 @@
 #import "ClassATableViewCell.h"
 #import "ClassBTableViewCell.h"
 #import "AppCategoryListModel.h"
+#import "TenViewController.h"
 static NSString *cellClassA=@"cellClassA";
 static NSString *cellClassB=@"cellClassB";
 
@@ -42,7 +43,7 @@ static NSString *cellClassB=@"cellClassB";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"lastId"] = @0;
-    [UserLoginTool loginRequestGet:@"getShareOrderList" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:@"getCategoryList" parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
@@ -53,7 +54,11 @@ static NSString *cellClassB=@"cellClassB";
             
             [self.titleList removeAllObjects];
             [self.titleList addObjectsFromArray:temp];
-            [self createTableView];
+            if (_tableView) {
+                [self createTableView];
+            }else {
+                [_tableView reloadData];
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -129,13 +134,19 @@ static NSString *cellClassB=@"cellClassB";
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    TenViewController *ten = [[TenViewController alloc]init];
+    AppCategoryListModel *model = _titleList[indexPath.row];
+    ten.step = model.pid;
+    ten.whichAPI = 2;
+    [self.navigationController pushViewController:ten animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation

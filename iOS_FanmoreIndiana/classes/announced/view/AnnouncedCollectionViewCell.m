@@ -30,12 +30,15 @@
     _imageVKind.image=[UIImage imageNamed:@"zhuanqu_a"];
     _imageVGoods.image=[UIImage imageNamed:@"imga"];
     _imageVNotice.image=[UIImage imageNamed:@"main_jiexiao"];
+    [UILabel changeLabel:_labelTitle AndFont:24 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelItem AndFont:22 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelAnnounce AndFont:24 AndColor:COLOR_BUTTON_ORANGE];
+    [UILabel changeLabel:_labelTime AndFont:58 AndColor:COLOR_BUTTON_ORANGE];
     [self defaultConfig];
     
     [self buildViews];
     
 }
-
 
 - (void)defaultConfig {
     
@@ -56,8 +59,8 @@
         
         AppNewOpenListModel *model = (AppNewOpenListModel*)data;
         [_imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
-//        _labelTitle.text = model.title;
-//        _labelItem.text  = [NSString stringWithFormat:@"期号 : %@",[model issueId]];
+        _labelTitle.text = model.title;
+        _labelItem.text  = [NSString stringWithFormat:@"期号 : %@",[model issueId]];
         _labelTime.text = [NSString stringWithFormat:@"%@",[model currentTimeString]];
         
     }

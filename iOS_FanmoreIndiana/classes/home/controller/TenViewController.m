@@ -10,6 +10,7 @@
 #import "TenTableViewCell.h"
 #import "AppGoodsListModel.h"
 #import <UIImageView+WebCache.h>
+#import "DetailViewController.h"
 
 static NSString *cellTenMain=@"cellTenMain";
 
@@ -18,6 +19,7 @@ static NSString *cellTenMain=@"cellTenMain";
 @property (nonatomic,strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *appGoodsList;
+@property (nonatomic, strong) NSString * tenAPI;
 
 @end
 
@@ -27,6 +29,7 @@ static NSString *cellTenMain=@"cellTenMain";
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
+    self.tabBarController.tabBar.hidden =YES;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=[UIColor whiteColor];
 
@@ -36,7 +39,11 @@ static NSString *cellTenMain=@"cellTenMain";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self createBarButtonItem];
-    
+    if (self.whichAPI == 1) {
+        _tenAPI = @"getGoodsListByArea";
+    }else{
+        _tenAPI = @"getGoodsListByCategory";
+    }
     _appGoodsList=[NSMutableArray array];
     [self getAppGoodsList];
 }
@@ -90,21 +97,26 @@ static NSString *cellTenMain=@"cellTenMain";
 - (void)getAppGoodsList {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"step"] = @10;
+    if (_whichAPI == 1) {
+        dic[@"step"] = self.step;
+    }
     
-    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
+    [UserLoginTool loginRequestGet:_tenAPI parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             LWLog(@"%@",json[@"resultDescription"]);
-            NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
-            [self createTableView];
-            [_tableView reloadData];
+            if (_tableView) {
+                [self createTableView];
+            }else {
+                [_tableView reloadData];
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -119,28 +131,28 @@ static NSString *cellTenMain=@"cellTenMain";
 /**
  *  上拉加载更多
  */
-- (void)getMoreGoodsList {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"step"] = @10;
-    
-    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
-        
-        LWLog(@"%@",json);
-        
-        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-            
-            NSArray *temp = [AppGoodsListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
-            [self.appGoodsList addObjectsFromArray:temp];
-            
-            [_tableView reloadData];
-        }
-        [_tableView.mj_footer endRefreshing];
-    } failure:^(NSError *error) {
-        LWLog (@"%@",error);
-    }];
-    
-}
+//- (void)getMoreGoodsList {
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    dic[@"step"] = @10;
+//    
+//    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
+//        
+//        LWLog(@"%@",json);
+//        
+//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+//            
+//            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+//            
+//            [self.appGoodsList addObjectsFromArray:temp];
+//            
+//            [_tableView reloadData];
+//        }
+//        [_tableView.mj_footer endRefreshing];
+//    } failure:^(NSError *error) {
+//        LWLog (@"%@",error);
+//    }];
+//    
+//}
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"TenTableViewCell" bundle:nil] forCellReuseIdentifier:cellTenMain];
@@ -196,11 +208,21 @@ static NSString *cellTenMain=@"cellTenMain";
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    DetailViewController *detail = [[DetailViewController alloc] init];
+    AppGoodsListModel *model = _appGoodsList[indexPath.row];
+    detail.goodsId = model.pid;
+    detail.whichAPI = [NSNumber numberWithInteger:1];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.tabBarController.tabBar.hidden=NO;
+    
 }
 
 /*

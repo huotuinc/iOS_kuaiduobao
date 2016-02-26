@@ -9,23 +9,22 @@
 #import "ListViewController.h"
 #import "ListTableViewCell.h"
 #import "ListBottomCView.h"
-
+#import "PayViewController.h"
 static NSString *cellLMain=@"cellLMain";
-
-@interface ListViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
+static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第一次点击为全选文字显示未全选 1为selected 2为unselected
+@interface ListViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @property (strong, nonatomic)  UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *cartList;
-@property (strong, nonatomic)  ListBottomCView *bottomView;
+@property (nonatomic, strong) NSMutableArray *cartList;//数据源数组
+@property (strong, nonatomic)  ListBottomCView *bottomView;//结算视图
 @property(nonatomic,strong)UIToolbar *toolbar;//完成视图
 @property (nonatomic,strong) UIBarButtonItem *previousBarButton;//完成选项
-
+@property (strong, nonatomic)  NSMutableArray *selectedArray; //选中商品的数组
+@property (strong, nonatomic)  UIImageView *imageVBack; //选中商品的数组
 @end
 
 @implementation ListViewController{
-    NSMutableArray *selectGoods;
-    //是否全选
-    BOOL isSelect;
+    BOOL isSelect;    //是否全选
     CGFloat _kbHeight;//键盘弹起高度
     NSString * _beginNumber;//textField输入前的number
     
@@ -37,29 +36,205 @@ static NSString *cellLMain=@"cellLMain";
     self.navigationController.navigationBar.translucent=NO;
     
     [super viewWillAppear:animated];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    _selectedArray = [NSMutableArray array];
     //每次进入购物车的时候把选择的置空
-    [selectGoods removeAllObjects];
+    [_selectedArray removeAllObjects];
     isSelect = NO;
-    //    [self networkRequest];
     _bottomView.buttonAll.selected = NO;
     _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计: 0元"];
+    [self createNavgationBarTitle];
+    
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     _cartList =[NSMutableArray array];
-    selectGoods = [NSMutableArray array];
-    //    UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
-    //    [imageV sd_setImageWithURL:[NSURL URLWithString:@"http://dmimg.5054399.com/allimg/xyytuku/120518/a004.jpg"]];
-    //    [self.view addSubview:imageV];
+
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    if ([login isEqualToString:Success]) {
+        [self getShoppingList];
+    }else{
     
-    
-    [self createCartList];
+    }
+//    [self createCartList];
     [self loadNotificationCell];
 }
+
+-(void)createNavgationBarTitle{
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(32)];
+    titleLabel.textColor = COLOR_TEXT_TITILE;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"清单";
+    self.navigationItem.titleView = titleLabel;
+}
+- (void)setupRefresh
+{
+    
+    
+    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getShoppingList)];
+    _tableView.mj_header = headRe;
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
+    //#warning 自动刷新(一进入程序就下拉刷新)
+    //    [self.tableView headerBeginRefreshing];
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+    //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    
+//    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShoppingList)];
+//    _tableView.mj_footer = Footer;
+    
+    //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
+    
+    
+}
+
+#pragma mark 网络请求购物车商品列表
+/**
+ *  下拉刷新
+ */
+- (void)getShoppingList{
+    [SVProgressHUD show];
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+
+    
+    [UserLoginTool loginRequestGet:@"getShoppingList" parame:nil success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            NSArray *temp = [CartModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+//            self.lastSort =json[@"resultData"][@"sort"];
+            [self.cartList removeAllObjects];
+            [self.cartList addObjectsFromArray:temp];
+            
+            LWLog(@"_collectionView reloadData");
+            
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        [SVProgressHUD dismiss];
+        [_tableView.mj_header endRefreshing];
+        if (_cartList.count == 0) {
+            [self createImageVBack];
+        }else {
+            if (_tableView) {
+                [self.tableView reloadData];
+            }else{
+                [self createTableView];
+            }
+        }
+
+    } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
+        LWLog(@"%@",error);
+    }];
+    
+}
+
+#pragma mark  网络删除商品
+
+-(void)deleteShoppingCart {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"shoppingCartId"] = self.shoppingCartId;
+    
+    [UserLoginTool loginRequestPostWithFile:@"joinShoppingCart" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }else {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+        
+        
+    } withFileKey:nil];
+    
+    
+}
+#pragma mark 网络请求结算
+
+- (void)goToPay {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSMutableString *cartsString = [NSMutableString string];
+    for ( int i =0 ; i<_cartList.count; i++) {
+        CartModel *model = _cartList[i];
+        if (i == _cartList.count - 1) {
+            [cartsString appendFormat:@"{pid:%@,buyAmount:%@}",model.pid,model.buyAmount];
+        }else{
+            [cartsString appendFormat:@"{pid:%@,buyAmount:%@},",model.pid,model.buyAmount];
+        }
+    }
+    [cartsString insertString:@"[" atIndex:0];
+    [cartsString appendString:@"]"];
+    dic[@"carts"] = cartsString;
+
+    [UserLoginTool loginRequestPostWithFile:@"balance" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"%@",json[@"resultDescription"]);
+            
+            PayViewController *pay = [[PayViewController alloc] init];
+            [self.navigationController pushViewController:pay animated:YES];
+        }else {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+        
+        
+    } withFileKey:nil];
+    
+}
+
+/**
+ *  上拉加载更多
+ */
+//- (void)getMoreShoppingList {
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+////    dic[@"type"] = self.type;
+////    dic[@"lastSort"]= self.lastSort;
+//    
+//    [UserLoginTool loginRequestGet:@"getGoodsListByIndex" parame:dic success:^(id json) {
+//        
+//        LWLog(@"%@",json);
+//        
+//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+//            
+//            NSArray *temp = [CartModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+//            
+//            [self.cartList addObjectsFromArray:temp];
+//            LWLog(@"%@",json[@"resultDescription"]);
+//            
+//            [_tableView reloadData];
+//        }else{
+//            LWLog(@"%@",json[@"resultDescription"]);
+//            
+//        }
+//        [_tableView.mj_footer endRefreshing];
+//    } failure:^(NSError *error) {
+//        [SVProgressHUD dismiss];
+//        LWLog (@"%@",error);
+//    }];
+//    
+//}
+
 -(void)createCartList{
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
         CartModel *model = [[CartModel alloc]init];
         if (i == 1) {
             model.title=[NSString stringWithFormat:@"%d%d%d",i,i,i];
@@ -146,6 +321,14 @@ static NSString *cellLMain=@"cellLMain";
     [self.view endEditing:YES];
 }
 
+-(void) createImageVBack{
+    [self.tableView removeFromSuperview];
+    [self.toolbar removeFromSuperview];
+    [self.bottomView removeFromSuperview];
+    _imageVBack = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 44)];
+    _imageVBack.image = [UIImage imageNamed:@"kk"];
+    [self.view addSubview:_imageVBack];
+}
 
 -(void)createBottomView{
 
@@ -154,6 +337,9 @@ static NSString *cellLMain=@"cellLMain";
     _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
     _bottomView.buttonAll.userInteractionEnabled=YES;
     [_bottomView.buttonAll addTarget:self action:@selector(selectAllBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_bottomView.buttonGo bk_whenTapped:^{
+        [self goToPay];
+    }];
     [self.view addSubview:_bottomView];
     
 }
@@ -164,42 +350,58 @@ static NSString *cellLMain=@"cellLMain";
     [_tableView registerNib:[UINib nibWithNibName:@"ListTableViewCell" bundle:nil] forCellReuseIdentifier:cellLMain];
     _tableView.delegate=self;
     _tableView.dataSource=self;
+//self.tableView.tableFooterView=[[UIView alloc]init];
+    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
-    [self finshBarView];
-    [self createBottomView];
+    [self setupRefresh];
+    if (_cartList == nil) {
+        
+    }else {
+        [self finshBarView];
+        [self createBottomView];
+    }
+    
     
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellLMain forIndexPath:indexPath];
     
-    cell.isSelected = isSelect;
-    
     //是否被选中
-    if ([selectGoods containsObject:[_cartList objectAtIndex:indexPath.row]]) {
-        cell.isSelected = YES;
+    if ([_selectedArray containsObject:[_cartList objectAtIndex:indexPath.row]]) {
+        cell.isCellSelect = YES;
     }
     
     //选择回调
     cell.cartBlock = ^(BOOL isSelec){
         CartModel * model = _cartList[indexPath.row];
-        
+        //选中
         if (isSelec) {
             model.isSelect = YES;
-            [selectGoods addObject:[_cartList objectAtIndex:indexPath.row]];
+            [_selectedArray addObject:[_cartList objectAtIndex:indexPath.row]];
         }
         else
         {
             model.isSelect = NO;
-            [selectGoods removeObject:[_cartList objectAtIndex:indexPath.row]];
+            [_selectedArray removeObject:[_cartList objectAtIndex:indexPath.row]];
+            _bottomView.labelAll.text = @"全选";
+            _bottomView.buttonAll.selected = NO;
+            selectAllCount = 1;//点击buttonALL 进入selected状态
         }
         
-        if (selectGoods.count == _cartList.count) {
+        if (_selectedArray.count == _cartList.count) {
             _bottomView.buttonAll.selected = YES;
+            _bottomView.labelAll.text = @"取消全选";
+            selectAllCount = 2;
         }
         else
         {
-            _bottomView.buttonAll.selected = NO;
+
+        }
+        
+        //选中商品为0 相当于click一次buttonAll操作
+        if (_selectedArray.count == 0) {
+            selectAllCount = 1;
         }
         
         [self countPrice];
@@ -219,9 +421,9 @@ static NSString *cellLMain=@"cellLMain";
         NSLog(@"numStr --- %@   model.attendAmount --- %@",numStr,model.attendAmount);
         
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
-        if ([selectGoods containsObject:model]) {
-            [selectGoods removeObject:model];
-            [selectGoods addObject:model];
+        if ([_selectedArray containsObject:model]) {
+            [_selectedArray removeObject:model];
+            [_selectedArray addObject:model];
             [self countPrice];
         }
     };
@@ -245,9 +447,9 @@ static NSString *cellLMain=@"cellLMain";
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
         
         //判断已选择数组里有无该对象,有就删除  重新添加
-        if ([selectGoods containsObject:model]) {
-            [selectGoods removeObject:model];
-            [selectGoods addObject:model];
+        if ([_selectedArray containsObject:model]) {
+            [_selectedArray removeObject:model];
+            [_selectedArray addObject:model];
             [self countPrice];
         }
         //
@@ -272,19 +474,42 @@ static NSString *cellLMain=@"cellLMain";
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该商品?删除后无法恢复!" preferredStyle:1];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            CartModel *model = _cartList[indexPath.row];
-            if (model.isSelect) {
-                [selectGoods removeObjectAtIndex:indexPath.row];
-            }
+            CartModel *model = [_cartList objectAtIndex:indexPath.row];
+            
             [_cartList removeObjectAtIndex:indexPath.row];
             
-            //            selectGoods = _cartList;
+            
+            
             //    删除
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self countPrice];
             
-            //延迟0.5s刷新一下,否则数据会乱
-            [self performSelector:@selector(reloadTable) withObject:nil afterDelay:0.5];
+            self.shoppingCartId = model.pid;
+            [self deleteShoppingCart];
+            
+            
+            //判断是否选择
+            if ([_selectedArray containsObject:model]) {
+                //从已选中删除,重新计算价格
+                [_selectedArray removeObject:model];
+                [self countPrice];
+            }
+            
+            if (_cartList.count == _selectedArray.count) {
+                _bottomView.labelAll.text = @"取消全选";
+                _bottomView.buttonAll.selected = YES;
+                selectAllCount= 2;//buttonAll再次点击进入 unselected状态
+            }else{
+                _bottomView.labelAll.text = @"全选";
+                _bottomView.buttonAll.selected = NO;
+                selectAllCount = 1;
+            }
+            
+            if (_cartList.count == 0) {
+                [self createImageVBack];
+            }else{
+                //延迟0.5s刷新一下,否则数据会乱
+                [self performSelector:@selector(reloadTable) withObject:nil afterDelay:0.5];
+            }
             
         }];
         
@@ -316,25 +541,34 @@ static NSString *cellLMain=@"cellLMain";
 
 -(void)selectAllBtnClick:(UIButton*)button
 {
-    //点击全选时,把之前已选择的全部删除
-    [selectGoods removeAllObjects];
-    
-    button.selected = !button.selected;
-    isSelect = button.selected;
-    if (isSelect) {
-        
+    //全选中
+    if (selectAllCount  == 1) {
+        _bottomView.labelAll.text = @"取消全选";
+        _bottomView.buttonAll.selected = YES;
+        [_selectedArray removeAllObjects];
         for (CartModel *model in _cartList) {
             model.isSelect = YES;
-            [selectGoods addObject:model];
+            [_selectedArray addObject:model];
         }
+        [self.tableView reloadData];
+        [self countPrice];
+        selectAllCount = 2;
+        return;
     }
-    else
-    {
-        [selectGoods removeAllObjects];
+    //未选中
+    if (selectAllCount == 2) {
+        _bottomView.labelAll.text = @"全选";
+        _bottomView.buttonAll.selected = NO;
+        [_selectedArray removeAllObjects];
+        for (CartModel *model in _cartList) {
+            model.isSelect = NO;
+        }
+        [self.tableView reloadData];
+        [self countPrice];
+        selectAllCount = 1;
+        return;
+        
     }
-    
-    [self.tableView reloadData];
-    [self countPrice];
 }
 
 /**
@@ -346,7 +580,7 @@ static NSString *cellLMain=@"cellLMain";
 {
     NSInteger totlePrice = 0;
     
-    for (CartModel *model in selectGoods) {
+    for (CartModel *model in _selectedArray) {
         
         NSInteger price = [model.areaAmount integerValue];
         
@@ -437,10 +671,15 @@ static NSString *cellLMain=@"cellLMain";
     NSInteger areNumber = [model.areaAmount integerValue];
     if ([textField.text integerValue] % areNumber != 0 ) {
         textField.text = [NSString stringWithFormat:@"%@",_beginNumber];
+        return YES;
     }
     if ([textField.text integerValue] > [model.remainAmount integerValue]) {
         textField.text = [NSString stringWithFormat:@"%@",model.remainAmount];
+        model.attendAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
+        return YES;
     }
+    
+    model.buyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
     return YES;
 }
 - (void)didReceiveMemoryWarning {

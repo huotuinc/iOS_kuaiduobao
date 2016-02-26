@@ -145,14 +145,13 @@
                 </mask>
             </variation>
             <connections>
-                <outlet property="imageVGoods" destination="RLm-dC-1N6" id="eey-eE-rf3"/>
-                <outlet property="imageVKind" destination="iem-w8-6YK" id="fCp-6G-ii9"/>
-                <outlet property="imageVNotice" destination="efy-iD-rDf" id="MSU-Gr-pxE"/>
-                <outlet property="labelAnnounce" destination="MAW-zc-py1" id="0R2-Sl-e0R"/>
-                <outlet property="labelItem" destination="wcw-Cr-KuO" id="s1q-Ef-go1"/>
-                <outlet property="labelTime" destination="wJB-Yf-lpF" id="rPf-St-7kE"/>
-                <outlet property="labelTitle" destination="maP-jP-HT9" id="n5F-vP-eL1"/>
-                <outlet property="viewMain" destination="bjR-No-PdK" id="xF0-gx-1oD"/>
+                <outlet property="imageVGoods" destination="RLm-dC-1N6" id="Ctj-kY-WEz"/>
+                <outlet property="imageVKind" destination="iem-w8-6YK" id="QE8-B3-enx"/>
+                <outlet property="imageVNotice" destination="efy-iD-rDf" id="Ahg-bB-Rhu"/>
+                <outlet property="labelAnnounce" destination="MAW-zc-py1" id="z1F-gy-wCV"/>
+                <outlet property="labelItem" destination="wcw-Cr-KuO" id="zTn-sz-VBV"/>
+                <outlet property="labelTime" destination="wJB-Yf-lpF" id="o9V-wt-4oi"/>
+                <outlet property="labelTitle" destination="maP-jP-HT9" id="z8J-PU-LNy"/>
             </connections>
             <point key="canvasLocation" x="254" y="192"/>
         </collectionViewCell>

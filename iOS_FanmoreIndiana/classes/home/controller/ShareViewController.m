@@ -90,8 +90,11 @@ static NSString *cellShare=@"cellShare";
             
             [self.shareList removeAllObjects];
             [self.shareList addObjectsFromArray:temp];
-            [self createTableView];
-            [_tableView reloadData];
+            if (_tableView) {
+                [self createTableView];
+            }else {
+                [_tableView reloadData];
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }

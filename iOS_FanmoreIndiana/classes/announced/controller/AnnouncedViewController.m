@@ -11,7 +11,10 @@
 #import "AnnouncedCollectionViewCell.h"
 #import "AppNewOpenListModel.h"
 #import "DetailViewController.h"
+#import "AnnouncedBCollectionViewCell.h"
 static NSString *cellAMain=@"cellAMain";
+static NSString *cellABMain=@"cellABMain";
+
 @interface AnnouncedViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic)  UICollectionView *collectionView;
 @property (nonatomic, strong) NSTimer        *m_timer;
@@ -32,6 +35,7 @@ static NSString *cellAMain=@"cellAMain";
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
     _openList=[NSMutableArray array];
+    [self createNavgationBarTitle];
     [self getOpenList ];
     
 }
@@ -39,8 +43,16 @@ static NSString *cellAMain=@"cellAMain";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self createCollectionView];
     [self createTimer];
+}
+-(void)createNavgationBarTitle{
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(32)];
+    titleLabel.textColor = COLOR_TEXT_TITILE;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"最新揭晓";
+    self.navigationItem.titleView = titleLabel;
 }
 
 - (void)setupRefresh
@@ -76,6 +88,7 @@ static NSString *cellAMain=@"cellAMain";
     AppNewOpenListModel *new = [self.openList lastObject];
 
     dic[@"lastId"] = @0;
+    dic[@"curType"] = @0;
     
     [SVProgressHUD show];
 
@@ -90,7 +103,13 @@ static NSString *cellAMain=@"cellAMain";
             
             [self.openList removeAllObjects];
             [self.openList addObjectsFromArray:temp];
-            [_collectionView reloadData];
+            self.lastId = json[@"resultData"][@"sort"];
+            self.curType = json[@"resultData"][@"type"];
+            if (_collectionView) {
+                [self createCollectionView];
+            }else {
+                [_collectionView reloadData];
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -107,9 +126,12 @@ static NSString *cellAMain=@"cellAMain";
  *  上拉加载更多
  */
 - (void)getMoreOpenList {
+//    dic[@"lastId"] = @0;
+//    dic[@"curType"] = @0;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    AppNewOpenListModel * model = [_openList lastObject];
-    dic[@"lastId"] = model.issueId;
+    
+    dic[@"lastId"] = self.lastId;
+    dic[@"curType"] = self.curType;
     
     [UserLoginTool loginRequestGet:@"getNewOpenList" parame:dic success:^(id json) {
         
@@ -117,10 +139,12 @@ static NSString *cellAMain=@"cellAMain";
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
-            NSArray *temp = [AppNewOpenListModel objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            NSArray *temp = [AppNewOpenListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.openList addObjectsFromArray:temp];
-            
+            self.lastId = json[@"resultData"][@"sort"];
+            self.curType = json[@"resultData"][@"type"];
+
             [_collectionView reloadData];
         }
         [_collectionView.mj_footer endRefreshing];
@@ -162,6 +186,8 @@ static NSString *cellAMain=@"cellAMain";
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = COLOR_BACK_MAIN;
     [_collectionView registerNib:[UINib nibWithNibName:@"AnnouncedCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellAMain];
+    [_collectionView registerNib:[UINib nibWithNibName:@"AnnouncedBCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellABMain];
+
     [self.view addSubview:_collectionView];
     [self setupRefresh];
     
@@ -171,11 +197,20 @@ static NSString *cellAMain=@"cellAMain";
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-
-    AnnouncedCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier: cellAMain forIndexPath:indexPath];
-    AppNewOpenListModel * model = _openList[indexPath.row];
-    [cell loadData:model indexPath:indexPath];
-    return cell;
+    AppNewOpenListModel * model = _openList[indexPath.item];
+    //待开奖
+    if ([model.status integerValue] == 1) {
+        AnnouncedCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier: cellAMain forIndexPath:indexPath];
+        [cell loadData:model indexPath:indexPath];
+        return cell;
+    }
+    //已开奖
+    else{
+        AnnouncedBCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier: cellABMain forIndexPath:indexPath];
+        [cell loadData:model indexPath:indexPath];
+        return cell;
+    }
+    
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _openList.count;
@@ -204,18 +239,27 @@ static NSString *cellAMain=@"cellAMain";
 //}
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    AnnouncedCollectionViewCell *tmpCell = (AnnouncedCollectionViewCell *)cell;
-    tmpCell.m_isDisplayed            = YES;
+    AppNewOpenListModel * model = _openList[indexPath.item];
+    if ([model.status integerValue] == 1) {
+        AnnouncedCollectionViewCell *tmpCell = (AnnouncedCollectionViewCell *)cell;
+        tmpCell.m_isDisplayed            = YES;
+        [tmpCell loadData:_openList[indexPath.item] indexPath:indexPath];
+    }else {
+        AnnouncedBCollectionViewCell *tmpCell = (AnnouncedBCollectionViewCell *)cell;
+        [tmpCell loadData:_openList[indexPath.item] indexPath:indexPath];
+    }
     
-    [tmpCell loadData:_openList[indexPath.row] indexPath:indexPath];
 }
 
 
--(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    AnnouncedCollectionViewCell *tmpCell = (AnnouncedCollectionViewCell *)cell;
-    
-    tmpCell.m_isDisplayed = NO;
-}
+//-(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+////    AppNewOpenListModel * model = _openList[indexPath.item];
+////    if ([model.status  integerValue] == 1) {
+//        AnnouncedCollectionViewCell *tmpCell = (AnnouncedCollectionViewCell *)cell;
+//        tmpCell.m_isDisplayed = NO;
+////    }
+////
+//}
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     DetailViewController *detail=[[DetailViewController alloc]init];
     AppNewOpenListModel *model = _openList[indexPath.item];
@@ -227,6 +271,11 @@ static NSString *cellAMain=@"cellAMain";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.openList removeAllObjects];
 }
 
 /*

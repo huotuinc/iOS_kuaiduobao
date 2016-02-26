@@ -45,7 +45,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqi-1Z-geS">
                                 <rect key="frame" x="300" y="0.0" width="200" height="70"/>
-                                <state key="normal" title="删除"/>
+                                <state key="normal" title="结算"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

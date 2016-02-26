@@ -20,10 +20,10 @@
 @property (nonatomic, copy) NSString *link;
 @property (nonatomic, strong) NSNumber *luckyNumber;
 @property (nonatomic, strong) NSMutableArray *numbers;
-@property (nonatomic, copy) NSString *pictureUrl;
+@property (nonatomic, strong) NSMutableArray *pictureUrl;
 @property (nonatomic, strong) NSNumber *pid;
 @property (nonatomic, strong) NSNumber *remainAmount;
-@property (nonatomic, strong) NSNumber *remainSecond;
+@property (nonatomic) int remainSecond;
 @property (nonatomic, strong) NSNumber *status;
 @property (nonatomic, copy) NSString *statusName;
 @property (nonatomic, strong) NSNumber *stepAmount;
@@ -34,7 +34,11 @@
 @property (nonatomic, strong) NSNumber *awardingUserIp;
 @property (nonatomic, copy) NSString *awardingUserHead;
 
++ (instancetype)timeModelWithtime:(int)time;
 
+- (void)countDown;
+
+- (NSString*)currentTimeString;
 
 
 @end

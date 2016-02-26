@@ -1,32 +1,45 @@
 //
-//  HomeSearchCView
-//  MeiTou
+//  HomeSearchCView.m
+//  
 //
-//  Created by che on 15/12/10.
-//  Copyright © 2015年 车. All rights reserved.
+//  Created by che on 16/2/23.
+//
 //
 
 #import "HomeSearchCView.h"
 
 @implementation HomeSearchCView
 
+- (void)awakeFromNib {
+    // Initialization code
+    _imageVSearch.image = [UIImage imageNamed:@"search"];
+    
+    
+    _viewBase.layer.cornerRadius = 3;
+    _viewBase.layer.borderWidth = 1 ;
+    _viewBase.layer.borderColor = COLOR_BACK_MAIN.CGColor;
+    _viewBase.layer.masksToBounds = YES;
+    //    _viewBase.clipsToBounds = YES;
+    _imageVSearch.layer.masksToBounds = YES;
+    _textFSearch.layer.masksToBounds = YES;
+    _viewSearch.layer.masksToBounds = YES;
+}
 
--(void)awakeFromNib{
-//    _searchBar.backgroundImage=[UIImage imageNamed:@"aaa"];
-    _searchBar.barTintColor = [UIColor whiteColor];
-    [_searchBar setBackgroundImage:[UIImage imageNamed:@""]];
-    for (UIView* subview in [[_searchBar.subviews lastObject] subviews]) {
-        
-        if ([subview isKindOfClass:[UITextField class]]) {
-            UITextField *textField = (UITextField*)subview;
-            
-//            textField.textColor = [UIColor redColor];                         //修改输入字体的颜色
-            [textField setBackgroundColor:COLOR_BACK_MAIN];      //修改输入框的颜色
-        }
-//            [textField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];   //修改placeholder的颜色
-//        } else if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
-//        {
-//            [subview removeFromSuperview];
-//        }
-    }}
+-(void)drawRect:(CGRect)rect{
+//    _viewBase.layer.cornerRadius = 20;
+//    _viewBase.layer.borderWidth = 1 ;
+//    _viewBase.layer.borderColor = COLOR_BACK_MAIN.CGColor;
+//    _viewBase.layer.masksToBounds = YES;
+////    _viewBase.clipsToBounds = YES;
+//    _imageVSearch.layer.masksToBounds = YES;
+//    _textFSearch.layer.masksToBounds = YES;
+
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
 @end

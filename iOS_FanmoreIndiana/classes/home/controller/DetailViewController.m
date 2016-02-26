@@ -46,6 +46,7 @@ static NSString * cellDFirst=@"cellDFirst";
 
 @property (nonatomic, strong) AppGoodsDetailModel *detailModel;
 @property (nonatomic, strong) AppBuyListModel *buyModel;
+@property (nonatomic, strong) NSTimer *countTimer;
 
 
 @end
@@ -86,10 +87,21 @@ static NSString * cellDFirst=@"cellDFirst";
     }else{
         _API=[[NSMutableString alloc]initWithString:@"getGoodsDetailByIssueId"];
     }
-    [self getGoodsDetailList];
     [self createDataArray];
+    [self getGoodsDetailList];
     [self createBottomView];
 }
+
+- (void)createTimer {
+    self.countTimer = [NSTimer timerWithTimeInterval:0.01f target:self selector:@selector(timerEvent) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_countTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)timerEvent {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_COUNT_TIME object:nil];
+    [_detailModel countDown];
+}
+
 -(void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
@@ -124,6 +136,29 @@ static NSString * cellDFirst=@"cellDFirst";
     
     
 }
+
+#pragma mark  网络加入购物车
+
+-(void)joinShoppingCart {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"issueId"] = self.issueId;
+    
+    [UserLoginTool loginRequestPostWithFile:@"joinShoppingCart" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }else {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+        
+        
+    } withFileKey:nil];
+    
+    
+}
 #pragma mark 网络请求详情列表
 /**
  *  下拉刷新
@@ -147,9 +182,18 @@ static NSString * cellDFirst=@"cellDFirst";
             
 //            [self.goodsDetailList removeAllObjects];
 //            [self.goodsDetailList addObject:model];
+
             [self createHeadView];
-            [self createTableView];
-            [_tableView reloadData];
+            [self createTimer];
+            _arrURLString = [NSMutableArray arrayWithArray:_detailModel.pictureUrl];
+
+            if (_tableView) {
+                [_tableView reloadData];
+            } else {
+                [self createTableView];
+
+            }
+            
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -193,10 +237,10 @@ static NSString * cellDFirst=@"cellDFirst";
 
 -(void)createDataArray{
     _titleArray=[NSMutableArray arrayWithArray:@[@"图文详情",@"往期揭晓",@"晒单分享"]];
-    _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
-                                                   @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
-                                                   @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
-                                                   @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"]];
+//    _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
+//                                                   @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
+//                                                   @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
+//                                                   @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"]];
 }
 #pragma mark 构建头部视图
 -(void)createHeadView{
@@ -281,8 +325,8 @@ static NSString * cellDFirst=@"cellDFirst";
         
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailTimeCView" owner:nil options:nil];
         _timeView= [nib firstObject];
-        _timeView.labelIssueA.text=[NSString stringWithFormat:@"%@",_detailModel.issueId];
-        _timeView.labelEndTimeA.text=[self changeTheTimeStamps:_detailModel.remainSecond andTheDateFormat:@"HH:ss:mm"];
+        [_timeView defaultConfig];
+        [_timeView loadData:_detailModel];
         _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
@@ -320,7 +364,7 @@ static NSString * cellDFirst=@"cellDFirst";
         [_headView addSubview:_timeView];
         [_headView addSubview:_countView];
     }
-//正在进行
+//正常状态
     if (num == 0) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
         
@@ -395,6 +439,16 @@ static NSString * cellDFirst=@"cellDFirst";
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
+        [_bottomView.buttonAdd bk_whenTapped:^{
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+                self.issueId = _detailModel.issueId;
+                [self joinShoppingCart];
+            }else{
+#pragma mark 加入购物车 未登陆
+            }
+        }];
         [self.view addSubview:_bottomView];
     }else{
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomDoneCView" owner:nil options:nil];
@@ -617,6 +671,7 @@ static NSString * cellDFirst=@"cellDFirst";
     self.tabBarController.tabBar.hidden=NO;
     
 }
+
 
 /*
 #pragma mark - Navigation

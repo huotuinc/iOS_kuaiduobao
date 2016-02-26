@@ -125,8 +125,11 @@ static NSString * cellDPasting=@"cellDPasting";
             
             [self.pastList removeAllObjects];
             [self.pastList addObjectsFromArray:temp];
-            [self createTableView];
-            [_tableView reloadData];
+            if (_tableView) {
+                [self createTableView];
+            }else {
+                [_tableView reloadData];
+            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
