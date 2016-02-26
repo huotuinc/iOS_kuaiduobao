@@ -38,6 +38,7 @@
 		6014A7241C7DB34A006B2900 /* PutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7231C7DB34A006B2900 /* PutModel.m */; };
 		6014A7271C7DC8C4006B2900 /* BuyFlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */; };
 		601769A61C589121009E503F /* AdressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601769A51C589121009E503F /* AdressModel.m */; };
+		601851EF1C7EF3760064AAF6 /* WinningModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601851EE1C7EF3760064AAF6 /* WinningModel.m */; };
 		601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C71281C7C2FDC00673B7F /* RecordCell.m */; };
 		601C712B1C7C2FDC00673B7F /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601C71291C7C2FDC00673B7F /* RecordCell.xib */; };
 		601C712E1C7C419A00673B7F /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C712D1C7C419A00673B7F /* RecordController.m */; };
@@ -330,6 +331,8 @@
 		6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyFlowModel.m; sourceTree = "<group>"; };
 		601769A41C589121009E503F /* AdressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressModel.h; sourceTree = "<group>"; };
 		601769A51C589121009E503F /* AdressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressModel.m; sourceTree = "<group>"; };
+		601851ED1C7EF3760064AAF6 /* WinningModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningModel.h; sourceTree = "<group>"; };
+		601851EE1C7EF3760064AAF6 /* WinningModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningModel.m; sourceTree = "<group>"; };
 		601C71271C7C2FDC00673B7F /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
 		601C71281C7C2FDC00673B7F /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		601C71291C7C2FDC00673B7F /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
@@ -1112,6 +1115,8 @@
 				6014A7231C7DB34A006B2900 /* PutModel.m */,
 				6014A7251C7DC8C4006B2900 /* BuyFlowModel.h */,
 				6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */,
+				601851ED1C7EF3760064AAF6 /* WinningModel.h */,
+				601851EE1C7EF3760064AAF6 /* WinningModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1713,6 +1718,7 @@
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				6014A71E1C7DADF4006B2900 /* RedPacketsModel.m in Sources */,
+				601851EF1C7EF3760064AAF6 /* WinningModel.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
 				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
 				60525F631C51BF0E00CC4528 /* UserModel.m in Sources */,

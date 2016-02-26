@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WinningModel.h"
 
 @interface WinningCell : UITableViewCell
+
+@property (nonatomic, strong) WinningModel *model;
 @property (weak, nonatomic) IBOutlet UIImageView *Image;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *joinId;

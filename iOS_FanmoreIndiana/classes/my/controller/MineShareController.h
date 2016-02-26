@@ -12,4 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *noneImage;
+@property (weak, nonatomic) IBOutlet UILabel *noneLabel;
+@property (weak, nonatomic) IBOutlet UIButton *snatch;
+- (IBAction)snatchAction:(id)sender;
+
 @end

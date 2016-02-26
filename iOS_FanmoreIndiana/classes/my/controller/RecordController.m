@@ -10,6 +10,7 @@
 #import "RecordCell.h"
 #import "GoAheadCell.h"
 #import "RaiderModel.h"
+#import "DetailViewController.h"
 
 @interface RecordController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -167,7 +168,7 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
 
 - (void)getNewList {
     
-    [self.recordList removeAllObjects];
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = @(self.selectMark);
     dic[@"lastId"] = @0;
@@ -177,6 +178,7 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
         [SVProgressHUD dismiss];
         [_tableView.mj_header endRefreshing];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self.recordList removeAllObjects];
             NSArray *temp = [RaiderModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             [self.recordList addObjectsFromArray:temp];
             [self.tableView reloadData];
@@ -342,29 +344,17 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.selectMark == 0) {
-        RaiderModel *model = self.recordList[indexPath.row];
-        if ([model.status integerValue] == 0) {
-            GoAheadCell *cell = [tableView dequeueReusableCellWithIdentifier:goAheadCellIdentify forIndexPath:indexPath];
-            cell.model = self.recordList[indexPath.row];
-  
-        }else if([model.status integerValue] == 2) {
-            RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:recordCellIdentify forIndexPath:indexPath];
-            cell.model = self.recordList[indexPath.row];
-  
-        }
-        
-    }else if (self.selectMark == 1) {
-        GoAheadCell *cell = [tableView dequeueReusableCellWithIdentifier:goAheadCellIdentify forIndexPath:indexPath];
-        cell.model = self.recordList[indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    }else if (self.selectMark == 2) {
-        RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:recordCellIdentify forIndexPath:indexPath];
-        cell.model = self.recordList[indexPath.row];
+    DetailViewController *detail=[[DetailViewController alloc]init];
+    RaiderModel *model = _recordList[indexPath.row];
+    detail.issueId=model.issueId;
+    detail.whichAPI=[NSNumber numberWithInteger:2];
+    [self.navigationController pushViewController:detail animated:YES];
 
-    }
     
 }
+
 
 
 

@@ -23,7 +23,7 @@
 
 - (void)setModel:(RaiderModel *)model {
     _model = model;
-    [self.picture sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl] completed:nil];
+    [self.picture sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl] placeholderImage:nil options:SDWebImageRetryFailed completed:nil];
     self.name.text = model.title;
     self.issueLabel.text = [NSString stringWithFormat:@"期号：%@", model.issueId];
     self.toAmountLabel.text = [NSString stringWithFormat:@"总需：%@人次", model.toAmount];

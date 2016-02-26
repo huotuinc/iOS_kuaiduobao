@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSNumber *money;
 @property (nonatomic, assign) NSInteger moneyFlowType;
+@property (nonatomic, strong) NSString *moneyFlowTypeName;
 @property (nonatomic, strong) NSNumber *pid;
 @property (nonatomic, strong) NSString *remark;
 @property (nonatomic, strong) NSNumber *time;

@@ -1,4 +1,4 @@
-//
+//  中奖记录
 //  WinningController.h
 //  iOS_FanmoreIndiana
 //

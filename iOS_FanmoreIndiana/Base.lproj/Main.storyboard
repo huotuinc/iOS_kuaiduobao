@@ -1162,14 +1162,6 @@
                                     <action selector="snatchAction:" destination="Dhs-KP-Pco" eventType="touchUpInside" id="e0p-xU-KPD"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9vt-WW-7Qd">
-                                <rect key="frame" x="0.0" y="100" width="320" height="331"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Dhs-KP-Pco" id="8Pf-lp-Gt3"/>
-                                    <outlet property="delegate" destination="Dhs-KP-Pco" id="Hxv-tn-zXT"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dx-eh-j3k">
                                 <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
@@ -1177,6 +1169,14 @@
                                     <constraint firstAttribute="height" constant="1" id="dBm-OD-Lca"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9vt-WW-7Qd">
+                                <rect key="frame" x="-5" y="374" width="320" height="331"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Dhs-KP-Pco" id="8Pf-lp-Gt3"/>
+                                    <outlet property="delegate" destination="Dhs-KP-Pco" id="Hxv-tn-zXT"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1233,8 +1233,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nonebox" translatesAutoresizingMaskIntoConstraints="NO" id="ex3-kg-d6t">
+                                <rect key="frame" x="80" y="90" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ex3-kg-d6t" secondAttribute="height" id="Qms-gk-rVb"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还没有中奖纪录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2r-E1-wMU">
+                                <rect key="frame" x="92" y="260" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uu-ry-gRt">
+                                <rect key="frame" x="110" y="291" width="100" height="35"/>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.38431372549999998" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="DYL-aa-FnT"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="G79-a1-tdU"/>
+                                    <constraint firstAttribute="height" constant="35" id="MTL-vk-8nM"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="YGa-U0-fYG"/>
+                                </constraints>
+                                <state key="normal" title="立刻夺宝">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="snatchAction:" destination="9rq-BE-pNh" eventType="touchUpInside" id="zi4-oK-tZ2"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A82-e9-YRw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="9rq-BE-pNh" id="EDO-Vk-jdP"/>
@@ -1244,8 +1272,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A82-e9-YRw" firstAttribute="top" secondItem="iCd-G9-6cE" secondAttribute="bottom" constant="-64" id="F1J-0Y-Jc1"/>
+                            <constraint firstItem="2Uu-ry-gRt" firstAttribute="top" secondItem="k2r-E1-wMU" secondAttribute="bottom" constant="10" id="0D3-zL-Ral"/>
+                            <constraint firstItem="k2r-E1-wMU" firstAttribute="centerX" secondItem="VhI-K8-A8i" secondAttribute="centerX" id="0Xf-5I-oyP"/>
+                            <constraint firstItem="ex3-kg-d6t" firstAttribute="centerX" secondItem="VhI-K8-A8i" secondAttribute="centerX" id="AvO-9I-2dK"/>
+                            <constraint firstItem="A82-e9-YRw" firstAttribute="top" secondItem="iCd-G9-6cE" secondAttribute="bottom" id="F1J-0Y-Jc1"/>
+                            <constraint firstItem="ex3-kg-d6t" firstAttribute="centerY" secondItem="VhI-K8-A8i" secondAttribute="centerY" constant="-70" id="RwZ-qJ-TU3"/>
                             <constraint firstAttribute="trailing" secondItem="A82-e9-YRw" secondAttribute="trailing" id="X7w-2Z-MnM"/>
+                            <constraint firstItem="2Uu-ry-gRt" firstAttribute="centerX" secondItem="VhI-K8-A8i" secondAttribute="centerX" id="Yf2-dz-5B0"/>
+                            <constraint firstItem="k2r-E1-wMU" firstAttribute="top" secondItem="ex3-kg-d6t" secondAttribute="bottom" constant="10" id="a27-Pq-hUC"/>
+                            <constraint firstItem="ex3-kg-d6t" firstAttribute="width" secondItem="ex3-kg-d6t" secondAttribute="height" id="bkH-ai-Ok9"/>
+                            <constraint firstItem="ex3-kg-d6t" firstAttribute="width" secondItem="VhI-K8-A8i" secondAttribute="width" multiplier="0.5" id="bzC-Rf-0Zp"/>
                             <constraint firstItem="im5-2B-EIL" firstAttribute="top" secondItem="A82-e9-YRw" secondAttribute="bottom" id="qjo-5g-orj"/>
                             <constraint firstItem="A82-e9-YRw" firstAttribute="leading" secondItem="VhI-K8-A8i" secondAttribute="leading" id="x2X-EC-knW"/>
                         </constraints>
@@ -1253,6 +1289,9 @@
                     <navigationItem key="navigationItem" id="C2f-wN-3YY"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="noneImage" destination="ex3-kg-d6t" id="EwF-Rq-tM1"/>
+                        <outlet property="noneLabel" destination="k2r-E1-wMU" id="Uct-v7-ws6"/>
+                        <outlet property="snatch" destination="2Uu-ry-gRt" id="IZK-nN-vmP"/>
                         <outlet property="tableView" destination="A82-e9-YRw" id="v3d-qR-oOR"/>
                     </connections>
                 </viewController>
@@ -2600,7 +2639,7 @@
     <resources>
         <image name="duobao" width="50" height="50"/>
         <image name="heada" width="100" height="100"/>
-        <image name="headd" width="42" height="42"/>
+        <image name="headd" width="100" height="100"/>
         <image name="ing" width="50" height="50"/>
         <image name="jiexiao" width="50" height="50"/>
         <image name="mima" width="24" height="24"/>

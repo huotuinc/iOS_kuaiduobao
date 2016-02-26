@@ -20,4 +20,18 @@
     // Configure the view for the selected state
 }
 
+- (void)setModel:(PutModel *)model {
+    _model = model;
+    _payType.text = model.moneyFlowTypeName;
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.time doubleValue]];
+    _time.text = [formatter stringFromDate:date];
+    _paySuccess.text = model.remark;
+    _money.text = [NSString stringWithFormat:@"%@元",model.money];
+}
+
+
 @end
