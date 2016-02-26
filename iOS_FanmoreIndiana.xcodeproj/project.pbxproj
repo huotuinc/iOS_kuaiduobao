@@ -1829,6 +1829,8 @@
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */,
+				6014A71E1C7DADF4006B2900 /* RedPacketsModel.m in Sources */,
+				601851EF1C7EF3760064AAF6 /* WinningModel.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
 				F23670041C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m in Sources */,
 				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
