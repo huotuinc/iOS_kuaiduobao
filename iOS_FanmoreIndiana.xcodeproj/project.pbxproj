@@ -33,12 +33,10 @@
 		6014A7171C7D53A5006B2900 /* GoAheadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7151C7D53A5006B2900 /* GoAheadCell.m */; };
 		6014A7181C7D53A5006B2900 /* GoAheadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6014A7161C7D53A5006B2900 /* GoAheadCell.xib */; };
 		6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A71A1C7DA9E7006B2900 /* RaiderModel.m */; };
-		6014A71E1C7DADF4006B2900 /* RedPacketsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A71D1C7DADF4006B2900 /* RedPacketsModel.m */; };
 		6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7201C7DB07C006B2900 /* ShareOrderModel.m */; };
 		6014A7241C7DB34A006B2900 /* PutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7231C7DB34A006B2900 /* PutModel.m */; };
 		6014A7271C7DC8C4006B2900 /* BuyFlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */; };
 		601769A61C589121009E503F /* AdressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601769A51C589121009E503F /* AdressModel.m */; };
-		601851EF1C7EF3760064AAF6 /* WinningModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601851EE1C7EF3760064AAF6 /* WinningModel.m */; };
 		601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C71281C7C2FDC00673B7F /* RecordCell.m */; };
 		601C712B1C7C2FDC00673B7F /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601C71291C7C2FDC00673B7F /* RecordCell.xib */; };
 		601C712E1C7C419A00673B7F /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C712D1C7C419A00673B7F /* RecordController.m */; };
@@ -197,7 +195,6 @@
 		F2F587D71C7D4CF3007187B0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587D61C7D4CF3007187B0 /* PayViewController.m */; };
 		F2F587DA1C7D4E86007187B0 /* AnnouncedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587D91C7D4E86007187B0 /* AnnouncedViewController.m */; };
 		F2F587DD1C7D7C9C007187B0 /* AppBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587DC1C7D7C9C007187B0 /* AppBalanceModel.m */; };
-		F2F587E01C7D7D90007187B0 /* RedPacketsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587DF1C7D7D90007187B0 /* RedPacketsModel.m */; };
 		F2F587E31C7D813C007187B0 /* AppNoticeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587E21C7D813C007187B0 /* AppNoticeListModel.m */; };
 		F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587E51C7D86CF007187B0 /* AppSlideListModel.m */; };
 		F2F587EA1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587E81C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m */; };
@@ -643,8 +640,6 @@
 		F2F587D91C7D4E86007187B0 /* AnnouncedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncedViewController.m; sourceTree = "<group>"; };
 		F2F587DB1C7D7C9C007187B0 /* AppBalanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBalanceModel.h; sourceTree = "<group>"; };
 		F2F587DC1C7D7C9C007187B0 /* AppBalanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBalanceModel.m; sourceTree = "<group>"; };
-		F2F587DE1C7D7D90007187B0 /* RedPacketsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsModel.h; sourceTree = "<group>"; };
-		F2F587DF1C7D7D90007187B0 /* RedPacketsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsModel.m; sourceTree = "<group>"; };
 		F2F587E11C7D813C007187B0 /* AppNoticeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNoticeListModel.h; sourceTree = "<group>"; };
 		F2F587E21C7D813C007187B0 /* AppNoticeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppNoticeListModel.m; sourceTree = "<group>"; };
 		F2F587E41C7D86CF007187B0 /* AppSlideListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSlideListModel.h; sourceTree = "<group>"; };
@@ -1400,8 +1395,6 @@
 				F21E82EE1C7813EC00C732F1 /* CartModel.m */,
 				F2F587DB1C7D7C9C007187B0 /* AppBalanceModel.h */,
 				F2F587DC1C7D7C9C007187B0 /* AppBalanceModel.m */,
-				F2F587DE1C7D7D90007187B0 /* RedPacketsModel.h */,
-				F2F587DF1C7D7D90007187B0 /* RedPacketsModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -1743,7 +1736,6 @@
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F21E82E21C7813B100C732F1 /* ListViewController.m in Sources */,
-				F2F587E01C7D7D90007187B0 /* RedPacketsModel.m in Sources */,
 				F23BEFFC1C5F338F00E87042 /* DetailNumberHeadCView.m in Sources */,
 				F237A5981C59C52A00F91B45 /* DetailWebViewController.m in Sources */,
 				F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */,
