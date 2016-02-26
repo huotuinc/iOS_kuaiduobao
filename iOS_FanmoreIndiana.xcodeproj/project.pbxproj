@@ -197,7 +197,6 @@
 		F2F587D71C7D4CF3007187B0 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587D61C7D4CF3007187B0 /* PayViewController.m */; };
 		F2F587DA1C7D4E86007187B0 /* AnnouncedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587D91C7D4E86007187B0 /* AnnouncedViewController.m */; };
 		F2F587DD1C7D7C9C007187B0 /* AppBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587DC1C7D7C9C007187B0 /* AppBalanceModel.m */; };
-		F2F587E01C7D7D90007187B0 /* RedPacketsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587DF1C7D7D90007187B0 /* RedPacketsModel.m */; };
 		F2F587E31C7D813C007187B0 /* AppNoticeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587E21C7D813C007187B0 /* AppNoticeListModel.m */; };
 		F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587E51C7D86CF007187B0 /* AppSlideListModel.m */; };
 		F2F587EA1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587E81C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m */; };
@@ -643,8 +642,6 @@
 		F2F587D91C7D4E86007187B0 /* AnnouncedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncedViewController.m; sourceTree = "<group>"; };
 		F2F587DB1C7D7C9C007187B0 /* AppBalanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBalanceModel.h; sourceTree = "<group>"; };
 		F2F587DC1C7D7C9C007187B0 /* AppBalanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBalanceModel.m; sourceTree = "<group>"; };
-		F2F587DE1C7D7D90007187B0 /* RedPacketsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsModel.h; sourceTree = "<group>"; };
-		F2F587DF1C7D7D90007187B0 /* RedPacketsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsModel.m; sourceTree = "<group>"; };
 		F2F587E11C7D813C007187B0 /* AppNoticeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNoticeListModel.h; sourceTree = "<group>"; };
 		F2F587E21C7D813C007187B0 /* AppNoticeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppNoticeListModel.m; sourceTree = "<group>"; };
 		F2F587E41C7D86CF007187B0 /* AppSlideListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSlideListModel.h; sourceTree = "<group>"; };
@@ -1400,8 +1397,6 @@
 				F21E82EE1C7813EC00C732F1 /* CartModel.m */,
 				F2F587DB1C7D7C9C007187B0 /* AppBalanceModel.h */,
 				F2F587DC1C7D7C9C007187B0 /* AppBalanceModel.m */,
-				F2F587DE1C7D7D90007187B0 /* RedPacketsModel.h */,
-				F2F587DF1C7D7D90007187B0 /* RedPacketsModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -1743,7 +1738,6 @@
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F21E82E21C7813B100C732F1 /* ListViewController.m in Sources */,
-				F2F587E01C7D7D90007187B0 /* RedPacketsModel.m in Sources */,
 				F23BEFFC1C5F338F00E87042 /* DetailNumberHeadCView.m in Sources */,
 				F237A5981C59C52A00F91B45 /* DetailWebViewController.m in Sources */,
 				F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */,
@@ -1837,6 +1831,8 @@
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */,
+				6014A71E1C7DADF4006B2900 /* RedPacketsModel.m in Sources */,
+				601851EF1C7EF3760064AAF6 /* WinningModel.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
 				F23670041C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m in Sources */,
 				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
