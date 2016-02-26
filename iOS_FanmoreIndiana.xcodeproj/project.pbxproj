@@ -30,7 +30,18 @@
 		600042B01C744D8E00CEDC7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600042AF1C744D8E00CEDC7A /* Foundation.framework */; };
 		600042B31C746CA400CEDC7A /* PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 600042B21C746CA400CEDC7A /* PayModel.m */; };
 		600DA59F1C75C7EC007DAB27 /* RedPacketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600DA59E1C75C7EC007DAB27 /* RedPacketController.m */; };
+		6014A7171C7D53A5006B2900 /* GoAheadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7151C7D53A5006B2900 /* GoAheadCell.m */; };
+		6014A7181C7D53A5006B2900 /* GoAheadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6014A7161C7D53A5006B2900 /* GoAheadCell.xib */; };
+		6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A71A1C7DA9E7006B2900 /* RaiderModel.m */; };
+		6014A71E1C7DADF4006B2900 /* RedPacketsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A71D1C7DADF4006B2900 /* RedPacketsModel.m */; };
+		6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7201C7DB07C006B2900 /* ShareOrderModel.m */; };
+		6014A7241C7DB34A006B2900 /* PutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7231C7DB34A006B2900 /* PutModel.m */; };
+		6014A7271C7DC8C4006B2900 /* BuyFlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */; };
 		601769A61C589121009E503F /* AdressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601769A51C589121009E503F /* AdressModel.m */; };
+		601851EF1C7EF3760064AAF6 /* WinningModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601851EE1C7EF3760064AAF6 /* WinningModel.m */; };
+		601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C71281C7C2FDC00673B7F /* RecordCell.m */; };
+		601C712B1C7C2FDC00673B7F /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601C71291C7C2FDC00673B7F /* RecordCell.xib */; };
+		601C712E1C7C419A00673B7F /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C712D1C7C419A00673B7F /* RecordController.m */; };
 		602BB5DD1C77FD9700C29F74 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 602BB5DC1C77FD9700C29F74 /* city.plist */; };
 		602BB5E01C7861CB00C29F74 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 602BB5DF1C7861CB00C29F74 /* AddressModel.m */; };
 		6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
@@ -330,8 +341,28 @@
 		600042B21C746CA400CEDC7A /* PayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayModel.m; path = ../../login/model/PayModel.m; sourceTree = "<group>"; };
 		600DA59D1C75C7EC007DAB27 /* RedPacketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketController.h; sourceTree = "<group>"; };
 		600DA59E1C75C7EC007DAB27 /* RedPacketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketController.m; sourceTree = "<group>"; };
+		6014A7141C7D53A5006B2900 /* GoAheadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoAheadCell.h; sourceTree = "<group>"; };
+		6014A7151C7D53A5006B2900 /* GoAheadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoAheadCell.m; sourceTree = "<group>"; };
+		6014A7161C7D53A5006B2900 /* GoAheadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoAheadCell.xib; sourceTree = "<group>"; };
+		6014A7191C7DA9E7006B2900 /* RaiderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaiderModel.h; sourceTree = "<group>"; };
+		6014A71A1C7DA9E7006B2900 /* RaiderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaiderModel.m; sourceTree = "<group>"; };
+		6014A71C1C7DADF4006B2900 /* RedPacketsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsModel.h; sourceTree = "<group>"; };
+		6014A71D1C7DADF4006B2900 /* RedPacketsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsModel.m; sourceTree = "<group>"; };
+		6014A71F1C7DB07C006B2900 /* ShareOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderModel.h; sourceTree = "<group>"; };
+		6014A7201C7DB07C006B2900 /* ShareOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderModel.m; sourceTree = "<group>"; };
+		6014A7221C7DB34A006B2900 /* PutModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PutModel.h; sourceTree = "<group>"; };
+		6014A7231C7DB34A006B2900 /* PutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PutModel.m; sourceTree = "<group>"; };
+		6014A7251C7DC8C4006B2900 /* BuyFlowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyFlowModel.h; sourceTree = "<group>"; };
+		6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyFlowModel.m; sourceTree = "<group>"; };
 		601769A41C589121009E503F /* AdressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressModel.h; sourceTree = "<group>"; };
 		601769A51C589121009E503F /* AdressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressModel.m; sourceTree = "<group>"; };
+		601851ED1C7EF3760064AAF6 /* WinningModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningModel.h; sourceTree = "<group>"; };
+		601851EE1C7EF3760064AAF6 /* WinningModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningModel.m; sourceTree = "<group>"; };
+		601C71271C7C2FDC00673B7F /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		601C71281C7C2FDC00673B7F /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		601C71291C7C2FDC00673B7F /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
+		601C712C1C7C419A00673B7F /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
+		601C712D1C7C419A00673B7F /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
 		602BB5DC1C77FD9700C29F74 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		602BB5DE1C7861CB00C29F74 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		602BB5DF1C7861CB00C29F74 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
@@ -1140,6 +1171,8 @@
 				60F154A21C76B7D60043ED3F /* ChangePhoneController.m */,
 				6073E14F1C7AEC1F005AD927 /* MineShareController.h */,
 				6073E1501C7AEC1F005AD927 /* MineShareController.m */,
+				601C712C1C7C419A00673B7F /* RecordController.h */,
+				601C712D1C7C419A00673B7F /* RecordController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1151,6 +1184,18 @@
 				600042B21C746CA400CEDC7A /* PayModel.m */,
 				602BB5DE1C7861CB00C29F74 /* AddressModel.h */,
 				602BB5DF1C7861CB00C29F74 /* AddressModel.m */,
+				6014A7191C7DA9E7006B2900 /* RaiderModel.h */,
+				6014A71A1C7DA9E7006B2900 /* RaiderModel.m */,
+				6014A71C1C7DADF4006B2900 /* RedPacketsModel.h */,
+				6014A71D1C7DADF4006B2900 /* RedPacketsModel.m */,
+				6014A71F1C7DB07C006B2900 /* ShareOrderModel.h */,
+				6014A7201C7DB07C006B2900 /* ShareOrderModel.m */,
+				6014A7221C7DB34A006B2900 /* PutModel.h */,
+				6014A7231C7DB34A006B2900 /* PutModel.m */,
+				6014A7251C7DC8C4006B2900 /* BuyFlowModel.h */,
+				6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */,
+				601851ED1C7EF3760064AAF6 /* WinningModel.h */,
+				601851EE1C7EF3760064AAF6 /* WinningModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1170,6 +1215,12 @@
 				60F389F01C7567050080D759 /* AddressCell.h */,
 				60F389F11C7567050080D759 /* AddressCell.m */,
 				60F389F21C7567050080D759 /* AddressCell.xib */,
+				601C71271C7C2FDC00673B7F /* RecordCell.h */,
+				601C71281C7C2FDC00673B7F /* RecordCell.m */,
+				601C71291C7C2FDC00673B7F /* RecordCell.xib */,
+				6014A7141C7D53A5006B2900 /* GoAheadCell.h */,
+				6014A7151C7D53A5006B2900 /* GoAheadCell.m */,
+				6014A7161C7D53A5006B2900 /* GoAheadCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1571,12 +1622,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F23DE3D61C522E34002AB5FC /* DetailProgressCView.xib in Resources */,
+				6014A7181C7D53A5006B2900 /* GoAheadCell.xib in Resources */,
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
 				F23BEFFD1C5F338F00E87042 /* DetailNumberHeadCView.xib in Resources */,
 				F2F587C71C7D49CB007187B0 /* PayATableViewCell.xib in Resources */,
 				F2F587CF1C7D49EA007187B0 /* PayButtonTableViewCell.xib in Resources */,
 				F21E82EC1C7813E500C732F1 /* ListBottomCView.xib in Resources */,
 				F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */,
+				601C712B1C7C2FDC00673B7F /* RecordCell.xib in Resources */,
 				F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */,
 				F2573F481C57218900EEB851 /* DetailTimeCView.xib in Resources */,
 				606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */,
@@ -1697,7 +1750,9 @@
 				60B6838B1C603F5500EDF671 /* RedPacketCell.m in Sources */,
 				6000429B1C744C5D00CEDC7A /* NSDataEx.m in Sources */,
 				F21E82EF1C7813EC00C732F1 /* CartModel.m in Sources */,
+				601C712E1C7C419A00673B7F /* RecordController.m in Sources */,
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
+				6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
 				F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */,
 				60F154A31C76B7D60043ED3F /* ChangePhoneController.m in Sources */,
@@ -1712,6 +1767,7 @@
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
 				F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */,
+				601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */,
 				F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */,
@@ -1740,6 +1796,7 @@
 				600042B31C746CA400CEDC7A /* PayModel.m in Sources */,
 				60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */,
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
+				6014A7241C7DB34A006B2900 /* PutModel.m in Sources */,
 				F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */,
 				F21E82E91C7813E500C732F1 /* ListTableViewCell.m in Sources */,
 				605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */,
@@ -1751,6 +1808,7 @@
 				F21E82EB1C7813E500C732F1 /* ListBottomCView.m in Sources */,
 				601769A61C589121009E503F /* AdressModel.m in Sources */,
 				605E158C1C59A8AB00DBF8BA /* SettingController.m in Sources */,
+				6014A7171C7D53A5006B2900 /* GoAheadCell.m in Sources */,
 				60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */,
 				600042991C744C5D00CEDC7A /* DataVerifier.m in Sources */,
 				60EB31A81C55C892006C070B /* OtherUserController.m in Sources */,
@@ -1770,6 +1828,7 @@
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				60F389EC1C7566AE0080D759 /* AdressController.m in Sources */,
 				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
+				6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */,
 				6000429C1C744C5D00CEDC7A /* openssl_wrapper.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				F2F587F41C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.m in Sources */,
@@ -1788,6 +1847,7 @@
 				F2F587C21C7D4249007187B0 /* SearchViewController.m in Sources */,
 				F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */,
 				60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */,
+				6014A7271C7DC8C4006B2900 /* BuyFlowModel.m in Sources */,
 				6000429E1C744C5D00CEDC7A /* RSADataVerifier.m in Sources */,
 				F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */,
 				F2F587CE1C7D49EA007187B0 /* PayButtonTableViewCell.m in Sources */,

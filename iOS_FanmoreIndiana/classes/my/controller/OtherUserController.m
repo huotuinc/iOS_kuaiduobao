@@ -102,9 +102,10 @@
             [self.navigationController pushViewController:nick animated:YES];
             break;
         }
-        case 4:
+        case 3:
         {
             AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
+            address.tpye = 1;
             [self.navigationController pushViewController:address animated:YES];
             break;
         }

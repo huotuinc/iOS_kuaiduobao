@@ -116,6 +116,16 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="end" destination="xzg-lT-y26" id="v1Z-Ab-ktk"/>
+                <outlet property="endImage" destination="3lf-5I-HsL" id="CHu-70-BLw"/>
+                <outlet property="full" destination="dMv-aw-1Rc" id="UIF-Yb-x6z"/>
+                <outlet property="minus" destination="Lhd-sJ-WSm" id="NCA-LI-FwD"/>
+                <outlet property="redPacket" destination="UbJ-8G-gzi" id="eEK-RH-wmv"/>
+                <outlet property="remark" destination="aUe-Sg-HI8" id="Mwe-9S-Gdx"/>
+                <outlet property="start" destination="6LE-KA-TRa" id="GRb-GY-ywf"/>
+                <outlet property="titleName" destination="NbF-fv-8fK" id="kiv-6F-ffk"/>
+            </connections>
             <point key="canvasLocation" x="405" y="369.5"/>
         </tableViewCell>
     </objects>

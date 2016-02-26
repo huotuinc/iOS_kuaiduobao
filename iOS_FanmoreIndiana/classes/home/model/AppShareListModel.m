@@ -10,4 +10,9 @@
 
 @implementation AppShareListModel
 
+
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"pictureUrls":[NSString class]};
+}
 @end

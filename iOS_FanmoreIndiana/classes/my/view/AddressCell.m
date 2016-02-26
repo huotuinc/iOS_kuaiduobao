@@ -20,4 +20,15 @@
     // Configure the view for the selected state
 }
 
+- (void)setModel:(AddressModel *)model {
+    _model = model;
+    self.nema.text = model.receiver;
+    self.phone.text = model.mobile;
+    if (model.defaultAddress) {
+        self.address.text = [NSString stringWithFormat:@"[默认]%@",model.details];
+    }else {
+        self.address.text = model.details;
+    }
+}
+
 @end

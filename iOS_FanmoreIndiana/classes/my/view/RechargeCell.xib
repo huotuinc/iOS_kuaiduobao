@@ -50,6 +50,12 @@
                     <constraint firstItem="DEZ-mQ-kbu" firstAttribute="top" secondItem="Zpm-oZ-blM" secondAttribute="bottom" constant="15" id="zyQ-Iz-UXv"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="money" destination="khw-B4-nzc" id="yrS-LQ-iWI"/>
+                <outlet property="paySuccess" destination="uLW-BN-WQZ" id="Auy-2W-0bX"/>
+                <outlet property="payType" destination="Zpm-oZ-blM" id="Yws-Z8-iKN"/>
+                <outlet property="time" destination="DEZ-mQ-kbu" id="Jif-9J-uNM"/>
+            </connections>
             <point key="canvasLocation" x="314" y="353"/>
         </tableViewCell>
     </objects>

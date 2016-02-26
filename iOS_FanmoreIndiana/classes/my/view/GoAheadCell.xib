@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="127" id="KGk-i7-Jjw" customClass="GoAheadCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xPp-Kl-3p5">
+                        <rect key="frame" x="15" y="15" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="e9r-Dt-jgu"/>
+                            <constraint firstAttribute="height" constant="80" id="iqF-F4-kZf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天梭(TISSOT)手表 李洛克系列 机械情侣表男表" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-eH-oC2">
+                        <rect key="frame" x="100" y="17" width="261" height="32"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总需：3499人次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAe-vy-FQM">
+                        <rect key="frame" x="100" y="81" width="84" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期号：301252359" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvB-6V-2lY">
+                        <rect key="frame" x="100" y="58" width="94" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本期参与：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNu-pG-hcb">
+                        <rect key="frame" x="100" y="104" width="55" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7to-bn-tzQ">
+                        <rect key="frame" x="155" y="104" width="6" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNf-wx-F6p">
+                        <rect key="frame" x="162" y="104" width="22" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfE-67-e2C">
+                        <rect key="frame" x="317" y="104" width="44" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.31764705879999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JfE-67-e2C" firstAttribute="bottom" secondItem="VNu-pG-hcb" secondAttribute="bottom" id="4vM-51-dQi"/>
+                    <constraint firstItem="7to-bn-tzQ" firstAttribute="bottom" secondItem="VNu-pG-hcb" secondAttribute="bottom" id="5cw-xt-gF1"/>
+                    <constraint firstItem="bNf-wx-F6p" firstAttribute="leading" secondItem="7to-bn-tzQ" secondAttribute="trailing" constant="1" id="5iV-ub-Wh3"/>
+                    <constraint firstItem="VNu-pG-hcb" firstAttribute="leading" secondItem="4Vf-eH-oC2" secondAttribute="leading" id="9fF-vD-5bz"/>
+                    <constraint firstItem="bNf-wx-F6p" firstAttribute="bottom" secondItem="VNu-pG-hcb" secondAttribute="bottom" id="BdJ-Xs-qp2"/>
+                    <constraint firstItem="4Vf-eH-oC2" firstAttribute="top" secondItem="xPp-Kl-3p5" secondAttribute="top" constant="2" id="DCr-wu-Aav"/>
+                    <constraint firstItem="PAe-vy-FQM" firstAttribute="leading" secondItem="4Vf-eH-oC2" secondAttribute="leading" id="HXc-45-xHy"/>
+                    <constraint firstItem="xPp-Kl-3p5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="SrW-MC-bcG"/>
+                    <constraint firstItem="PAe-vy-FQM" firstAttribute="bottom" secondItem="xPp-Kl-3p5" secondAttribute="bottom" id="TRG-GV-6Zs"/>
+                    <constraint firstItem="PAe-vy-FQM" firstAttribute="top" secondItem="lvB-6V-2lY" secondAttribute="bottom" constant="9" id="VJ0-oO-YrT"/>
+                    <constraint firstItem="lvB-6V-2lY" firstAttribute="leading" secondItem="4Vf-eH-oC2" secondAttribute="leading" id="ftq-Kj-PI9"/>
+                    <constraint firstAttribute="trailing" secondItem="4Vf-eH-oC2" secondAttribute="trailing" constant="14" id="g3A-Tm-S1Z"/>
+                    <constraint firstItem="xPp-Kl-3p5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="jtO-Kn-cod"/>
+                    <constraint firstAttribute="trailing" secondItem="JfE-67-e2C" secondAttribute="trailing" constant="14" id="rGS-s8-LJT"/>
+                    <constraint firstItem="7to-bn-tzQ" firstAttribute="leading" secondItem="VNu-pG-hcb" secondAttribute="trailing" id="rcv-wu-Qcg"/>
+                    <constraint firstItem="VNu-pG-hcb" firstAttribute="top" secondItem="PAe-vy-FQM" secondAttribute="bottom" constant="9" id="wJc-k0-Qx0"/>
+                    <constraint firstItem="4Vf-eH-oC2" firstAttribute="leading" secondItem="xPp-Kl-3p5" secondAttribute="trailing" constant="5" id="wXs-8J-kEb"/>
+                    <constraint firstItem="lvB-6V-2lY" firstAttribute="leading" secondItem="xPp-Kl-3p5" secondAttribute="trailing" constant="5" id="zaA-wt-A8T"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="attendLabel" destination="7to-bn-tzQ" id="4Aw-jD-JFy"/>
+                <outlet property="issueLabel" destination="lvB-6V-2lY" id="AWC-mx-7mg"/>
+                <outlet property="name" destination="4Vf-eH-oC2" id="ivw-M2-MUR"/>
+                <outlet property="picture" destination="xPp-Kl-3p5" id="fFb-ve-wqk"/>
+                <outlet property="toAmountLabel" destination="PAe-vy-FQM" id="AGf-7j-vti"/>
+            </connections>
+            <point key="canvasLocation" x="318.5" y="259.5"/>
+        </tableViewCell>
+    </objects>
+</document>
