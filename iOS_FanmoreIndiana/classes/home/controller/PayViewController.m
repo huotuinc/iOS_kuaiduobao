@@ -52,6 +52,7 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
     self.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    
     [self createBarButtonItem];
     [self createPayView];
     [self createTableView];
@@ -181,7 +182,8 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
                 cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %@元)",self.userInfo.money];
             }
             if (indexPath.row == 2) {
-                cell.labelB.text = [NSString stringWithFormat:@"%@元",_payModel.money];
+                NSInteger elsePay = [_payModel.totalMoney integerValue] - [_payModel.redPacketsMinusMoney integerValue];
+                cell.labelB.text = [NSString stringWithFormat:@"%ld元",elsePay];
             }
             return cell;
         }else{
