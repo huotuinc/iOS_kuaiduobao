@@ -13,5 +13,6 @@
 @property (nonatomic, assign) NSInteger whichAPI;//1 10元专区进去 2 全部进入(有分页参数) 3商品分类(pid)进入 4其他进入(有分页参数)
 @property (nonatomic, assign) NSNumber *pid;
 @property (nonatomic, assign) NSNumber *lastSort;
+@property (nonatomic, assign) NSNumber *issueId;
 
 @end

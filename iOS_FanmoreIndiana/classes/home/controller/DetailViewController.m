@@ -150,9 +150,11 @@ static NSString * cellDFirst=@"cellDFirst";
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
         }
+        [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
+        [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
         
         
     } withFileKey:nil];
@@ -248,7 +250,7 @@ static NSString * cellDFirst=@"cellDFirst";
     _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]].height;
 //已经结束
     if (num == 2) {
-        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight)];
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight +3)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
@@ -256,15 +258,15 @@ static NSString * cellDFirst=@"cellDFirst";
         }];
         //default is 2.0f,如果小于0.5不自动播放
         _headScrollView.AutoScrollDelay = 0.0f;
-        
-        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
+        //3为间隔
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
         [self createTitleLabel];
         [self createStateLabel];
         
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailWinnerCView" owner:nil options:nil];
         _winnerView= [nib firstObject];
-        _winnerView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(360));
+        _winnerView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + 3 + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(360));
         _winnerView.labelWinnerA.text=_detailModel.awardingUserName;
         _winnerView.labelCity.text=[NSString stringWithFormat:@"( %@ IP%@ )",_detailModel.awardingUserCityName,_detailModel.awardingUserIp];
         _winnerView.labelIDA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserId];
@@ -318,7 +320,7 @@ static NSString * cellDFirst=@"cellDFirst";
         //default is 2.0f,如果小于0.5不自动播放
         _headScrollView.AutoScrollDelay = 0.0f;
         
-        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390) + 3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
         [self createTitleLabel];
         [self createStateLabel];
@@ -366,7 +368,7 @@ static NSString * cellDFirst=@"cellDFirst";
     }
 //正常状态
     if (num == 0) {
-        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight)];
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+3)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
@@ -375,7 +377,7 @@ static NSString * cellDFirst=@"cellDFirst";
         //default is 2.0f,如果小于0.5不自动播放
         _headScrollView.AutoScrollDelay = 2.0f;
         
-        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390), SCREEN_WIDTH-20, _titleStrHeight)];
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight+3)];
         _titleView.backgroundColor=[UIColor whiteColor];
         
         [self createTitleLabel];
@@ -383,7 +385,7 @@ static NSString * cellDFirst=@"cellDFirst";
         
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
         _progressView= [nib firstObject];
-        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"剩余: %@",_detailModel.remainAmount]];
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(0, 3)];
         _progressView.labelRest.attributedText=attString;
@@ -395,7 +397,7 @@ static NSString * cellDFirst=@"cellDFirst";
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
-        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         if (_detailModel.numbers.count > 0) {
             NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
@@ -447,6 +449,33 @@ static NSString * cellDFirst=@"cellDFirst";
                 [self joinShoppingCart];
             }else{
 #pragma mark 加入购物车 未登陆
+                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+
+            }
+        }];
+        [_bottomView.buttonGo bk_whenTapped:^{
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+                self.issueId = _detailModel.issueId;
+                [self joinShoppingCart];
+            }else{
+#pragma mark 加入购物车 未登陆
+                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+                
+            }
+        }];
+        _bottomView.imageVShop.userInteractionEnabled = YES;
+        [_bottomView.imageVShop bk_whenTapped:^{
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+                self.issueId = _detailModel.issueId;
+                [self joinShoppingCart];
+            }else{
+#pragma mark 加入购物车 未登陆
+                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+                
             }
         }];
         [self.view addSubview:_bottomView];
@@ -469,19 +498,30 @@ static NSString * cellDFirst=@"cellDFirst";
     _titleStateLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _titleStrHeight/_titleLineCount*3,_titleStrHeight/_titleLineCount)];
     if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
         _titleStateLabel.text=@"进行中";
+        _titleStateLabel.backgroundColor = COLOR_BUTTON_ORANGE;
+        _titleStateLabel.textColor = [UIColor whiteColor];
+        _titleStateLabel.layer.borderColor=COLOR_BUTTON_ORANGE.CGColor;
+
     }
     if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
         _titleStateLabel.text=@"倒计时";
+        _titleStateLabel.backgroundColor = [UIColor whiteColor];
+        _titleStateLabel.textColor = COLOR_BUTTON_ORANGE;
+        _titleStateLabel.layer.borderColor=COLOR_BUTTON_ORANGE.CGColor;
     }
     if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:2]]) {
         _titleStateLabel.text=@"已揭晓";
+        _titleStateLabel.textColor = [UIColor whiteColor];
+        _titleStateLabel.backgroundColor = [UIColor colorWithRed:31/255.0f green:202/255.0f blue:46/255.0f alpha:1];
+        _titleStateLabel.layer.borderColor=[UIColor colorWithRed:31/255.0f green:202/255.0f blue:46/255.0f alpha:1].CGColor;
+
+
     }
     _titleStateLabel.textAlignment=NSTextAlignmentCenter;
     _titleStateLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
     _titleStateLabel.layer.borderWidth=1;
-    _titleStateLabel.layer.borderColor=[UIColor redColor].CGColor;
-    _titleStateLabel.layer.masksToBounds=YES;
     _titleStateLabel.layer.cornerRadius=3;
+    _titleStateLabel.layer.masksToBounds=YES;
     [_titleView addSubview:_titleStateLabel];
 }
 -(void)createTitleLabel{
@@ -534,6 +574,7 @@ static NSString * cellDFirst=@"cellDFirst";
         if (indexPath.row == 0) {
                 cell.labelAdvice.text=@"建议wifi下查看";
         }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
     if (indexPath.section == 1) {
@@ -541,6 +582,7 @@ static NSString * cellDFirst=@"cellDFirst";
             DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
             cell.labelTitle.text=@"所有参与记录";
             cell.labelAdvice.text=[NSString stringWithFormat:@"( %@开始 )",[self changeTheTimeStamps:_detailModel.firstBuyTime andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"]];
+            cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;
         }
         if (indexPath.row == 1) {

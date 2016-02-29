@@ -26,6 +26,8 @@
 #import <MJRefresh.h>
 #import <UIImageView+WebCache.h>
 
+/*未登录购物车*/
+#define LOCALCART @"localCart"
 
 /**微信支付*/
 #define WeiXinPaySigNkey @"NzfP6pfeljyHeY08LO9p8YAKZCGLz8akO4lCGdXZOGnVsJqfo8jeuYB7C0GoFJGEKZMDVGKWYnbbJj3pCpvJzd4iY7bVglaNz54XAD26tiCr5DZGLjZFoRxbqe8i3HT5"
@@ -61,7 +63,7 @@
 
 ///***服务器地址***/1.41
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
-#define MKMainUrl @"192.168.3.22:8080/duobao/app"
+#define MKMainUrl @"192.168.1.41:8080/duobao/app"
 
 
 

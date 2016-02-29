@@ -47,16 +47,29 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     _bottomView.buttonAll.selected = NO;
     _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计: 0元"];
     [self createNavgationBarTitle];
-    NSLog(@"*************1111");
 
     _cartList =[NSMutableArray array];
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
-        NSLog(@"*************");
-
         [self getShoppingList];
     }else{
-        NSLog(@"未登录");
+//        [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+//        _cartList = [[NSMutableArray alloc] initWithArray:[self getLocalDataArray]];
+//        if (_cartList.count == 0) {
+//            [self createImageVBack];
+//        }else {
+//            if (_tableView) {
+//                self.imageVBack.hidden = YES;
+//                [self.tableView reloadData];
+//                _bottomView.labelAll.text = @"全选";
+//                _bottomView.buttonAll.selected = NO;
+//                selectAllCount = 1;
+//            }else{
+//                [self createTableView];
+//            }
+//        }
+
+        
     }
 }
 
@@ -67,6 +80,16 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 
 //    [self createCartList];
     [self loadNotificationCell];
+}
+- (NSArray *)getLocalDataArray{
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+    NSData *data = [NSData dataWithContentsOfFile:filename];
+    // 2.创建反归档对象
+    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    // 3.解码并存到数组中
+    NSArray *namesArray = [unArchiver decodeObjectForKey:LOCALCART];
+    return namesArray;
 }
 
 -(void)createNavgationBarTitle{
@@ -207,7 +230,8 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        
+        [SVProgressHUD showInfoWithStatus:@"商品信息发生改变"];
+
         
     } withFileKey:nil];
     

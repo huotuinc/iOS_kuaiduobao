@@ -165,6 +165,31 @@ static NSString *cellTenMain=@"cellTenMain";
     }];
     
 }
+
+#pragma mark  网络加入购物车
+
+-(void)joinShoppingCart {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"issueId"] = self.issueId;
+    
+    [UserLoginTool loginRequestPostWithFile:@"joinShoppingCart" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }else {
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+        [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
+        
+        
+    } withFileKey:nil];
+    
+    
+}
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"TenTableViewCell" bundle:nil] forCellReuseIdentifier:cellTenMain];
@@ -204,6 +229,22 @@ static NSString *cellTenMain=@"cellTenMain";
     if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:10]]) {
         cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_a"];
     }
+    cell.buttonAdd.tag = 500 +indexPath.row;
+    [cell.buttonAdd bk_whenTapped:^{
+        NSInteger row = cell.buttonAdd.tag - 500;
+        AppGoodsListModel *GoodM = _appGoodsList[row];
+        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+        if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+            self.issueId = GoodM.issueId;
+            [self joinShoppingCart];
+        }else{
+#pragma mark 加入购物车 未登陆
+            [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+            
+        }
+    }];
+
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;

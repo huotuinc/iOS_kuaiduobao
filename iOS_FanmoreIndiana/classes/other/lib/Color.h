@@ -60,6 +60,8 @@
 #define COLOR_LINE_GRAY [UIColor colorWithRed:223/255.0f green:223/255.0f blue:223/255.0f alpha:1]
 //底色
 #define COLOR_BACK_MAIN [UIColor colorWithRed:244/255.0f green:244/255.0f blue:244/255.0f alpha:1]
+//底色 获奖人
+#define COLOR_BACK_WINNER [UIColor colorWithRed:254/255.0f green:250/255.0f blue:238/255.0f alpha:1]
 //辅助色
 #define COLOR_TEN_RED [UIColor colorWithRed:255/255.0f green:92/255.0f blue:80/255.0f alpha:1]
 

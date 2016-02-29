@@ -105,7 +105,7 @@ static NSString *cellABMain=@"cellABMain";
             [self.openList addObjectsFromArray:temp];
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
-            if (_collectionView) {
+            if (!_collectionView) {
                 [self createCollectionView];
             }else {
                 [_collectionView reloadData];
