@@ -182,9 +182,9 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     for ( int i =0 ; i<_selectedArray.count; i++) {
         CartModel *model = _selectedArray[i];
         if (i == _selectedArray.count - 1) {
-            [cartsString appendFormat:@"{pid:%@,buyAmount:%@}",model.pid,model.buyAmount];
+            [cartsString appendFormat:@"{pid:%@,buyAmount:%@}",model.sid,model.buyAmount];
         }else{
-            [cartsString appendFormat:@"{pid:%@,buyAmount:%@},",model.pid,model.buyAmount];
+            [cartsString appendFormat:@"{pid:%@,buyAmount:%@},",model.sid,model.buyAmount];
         }
     }
     [cartsString insertString:@"[" atIndex:0];
@@ -514,7 +514,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
             //    删除
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             
-            self.shoppingCartId = model.pid;
+            self.shoppingCartId = model.sid;
             [self deleteShoppingCart];
             
             

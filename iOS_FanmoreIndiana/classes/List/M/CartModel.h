@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSNumber *buyAmount;
 @property (nonatomic,assign) BOOL isSelect;
 @property (nonatomic, copy) NSString *pictureUrl;
-@property (nonatomic, strong) NSNumber *pid;
+@property (nonatomic, strong) NSNumber *sid;
 @property (nonatomic, strong) NSNumber *remainAmount;
 @property (nonatomic, copy) NSNumber *stepAmount;
 @property (nonatomic, copy) NSString *title;
