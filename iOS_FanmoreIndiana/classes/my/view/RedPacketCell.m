@@ -42,6 +42,7 @@
     _selectMark = selectMark;
     if (selectMark == 0) {
         self.endImage.hidden = YES;
+        self.redPacket.image = [UIImage imageNamed:@"hb_red"];
     }else {
         self.redPacket.image = [UIImage imageNamed:@"hb_gray"];
         self.endImage.hidden = NO;

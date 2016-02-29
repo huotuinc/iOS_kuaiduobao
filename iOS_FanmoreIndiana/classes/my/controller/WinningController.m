@@ -11,10 +11,13 @@
 #import "WinningModel.h"
 #import "AdressController.h"
 #import "WinningConfirmController.h"
+#import "NewShareController.h"
 
-@interface WinningController ()<UITableViewDataSource,UITableViewDelegate>
+@interface WinningController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *winningArray;
+
+@property (nonatomic, strong) WinningModel *selectModel;
 
 @end
 
@@ -64,11 +67,72 @@ static NSString *winningIdentify = @"winningIdentify";
     WinningCell *cell = [tableView dequeueReusableCellWithIdentifier:winningIdentify forIndexPath:indexPath];
     cell.model = self.winningArray[indexPath.row];
     [cell.confirm bk_whenTapped:^{
-        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
-        address.tpye = 2;
-        address.winningModel = self.winningArray[indexPath.row];
-        [self.navigationController pushViewController:address animated:YES];
+        
+        switch (cell.model.deliveryStatus) {
+            case 0:
+            {
+                //赢得奖品
+                [self confirmationOfAddress];
+                cell.confirm.userInteractionEnabled = YES;
+                [cell.confirm setTitle:@"确认收货地址" forState:UIControlStateNormal];
+                [cell.confirm setBackgroundColor:[UIColor colorWithRed:0.933 green:0.384 blue:0.090 alpha:1.000]];
+                break;
+            }
+            case 1:
+            {
+                //已取人收货地址
+                cell.confirm.userInteractionEnabled = NO;
+                [cell.confirm setTitle:@"等待奖品发放" forState:UIControlStateNormal];
+                [cell.confirm setBackgroundColor:[UIColor colorWithWhite:0.702 alpha:1.000]];
+                break;
+            }
+            case 2:
+            {
+                //已取人收货地址
+                cell.confirm.userInteractionEnabled = NO;
+                [cell.confirm setTitle:@"等待奖品发放" forState:UIControlStateNormal];
+                [cell.confirm setBackgroundColor:[UIColor colorWithWhite:0.702 alpha:1.000]];
+                break;
+            }
+            case 3:
+            {
+                cell.confirm.userInteractionEnabled = YES;
+                [cell.confirm setTitle:@"确认收货" forState:UIControlStateNormal];
+                [cell.confirm setBackgroundColor:[UIColor colorWithRed:0.933 green:0.384 blue:0.090 alpha:1.000]];
+                [self confirmationOfGoodsReceipt];
+                break;
+            }
+            case 4:
+            {
+                cell.confirm.userInteractionEnabled = YES;
+                [cell.confirm setTitle:@"确认收货" forState:UIControlStateNormal];
+                [cell.confirm setBackgroundColor:[UIColor colorWithRed:0.933 green:0.384 blue:0.090 alpha:1.000]];
+                [self confirmationOfGoodsReceipt];
+                break;
+            }
+            case 5:
+            {
+                cell.confirm.userInteractionEnabled = YES;
+                [cell.confirm setTitle:@"去晒单" forState:UIControlStateNormal];
+                [cell.confirm setBackgroundColor:[UIColor colorWithRed:0.933 green:0.384 blue:0.090 alpha:1.000]];
+                [self goToNewShare];
+                break;
+            }
+            case 6:
+            {
+                cell.confirm.userInteractionEnabled = NO;
+                [cell.confirm setTitle:@"已晒单" forState:UIControlStateNormal];
+                [cell.confirm setBackgroundColor:[UIColor colorWithWhite:0.702 alpha:1.000]];
+                break;
+            }
+            default:
+                break;
+        }
+        
+        self.selectModel = self.winningArray[indexPath.row];
+        
+        [self confirmationOfAddress];
+        
     }];
     return  cell;
 }
@@ -79,7 +143,7 @@ static NSString *winningIdentify = @"winningIdentify";
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WinningConfirmController *confirm = [story instantiateViewControllerWithIdentifier:@"WinningConfirmController"];
     WinningModel *model = self.winningArray[indexPath.row];
-    confirm.issueId = model.issueId;
+    confirm.winningModel = model;
     [self.navigationController pushViewController:confirm animated:YES];
 }
 
@@ -110,7 +174,7 @@ static NSString *winningIdentify = @"winningIdentify";
 
 - (void)getNewList {
     
-    [self.winningArray removeAllObjects];
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
 
     dic[@"lastId"] = @0;
@@ -118,6 +182,7 @@ static NSString *winningIdentify = @"winningIdentify";
     [UserLoginTool loginRequestGet:@"getMyLotteryList" parame:dic success:^(id json) {
         LWLog(@"%@",json);
         [SVProgressHUD dismiss];
+        [self.winningArray removeAllObjects];
         [_tableView.mj_header endRefreshing];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             NSArray *temp = [WinningModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
@@ -171,6 +236,109 @@ static NSString *winningIdentify = @"winningIdentify";
     
 }
 
+
+/**
+ *  去地址列表选择收货地址;
+ *
+ *  @param model
+ */
+- (void)goToAddressListChoose:(WinningModel *) model {
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
+    address.winningModel = model;
+    address.tpye = 2;
+    [self.navigationController pushViewController:address animated:YES];
+    
+}
+
+
+/**
+ *  使用默认地址确认收货地址
+ */
+- (void)useDefaultAddress {
+    
+    
+    
+}
+
+/**
+ *  确认收货
+ */
+- (void)confirmationOfGoods {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"deliveryId"] = self.selectModel.deliveryId;
+    
+    [UserLoginTool loginRequestGet:@"confirmReceipt" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+}
+
+
+/**
+ *  去晒单
+ */
+- (void)goToNewShare {
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    NewShareController *share = [story instantiateViewControllerWithIdentifier:@"NewShareController"];
+    share.WinningModel = self.selectModel;
+    [self.navigationController pushViewController:share animated:YES];
+    
+}
+
+/**
+ *  确认收货提示
+ */
+- (void)confirmationOfGoodsReceipt {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确认收货" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"还没收到", nil];
+    alert.tag = 2;
+    [alert show];
+}
+
+
+/**
+ *  确认收货地址提示
+ */
+- (void)confirmationOfAddress {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请确认收货地址" message:nil delegate:self cancelButtonTitle:@"使用默认地址" otherButtonTitles:@"使用其他地址", nil];
+    alert.tag = 1;
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (alertView.tag) {
+        case 1:
+        {
+            
+            if (buttonIndex == 1) {
+                [self goToAddressListChoose:self.selectModel];
+            }else {
+                [self useDefaultAddress];
+            }
+            
+            break;
+        }
+        case 2:
+        {
+            if (buttonIndex == 0) {
+                
+            }
+            
+            break;
+        }
+        default:
+            break;
+    }
+    
+}
 
 
 

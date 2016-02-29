@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AdressModel.h"
 
 @interface UserModel : NSObject
 
@@ -21,5 +22,7 @@
 @property (nonatomic, strong) NSNumber *userFormType;
 @property (nonatomic, strong) NSString *userHead;
 @property (nonatomic, strong) NSString *username;
+
+@property (nonatomic, strong) AdressModel *addressModel;
 
 @end

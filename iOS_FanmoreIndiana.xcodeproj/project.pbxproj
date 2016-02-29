@@ -96,6 +96,7 @@
 		60C65BF41C80392200332AD8 /* RedPacketsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C65BF31C80392200332AD8 /* RedPacketsModel.m */; };
 		60C65BF71C80393300332AD8 /* WinningModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C65BF61C80393300332AD8 /* WinningModel.m */; };
 		60C65BFA1C80482500332AD8 /* WinningConfirmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C65BF91C80482500332AD8 /* WinningConfirmController.m */; };
+		60C78D431C84231100AED37E /* WinningDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C78D421C84231100AED37E /* WinningDeliveryModel.m */; };
 		60DD429F1C43A8F90041572F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD429E1C43A8F90041572F /* main.m */; };
 		60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42A11C43A8F90041572F /* AppDelegate.m */; };
 		60DD42A81C43A8F90041572F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A61C43A8F90041572F /* Main.storyboard */; };
@@ -469,6 +470,8 @@
 		60C65BF61C80393300332AD8 /* WinningModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningModel.m; sourceTree = "<group>"; };
 		60C65BF81C80482500332AD8 /* WinningConfirmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningConfirmController.h; sourceTree = "<group>"; };
 		60C65BF91C80482500332AD8 /* WinningConfirmController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningConfirmController.m; sourceTree = "<group>"; };
+		60C78D411C84231100AED37E /* WinningDeliveryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningDeliveryModel.h; sourceTree = "<group>"; };
+		60C78D421C84231100AED37E /* WinningDeliveryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningDeliveryModel.m; sourceTree = "<group>"; };
 		60DD429A1C43A8F90041572F /* iOS_FanmoreIndiana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FanmoreIndiana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DD429E1C43A8F90041572F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60DD42A01C43A8F90041572F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1219,6 +1222,8 @@
 				6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */,
 				60C65BF51C80393300332AD8 /* WinningModel.h */,
 				60C65BF61C80393300332AD8 /* WinningModel.m */,
+				60C78D411C84231100AED37E /* WinningDeliveryModel.h */,
+				60C78D421C84231100AED37E /* WinningDeliveryModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1800,6 +1805,7 @@
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */,
 				F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */,
+				60C78D431C84231100AED37E /* WinningDeliveryModel.m in Sources */,
 				F2F587EF1C7D9BA6007187B0 /* DetailShareNextContentTableViewCell.m in Sources */,
 				F23DE3D51C522E34002AB5FC /* DetailProgressCView.m in Sources */,
 				60584F271C4E39FD00F23B95 /* TabBarController.m in Sources */,
