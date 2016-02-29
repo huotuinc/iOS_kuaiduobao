@@ -70,11 +70,13 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             LWLog(@"%@",json[@"resultDescription"]);
             _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
+            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+
             [self remainPay];
 
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
-            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+            [SVProgressHUD showErrorWithStatus:@"支付失败"];
 
         }
         
