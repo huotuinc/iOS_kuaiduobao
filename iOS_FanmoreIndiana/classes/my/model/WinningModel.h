@@ -18,6 +18,6 @@
 @property (nonatomic, strong) NSNumber *pid;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSNumber *toAmount;
-
+@property (nonatomic, assign) NSInteger deliveryStatus;
 
 @end

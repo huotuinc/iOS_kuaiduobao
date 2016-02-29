@@ -9,7 +9,7 @@
 #import "MineShareController.h"
 #import "DetailShareTableViewCell.h"
 #import "AppShareListModel.h"
-//#import "DetailShareNextViewController.h"
+#import "DetailShareNextViewController.h"
 
 @interface MineShareController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -103,9 +103,9 @@ static NSString *shareCIdentifier = @"shareCIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AppShareListModel *model = _shareList[indexPath.row];
-//    DetailShareNextViewController *next =[[DetailShareNextViewController alloc] init];
-//    next.shareId = model.pid;
-//    [self.navigationController pushViewController:next animated:YES];
+    DetailShareNextViewController *next =[[DetailShareNextViewController alloc] init];
+    next.shareId = model.pid;
+    [self.navigationController pushViewController:next animated:YES];
 }
 
 

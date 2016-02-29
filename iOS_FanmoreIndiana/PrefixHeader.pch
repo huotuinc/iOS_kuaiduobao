@@ -32,6 +32,9 @@
 #define WeiXinPARTNERKEY @"18076bf2a8bf9479f2cddeec13fd2ec0"
 #define WeiXin @"1220397601"
 
+/**微信支付*/
+#define Ali
+
 //有盟appKey
 #define UMAppKey @"52faffcf56240bc21a023179"
 /**shareSDK */
@@ -58,7 +61,7 @@
 
 ///***服务器地址***/1.41
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
-#define MKMainUrl @"192.168.1.41:8080/duobao/app"
+#define MKMainUrl @"192.168.3.22:8080/duobao/app"
 
 
 
