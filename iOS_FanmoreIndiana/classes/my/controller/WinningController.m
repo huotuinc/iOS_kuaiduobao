@@ -10,6 +10,7 @@
 #import "WinningCell.h"
 #import "WinningModel.h"
 #import "AdressController.h"
+#import "WinningConfirmController.h"
 
 @interface WinningController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -74,6 +75,12 @@ static NSString *winningIdentify = @"winningIdentify";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WinningConfirmController *confirm = [story instantiateViewControllerWithIdentifier:@"WinningConfirmController"];
+    WinningModel *model = self.winningArray[indexPath.row];
+    confirm.issueId = model.issueId;
+    [self.navigationController pushViewController:confirm animated:YES];
 }
 
 - (void)hiddenNoneImageAndLabels {
