@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSNumber *pid;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) NSNumber *type;
 
 @end

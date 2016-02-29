@@ -77,6 +77,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setBarTintColor:[UIColor orangeColor]];
     self.navigationController.navigationBar.translucent=NO;
+    
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
     
@@ -103,30 +104,17 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.type = [NSNumber numberWithInteger:1];
     // 创建操作队列
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    // 线程A
     NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
         [self getAppNoticeList];
- 
     }];
-    // 线程B
     NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
         [self getAppSlideList];
     }];
-    
-    // 线程C
     NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
         [self createHeadView];
-//        [NSThread sleepForTimeInterval:2];
-
     }];
-    
-    // 线程D
     NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
-//        [self createMainCollectionView];
         [self getGoodsList];
-
-//        [NSThread sleepForTimeInterval:2];
-
     }];
     
     [op3 addDependency:op1];
@@ -167,9 +155,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)createSearchView{
     NSArray *nib= [[NSBundle mainBundle]loadNibNamed:@"HomeSearchCView" owner:nil options:nil];
     _searchV=[nib firstObject];
-    _searchV.frame=CGRectMake(0, 0, ADAPT_WIDTH(540) , ADAPT_HEIGHT(60));
+    _searchV.frame=CGRectMake(0, 0, ADAPT_WIDTH(540) , 25);
     [_searchV.viewSearch bk_whenTapped:^{
-    UISearchController *search = [[UISearchController alloc] init];
+    SearchViewController *search = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:search animated:YES];
 }];
     
@@ -332,7 +320,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
+            self.lastSort =json[@"resultData"][@"sort"];
+
             [self.appGoodsList addObjectsFromArray:temp];
             LWLog(@"%@",json[@"resultDescription"]);
 
@@ -423,7 +412,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark 10元专区
     [_fourBtnView.imageTen bk_whenTapped:^{
         TenViewController *ten=[[TenViewController alloc]init];
-        ten.step = [NSNumber numberWithInteger:10];
+        ten.whichAPI = 1;
         [self.navigationController pushViewController:ten animated:YES];
     }];
 #pragma mark 晒单
@@ -466,6 +455,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     viewlayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     viewlayout.scrollDirection =UICollectionViewScrollDirectionVertical;
     
+    
     _labelCollectionView  = [[UICollectionView alloc]initWithFrame:CGRectMake(_imageVNotice.frame.origin.x+_imageVNotice.frame.size.width+5 , ADAPT_HEIGHT(440)+10, SCREEN_WIDTH-_imageVNotice.frame.origin.x-_imageVNotice.frame.size.width-5-20,labelHeight)collectionViewLayout:viewlayout];
     [_labelCollectionView registerNib:[UINib nibWithNibName:@"labelCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellLabel];
     
@@ -475,13 +465,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     _labelCollectionView.showsVerticalScrollIndicator=NO;
     _labelCollectionView.showsHorizontalScrollIndicator = NO;
     _labelCollectionView.tag=101;
-    
+    _labelCollectionView.backgroundColor=COLOR_BACK_MAIN;
+
     //    _collectionView.contentSize=CGSizeMake(_collectionView.frame.size.width,100*_arr.count );
     
     //创建一个 cell 的注册方式 必须写上
     //  设置时钟动画 定时器
     //    _isDragging=NO;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
     //  将定时器添加到主线程
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 
@@ -548,8 +539,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             
         }else {
             HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-            AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
-            model=_appGoodsList[indexPath.row];
+            AppGoodsListModel *model=_appGoodsList[indexPath.row];
             
             if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:5]]) {
                 cell.imageVState.image=[UIImage imageNamed:@"zhuanqu_b"];
@@ -567,12 +557,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_BLUE range:NSMakeRange(5,percentString.length)];
             cell.labelProgress.attributedText = attString;
             [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
+            cell.joinList.tag = 500 + indexPath.row;
             [cell.joinList bk_whenTapped:^{
+                NSInteger row = cell.joinList.tag - 500;
+                AppGoodsListModel * joinModel = _appGoodsList[row];
                 //加入购物车
                 NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
                 if ([login isEqualToString:Success]) {
 #pragma mark 加入购物车 已登陆
-                    self.issueId = model.issueId;
+                    self.issueId = joinModel.issueId;
                     [self joinShoppingCart];
                 }else{
 #pragma mark 加入购物车 未登陆

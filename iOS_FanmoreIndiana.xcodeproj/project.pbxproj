@@ -134,6 +134,10 @@
 		F23688B11C72B6DB00EF2762 /* AppGoodsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F23688AE1C72B6DB00EF2762 /* AppGoodsDetailModel.m */; };
 		F23688B21C72B6DB00EF2762 /* AppGoodsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F23688B01C72B6DB00EF2762 /* AppGoodsListModel.m */; };
 		F237A5981C59C52A00F91B45 /* DetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F237A5971C59C52A00F91B45 /* DetailWebViewController.m */; };
+		F237B0741C818D6C00A743C7 /* AppPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F237B0731C818D6C00A743C7 /* AppPayModel.m */; };
+		F237B0CC1C81974700A743C7 /* ListRedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F237B0CA1C81974700A743C7 /* ListRedPacketCell.m */; };
+		F237B0CD1C81974700A743C7 /* ListRedPacketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F237B0CB1C81974700A743C7 /* ListRedPacketCell.xib */; };
+		F237B0D01C81979B00A743C7 /* RedChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F237B0CF1C81979B00A743C7 /* RedChooseViewController.m */; };
 		F23BEFE51C5F278700E87042 /* DetailPastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23BEFE41C5F278700E87042 /* DetailPastViewController.m */; };
 		F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23BEFE71C5F279800E87042 /* DetailPastTableViewCell.m */; };
 		F23BEFEA1C5F279800E87042 /* DetailPastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23BEFE81C5F279800E87042 /* DetailPastTableViewCell.xib */; };
@@ -536,6 +540,13 @@
 		F23688B01C72B6DB00EF2762 /* AppGoodsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGoodsListModel.m; sourceTree = "<group>"; };
 		F237A5961C59C52A00F91B45 /* DetailWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWebViewController.h; sourceTree = "<group>"; };
 		F237A5971C59C52A00F91B45 /* DetailWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWebViewController.m; sourceTree = "<group>"; };
+		F237B0721C818D6C00A743C7 /* AppPayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppPayModel.h; sourceTree = "<group>"; };
+		F237B0731C818D6C00A743C7 /* AppPayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppPayModel.m; sourceTree = "<group>"; };
+		F237B0C91C81974700A743C7 /* ListRedPacketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListRedPacketCell.h; sourceTree = "<group>"; };
+		F237B0CA1C81974700A743C7 /* ListRedPacketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListRedPacketCell.m; sourceTree = "<group>"; };
+		F237B0CB1C81974700A743C7 /* ListRedPacketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListRedPacketCell.xib; sourceTree = "<group>"; };
+		F237B0CE1C81979B00A743C7 /* RedChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedChooseViewController.h; sourceTree = "<group>"; };
+		F237B0CF1C81979B00A743C7 /* RedChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedChooseViewController.m; sourceTree = "<group>"; };
 		F23BEFE31C5F278700E87042 /* DetailPastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPastViewController.h; sourceTree = "<group>"; };
 		F23BEFE41C5F278700E87042 /* DetailPastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPastViewController.m; sourceTree = "<group>"; };
 		F23BEFE61C5F279800E87042 /* DetailPastTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPastTableViewCell.h; sourceTree = "<group>"; };
@@ -907,8 +918,8 @@
 			children = (
 				6031C5361C4C82C300D6B567 /* home */,
 				F23BF0081C5F4C2500E87042 /* announced */,
-				60FFF2C11C4E142600A93D7E /* login */,
 				F21E82D91C78130000C732F1 /* List */,
+				60FFF2C11C4E142600A93D7E /* login */,
 				60B5A3691C520A5500E4C7BB /* my */,
 				6029AB161C4DD85300198FE3 /* other */,
 			);
@@ -1396,6 +1407,8 @@
 				F21E82E11C7813B100C732F1 /* ListViewController.m */,
 				F2F587D51C7D4CF3007187B0 /* PayViewController.h */,
 				F2F587D61C7D4CF3007187B0 /* PayViewController.m */,
+				F237B0CE1C81979B00A743C7 /* RedChooseViewController.h */,
+				F237B0CF1C81979B00A743C7 /* RedChooseViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1407,6 +1420,8 @@
 				F21E82EE1C7813EC00C732F1 /* CartModel.m */,
 				F2F587DB1C7D7C9C007187B0 /* AppBalanceModel.h */,
 				F2F587DC1C7D7C9C007187B0 /* AppBalanceModel.m */,
+				F237B0721C818D6C00A743C7 /* AppPayModel.h */,
+				F237B0731C818D6C00A743C7 /* AppPayModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -1429,6 +1444,9 @@
 				F2F587CB1C7D49EA007187B0 /* PayButtonTableViewCell.h */,
 				F2F587CC1C7D49EA007187B0 /* PayButtonTableViewCell.m */,
 				F2F587CD1C7D49EA007187B0 /* PayButtonTableViewCell.xib */,
+				F237B0C91C81974700A743C7 /* ListRedPacketCell.h */,
+				F237B0CA1C81974700A743C7 /* ListRedPacketCell.m */,
+				F237B0CB1C81974700A743C7 /* ListRedPacketCell.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -1647,6 +1665,7 @@
 				F23670051C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.xib in Resources */,
 				F24119721C74648900C2B07E /* DetailNumberTableViewCell.xib in Resources */,
 				F21E82EA1C7813E500C732F1 /* ListTableViewCell.xib in Resources */,
+				F237B0CD1C81974700A743C7 /* ListRedPacketCell.xib in Resources */,
 				F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */,
 				F290AD061C4E50A3005F05AC /* HomeFourBtnCView.xib in Resources */,
 				F23BEFF21C5F2F5D00E87042 /* DetailShareTableViewCell.xib in Resources */,
@@ -1806,6 +1825,7 @@
 				F21E82E91C7813E500C732F1 /* ListTableViewCell.m in Sources */,
 				605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */,
 				F23DE3CF1C522E34002AB5FC /* DetailWayBCView.m in Sources */,
+				F237B0741C818D6C00A743C7 /* AppPayModel.m in Sources */,
 				F24119681C74526100C2B07E /* ShareViewController.m in Sources */,
 				6073E1511C7AEC1F005AD927 /* MineShareController.m in Sources */,
 				60584F151C4E228D00F23B95 /* GTMBase64.m in Sources */,
@@ -1832,6 +1852,7 @@
 				F241196B1C74552000C2B07E /* AppCategoryListModel.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				60F389EC1C7566AE0080D759 /* AdressController.m in Sources */,
+				F237B0D01C81979B00A743C7 /* RedChooseViewController.m in Sources */,
 				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
 				6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */,
 				6000429C1C744C5D00CEDC7A /* openssl_wrapper.m in Sources */,
@@ -1868,6 +1889,7 @@
 				60EB31A51C55C86C006C070B /* FanmoreUserController.m in Sources */,
 				F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */,
 				F2F587EA1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m in Sources */,
+				F237B0CC1C81974700A743C7 /* ListRedPacketCell.m in Sources */,
 				F23DE3D91C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m in Sources */,
 				F23BEFE51C5F278700E87042 /* DetailPastViewController.m in Sources */,
 			);

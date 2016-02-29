@@ -125,7 +125,7 @@ static NSString * cellDPasting=@"cellDPasting";
             
             [self.pastList removeAllObjects];
             [self.pastList addObjectsFromArray:temp];
-            if (_tableView) {
+            if (!_tableView) {
                 [self createTableView];
             }else {
                 [_tableView reloadData];

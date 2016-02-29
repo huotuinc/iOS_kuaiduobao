@@ -54,7 +54,7 @@ static NSString *cellClassB=@"cellClassB";
             
             [self.titleList removeAllObjects];
             [self.titleList addObjectsFromArray:temp];
-            if (_tableView) {
+            if (!_tableView) {
                 [self createTableView];
             }else {
                 [_tableView reloadData];
@@ -121,7 +121,7 @@ static NSString *cellClassB=@"cellClassB";
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _titleList.count +1 ;
+    return _titleList.count +2 ;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
@@ -133,12 +133,35 @@ static NSString *cellClassB=@"cellClassB";
     }
     
 }
+//1 10元专区进去 2 全部进入(有分页参数) 3商品分类(pid)进入 4其他进入(有分页参数)
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TenViewController *ten = [[TenViewController alloc]init];
-    AppCategoryListModel *model = _titleList[indexPath.row];
-    ten.step = model.pid;
-    ten.whichAPI = 2;
-    [self.navigationController pushViewController:ten animated:YES];
+    if (indexPath.row == 0) {
+        ten.whichAPI = 2;
+        [self.navigationController pushViewController:ten animated:YES];
+        return;
+    }else if (indexPath.row == 1) {
+    
+    } else {
+        AppCategoryListModel *model = _titleList[indexPath.row - 2];
+        if ([model.type integerValue] == 0) {
+            ten.whichAPI = 1;
+            [self.navigationController pushViewController:ten  animated:YES];
+        }
+        if ([model.type integerValue] == 1) {
+            ten.whichAPI = 3;
+            ten.pid = model.pid;
+            [self.navigationController pushViewController:ten  animated:YES];
+        }
+        if ([model.type integerValue] == 2) {
+            ten.whichAPI = 4;
+            [self.navigationController pushViewController:ten  animated:YES];
+        }
+
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
