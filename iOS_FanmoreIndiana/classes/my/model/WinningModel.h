@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSNumber *toAmount;
 @property (nonatomic, assign) NSInteger deliveryStatus;
+@property (nonatomic, strong) NSNumber *deliveryId;
 
 @end

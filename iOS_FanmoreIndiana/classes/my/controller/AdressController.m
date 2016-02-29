@@ -114,7 +114,7 @@ static NSString *addressIdentify = @"addressIdnetify";
     
     if (_tpye == 2) {
         if (cell.model.defaultAddress) {
-            [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+//            [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
             self.selected = indexPath.row;
         }
     }
@@ -149,6 +149,8 @@ static NSString *addressIdentify = @"addressIdnetify";
         
     }
 }
+
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     return @"删除";

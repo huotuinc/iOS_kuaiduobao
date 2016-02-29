@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WinningModel.h"
+#import "WinningDeliveryModel.h"
 
 @interface NewShareController : UITableViewController
 @property (weak, nonatomic) IBOutlet UITextField *shareTitle;
@@ -21,5 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *goodJoinCount;
 @property (weak, nonatomic) IBOutlet UILabel *luckyNo;
 @property (weak, nonatomic) IBOutlet UILabel *goodTime;
+
+@property (nonatomic, strong) WinningModel *WinningModel;
 
 @end

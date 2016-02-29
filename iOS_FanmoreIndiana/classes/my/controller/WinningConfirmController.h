@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WinningDeliveryModel.h"
+#import "WinningModel.h"
 
 @interface WinningConfirmController : UITableViewController
 
-@property (nonatomic, strong) NSNumber *issueId;
+@property (nonatomic, strong) WinningModel *winningModel;
 
 /**
  *  获得奖品
@@ -68,5 +70,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *luckyNum;
 @property (weak, nonatomic) IBOutlet UILabel *joinCount;
 @property (weak, nonatomic) IBOutlet UILabel *time;
+
+
 
 @end

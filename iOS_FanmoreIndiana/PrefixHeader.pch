@@ -33,7 +33,8 @@
 #define WeiXin @"1220397601"
 
 /**微信支付*/
-#define Ali
+#define AliPayPid @"2088211251545121"
+#define AliPyaKey @"wkxysgteujgbcxawiylcm79598fbtiwu"
 
 //有盟appKey
 #define UMAppKey @"52faffcf56240bc21a023179"
