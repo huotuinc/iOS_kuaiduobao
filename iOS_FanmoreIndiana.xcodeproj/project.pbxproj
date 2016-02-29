@@ -182,6 +182,7 @@
 		F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */; };
 		F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F271EAF61C72B896003E782D /* AppBuyListModel.m */; };
 		F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F277EF591C60A073007D4F8D /* AppNewOpenListModel.m */; };
+		F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F27C18A31C841E36002F32C5 /* InformationViewController.m */; };
 		F28651D51C731789004E0357 /* AppPastListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F28651D41C731789004E0357 /* AppPastListModel.m */; };
 		F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */; };
 		F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */; };
@@ -621,6 +622,8 @@
 		F271EAF61C72B896003E782D /* AppBuyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBuyListModel.m; sourceTree = "<group>"; };
 		F277EF581C60A073007D4F8D /* AppNewOpenListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNewOpenListModel.h; sourceTree = "<group>"; };
 		F277EF591C60A073007D4F8D /* AppNewOpenListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppNewOpenListModel.m; sourceTree = "<group>"; };
+		F27C18A21C841E36002F32C5 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		F27C18A31C841E36002F32C5 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		F28651D31C731789004E0357 /* AppPastListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppPastListModel.h; sourceTree = "<group>"; };
 		F28651D41C731789004E0357 /* AppPastListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppPastListModel.m; sourceTree = "<group>"; };
 		F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FMLableStyle.h"; sourceTree = "<group>"; };
@@ -968,6 +971,8 @@
 				F2C7A4D11C75AD49002E08FA /* DetailNumberViewController.m */,
 				F2F587F61C7DA14A007187B0 /* DetailShareNextViewController.h */,
 				F2F587F71C7DA14A007187B0 /* DetailShareNextViewController.m */,
+				F27C18A21C841E36002F32C5 /* InformationViewController.h */,
+				F27C18A31C841E36002F32C5 /* InformationViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1778,6 +1783,7 @@
 				60B6838B1C603F5500EDF671 /* RedPacketCell.m in Sources */,
 				6000429B1C744C5D00CEDC7A /* NSDataEx.m in Sources */,
 				F21E82EF1C7813EC00C732F1 /* CartModel.m in Sources */,
+				F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */,
 				601C712E1C7C419A00673B7F /* RecordController.m in Sources */,
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
 				6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */,

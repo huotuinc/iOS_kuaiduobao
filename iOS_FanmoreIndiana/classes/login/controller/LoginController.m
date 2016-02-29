@@ -156,6 +156,9 @@
     //保存新的token
     [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
     [self dismissViewControllerAnimated:YES completion:nil];
+    /**
+     *  //////
+     */
     
 }
 

@@ -9,5 +9,6 @@
 #import "AppGoodsListModel.h"
 
 @implementation AppGoodsListModel
+MJCodingImplementation
 
 @end

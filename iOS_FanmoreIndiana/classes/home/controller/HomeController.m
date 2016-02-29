@@ -28,6 +28,8 @@
 #import "DetailShareNextViewController.h"//
 #import "AppNoticeListModel.h"
 #import "AppSlideListModel.h"
+#import "InformationViewController.h"
+#import "CartModel.h"
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;
@@ -82,7 +84,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.view.backgroundColor=COLOR_BACK_MAIN;
     
     [self createBarButtonItem];
-    [self createSearchView];
+    [self createNavgationBarTitle];
 
     
     self.tabBarController.tabBar.hidden = NO;
@@ -137,9 +139,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 - (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"shezhi"] forState:UIControlStateNormal];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"searchwhite"] forState:UIControlStateNormal];
     [buttonL bk_whenTapped:^{
-        NSLog(@"点击左");
+        SearchViewController *search = [[SearchViewController alloc] init];
+        [self.navigationController pushViewController:search animated:YES];
     }];
     UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
     self.navigationItem.leftBarButtonItem=bbiL;
@@ -147,22 +150,32 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
-        DetailShareNextViewController *shareNext = [[DetailShareNextViewController alloc] init];
-        [self.navigationController pushViewController:shareNext animated:YES];    }];
+        InformationViewController *infor =[[InformationViewController alloc] init];
+        [self.navigationController pushViewController:infor animated:YES];
+    }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
 }
-- (void)createSearchView{
-    NSArray *nib= [[NSBundle mainBundle]loadNibNamed:@"HomeSearchCView" owner:nil options:nil];
-    _searchV=[nib firstObject];
-    _searchV.frame=CGRectMake(0, 0, ADAPT_WIDTH(540) , 25);
-    [_searchV.viewSearch bk_whenTapped:^{
-    SearchViewController *search = [[SearchViewController alloc] init];
-    [self.navigationController pushViewController:search animated:YES];
-}];
-    
-    self.navigationItem.titleView=_searchV;
+-(void)createNavgationBarTitle{
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
+    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"粉猫夺宝";
+    self.navigationItem.titleView = titleLabel;
 }
+//- (void)createSearchView{
+//    NSArray *nib= [[NSBundle mainBundle]loadNibNamed:@"HomeSearchCView" owner:nil options:nil];
+//    _searchV=[nib firstObject];
+//    _searchV.frame=CGRectMake(0, 0, ADAPT_WIDTH(540) , 25);
+//    [_searchV.viewSearch bk_whenTapped:^{
+//    SearchViewController *search = [[SearchViewController alloc] init];
+//    [self.navigationController pushViewController:search animated:YES];
+//}];
+//    
+//    self.navigationItem.titleView=_searchV;
+//}
 -(void)createMainCollectionView{
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
     flowLayout.naviHeight = 0;
@@ -184,6 +197,17 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];
+}
+#pragma mark 反归档
+- (NSArray *)getLocalDataArray{
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+    NSData *data = [NSData dataWithContentsOfFile:filename];
+    // 2.创建反归档对象
+    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    // 3.解码并存到数组中
+    NSArray *namesArray = [unArchiver decodeObjectForKey:LOCALCART];
+    return namesArray;
 }
 
 - (void)setupRefresh
@@ -355,7 +379,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
+        [SVProgressHUD showErrorWithStatus:@"加入购物车失败"];
 
         
     } withFileKey:nil];
@@ -569,6 +593,42 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                     [self joinShoppingCart];
                 }else{
 #pragma mark 加入购物车 未登陆
+                    [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+
+//                    //未进行归档
+//                    NSMutableArray *localArray = [NSMutableArray array];
+//                    if ([self getLocalDataArray] == nil) {
+//                        
+//                    }
+//                    //已进行
+//                    else{
+//                        localArray =[NSMutableArray arrayWithArray:[self getLocalDataArray]];
+//                    }
+//                    CartModel *model = [[CartModel alloc] init];
+//                    model.areaAmount = joinModel.areaAmount;
+//                    model.attendAmount = joinModel.attendAmount;
+//                    model.buyAmount = joinModel.buyAmount;
+//                    model.isSelect = joinModel.isSelect;
+//                    model.pictureUrl = joinModel.pictureUrl;
+//                    model.remainAmount = joinModel.remainAmount;
+//                    model.sid = joinModel.sid;
+//                    model.stepAmount = joinModel.stepAmount;
+//                    model.title = joinModel.title;
+//                    model.toAmount = joinModel.toAmount;
+//                    [localArray addObject:model];
+//                    NSMutableData *data = [[NSMutableData alloc] init];
+//                    //创建归档辅助类
+//                    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//                    //编码
+//                    [archiver encodeObject:localArray forKey:LOCALCART];
+//                    //结束编码
+//                    [archiver finishEncoding];
+//                    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//                    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+//                    //写入
+//                    [data writeToFile:filename atomically:YES];
+//                    LWLog(@"归档成功");
+                    
                 }
             }];
             if (indexPath.row % 2) {
@@ -804,6 +864,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 
+}
 
 @end

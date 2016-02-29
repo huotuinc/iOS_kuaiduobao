@@ -30,6 +30,7 @@
     [UILabel changeLabel:_labelNumber AndFont:24 AndColor:[UIColor whiteColor]];
     [UILabel changeLabel:_labelNumberA AndFont:28 AndColor:[UIColor whiteColor]];
     [UIButton changeButton:_buttonContent AndFont:28 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:[UIColor clearColor] AndBorderColor:[UIColor whiteColor] AndCornerRadius:3 AndBorderWidth:1];
+    _viewMain.backgroundColor = COLOR_BACK_WINNER;
 
 }
 -(void)drawRect:(CGRect)rect{
