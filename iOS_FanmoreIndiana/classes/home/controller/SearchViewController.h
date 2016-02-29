@@ -10,4 +10,7 @@
 
 @interface SearchViewController : UIViewController
 
+@property (nonatomic , copy) NSString *searchTitle;
+@property (nonatomic, assign) NSNumber *issueId;//加入购物车 商品issueId
+
 @end

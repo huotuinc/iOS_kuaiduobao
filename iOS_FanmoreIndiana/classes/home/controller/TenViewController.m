@@ -41,8 +41,12 @@ static NSString *cellTenMain=@"cellTenMain";
     [self createBarButtonItem];
     if (self.whichAPI == 1) {
         _tenAPI = @"getGoodsListByArea";
-    }else{
+    } else if (self.whichAPI == 2) {
+        _tenAPI = @"getGoodsListByAllCategory";
+    } else if (self.whichAPI == 3) {
         _tenAPI = @"getGoodsListByCategory";
+    } else if (self.whichAPI == 4) {
+        _tenAPI = @"getGoodsListByOtherCategory";
     }
     _appGoodsList=[NSMutableArray array];
     [self getAppGoodsList];
@@ -64,8 +68,8 @@ static NSString *cellTenMain=@"cellTenMain";
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     
-//    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsDetailList)];
-//    _tableView.mj_footer = Footer;
+    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
+    _tableView.mj_footer = Footer;
     
     //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
     
@@ -90,6 +94,8 @@ static NSString *cellTenMain=@"cellTenMain";
 -(void)clickRightButton{
 
 }
+//1 10元专区进去 2 全部进入(有分页参数) 3商品分类(pid)进入 4其他进入(有分页参数)
+
 #pragma mark 网络请求专区商品列表
 /**
  *  下拉刷新
@@ -97,8 +103,10 @@ static NSString *cellTenMain=@"cellTenMain";
 - (void)getAppGoodsList {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    if (_whichAPI == 1) {
-        dic[@"step"] = self.step;
+    if (_whichAPI == 1 || _whichAPI == 3) {
+        
+    }else {
+        dic[@"lastSort"] =@0;
     }
     
     [UserLoginTool loginRequestGet:_tenAPI parame:dic success:^(id json) {
@@ -109,10 +117,10 @@ static NSString *cellTenMain=@"cellTenMain";
             
             LWLog(@"%@",json[@"resultDescription"]);
             NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
+            self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
-            if (_tableView) {
+            if (!_tableView) {
                 [self createTableView];
             }else {
                 [_tableView reloadData];
@@ -131,36 +139,43 @@ static NSString *cellTenMain=@"cellTenMain";
 /**
  *  上拉加载更多
  */
-//- (void)getMoreGoodsList {
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    dic[@"step"] = @10;
-//    
-//    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
-//        
-//        LWLog(@"%@",json);
-//        
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-//            
-//            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-//            
-//            [self.appGoodsList addObjectsFromArray:temp];
-//            
-//            [_tableView reloadData];
-//        }
-//        [_tableView.mj_footer endRefreshing];
-//    } failure:^(NSError *error) {
-//        LWLog (@"%@",error);
-//    }];
-//    
-//}
+- (void)getMoreGoodsList {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (_whichAPI == 1 || _whichAPI == 3) {
+        
+    }else {
+        dic[@"lastSort"] =self.lastSort;
+    }
+    
+    [UserLoginTool loginRequestGet:_tenAPI parame:dic success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            
+            [self.appGoodsList addObjectsFromArray:temp];
+            
+            [_tableView reloadData];
+        }
+        [_tableView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        LWLog (@"%@",error);
+    }];
+    
+}
 -(void)createTableView{
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStylePlain];
+    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"TenTableViewCell" bundle:nil] forCellReuseIdentifier:cellTenMain];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     [self.view addSubview:_tableView];
-    [self setupRefresh];
+    if (_whichAPI == 1 || _whichAPI == 3) {
+    }else {
+        [self setupRefresh];
 
+    }
 }
 
 

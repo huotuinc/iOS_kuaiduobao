@@ -41,19 +41,35 @@
                                     <constraint firstAttribute="height" constant="1" id="pcf-x1-APv"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnL-5e-abO">
+                                <rect key="frame" x="49" y="50" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewv-ST-Bzy">
+                                <rect key="frame" x="49" y="50" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6A5-Tw-NEy" firstAttribute="leading" secondItem="fVr-JO-8Tf" secondAttribute="leading" id="1tY-Pf-fum"/>
+                            <constraint firstItem="ewv-ST-Bzy" firstAttribute="leading" secondItem="jTE-69-bFX" secondAttribute="trailing" constant="2" id="2gx-8q-YL8"/>
                             <constraint firstItem="ygb-dA-FXH" firstAttribute="top" secondItem="fVr-JO-8Tf" secondAttribute="top" id="CXn-Az-6hI"/>
                             <constraint firstAttribute="trailing" secondItem="6A5-Tw-NEy" secondAttribute="trailing" id="J8j-Nn-kF1"/>
                             <constraint firstItem="BNR-U5-IYX" firstAttribute="centerY" secondItem="jTE-69-bFX" secondAttribute="centerY" id="SiM-pw-4zX"/>
                             <constraint firstItem="jTE-69-bFX" firstAttribute="leading" secondItem="fVr-JO-8Tf" secondAttribute="leading" constant="10" id="WG9-9P-Rvj"/>
+                            <constraint firstItem="KnL-5e-abO" firstAttribute="leading" secondItem="jTE-69-bFX" secondAttribute="trailing" constant="5" id="cdK-gP-KgY"/>
                             <constraint firstItem="jTE-69-bFX" firstAttribute="centerY" secondItem="fVr-JO-8Tf" secondAttribute="centerY" id="cyP-UN-hqU"/>
                             <constraint firstAttribute="trailing" secondItem="ygb-dA-FXH" secondAttribute="trailing" id="egy-ab-REB"/>
                             <constraint firstItem="ygb-dA-FXH" firstAttribute="leading" secondItem="fVr-JO-8Tf" secondAttribute="leading" id="eia-GE-qCF"/>
                             <constraint firstAttribute="bottom" secondItem="6A5-Tw-NEy" secondAttribute="bottom" id="ips-TA-z0k"/>
+                            <constraint firstItem="ewv-ST-Bzy" firstAttribute="centerY" secondItem="jTE-69-bFX" secondAttribute="centerY" id="k51-a9-HDX"/>
                             <constraint firstAttribute="trailing" secondItem="BNR-U5-IYX" secondAttribute="trailing" constant="20" id="s3V-nF-d0H"/>
+                            <constraint firstItem="KnL-5e-abO" firstAttribute="centerY" secondItem="jTE-69-bFX" secondAttribute="centerY" id="t1y-HR-TIY"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -69,6 +85,8 @@
                 <outlet property="imageVTop" destination="ygb-dA-FXH" id="HgH-EN-Q99"/>
                 <outlet property="labelA" destination="jTE-69-bFX" id="yhL-uY-h2R"/>
                 <outlet property="labelB" destination="BNR-U5-IYX" id="fVs-ud-zzu"/>
+                <outlet property="labelCount" destination="KnL-5e-abO" id="u04-pN-3pS"/>
+                <outlet property="labelMoney" destination="ewv-ST-Bzy" id="24S-XC-mql"/>
             </connections>
         </tableViewCell>
     </objects>

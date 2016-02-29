@@ -21,5 +21,4 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSNumber *toAmount;
 
-
 @end

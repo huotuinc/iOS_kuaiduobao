@@ -10,7 +10,9 @@
 #import "PayATableViewCell.h"
 #import "PayBTableViewCell.h"
 #import "PayButtonTableViewCell.h"
-
+#import "AppPayModel.h"
+#import "UserModel.h"
+#import "TabBarController.h"
 static NSString *cellPA=@"cellPA";
 static NSString *cellPB=@"cellPB";
 static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
@@ -20,6 +22,10 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
 @property (nonatomic,strong) UITableView *tableView;
 
 @property (nonatomic,strong) PayButtonTableViewCell *payView;
+
+@property (nonatomic,strong) UserModel *userInfo;
+
+@property (nonatomic,strong) AppPayModel *payBackModel;
 
 
 @end
@@ -42,15 +48,78 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    self.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     [self createBarButtonItem];
     [self createPayView];
     [self createTableView];
 }
+#pragma mark  网络支付
 
+-(void)paySuccessOrFail {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"payType"] = @2;
+    dic[@"redPacketsId"] = _payModel.redPacketsId;
+    NSInteger payMoney = [_payModel.totalMoney integerValue] - [_payModel.redPacketsMinusMoney integerValue];
+    dic[@"money"] = [NSNumber numberWithInteger:payMoney];
+    [UserLoginTool loginRequestPostWithFile:@"pay" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"%@",json[@"resultDescription"]);
+            _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
+            [self remainPay];
+
+        }else {
+            LWLog(@"%@",json[@"resultDescription"]);
+            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+        [SVProgressHUD showSuccessWithStatus:@"支付失败"];
+        
+        
+    } withFileKey:nil];
+    
+    
+}
+- (void)remainPay {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"orderNo"] = _payBackModel.orderNo;
+    dic[@"money"] = _payBackModel.fee;
+    [UserLoginTool loginRequestPostWithFile:@"remainPay" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"%@",json[@"resultDescription"]);
+//            _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
+//            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+
+            
+        }else {
+            LWLog(@"%@",json[@"resultDescription"]);
+
+            
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+//        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        
+        
+    } withFileKey:nil];
+
+
+}
 -(void)createPayView{
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"PayButtonTableViewCell" owner:nil options:nil];
     _payView=[nib firstObject];
     _payView.frame = CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(130));
+    [_payView.buttonPay bk_whenTapped:^{
+        [self paySuccessOrFail];
+    }];
 }
 -(void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -71,64 +140,7 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
 -(void)clickRightButton{
     
 }
-//#pragma mark 网络请求专区商品列表
-///**
-// *  下拉刷新
-// */
-//- (void)getAppGoodsList {
-//    
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    dic[@"step"] = self.step;
-//    
-//    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
-//        
-//        LWLog(@"%@",json);
-//        
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-//            
-//            LWLog(@"%@",json[@"resultDescription"]);
-//            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-//            
-//            [self.appGoodsList removeAllObjects];
-//            [self.appGoodsList addObjectsFromArray:temp];
-//            [self createTableView];
-//            [_tableView reloadData];
-//        }else{
-//            LWLog(@"%@",json[@"resultDescription"]);
-//        }
-//        [_tableView.mj_header endRefreshing];
-//        
-//    } failure:^(NSError *error) {
-//        LWLog(@"%@",error);
-//    }];
-//    
-//}
 
-/**
- *  上拉加载更多
- */
-//- (void)getMoreGoodsList {
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    dic[@"step"] = @10;
-//
-//    [UserLoginTool loginRequestGet:@"getGoodsListByArea" parame:dic success:^(id json) {
-//
-//        LWLog(@"%@",json);
-//
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-//
-//            NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-//
-//            [self.appGoodsList addObjectsFromArray:temp];
-//
-//            [_tableView reloadData];
-//        }
-//        [_tableView.mj_footer endRefreshing];
-//    } failure:^(NSError *error) {
-//        LWLog (@"%@",error);
-//    }];
-//
-//}
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"PayATableViewCell" bundle:nil] forCellReuseIdentifier:cellPA];
@@ -138,8 +150,8 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
     _tableView.tableFooterView = _payView;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor clearColor];
+    
     [self.view addSubview:_tableView];
-//    [self setupRefresh];
     
 }
 
@@ -150,7 +162,7 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
     if (indexPath.section == 0) {
         PayATableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellPA forIndexPath:indexPath];
         cell.labelA.text = @"奖品合计";
-        cell.labelB.text = @"10元";
+        cell.labelB.text = [NSString stringWithFormat:@"%@",_payModel.totalMoney];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }else {
@@ -160,6 +172,16 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
             if (indexPath.row != 0) {
                 cell.imageVTop.hidden = YES;
+            }
+            if (indexPath.row == 0) {
+                cell.labelB.text = _payModel.redPacketsTitle;
+                cell.labelCount.text = [NSString stringWithFormat:@" %@个红包可用 ",_payModel.redPacketsNumber];
+            }
+            if (indexPath.row == 1) {
+                cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %@元)",self.userInfo.money];
+            }
+            if (indexPath.row == 2) {
+                cell.labelB.text = [NSString stringWithFormat:@"%@元",_payModel.money];
             }
             return cell;
         }else{
@@ -224,12 +246,28 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            RedChooseViewController *red = [[RedChooseViewController alloc] init];
+            red.delegate = self;
+            red.money = _payModel.totalMoney;
+            [self.navigationController pushViewController:red animated:YES];
+        }
+    }
 }
+-(void)sendRedId:(NSNumber *)redId andTitle: (NSString *)title andDiscountMoney: (NSNumber *)discountMoeny{
+    _payModel.redPacketsId = redId;
+    _payModel.redPacketsTitle = title;
+    _payModel.redPacketsMinusMoney = discountMoeny;
+    [_tableView reloadData];
+}
+
+
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.tabBarController.tabBar.hidden=NO;
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

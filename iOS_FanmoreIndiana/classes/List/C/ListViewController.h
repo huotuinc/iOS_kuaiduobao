@@ -11,5 +11,6 @@
 @interface ListViewController : UIViewController
 
 @property (nonatomic, strong) NSNumber *shoppingCartId;
+//@property (nonatomic,strong) NSNumber *redNumber;
 
 @end

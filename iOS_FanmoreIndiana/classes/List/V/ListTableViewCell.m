@@ -96,10 +96,10 @@
         [_imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
         _labelTitle.text=model.title;
         _labelRest.text=[NSString stringWithFormat:@"剩余%@人次",model.remainAmount];
-        _labelTotal.text=[NSString stringWithFormat:@"总需%@人次",model.areaAmount];
+        _labelTotal.text=[NSString stringWithFormat:@"总需%@人次",model.toAmount];
         _textFNumber.text=[NSString stringWithFormat:@"%@",model.buyAmount];
         _textFNumber.tag = 300 + indexPath.row;
-        if (![model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:1]]) {
+        if (![model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:0]]) {
             _labelNotice.text = [NSString stringWithFormat:@"只支持%@的倍数",model.areaAmount];
         }else{
             _labelNotice.text = @"";

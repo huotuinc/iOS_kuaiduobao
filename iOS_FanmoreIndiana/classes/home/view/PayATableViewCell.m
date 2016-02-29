@@ -16,6 +16,14 @@
     _imageVTop.image = [UIImage imageNamed:@"line_huise"];
     [UILabel changeLabel:_labelA AndFont:26 AndColor:COLOR_TEXT_CONTENT];
     [UILabel changeLabel:_labelB AndFont:26 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelCount AndFont:26 AndColor:[UIColor whiteColor]];
+    _labelCount.layer.cornerRadius = 3;
+    _labelCount.layer.borderColor = COLOR_TEN_RED.CGColor;
+    _labelCount.layer.borderWidth = 1;
+    _labelCount.layer.masksToBounds =YES;
+    _labelCount.backgroundColor = COLOR_TEN_RED;
+    [UILabel changeLabel:_labelMoney AndFont:24 AndColor:COLOR_TEXT_DATE];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

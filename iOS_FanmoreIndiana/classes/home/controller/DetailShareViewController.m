@@ -96,7 +96,7 @@ static NSString *cellDShare=@"cellDShare";
             
             [self.shareList removeAllObjects];
             [self.shareList addObjectsFromArray:temp];
-            if (_tableView) {
+            if (!_tableView) {
                 [self createTableView];
             }else {
                 [_tableView reloadData];
