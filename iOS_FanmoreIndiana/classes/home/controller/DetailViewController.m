@@ -24,6 +24,9 @@
 #import "DetailAttendListFirstTableViewCell.h"
 #import <MJRefresh.h>
 #import "DetailBottomDoneCView.h"
+#import "DetailCalculateViewController.h"
+#import "DetailGoodsSelectCView.h"
+
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 static NSString * cellDFirst=@"cellDFirst";
@@ -47,6 +50,9 @@ static NSString * cellDFirst=@"cellDFirst";
 @property (nonatomic, strong) AppGoodsDetailModel *detailModel;
 @property (nonatomic, strong) AppBuyListModel *buyModel;
 @property (nonatomic, strong) NSTimer *countTimer;
+
+@property (nonatomic, strong) UIView * backView;//背景灰色视图
+@property (nonatomic, strong) DetailGoodsSelectCView * selectView;//背景灰色视图
 
 
 @end
@@ -275,6 +281,11 @@ static NSString * cellDFirst=@"cellDFirst";
         _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm;ss"];
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
         [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead]];
+        [_winnerView.buttonContent bk_whenTapped:^{
+            DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
+            calculate.issueId = _detailModel.issueId;
+            [self.navigationController pushViewController:calculate animated:YES];
+        }];
         
         if (_detailModel.numbers.count > 0) {
             NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
@@ -442,16 +453,17 @@ static NSString * cellDFirst=@"cellDFirst";
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
         [_bottomView.buttonAdd bk_whenTapped:^{
-            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-            if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
-                self.issueId = _detailModel.issueId;
-                [self joinShoppingCart];
-            }else{
-#pragma mark 加入购物车 未登陆
-                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-
-            }
+//            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//            if ([login isEqualToString:Success]) {
+//#pragma mark 加入购物车 已登陆
+//                self.issueId = _detailModel.issueId;
+//                [self joinShoppingCart];
+//            }else{
+//#pragma mark 加入购物车 未登陆
+//                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+//
+//            }
+            [self createSelectView];
         }];
         [_bottomView.buttonGo bk_whenTapped:^{
             NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
@@ -494,6 +506,38 @@ static NSString * cellDFirst=@"cellDFirst";
     }
     
 }
+- (void)createSelectView{
+    if (!_backView) {
+        _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _backView.backgroundColor = [UIColor grayColor];
+        _backView.alpha = 0.5;
+    }
+    if (!_selectView) {
+        NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"DetailGoodsSelectCView" owner:nil options:nil];
+        _selectView = [nib firstObject];
+        _selectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, ADAPT_HEIGHT(460));
+        [UIView animateWithDuration:0.3f animations:^{
+            _selectView.frame = CGRectMake(0, SCREEN_HEIGHT - ADAPT_HEIGHT(460) - 64, SCREEN_WIDTH, ADAPT_HEIGHT(460));
+        }];
+        
+        [_selectView.buttonClose bk_whenTapped:^{
+            [UIView animateWithDuration:0.3f animations:^{
+                _selectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, ADAPT_HEIGHT(460));
+            } completion:^(BOOL finished) {
+                [_backView removeFromSuperview];
+                [_selectView removeFromSuperview];
+                _selectView = nil;
+                _backView = nil;
+            }];
+            
+        }];
+
+    }
+    [self.view addSubview:_backView];
+    [self.view addSubview:_selectView];
+
+}
+
 -(void)createStateLabel{
     _titleStateLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _titleStrHeight/_titleLineCount*3,_titleStrHeight/_titleLineCount)];
     if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:0]]) {

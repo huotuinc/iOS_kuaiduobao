@@ -128,6 +128,15 @@
 		F21E82EB1C7813E500C732F1 /* ListBottomCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F21E82E71C7813E500C732F1 /* ListBottomCView.m */; };
 		F21E82EC1C7813E500C732F1 /* ListBottomCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21E82E81C7813E500C732F1 /* ListBottomCView.xib */; };
 		F21E82EF1C7813EC00C732F1 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F21E82EE1C7813EC00C732F1 /* CartModel.m */; };
+		F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */; };
+		F22A8D6D1C85884500165BBC /* DetailCalculateFormulaCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D6B1C85884500165BBC /* DetailCalculateFormulaCView.m */; };
+		F22A8D6E1C85884500165BBC /* DetailCalculateFormulaCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D6C1C85884500165BBC /* DetailCalculateFormulaCView.xib */; };
+		F22A8D721C8588BA00165BBC /* DetailCalculateMainCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D701C8588BA00165BBC /* DetailCalculateMainCView.m */; };
+		F22A8D731C8588BA00165BBC /* DetailCalculateMainCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D711C8588BA00165BBC /* DetailCalculateMainCView.xib */; };
+		F22A8D771C8588CD00165BBC /* DetailCalculateNumberCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D751C8588CD00165BBC /* DetailCalculateNumberCView.m */; };
+		F22A8D781C8588CD00165BBC /* DetailCalculateNumberCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D761C8588CD00165BBC /* DetailCalculateNumberCView.xib */; };
+		F22A8D7C1C858E7100165BBC /* DetailCalculateATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */; };
+		F22A8D7D1C858E7100165BBC /* DetailCalculateATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */; };
 		F23670041C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23670021C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m */; };
 		F23670051C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23670031C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.xib */; };
 		F23670091C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23670071C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m */; };
@@ -180,6 +189,11 @@
 		F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8A71C55C41B00141EBC /* ClassATableViewCell.xib */; };
 		F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */; };
 		F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */; };
+		F26E0C8B1C8699DD00DB1908 /* AppCountResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */; };
+		F26E0C8E1C869A3800DB1908 /* AppUserNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C8D1C869A3800DB1908 /* AppUserNumberModel.m */; };
+		F26E0C911C86E38E00DB1908 /* RedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C901C86E38E00DB1908 /* RedViewController.m */; };
+		F26E0C951C8702BC00DB1908 /* DetailGoodsSelectCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C931C8702BC00DB1908 /* DetailGoodsSelectCView.m */; };
+		F26E0C961C8702BC00DB1908 /* DetailGoodsSelectCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */; };
 		F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F271EAF61C72B896003E782D /* AppBuyListModel.m */; };
 		F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F277EF591C60A073007D4F8D /* AppNewOpenListModel.m */; };
 		F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F27C18A31C841E36002F32C5 /* InformationViewController.m */; };
@@ -532,6 +546,20 @@
 		F21E82E81C7813E500C732F1 /* ListBottomCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListBottomCView.xib; sourceTree = "<group>"; };
 		F21E82ED1C7813EC00C732F1 /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
 		F21E82EE1C7813EC00C732F1 /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
+		F22A8D671C8586D800165BBC /* DetailCalculateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateViewController.h; sourceTree = "<group>"; };
+		F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateViewController.m; sourceTree = "<group>"; };
+		F22A8D6A1C85884500165BBC /* DetailCalculateFormulaCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateFormulaCView.h; sourceTree = "<group>"; };
+		F22A8D6B1C85884500165BBC /* DetailCalculateFormulaCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateFormulaCView.m; sourceTree = "<group>"; };
+		F22A8D6C1C85884500165BBC /* DetailCalculateFormulaCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateFormulaCView.xib; sourceTree = "<group>"; };
+		F22A8D6F1C8588BA00165BBC /* DetailCalculateMainCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateMainCView.h; sourceTree = "<group>"; };
+		F22A8D701C8588BA00165BBC /* DetailCalculateMainCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateMainCView.m; sourceTree = "<group>"; };
+		F22A8D711C8588BA00165BBC /* DetailCalculateMainCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateMainCView.xib; sourceTree = "<group>"; };
+		F22A8D741C8588CD00165BBC /* DetailCalculateNumberCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateNumberCView.h; sourceTree = "<group>"; };
+		F22A8D751C8588CD00165BBC /* DetailCalculateNumberCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateNumberCView.m; sourceTree = "<group>"; };
+		F22A8D761C8588CD00165BBC /* DetailCalculateNumberCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateNumberCView.xib; sourceTree = "<group>"; };
+		F22A8D791C858E7100165BBC /* DetailCalculateATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateATableViewCell.h; sourceTree = "<group>"; };
+		F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateATableViewCell.m; sourceTree = "<group>"; };
+		F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateATableViewCell.xib; sourceTree = "<group>"; };
 		F23670011C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncedBCollectionViewCell.h; sourceTree = "<group>"; };
 		F23670021C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncedBCollectionViewCell.m; sourceTree = "<group>"; };
 		F23670031C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnouncedBCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -618,6 +646,15 @@
 		F262E8AA1C55C42D00141EBC /* ClassBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBTableViewCell.h; sourceTree = "<group>"; };
 		F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBTableViewCell.m; sourceTree = "<group>"; };
 		F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassBTableViewCell.xib; sourceTree = "<group>"; };
+		F26E0C891C8699DD00DB1908 /* AppCountResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCountResultModel.h; sourceTree = "<group>"; };
+		F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCountResultModel.m; sourceTree = "<group>"; };
+		F26E0C8C1C869A3800DB1908 /* AppUserNumberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUserNumberModel.h; sourceTree = "<group>"; };
+		F26E0C8D1C869A3800DB1908 /* AppUserNumberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUserNumberModel.m; sourceTree = "<group>"; };
+		F26E0C8F1C86E38E00DB1908 /* RedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedViewController.h; sourceTree = "<group>"; };
+		F26E0C901C86E38E00DB1908 /* RedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedViewController.m; sourceTree = "<group>"; };
+		F26E0C921C8702BC00DB1908 /* DetailGoodsSelectCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGoodsSelectCView.h; sourceTree = "<group>"; };
+		F26E0C931C8702BC00DB1908 /* DetailGoodsSelectCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailGoodsSelectCView.m; sourceTree = "<group>"; };
+		F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailGoodsSelectCView.xib; sourceTree = "<group>"; };
 		F271EAF51C72B896003E782D /* AppBuyListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBuyListModel.h; sourceTree = "<group>"; };
 		F271EAF61C72B896003E782D /* AppBuyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBuyListModel.m; sourceTree = "<group>"; };
 		F277EF581C60A073007D4F8D /* AppNewOpenListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNewOpenListModel.h; sourceTree = "<group>"; };
@@ -973,6 +1010,10 @@
 				F2F587F71C7DA14A007187B0 /* DetailShareNextViewController.m */,
 				F27C18A21C841E36002F32C5 /* InformationViewController.h */,
 				F27C18A31C841E36002F32C5 /* InformationViewController.m */,
+				F22A8D671C8586D800165BBC /* DetailCalculateViewController.h */,
+				F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */,
+				F26E0C8F1C86E38E00DB1908 /* RedViewController.h */,
+				F26E0C901C86E38E00DB1908 /* RedViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1060,6 +1101,21 @@
 				F2F587F11C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.h */,
 				F2F587F21C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.m */,
 				F2F587F31C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.xib */,
+				F22A8D6A1C85884500165BBC /* DetailCalculateFormulaCView.h */,
+				F22A8D6B1C85884500165BBC /* DetailCalculateFormulaCView.m */,
+				F22A8D6C1C85884500165BBC /* DetailCalculateFormulaCView.xib */,
+				F22A8D6F1C8588BA00165BBC /* DetailCalculateMainCView.h */,
+				F22A8D701C8588BA00165BBC /* DetailCalculateMainCView.m */,
+				F22A8D711C8588BA00165BBC /* DetailCalculateMainCView.xib */,
+				F22A8D741C8588CD00165BBC /* DetailCalculateNumberCView.h */,
+				F22A8D751C8588CD00165BBC /* DetailCalculateNumberCView.m */,
+				F22A8D761C8588CD00165BBC /* DetailCalculateNumberCView.xib */,
+				F22A8D791C858E7100165BBC /* DetailCalculateATableViewCell.h */,
+				F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */,
+				F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */,
+				F26E0C921C8702BC00DB1908 /* DetailGoodsSelectCView.h */,
+				F26E0C931C8702BC00DB1908 /* DetailGoodsSelectCView.m */,
+				F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1482,6 +1538,10 @@
 				F2F587E51C7D86CF007187B0 /* AppSlideListModel.m */,
 				F2F587F91C7DC667007187B0 /* AppShareOrderDetailModel.h */,
 				F2F587FA1C7DC667007187B0 /* AppShareOrderDetailModel.m */,
+				F26E0C891C8699DD00DB1908 /* AppCountResultModel.h */,
+				F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */,
+				F26E0C8C1C869A3800DB1908 /* AppUserNumberModel.h */,
+				F26E0C8D1C869A3800DB1908 /* AppUserNumberModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1698,6 +1758,11 @@
 				F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */,
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 				F2F587EB1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.xib in Resources */,
+				F22A8D781C8588CD00165BBC /* DetailCalculateNumberCView.xib in Resources */,
+				F22A8D7D1C858E7100165BBC /* DetailCalculateATableViewCell.xib in Resources */,
+				F22A8D6E1C85884500165BBC /* DetailCalculateFormulaCView.xib in Resources */,
+				F26E0C961C8702BC00DB1908 /* DetailGoodsSelectCView.xib in Resources */,
+				F22A8D731C8588BA00165BBC /* DetailCalculateMainCView.xib in Resources */,
 				604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */,
 				F23DE3D21C522E34002AB5FC /* DetailBottomCView.xib in Resources */,
 				60F389F41C7567050080D759 /* AddressCell.xib in Resources */,
@@ -1776,12 +1841,16 @@
 			files = (
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
+				F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */,
 				F21E82E21C7813B100C732F1 /* ListViewController.m in Sources */,
 				F23BEFFC1C5F338F00E87042 /* DetailNumberHeadCView.m in Sources */,
+				F26E0C8E1C869A3800DB1908 /* AppUserNumberModel.m in Sources */,
 				F237A5981C59C52A00F91B45 /* DetailWebViewController.m in Sources */,
 				F2FF346B1C56031900558C13 /* UserLoginTool.m in Sources */,
 				60B6838B1C603F5500EDF671 /* RedPacketCell.m in Sources */,
 				6000429B1C744C5D00CEDC7A /* NSDataEx.m in Sources */,
+				F22A8D6D1C85884500165BBC /* DetailCalculateFormulaCView.m in Sources */,
+				F26E0C8B1C8699DD00DB1908 /* AppCountResultModel.m in Sources */,
 				F21E82EF1C7813EC00C732F1 /* CartModel.m in Sources */,
 				F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */,
 				601C712E1C7C419A00673B7F /* RecordController.m in Sources */,
@@ -1796,6 +1865,7 @@
 				60F154A01C76A8F90043ED3F /* ChangeNickNameController.m in Sources */,
 				F2F587D71C7D4CF3007187B0 /* PayViewController.m in Sources */,
 				F23DE3D11C522E34002AB5FC /* DetailBottomCView.m in Sources */,
+				F22A8D721C8588BA00165BBC /* DetailCalculateMainCView.m in Sources */,
 				6000429D1C744C5D00CEDC7A /* RSADataSigner.m in Sources */,
 				60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */,
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
@@ -1824,6 +1894,7 @@
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
 				60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */,
 				F23670091C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m in Sources */,
+				F22A8D7C1C858E7100165BBC /* DetailCalculateATableViewCell.m in Sources */,
 				F2F587DD1C7D7C9C007187B0 /* AppBalanceModel.m in Sources */,
 				F24119711C74648900C2B07E /* DetailNumberTableViewCell.m in Sources */,
 				60584F141C4E228D00F23B95 /* Base64Util.m in Sources */,
@@ -1832,6 +1903,7 @@
 				600042B31C746CA400CEDC7A /* PayModel.m in Sources */,
 				60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */,
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
+				F26E0C911C86E38E00DB1908 /* RedViewController.m in Sources */,
 				6014A7241C7DB34A006B2900 /* PutModel.m in Sources */,
 				F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */,
 				F21E82E91C7813E500C732F1 /* ListTableViewCell.m in Sources */,
@@ -1865,6 +1937,7 @@
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				60F389EC1C7566AE0080D759 /* AdressController.m in Sources */,
 				F237B0D01C81979B00A743C7 /* RedChooseViewController.m in Sources */,
+				F26E0C951C8702BC00DB1908 /* DetailGoodsSelectCView.m in Sources */,
 				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
 				6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */,
 				6000429C1C744C5D00CEDC7A /* openssl_wrapper.m in Sources */,
@@ -1890,6 +1963,7 @@
 				6000429E1C744C5D00CEDC7A /* RSADataVerifier.m in Sources */,
 				60C65BFA1C80482500332AD8 /* WinningConfirmController.m in Sources */,
 				F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */,
+				F22A8D771C8588CD00165BBC /* DetailCalculateNumberCView.m in Sources */,
 				F2F587CE1C7D49EA007187B0 /* PayButtonTableViewCell.m in Sources */,
 				F2F587DA1C7D4E86007187B0 /* AnnouncedViewController.m in Sources */,
 				F2C7A4D21C75AD49002E08FA /* DetailNumberViewController.m in Sources */,

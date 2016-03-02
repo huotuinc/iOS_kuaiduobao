@@ -52,14 +52,6 @@ typedef void(^LQQNumChange)();
 @property (nonatomic, weak)   id           m_data;
 @property (nonatomic, weak)   NSIndexPath *m_tmpIndexPath;
 
-/**
- *  @author LQQ, 16-02-18 11:02:39
- *
- *  刷新cell
- *
- *  @param model cell数据模型
- */
--(void)reloadDataWith:(CartModel*)model;
 
 /**
  *  == [子类可以重写] ==

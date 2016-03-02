@@ -103,6 +103,10 @@ static NSString *cellABMain=@"cellABMain";
             
             [self.openList removeAllObjects];
             [self.openList addObjectsFromArray:temp];
+            for (int i = 0; i < _openList.count; i++) {
+                AppNewOpenListModel *model = _openList[i];
+                model.toAwardingTime = model.toAwardingTime * 100;
+            }
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
             if (!_collectionView) {
@@ -142,6 +146,10 @@ static NSString *cellABMain=@"cellABMain";
             NSArray *temp = [AppNewOpenListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             
             [self.openList addObjectsFromArray:temp];
+            for (int i = 0; i < _openList.count; i++) {
+                AppNewOpenListModel *model = _openList[i];
+                model.toAwardingTime = model.toAwardingTime * 100;
+            }
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
 

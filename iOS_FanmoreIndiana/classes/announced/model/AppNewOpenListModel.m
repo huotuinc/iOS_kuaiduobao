@@ -19,7 +19,6 @@
 
 - (void)countDown {
     
-//    _toAwardingTime = _toAwardingTime * 60;
 
     _toAwardingTime -= 1;
 }

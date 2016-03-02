@@ -30,6 +30,9 @@
 #import "AppSlideListModel.h"
 #import "InformationViewController.h"
 #import "CartModel.h"
+#import "RedViewController.h"
+
+static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;
@@ -88,23 +91,6 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     
     self.tabBarController.tabBar.hidden = NO;
-
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-//    [[UINavigationBar appearance] setBackgroundColor:[UIColor yellowColor]];
-
-    self.isFirstLoad = YES;
-    self.isLoadView = NO;
-
-    _appGoodsList=[NSMutableArray array];
-    _appNoticeList=[NSMutableArray array];
-    _appSlideList=[NSMutableArray array];
-    _arrURLString=[NSMutableArray array];
-    
-    self.type = [NSNumber numberWithInteger:1];
-    // 创建操作队列
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
         [self getAppNoticeList];
@@ -129,6 +115,24 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [queue addOperation:op3];
     [queue addOperation:op4];
 
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor yellowColor]];
+
+    self.isFirstLoad = YES;
+    self.isLoadView = NO;
+
+    _appGoodsList=[NSMutableArray array];
+    _appNoticeList=[NSMutableArray array];
+    _appSlideList=[NSMutableArray array];
+    _arrURLString=[NSMutableArray array];
+    
+    self.type = [NSNumber numberWithInteger:1];
+    // 创建操作队列
+   
+
 //    [self getAppSlideList];
 //    [self createMainCollectionView];
 //    [self getGoodsList];
@@ -150,8 +154,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
-        InformationViewController *infor =[[InformationViewController alloc] init];
-        [self.navigationController pushViewController:infor animated:YES];
+
     }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
@@ -198,7 +201,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];
 }
-#pragma mark 反归档
+#pragma mark 解归档
 - (NSArray *)getLocalDataArray{
     NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
@@ -439,6 +442,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         ten.whichAPI = 1;
         [self.navigationController pushViewController:ten animated:YES];
     }];
+#pragma mark 红包专区
+    [_fourBtnView.imageVRed bk_whenTapped:^{
+        RedViewController * red = [[RedViewController alloc] init];
+        [self.navigationController pushViewController:red animated:YES];
+    }];
+
 #pragma mark 晒单
     [_fourBtnView.imageVShow bk_whenTapped:^{
         ShareViewController *share=[[ShareViewController alloc]init];
@@ -447,7 +456,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }];
 #pragma mark 分享
     [_fourBtnView.imageVHelp bk_whenTapped:^{
-        DetailViewController *detail=[[DetailViewController alloc]init];
+
+//        DetailViewController *detail=[[DetailViewController alloc]init];
 //        detail.issueId=[NSNumber numberWithInteger:100000002];
 //        detail.whichAPI=[NSNumber numberWithInteger:2];
 //        [self.navigationController pushViewController:detail animated:YES];
@@ -489,7 +499,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     _labelCollectionView.showsVerticalScrollIndicator=NO;
     _labelCollectionView.showsHorizontalScrollIndicator = NO;
     _labelCollectionView.tag=101;
-    _labelCollectionView.backgroundColor=COLOR_BACK_MAIN;
+    _labelCollectionView.backgroundColor=[UIColor whiteColor];
 
     //    _collectionView.contentSize=CGSizeMake(_collectionView.frame.size.width,100*_arr.count );
     
@@ -593,41 +603,73 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                     [self joinShoppingCart];
                 }else{
 #pragma mark 加入购物车 未登陆
-                    [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+//                    [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
 
-//                    //未进行归档
-//                    NSMutableArray *localArray = [NSMutableArray array];
-//                    if ([self getLocalDataArray] == nil) {
-//                        
-//                    }
-//                    //已进行
-//                    else{
-//                        localArray =[NSMutableArray arrayWithArray:[self getLocalDataArray]];
-//                    }
-//                    CartModel *model = [[CartModel alloc] init];
-//                    model.areaAmount = joinModel.areaAmount;
-//                    model.attendAmount = joinModel.attendAmount;
-//                    model.buyAmount = joinModel.buyAmount;
-//                    model.isSelect = joinModel.isSelect;
-//                    model.pictureUrl = joinModel.pictureUrl;
-//                    model.remainAmount = joinModel.remainAmount;
-//                    model.sid = joinModel.sid;
-//                    model.stepAmount = joinModel.stepAmount;
-//                    model.title = joinModel.title;
-//                    model.toAmount = joinModel.toAmount;
-//                    [localArray addObject:model];
-//                    NSMutableData *data = [[NSMutableData alloc] init];
-//                    //创建归档辅助类
-//                    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-//                    //编码
-//                    [archiver encodeObject:localArray forKey:LOCALCART];
-//                    //结束编码
-//                    [archiver finishEncoding];
-//                    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//                    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
-//                    //写入
-//                    [data writeToFile:filename atomically:YES];
-//                    LWLog(@"归档成功");
+                    NSMutableArray *localArray = [NSMutableArray array];
+//                    localArray =nil;
+                    //未进行归档
+                    if ([self getLocalDataArray] == nil) {
+                        CartModel *cModel = [[CartModel alloc] init];
+                        cModel.areaAmount = joinModel.areaAmount;
+                        cModel.attendAmount = joinModel.attendAmount;
+                        cModel.isSelect = joinModel.isSelect;
+                        cModel.pictureUrl = joinModel.pictureUrl;
+                        cModel.remainAmount = joinModel.remainAmount;
+                        cModel.sid = joinModel.sid;
+                        cModel.stepAmount = joinModel.stepAmount;
+                        cModel.title = joinModel.title;
+                        cModel.toAmount = joinModel.toAmount;
+                        cModel.issueId = joinModel.issueId;
+                        cModel.userBuyAmount = joinModel.defaultAmount;
+                        cModel.pricePercentAmount = joinModel.pricePercentAmount;
+
+                        [localArray addObject:cModel];
+                    }
+                    //已进行
+                    else{
+                        localArray =[NSMutableArray arrayWithArray:[self getLocalDataArray]];
+                        //查看本地是否已有这期商品
+                        for (int i =0; i<localArray.count; i++) {
+                            CartModel *cModel = localArray[i];
+                            //有
+                            if ([cModel.issueId isEqualToNumber:joinModel.issueId ]) {
+                                NSInteger prcie;
+                                prcie = [model.buyAmount integerValue] + [joinModel.stepAmount integerValue];
+                                cModel.userBuyAmount = [NSNumber numberWithInteger:prcie];
+                                isExist = YES;
+                            }
+                        }
+                        if (!isExist) {
+                            CartModel *cModel = [[CartModel alloc] init];
+                            cModel.areaAmount = joinModel.areaAmount;
+                            cModel.attendAmount = joinModel.attendAmount;
+                            cModel.userBuyAmount = joinModel.defaultAmount;
+                            cModel.isSelect = joinModel.isSelect;
+                            cModel.pictureUrl = joinModel.pictureUrl;
+                            cModel.remainAmount = joinModel.remainAmount;
+                            cModel.sid = joinModel.sid;
+                            cModel.stepAmount = joinModel.stepAmount;
+                            cModel.title = joinModel.title;
+                            cModel.toAmount = joinModel.toAmount;
+                            cModel.issueId = joinModel.issueId;
+                            cModel.pricePercentAmount = joinModel.pricePercentAmount;
+
+                            [localArray addObject:cModel];
+                            isExist = NO;
+                        }
+                    }
+                    NSMutableData *data = [[NSMutableData alloc] init];
+                    //创建归档辅助类
+                    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+                    //编码
+                    [archiver encodeObject:localArray forKey:LOCALCART];
+                    //结束编码
+                    [archiver finishEncoding];
+                    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+                    //写入
+                    [data writeToFile:filename atomically:YES];
+                    [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
                     
                 }
             }];

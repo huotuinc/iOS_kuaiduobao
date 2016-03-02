@@ -155,13 +155,40 @@
     [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
     //保存新的token
     [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    //购物车结算登陆时 需要提交数据
+    if (self.postData == 1) {
+        [self postDataToServe];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
     /**
      *  //////
      */
     
 }
-
+#pragma mark 未登录提交购物车
+- (void)postDataToServe {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+      dic[@"cartsJson"] = self.cartsString;
+    [UserLoginTool loginRequestPostWithFile:@"joinAllCartToServer" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            LWLog(@"*****提交数据成功******");
+            LWLog(@"%@",json[@"resultDescription"]);
+            if ([self.logDelegate respondsToSelector:@selector(tableViewReloadData)]) {
+                [self.logDelegate tableViewReloadData];
+            }
+        }else {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+        
+        
+    } withFileKey:nil];
+    
+}
 
 
 @end
