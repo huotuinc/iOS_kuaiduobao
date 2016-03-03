@@ -14,7 +14,7 @@
     // Initialization code
     [UILabel changeLabel:_labelA AndFont:26 AndColor:COLOR_TEXT_CONTENT];
     [UILabel changeLabel:_labelB AndFont:24 AndColor:COLOR_TEXT_DATE];
-    [UILabel changeLabel:_labelC AndFont:24 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelC AndFont:24 AndColor:COLOR_SHINE_RED];
     _imageVLine.image = [UIImage imageNamed:@"line_huise"];
     _buttonShow.hidden = YES;
 }

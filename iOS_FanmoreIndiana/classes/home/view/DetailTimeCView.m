@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     // Initialization code
     _viewBase.backgroundColor=COLOR_BUTTON_ORANGE;
-    [UIButton changeButton:_buttonDetail AndFont:17 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:[UIColor clearColor] AndBorderColor:[UIColor whiteColor] AndCornerRadius:3 AndBorderWidth:1];
+//    [UIButton changeButton:_buttonDetail AndFont:17 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:[UIColor clearColor] AndBorderColor:[UIColor whiteColor] AndCornerRadius:3 AndBorderWidth:1];
     for (int i =0; i < 4; i++) {
         UILabel *label=[self viewWithTag:100 +i];
         [UILabel changeLabel:label AndFont:26 AndColor:[UIColor whiteColor]];

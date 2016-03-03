@@ -1,25 +1,25 @@
 //
-//  DetailCalculateNumberCView.m
+//  ListNumberTopTableViewCell.m
 //  iOS_FanmoreIndiana
 //
-//  Created by che on 16/3/1.
+//  Created by che on 16/3/3.
 //  Copyright © 2016年 刘琛. All rights reserved.
 //
 
-#import "DetailCalculateNumberCView.h"
+#import "ListNumberTopTableViewCell.h"
 
-@implementation DetailCalculateNumberCView
+@implementation ListNumberTopTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
     _imageVLineA.image = [UIImage imageNamed:@"line_huise"];
-    _imageVLine.image = [UIImage imageNamed:@"line_gray"];
     _imageVLineB.image = [UIImage imageNamed:@"line_huise"];
     _imageVLineC.image = [UIImage imageNamed:@"line_huise"];
-    [UILabel changeLabel:_labelA AndFont:26 AndColor:COLOR_TEXT_CONTENT];
-    [UILabel changeLabel:_labelB AndFont:26 AndColor:COLOR_SHINE_RED];
+    [UILabel changeLabel:_labelA AndFont:26 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelGoods AndFont:26 AndColor:COLOR_SHINE_BLUE];
+    [UILabel changeLabel:_labelIssued AndFont:26 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelCount AndFont:26 AndColor:COLOR_TEXT_CONTENT];
 }
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

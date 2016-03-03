@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ListNumberHeadCView">
+            <rect key="frame" x="0.0" y="0.0" width="750" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="750" height="299"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HgX-jI-oS5">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="299"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7U-cI-Z8c">
+                                <rect key="frame" x="0.0" y="60" width="750" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜您,参与成功!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHr-rc-oiV">
+                                        <rect key="frame" x="0.0" y="0.0" width="750" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请等待系统为您揭晓!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPV-7D-VzE">
+                                        <rect key="frame" x="0.0" y="40" width="750" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dPV-7D-VzE" secondAttribute="trailing" id="1ce-hl-1g7"/>
+                                    <constraint firstAttribute="bottom" secondItem="dPV-7D-VzE" secondAttribute="bottom" id="84G-pX-Dyf"/>
+                                    <constraint firstItem="dPV-7D-VzE" firstAttribute="top" secondItem="iHr-rc-oiV" secondAttribute="bottom" id="StW-FH-Kfk"/>
+                                    <constraint firstItem="dPV-7D-VzE" firstAttribute="leading" secondItem="D7U-cI-Z8c" secondAttribute="leading" id="f5X-oN-HVR"/>
+                                    <constraint firstItem="dPV-7D-VzE" firstAttribute="top" secondItem="D7U-cI-Z8c" secondAttribute="top" id="gz6-ou-Zbh"/>
+                                    <constraint firstAttribute="trailing" secondItem="iHr-rc-oiV" secondAttribute="trailing" id="kdY-MQ-YvL"/>
+                                    <constraint firstItem="iHr-rc-oiV" firstAttribute="top" secondItem="D7U-cI-Z8c" secondAttribute="top" id="leR-mW-Qt0"/>
+                                    <constraint firstItem="iHr-rc-oiV" firstAttribute="height" secondItem="D7U-cI-Z8c" secondAttribute="height" multiplier="1:2" id="mzr-GC-Thg"/>
+                                    <constraint firstItem="iHr-rc-oiV" firstAttribute="leading" secondItem="D7U-cI-Z8c" secondAttribute="leading" id="pNw-AF-4mK"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gz6-ou-Zbh"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Z6-nF-hqy">
+                                <rect key="frame" x="10" y="199" width="300" height="60"/>
+                                <state key="normal" title="继续夺宝"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvH-hQ-uOP">
+                                <rect key="frame" x="440" y="199" width="300" height="60"/>
+                                <state key="normal" title="查看记录"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dvH-hQ-uOP" secondAttribute="trailing" constant="10" id="2SF-AZ-Hxs"/>
+                            <constraint firstItem="9Z6-nF-hqy" firstAttribute="width" secondItem="HgX-jI-oS5" secondAttribute="width" multiplier="300:750" id="Fj4-tN-3DF"/>
+                            <constraint firstItem="dvH-hQ-uOP" firstAttribute="centerY" secondItem="9Z6-nF-hqy" secondAttribute="centerY" id="Foi-7F-DR9"/>
+                            <constraint firstItem="dvH-hQ-uOP" firstAttribute="width" secondItem="9Z6-nF-hqy" secondAttribute="width" id="Mmq-C0-fKA"/>
+                            <constraint firstItem="D7U-cI-Z8c" firstAttribute="centerY" secondItem="HgX-jI-oS5" secondAttribute="centerY" multiplier="100:150" id="VXY-Fn-FJj"/>
+                            <constraint firstItem="9Z6-nF-hqy" firstAttribute="centerX" secondItem="HgX-jI-oS5" secondAttribute="centerX" id="VaO-15-1Jy"/>
+                            <constraint firstItem="9Z6-nF-hqy" firstAttribute="height" secondItem="HgX-jI-oS5" secondAttribute="height" multiplier="60:300" id="Wh2-zu-NHd"/>
+                            <constraint firstItem="9Z6-nF-hqy" firstAttribute="centerY" secondItem="HgX-jI-oS5" secondAttribute="centerY" multiplier="230:150" id="XEG-9v-eQz"/>
+                            <constraint firstItem="dvH-hQ-uOP" firstAttribute="height" secondItem="9Z6-nF-hqy" secondAttribute="height" id="XXO-Mg-lcO"/>
+                            <constraint firstItem="D7U-cI-Z8c" firstAttribute="leading" secondItem="HgX-jI-oS5" secondAttribute="leading" id="XcH-7d-Dow"/>
+                            <constraint firstItem="D7U-cI-Z8c" firstAttribute="centerX" secondItem="HgX-jI-oS5" secondAttribute="centerX" id="fcD-Wn-1Qo"/>
+                            <constraint firstAttribute="trailing" secondItem="D7U-cI-Z8c" secondAttribute="trailing" id="hx2-wJ-PvJ"/>
+                            <constraint firstItem="D7U-cI-Z8c" firstAttribute="height" secondItem="HgX-jI-oS5" secondAttribute="height" multiplier="80:300" id="m7a-cO-U11"/>
+                            <constraint firstItem="9Z6-nF-hqy" firstAttribute="leading" secondItem="HgX-jI-oS5" secondAttribute="leading" constant="10" id="oFE-G3-T5y"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VaO-15-1Jy"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="HgX-jI-oS5" secondAttribute="bottom" id="EpH-ay-zLn"/>
+                    <constraint firstAttribute="trailing" secondItem="HgX-jI-oS5" secondAttribute="trailing" id="XN6-PK-Xg1"/>
+                    <constraint firstItem="HgX-jI-oS5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cGN-q6-EuE"/>
+                    <constraint firstItem="HgX-jI-oS5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oq9-e8-6zY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonGo" destination="9Z6-nF-hqy" id="xeK-wK-ATD"/>
+                <outlet property="buttonLook" destination="dvH-hQ-uOP" id="7lB-G9-Iwf"/>
+                <outlet property="labelA" destination="iHr-rc-oiV" id="0RR-NJ-wuX"/>
+                <outlet property="labelB" destination="dPV-7D-VzE" id="ptQ-6K-gap"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

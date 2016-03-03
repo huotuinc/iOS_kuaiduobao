@@ -209,6 +209,15 @@
 		F290AD1B1C4E6811005F05AC /* labelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F290AD191C4E6811005F05AC /* labelCollectionViewCell.xib */; };
 		F2B3BCDF1C7CA8D500AECFA5 /* HomeSearchCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B3BCDD1C7CA8D500AECFA5 /* HomeSearchCView.m */; };
 		F2B3BCE01C7CA8D500AECFA5 /* HomeSearchCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B3BCDE1C7CA8D500AECFA5 /* HomeSearchCView.xib */; };
+		F2C426421C88243800C9CEF0 /* ListNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C426411C88243800C9CEF0 /* ListNumberViewController.m */; };
+		F2C426461C88246D00C9CEF0 /* ListNumberHeadCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C426441C88246D00C9CEF0 /* ListNumberHeadCView.m */; };
+		F2C426471C88246D00C9CEF0 /* ListNumberHeadCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C426451C88246D00C9CEF0 /* ListNumberHeadCView.xib */; };
+		F2C4264B1C88277E00C9CEF0 /* ListNumberTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C426491C88277E00C9CEF0 /* ListNumberTopTableViewCell.m */; };
+		F2C4264C1C88277E00C9CEF0 /* ListNumberTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C4264A1C88277E00C9CEF0 /* ListNumberTopTableViewCell.xib */; };
+		F2C426501C882A9000C9CEF0 /* ListNumberMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C4264E1C882A9000C9CEF0 /* ListNumberMainTableViewCell.m */; };
+		F2C426511C882A9000C9CEF0 /* ListNumberMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C4264F1C882A9000C9CEF0 /* ListNumberMainTableViewCell.xib */; };
+		F2C426551C882C2B00C9CEF0 /* ListNumberBottomCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C426531C882C2B00C9CEF0 /* ListNumberBottomCView.m */; };
+		F2C426561C882C2B00C9CEF0 /* ListNumberBottomCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C426541C882C2B00C9CEF0 /* ListNumberBottomCView.xib */; };
 		F2C7A4D21C75AD49002E08FA /* DetailNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7A4D11C75AD49002E08FA /* DetailNumberViewController.m */; };
 		F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E241051C7C79BA004D222E /* HelpViewController.m */; };
 		F2F587C21C7D4249007187B0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587C11C7D4249007187B0 /* SearchViewController.m */; };
@@ -687,6 +696,20 @@
 		F2B3BCDC1C7CA8D500AECFA5 /* HomeSearchCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchCView.h; sourceTree = "<group>"; };
 		F2B3BCDD1C7CA8D500AECFA5 /* HomeSearchCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchCView.m; sourceTree = "<group>"; };
 		F2B3BCDE1C7CA8D500AECFA5 /* HomeSearchCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeSearchCView.xib; sourceTree = "<group>"; };
+		F2C426401C88243800C9CEF0 /* ListNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNumberViewController.h; sourceTree = "<group>"; };
+		F2C426411C88243800C9CEF0 /* ListNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNumberViewController.m; sourceTree = "<group>"; };
+		F2C426431C88246D00C9CEF0 /* ListNumberHeadCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNumberHeadCView.h; sourceTree = "<group>"; };
+		F2C426441C88246D00C9CEF0 /* ListNumberHeadCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNumberHeadCView.m; sourceTree = "<group>"; };
+		F2C426451C88246D00C9CEF0 /* ListNumberHeadCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListNumberHeadCView.xib; sourceTree = "<group>"; };
+		F2C426481C88277E00C9CEF0 /* ListNumberTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNumberTopTableViewCell.h; sourceTree = "<group>"; };
+		F2C426491C88277E00C9CEF0 /* ListNumberTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNumberTopTableViewCell.m; sourceTree = "<group>"; };
+		F2C4264A1C88277E00C9CEF0 /* ListNumberTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListNumberTopTableViewCell.xib; sourceTree = "<group>"; };
+		F2C4264D1C882A9000C9CEF0 /* ListNumberMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNumberMainTableViewCell.h; sourceTree = "<group>"; };
+		F2C4264E1C882A9000C9CEF0 /* ListNumberMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNumberMainTableViewCell.m; sourceTree = "<group>"; };
+		F2C4264F1C882A9000C9CEF0 /* ListNumberMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListNumberMainTableViewCell.xib; sourceTree = "<group>"; };
+		F2C426521C882C2B00C9CEF0 /* ListNumberBottomCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNumberBottomCView.h; sourceTree = "<group>"; };
+		F2C426531C882C2B00C9CEF0 /* ListNumberBottomCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNumberBottomCView.m; sourceTree = "<group>"; };
+		F2C426541C882C2B00C9CEF0 /* ListNumberBottomCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListNumberBottomCView.xib; sourceTree = "<group>"; };
 		F2C7A4D01C75AD49002E08FA /* DetailNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNumberViewController.h; sourceTree = "<group>"; };
 		F2C7A4D11C75AD49002E08FA /* DetailNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNumberViewController.m; sourceTree = "<group>"; };
 		F2E241041C7C79BA004D222E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
@@ -1493,6 +1516,8 @@
 				F2F587D61C7D4CF3007187B0 /* PayViewController.m */,
 				F237B0CE1C81979B00A743C7 /* RedChooseViewController.h */,
 				F237B0CF1C81979B00A743C7 /* RedChooseViewController.m */,
+				F2C426401C88243800C9CEF0 /* ListNumberViewController.h */,
+				F2C426411C88243800C9CEF0 /* ListNumberViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1531,6 +1556,18 @@
 				F237B0C91C81974700A743C7 /* ListRedPacketCell.h */,
 				F237B0CA1C81974700A743C7 /* ListRedPacketCell.m */,
 				F237B0CB1C81974700A743C7 /* ListRedPacketCell.xib */,
+				F2C426431C88246D00C9CEF0 /* ListNumberHeadCView.h */,
+				F2C426441C88246D00C9CEF0 /* ListNumberHeadCView.m */,
+				F2C426451C88246D00C9CEF0 /* ListNumberHeadCView.xib */,
+				F2C426481C88277E00C9CEF0 /* ListNumberTopTableViewCell.h */,
+				F2C426491C88277E00C9CEF0 /* ListNumberTopTableViewCell.m */,
+				F2C4264A1C88277E00C9CEF0 /* ListNumberTopTableViewCell.xib */,
+				F2C4264D1C882A9000C9CEF0 /* ListNumberMainTableViewCell.h */,
+				F2C4264E1C882A9000C9CEF0 /* ListNumberMainTableViewCell.m */,
+				F2C4264F1C882A9000C9CEF0 /* ListNumberMainTableViewCell.xib */,
+				F2C426521C882C2B00C9CEF0 /* ListNumberBottomCView.h */,
+				F2C426531C882C2B00C9CEF0 /* ListNumberBottomCView.m */,
+				F2C426541C882C2B00C9CEF0 /* ListNumberBottomCView.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -1732,6 +1769,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2C4264C1C88277E00C9CEF0 /* ListNumberTopTableViewCell.xib in Resources */,
 				F23DE3D61C522E34002AB5FC /* DetailProgressCView.xib in Resources */,
 				6014A7181C7D53A5006B2900 /* GoAheadCell.xib in Resources */,
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
@@ -1744,9 +1782,11 @@
 				F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */,
 				F2573F481C57218900EEB851 /* DetailTimeCView.xib in Resources */,
 				606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */,
+				F2C426511C882A9000C9CEF0 /* ListNumberMainTableViewCell.xib in Resources */,
 				F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
 				F236700A1C7EEB4E008A6576 /* AnnouncedCollectionViewCell.xib in Resources */,
+				F2C426471C88246D00C9CEF0 /* ListNumberHeadCView.xib in Resources */,
 				F23DE3D81C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib in Resources */,
 				F2F587D41C7D49FC007187B0 /* PayBTableViewCell.xib in Resources */,
 				604C62761C50C57900569F0B /* ShareSDKUI.bundle in Resources */,
@@ -1762,6 +1802,7 @@
 				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				F2B3BCE01C7CA8D500AECFA5 /* HomeSearchCView.xib in Resources */,
+				F2C426561C882C2B00C9CEF0 /* ListNumberBottomCView.xib in Resources */,
 				F24119621C74057D00C2B07E /* DetailPastingTableViewCell.xib in Resources */,
 				602BB5DD1C77FD9700C29F74 /* city.plist in Resources */,
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
@@ -1860,6 +1901,7 @@
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */,
+				F2C426421C88243800C9CEF0 /* ListNumberViewController.m in Sources */,
 				F21E82E21C7813B100C732F1 /* ListViewController.m in Sources */,
 				F23BEFFC1C5F338F00E87042 /* DetailNumberHeadCView.m in Sources */,
 				F26E0C8E1C869A3800DB1908 /* AppUserNumberModel.m in Sources */,
@@ -1906,6 +1948,7 @@
 				F2B3BCDF1C7CA8D500AECFA5 /* HomeSearchCView.m in Sources */,
 				6000429A1C744C5D00CEDC7A /* MD5DataSigner.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
+				F2C4264B1C88277E00C9CEF0 /* ListNumberTopTableViewCell.m in Sources */,
 				60C65BF41C80392200332AD8 /* RedPacketsModel.m in Sources */,
 				F23688B11C72B6DB00EF2762 /* AppGoodsDetailModel.m in Sources */,
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
@@ -1945,6 +1988,7 @@
 				608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
 				F23BEFF11C5F2F5D00E87042 /* DetailShareTableViewCell.m in Sources */,
+				F2C426461C88246D00C9CEF0 /* ListNumberHeadCView.m in Sources */,
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
 				604926271C5EF3590092D231 /* RechargeController.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
@@ -1966,6 +2010,7 @@
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
 				F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */,
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
+				F2C426551C882C2B00C9CEF0 /* ListNumberBottomCView.m in Sources */,
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
@@ -1993,6 +2038,7 @@
 				60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */,
 				60EB31A51C55C86C006C070B /* FanmoreUserController.m in Sources */,
 				F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */,
+				F2C426501C882A9000C9CEF0 /* ListNumberMainTableViewCell.m in Sources */,
 				F2F587EA1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m in Sources */,
 				608D428E1C869B6C000C4845 /* payRequsestHandler.mm in Sources */,
 				F237B0CC1C81974700A743C7 /* ListRedPacketCell.m in Sources */,

@@ -15,8 +15,7 @@
 #import "TabBarController.h"
 static NSString *cellPA=@"cellPA";
 static NSString *cellPB=@"cellPB";
-static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
-
+static NSInteger _whichPay = 0 ;  //支付类型 0微信 1支付宝 2用户余额
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -26,6 +25,7 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
 @property (nonatomic,strong) UserModel *userInfo;
 
 @property (nonatomic,strong) AppPayModel *payBackModel;
+
 
 
 @end
@@ -203,9 +203,16 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
                 cell.imageVLine.hidden = YES;
 
             }
+            cell.buttonSelect.tag = 500 + indexPath.row;
+            //支付类型 0微信 1支付宝 2用户余额
             [cell.buttonSelect bk_whenTapped:^{
-                
-                _whichPay = indexPath.row - 2;
+                LWLog(@"+++++++++++++%ld",indexPath.row);
+                for (int i = 3; i < 5; i++) {
+                    UIButton *btn = [cell viewWithTag:500+i];
+                    btn.selected = NO;
+                }
+                cell.buttonSelect.selected = YES;
+                _whichPay = indexPath.row - 3;
                 
             }];
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
