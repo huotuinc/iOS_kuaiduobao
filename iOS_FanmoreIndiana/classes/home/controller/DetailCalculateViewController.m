@@ -124,9 +124,11 @@ static NSString *cellDCA = @"cellDCA";
         [_sectionBView.buttonShow bk_whenTapped:^{
             if (_isExpanded) {
                 _sectionBView.buttonShow.titleLabel.text = @"展开";
+                [_sectionBView.buttonShow setTitle:@"展开" forState:UIControlStateNormal];
                 _isExpanded = NO;
             }else {
                 _sectionBView.buttonShow.titleLabel.text = @"收起";
+                [_sectionBView.buttonShow setTitle:@"收起" forState:UIControlStateNormal];
                 _isExpanded = YES;
             }
             [tableView reloadData];

@@ -751,20 +751,17 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                     button.selected = YES;
                     if (button.tag != 103) {
                         num =0;
-#warning 人气点击方法
                         if (button.tag ==100) {
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:1];
                             orderNumberNow = 0;
                         }
-#warning 最新点击方法
                         if (button.tag ==101) {
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:2];
                             orderNumberNow = 1;
 
                         }
-#warning 进度点击方法
                         if (button.tag ==102) {
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:3];
@@ -778,7 +775,6 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                             [self getGoodsList];
                         }];
                     }else{
-#warning 总需人次第一次点击
                         //总需人次的第一次点击
                         button.selected=YES;
                         if (num %2 ==0) {
@@ -789,7 +785,6 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                             [self getGoodsList];
                             orderNumberNow = 3;
 }
-#warning 总需人次第二次点击
                         //总需人次的第二次点击
                         else{
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
@@ -866,9 +861,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         DetailViewController *detail=[[DetailViewController alloc]init];
-        AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
-        model=_appGoodsList[indexPath.row];
-        detail.goodsId=model.pid;
+        AppGoodsListModel *aModel=[[AppGoodsListModel alloc]init];
+        aModel=_appGoodsList[indexPath.row];
+        detail.joinModel = aModel;
+        detail.goodsId=aModel.pid;
         detail.whichAPI=[NSNumber numberWithInteger:1];
         [self.navigationController pushViewController:detail animated:YES];    }
 }
@@ -905,6 +901,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     
 }
+
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
