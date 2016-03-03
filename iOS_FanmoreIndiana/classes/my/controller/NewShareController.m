@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"新增晒单";
+    
     self.firstImage.userInteractionEnabled = YES;
     [self.firstImage bk_whenTapped:^{
         self.selectImage = self.firstImage;
@@ -46,7 +48,15 @@
   
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"发布" style:UIBarButtonItemStylePlain handler:^(id sender) {
-        
+        if (self.shareTitle.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入晒单标题"];
+        }else if (self.shareDetail.text.length == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入晒单描述"];
+        }else if ([self picturesAreTheSame]) {
+            [SVProgressHUD showErrorWithStatus:@"请设置4张晒单图片"];
+        }else {
+            [self addShareOrdor];
+        }
     }];
 }
 
@@ -61,6 +71,21 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)addShareOrdor {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"issuId"] = self.WinningModel.issueId;
+    dic[@"title"] = self.shareTitle.text;
+    dic[@"content"] = self.shareDetail.text;
+    dic[@"profileData"] = [self getArrayFromImages];
+    
+    [UserLoginTool loginRequestPostWithFile:@"addShareOrder" parame:dic success:^(id json) {
+        LWLog(@"%@", json);
+    } failure:^(NSError *error) {
+        LWLog(@"%@", error);
+    } withFileKey:nil];
 }
 
 
@@ -207,20 +232,45 @@
 - (BOOL)picturesAreTheSame {
     UIImage *temp = [UIImage imageNamed:@"trtr"];
     if ([self.firstImage.image isEqual:temp]) {
-        return NO;
+        return YES;
     }
     if ([self.secondImage.image isEqual:temp]) {
-        return NO;
+        return YES;
     }
     if ([self.thirdImage.image isEqual:temp]) {
         return NO;
     }
     if ([self.fourthImage.image isEqual:temp]) {
-        return NO;
+        return YES;
+    }
+    return NO;
+}
+
+- (NSArray *)getArrayFromImages {
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    [array addObject:[self getStringFromImage:self.firstImage.image]];
+    [array addObject:[self getStringFromImage:self.secondImage.image]];
+    [array addObject:[self getStringFromImage:self.thirdImage.image]];
+    [array addObject:[self getStringFromImage:self.fourthImage.image]];
+    
+    return array;
+}
+
+- (NSString *)getStringFromImage:(UIImage *) image {
+    NSData *data = nil;
+    if (UIImagePNGRepresentation(image) == nil) {
+        
+        data = UIImageJPEGRepresentation(image, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(image);
     }
     
-    return YES;
-    
+    NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return imagefile;
 }
 
 @end
