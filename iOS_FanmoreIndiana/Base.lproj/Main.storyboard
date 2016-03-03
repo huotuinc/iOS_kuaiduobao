@@ -1576,7 +1576,7 @@
                                                         <constraint firstAttribute="height" constant="35" id="DuP-G4-UnZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1593,17 +1593,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="319"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trtr" translatesAutoresizingMaskIntoConstraints="NO" id="GSa-vg-R75">
-                                                    <rect key="frame" x="313" y="220" width="91" height="91"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="GSa-vg-R75" secondAttribute="height" multiplier="1:1" id="dOd-UT-U3c"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="dOd-UT-U3c"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trtr" translatesAutoresizingMaskIntoConstraints="NO" id="SkP-gU-V7g">
                                                     <rect key="frame" x="214" y="220" width="91" height="91"/>
                                                     <constraints>
@@ -1625,11 +1614,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6g-2h-nXk">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="210"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iEX-Y2-gBx">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEX-Y2-gBx">
                                                             <rect key="frame" x="10" y="10" width="394" height="190"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <color key="backgroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                         </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1641,6 +1630,17 @@
                                                         <constraint firstAttribute="height" constant="210" id="rP5-mq-i30"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trtr" translatesAutoresizingMaskIntoConstraints="NO" id="GSa-vg-R75">
+                                                    <rect key="frame" x="313" y="220" width="91" height="91"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="GSa-vg-R75" secondAttribute="height" multiplier="1:1" id="dOd-UT-U3c"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="dOd-UT-U3c"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="88e-tc-ss1" firstAttribute="leading" secondItem="75r-FV-B91" secondAttribute="leading" constant="10" id="3b4-9Q-7St"/>
