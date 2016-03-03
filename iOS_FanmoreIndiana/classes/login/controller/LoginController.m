@@ -163,7 +163,9 @@
     /**
      *  //////
      */
-    
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"addressModel"]];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
 }
 #pragma mark 未登录提交购物车
 - (void)postDataToServe {

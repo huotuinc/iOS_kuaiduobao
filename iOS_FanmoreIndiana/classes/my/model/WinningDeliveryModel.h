@@ -10,10 +10,12 @@
 
 @interface WinningDeliveryModel : NSObject
 
+@property (nonatomic, strong) NSNumber *awardingDate;
 @property (nonatomic, strong) NSNumber *confirmAddressTime;
-@property (nonatomic, assign) NSInteger *deliveryStatus;
+@property (nonatomic, assign) NSInteger deliveryStatus;
 @property (nonatomic, strong) NSNumber *deliveryTime;
 @property (nonatomic, strong) NSString *details;
+@property (nonatomic, strong) NSNumber *pid;
 @property (nonatomic, strong) NSNumber *issueId;
 @property (nonatomic, strong) NSNumber *mobile;
 @property (nonatomic, strong) NSString *receiver;

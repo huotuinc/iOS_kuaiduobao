@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface AdressModel : NSObject
 
-@property (nonatomic, strong) NSNumber *cityId;
-@property (nonatomic, assign) BOOL *defaultAddress;
+@property (nonatomic, assign) BOOL defaultAddress;
 @property (nonatomic, strong) NSString *details;
 @property (nonatomic, strong) NSNumber *addressId;
 @property (nonatomic, strong) NSString *mobile;

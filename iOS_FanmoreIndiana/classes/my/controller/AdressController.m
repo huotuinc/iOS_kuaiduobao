@@ -8,7 +8,7 @@
 
 #import "AdressController.h"
 #import "AddressCell.h"
-#import "AddressModel.h"
+#import "AdressModel.h"
 #import "AddAddressController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 
@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *addressList;
 
 @property (nonatomic, assign) NSInteger selected;
+
 
 @end
 
@@ -56,6 +57,20 @@ static NSString *addressIdentify = @"addressIdnetify";
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  取出默认地址保存本地
+ */
+- (void)saveDefaultAddress {
+    for (AdressModel *address in _addressList) {
+        if (address.defaultAddress) {
+            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+            [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+            
+        }
+    }
+}
+
 - (void)getNewAddressList {
     
     [SVProgressHUD showWithStatus:@"数据加载中"];
@@ -67,9 +82,10 @@ static NSString *addressIdentify = @"addressIdnetify";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             [self.addressList removeAllObjects];
             if (![json[@"resultData"] isKindOfClass:[NSNull class]]) {
-                NSArray *array = [AddressModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+                NSArray *array = [AdressModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
                 [self.addressList addObjectsFromArray:array];
                 [self.tableView reloadData];
+//                [self saveDefaultAddress];
             }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
@@ -111,14 +127,6 @@ static NSString *addressIdentify = @"addressIdnetify";
         add.model = _addressList[indexPath.row];
         [self.navigationController pushViewController:add animated:YES];
     }];
-    
-    if (_tpye == 2) {
-        if (cell.model.defaultAddress) {
-//            [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            self.selected = indexPath.row;
-        }
-    }
-    
     return cell;
 }
 
@@ -130,9 +138,9 @@ static NSString *addressIdentify = @"addressIdnetify";
     if (_tpye == 2) {
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:self.selected inSection:0] animated:YES];
         self.selected = indexPath.row;
-        AddressModel *model = self.addressList[indexPath.row];
+        AdressModel *model = self.addressList[indexPath.row];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        dic[@"deliveryId"] = self.winningModel.pid;
+        dic[@"deliveryId"] = self.winningModel.deliveryId;
         dic[@"receiver"] = model.receiver;
         dic[@"mobile"] = model.mobile;
         dic[@"details"] = model.details;
@@ -158,7 +166,7 @@ static NSString *addressIdentify = @"addressIdnetify";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        AddressModel *model = self.addressList[indexPath.row];
+        AdressModel *model = self.addressList[indexPath.row];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"addressId"] = model.addressId;
         
@@ -166,6 +174,7 @@ static NSString *addressIdentify = @"addressIdnetify";
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
                 [self.addressList removeObject:model];
                 [self.tableView reloadData];
+                
             }
         } failure:^(NSError *error) {
             LWLog(@"%@",error);

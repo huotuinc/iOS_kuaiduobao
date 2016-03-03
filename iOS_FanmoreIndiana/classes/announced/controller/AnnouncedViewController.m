@@ -121,6 +121,7 @@ static NSString *cellABMain=@"cellABMain";
         [_collectionView.mj_header endRefreshing];
         
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         LWLog(@"%@",error);
     }];
     

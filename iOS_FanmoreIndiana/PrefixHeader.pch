@@ -4,7 +4,7 @@
 //
 //  Created by 刘琛 on 16/1/18.
 //  Copyright © 2016年 刘琛. All rights reserved.
-//
+//  new
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
@@ -30,13 +30,14 @@
 #define LOCALCART @"localCart"
 
 /**微信支付*/
-#define WeiXinPaySigNkey @"NzfP6pfeljyHeY08LO9p8YAKZCGLz8akO4lCGdXZOGnVsJqfo8jeuYB7C0GoFJGEKZMDVGKWYnbbJj3pCpvJzd4iY7bVglaNz54XAD26tiCr5DZGLjZFoRxbqe8i3HT5"
-#define WeiXinPARTNERKEY @"18076bf2a8bf9479f2cddeec13fd2ec0"
-#define WeiXin @"1220397601"
+#define AliPayPid @"2088211251545121"
+#define AliPayKey @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAMCul0XS9X/cVMkmrSeaZXnSvrs/bK5EiZf3d3/lTwHx165wAX/UIz4AcZHbKkYKKzmZKrRsu3tLRKFuflooKSVmWxk2hmeMqRETPZ/t8rKf8UONZIpOlOXEmJ/rYwxhnMeVhbJJxsko2so/jc+XAPLyv0tsfoI/TsJuhaGQ569ZAgMBAAECgYAK4lHdOdtwS4vmiO7DC++rgAISJbUH6wsysGHpsZRS8cxTKDSNefg7ql6/9Hdg2XYznLlS08mLX2cTD2DHyvj38KtxLEhLP7MtgjFFeTJ5Ta1UuBRERcmy0xSLh2zayiSwGTM8Bwu7UD6LUSTGwrgRR2Gg4EDpSG08J5OCThKF4QJBAPOO6WKI/sEuoRDtcIJqtv58mc4RSmit/WszkvPlZrjNFDU6TrOEnPU0zi3f8scxpPxVYROBceGj362m+02G2I0CQQDKhlq4pIM2FLNoDP4mzEUyoXIwqn6vIsAv8n49Tr9QnBjCrKt8RiibhjSEvcYqM/1eocW0j2vUkqR17rNuVVz9AkBq+Z02gzdpwEJMPg3Jqnd/pViksuF8wtbo6/kimOKaTrEOg/KnVJrf9HaOnatzpDF0B0ghGhzb329SRWJhddXNAkAkjrgVmGyu+HGiGKZP7pOXHhl0u3H+vzEd9pHfEzXpoSO/EFgsKKXv3Pvh8jexKo1T5bPAchsu1gGl4B63jeUpAkBbgUalUpZWZ4Aii+Mfts+S2E5RooZfVFqVBIsK47hjcoqLw4JJenyjFu+Skl2jOQ8+I5y1Ggeg6fpBMr2rbVkf"
 
 /**微信支付*/
-#define AliPayPid @"2088211251545121"
-#define AliPyaKey @"wkxysgteujgbcxawiylcm79598fbtiwu"
+#define WeiXinPayId @"wxaeda2d5603b12302"
+#define WeiXinPayMerchantId @"1251040401"
+#define wxpayKey @"0db0d4908a6ae6a09b0a7727878f0ca6"
+
 
 //有盟appKey
 #define UMAppKey @"52faffcf56240bc21a023179"
@@ -64,7 +65,9 @@
 
 ///***服务器地址***/1.41
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
-#define MKMainUrl @"192.168.1.41:8080/duobao/app"
+#define MKMainUrl @"192.168.3.22:8080/duobao/app"
+//#define MKMainUrl @"duobao.51flashmall.com:8091/app"
+
 
 
 
@@ -94,6 +97,7 @@
 #define CannelLoginFailure @"CannelLogin" //取消登陆
 #define UserInfo @"UserInfo"
 #define GlobalInfo @"GlobalInfo"
+#define DefaultAddress @"DefaultAddress"
 
 /********登陆标志************/
 #define LoginStatus @"LoginStatus" //登录标志

@@ -31,20 +31,20 @@
 }
 
 
-+ (NSString *)asignByWeiXinPayMutableDictionary:(NSMutableDictionary *)dict{
-    //计算asign参数
-    NSArray * arr = [dict allKeys];
-    arr = [arr sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
-        return [obj1 compare:obj2] == NSOrderedDescending;
-    }];
-    NSMutableString * signCap = [[NSMutableString alloc] init];
-    //进行asign拼接
-    for (NSString * dicKey in arr) {
-        [signCap appendString:[NSString stringWithFormat:@"%@&%@",dicKey,[dict valueForKey:dicKey]]];
-    }
-    NSString * aaa= [signCap substringToIndex:signCap.length];
-    [NSString stringWithFormat:@"%@&%@",aaa,WeiXinPaySigNkey];
-    
-    return nil;
-}
+//+ (NSString *)asignByWeiXinPayMutableDictionary:(NSMutableDictionary *)dict{
+//    //计算asign参数
+//    NSArray * arr = [dict allKeys];
+//    arr = [arr sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
+//        return [obj1 compare:obj2] == NSOrderedDescending;
+//    }];
+//    NSMutableString * signCap = [[NSMutableString alloc] init];
+//    //进行asign拼接
+//    for (NSString * dicKey in arr) {
+//        [signCap appendString:[NSString stringWithFormat:@"%@&%@",dicKey,[dict valueForKey:dicKey]]];
+//    }
+//    NSString * aaa= [signCap substringToIndex:signCap.length];
+//    [NSString stringWithFormat:@"%@&%@",aaa,WeiXinPaySigNkey];
+//    
+//    return nil;
+//}
 @end

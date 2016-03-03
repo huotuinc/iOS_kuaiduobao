@@ -31,6 +31,8 @@
     [super viewWillAppear:animated];
     
     [self getWinningDeliveryModel];
+    
+    [self _initWinningModel];
 }
 
 
@@ -46,11 +48,16 @@
         return 44;
     }
     if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            return 44;
+        if (self.model.deliveryStatus > 1) {
+            if (indexPath.row == 0) {
+                return 44;
+            }else {
+                return 88;
+            }
         }else {
-            return 88;
+            return 0;
         }
+        
     }
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
@@ -59,18 +66,57 @@
             return 150;
         }
     }
-    return 44;
+    return 0;
 }
 
 
 - (void)getWinningDeliveryModel {
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"getOneLotteryInfo"] = self.winningModel.issueId;
+    dic[@"issueId"] = self.winningModel.issueId;
     
+    [SVProgressHUD showWithStatus:nil];
     [UserLoginTool loginRequestGet:@"getOneLotteryInfo" parame:dic success:^(id json) {
+        [SVProgressHUD dismiss];
         LWLog(@"%@",json);
+        LWLog(@"%@",json[@"resultDescription"]);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            self.model = [WinningDeliveryModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
+            [self.tableView reloadData];
+            
+            switch (self.model.deliveryStatus) {
+                case 0:
+                {
+                    [self confirmAddress];
+                    break;
+                }
+                case 1:
+                {
+                    [self addressHaveFillIn];
+                    break;
+                }
+                case 2:
+                {
+                    [self addressHaveFillInAndSendOutGoods];
+                    break;
+                }
+                case 5:
+                {
+                    [self successGetGoodsAndGoToShare];
+                    break;
+                }
+                case 6:
+                {
+                    [self shareSuccess];
+                    break;
+                }
+                default:
+                    break;
+            }
+            
+        }
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         LWLog(@"%@",error);
     }];
 }
@@ -85,11 +131,11 @@
     self.sendImage.image = [UIImage imageNamed:@"jiang_f"];
     self.confirmGoodImage.image = [UIImage imageNamed:@"jiang_f"];
     self.endImage.image = [UIImage imageNamed:@"jiang_g"];
-#warning 增加收货时间
-//    self.getTimeLabel.text = [self getStringFromNunber:self.model.];
-    
+
+    self.getTimeLabel.text = [self getStringFromNunber:self.model.awardingDate];
     self.getGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.getTimeLabel.textColor = COLOR_TEXT_DATE;
+//    self.getTimeLabel.hidden = NO;
     
     self.confirmButton.hidden = NO;
     self.confirmLabel.textColor = COLOR_BUTTON_ORANGE;
@@ -121,9 +167,9 @@
     self.confirmGoodImage.image = [UIImage imageNamed:@"jiang_f"];
     self.endImage.image = [UIImage imageNamed:@"jiang_g"];
     
-#warning 增加收货时间
-    //    self.getTimeLabel.text = [self getStringFromNunber:self.model.];
-    
+
+    self.getTimeLabel.text = [self getStringFromNunber:self.model.awardingDate];
+    self.getTimeLabel.hidden = NO;
     self.getGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.getTimeLabel.textColor = COLOR_TEXT_DATE;
     
@@ -146,6 +192,7 @@
     self.endLabel.textColor = COLOR_TEXT_DATE;
     self.endTime.hidden = YES;
     
+    [self _initAddressCell];
 }
 
 
@@ -160,9 +207,9 @@
     self.confirmGoodImage.image = [UIImage imageNamed:@"jiang_a"];
     self.endImage.image = [UIImage imageNamed:@"jiang_g"];
     
-#warning 增加收货时间
-    //    self.getTimeLabel.text = [self getStringFromNunber:self.model.];
-    
+
+    self.getTimeLabel.text = [self getStringFromNunber:self.model.awardingDate];
+    self.getTimeLabel.hidden = NO;
     self.getGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.getTimeLabel.textColor = COLOR_TEXT_DATE;
     
@@ -188,6 +235,7 @@
     self.endLabel.textColor = COLOR_TEXT_DATE;
     self.endTime.hidden = YES;
     
+    [self _initAddressCell];
 }
 
 /**
@@ -202,9 +250,9 @@
     self.confirmGoodImage.image = [UIImage imageNamed:@"jiang_c"];
     self.endImage.image = [UIImage imageNamed:@"jiang_e"];
     
-#warning 增加收货时间
-    //    self.getTimeLabel.text = [self getStringFromNunber:self.model.];
-    
+
+    self.getTimeLabel.text = [self getStringFromNunber:self.model.awardingDate];
+    self.getTimeLabel.hidden = NO;
     self.getGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.getTimeLabel.textColor = COLOR_TEXT_DATE;
     
@@ -223,7 +271,7 @@
     self.confirmGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.confirmGoodTime.textColor = COLOR_TEXT_DATE;
     self.confirmGoodTime.text = [self getStringFromNunber:self.model.RecieveGoodsTime];
-    self.confirmGoodTime.hidden = YES;
+    self.confirmGoodTime.hidden = NO;
     
     self.endButton.hidden = NO;
     [self.endButton bk_whenTapped:^{
@@ -231,6 +279,8 @@
     }];
     self.endLabel.textColor = COLOR_BUTTON_ORANGE;
     self.endTime.hidden = YES;
+    
+    [self _initAddressCell];
 }
 
 
@@ -245,9 +295,9 @@
     self.confirmGoodImage.image = [UIImage imageNamed:@"jiang_c"];
     self.endImage.image = [UIImage imageNamed:@"jiang_e"];
     
-#warning 增加收货时间
-    //    self.getTimeLabel.text = [self getStringFromNunber:self.model.];
-    
+
+    self.getTimeLabel.text = [self getStringFromNunber:self.model.awardingDate];
+    self.getTimeLabel.hidden = NO;
     self.getGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.getTimeLabel.textColor = COLOR_TEXT_DATE;
     
@@ -266,15 +316,40 @@
     self.confirmGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.confirmGoodTime.textColor = COLOR_TEXT_DATE;
     self.confirmGoodTime.text = [self getStringFromNunber:self.model.RecieveGoodsTime];
-    self.confirmGoodTime.hidden = YES;
+    self.confirmGoodTime.hidden = NO;
     
     self.endButton.hidden = YES;
     self.endLabel.textColor = COLOR_BUTTON_ORANGE;
     self.endTime.textColor = COLOR_BUTTON_ORANGE;
     self.endTime.hidden = NO;
     self.endTime.text = @"已签收";
+    
+    [self _initAddressCell];
 }
 
+/**
+ *  设置商品信息
+ *
+ *  @param winningModel winningModel description
+ */
+- (void)_initWinningModel {
+    
+    [_Image sd_setImageWithURL:[NSURL URLWithString:self.winningModel.defaultPictureUrl] placeholderImage:nil options:SDWebImageRetryFailed completed:nil];
+    _goodName.text = self.winningModel.title;
+    _joinId.text = [NSString stringWithFormat:@"参与期号：%@", self.winningModel.issueId];
+    _person.text = [NSString stringWithFormat:@"总需：%@", self.winningModel.toAmount];
+    _luckyNum.text = [self.winningModel.luckyNumber stringValue];
+    _joinCount.text = [NSString stringWithFormat:@"本期参与：%@人次", self.winningModel.amount];
+    _time.text = [self getStringFromNunber:self.winningModel.awardingDate];
+}
+
+- (void)_initAddressCell {
+    
+    self.name.text = self.model.receiver;
+    self.phone.text = [self.model.mobile stringValue];
+    self.address.text = self.model.details;
+    
+}
 
 
 /**
@@ -298,7 +373,29 @@
  */
 - (void)useDefaultAddress {
     
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    AdressModel *address = [NSKeyedUnarchiver unarchiveObjectWithFile:fileNameAdd];
     
+    if (address != nil) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"deliveryId"] = self.winningModel.deliveryId;
+        dic[@"receiver"] = address.receiver;
+        dic[@"mobile"] = address.mobile;
+        dic[@"details"] = address.details;
+        
+        [UserLoginTool loginRequestGet:@"addLotteryReceiverInfo" parame:dic success:^(id json) {
+            LWLog(@"%@",json);
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+                [self getWinningDeliveryModel];
+            }
+        } failure:^(NSError *error) {
+            LWLog(@"%@", error);
+        }];
+        
+    }else {
+        [SVProgressHUD showErrorWithStatus:@"请设置默认地址"];
+    }
     
 }
 
