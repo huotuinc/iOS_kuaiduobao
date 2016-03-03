@@ -85,7 +85,15 @@ static NSString *cellDCA = @"cellDCA";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1 && _isExpanded == YES) {
         DetailCalculateATableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellDCA forIndexPath:indexPath];
-        cell.labelA.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+        if (indexPath.row == 0) {
+            cell.labelA.text = @"夺宝时间";
+            cell.labelB.text = @"用户账号";
+        }else {
+            AppUserNumberModel *userModel = _numberList[indexPath.row];
+            cell.labelDate.text = userModel.buyTime;
+            cell.labelNumber.text = userModel.number;
+            cell.labelName.text = userModel.nickName;
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -120,6 +128,10 @@ static NSString *cellDCA = @"cellDCA";
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DetailCalculateMainCView" owner:nil options:nil];
         _sectionBView = [nib firstObject];
         _sectionBView.frame = CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(160.f));
+        NSMutableAttributedString * attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"= %@",_resultModel.numberA]];
+        [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 2)];
+        _sectionBView.labelC.attributedText = attString;
+
         _sectionBView.buttonShow.hidden = NO;
         [_sectionBView.buttonShow bk_whenTapped:^{
             if (_isExpanded) {
@@ -141,13 +153,18 @@ static NSString *cellDCA = @"cellDCA";
         _sectionCView.frame = CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(160.f));
         _sectionCView.labelA.text = @"数值B";
         _sectionCView.labelB.text = @"= 最近一起中国福利彩票\"老时时彩\"的开奖结果";
-        _sectionCView.labelC.text = @"= ";
+        NSMutableAttributedString * attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"= %@",_resultModel.numberB]];
+        [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 2)];
+        _sectionCView.labelC.attributedText = attString;
         return _sectionCView;
     }
     if (section == 3) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DetailCalculateNumberCView" owner:nil options:nil];
         _sectionDView = [nib firstObject];
         _sectionDView.frame = CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(165.f));
+        NSMutableAttributedString * attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"幸运号码:  %@",_resultModel.luckNumber]];
+        [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 5)];
+        _sectionDView.labelB.attributedText = attString;
         return _sectionDView;
     }
     return nil;

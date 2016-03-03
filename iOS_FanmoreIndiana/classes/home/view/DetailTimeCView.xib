@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -46,38 +45,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tY-tv-aRX">
-                                <rect key="frame" x="584" y="42" width="138" height="46"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="0tY-tv-aRX" secondAttribute="height" multiplier="120:40" id="Ugs-IF-eLf"/>
-                                </constraints>
-                                <state key="normal" title="计算详情"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0tY-tv-aRX" firstAttribute="height" secondItem="WN3-ek-I1g" secondAttribute="height" multiplier="40:110" id="2iK-im-Sh6"/>
                             <constraint firstItem="6PD-Iu-Gdj" firstAttribute="leading" secondItem="427-ds-QJz" secondAttribute="trailing" constant="10" id="5Nl-39-NVR"/>
                             <constraint firstItem="427-ds-QJz" firstAttribute="leading" secondItem="WN3-ek-I1g" secondAttribute="leading" constant="10" id="7R5-bq-q2q"/>
                             <constraint firstItem="p1T-V5-SQp" firstAttribute="leading" secondItem="WN3-ek-I1g" secondAttribute="leading" constant="10" id="DZI-lW-OeN"/>
                             <constraint firstItem="p1T-V5-SQp" firstAttribute="height" secondItem="WN3-ek-I1g" secondAttribute="height" multiplier="40:110" id="MJa-Z0-zDN"/>
-                            <constraint firstItem="0tY-tv-aRX" firstAttribute="width" secondItem="WN3-ek-I1g" secondAttribute="width" id="OL3-fo-8sq"/>
                             <constraint firstItem="6PD-Iu-Gdj" firstAttribute="centerY" secondItem="427-ds-QJz" secondAttribute="centerY" id="Py9-PJ-FDv"/>
-                            <constraint firstItem="0tY-tv-aRX" firstAttribute="centerY" secondItem="WN3-ek-I1g" secondAttribute="centerY" id="RgA-d9-9X3"/>
                             <constraint firstItem="K2J-hf-gYx" firstAttribute="leading" secondItem="p1T-V5-SQp" secondAttribute="trailing" constant="10" id="YXQ-bE-rU3"/>
                             <constraint firstItem="K2J-hf-gYx" firstAttribute="centerY" secondItem="p1T-V5-SQp" secondAttribute="centerY" id="c2E-sS-0Ae"/>
                             <constraint firstItem="6PD-Iu-Gdj" firstAttribute="height" secondItem="p1T-V5-SQp" secondAttribute="height" id="dhP-1l-uaN"/>
-                            <constraint firstAttribute="trailing" secondItem="0tY-tv-aRX" secondAttribute="trailing" constant="10" id="f0S-hX-dtF"/>
                             <constraint firstItem="427-ds-QJz" firstAttribute="centerY" secondItem="WN3-ek-I1g" secondAttribute="centerY" multiplier="80:55" id="ics-15-Dma"/>
                             <constraint firstItem="427-ds-QJz" firstAttribute="height" secondItem="p1T-V5-SQp" secondAttribute="height" id="mAP-gl-Pdk"/>
                             <constraint firstItem="p1T-V5-SQp" firstAttribute="centerY" secondItem="WN3-ek-I1g" secondAttribute="centerY" multiplier="35:55" id="tny-Xx-Pg5"/>
                             <constraint firstItem="K2J-hf-gYx" firstAttribute="height" secondItem="p1T-V5-SQp" secondAttribute="height" id="x8R-vW-Z1f"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="OL3-fo-8sq"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <constraints>
@@ -88,7 +71,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="buttonDetail" destination="0tY-tv-aRX" id="c8K-om-MBT"/>
                 <outlet property="labelEndTime" destination="427-ds-QJz" id="bwG-xk-WoD"/>
                 <outlet property="labelEndTimeA" destination="6PD-Iu-Gdj" id="2W2-sk-LPB"/>
                 <outlet property="labelIssue" destination="p1T-V5-SQp" id="hLL-NO-hEq"/>

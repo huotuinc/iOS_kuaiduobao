@@ -143,7 +143,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 - (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"searchwhite"] forState:UIControlStateNormal];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"search2"] forState:UIControlStateNormal];
     [buttonL bk_whenTapped:^{
         SearchViewController *search = [[SearchViewController alloc] init];
         [self.navigationController pushViewController:search animated:YES];
@@ -506,6 +506,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     //创建一个 cell 的注册方式 必须写上
     //  设置时钟动画 定时器
     //    _isDragging=NO;
+    
     _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
     //  将定时器添加到主线程
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];

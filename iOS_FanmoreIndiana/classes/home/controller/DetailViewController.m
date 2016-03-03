@@ -324,7 +324,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     }
 //正在抽奖
     if (num == 1) {
-        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+3)];
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
@@ -342,11 +342,17 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         _timeView= [nib firstObject];
         [_timeView defaultConfig];
         [_timeView loadData:_detailModel];
-        _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+//        [_timeView.buttonDetail bk_whenTapped:^{
+//            DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
+//            calculate.issueId = _detailModel.issueId;
+//            [self.navigationController pushViewController:calculate animated:YES];
+//
+//        }];
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
-        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         if (_detailModel.numbers.count > 0) {
             NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
@@ -381,16 +387,16 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     }
 //正常状态
     if (num == 0) {
-        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+3)];
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
         
         _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
         [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
             printf("第%zd张图片\n",index);
         }];
         //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 2.0f;
+        _headScrollView.AutoScrollDelay = 0.0f;
         
-        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight+3)];
+        _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
         
         [self createTitleLabel];
@@ -398,7 +404,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
         _progressView= [nib firstObject];
-        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"剩余: %@",_detailModel.remainAmount]];
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(0, 3)];
         _progressView.labelRest.attributedText=attString;
@@ -410,7 +416,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
-        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
         if (_detailModel.numbers.count > 0) {
             NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];

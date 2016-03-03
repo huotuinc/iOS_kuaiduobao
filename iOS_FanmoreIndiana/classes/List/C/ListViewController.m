@@ -365,7 +365,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         _imageVBack.hidden =NO;
     }else {
         _imageVBack = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 44)];
-        _imageVBack.image = [UIImage imageNamed:@"kk"];
+        _imageVBack.image = [UIImage imageNamed:@"kkry"];
         [self.view addSubview:_imageVBack];
     }
     
