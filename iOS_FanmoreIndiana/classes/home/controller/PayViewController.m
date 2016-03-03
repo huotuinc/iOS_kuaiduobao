@@ -63,6 +63,7 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"payType"] = @2;
     dic[@"redPacketsId"] = _payModel.redPacketsId;
+//    dic[@"redPacketsId"] = nil;
     NSInteger payMoney = [_payModel.totalMoney integerValue] - [_payModel.redPacketsMinusMoney integerValue];
     dic[@"money"] = [NSNumber numberWithInteger:payMoney];
     [UserLoginTool loginRequestPostWithFile:@"pay" parame:dic success:^(id json) {
@@ -184,8 +185,8 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
                 cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %@元)",self.userInfo.money];
             }
             if (indexPath.row == 2) {
-                NSInteger elsePay = [_payModel.totalMoney integerValue] - [_payModel.redPacketsMinusMoney integerValue];
-                cell.labelB.text = [NSString stringWithFormat:@"%ld元",elsePay];
+                CGFloat elsePay = [_payModel.totalMoney floatValue] - [_payModel.redPacketsMinusMoney floatValue];
+                cell.labelB.text = [NSString stringWithFormat:@"%.1f元",elsePay];
             }
             return cell;
         }else{

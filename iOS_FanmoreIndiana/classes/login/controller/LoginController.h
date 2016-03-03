@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol logVCdelegate <NSObject>
+
+-(void)tableViewReloadData;
+
+
+@end
+
 @interface LoginController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *userName;
@@ -27,5 +35,10 @@
 - (IBAction)loginWithWeixin:(id)sender;
 
 - (IBAction)loginWithQQ:(id)sender;
+@property (nonatomic, copy) NSString *cartsString;
+@property (nonatomic, assign) NSInteger postData;//0不 1去
+
+@property (nonatomic,weak)id<logVCdelegate>logDelegate;
+
 
 @end

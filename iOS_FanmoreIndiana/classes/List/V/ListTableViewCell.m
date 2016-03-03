@@ -97,9 +97,10 @@
         _labelTitle.text=model.title;
         _labelRest.text=[NSString stringWithFormat:@"剩余%@人次",model.remainAmount];
         _labelTotal.text=[NSString stringWithFormat:@"总需%@人次",model.toAmount];
-        _textFNumber.text=[NSString stringWithFormat:@"%@",model.buyAmount];
+        _textFNumber.text=[NSString stringWithFormat:@"%@",model.userBuyAmount
+];
         _textFNumber.tag = 300 + indexPath.row;
-        if (![model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+        if (![model.stepAmount isEqualToNumber:[NSNumber numberWithInteger:1]]) {
             _labelNotice.text = [NSString stringWithFormat:@"只支持%@的倍数",model.areaAmount];
         }else{
             _labelNotice.text = @"";

@@ -13,14 +13,14 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    NSArray *arrTitle=@[@"分类",@"10元专区",@"晒单",@"常见问题"];
-    for (int i=0; i<4; i++) {
+    NSArray *arrTitle=@[@"分类",@"10元专区",@"晒单",@"常见问题",@"红包专区"];
+    for (int i=0; i<5; i++) {
         UILabel *label=[self viewWithTag:100+i];
         label.text=arrTitle[i];
         [UILabel changeLabel:label AndFont:24 AndColor:COLOR_TEXT_TITILE];
     }
-    NSArray *arrImage=@[@"home_content_fenlei",@"home_content_zhuanqu",@"home_content_shaidan",@"home_content_wenti"];
-    for (int i=0; i<4; i++) {
+    NSArray *arrImage=@[@"home_content_fenlei",@"home_content_zhuanqu",@"home_content_shaidan",@"home_content_wenti",@"home_content_hongbao"];
+    for (int i=0; i<5; i++) {
         UIImageView *imageV=[self viewWithTag:200+i];
         imageV.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@",arrImage[i]]];
     }

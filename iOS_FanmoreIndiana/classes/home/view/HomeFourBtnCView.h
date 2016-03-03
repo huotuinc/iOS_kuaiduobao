@@ -18,5 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelShow;
 @property (weak, nonatomic) IBOutlet UILabel *labelHelp;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVLine;
+@property (weak, nonatomic) IBOutlet UIImageView *imageVRed;
+@property (weak, nonatomic) IBOutlet UILabel *labelRed;
 
 @end

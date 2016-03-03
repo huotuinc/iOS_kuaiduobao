@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DetailCalculateFormulaCView">
+            <rect key="frame" x="0.0" y="0.0" width="750" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="750" height="169"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXd-pc-iAb">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="169"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-E1-R8m">
+                                <rect key="frame" x="10" y="15" width="730" height="139"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="计算公式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJ7-BC-z6u">
+                                        <rect key="frame" x="5" y="0.0" width="725" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[(数值A+数值B)+商品所需人次]取余数+10000001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gj-Ra-iWe">
+                                        <rect key="frame" x="5" y="70" width="725" height="69"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="8Gj-Ra-iWe" secondAttribute="bottom" id="Aty-dH-4jU"/>
+                                    <constraint firstItem="yJ7-BC-z6u" firstAttribute="leading" secondItem="Tva-E1-R8m" secondAttribute="leading" constant="5" id="C0s-gw-u31"/>
+                                    <constraint firstAttribute="trailing" secondItem="8Gj-Ra-iWe" secondAttribute="trailing" id="Ubs-Sy-MSf"/>
+                                    <constraint firstItem="8Gj-Ra-iWe" firstAttribute="leading" secondItem="Tva-E1-R8m" secondAttribute="leading" constant="5" id="jUN-2k-yrh"/>
+                                    <constraint firstAttribute="trailing" secondItem="yJ7-BC-z6u" secondAttribute="trailing" id="nwJ-C4-0XM"/>
+                                    <constraint firstItem="8Gj-Ra-iWe" firstAttribute="top" secondItem="yJ7-BC-z6u" secondAttribute="bottom" id="o8Z-Ta-XER"/>
+                                    <constraint firstItem="yJ7-BC-z6u" firstAttribute="height" secondItem="Tva-E1-R8m" secondAttribute="height" multiplier="1:2" id="wS0-h9-PLF"/>
+                                    <constraint firstItem="yJ7-BC-z6u" firstAttribute="top" secondItem="Tva-E1-R8m" secondAttribute="top" id="whP-C1-JBt"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Tva-E1-R8m" firstAttribute="leading" secondItem="OXd-pc-iAb" secondAttribute="leading" constant="10" id="GEj-rf-uxB"/>
+                            <constraint firstAttribute="trailing" secondItem="Tva-E1-R8m" secondAttribute="trailing" constant="10" id="HvA-wh-tEs"/>
+                            <constraint firstItem="Tva-E1-R8m" firstAttribute="top" secondItem="OXd-pc-iAb" secondAttribute="top" constant="15" id="RYB-rk-iFc"/>
+                            <constraint firstAttribute="bottom" secondItem="Tva-E1-R8m" secondAttribute="bottom" constant="15" id="uaM-Nj-lXP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="OXd-pc-iAb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2jG-Ls-uqv"/>
+                    <constraint firstItem="OXd-pc-iAb" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottom" id="Bvg-vF-cGg"/>
+                    <constraint firstAttribute="trailing" secondItem="OXd-pc-iAb" secondAttribute="trailing" id="YYf-y2-MZ5"/>
+                    <constraint firstItem="OXd-pc-iAb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nVO-X1-a54"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="labelA" destination="yJ7-BC-z6u" id="WD9-tL-OPK"/>
+                <outlet property="labelB" destination="8Gj-Ra-iWe" id="dXP-FR-Tas"/>
+                <outlet property="viewBase" destination="Tva-E1-R8m" id="OoR-Wc-e2K"/>
+            </connections>
+            <point key="canvasLocation" x="241" y="287"/>
+        </tableViewCell>
+    </objects>
+</document>

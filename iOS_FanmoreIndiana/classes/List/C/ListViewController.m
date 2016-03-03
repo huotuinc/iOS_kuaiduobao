@@ -11,9 +11,10 @@
 #import "ListBottomCView.h"
 #import "PayViewController.h"
 #import "AppBalanceModel.h"
+#import "LoginController.h"
 static NSString *cellLMain=@"cellLMain";
 static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第一次点击为全选文字显示未全选 1为selected 2为unselected
-@interface ListViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface ListViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,logVCdelegate>
 
 @property (strong, nonatomic)  UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *cartList;//数据源数组
@@ -47,30 +48,32 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     _bottomView.buttonAll.selected = NO;
     _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计: 0元"];
     [self createNavgationBarTitle];
-
+    
     _cartList =[NSMutableArray array];
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
         [self getShoppingList];
     }else{
-//        [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-//        _cartList = [[NSMutableArray alloc] initWithArray:[self getLocalDataArray]];
-//        if (_cartList.count == 0) {
-//            [self createImageVBack];
-//        }else {
-//            if (_tableView) {
-//                self.imageVBack.hidden = YES;
-//                [self.tableView reloadData];
-//                _bottomView.labelAll.text = @"全选";
-//                _bottomView.buttonAll.selected = NO;
-//                selectAllCount = 1;
-//            }else{
-//                [self createTableView];
-//            }
-//        }
-
+        //        [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+        _cartList = [[NSMutableArray alloc] initWithArray:[self getLocalDataArray]];
+        if (_cartList.count == 0) {
+            [self createImageVBack];
+        }else {
+            if (_tableView) {
+                self.imageVBack.hidden = YES;
+                [self.tableView reloadData];
+                _bottomView.labelAll.text = @"全选";
+                _bottomView.buttonAll.selected = NO;
+                selectAllCount = 1;
+            }else{
+                [self createTableView];
+            }
+        }
+        
         
     }
+
+    
 }
 
 - (void)viewDidLoad {
@@ -78,8 +81,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     // Do any additional setup after loading the view, typically from a nib.
 //    _cartList =[NSMutableArray array];
 
-//    [self createCartList];
-    [self loadNotificationCell];
+        [self loadNotificationCell];
 }
 - (NSArray *)getLocalDataArray{
     NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -196,7 +198,35 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     
     
 }
-#pragma mark 网络请求结算
+#pragma mark 网络请求结算 未登录 进行登陆
+- (void)goToLogin {
+    NSMutableString *cartsString = [NSMutableString string];
+    for ( int i =0 ; i<_selectedArray.count; i++) {
+        CartModel *model = _selectedArray[i];
+        if (i == _selectedArray.count - 1) {
+            [cartsString appendFormat:@"{issueId:%@,amount:%@}",model.issueId,model.userBuyAmount];
+        }else{
+            [cartsString appendFormat:@"{issueId:%@,amount:%@},",model.issueId,model.userBuyAmount];
+        }
+    }
+    [cartsString insertString:@"[" atIndex:0];
+    [cartsString appendString:@"]"];
+
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+    login.logDelegate = self;
+    login.cartsString = cartsString;
+    login.postData = 1;
+    [self presentViewController:nav animated:YES completion:nil];
+
+
+    
+}
+
+
+#pragma mark 网络请求结算 已登录
 
 - (void)goToPay {
     
@@ -205,15 +235,14 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     for ( int i =0 ; i<_selectedArray.count; i++) {
         CartModel *model = _selectedArray[i];
         if (i == _selectedArray.count - 1) {
-            [cartsString appendFormat:@"{pid:%@,buyAmount:%@}",model.sid,model.buyAmount];
+            [cartsString appendFormat:@"{pid:%@,buyAmount:%@}",model.sid,model.userBuyAmount];
         }else{
-            [cartsString appendFormat:@"{pid:%@,buyAmount:%@},",model.sid,model.buyAmount];
+            [cartsString appendFormat:@"{pid:%@,buyAmount:%@},",model.sid,model.userBuyAmount];
         }
     }
     [cartsString insertString:@"[" atIndex:0];
     [cartsString appendString:@"]"];
     dic[@"carts"] = cartsString;
-
     [UserLoginTool loginRequestPostWithFile:@"balance" parame:dic success:^(id json) {
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
@@ -237,37 +266,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     
 }
 
-/**
- *  上拉加载更多
- */
-//- (void)getMoreShoppingList {
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-////    dic[@"type"] = self.type;
-////    dic[@"lastSort"]= self.lastSort;
-//    
-//    [UserLoginTool loginRequestGet:@"getGoodsListByIndex" parame:dic success:^(id json) {
-//        
-//        LWLog(@"%@",json);
-//        
-//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-//            
-//            NSArray *temp = [CartModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-//            
-//            [self.cartList addObjectsFromArray:temp];
-//            LWLog(@"%@",json[@"resultDescription"]);
-//            
-//            [_tableView reloadData];
-//        }else{
-//            LWLog(@"%@",json[@"resultDescription"]);
-//            
-//        }
-//        [_tableView.mj_footer endRefreshing];
-//    } failure:^(NSError *error) {
-//        [SVProgressHUD dismiss];
-//        LWLog (@"%@",error);
-//    }];
-//    
-//}
+
 
 -(void)createCartList{
     for (int i = 0; i < 5; i++) {
@@ -380,11 +379,21 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     _bottomView.buttonAll.userInteractionEnabled=YES;
     [_bottomView.buttonAll addTarget:self action:@selector(selectAllBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [_bottomView.buttonGo bk_whenTapped:^{
-        if (_selectedArray.count != 0) {
-            [self goToPay];
-        } else {
-            [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
+        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+        if ([login isEqualToString:Success]) {
+            if (_selectedArray.count != 0) {
+                [self goToPay];
+            } else {
+                [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
+            }
+        }else{
+            if (_selectedArray.count != 0) {
+                [self goToLogin];
+            } else {
+                [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
+            }
         }
+        
     }];
     [self.view addSubview:_bottomView];
     
@@ -458,18 +467,19 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 
         NSInteger count = [weakCell.textFNumber.text integerValue];
         CartModel *model = [_cartList objectAtIndex:indexPath.row];
-        NSInteger addNumber;
-        if ([model.areaAmount integerValue] == 0) {
-            addNumber = 1;
-        }else {
-            addNumber = [model.areaAmount integerValue];
-        }
+        NSInteger addNumber = [model.stepAmount integerValue];
+//        if ([model.areaAmount integerValue] == 0) {
+//            addNumber = 1;
+//        }else {
+//            addNumber = [model.areaAmount integerValue];
+//        }
+    
         count+= addNumber;
         NSString *numStr = [NSString stringWithFormat:@"%ld",(long)count];
         
         
         weakCell.textFNumber.text = numStr;
-        model.buyAmount = [NSNumber numberWithInteger:count];
+        model.userBuyAmount = [NSNumber numberWithInteger:count];
         
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
         if ([_selectedArray containsObject:model]) {
@@ -483,12 +493,13 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         NSLog(@"*******");
         NSInteger count = [weakCell.textFNumber.text integerValue];
         CartModel *model = [_cartList objectAtIndex:indexPath.row];
-        NSInteger addNumber;
-        if ([model.areaAmount integerValue] == 0) {
-            addNumber = 1;
-        }else {
-            addNumber = [model.areaAmount integerValue];
-        }        count-= addNumber;
+        NSInteger addNumber = [model.stepAmount integerValue];
+//        if ([model.areaAmount integerValue] == 0) {
+//            addNumber = 1;
+//        }else {
+//            addNumber = [model.areaAmount integerValue];
+//        }
+        count-= addNumber;
         if(count <= 0){
             return ;
         }
@@ -497,7 +508,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         
         weakCell.textFNumber.text = numStr;
         
-        model.buyAmount = [NSNumber numberWithInteger:count];
+        model.userBuyAmount = [NSNumber numberWithInteger:count];
         
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
         
@@ -526,20 +537,49 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该商品?删除后无法恢复!" preferredStyle:1];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该商品?" preferredStyle:1];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             CartModel *model = [_cartList objectAtIndex:indexPath.row];
             
-            [_cartList removeObjectAtIndex:indexPath.row];
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+                [_cartList removeObjectAtIndex:indexPath.row];
+                self.shoppingCartId = model.sid;
+                [self deleteShoppingCart];
+            }else{
+                NSMutableArray *localChangeArray = [NSMutableArray arrayWithArray:[self getLocalDataArray]];
+                for (int i = 0; i < localChangeArray.count; i++) {
+                    CartModel *changeModel = localChangeArray[i];
+                    if (changeModel.issueId == model.issueId) {
+                        [localChangeArray removeObject:changeModel];
+                    }
+                }
+                NSMutableData *data = [[NSMutableData alloc] init];
+                //创建归档辅助类
+                NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+                //编码
+                [archiver encodeObject:localChangeArray forKey:LOCALCART];
+                //结束编码
+                [archiver finishEncoding];
+                NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+                //写入
+                [data writeToFile:filename atomically:YES];
+                LWLog(@"归档成功");
+                _cartList = [NSMutableArray arrayWithArray:[self getLocalDataArray]];
+
+                
+            }
+
+            
             
             
             
             //    删除
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             
-            self.shoppingCartId = model.sid;
-            [self deleteShoppingCart];
+            
             
             
             //判断是否选择
@@ -629,19 +669,20 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 #pragma mark 计算价格
 -(void)countPrice
 {
-    NSInteger totlePrice = 0;
+    CGFloat totlePrice = 0;
     
     for (CartModel *model in _selectedArray) {
-        NSInteger price = 1;
+        //单价
+        CGFloat price = [model.pricePercentAmount floatValue];
 //        if ([model.areaAmount integerValue] == 0) {
 //            price =1;
 //        }else {
 //            price = [model.areaAmount integerValue];
 //        }
-        totlePrice += price*[model.buyAmount integerValue];
+        totlePrice += price*[model.userBuyAmount floatValue];
 
     }
-    _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计%ld元",totlePrice];
+    _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计%.1f元",totlePrice];
 }
 
 
@@ -719,16 +760,15 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 }
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-    NSLog(@"tf取消编辑");
     NSInteger row = textField.tag -300;
     CartModel * model = _cartList[row];
     //倍数值
-    NSInteger areNumber;
-    if ([model.areaAmount integerValue] == 0) {
-        areNumber = 1 ;
-    }else {
-        areNumber = [model.areaAmount integerValue];
-    }
+    NSInteger areNumber = [model.stepAmount integerValue];
+//    if ([model.areaAmount integerValue] == 0) {
+//        areNumber = 1 ;
+//    }else {
+//        areNumber = [model.areaAmount integerValue];
+//    }
     if ([textField.text integerValue] % areNumber != 0 ) {
         textField.text = [NSString stringWithFormat:@"%@",_beginNumber];
 //        model.buyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
@@ -739,12 +779,12 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     if ([textField.text integerValue] > [model.remainAmount integerValue]) {
         textField.text = [NSString stringWithFormat:@"%@",model.remainAmount];
 
-        model.buyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
+        model.userBuyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
         [self countPrice];
 
         return YES;
     }
-    model.buyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
+    model.userBuyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
     //判断已选择数组里有无该对象,有就删除  重新添加
     if ([_selectedArray containsObject:model]) {
         [_selectedArray removeObject:model];
@@ -753,6 +793,11 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     }
     return YES;
 }
+
+-(void)tableViewReloadData{
+    [self getShoppingList];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
