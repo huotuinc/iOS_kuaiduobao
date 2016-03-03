@@ -23,6 +23,4 @@
 @property (nonatomic, strong) NSString *userHead;
 @property (nonatomic, strong) NSString *username;
 
-//@property (nonatomic, strong) AdressModel *addressModel;
-
 @end

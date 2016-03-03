@@ -99,6 +99,8 @@
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            LWLog(@"%@", json[@"resultDescription"]);
         }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
@@ -126,7 +128,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.row == 0) {
+        [self.personName becomeFirstResponder];
+    }else if (indexPath.row == 1) {
+        [self.personIphone becomeFirstResponder];
+    }else if (indexPath.row == 2) {
+        [self.detailAddress becomeFirstResponder];
+    }
+    
 }
 
 

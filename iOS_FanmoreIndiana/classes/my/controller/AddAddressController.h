@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddressModel.h"
+#import "AdressModel.h"
 
 @interface AddAddressController : UITableViewController
 @property (weak, nonatomic) IBOutlet UITextField *personName;
@@ -18,6 +18,6 @@
 //1是增加地址 0修改地址
 @property (nonatomic, assign) NSInteger temp;
 
-@property (nonatomic, strong) AddressModel *model;
+@property (nonatomic, strong) AdressModel *model;
 
 @end

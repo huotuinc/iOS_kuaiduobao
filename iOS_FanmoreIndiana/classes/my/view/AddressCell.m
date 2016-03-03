@@ -20,12 +20,15 @@
     // Configure the view for the selected state
 }
 
-- (void)setModel:(AddressModel *)model {
+- (void)setModel:(AdressModel *)model {
     _model = model;
     self.nema.text = model.receiver;
     self.phone.text = model.mobile;
     if (model.defaultAddress) {
-        self.address.text = [NSString stringWithFormat:@"[默认]%@",model.details];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"[默认]%@",model.details]];
+        [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, 4)];
+        self.address.attributedText = str;
+
     }else {
         self.address.text = model.details;
     }

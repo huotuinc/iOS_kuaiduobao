@@ -19,7 +19,9 @@
 //微信SDK头文件
 #import "WXApi.h"
 
-@interface AppDelegate ()
+#import <AlipaySDK/AlipaySDK.h>
+
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -97,6 +99,12 @@
                 [NSKeyedArchiver archiveRootObject:user toFile:fileName];
                 //保存新的token
                 [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+                
+                AdressModel *address = [AdressModel mj_objectWithKeyValues:json[@"resultData"][@"user"][@"addressModel"]];
+                NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+                [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+                
+                
             }
         }else if ([json[@"resultCode"] intValue] == 56001) {
             [UIViewController ToRemoveSandBoxDate];
@@ -106,9 +114,25 @@
         
     }];
     
-    
+    [self registRemoteNotification:application];
     
     return YES;
+}
+
+/**
+ *  注册远程通知
+ */
+- (void)registRemoteNotification:(UIApplication *)application{
+    if (IsIos8) { //iOS 8 remoteNotification
+        UIUserNotificationType type = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings * settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }else{
+        
+        UIRemoteNotificationType type = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeNewsstandContentAvailability;
+        [application registerForRemoteNotificationTypes:type];
+        
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -133,18 +157,28 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//- (BOOL)application:(UIApplication *)application
-//            openURL:(NSURL *)url
-//  sourceApplication:(NSString *)sourceApplication
-//         annotation:(id)annotation {
-//    
-//    if ([url.host isEqualToString:@"safepay"]) {
-//        //跳转支付宝钱包进行支付，处理支付结果
-//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-//            NSLog(@"result = %@",resultDic);
-//        }];
-//    }
-//    return YES;
-//}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+        }];
+    }
+    
+    if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回 authCode
+        [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+        }];
+    }
+    
+    if ([url.host isEqualToString:@"pay"]) {
+        [WXApi handleOpenURL:url delegate:self];
+    }
+    return YES;
+}
 
 @end

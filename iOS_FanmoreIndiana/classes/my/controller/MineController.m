@@ -71,7 +71,7 @@
     
     self.view.backgroundColor = COLOR_NAVBAR_A;
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];
-    [self.navigationController.navigationBar setBarTintColor:COLOR_NAVBAR_A];
+//    [self.navigationController.navigationBar setBarTintColor:COLOR_NAVBAR_A];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     self.tableView.contentOffset = CGPointMake(0, 0);

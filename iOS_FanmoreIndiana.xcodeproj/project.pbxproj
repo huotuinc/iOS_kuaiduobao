@@ -42,7 +42,6 @@
 		601C712B1C7C2FDC00673B7F /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601C71291C7C2FDC00673B7F /* RecordCell.xib */; };
 		601C712E1C7C419A00673B7F /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C712D1C7C419A00673B7F /* RecordController.m */; };
 		602BB5DD1C77FD9700C29F74 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 602BB5DC1C77FD9700C29F74 /* city.plist */; };
-		602BB5E01C7861CB00C29F74 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 602BB5DF1C7861CB00C29F74 /* AddressModel.m */; };
 		6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
 		6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53E1C4C8E9F00D6B567 /* XLPlainFlowLayout.m */; };
 		6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */; };
@@ -84,6 +83,10 @@
 		606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 606CA1D81C5B431900613E6A /* WinningCell.m */; };
 		606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606CA1D91C5B431900613E6A /* WinningCell.xib */; };
 		6073E1511C7AEC1F005AD927 /* MineShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6073E1501C7AEC1F005AD927 /* MineShareController.m */; };
+		608D428A1C869434000C4845 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 608D42891C869434000C4845 /* Order.m */; };
+		608D428E1C869B6C000C4845 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D428D1C869B6C000C4845 /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42901C86B4A7000C4845 /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42931C86B4AC000C4845 /* WXUtil.mm */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AF18EF1C5DAFFB0002388D /* WinningController.m */; };
@@ -115,7 +118,6 @@
 		60F389F41C7567050080D759 /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F389F21C7567050080D759 /* AddressCell.xib */; };
 		60F389F71C75AEE80080D759 /* AddAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389F61C75AEE80080D759 /* AddAddressController.m */; };
 		60FFF2C71C4E19CC00A93D7E /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FFF2C61C4E19CC00A93D7E /* LoginController.m */; };
-		60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60FFF30C1C4E1B6000A93D7E /* WXUtil.mm */; };
 		60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FFF30F1C4E1B8800A93D7E /* UITableView+CJ.m */; };
 		C9CF1CC78893266A12F317B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3CD9155C4F68979E05568 /* libPods.a */; };
 		F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */; };
@@ -369,8 +371,6 @@
 		601C712C1C7C419A00673B7F /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
 		601C712D1C7C419A00673B7F /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
 		602BB5DC1C77FD9700C29F74 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
-		602BB5DE1C7861CB00C29F74 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
-		602BB5DF1C7861CB00C29F74 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		6031C53A1C4C89B900D6B567 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
 		6031C53B1C4C89B900D6B567 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		6031C53D1C4C8E9F00D6B567 /* XLPlainFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlainFlowLayout.h; sourceTree = "<group>"; };
@@ -448,6 +448,14 @@
 		606CA1D91C5B431900613E6A /* WinningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinningCell.xib; sourceTree = "<group>"; };
 		6073E14F1C7AEC1F005AD927 /* MineShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineShareController.h; sourceTree = "<group>"; };
 		6073E1501C7AEC1F005AD927 /* MineShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineShareController.m; sourceTree = "<group>"; };
+		608D42881C869434000C4845 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		608D42891C869434000C4845 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		608D428C1C869B6C000C4845 /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
+		608D428D1C869B6C000C4845 /* payRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = payRequsestHandler.mm; sourceTree = "<group>"; };
+		608D428F1C86B4A7000C4845 /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
+		608D42901C86B4A7000C4845 /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
+		608D42921C86B4AC000C4845 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
+		608D42931C86B4AC000C4845 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -508,8 +516,6 @@
 		60F389F61C75AEE80080D759 /* AddAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressController.m; sourceTree = "<group>"; };
 		60FFF2C51C4E19CC00A93D7E /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		60FFF2C61C4E19CC00A93D7E /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
-		60FFF30B1C4E1B6000A93D7E /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
-		60FFF30C1C4E1B6000A93D7E /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		60FFF30E1C4E1B8800A93D7E /* UITableView+CJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CJ.h"; sourceTree = "<group>"; };
 		60FFF30F1C4E1B8800A93D7E /* UITableView+CJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CJ.m"; sourceTree = "<group>"; };
 		7CF8A6CDA904B4E69164FB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -864,6 +870,7 @@
 		6029AB161C4DD85300198FE3 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				608D428B1C869B67000C4845 /* 微信 */,
 				600041C41C74480300CEDC7A /* 支付宝 */,
 				60525F641C51C9D800CC4528 /* AFNNetTool */,
 				604C62581C50C57900569F0B /* libraries */,
@@ -883,8 +890,6 @@
 				F290AD0A1C4E5104005F05AC /* Measure.h */,
 				F290AD0B1C4E5104005F05AC /* Color.h */,
 				F290AD0C1C4E5104005F05AC /* Font.h */,
-				60FFF30B1C4E1B6000A93D7E /* WXUtil.h */,
-				60FFF30C1C4E1B6000A93D7E /* WXUtil.mm */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -1154,6 +1159,19 @@
 			path = Encryption;
 			sourceTree = "<group>";
 		};
+		608D428B1C869B67000C4845 /* 微信 */ = {
+			isa = PBXGroup;
+			children = (
+				608D42921C86B4AC000C4845 /* WXUtil.h */,
+				608D42931C86B4AC000C4845 /* WXUtil.mm */,
+				608D428F1C86B4A7000C4845 /* ApiXml.h */,
+				608D42901C86B4A7000C4845 /* ApiXml.mm */,
+				608D428C1C869B6C000C4845 /* payRequsestHandler.h */,
+				608D428D1C869B6C000C4845 /* payRequsestHandler.mm */,
+			);
+			path = "微信";
+			sourceTree = "<group>";
+		};
 		60B5A3691C520A5500E4C7BB /* my */ = {
 			isa = PBXGroup;
 			children = (
@@ -1206,12 +1224,12 @@
 		60B5A36B1C520A5500E4C7BB /* model */ = {
 			isa = PBXGroup;
 			children = (
+				608D42881C869434000C4845 /* Order.h */,
+				608D42891C869434000C4845 /* Order.m */,
 				60C65BF21C80392200332AD8 /* RedPacketsModel.h */,
 				60C65BF31C80392200332AD8 /* RedPacketsModel.m */,
 				600042B11C746CA400CEDC7A /* PayModel.h */,
 				600042B21C746CA400CEDC7A /* PayModel.m */,
-				602BB5DE1C7861CB00C29F74 /* AddressModel.h */,
-				602BB5DF1C7861CB00C29F74 /* AddressModel.m */,
 				6014A7191C7DA9E7006B2900 /* RaiderModel.h */,
 				6014A71A1C7DA9E7006B2900 /* RaiderModel.m */,
 				6014A71F1C7DB07C006B2900 /* ShareOrderModel.h */,
@@ -1815,7 +1833,6 @@
 				60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */,
 				600042981C744C5D00CEDC7A /* DataSigner.m in Sources */,
 				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
-				602BB5E01C7861CB00C29F74 /* AddressModel.m in Sources */,
 				F2B3BCDF1C7CA8D500AECFA5 /* HomeSearchCView.m in Sources */,
 				6000429A1C744C5D00CEDC7A /* MD5DataSigner.m in Sources */,
 				6031C53F1C4C8E9F00D6B567 /* XLPlainFlowLayout.m in Sources */,
@@ -1853,6 +1870,7 @@
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
 				600042971C744C5D00CEDC7A /* base64.m in Sources */,
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
+				608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
 				F23BEFF11C5F2F5D00E87042 /* DetailShareTableViewCell.m in Sources */,
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
@@ -1861,6 +1879,7 @@
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				F24119651C74440300C2B07E /* AppShareListModel.m in Sources */,
 				F28651D51C731789004E0357 /* AppPastListModel.m in Sources */,
+				608D428A1C869434000C4845 /* Order.m in Sources */,
 				F241196B1C74552000C2B07E /* AppCategoryListModel.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				60F389EC1C7566AE0080D759 /* AdressController.m in Sources */,
@@ -1870,6 +1889,7 @@
 				6000429C1C744C5D00CEDC7A /* openssl_wrapper.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				F2F587F41C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.m in Sources */,
+				608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
 				F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */,
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
@@ -1885,7 +1905,6 @@
 				60584F161C4E228D00F23B95 /* MD5Encryption.m in Sources */,
 				F2F587C21C7D4249007187B0 /* SearchViewController.m in Sources */,
 				F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */,
-				60FFF30D1C4E1B6000A93D7E /* WXUtil.mm in Sources */,
 				6014A7271C7DC8C4006B2900 /* BuyFlowModel.m in Sources */,
 				6000429E1C744C5D00CEDC7A /* RSADataVerifier.m in Sources */,
 				60C65BFA1C80482500332AD8 /* WinningConfirmController.m in Sources */,
@@ -1901,6 +1920,7 @@
 				60EB31A51C55C86C006C070B /* FanmoreUserController.m in Sources */,
 				F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */,
 				F2F587EA1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m in Sources */,
+				608D428E1C869B6C000C4845 /* payRequsestHandler.mm in Sources */,
 				F237B0CC1C81974700A743C7 /* ListRedPacketCell.m in Sources */,
 				F23DE3D91C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m in Sources */,
 				F23BEFE51C5F278700E87042 /* DetailPastViewController.m in Sources */,
@@ -2084,7 +2104,7 @@
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/WeChatSDK",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/支付宝",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndiana";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
@@ -2142,7 +2162,7 @@
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/WeChatSDK",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/支付宝",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndiana";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;

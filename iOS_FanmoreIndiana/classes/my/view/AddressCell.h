@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddressModel.h"
+#import "AdressModel.h"
 
 @interface AddressCell : UITableViewCell
 
-@property (nonatomic, strong) AddressModel *model;
+@property (nonatomic, strong) AdressModel *model;
 @property (weak, nonatomic) IBOutlet UILabel *nema;
 @property (weak, nonatomic) IBOutlet UILabel *address;
 @property (weak, nonatomic) IBOutlet UILabel *phone;
