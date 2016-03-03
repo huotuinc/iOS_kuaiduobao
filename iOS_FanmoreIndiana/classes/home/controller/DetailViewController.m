@@ -26,11 +26,12 @@
 #import "DetailBottomDoneCView.h"
 #import "DetailCalculateViewController.h"
 #import "DetailGoodsSelectCView.h"
+#import "CartModel.h"
 
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 static NSString * cellDFirst=@"cellDFirst";
-
+static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIView * headView;
@@ -53,6 +54,7 @@ static NSString * cellDFirst=@"cellDFirst";
 
 @property (nonatomic, strong) UIView * backView;//背景灰色视图
 @property (nonatomic, strong) DetailGoodsSelectCView * selectView;//背景灰色视图
+
 
 
 @end
@@ -452,7 +454,95 @@ static NSString * cellDFirst=@"cellDFirst";
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
-        [_bottomView.buttonAdd bk_whenTapped:^{
+        [_bottomView.buttonNext bk_whenTapped:^{
+        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+        if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+            self.issueId = _detailModel.issueId;
+            [self joinShoppingCart];
+        }else{
+#pragma mark 加入购物车 未登陆
+            NSMutableArray *localArray = [NSMutableArray array];
+            //                    localArray =nil;
+            //未进行归档
+            if ([self getLocalDataArray] == nil) {
+                CartModel *cModel = [[CartModel alloc] init];
+                cModel.areaAmount = _joinModel.areaAmount;
+                cModel.attendAmount = _joinModel.attendAmount;
+                cModel.isSelect = _joinModel.isSelect;
+                cModel.pictureUrl = _joinModel.pictureUrl;
+                cModel.remainAmount = _joinModel.remainAmount;
+                cModel.sid = _joinModel.sid;
+                cModel.stepAmount = _joinModel.stepAmount;
+                cModel.title = _joinModel.title;
+                cModel.toAmount = _joinModel.toAmount;
+                cModel.issueId = _joinModel.issueId;
+                cModel.userBuyAmount = _joinModel.defaultAmount;
+                cModel.pricePercentAmount = _joinModel.pricePercentAmount;
+                
+                [localArray addObject:cModel];
+            }
+            //已进行
+            else{
+                localArray =[NSMutableArray arrayWithArray:[self getLocalDataArray]];
+                //查看本地是否已有这期商品
+                for (int i =0; i<localArray.count; i++) {
+                    CartModel *cModel = localArray[i];
+                    //有
+                    if ([cModel.issueId isEqualToNumber:_joinModel.issueId ]) {
+                        NSInteger prcie;
+                        prcie = [_joinModel.buyAmount integerValue] + [_joinModel.stepAmount integerValue];
+                        cModel.userBuyAmount = [NSNumber numberWithInteger:prcie];
+                        isExist = YES;
+                    }
+                }
+                if (!isExist) {
+                    CartModel *cModel = [[CartModel alloc] init];
+                    cModel.areaAmount = _joinModel.areaAmount;
+                    cModel.attendAmount = _joinModel.attendAmount;
+                    cModel.userBuyAmount = _joinModel.defaultAmount;
+                    cModel.isSelect = _joinModel.isSelect;
+                    cModel.pictureUrl = _joinModel.pictureUrl;
+                    cModel.remainAmount = _joinModel.remainAmount;
+                    cModel.sid = _joinModel.sid;
+                    cModel.stepAmount = _joinModel.stepAmount;
+                    cModel.title = _joinModel.title;
+                    cModel.toAmount = _joinModel.toAmount;
+                    cModel.issueId = _joinModel.issueId;
+                    cModel.pricePercentAmount = _joinModel.pricePercentAmount;
+                    
+                    [localArray addObject:cModel];
+                    isExist = NO;
+                }
+            }
+            NSMutableData *data = [[NSMutableData alloc] init];
+            //创建归档辅助类
+            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+            //编码
+            [archiver encodeObject:localArray forKey:LOCALCART];
+            //结束编码
+            [archiver finishEncoding];
+            NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+            //写入
+            [data writeToFile:filename atomically:YES];
+            [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+        }
+        }];
+//        [_bottomView.buttonAdd bk_whenTapped:^{
+////            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+////            if ([login isEqualToString:Success]) {
+////#pragma mark 加入购物车 已登陆
+////                self.issueId = _detailModel.issueId;
+////                [self joinShoppingCart];
+////            }else{
+////#pragma mark 加入购物车 未登陆
+////                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+////
+////            }
+//            [self createSelectView];
+//        }];
+//        [_bottomView.buttonGo bk_whenTapped:^{
 //            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
 //            if ([login isEqualToString:Success]) {
 //#pragma mark 加入购物车 已登陆
@@ -461,35 +551,22 @@ static NSString * cellDFirst=@"cellDFirst";
 //            }else{
 //#pragma mark 加入购物车 未登陆
 //                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-//
+//                
 //            }
-            [self createSelectView];
-        }];
-        [_bottomView.buttonGo bk_whenTapped:^{
-            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-            if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
-                self.issueId = _detailModel.issueId;
-                [self joinShoppingCart];
-            }else{
-#pragma mark 加入购物车 未登陆
-                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-                
-            }
-        }];
-        _bottomView.imageVShop.userInteractionEnabled = YES;
-        [_bottomView.imageVShop bk_whenTapped:^{
-            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-            if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
-                self.issueId = _detailModel.issueId;
-                [self joinShoppingCart];
-            }else{
-#pragma mark 加入购物车 未登陆
-                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-                
-            }
-        }];
+//        }];
+//        _bottomView.imageVShop.userInteractionEnabled = YES;
+//        [_bottomView.imageVShop bk_whenTapped:^{
+//            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//            if ([login isEqualToString:Success]) {
+//#pragma mark 加入购物车 已登陆
+//                self.issueId = _detailModel.issueId;
+//                [self joinShoppingCart];
+//            }else{
+//#pragma mark 加入购物车 未登陆
+//                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
+//                
+//            }
+//        }];
         [self.view addSubview:_bottomView];
     }else{
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomDoneCView" owner:nil options:nil];
@@ -750,6 +827,17 @@ static NSString * cellDFirst=@"cellDFirst";
     return str;
 }
 
+#pragma mark 解归档
+- (NSArray *)getLocalDataArray{
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+    NSData *data = [NSData dataWithContentsOfFile:filename];
+    // 2.创建反归档对象
+    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    // 3.解码并存到数组中
+    NSArray *namesArray = [unArchiver decodeObjectForKey:LOCALCART];
+    return namesArray;
+}
 
 
 -(void)viewWillDisappear:(BOOL)animated{

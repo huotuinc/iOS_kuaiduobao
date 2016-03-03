@@ -179,7 +179,12 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
             }
             if (indexPath.row == 0) {
                 cell.labelB.text = _payModel.redPacketsTitle;
-                cell.labelCount.text = [NSString stringWithFormat:@" %@个红包可用 ",_payModel.redPacketsNumber];
+                if ([_payModel.redPacketsNumber integerValue ] == 0) {
+                    cell.labelCount.hidden =YES;
+                }else {
+                    cell.labelCount.text = [NSString stringWithFormat:@" %@个红包可用 ",_payModel.redPacketsNumber];
+                }
+                
             }
             if (indexPath.row == 1) {
                 cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %@元)",self.userInfo.money];
@@ -252,7 +257,7 @@ static NSInteger _whichPay = 0 ;  //0没有 1微信 2支付宝
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0 && [_payModel.redPacketsNumber integerValue] == 0) {
             RedChooseViewController *red = [[RedChooseViewController alloc] init];
             red.delegate = self;
             red.money = _payModel.totalMoney;

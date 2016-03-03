@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -39,27 +39,49 @@
                                     <constraint firstAttribute="height" constant="1" id="hxg-OD-tgw"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51W-2E-bu3">
+                                <rect key="frame" x="0.0" y="0.0" width="750" height="99"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFs-4s-hsh">
+                                        <rect key="frame" x="175" y="10" width="400" height="79"/>
+                                        <state key="normal" title="加入购物车"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="NFs-4s-hsh" firstAttribute="centerY" secondItem="51W-2E-bu3" secondAttribute="centerY" id="11z-d6-5Gt"/>
+                                    <constraint firstItem="NFs-4s-hsh" firstAttribute="centerX" secondItem="51W-2E-bu3" secondAttribute="centerX" id="MC8-kf-3t2"/>
+                                    <constraint firstItem="NFs-4s-hsh" firstAttribute="height" secondItem="51W-2E-bu3" secondAttribute="height" multiplier="80:100" id="ltp-nh-tIp"/>
+                                    <constraint firstItem="NFs-4s-hsh" firstAttribute="width" secondItem="51W-2E-bu3" secondAttribute="width" multiplier="400:750" id="mCJ-A0-d7W"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="51W-2E-bu3" secondAttribute="trailing" id="40d-89-hpi"/>
                             <constraint firstItem="9tO-SL-NEC" firstAttribute="top" secondItem="8XW-ih-9DL" secondAttribute="top" id="ARP-LW-BTU"/>
                             <constraint firstAttribute="trailing" secondItem="9tO-SL-NEC" secondAttribute="trailing" id="BYz-BS-k8Q"/>
+                            <constraint firstItem="ylJ-ud-smS" firstAttribute="leading" secondItem="51W-2E-bu3" secondAttribute="trailing" id="CL9-Dq-yCr"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="leading" secondItem="9tO-SL-NEC" secondAttribute="trailing" id="EyO-Ec-RNI"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="width" secondItem="8XW-ih-9DL" secondAttribute="width" multiplier="290:750" id="IC4-Z7-Gfn"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="height" secondItem="8XW-ih-9DL" secondAttribute="height" multiplier="70:100" id="JlC-ER-B1q"/>
+                            <constraint firstItem="51W-2E-bu3" firstAttribute="top" secondItem="8XW-ih-9DL" secondAttribute="top" id="JnV-NV-2D7"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="centerX" secondItem="8XW-ih-9DL" secondAttribute="centerX" multiplier="165:375" id="MIN-ad-tNp"/>
                             <constraint firstItem="9tO-SL-NEC" firstAttribute="leading" secondItem="8XW-ih-9DL" secondAttribute="leading" id="O7G-vD-Ra8"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="centerX" secondItem="8XW-ih-9DL" secondAttribute="centerX" multiplier="690:375" id="UxP-Rl-jmU"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="centerY" secondItem="z30-MT-A96" secondAttribute="centerY" id="VNs-Ar-FdY"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="width" secondItem="z30-MT-A96" secondAttribute="width" id="X9u-06-TFc"/>
+                            <constraint firstAttribute="bottom" secondItem="51W-2E-bu3" secondAttribute="bottom" id="ZIO-g2-jEe"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="centerY" secondItem="8XW-ih-9DL" secondAttribute="centerY" id="a2W-VX-a0s"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="height" secondItem="z30-MT-A96" secondAttribute="height" id="p4b-kJ-fsr"/>
+                            <constraint firstItem="51W-2E-bu3" firstAttribute="leading" secondItem="8XW-ih-9DL" secondAttribute="leading" id="pH7-qZ-4oU"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="centerX" secondItem="8XW-ih-9DL" secondAttribute="centerX" multiplier="480:375" id="wGO-tF-Jlx"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="height" secondItem="z30-MT-A96" secondAttribute="height" id="wYd-te-vzT"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="centerY" secondItem="z30-MT-A96" secondAttribute="centerY" id="yqC-Sb-UVg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="CL9-Dq-yCr"/>
                                 <exclude reference="EyO-Ec-RNI"/>
                             </mask>
                         </variation>
@@ -75,6 +97,7 @@
             <connections>
                 <outlet property="buttonAdd" destination="ylJ-ud-smS" id="iIy-gl-Dgb"/>
                 <outlet property="buttonGo" destination="z30-MT-A96" id="g1S-ca-40J"/>
+                <outlet property="buttonNext" destination="NFs-4s-hsh" id="Y2X-xT-ubW"/>
                 <outlet property="imageVLine" destination="9tO-SL-NEC" id="LOw-D0-1CV"/>
                 <outlet property="imageVShop" destination="v0e-jd-j94" id="i1s-y9-zpV"/>
             </connections>
