@@ -101,11 +101,11 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 }
 
 - (void)createTimer {
-    self.countTimer = [NSTimer timerWithTimeInterval:0.01f target:self selector:@selector(timerEvent) userInfo:nil repeats:YES];
+    self.countTimer = [NSTimer scheduledTimerWithTimeInterval:0.01f target:self selector:@selector(createTimerEventA) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_countTimer forMode:NSRunLoopCommonModes];
 }
 
-- (void)timerEvent {
+- (void)createTimerEventA {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_COUNT_TIME object:nil];
     [_detailModel countDown];
 }
@@ -189,7 +189,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             
             LWLog(@"%@",json[@"resultDescription"]);
             _detailModel = [AppGoodsDetailModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
-            
+            _detailModel.remainSecond = _detailModel.remainSecond*100;
 //            [self.goodsDetailList removeAllObjects];
 //            [self.goodsDetailList addObject:model];
 
