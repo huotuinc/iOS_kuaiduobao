@@ -349,8 +349,8 @@ static NSString *payIdentify = @"payIdentifty";
         
         //商品价格
         
-        NSString * a  = [NSString stringWithFormat:@"%f", [self.payModel.fee floatValue] * 100];
-        
+        NSString * a  = [NSString stringWithFormat:@"%d", [self.payModel.fee intValue] * 100];
+//        NSString *a = [self.payModel.fee stringValue];
         //商品价格
         
         params[@"nonce_str"] = noncestr; //随机字符串，不长于32位。推荐随机数生成算法
@@ -440,11 +440,11 @@ static NSString *payIdentify = @"payIdentifty";
             req.sign                = [dict objectForKey:@"sign"];
             [WXApi sendReq:req];
         }else{
-            //            NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
+                        NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
         }
         
     }else{
-        //        NSLog(@"提示信息返回错误");
+                NSLog(@"提示信息返回错误");
         
     }
     
