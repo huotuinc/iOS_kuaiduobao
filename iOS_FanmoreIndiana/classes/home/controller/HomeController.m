@@ -426,7 +426,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeFourBtnCView" owner:nil options:nil];
     _fourBtnView=[nib firstObject];
     _fourBtnView.frame=CGRectMake(0,ADAPT_HEIGHT(280), SCREEN_WIDTH, ADAPT_HEIGHT(160));
-    for (int i =0; i<4; i++) {
+    for (int i =0; i<5; i++) {
         UIImageView *imageV=[_fourBtnView viewWithTag:200+i];
         
         imageV.userInteractionEnabled=YES;
