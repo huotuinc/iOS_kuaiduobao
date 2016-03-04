@@ -145,12 +145,12 @@ static NSString *cellABMain=@"cellABMain";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             NSArray *temp = [AppNewOpenListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
-            [self.openList addObjectsFromArray:temp];
-            for (int i = 0; i < _openList.count; i++) {
-                AppNewOpenListModel *model = _openList[i];
+            for (int i = 0; i < temp.count; i++) {
+                AppNewOpenListModel *model = temp[i];
                 model.toAwardingTime = model.toAwardingTime * 100;
             }
+            [self.openList addObjectsFromArray:temp];
+            
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
 

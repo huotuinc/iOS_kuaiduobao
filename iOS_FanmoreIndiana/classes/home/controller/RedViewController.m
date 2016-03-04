@@ -10,6 +10,8 @@
 
 @interface RedViewController ()
 
+@property (nonatomic, strong) UIImageView * backImageV;
+
 @end
 
 @implementation RedViewController
@@ -17,8 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self createBackImage];
 }
 
+- (void)createBackImage{
+    _backImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    _backImageV.image = [UIImage imageNamed:]
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

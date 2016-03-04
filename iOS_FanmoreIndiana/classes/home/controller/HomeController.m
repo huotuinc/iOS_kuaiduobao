@@ -570,6 +570,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [cell addSubview:_imageVNotice];
             [cell addSubview:_labelCollectionView];
             [cell addSubview:_clearView];
+            cell.selectedBackgroundView = [[UIView alloc] init];
             return cell;
             
         }else {

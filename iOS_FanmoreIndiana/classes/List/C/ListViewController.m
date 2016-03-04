@@ -219,6 +219,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     login.logDelegate = self;
     login.cartsString = cartsString;
     login.postData = 1;
+    _bottomView.buttonGo.userInteractionEnabled = YES;
     [self presentViewController:nav animated:YES completion:nil];
 
 
@@ -250,8 +251,10 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
             _balanceModel = [AppBalanceModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             PayViewController *pay = [[PayViewController alloc] init];
             pay.payModel = _balanceModel;
+            _bottomView.buttonGo.userInteractionEnabled = YES;
             [self.navigationController pushViewController:pay animated:YES];
         }else {
+            _bottomView.buttonGo.userInteractionEnabled = YES;
             [SVProgressHUD showInfoWithStatus:@"商品信息发生改变"];
 
             LWLog(@"%@",json[@"resultDescription"]);
@@ -259,7 +262,9 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
+        _bottomView.buttonGo.userInteractionEnabled = YES;
         [SVProgressHUD showInfoWithStatus:@"商品信息发生改变"];
+
 
         
     } withFileKey:nil];
@@ -382,12 +387,14 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
         if ([login isEqualToString:Success]) {
             if (_selectedArray.count != 0) {
+                _bottomView.buttonGo.userInteractionEnabled = NO;
                 [self goToPay];
             } else {
                 [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
             }
         }else{
             if (_selectedArray.count != 0) {
+                _bottomView.buttonGo.userInteractionEnabled = NO;
                 [self goToLogin];
             } else {
                 [SVProgressHUD showInfoWithStatus:@"没有选中商品"];

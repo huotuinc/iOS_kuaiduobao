@@ -13,9 +13,14 @@
 #import "AppPayModel.h"
 #import "UserModel.h"
 #import "TabBarController.h"
+#import "Order.h"
+#import "DataSigner.h"
+#import <AlipaySDK/AlipaySDK.h>
+
+
 static NSString *cellPA=@"cellPA";
 static NSString *cellPB=@"cellPB";
-static NSInteger _whichPay = 0 ;  //支付类型 0微信 1支付宝 2用户余额
+static NSInteger _whichPay = 2 ;  //支付类型 0微信 1支付宝 2用户余额
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -61,7 +66,7 @@ static NSInteger _whichPay = 0 ;  //支付类型 0微信 1支付宝 2用户余�
 
 -(void)paySuccessOrFail {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"payType"] = @2;
+    dic[@"payType"] = [NSString stringWithFormat:@"%ld",_whichPay];
     dic[@"redPacketsId"] = _payModel.redPacketsId;
 //    dic[@"redPacketsId"] = nil;
     NSInteger payMoney = [_payModel.totalMoney integerValue] - [_payModel.redPacketsMinusMoney integerValue];
@@ -71,19 +76,27 @@ static NSInteger _whichPay = 0 ;  //支付类型 0微信 1支付宝 2用户余�
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             LWLog(@"%@",json[@"resultDescription"]);
             _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
-            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
-
-            [self remainPay];
+            //支付类型 0微信 1支付宝 2用户余额
+            if (_whichPay == 2) {
+                [self remainPay];
+            }
+            if (_whichPay == 1) {
+                [self PayByAlipay];
+            }
 
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
             [SVProgressHUD showErrorWithStatus:@"支付失败"];
+            _payView.buttonPay.userInteractionEnabled = YES;
+
 
         }
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
         [SVProgressHUD showSuccessWithStatus:@"支付失败"];
+        _payView.buttonPay.userInteractionEnabled = YES;
+
         
         
     } withFileKey:nil];
@@ -98,30 +111,98 @@ static NSInteger _whichPay = 0 ;  //支付类型 0微信 1支付宝 2用户余�
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             LWLog(@"%@",json[@"resultDescription"]);
+            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+            _payView.buttonPay.userInteractionEnabled = YES;
 //            _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
 //            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
-
-            
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
-
-            
+            _payView.buttonPay.userInteractionEnabled = YES;
         }
-        
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
 //        [SVProgressHUD showErrorWithStatus:@"网络错误"];
-        
+        [SVProgressHUD showSuccessWithStatus:@"支付失败"];
+        _payView.buttonPay.userInteractionEnabled = YES;
         
     } withFileKey:nil];
 
 
+}
+
+/**
+ *  支付宝
+ */
+- (void)PayByAlipay{
+    /*============================================================================*/
+    /*=======================需要填写商户app申请的===================================*/
+    /*============================================================================*/
+    NSString *partner = AliPayPid;
+    NSString *seller = AliPayPid;
+    //私营
+    NSString *privateKey = AliPayKey;
+    //公钥
+    if ([partner length] == 0 ||
+        [seller length] == 0 ||
+        [privateKey length] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"缺少partner或者seller或者私钥。"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    /*
+     *生成订单信息及签名
+     */
+    //将商品信息赋予AlixPayOrder的成员变量
+    Order *order = [[Order alloc] init];
+    order.partner = partner;
+    order.seller = seller;
+    order.tradeNO = [self.payBackModel.orderNo stringValue]; //订单ID（由商家自行制定）
+    order.productName = @"粉猫夺宝支付"; //商品标题
+//    order.productDescription = self.payModel.detail; //商品描述
+    order.amount = [self.payBackModel.fee stringValue]; //商品价格
+    order.notifyURL =  self.payBackModel.alipayCallbackUrl; //回调URL
+    
+    order.service = @"mobile.securitypay.pay";
+    order.paymentType = @"1";
+    order.inputCharset = @"utf-8";
+    order.itBPay = @"30m";
+    order.showUrl = @"m.alipay.com";
+    
+    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+    NSString *appScheme = @"newfanmore2015";
+    
+    //将商品信息拼接成字符串
+    NSString *orderSpec = [order description];
+    NSLog(@"orderSpec = %@",orderSpec);
+    
+    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+    NSString *signedString = [signer signString:orderSpec];
+    
+    //将签名成功字符串格式化为订单字符串,请严格按照该格式
+    NSString *orderString = nil;
+    if (signedString != nil) {
+        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                       orderSpec, signedString, @"RSA"];
+        
+        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+            NSLog(@"reslut = %@",resultDic);
+        }];
+    }
+    
 }
 -(void)createPayView{
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"PayButtonTableViewCell" owner:nil options:nil];
     _payView=[nib firstObject];
     _payView.frame = CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(130));
     [_payView.buttonPay bk_whenTapped:^{
+        _payView.buttonPay.userInteractionEnabled = NO;
         [self paySuccessOrFail];
     }];
 }
@@ -203,18 +284,6 @@ static NSInteger _whichPay = 0 ;  //支付类型 0微信 1支付宝 2用户余�
                 cell.imageVLine.hidden = YES;
 
             }
-            cell.buttonSelect.tag = 500 + indexPath.row;
-            //支付类型 0微信 1支付宝 2用户余额
-            [cell.buttonSelect bk_whenTapped:^{
-                LWLog(@"+++++++++++++%ld",indexPath.row);
-                for (int i = 3; i < 5; i++) {
-                    UIButton *btn = [cell viewWithTag:500+i];
-                    btn.selected = NO;
-                }
-                cell.buttonSelect.selected = YES;
-                _whichPay = indexPath.row - 3;
-                
-            }];
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -264,11 +333,22 @@ static NSInteger _whichPay = 0 ;  //支付类型 0微信 1支付宝 2用户余�
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
-        if (indexPath.row == 0 && [_payModel.redPacketsNumber integerValue] == 0) {
+        if (indexPath.row == 0 && [_payModel.redPacketsNumber integerValue] != 0) {
             RedChooseViewController *red = [[RedChooseViewController alloc] init];
             red.delegate = self;
             red.money = _payModel.totalMoney;
             [self.navigationController pushViewController:red animated:YES];
+        }
+        //支付类型 0微信 1支付宝 2用户余额
+        if (indexPath.row == 3 || indexPath.row == 4) {
+            for (int i = 3; i < 5; i++) {
+                PayBTableViewCell * aCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
+                aCell.buttonSelect.selected = NO;
+            }
+
+            PayBTableViewCell * theCell = [_tableView cellForRowAtIndexPath:indexPath];
+            _whichPay = indexPath.row - 3;
+            theCell.buttonSelect.selected = YES;
         }
     }
 }

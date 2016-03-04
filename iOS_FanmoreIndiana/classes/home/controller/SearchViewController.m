@@ -32,7 +32,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.translucent=NO;
-//    self.tabBarController.tabBar.hidden=YES;
+    self.tabBarController.tabBar.hidden=YES;
     self.view.backgroundColor = [UIColor whiteColor];
 
 }
@@ -319,6 +319,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    self.tabBarController.tabBar.hidden = NO;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 
     
