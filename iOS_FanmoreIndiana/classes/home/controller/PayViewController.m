@@ -130,6 +130,41 @@ static NSInteger _whichPay = 2 ;  //支付类型 0微信 1支付宝 2用户余�
 
 }
 
+
+/**
+ *  微信pay
+ */
+- (void)WeiChatPay{
+    
+    
+    //获取到实际调起微信支付的参数后，在app端调起支付
+    NSMutableDictionary *dict = [self PayByWeiXinParame];
+    if(dict != nil){
+        NSMutableString *retcode = [dict objectForKey:@"retcode"];
+        if (retcode.intValue == 0){
+            NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+            //调起微信支付
+            PayReq* req             = [[PayReq alloc] init];
+            req.openID              = [dict objectForKey:@"appid"];
+            req.partnerId           = [dict objectForKey:@"partnerid"];
+            req.prepayId            = [dict objectForKey:@"prepayid"];
+            req.nonceStr            = [dict objectForKey:@"noncestr"];
+            req.timeStamp           = stamp.intValue;
+            req.package             = [dict objectForKey:@"package"];
+            req.sign                = [dict objectForKey:@"sign"];
+            [WXApi sendReq:req];
+        }else{
+            //            NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
+        }
+        
+    }else{
+        //        NSLog(@"提示信息返回错误");
+        
+    }
+    
+    
+}
+
 /**
  *  支付宝
  */
