@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *pay500;
 @property (weak, nonatomic) IBOutlet UITextField *payOther;
 @property (weak, nonatomic) IBOutlet UIButton *verifyPay;
+@property (weak, nonatomic) IBOutlet UILabel *activity;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *activityLayout;
 - (IBAction)verifyPayAction:(id)sender;
 
 @end

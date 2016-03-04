@@ -87,6 +87,7 @@
 		608D428E1C869B6C000C4845 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D428D1C869B6C000C4845 /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42901C86B4A7000C4845 /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42931C86B4AC000C4845 /* WXUtil.mm */; };
+		608D42971C8859D4000C4845 /* NSData+NSDataDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 608D42961C8859D4000C4845 /* NSData+NSDataDeal.m */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AF18EF1C5DAFFB0002388D /* WinningController.m */; };
@@ -479,6 +480,8 @@
 		608D42901C86B4A7000C4845 /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
 		608D42921C86B4AC000C4845 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
 		608D42931C86B4AC000C4845 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
+		608D42951C8859D4000C4845 /* NSData+NSDataDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSDataDeal.h"; sourceTree = "<group>"; };
+		608D42961C8859D4000C4845 /* NSData+NSDataDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSDataDeal.m"; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -964,6 +967,8 @@
 		6029AB191C4DD85300198FE3 /* 扩展 */ = {
 			isa = PBXGroup;
 			children = (
+				608D42951C8859D4000C4845 /* NSData+NSDataDeal.h */,
+				608D42961C8859D4000C4845 /* NSData+NSDataDeal.m */,
 				605E158D1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.h */,
 				605E158E1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m */,
 				60B5A3661C51FDE900E4C7BB /* NSDictionary+EXTERN.h */,
@@ -2014,6 +2019,7 @@
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
+				608D42971C8859D4000C4845 /* NSData+NSDataDeal.m in Sources */,
 				F23670041C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m in Sources */,
 				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
 				60525F631C51BF0E00CC4528 /* UserModel.m in Sources */,
@@ -2108,7 +2114,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yun he (U69X69TGU7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2152,7 +2159,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yun he (U69X69TGU7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

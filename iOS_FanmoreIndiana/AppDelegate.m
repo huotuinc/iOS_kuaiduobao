@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GlobalModel.h"
+#import "NSData+NSDataDeal.h"
 #import "UIViewController+MonitorNetWork.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
@@ -18,7 +19,6 @@
 
 //微信SDK头文件
 #import "WXApi.h"
-
 #import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()<WXApiDelegate>
@@ -105,9 +105,9 @@
                 [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
                 
                 
+            }else {
+                [UIViewController ToRemoveSandBoxDate];
             }
-        }else if ([json[@"resultCode"] intValue] == 56001) {
-            [UIViewController ToRemoveSandBoxDate];
         }
         
     } failure:^(NSError *error) {
@@ -132,6 +132,57 @@
         UIRemoteNotificationType type = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeNewsstandContentAvailability;
         [application registerForRemoteNotificationTypes:type];
         
+    }
+}
+
+/**
+ *  ios8
+ *
+ *  @param application          <#application description#>
+ *  @param notificationSettings <#notificationSettings description#>
+ */
+-(void)application:(UIApplication*)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+        [application registerForRemoteNotifications];
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+        LWLog(@"注册推送服务时，发生以下错误： %@",error.description);
+}
+
+/**
+ *  获取deviceToken
+ */
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    //    NSLog(@"%@",deviceToken);
+    NSString * aa = [[deviceToken hexadecimalString] copy];
+    //    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
+    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+    parame[@"deviceToken"] = aa;
+    //    NSLog(@"deviceToken===%@",aa);
+    [UserLoginTool loginRequestGet:@"updateDeviceToken" parame:parame success:^(id json) {
+        LWLog(@"送11111 %@", json);
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+    //    NSLog(@"didReceiveRemoteNotification ------ %@",userInfo);
+    //    NSLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
+    //以警告框的方式来显示推送消息
+    NSDictionary * dict = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    if (dict != NULL) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:dict[@"body"]
+                                                        message:dict[@"title"]
+                                                       delegate:self
+                                              cancelButtonTitle:@"关闭"
+                                              otherButtonTitles:@"处理",nil];
+        [alert show];
     }
 }
 
@@ -180,5 +231,9 @@
     }
     return YES;
 }
+
+
+
+
 
 @end
