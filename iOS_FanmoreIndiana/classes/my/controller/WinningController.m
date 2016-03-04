@@ -90,7 +90,7 @@ static NSString *winningIdentify = @"winningIdentify";
             //已取人收货地址
             cell.confirm.userInteractionEnabled = YES;
             [cell.confirm setTitle:@"确认收货" forState:UIControlStateNormal];
-            [cell.confirm setBackgroundColor:[UIColor colorWithWhite:0.702 alpha:1.000]];
+            [cell.confirm setBackgroundColor:[UIColor colorWithRed:0.933 green:0.384 blue:0.090 alpha:1.000]];
             [cell.confirm addTarget:self action:@selector(confirmAction:) forControlEvents:UIControlEventTouchUpInside];
             break;
         }
@@ -316,6 +316,11 @@ static NSString *winningIdentify = @"winningIdentify";
     
     [UserLoginTool loginRequestGet:@"confirmReceipt" parame:dic success:^(id json) {
         LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            [SVProgressHUD showSuccessWithStatus:@"确认收货成功"];
+            [self getNewList];
+            
+        }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     }];
@@ -373,7 +378,7 @@ static NSString *winningIdentify = @"winningIdentify";
         case 2:
         {
             if (buttonIndex == 0) {
-                
+                [self confirmationOfGoods];
             }
             
             break;

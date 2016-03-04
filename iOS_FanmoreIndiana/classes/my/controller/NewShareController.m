@@ -1,4 +1,4 @@
-//
+ //
 //  NewShareController.m
 //  iOS_FanmoreIndiana
 //
@@ -8,10 +8,16 @@
 
 #import "NewShareController.h"
 #import <UIBarButtonItem+BlocksKit.h>
+#import <UIImageView+WebCache.h>
 
-@interface NewShareController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
+@interface NewShareController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *selectImage;
+
+@property (nonatomic, strong) NSString *first;
+@property (nonatomic, strong) NSString *second;
+@property (nonatomic, strong) NSString *third;
+@property (nonatomic, strong) NSString *fourth;
 
 @end
 
@@ -55,6 +61,8 @@
         }else if ([self picturesAreTheSame]) {
             [SVProgressHUD showErrorWithStatus:@"请设置4张晒单图片"];
         }else {
+            [self.shareDetail resignFirstResponder];
+            [self.shareTitle resignFirstResponder];
             [self addShareOrdor];
         }
     }];
@@ -73,18 +81,40 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark text
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if ([text isEqualToString:@"完成"]) {
+        [textView resignFirstResponder];
+    }
+    
+    return YES;
+}
+
 
 - (void)addShareOrdor {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"issuId"] = self.WinningModel.issueId;
+    dic[@"issueId"] = self.WinningModel.issueId;
     dic[@"title"] = self.shareTitle.text;
     dic[@"content"] = self.shareDetail.text;
     dic[@"profileData"] = [self getArrayFromImages];
     
+    [SVProgressHUD showWithStatus:nil];
     [UserLoginTool loginRequestPostWithFile:@"addShareOrder" parame:dic success:^(id json) {
         LWLog(@"%@", json);
+        [SVProgressHUD dismiss];
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     } failure:^(NSError *error) {
         LWLog(@"%@", error);
+        [SVProgressHUD dismiss];
     } withFileKey:nil];
 }
 
@@ -189,9 +219,48 @@
         }
     }
     
-    self.selectImage.image = photoImage;
+    [picker dismissViewControllerAnimated:YES completion:^{
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        
+        dic[@"profileData"] = [self getStringFromImage:photoImage];
+        
+        
+        [SVProgressHUD showWithStatus:@"图片上传中"];
+        [UserLoginTool loginRequestPostWithFile:@"addShareOrderImg" parame:dic success:^(id json) {
+            LWLog(@"%@", json);
+            [SVProgressHUD dismiss];
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                if (_selectImage.tag == 101) {
+                    [self.firstImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    self.first = json[@"resultData"][@"filename"];
+                }
+                if (_selectImage.tag == 102) {
+                    [self.secondImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    self.second = json[@"resultData"][@"filename"];
+                }
+                if (_selectImage.tag == 103) {
+                    [self.thirdImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    self.third = json[@"resultData"][@"filename"];
+                }
+                if (_selectImage.tag == 104) {
+                    [self.fourthImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    self.fourth = json[@"resultData"][@"filename"];
+                }
+            }else {
+                [SVProgressHUD showErrorWithStatus:@"图片上传失败"];
+            }
+        } failure:^(NSError *error) {
+            LWLog(@"%@", error);
+            [SVProgressHUD dismiss];
+        } withFileKey:nil];
+    }];
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    
+
+    
+
     
 }
 /**
@@ -246,16 +315,16 @@
     return NO;
 }
 
-- (NSArray *)getArrayFromImages {
+- (NSString *)getArrayFromImages {
     
-    NSMutableArray *array = [NSMutableArray array];
+    NSMutableString *temp = [NSMutableString string];
     
-    [array addObject:[self getStringFromImage:self.firstImage.image]];
-    [array addObject:[self getStringFromImage:self.secondImage.image]];
-    [array addObject:[self getStringFromImage:self.thirdImage.image]];
-    [array addObject:[self getStringFromImage:self.fourthImage.image]];
+    [temp appendString:self.first];
+    [temp appendFormat:@",%@" ,self.second];
+    [temp appendFormat:@",%@" ,self.third];
+    [temp appendFormat:@",%@" ,self.fourth];
     
-    return array;
+    return temp;
 }
 
 - (NSString *)getStringFromImage:(UIImage *) image {
