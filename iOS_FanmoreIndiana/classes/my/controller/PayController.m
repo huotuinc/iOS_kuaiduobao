@@ -295,7 +295,7 @@ static NSString *payIdentify = @"payIdentifty";
     order.tradeNO = [self.payModel.orderNo stringValue]; //订单ID（由商家自行制定）
     order.productName = @"粉猫夺宝充值"; //商品标题
     order.productDescription = self.payModel.detail; //商品描述
-    order.amount = [self.payModel.fee stringValue]; //商品价格
+    order.amount = [NSString stringWithFormat:@"%@",self.payModel.fee]; //商品价格
     order.notifyURL =  self.payModel.alipayCallbackUrl; //回调URL
     
     order.service = @"mobile.securitypay.pay";
@@ -331,6 +331,41 @@ static NSString *payIdentify = @"payIdentifty";
 
 
 
+
+
+/**
+ *  微信pay
+ */
+- (void)WeiChatPay{
+    
+    
+    //获取到实际调起微信支付的参数后，在app端调起支付
+    NSMutableDictionary *dict = [self PayByWeiXinParame];
+    if(dict != nil){
+        NSMutableString *retcode = [dict objectForKey:@"retcode"];
+        if (retcode.intValue == 0){
+            NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+            //调起微信支付
+            PayReq* req             = [[PayReq alloc] init];
+            req.openID              = [dict objectForKey:@"appid"];
+            req.partnerId           = [dict objectForKey:@"partnerid"];
+            req.prepayId            = [dict objectForKey:@"prepayid"];
+            req.nonceStr            = [dict objectForKey:@"noncestr"];
+            req.timeStamp           = stamp.intValue;
+            req.package             = [dict objectForKey:@"package"];
+            req.sign                = [dict objectForKey:@"sign"];
+            [WXApi sendReq:req];
+        }else{
+                        NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
+        }
+        
+    }else{
+                NSLog(@"提示信息返回错误");
+        
+    }
+    
+    
+}
 /**
  *  微信支付预zhifu
  */
@@ -350,7 +385,7 @@ static NSString *payIdentify = @"payIdentifty";
         //商品价格
         
         NSString * a  = [NSString stringWithFormat:@"%d", [self.payModel.fee intValue] * 100];
-//        NSString *a = [self.payModel.fee stringValue];
+        //        NSString *a = [self.payModel.fee stringValue];
         //商品价格
         
         params[@"nonce_str"] = noncestr; //随机字符串，不长于32位。推荐随机数生成算法
@@ -358,7 +393,7 @@ static NSString *payIdentify = @"payIdentifty";
         params[@"body"] = self.payModel.detail; //商品或支付单简要描述
         
         params[@"notify_url"] = self.payModel.wxCallbackUrl;  //接收微信支付异步通知回调地址
-    
+        
         params[@"out_trade_no"] = [self.payModel.orderNo stringValue]; //订单号
         params[@"spbill_create_ip"] = @"192.168.1.1"; //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
         
@@ -415,40 +450,6 @@ static NSString *payIdentify = @"payIdentifty";
         
     }
     return nil;
-}
-
-/**
- *  微信pay
- */
-- (void)WeiChatPay{
-    
-    
-    //获取到实际调起微信支付的参数后，在app端调起支付
-    NSMutableDictionary *dict = [self PayByWeiXinParame];
-    if(dict != nil){
-        NSMutableString *retcode = [dict objectForKey:@"retcode"];
-        if (retcode.intValue == 0){
-            NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
-            //调起微信支付
-            PayReq* req             = [[PayReq alloc] init];
-            req.openID              = [dict objectForKey:@"appid"];
-            req.partnerId           = [dict objectForKey:@"partnerid"];
-            req.prepayId            = [dict objectForKey:@"prepayid"];
-            req.nonceStr            = [dict objectForKey:@"noncestr"];
-            req.timeStamp           = stamp.intValue;
-            req.package             = [dict objectForKey:@"package"];
-            req.sign                = [dict objectForKey:@"sign"];
-            [WXApi sendReq:req];
-        }else{
-                        NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
-        }
-        
-    }else{
-                NSLog(@"提示信息返回错误");
-        
-    }
-    
-    
 }
 
 @end
