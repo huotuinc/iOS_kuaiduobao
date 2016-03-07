@@ -39,10 +39,10 @@
 #define wxpayKey @"0db0d4908a6ae6a09b0a7727878f0ca6"
 
 
-//有盟appKey
+//有盟appKey
 #define UMAppKey @"52faffcf56240bc21a023179"
 /**shareSDK */
-#define ShareSDKAppKey @"f01c25532708"
+#define ShareSDKAppKey @"f01c25532708" //19b4b4d45192 
 
 /**新浪微博*/
 #define XinLangAppkey @"1994677353"
@@ -54,7 +54,7 @@
 #define QQappSecret @"09ef5bfed097b682a83b147d46e46a5a"
 
 /**微信*/
-#define WeiXinAppID @"wxaeda2d5603b12302"
+#define WeiXinAppID @"wx8ba33b7341047b58"
 #define WeiXinAppSecret @"8c3b660de36a3b3fb678ca865e31f0f3"
 
 
@@ -65,8 +65,8 @@
 
 ///***服务器地址***/1.41
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
-//#define MKMainUrl @"192.168.1.41:8080/duobao/app"
-#define MKMainUrl @"duobao.51flashmall.com:8091/app"
+#define MKMainUrl @"192.168.1.41:8080/duobao/app"
+//#define MKMainUrl @"duobao.51flashmall.com:8091/app"
 
 
 

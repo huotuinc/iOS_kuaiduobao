@@ -7,7 +7,6 @@
 //
 
 #import "RedViewController.h"
-#import "MyView.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface RedViewController (){
@@ -79,10 +78,10 @@
 //    [_xiuButton setImage:[UIImage imageNamed:@"hb_red"] forState:UIControlStateNormal];
 //    [self.view addSubview:_xiuButton];
 //    [_xiuButton addTarget:self action:@selector(aaaaa) forControlEvents:UIControlEventTouchUpInside];
-    self.imgView = [[MyView alloc]init];
-    self.imgView.backgroundColor = [UIColor clearColor];
-    self.imgView.frame=self.view.frame;
-    [self.view addSubview:self.imgView];
+//    self.imgView = [[MyView alloc]init];
+//    self.imgView.backgroundColor = [UIColor clearColor];
+////    self.imgView.frame=self.view.frame;
+//    [self.view addSubview:self.imgView];
     [self startAnimation];
 }
 

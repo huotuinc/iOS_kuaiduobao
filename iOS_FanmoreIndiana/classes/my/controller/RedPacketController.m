@@ -9,7 +9,11 @@
 #import "RedPacketController.h"
 #import "RedPacketCell.h"
 #import "RedPacketsModel.h"
+#import "AppShareModel.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <UIBarButtonItem+BlocksKit.h>
+
 
 @interface RedPacketController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -143,13 +147,63 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
     [UserLoginTool loginRequestGet:@"shareRedPackets" parame:nil success:^(id json) {
         LWLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
-            
+            AppShareModel *model = [AppShareModel mj_objectWithKeyValues:json[@"resultData"][@"share"]];
+            [self goShare:model];
         }else {
             [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
         }
     } failure:^(NSError *error) {
         LWLog(@"%@", error);
     }];
+}
+
+
+- (void)goShare:(AppShareModel *) model {
+    
+    
+    //1、创建分享参数
+    NSArray* imageArray = @[model.imgUrl];
+    if (imageArray) {
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:model.text
+                                         images:imageArray
+                                            url:[NSURL URLWithString:model.url]
+                                          title:model.title
+                                           type:SSDKContentTypeAuto];
+        //2、分享（可以弹出我们的分享菜单和编辑界面）
+        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+                                 items:nil
+                           shareParams:shareParams
+                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                       
+                       switch (state) {
+                           case SSDKResponseStateSuccess:
+                           {
+                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                                   message:nil
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"确定"
+                                                                         otherButtonTitles:nil];
+                               [alertView show];
+                               break;
+                           }
+                           case SSDKResponseStateFail:
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:[NSString stringWithFormat:@"%@",error]
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           default:
+                               break;
+                       }
+                       
+                   }];
+        
+    }
 }
 
 #pragma mark -tableView 
