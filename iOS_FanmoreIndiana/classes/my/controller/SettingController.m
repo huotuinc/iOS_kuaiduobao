@@ -8,6 +8,7 @@
 
 #import "SettingController.h"
 #import "UIViewController+MonitorNetWork.h"
+#import <SDWebImageCompat.h>
 
 @interface SettingController ()
 
@@ -20,12 +21,19 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tabBarController.tabBar setHidden:YES];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self _initLabels];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+- (void)_initLabels {
+    SDImageCache *sdImageCache = [SDImageCache sharedImageCache];
+    
+    self.imageSize.text = [NSString stringWithFormat:@"%luM", [sdImageCache getSize] / 1024 / 1024];
+    
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -35,6 +43,14 @@
 #pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 1) {
+        [[SDImageCache sharedImageCache] cleanDisk];
+        
+    }
+    
     if (indexPath.section == 2) {
         
         [self.navigationController popToRootViewControllerAnimated:YES];
