@@ -506,10 +506,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     //创建一个 cell 的注册方式 必须写上
     //  设置时钟动画 定时器
     //    _isDragging=NO;
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
-    //  将定时器添加到主线程
-    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+//    if (_timer) {
+//        return;
+//    }else {
+//        _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
+//    }
+//    //  将定时器添加到主线程
+//    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 
 }
 - (void)update:(NSTimer *)timer{
@@ -570,6 +573,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [cell addSubview:_imageVNotice];
             [cell addSubview:_labelCollectionView];
             [cell addSubview:_clearView];
+            if (_timer) {
+            }else {
+                _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
+            }
+            //  将定时器添加到主线程
+            [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
             cell.selectedBackgroundView = [[UIView alloc] init];
             return cell;
             
