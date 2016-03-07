@@ -140,6 +140,7 @@
 		F22A8D781C8588CD00165BBC /* DetailCalculateNumberCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D761C8588CD00165BBC /* DetailCalculateNumberCView.xib */; };
 		F22A8D7C1C858E7100165BBC /* DetailCalculateATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */; };
 		F22A8D7D1C858E7100165BBC /* DetailCalculateATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */; };
+		F232624D1C8D1AE000B9DB7B /* 749.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F232624C1C8D1AE000B9DB7B /* 749.mp3 */; };
 		F23670041C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23670021C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m */; };
 		F23670051C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23670031C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.xib */; };
 		F23670091C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23670071C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m */; };
@@ -578,6 +579,7 @@
 		F22A8D791C858E7100165BBC /* DetailCalculateATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateATableViewCell.h; sourceTree = "<group>"; };
 		F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateATableViewCell.m; sourceTree = "<group>"; };
 		F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateATableViewCell.xib; sourceTree = "<group>"; };
+		F232624C1C8D1AE000B9DB7B /* 749.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 749.mp3; sourceTree = "<group>"; };
 		F23670011C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncedBCollectionViewCell.h; sourceTree = "<group>"; };
 		F23670021C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncedBCollectionViewCell.m; sourceTree = "<group>"; };
 		F23670031C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnouncedBCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1015,6 +1017,7 @@
 		6031C5371C4C82C300D6B567 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				F232624C1C8D1AE000B9DB7B /* 749.mp3 */,
 				6031C53A1C4C89B900D6B567 /* HomeController.h */,
 				6031C53B1C4C89B900D6B567 /* HomeController.m */,
 				F2F587C01C7D4249007187B0 /* SearchViewController.h */,
@@ -1789,6 +1792,7 @@
 				606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */,
 				F2C426511C882A9000C9CEF0 /* ListNumberMainTableViewCell.xib in Resources */,
 				F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */,
+				F232624D1C8D1AE000B9DB7B /* 749.mp3 in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
 				F236700A1C7EEB4E008A6576 /* AnnouncedCollectionViewCell.xib in Resources */,
 				F2C426471C88246D00C9CEF0 /* ListNumberHeadCView.xib in Resources */,

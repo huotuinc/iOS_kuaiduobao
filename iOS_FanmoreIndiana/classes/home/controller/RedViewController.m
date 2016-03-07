@@ -7,11 +7,15 @@
 //
 
 #import "RedViewController.h"
+#import "MyView.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface RedViewController (){
     CALayer *_layer;
     CAAnimationGroup *_animaTionGroup;
     CADisplayLink *_disPlayLink;
+    AVPlayer* myplayer;
+
     
 }
 @property (nonatomic,retain) UIView *imgView;
@@ -20,7 +24,7 @@
 @property (nonatomic) double getAddressTime;
 @property(nonatomic,strong)NSTimer *timer ;
 @property (nonatomic, strong) UIImageView * backImageV;
-
+@property (nonatomic, strong) UIButton * xiuButton;
 @end
 
 @implementation RedViewController
@@ -70,11 +74,15 @@
     // Do any additional setup after loading the view.
     [self createBackImage];
 //    self.view.backgroundColor = [UIColor colorWithRed:40/255.0 green:40/255.0 blue:105/225.0 alpha:1];
-    
-//    self.imgView = [[MyView alloc]init];
-//    self.imgView.backgroundColor = [UIColor clearColor];
-//    self.imgView.frame=self.view.frame;
-//    [self.view addSubview:self.imgView];
+//    _xiuButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, ADAPT_WIDTH(100), ADAPT_HEIGHT(100))];
+//    _xiuButton.center = CGPointMake(self.view.center.x, self.view.center.y);
+//    [_xiuButton setImage:[UIImage imageNamed:@"hb_red"] forState:UIControlStateNormal];
+//    [self.view addSubview:_xiuButton];
+//    [_xiuButton addTarget:self action:@selector(aaaaa) forControlEvents:UIControlEventTouchUpInside];
+    self.imgView = [[MyView alloc]init];
+    self.imgView.backgroundColor = [UIColor clearColor];
+    self.imgView.frame=self.view.frame;
+    [self.view addSubview:self.imgView];
     [self startAnimation];
 }
 
@@ -220,7 +228,17 @@
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(action) userInfo:nil repeats:NO];
     }
 }
+- (void)aaaaa{
+    [self.staticShadowLayer removeFromSuperlayer];
+    [self.staticShadowLayer removeAnimationForKey:@"groupAnnimation"];
+    [self.staticLayer removeFromSuperlayer];
+    [self.staticLayer removeAnimationForKey:@"groupAnnimation"];
+    
+    _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(click)];
+    _disPlayLink.frameInterval = 40;
+    [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 
+}
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
@@ -232,8 +250,17 @@
     _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(click)];
     _disPlayLink.frameInterval = 40;
     [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-}
+    [self soundComeOut];
 
+}
+-(void)soundComeOut{
+    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"749" ofType:@"mp3"];
+    NSURL *audioUrl = [NSURL fileURLWithPath:audioPath];
+    
+    AVPlayerItem *item = [[AVPlayerItem alloc]initWithURL:audioUrl];
+    myplayer = [[AVPlayer alloc]initWithPlayerItem:item];
+    [myplayer play];
+}
 - (void)delayAnimation
 {
     [self startAnimation];
