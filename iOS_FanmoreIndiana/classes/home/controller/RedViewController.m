@@ -7,7 +7,7 @@
 //
 
 #import "RedViewController.h"
-#import "MyView.h"
+
 @interface RedViewController (){
     CALayer *_layer;
     CAAnimationGroup *_animaTionGroup;
@@ -71,10 +71,10 @@
     [self createBackImage];
 //    self.view.backgroundColor = [UIColor colorWithRed:40/255.0 green:40/255.0 blue:105/225.0 alpha:1];
     
-    self.imgView = [[MyView alloc]init];
-    self.imgView.backgroundColor = [UIColor clearColor];
-    self.imgView.frame=self.view.frame;
-    [self.view addSubview:self.imgView];
+//    self.imgView = [[MyView alloc]init];
+//    self.imgView.backgroundColor = [UIColor clearColor];
+//    self.imgView.frame=self.view.frame;
+//    [self.view addSubview:self.imgView];
     [self startAnimation];
 }
 

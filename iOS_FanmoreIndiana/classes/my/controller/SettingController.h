@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingController : UITableViewController
+@property (weak, nonatomic) IBOutlet UILabel *versions;
+@property (weak, nonatomic) IBOutlet UILabel *imageSize;
 
 @end

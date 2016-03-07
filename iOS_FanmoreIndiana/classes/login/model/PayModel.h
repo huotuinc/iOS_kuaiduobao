@@ -11,7 +11,8 @@
 @interface PayModel : NSObject
 
 @property (nonatomic, strong) NSString *alipayCallbackUrl;
-@property (nonatomic, strong) NSNumber *fee;
+@property (nonatomic, strong) NSString *alipayFee;
+@property (nonatomic, strong) NSString *wxFee;
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, strong) NSNumber *orderNo;
 @property (nonatomic, strong) NSString *remainPayUrl;

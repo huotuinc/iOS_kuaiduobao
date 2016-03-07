@@ -295,7 +295,7 @@ static NSString *payIdentify = @"payIdentifty";
     order.tradeNO = [self.payModel.orderNo stringValue]; //订单ID（由商家自行制定）
     order.productName = @"粉猫夺宝充值"; //商品标题
     order.productDescription = self.payModel.detail; //商品描述
-    order.amount = [self.payModel.fee stringValue]; //商品价格
+    order.amount = self.payModel.alipayFee; //商品价格
     order.notifyURL =  self.payModel.alipayCallbackUrl; //回调URL
     
     order.service = @"mobile.securitypay.pay";
@@ -349,7 +349,7 @@ static NSString *payIdentify = @"payIdentifty";
         
         //商品价格
         
-        NSString * a  = [NSString stringWithFormat:@"%d", [self.payModel.fee intValue] * 100];
+//        NSString * a  = [NSString stringWithFormat:@"%d", [self.payModel.fee intValue] * 100];
 //        NSString *a = [self.payModel.fee stringValue];
         //商品价格
         
@@ -365,7 +365,7 @@ static NSString *payIdentify = @"payIdentifty";
         
         
         
-        params[@"total_fee"] = a;  //订单总金额，只能为整数，详见支付金额
+        params[@"total_fee"] = self.payModel.wxFee;  //订单总金额，只能为整数，详见支付金额
         params[@"device_info"] = DeviceNo;
         
         

@@ -192,7 +192,6 @@
 		F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8A71C55C41B00141EBC /* ClassATableViewCell.xib */; };
 		F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */; };
 		F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */; };
-		F26A31811C8938740069D370 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = F26A31801C8938740069D370 /* MyView.m */; };
 		F26E0C8B1C8699DD00DB1908 /* AppCountResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */; };
 		F26E0C8E1C869A3800DB1908 /* AppUserNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C8D1C869A3800DB1908 /* AppUserNumberModel.m */; };
 		F26E0C911C86E38E00DB1908 /* RedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C901C86E38E00DB1908 /* RedViewController.m */; };
@@ -665,8 +664,6 @@
 		F262E8AA1C55C42D00141EBC /* ClassBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBTableViewCell.h; sourceTree = "<group>"; };
 		F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBTableViewCell.m; sourceTree = "<group>"; };
 		F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassBTableViewCell.xib; sourceTree = "<group>"; };
-		F26A317F1C8938740069D370 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
-		F26A31801C8938740069D370 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 		F26E0C891C8699DD00DB1908 /* AppCountResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCountResultModel.h; sourceTree = "<group>"; };
 		F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCountResultModel.m; sourceTree = "<group>"; };
 		F26E0C8C1C869A3800DB1908 /* AppUserNumberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUserNumberModel.h; sourceTree = "<group>"; };
@@ -1057,8 +1054,6 @@
 		6031C5391C4C82C300D6B567 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				F26A317F1C8938740069D370 /* MyView.h */,
-				F26A31801C8938740069D370 /* MyView.m */,
 				6031C5401C4C922600D6B567 /* HomeCollectionViewCell.h */,
 				6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */,
 				6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */,
@@ -1928,7 +1923,6 @@
 				6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
 				F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */,
-				F26A31811C8938740069D370 /* MyView.m in Sources */,
 				60F154A31C76B7D60043ED3F /* ChangePhoneController.m in Sources */,
 				F2F587F81C7DA14A007187B0 /* DetailShareNextViewController.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
