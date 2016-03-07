@@ -1995,6 +1995,7 @@
 				F23BEFF11C5F2F5D00E87042 /* DetailShareTableViewCell.m in Sources */,
 				F2C426461C88246D00C9CEF0 /* ListNumberHeadCView.m in Sources */,
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
+				F26A31841C895E140069D370 /* MyView.m in Sources */,
 				604926271C5EF3590092D231 /* RechargeController.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,

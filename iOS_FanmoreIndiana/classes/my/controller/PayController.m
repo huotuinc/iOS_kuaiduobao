@@ -331,6 +331,41 @@ static NSString *payIdentify = @"payIdentifty";
 
 
 
+
+
+/**
+ *  微信pay
+ */
+- (void)WeiChatPay{
+    
+    
+    //获取到实际调起微信支付的参数后，在app端调起支付
+    NSMutableDictionary *dict = [self PayByWeiXinParame];
+    if(dict != nil){
+        NSMutableString *retcode = [dict objectForKey:@"retcode"];
+        if (retcode.intValue == 0){
+            NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+            //调起微信支付
+            PayReq* req             = [[PayReq alloc] init];
+            req.openID              = [dict objectForKey:@"appid"];
+            req.partnerId           = [dict objectForKey:@"partnerid"];
+            req.prepayId            = [dict objectForKey:@"prepayid"];
+            req.nonceStr            = [dict objectForKey:@"noncestr"];
+            req.timeStamp           = stamp.intValue;
+            req.package             = [dict objectForKey:@"package"];
+            req.sign                = [dict objectForKey:@"sign"];
+            [WXApi sendReq:req];
+        }else{
+                        NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
+        }
+        
+    }else{
+                NSLog(@"提示信息返回错误");
+        
+    }
+    
+    
+}
 /**
  *  微信支付预zhifu
  */
@@ -358,7 +393,7 @@ static NSString *payIdentify = @"payIdentifty";
         params[@"body"] = self.payModel.detail; //商品或支付单简要描述
         
         params[@"notify_url"] = self.payModel.wxCallbackUrl;  //接收微信支付异步通知回调地址
-    
+        
         params[@"out_trade_no"] = [self.payModel.orderNo stringValue]; //订单号
         params[@"spbill_create_ip"] = @"192.168.1.1"; //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
         
@@ -415,40 +450,6 @@ static NSString *payIdentify = @"payIdentifty";
         
     }
     return nil;
-}
-
-/**
- *  微信pay
- */
-- (void)WeiChatPay{
-    
-    
-    //获取到实际调起微信支付的参数后，在app端调起支付
-    NSMutableDictionary *dict = [self PayByWeiXinParame];
-    if(dict != nil){
-        NSMutableString *retcode = [dict objectForKey:@"retcode"];
-        if (retcode.intValue == 0){
-            NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
-            //调起微信支付
-            PayReq* req             = [[PayReq alloc] init];
-            req.openID              = [dict objectForKey:@"appid"];
-            req.partnerId           = [dict objectForKey:@"partnerid"];
-            req.prepayId            = [dict objectForKey:@"prepayid"];
-            req.nonceStr            = [dict objectForKey:@"noncestr"];
-            req.timeStamp           = stamp.intValue;
-            req.package             = [dict objectForKey:@"package"];
-            req.sign                = [dict objectForKey:@"sign"];
-            [WXApi sendReq:req];
-        }else{
-                        NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
-        }
-        
-    }else{
-                NSLog(@"提示信息返回错误");
-        
-    }
-    
-    
 }
 
 @end
