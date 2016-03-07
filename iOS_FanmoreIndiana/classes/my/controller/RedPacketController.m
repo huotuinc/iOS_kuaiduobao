@@ -9,6 +9,7 @@
 #import "RedPacketController.h"
 #import "RedPacketCell.h"
 #import "RedPacketsModel.h"
+#import <UIBarButtonItem+BlocksKit.h>
 
 @interface RedPacketController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -27,6 +28,8 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"我的红包";
     
     self.redList = [NSMutableArray array];
     self.selectMark = 0;
@@ -47,6 +50,11 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
     [self.tableView registerNib:[UINib nibWithNibName:@"RedPacketCell" bundle:nil] forCellReuseIdentifier:redPacketIdentify];
     [self.tableView removeSpaces];
     [self setupRefresh];
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"发红包" style:UIBarButtonItemStylePlain handler:^(id sender) {
+        [self shareRedPackets];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -128,6 +136,20 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
     
+}
+
+
+- (void)shareRedPackets {
+    [UserLoginTool loginRequestGet:@"shareRedPackets" parame:nil success:^(id json) {
+        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@", error);
+    }];
 }
 
 #pragma mark -tableView 
