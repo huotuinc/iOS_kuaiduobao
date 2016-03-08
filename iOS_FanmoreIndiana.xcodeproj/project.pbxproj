@@ -128,6 +128,7 @@
 		C9CF1CC78893266A12F317B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3CD9155C4F68979E05568 /* libPods.a */; };
 		F2060E7C1C8E71F4001E2D7F /* RedCountCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2060E7A1C8E71F4001E2D7F /* RedCountCView.m */; };
 		F2060E7D1C8E71F4001E2D7F /* RedCountCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2060E7B1C8E71F4001E2D7F /* RedCountCView.xib */; };
+		F2060E861C8EBF31001E2D7F /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2060E851C8EBF31001E2D7F /* MessageTableViewCell.m */; };
 		F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */; };
 		F20DDD9A1C50B482004C9467 /* TenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20DDD991C50B482004C9467 /* TenViewController.m */; };
 		F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F21986A51C4F288500966A2C /* HomeHeadCollectionViewCell.m */; };
@@ -489,7 +490,6 @@
 		608690871C8EA29600705B24 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		608690881C8EA29600705B24 /* MessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFrame.h; sourceTree = "<group>"; };
 		608690891C8EA29600705B24 /* MessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrame.m; sourceTree = "<group>"; };
-		6086908C1C8EA2B900705B24 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		6086908D1C8EA2B900705B24 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		608D42881C869434000C4845 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		608D42891C869434000C4845 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
@@ -569,6 +569,8 @@
 		F2060E791C8E71F4001E2D7F /* RedCountCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedCountCView.h; sourceTree = "<group>"; };
 		F2060E7A1C8E71F4001E2D7F /* RedCountCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedCountCView.m; sourceTree = "<group>"; };
 		F2060E7B1C8E71F4001E2D7F /* RedCountCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedCountCView.xib; sourceTree = "<group>"; };
+		F2060E841C8EBF31001E2D7F /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		F2060E851C8EBF31001E2D7F /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		F20DDD921C50B14E004C9467 /* UIButton+FMButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+FMButtonStyle.h"; sourceTree = "<group>"; };
 		F20DDD931C50B14E004C9467 /* UIButton+FMButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+FMButtonStyle.m"; sourceTree = "<group>"; };
 		F20DDD981C50B482004C9467 /* TenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenViewController.h; sourceTree = "<group>"; };
@@ -1082,6 +1084,8 @@
 		6031C5391C4C82C300D6B567 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F2060E841C8EBF31001E2D7F /* MessageTableViewCell.h */,
+				F2060E851C8EBF31001E2D7F /* MessageTableViewCell.m */,
 				F232624E1C8D212100B9DB7B /* MyView.h */,
 				F232624F1C8D212100B9DB7B /* MyView.m */,
 				6031C5401C4C922600D6B567 /* HomeCollectionViewCell.h */,
@@ -2026,6 +2030,7 @@
 				60584F151C4E228D00F23B95 /* GTMBase64.m in Sources */,
 				605E15921C5A0EB500DBF8BA /* GlobalModel.m in Sources */,
 				F21E82EB1C7813E500C732F1 /* ListBottomCView.m in Sources */,
+				F2060E861C8EBF31001E2D7F /* MessageTableViewCell.m in Sources */,
 				601769A61C589121009E503F /* AdressModel.m in Sources */,
 				605E158C1C59A8AB00DBF8BA /* SettingController.m in Sources */,
 				6014A7171C7D53A5006B2900 /* GoAheadCell.m in Sources */,
@@ -2282,7 +2287,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "48385006-a8f0-4248-9f07-c21e1e8f8e42";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -2293,8 +2298,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yun he (U69X69TGU7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/QQSDK",
@@ -2340,7 +2345,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "48385006-a8f0-4248-9f07-c21e1e8f8e42";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Release;
