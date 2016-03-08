@@ -108,7 +108,9 @@
 #define Success @"Success" //成功
 #define Failure @"Failure" //失败
 
-#define HaveNotReadMessage @"HaveNotReadMessage"
+#define HaveNotReadMessage @"HaveNotReadMessage" //点击看消息发送通知
+
+#define payMoneySuccess @"payMoneySuccess"
 
 
 #ifdef DEBUG

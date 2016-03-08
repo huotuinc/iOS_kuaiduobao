@@ -156,9 +156,9 @@
                 [wself.messageF addObjectsFromArray:aaframe];
                 
                 if (self.messageF.count > 0) {
-                    [self setWiteBackground];
+//                    [self setWiteBackground];
                 }else {
-                    [self setClearBackground];
+//                    [self setClearBackground];
                 }
                 
                 [wself.tableView reloadData];
@@ -205,21 +205,21 @@
 }
 
 #pragma 设置背景图片
-- (void)setClearBackground {
-    if (KScreenWidth == 375) {
-        self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg750x1334"]];
-    }
-    if (KScreenWidth == 414) {
-        self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg1242x2208"]];
-    }
-    if (KScreenWidth == 320) {
-        if (KScreenHeight <= 480) {
-            self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg640x960"]];
-        }else {
-            self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg640x1136"]];
-        }
-    }
-}
+//- (void)setClearBackground {
+//    if (KScreenWidth == 375) {
+//        self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg750x1334"]];
+//    }
+//    if (KScreenWidth == 414) {
+//        self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg1242x2208"]];
+//    }
+//    if (KScreenWidth == 320) {
+//        if (KScreenHeight <= 480) {
+//            self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg640x960"]];
+//        }else {
+//            self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tbg640x1136"]];
+//        }
+//    }
+//}
 
 - (void)setWiteBackground {
     self.tableView.backgroundColor = [UIColor whiteColor];

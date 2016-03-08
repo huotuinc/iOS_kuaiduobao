@@ -246,6 +246,16 @@
 
 
 
+/**
+ *  支付宝成功回调
+ *
+ *  @param application       application description
+ *  @param url               url description
+ *  @param sourceApplication sourceApplication description
+ *  @param annotation        annotation description
+ *
+ *  @return return value description
+ */
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -254,7 +264,9 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
+            if([resultDic[@"resultStatus"] intValue] == 9000){
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+            }
         }];
     }
     
@@ -270,6 +282,28 @@
     return YES;
 }
 
+/**
+ *  微信支付回调方法
+ *
+ *  @param resp resp description
+ */
+- (void)onResp:(BaseResp *)resp {
+
+    if ([resp isKindOfClass:[PayResp class]]) {
+        PayResp *response = (PayResp *)resp;
+        switch (response.errCode) {
+            case WXSuccess:
+                //服务器端查询支付通知或查询API返回的结果再提示成功
+                //                NSLog(@"aaaasssss支付成功");
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+                break;
+            default:
+
+                break;
+        }
+    }
+}
 
 
 

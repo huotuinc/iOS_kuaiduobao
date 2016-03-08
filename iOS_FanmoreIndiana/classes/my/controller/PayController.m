@@ -452,4 +452,25 @@ static NSString *payIdentify = @"payIdentifty";
     return nil;
 }
 
+
+
+//刷新用户数据
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    NSLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    //保存新的token
+    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    //购物车结算登陆时 需要提交数据
+    
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"addressModel"]];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+}
+
 @end
