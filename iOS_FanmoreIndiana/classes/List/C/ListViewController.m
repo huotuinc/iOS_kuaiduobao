@@ -54,8 +54,12 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     if ([login isEqualToString:Success]) {
         [self getShoppingList];
     }else{
-        //        [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
         _cartList = [[NSMutableArray alloc] initWithArray:[self getLocalDataArray]];
+        for (int i = 0; i<_cartList.count; i++) {
+            CartModel *cartM = _cartList[i];
+            cartM.isSelect = NO;
+        }
+        [_selectedArray removeAllObjects];
         if (_cartList.count == 0) {
             [self createImageVBack];
         }else {
@@ -64,6 +68,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
                 [self.tableView reloadData];
                 _bottomView.labelAll.text = @"全选";
                 _bottomView.buttonAll.selected = NO;
+                [self countPrice];
                 selectAllCount = 1;
             }else{
                 [self createTableView];
@@ -133,27 +138,53 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
  *  下拉刷新
  */
 - (void)getShoppingList{
-    [SVProgressHUD show];
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    if ([login isEqualToString:Success]) {
+        [SVProgressHUD show];
+        [UserLoginTool loginRequestGet:@"getShoppingList" parame:nil success:^(id json) {
+            LWLog(@"%@",json);
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+                
+                LWLog(@"%@",json[@"resultDescription"]);
+                NSArray *temp = [CartModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+                //            self.lastSort =json[@"resultData"][@"sort"];
+                [self.cartList removeAllObjects];
+                [self.cartList addObjectsFromArray:temp];
+                
+                
+            }else{
+                LWLog(@"%@",json[@"resultDescription"]);
+            }
+            [SVProgressHUD dismiss];
+            if (_cartList.count == 0) {
+                [self createImageVBack];
+            }else {
+                if (_tableView) {
+                    self.imageVBack.hidden = YES;
+                    [self.tableView reloadData];
+                    _bottomView.labelAll.text = @"全选";
+                    [_selectedArray removeAllObjects];
+                    [self countPrice];
+                    _bottomView.buttonAll.selected = NO;
+                    selectAllCount = 1;
+                }else{
+                    [self createTableView];
+                }
+            }
+            [_tableView.mj_header endRefreshing];
+            
+        } failure:^(NSError *error) {
+            [SVProgressHUD dismiss];
+            LWLog(@"%@",error);
+        }];
 
-    
-    [UserLoginTool loginRequestGet:@"getShoppingList" parame:nil success:^(id json) {
-        
-        LWLog(@"%@",json);
-        
-        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-            
-            LWLog(@"%@",json[@"resultDescription"]);
-            NSArray *temp = [CartModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-//            self.lastSort =json[@"resultData"][@"sort"];
-            [self.cartList removeAllObjects];
-            [self.cartList addObjectsFromArray:temp];
-            
-            
-        }else{
-            LWLog(@"%@",json[@"resultDescription"]);
+    }else{
+        _cartList = [[NSMutableArray alloc] initWithArray:[self getLocalDataArray]];
+        for (int i = 0; i<_cartList.count; i++) {
+            CartModel *cartM = _cartList[i];
+            cartM.isSelect = NO;
         }
-        [SVProgressHUD dismiss];
+        [_selectedArray removeAllObjects];
         if (_cartList.count == 0) {
             [self createImageVBack];
         }else {
@@ -162,17 +193,17 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
                 [self.tableView reloadData];
                 _bottomView.labelAll.text = @"全选";
                 _bottomView.buttonAll.selected = NO;
+                [self countPrice];
                 selectAllCount = 1;
+
             }else{
                 [self createTableView];
+
             }
         }
         [_tableView.mj_header endRefreshing];
-
-    } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        LWLog(@"%@",error);
-    }];
+    }
+    
     
 }
 
@@ -415,7 +446,11 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 //self.tableView.tableFooterView=[[UIView alloc]init];
     _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
-    [self setupRefresh];
+    
+//    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//    if ([login isEqualToString:Success]) {
+        [self setupRefresh];
+//    }
     if (_cartList == nil) {
         LWLog(@"购物车为空");
     }else {
@@ -475,6 +510,8 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         NSInteger count = [weakCell.textFNumber.text integerValue];
         CartModel *model = [_cartList objectAtIndex:indexPath.row];
         NSInteger addNumber = [model.stepAmount integerValue];
+        NSInteger remainAmount = [model.remainAmount integerValue];
+
 //        if ([model.areaAmount integerValue] == 0) {
 //            addNumber = 1;
 //        }else {
@@ -482,6 +519,9 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 //        }
     
         count+= addNumber;
+        if(count > remainAmount){
+            return ;
+        }
         NSString *numStr = [NSString stringWithFormat:@"%ld",(long)count];
         
         
@@ -548,13 +588,13 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             CartModel *model = [_cartList objectAtIndex:indexPath.row];
-            
             NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
             if ([login isEqualToString:Success]) {
                 [_cartList removeObjectAtIndex:indexPath.row];
                 self.shoppingCartId = model.sid;
                 [self deleteShoppingCart];
             }else{
+                [self archiverTheLoaclArray:_cartList];
                 NSMutableArray *localChangeArray = [NSMutableArray arrayWithArray:[self getLocalDataArray]];
                 for (int i = 0; i < localChangeArray.count; i++) {
                     CartModel *changeModel = localChangeArray[i];
@@ -562,20 +602,8 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
                         [localChangeArray removeObject:changeModel];
                     }
                 }
-                NSMutableData *data = [[NSMutableData alloc] init];
-                //创建归档辅助类
-                NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-                //编码
-                [archiver encodeObject:localChangeArray forKey:LOCALCART];
-                //结束编码
-                [archiver finishEncoding];
-                NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
-                //写入
-                [data writeToFile:filename atomically:YES];
-                LWLog(@"归档成功");
+                [self archiverTheLoaclArray:localChangeArray];
                 _cartList = [NSMutableArray arrayWithArray:[self getLocalDataArray]];
-
                 
             }
 
@@ -621,6 +649,23 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+//归档
+- (void)archiverTheLoaclArray:(NSMutableArray *)localChangeArray{
+    NSMutableData *data = [[NSMutableData alloc] init];
+    //创建归档辅助类
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    //编码
+    [archiver encodeObject:localChangeArray forKey:LOCALCART];
+    //结束编码
+    [archiver finishEncoding];
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+    //写入
+    [data writeToFile:filename atomically:YES];
+    LWLog(@"归档成功");
+
+
 }
 
 -(void)reloadTable
@@ -689,7 +734,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
         totlePrice += price*[model.userBuyAmount floatValue];
 
     }
-    _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计%.1f元",totlePrice];
+    _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计%.2f元",totlePrice];
 }
 
 

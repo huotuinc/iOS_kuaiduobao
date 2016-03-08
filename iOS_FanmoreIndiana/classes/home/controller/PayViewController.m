@@ -18,10 +18,10 @@
 #import "WXApi.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "payRequsestHandler.h"
-
+#import "TabBarController.h"
 static NSString *cellPA=@"cellPA";
 static NSString *cellPB=@"cellPB";
-static NSInteger _whichPay = 2 ;  //支付类型 0微信 1支付宝 2用户余额
+static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -55,6 +55,7 @@ static NSInteger _whichPay = 2 ;  //支付类型 0微信 1支付宝 2用户余�
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _whichPay = 2;
     _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
     
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -94,8 +95,6 @@ static NSInteger _whichPay = 2 ;  //支付类型 0微信 1支付宝 2用户余�
             LWLog(@"%@",json[@"resultDescription"]);
             [SVProgressHUD showErrorWithStatus:@"支付失败"];
             _payView.buttonPay.userInteractionEnabled = YES;
-
-
         }
         
     } failure:^(NSError *error) {
@@ -119,21 +118,29 @@ static NSInteger _whichPay = 2 ;  //支付类型 0微信 1支付宝 2用户余�
             LWLog(@"%@",json[@"resultDescription"]);
             [SVProgressHUD showSuccessWithStatus:@"支付成功"];
             _payView.buttonPay.userInteractionEnabled = YES;
-//            _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
-//            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+            
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
             _payView.buttonPay.userInteractionEnabled = YES;
         }
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccess) userInfo:nil repeats:NO];
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+
+        
+        
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-//        [SVProgressHUD showErrorWithStatus:@"网络错误"];
         [SVProgressHUD showSuccessWithStatus:@"支付失败"];
         _payView.buttonPay.userInteractionEnabled = YES;
         
     } withFileKey:nil];
 
 
+}
+- (void)paySuccess{
+    NSDictionary *dict  = [NSDictionary dictionary];
+    [[NSNotificationCenter defaultCenter]postNotificationName:CannelLoginFailure object:nil userInfo:dict];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
