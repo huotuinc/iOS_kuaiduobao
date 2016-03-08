@@ -133,7 +133,7 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"phone"] = self.phone.text;
         dic[@"authcode"] = self.security.text;
-        
+        dic[@"type"] = @1;
         [UserLoginTool loginRequestPostWithFile:@"checkAuthCode" parame:dic success:^(id json) {
             
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] ==  53007) {

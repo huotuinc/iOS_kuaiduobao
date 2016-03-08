@@ -12,5 +12,6 @@
 @property (nonatomic, strong) NSString *customerServicePhone;
 @property (nonatomic, strong) NSString *helpURL;
 @property (nonatomic, strong) NSString *serverUrl;
+@property (nonatomic, strong) NSString *redRules;
 @property (nonatomic, assign) BOOL voiceSupported;
 @end

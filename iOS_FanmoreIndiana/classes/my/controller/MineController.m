@@ -82,6 +82,7 @@
 {
     [super viewDidAppear:animated];
     
+    
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if (![login isEqualToString:Success]) {
         

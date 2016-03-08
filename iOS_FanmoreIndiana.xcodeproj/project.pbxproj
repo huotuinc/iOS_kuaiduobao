@@ -83,6 +83,11 @@
 		606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 606CA1D81C5B431900613E6A /* WinningCell.m */; };
 		606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606CA1D91C5B431900613E6A /* WinningCell.xib */; };
 		6073E1511C7AEC1F005AD927 /* MineShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6073E1501C7AEC1F005AD927 /* MineShareController.m */; };
+		608690821C8D4F2800705B24 /* AppShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690811C8D4F2800705B24 /* AppShareModel.m */; };
+		608690851C8EA27100705B24 /* MCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690841C8EA27100705B24 /* MCController.m */; };
+		6086908A1C8EA29600705B24 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690871C8EA29600705B24 /* Message.m */; };
+		6086908B1C8EA29600705B24 /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690891C8EA29600705B24 /* MessageFrame.m */; };
+		6086908E1C8EA2B900705B24 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086908D1C8EA2B900705B24 /* MessageTableViewCell.m */; };
 		608D428A1C869434000C4845 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 608D42891C869434000C4845 /* Order.m */; };
 		608D428E1C869B6C000C4845 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D428D1C869B6C000C4845 /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42901C86B4A7000C4845 /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -476,6 +481,16 @@
 		606CA1D91C5B431900613E6A /* WinningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinningCell.xib; sourceTree = "<group>"; };
 		6073E14F1C7AEC1F005AD927 /* MineShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineShareController.h; sourceTree = "<group>"; };
 		6073E1501C7AEC1F005AD927 /* MineShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineShareController.m; sourceTree = "<group>"; };
+		608690801C8D4F2800705B24 /* AppShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppShareModel.h; sourceTree = "<group>"; };
+		608690811C8D4F2800705B24 /* AppShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppShareModel.m; sourceTree = "<group>"; };
+		608690831C8EA27100705B24 /* MCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCController.h; sourceTree = "<group>"; };
+		608690841C8EA27100705B24 /* MCController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCController.m; sourceTree = "<group>"; };
+		608690861C8EA29600705B24 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		608690871C8EA29600705B24 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		608690881C8EA29600705B24 /* MessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFrame.h; sourceTree = "<group>"; };
+		608690891C8EA29600705B24 /* MessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrame.m; sourceTree = "<group>"; };
+		6086908C1C8EA2B900705B24 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		6086908D1C8EA2B900705B24 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		608D42881C869434000C4845 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		608D42891C869434000C4845 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		608D428C1C869B6C000C4845 /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
@@ -1058,6 +1073,8 @@
 				F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */,
 				F26E0C8F1C86E38E00DB1908 /* RedViewController.h */,
 				F26E0C901C86E38E00DB1908 /* RedViewController.m */,
+				608690831C8EA27100705B24 /* MCController.h */,
+				608690841C8EA27100705B24 /* MCController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1342,6 +1359,8 @@
 				60C65BF61C80393300332AD8 /* WinningModel.m */,
 				60C78D411C84231100AED37E /* WinningDeliveryModel.h */,
 				60C78D421C84231100AED37E /* WinningDeliveryModel.m */,
+				608690801C8D4F2800705B24 /* AppShareModel.h */,
+				608690811C8D4F2800705B24 /* AppShareModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1618,6 +1637,10 @@
 				F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */,
 				F26E0C8C1C869A3800DB1908 /* AppUserNumberModel.h */,
 				F26E0C8D1C869A3800DB1908 /* AppUserNumberModel.m */,
+				608690861C8EA29600705B24 /* Message.h */,
+				608690871C8EA29600705B24 /* Message.m */,
+				608690881C8EA29600705B24 /* MessageFrame.h */,
+				608690891C8EA29600705B24 /* MessageFrame.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1922,6 +1945,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
+				6086908E1C8EA2B900705B24 /* MessageTableViewCell.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */,
 				F2C426421C88243800C9CEF0 /* ListNumberViewController.m in Sources */,
@@ -1954,9 +1978,11 @@
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
 				F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */,
+				608690851C8EA27100705B24 /* MCController.m in Sources */,
 				601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */,
+				6086908A1C8EA29600705B24 /* Message.m in Sources */,
 				F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */,
 				60C78D431C84231100AED37E /* WinningDeliveryModel.m in Sources */,
 				F2F587EF1C7D9BA6007187B0 /* DetailShareNextContentTableViewCell.m in Sources */,
@@ -1989,6 +2015,7 @@
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
 				F26E0C911C86E38E00DB1908 /* RedViewController.m in Sources */,
 				6014A7241C7DB34A006B2900 /* PutModel.m in Sources */,
+				608690821C8D4F2800705B24 /* AppShareModel.m in Sources */,
 				F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */,
 				F21E82E91C7813E500C732F1 /* ListTableViewCell.m in Sources */,
 				605E158F1C59B9F900DBF8BA /* UIViewController+MonitorNetWork.m in Sources */,
@@ -2063,6 +2090,7 @@
 				F23BEFED1C5F2D2C00E87042 /* DetailShareViewController.m in Sources */,
 				60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */,
 				60EB31A51C55C86C006C070B /* FanmoreUserController.m in Sources */,
+				6086908B1C8EA29600705B24 /* MessageFrame.m in Sources */,
 				F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */,
 				F2C426501C882A9000C9CEF0 /* ListNumberMainTableViewCell.m in Sources */,
 				F2F587EA1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m in Sources */,
@@ -2254,7 +2282,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "48385006-a8f0-4248-9f07-c21e1e8f8e42";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -2265,8 +2293,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yun he (U69X69TGU7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/QQSDK",
@@ -2312,7 +2340,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "48385006-a8f0-4248-9f07-c21e1e8f8e42";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Release;

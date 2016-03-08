@@ -25,6 +25,7 @@
     
     self.next.layer.cornerRadius = 5;
     
+//    self.userName.text = self
     [self.userName becomeFirstResponder];
     
 }
@@ -56,7 +57,7 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"userName"] = self.userName.text;
         
-        [UserLoginTool loginRequestGet:@"checkUserName" parame:dic success:^(id json) {
+        [UserLoginTool loginRequestGet:@"checkPhone" parame:dic success:^(id json) {
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                 UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 ForgetSecondController *second = [story instantiateViewControllerWithIdentifier:@"ForgetSecondController"];

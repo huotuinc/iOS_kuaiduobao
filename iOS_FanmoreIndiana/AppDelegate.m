@@ -29,57 +29,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-//    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//
-    /**
-     *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
-     *  在将生成的AppKey传入到此方法中。
-     *  方法中的第二个第三个参数为需要连接社交平台SDK时触发，
-     *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
-     *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
-     */
-    [ShareSDK registerApp:ShareSDKAppKey
-     
-          activePlatforms:@[
-                            @(SSDKPlatformTypeWechat),
-                            @(SSDKPlatformTypeQQ),
-                            ]
-                 onImport:^(SSDKPlatformType platformType)
-     {
-         switch (platformType)
-         {
-             case SSDKPlatformTypeWechat:
-                 [ShareSDKConnector connectWeChat:[WXApi class] delegate:self];
-                 break;
-             case SSDKPlatformTypeQQ:
-                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-                 break;
-             default:
-                 break;
-         }
-     }
-          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
-     {
-         
-         switch (platformType)
-         {
-             case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:WeiXinAppID
-                                       appSecret:WeiXinAppSecret];
-                 break;
-             case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:QQAppKey
-                                      appKey:QQappSecret
-                                    authType:SSDKAuthTypeBoth];
-                 break;
-             default:
-                 break;
-         }
-     }];
     
+    
+    [self _initShare];
     
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
         LWLog(@"%@",json);
@@ -116,7 +68,108 @@
     
     [self registRemoteNotification:application];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(haveReadNewMessage) name:HaveNotReadMessage object:nil];
+    
+    
+    if (launchOptions != nil) {
+        
+        NSDictionary *dicRemote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (dicRemote) {
+            
+            if (application.applicationIconBadgeNumber) {
+                self.unreadMessage = YES;
+            }else {
+                self.unreadMessage = NO;
+            }
+
+        }
+    }
+    
     return YES;
+}
+
+/**
+ *  app后台唤醒调用的方法
+ *
+ *  @param application
+ */
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    if (application.applicationIconBadgeNumber) {
+        self.unreadMessage = YES;
+    }else {
+        self.unreadMessage = NO;
+    }
+    
+}
+
+
+/**
+ *  阅读新消息后的方法
+ *
+ *  @param application application description
+ */
+- (void)haveReadNewMessage {
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
+
+- (void)_initShare {
+    /**
+     *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
+     *  在将生成的AppKey传入到此方法中。
+     *  方法中的第二个第三个参数为需要连接社交平台SDK时触发，
+     *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
+     *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
+     */
+    [ShareSDK registerApp:ShareSDKAppKey
+     
+          activePlatforms:@[
+                            @(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformTypeWechat),
+                            @(SSDKPlatformTypeQQ),
+                            ]
+                 onImport:^(SSDKPlatformType platformType)
+     {
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class] delegate:self];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
+             default:
+                 break;
+         }
+     }
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     {
+         
+         switch (platformType)
+         {
+             case SSDKPlatformTypeSinaWeibo:
+                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                 [appInfo SSDKSetupSinaWeiboByAppKey:XinLangAppkey
+                                           appSecret:XinLangAppSecret
+                                         redirectUri:XinLangRedirectUri
+                                            authType:SSDKAuthTypeBoth];
+                 break;
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:WeiXinAppID
+                                       appSecret:WeiXinAppSecret];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:QQAppKey
+                                      appKey:QQappSecret
+                                    authType:SSDKAuthTypeBoth];
+                 break;
+             default:
+                 break;
+         }
+     }];
 }
 
 /**
@@ -155,59 +208,54 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     
     //    NSLog(@"%@",deviceToken);
-    NSString * aa = [[deviceToken hexadecimalString] copy];
+    NSString * aa = [deviceToken hexadecimalString] ;
     //    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
     parame[@"deviceToken"] = aa;
-    //    NSLog(@"deviceToken===%@",aa);
+        LWLog(@"deviceToken===%@",aa);
     [UserLoginTool loginRequestGet:@"updateDeviceToken" parame:parame success:^(id json) {
-        LWLog(@"送11111 %@", json);
+        LWLog(@"推送通知deviceToken成功 %@", json[@"resultDescription"]);
     } failure:^(NSError *error) {
         
     }];
     
 }
 
-
+/**
+ *  iOS7收到推送后的处理
+ *
+ *  @param application <#application description#>
+ *  @param userInfo    <#userInfo description#>
+ */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
-    //    NSLog(@"didReceiveRemoteNotification ------ %@",userInfo);
-    //    NSLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
-    //以警告框的方式来显示推送消息
-    NSDictionary * dict = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-    if (dict != NULL) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:dict[@"body"]
-                                                        message:dict[@"title"]
-                                                       delegate:self
-                                              cancelButtonTitle:@"关闭"
-                                              otherButtonTitles:@"处理",nil];
-        [alert show];
-    }
+//        LWLog(@"didReceiveRemoteNotification ------ %@",userInfo);
+//        LWLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
+//    //以警告框的方式来显示推送消息
+//    NSDictionary * dict = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+//    if (dict != NULL) {
+//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:dict[@"body"]
+//                                                        message:dict[@"title"]
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"关闭"
+//                                              otherButtonTitles:@"处理",nil];
+//        [alert show];
+//    }
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
+/**
+ *  支付宝成功回调
+ *
+ *  @param application       application description
+ *  @param url               url description
+ *  @param sourceApplication sourceApplication description
+ *  @param annotation        annotation description
+ *
+ *  @return return value description
+ */
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -216,7 +264,9 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
+            if([resultDic[@"resultStatus"] intValue] == 9000){
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+            }
         }];
     }
     
@@ -232,6 +282,28 @@
     return YES;
 }
 
+/**
+ *  微信支付回调方法
+ *
+ *  @param resp resp description
+ */
+- (void)onResp:(BaseResp *)resp {
+
+    if ([resp isKindOfClass:[PayResp class]]) {
+        PayResp *response = (PayResp *)resp;
+        switch (response.errCode) {
+            case WXSuccess:
+                //服务器端查询支付通知或查询API返回的结果再提示成功
+                //                NSLog(@"aaaasssss支付成功");
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+                break;
+            default:
+
+                break;
+        }
+    }
+}
 
 
 

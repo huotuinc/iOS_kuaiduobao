@@ -39,10 +39,10 @@
 #define wxpayKey @"0db0d4908a6ae6a09b0a7727878f0ca6"
 
 
-//有盟appKey
+//有盟appKey
 #define UMAppKey @"52faffcf56240bc21a023179"
 /**shareSDK */
-#define ShareSDKAppKey @"f01c25532708"
+#define ShareSDKAppKey @"f01c25532708" //19b4b4d45192 
 
 /**新浪微博*/
 #define XinLangAppkey @"1994677353"
@@ -86,7 +86,11 @@
 /**设备唯一号*/
 #define  DeviceNo ([[UIDevice currentDevice].identifierForVendor UUIDString])
 
+
 /**判断iOS版本*/
+//判断ios7
+#define IsIos7 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)
+
 #define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
 
 /**APP token */
@@ -104,7 +108,9 @@
 #define Success @"Success" //成功
 #define Failure @"Failure" //失败
 
+#define HaveNotReadMessage @"HaveNotReadMessage" //点击看消息发送通知
 
+#define payMoneySuccess @"payMoneySuccess"
 
 
 #ifdef DEBUG

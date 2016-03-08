@@ -7,7 +7,6 @@
 //
 
 #import "RedViewController.h"
-#import "MyView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "RedCountCView.h"
 @interface RedViewController (){
