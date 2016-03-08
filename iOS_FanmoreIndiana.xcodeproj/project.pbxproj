@@ -84,10 +84,6 @@
 		606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606CA1D91C5B431900613E6A /* WinningCell.xib */; };
 		6073E1511C7AEC1F005AD927 /* MineShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6073E1501C7AEC1F005AD927 /* MineShareController.m */; };
 		608690821C8D4F2800705B24 /* AppShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690811C8D4F2800705B24 /* AppShareModel.m */; };
-		608690851C8EA27100705B24 /* MCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690841C8EA27100705B24 /* MCController.m */; };
-		6086908A1C8EA29600705B24 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690871C8EA29600705B24 /* Message.m */; };
-		6086908B1C8EA29600705B24 /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690891C8EA29600705B24 /* MessageFrame.m */; };
-		6086908E1C8EA2B900705B24 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6086908D1C8EA2B900705B24 /* MessageTableViewCell.m */; };
 		608D428A1C869434000C4845 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 608D42891C869434000C4845 /* Order.m */; };
 		608D428E1C869B6C000C4845 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D428D1C869B6C000C4845 /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42901C86B4A7000C4845 /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1072,8 +1068,6 @@
 				F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */,
 				F26E0C8F1C86E38E00DB1908 /* RedViewController.h */,
 				F26E0C901C86E38E00DB1908 /* RedViewController.m */,
-				608690831C8EA27100705B24 /* MCController.h */,
-				608690841C8EA27100705B24 /* MCController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1178,9 +1172,6 @@
 				F26E0C921C8702BC00DB1908 /* DetailGoodsSelectCView.h */,
 				F26E0C931C8702BC00DB1908 /* DetailGoodsSelectCView.m */,
 				F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */,
-				F2060E791C8E71F4001E2D7F /* RedCountCView.h */,
-				F2060E7A1C8E71F4001E2D7F /* RedCountCView.m */,
-				F2060E7B1C8E71F4001E2D7F /* RedCountCView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1636,10 +1627,6 @@
 				F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */,
 				F26E0C8C1C869A3800DB1908 /* AppUserNumberModel.h */,
 				F26E0C8D1C869A3800DB1908 /* AppUserNumberModel.m */,
-				608690861C8EA29600705B24 /* Message.h */,
-				608690871C8EA29600705B24 /* Message.m */,
-				608690881C8EA29600705B24 /* MessageFrame.h */,
-				608690891C8EA29600705B24 /* MessageFrame.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1944,7 +1931,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
-				6086908E1C8EA2B900705B24 /* MessageTableViewCell.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */,
 				F2C426421C88243800C9CEF0 /* ListNumberViewController.m in Sources */,
@@ -1977,11 +1963,9 @@
 				60584F081C4E225B00F23B95 /* NSString+EXTERN.m in Sources */,
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
 				F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */,
-				608690851C8EA27100705B24 /* MCController.m in Sources */,
 				601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */,
-				6086908A1C8EA29600705B24 /* Message.m in Sources */,
 				F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */,
 				60C78D431C84231100AED37E /* WinningDeliveryModel.m in Sources */,
 				F2F587EF1C7D9BA6007187B0 /* DetailShareNextContentTableViewCell.m in Sources */,
@@ -2089,7 +2073,6 @@
 				F23BEFED1C5F2D2C00E87042 /* DetailShareViewController.m in Sources */,
 				60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */,
 				60EB31A51C55C86C006C070B /* FanmoreUserController.m in Sources */,
-				6086908B1C8EA29600705B24 /* MessageFrame.m in Sources */,
 				F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */,
 				F2C426501C882A9000C9CEF0 /* ListNumberMainTableViewCell.m in Sources */,
 				F2F587EA1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.m in Sources */,

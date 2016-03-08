@@ -245,6 +245,23 @@
 }
 
 
+/**
+ *  app 回调
+ *
+ *  @param application <#application description#>
+ *  @param url         <#url description#>
+ *
+ *  @return <#return value description#>
+ */
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    if ([url.host isEqualToString:@"pay"]) {
+        [WXApi handleOpenURL:url delegate:self];
+    }
+    return YES;
+}
+
+
 
 /**
  *  支付宝成功回调
