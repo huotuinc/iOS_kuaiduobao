@@ -133,6 +133,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     // 创建操作队列
    
 
+
 //    [self getAppSlideList];
 //    [self createMainCollectionView];
 //    [self getGoodsList];

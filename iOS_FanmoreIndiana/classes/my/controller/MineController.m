@@ -82,6 +82,8 @@
 {
     [super viewDidAppear:animated];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:HaveNotReadMessage object:nil];
+    
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if (![login isEqualToString:Success]) {
         

@@ -54,7 +54,7 @@
 #define QQappSecret @"09ef5bfed097b682a83b147d46e46a5a"
 
 /**微信*/
-#define WeiXinAppID @"wx8ba33b7341047b58"
+#define WeiXinAppID @"wxaeda2d5603b12302"
 #define WeiXinAppSecret @"8c3b660de36a3b3fb678ca865e31f0f3"
 
 
@@ -86,7 +86,11 @@
 /**设备唯一号*/
 #define  DeviceNo ([[UIDevice currentDevice].identifierForVendor UUIDString])
 
+
 /**判断iOS版本*/
+//判断ios7
+#define IsIos7 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0)
+
 #define IsIos8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
 
 /**APP token */
@@ -104,7 +108,7 @@
 #define Success @"Success" //成功
 #define Failure @"Failure" //失败
 
-
+#define HaveNotReadMessage @"HaveNotReadMessage"
 
 
 #ifdef DEBUG
