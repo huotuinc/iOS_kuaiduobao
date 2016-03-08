@@ -27,6 +27,8 @@
     self.countCode.layer.cornerRadius = 5;
     self.countCode.layer.masksToBounds = YES;
     
+    self.phone.text = self.userName;
+    
     self.next.layer.cornerRadius = 5;
 //    self.countCode.userInteractionEnabled = YES;≥
     [self.countCode bk_whenTapped:^{
