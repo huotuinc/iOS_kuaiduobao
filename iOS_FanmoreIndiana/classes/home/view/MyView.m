@@ -35,6 +35,11 @@
     path.lineWidth = 8;
     [[UIColor yellowColor] setStroke];
     [path stroke];
+    
+    [path addArcWithCenter:CGPointMake(MySize.width/2, MySize.height/2) radius:26 startAngle:M_PI*3 endAngle:M_PI*4 clockwise:YES];
+    path.lineWidth = 8;
+    [[UIColor yellowColor] setStroke];
+    [path stroke];
 
     UIBezierPath *path1 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(MySize.width/2-7, MySize.height/2-10, 14,14) cornerRadius:7];
     [[UIColor yellowColor]setStroke];

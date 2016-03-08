@@ -31,6 +31,7 @@
 #import "InformationViewController.h"
 #import "CartModel.h"
 #import "RedViewController.h"
+#import "DetailWebViewController.h"
 
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -138,7 +139,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [self createMainCollectionView];
 //    [self getGoodsList];
 //    [self getAppNoticeList];
-//    [self createHeadView];
+    [self createHeadView];
+    [self createMainCollectionView];
 //    [self createBarButtonItem];
 //    [self createSearchView];
 }
@@ -253,7 +255,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             NSArray *temp = [AppNoticeListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             [self.appNoticeList removeAllObjects];
             [self.appNoticeList addObjectsFromArray:temp];
-            [_labelCollectionView reloadData];
+            if (!_labelCollectionView) {
+                [self createMainCollectionView];
+            }else {
+                [_labelCollectionView reloadData];
+            }
             
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
@@ -277,12 +283,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             LWLog(@"%@",json[@"resultDescription"]);
             NSArray *temp = [AppSlideListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             [self.appSlideList removeAllObjects];
+            [self.arrURLString removeAllObjects];
             [self.appSlideList addObjectsFromArray:temp];
             for (int i =0; i<_appSlideList.count; i++) {
                 AppSlideListModel *model = _appSlideList[i];
                 [_arrURLString addObject:model.pictureUrl];
             }
-            [_collectionView reloadData];
 
             
         }else{
@@ -392,22 +398,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 
 
--(void)createArrURLString{
-//    _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
-//                                                   @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
-//                                                   @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
-//                                                   @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"]];
-//    _arrTitle=[NSMutableArray arrayWithArray:@[@"恭喜000中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜111中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜222中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜333中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜444中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜555中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜666中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜777中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜888中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖",
-//                                               @"恭喜999中了一等奖一等奖一等奖一等奖一等奖一等奖一等奖"]];
-}
+
 -(void)createHeadView{
     
     _imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(440)+labelHeight+clearHeight+10)];
@@ -419,6 +410,18 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     //        _headScrollView.placeImage = [UIImage imageNamed:@""];
     //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
     [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
+        AppSlideListModel *slideM = _appSlideList[index];
+        if ([slideM.goodsId isEqualToNumber:[NSNumber numberWithInteger:0]]) {
+            DetailWebViewController *web = [[DetailWebViewController alloc] init];
+            web.webURL = slideM.link;
+            [self.navigationController pushViewController:web animated:YES];
+        }else {
+            DetailViewController *detail = [[DetailViewController alloc] init];
+            detail.goodsId = slideM.goodsId;
+            detail.whichAPI = [NSNumber numberWithInteger:1];
+            [self.navigationController pushViewController:detail animated:YES];
+        }
+
         printf("第%zd张图片\n",index);
     }];
     //default is 2.0f,如果小于0.5不自动播放
