@@ -44,11 +44,14 @@ static NSString *payIdentify = @"payIdentifty";
     
     self.selectPay = 100;
     
-//    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserInfo) name:payMoneySuccess object:nil];
     
     [self _initPayButtons];
+    
 
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
+    [self updateUserInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -450,6 +453,17 @@ static NSString *payIdentify = @"payIdentifty";
         
     }
     return nil;
+}
+
+
+- (void)updateUserInfo {
+    
+    [UserLoginTool loginRequestPostWithFile:@"updateProfile" parame:nil success:^(id json) {
+        LWLog(@"%@", json);
+    } failure:^(NSError *error) {
+        LWLog(@"%@", error);
+    } withFileKey:nil];
+    
 }
 
 

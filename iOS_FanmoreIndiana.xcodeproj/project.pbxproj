@@ -2213,7 +2213,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2260,7 +2260,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5f50ae67-bec2-4ab7-a68a-f5e16b9d1de9";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -2271,7 +2271,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2318,7 +2318,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huobanmallbuyer.yingyans;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5f50ae67-bec2-4ab7-a68a-f5e16b9d1de9";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Release;
