@@ -493,4 +493,7 @@ static NSString *payIdentify = @"payIdentifty";
     [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
 }
 
+
+
+
 @end

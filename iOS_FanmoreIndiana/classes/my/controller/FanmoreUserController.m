@@ -11,6 +11,8 @@
 #import <UIButton+WebCache.h>
 #import "AdressController.h"
 #import "ChangeNickNameController.h"
+#import "ChangePhoneController.m"
+#import <ShareSDK/ShareSDK.h>
 
 @interface FanmoreUserController ()<UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -40,18 +42,37 @@
     self.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     
     [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:self.userInfo.userHead] forState:UIControlStateNormal];
-    self.userId.text = self.userInfo.userId;
-    self.user.text = self.userInfo.username;
-    self.nickName.text = self.userInfo.realName;
-    self.phone.text = self.userInfo.mobile;
     
     [self.tableView removeSpaces];
+    
+    [self _initLabels];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)_initLabels {
+    self.nickName.text = self.userInfo.realName;
+    self.phone.text = self.userInfo.mobile;
+    if (self.userInfo.wexinBanded) {
+        self.weixin.text = @"已绑定";
+        self.weixin.textColor = [UIColor blackColor];
+    }else {
+        self.weixin.text = @"未绑定";
+        self.weixin.textColor = [UIColor redColor];
+    }
+    if (self.userInfo.qqBanded) {
+        self.qq.text = @"已绑定";
+        self.qq.textColor = [UIColor blackColor];
+    }else {
+        self.qq.text = @"未绑定";
+        self.qq.textColor = [UIColor redColor];
+    }
+    
 }
 
 #pragma mark - Table view data source
@@ -93,13 +114,56 @@
             }
             break;
         }
-        case 3:
+        case 1:
         {
+            /**
+             *  修改昵称
+             */
             ChangeNickNameController *nick = [story instantiateViewControllerWithIdentifier:@"ChangeNickNameController"];
             [self.navigationController pushViewController:nick animated:YES];
             break;
         }
+        case 2:
+        {
+            /**
+             *  绑定手机
+             */
+//            ChangePhoneController *phone = [story instantiateViewControllerWithIdentifier:@"ChangePhoneController"];
+//            [self.navigationController pushViewController:phone animated:YES];
+            break;
+        }
+        case 3:
+        {
+            /**
+             *  绑定微信或者揭榜
+             */
+            
+            if (self.userInfo.wexinBanded) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
+                alert.tag = 1001;
+                [alert show];
+                
+            }else {
+                [self weichatEmpower];
+            }
+            
+            break;
+        }
         case 4:
+        {
+            /**
+             *  绑定qq或者解绑
+             */
+            if (self.userInfo.qqBanded) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
+                alert.tag = 1002;
+                [alert show];
+            }else {
+                [self qqEmpower];
+            }
+            break;
+        }
+        case 5:
         {
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
@@ -111,6 +175,23 @@
             break;
     }
 }
+
+#pragma mark alertView 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 1001 && buttonIndex == 1) {
+    //解除微信绑定
+    
+        
+    }
+    if (alertView.tag == 1001 && buttonIndex == 1) {
+    //解除qq绑定
+        
+        
+    }
+}
+
+
 
 #pragma mark 拍照
 /**
@@ -174,7 +255,7 @@
             [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
             //            NSLog(@"%@",error.description);
-        } withFileKey:@"profiledata"];
+        } withFileKey:@"profileData"];
         
     }];
     
@@ -212,5 +293,113 @@
         [self presentViewController:pc animated:YES completion:nil];
     }
 }
+
+#pragma mark 第三方授权
+
+/**
+ *  绑定微信
+ */
+- (void)weichatEmpower {
+    [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        if (state == SSDKResponseStateSuccess) {
+            LWLog(@"%@",user);
+            
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            
+            dic[@"unionId"] = user.uid;
+            
+            [UserLoginTool loginRequestGet:@"bingWeixin" parame:dic success:^(id json) {
+                LWLog(@"%@",json);
+                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                    [self loginSuccessWith:json[@"resultData"]];
+                }
+            } failure:^(NSError *error) {
+                LWLog(@"%@",error);
+            }];
+            
+        }else {
+            LWLog(@"%@",error);
+        }
+    }];
+}
+
+/**
+ *  绑定QQ
+ */
+- (void)qqEmpower {
+    [ShareSDK getUserInfo:SSDKPlatformTypeQQ onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        if (state == SSDKResponseStateSuccess) {
+            LWLog(@"%@",user);
+            
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            
+            dic[@"unionId"] = user.uid;
+            
+            
+            [UserLoginTool loginRequestGet:@"bindQq" parame:dic success:^(id json) {
+                LWLog(@"%@",json);
+                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                    [self loginSuccessWith:json[@"resultData"]];
+                }
+            } failure:^(NSError *error) {
+                LWLog(@"%@",error);
+            }];
+        }else {
+            LWLog(@"%@",error);
+        }
+    }];
+}
+
+
+
+
+
+#pragma mark 刷新用户数据
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    NSLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    //保存新的token
+    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    //购物车结算登陆时 需要提交数据
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"addressModel"]];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+    
+    self.userInfo = user;
+    
+    [self _initLabels];
+}
+
+#pragma mark 解除绑定
+
+/**
+ *  解除绑定
+ *
+ *  @param type 1.手机 2。
+ */
+- (void)unwarpWithType:(NSInteger) type {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"type"] = @(type);
+    
+    [UserLoginTool loginRequestGet:@"unwrap" parame:dic success:^(id json) {
+        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@"resultData"]];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
+
+
 
 @end

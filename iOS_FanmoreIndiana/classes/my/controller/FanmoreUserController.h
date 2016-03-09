@@ -10,8 +10,8 @@
 
 @interface FanmoreUserController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIButton *logo;
-@property (weak, nonatomic) IBOutlet UILabel *userId;
-@property (weak, nonatomic) IBOutlet UILabel *user;
+@property (weak, nonatomic) IBOutlet UILabel *qq;
+@property (weak, nonatomic) IBOutlet UILabel *weixin;
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
 @property (weak, nonatomic) IBOutlet UILabel *phone;
 

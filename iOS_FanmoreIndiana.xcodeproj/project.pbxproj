@@ -116,7 +116,6 @@
 		60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EB31EC1C5764B9006C070B /* ForgetSecondController.m */; };
 		60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EB31EF1C5764E2006C070B /* ForgetThirdController.m */; };
 		60F154A01C76A8F90043ED3F /* ChangeNickNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */; };
-		60F154A31C76B7D60043ED3F /* ChangePhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F154A21C76B7D60043ED3F /* ChangePhoneController.m */; };
 		60F389EC1C7566AE0080D759 /* AdressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389EB1C7566AE0080D759 /* AdressController.m */; };
 		60F389F31C7567050080D759 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389F11C7567050080D759 /* AddressCell.m */; };
 		60F389F41C7567050080D759 /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F389F21C7567050080D759 /* AddressCell.xib */; };
@@ -403,6 +402,8 @@
 		603184FA1C8EC912004CBC9C /* RedCountCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedCountCView.h; sourceTree = "<group>"; };
 		603184FB1C8EC912004CBC9C /* RedCountCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedCountCView.m; sourceTree = "<group>"; };
 		603184FC1C8EC912004CBC9C /* RedCountCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedCountCView.xib; sourceTree = "<group>"; };
+		603185011C900173004CBC9C /* ChangePhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneController.m; sourceTree = "<group>"; };
+		603185021C900173004CBC9C /* ChangePhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneController.h; sourceTree = "<group>"; };
 		6031C53A1C4C89B900D6B567 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
 		6031C53B1C4C89B900D6B567 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		6031C53D1C4C8E9F00D6B567 /* XLPlainFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLPlainFlowLayout.h; sourceTree = "<group>"; };
@@ -541,8 +542,6 @@
 		60EB31EF1C5764E2006C070B /* ForgetThirdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetThirdController.m; sourceTree = "<group>"; };
 		60F1549E1C76A8F90043ED3F /* ChangeNickNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeNickNameController.h; sourceTree = "<group>"; };
 		60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeNickNameController.m; sourceTree = "<group>"; };
-		60F154A11C76B7D60043ED3F /* ChangePhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneController.h; sourceTree = "<group>"; };
-		60F154A21C76B7D60043ED3F /* ChangePhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneController.m; sourceTree = "<group>"; };
 		60F389EA1C7566AE0080D759 /* AdressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressController.h; sourceTree = "<group>"; };
 		60F389EB1C7566AE0080D759 /* AdressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressController.m; sourceTree = "<group>"; };
 		60F389F01C7567050080D759 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
@@ -1310,8 +1309,8 @@
 				60F389F61C75AEE80080D759 /* AddAddressController.m */,
 				60F1549E1C76A8F90043ED3F /* ChangeNickNameController.h */,
 				60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */,
-				60F154A11C76B7D60043ED3F /* ChangePhoneController.h */,
-				60F154A21C76B7D60043ED3F /* ChangePhoneController.m */,
+				603185011C900173004CBC9C /* ChangePhoneController.m */,
+				603185021C900173004CBC9C /* ChangePhoneController.h */,
 				6073E14F1C7AEC1F005AD927 /* MineShareController.h */,
 				6073E1501C7AEC1F005AD927 /* MineShareController.m */,
 				601C712C1C7C419A00673B7F /* RecordController.h */,
@@ -1946,7 +1945,6 @@
 				6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
 				F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */,
-				60F154A31C76B7D60043ED3F /* ChangePhoneController.m in Sources */,
 				F2F587F81C7DA14A007187B0 /* DetailShareNextViewController.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
 				F23DE3D31C522E34002AB5FC /* DetailNextTableViewCell.m in Sources */,

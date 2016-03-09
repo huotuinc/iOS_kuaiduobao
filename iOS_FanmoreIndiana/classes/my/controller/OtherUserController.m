@@ -176,7 +176,7 @@
             [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
             //            NSLog(@"%@",error.description);
-        } withFileKey:@"profiledata"];
+        } withFileKey:@"profileData"];
         
     }];
     
