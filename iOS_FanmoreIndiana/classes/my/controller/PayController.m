@@ -51,7 +51,7 @@ static NSString *payIdentify = @"payIdentifty";
 
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
-    [self updateUserInfo];
+//    [self updateUserInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -456,12 +456,18 @@ static NSString *payIdentify = @"payIdentifty";
 }
 
 
+#pragma mark 支付成功刷新用户数据
 - (void)updateUserInfo {
     
-    [UserLoginTool loginRequestPostWithFile:@"updateProfile" parame:nil success:^(id json) {
+    [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
         LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@"resultData"]];
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+        }
     } failure:^(NSError *error) {
-        LWLog(@"%@", error);
+        
     } withFileKey:nil];
     
 }
