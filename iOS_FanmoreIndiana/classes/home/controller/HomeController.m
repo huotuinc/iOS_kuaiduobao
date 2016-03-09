@@ -168,7 +168,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"粉猫夺宝";
+    titleLabel.text = @"奇兵夺宝";
     self.navigationItem.titleView = titleLabel;
 }
 //- (void)createSearchView{

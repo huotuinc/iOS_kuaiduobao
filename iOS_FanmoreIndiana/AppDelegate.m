@@ -230,18 +230,6 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
-//        LWLog(@"didReceiveRemoteNotification ------ %@",userInfo);
-//        LWLog(@"%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
-//    //以警告框的方式来显示推送消息
-//    NSDictionary * dict = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-//    if (dict != NULL) {
-//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:dict[@"body"]
-//                                                        message:dict[@"title"]
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"关闭"
-//                                              otherButtonTitles:@"处理",nil];
-//        [alert show];
-//    }
 }
 
 
@@ -278,6 +266,8 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
+    LWLog(@"openURL:%@" ,url.absoluteURL);
+    
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -296,6 +286,33 @@
     if ([url.host isEqualToString:@"pay"]) {
         [WXApi handleOpenURL:url delegate:self];
     }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
+    
+    
+    LWLog(@"openURL:%@" ,url.absoluteURL);
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            if([resultDic[@"resultStatus"] intValue] == 9000){
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+            }
+        }];
+    }
+    
+    if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回 authCode
+        [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+        }];
+    }
+    
+    if ([url.host isEqualToString:@"pay"]) {
+        [WXApi handleOpenURL:url delegate:self];
+    }
+    
     return YES;
 }
 

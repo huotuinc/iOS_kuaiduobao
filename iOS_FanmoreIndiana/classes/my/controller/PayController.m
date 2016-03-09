@@ -44,11 +44,14 @@ static NSString *payIdentify = @"payIdentifty";
     
     self.selectPay = 100;
     
-//    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserInfo) name:payMoneySuccess object:nil];
     
     [self _initPayButtons];
+    
 
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
+//    [self updateUserInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -453,6 +456,23 @@ static NSString *payIdentify = @"payIdentifty";
 }
 
 
+#pragma mark 支付成功刷新用户数据
+- (void)updateUserInfo {
+    
+    [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
+        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@"resultData"]];
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+        }
+    } failure:^(NSError *error) {
+        
+    } withFileKey:nil];
+    
+}
+
+
 
 //刷新用户数据
 - (void)loginSuccessWith:(NSDictionary *) dic {
@@ -472,5 +492,8 @@ static NSString *payIdentify = @"payIdentifty";
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
 }
+
+
+
 
 @end
