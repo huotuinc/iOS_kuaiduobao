@@ -307,7 +307,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [SVProgressHUD show];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = self.type;
-    dic[@"lastSort"]= @0;
+    if (orderNumberNow == 2) {
+        dic[@"lastSort"]= @100;
+
+    }else {
+        dic[@"lastSort"]= @0;
+
+    }
     
     [UserLoginTool loginRequestGet:@"getGoodsListByIndex" parame:dic success:^(id json) {
         
@@ -777,6 +783,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                             orderNumberNow = 1;
 
                         }
+                        //进度
                         if (button.tag ==102) {
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:3];

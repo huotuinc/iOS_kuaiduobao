@@ -57,7 +57,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     // Do any additional setup after loading the view.
     _whichPay = 2;
     _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
-    
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector() name: object:nil];
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
     self.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
@@ -405,7 +405,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             }
             if (indexPath.row == 2) {
                 CGFloat elsePay = [_payModel.totalMoney floatValue] - [_payModel.redPacketsMinusMoney floatValue];
-                cell.labelB.text = [NSString stringWithFormat:@"%.1f元",elsePay];
+                cell.labelB.text = [NSString stringWithFormat:@"%.2f元",elsePay];
             }
             return cell;
         }else{
