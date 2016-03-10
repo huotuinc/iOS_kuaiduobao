@@ -64,7 +64,7 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame WithImageNames:(NSArray<NSString *> *)ImageName {
-    if (ImageName.count < 2) {
+    if (ImageName.count < 1) {
         return nil;
     }
     self = [super initWithFrame:frame];
@@ -275,13 +275,18 @@
 - (void)changeImageLeft:(NSInteger)LeftIndex center:(NSInteger)centerIndex right:(NSInteger)rightIndex {
     
     if (_isNetwork) {
-        
-        _leftImageView.image = [self setImageWithIndex:LeftIndex];
-        _centerImageView.image = [self setImageWithIndex:centerIndex];
-        _rightImageView.image = [self setImageWithIndex:rightIndex];
+//        
+        if (LeftIndex == centerIndex) {
+            _leftImageView.image = [self setImageWithIndex:centerIndex];
+            _centerImageView.image = [self setImageWithIndex:centerIndex];
+            _rightImageView.image = [self setImageWithIndex:centerIndex];
+        }else {
+            _leftImageView.image = [self setImageWithIndex:LeftIndex];
+            _centerImageView.image = [self setImageWithIndex:centerIndex];
+            _rightImageView.image = [self setImageWithIndex:rightIndex];
+        }
         
     }else {
-        
         _leftImageView.image = _imageData[LeftIndex];
         _centerImageView.image = _imageData[centerIndex];
         _rightImageView.image = _imageData[rightIndex];

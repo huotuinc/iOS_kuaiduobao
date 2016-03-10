@@ -173,7 +173,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
     cell.viewProgress.progress=percent;
     [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
-    cell.imageVSign.image = [UIImage imageNamed:@"line_touming"];
+    cell.imageVSign.image = [UIImage imageNamed:@""];
     if ([model.areaAmount integerValue] > 0) {
         cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_a"];
     }

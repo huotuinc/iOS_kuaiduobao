@@ -490,9 +490,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    _imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(440)+labelHeight+clearHeight+10)];
 //    _imageV.image=[UIImage imageNamed:@"buy_fukuan_red"];
 //    [self createFourBtnView];
-    [self createImageVNotice];
-    [self createLableCollectionView];
-    [self createClearView];
+//    [self createImageVNotice];
+//    [self createLableCollectionView];
+//    [self createClearView];
     
 
 //    [_headView addSubview:_headScrollView];
@@ -625,7 +625,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             
             AppGoodsListModel *model=_appGoodsList[indexPath.row];
             
-            cell.imageVState.image = [UIImage imageNamed:@"line_touming"];
+            cell.imageVState.image = [UIImage imageNamed:@""];
             if ([model.areaAmount integerValue] > 0) {
                 cell.imageVState.image=[UIImage imageNamed:@"zhuanqu_a"];
             }
