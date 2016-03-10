@@ -128,8 +128,8 @@
             /**
              *  绑定手机
              */
-//            ChangePhoneController *phone = [story instantiateViewControllerWithIdentifier:@"ChangePhoneController"];
-//            [self.navigationController pushViewController:phone animated:YES];
+            ChangePhoneController *phone = [story instantiateViewControllerWithIdentifier:@"ChangePhoneController"];
+            [self.navigationController pushViewController:phone animated:YES];
             break;
         }
         case 3:
@@ -181,12 +181,13 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 1001 && buttonIndex == 1) {
     //解除微信绑定
-    
+        [self unwarpWithType:3];
         
     }
     if (alertView.tag == 1001 && buttonIndex == 1) {
     //解除qq绑定
         
+        [self unwarpWithType:2];
         
     }
 }
@@ -367,7 +368,7 @@
     //保存新的token
     [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
     //购物车结算登陆时 需要提交数据
-    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"addressModel"]];
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"appMyAddressListModel"]];
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
     
@@ -381,7 +382,7 @@
 /**
  *  解除绑定
  *
- *  @param type 1.手机 2。
+ *  @param type 1.手机 2.qq 3.微信
  */
 - (void)unwarpWithType:(NSInteger) type {
     
@@ -399,6 +400,9 @@
     }];
     
 }
+
+
+
 
 
 

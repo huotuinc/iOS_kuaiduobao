@@ -28,7 +28,7 @@
 - (void)_initLabels {
     SDImageCache *sdImageCache = [SDImageCache sharedImageCache];
     
-    self.imageSize.text = [NSString stringWithFormat:@"%uM", [sdImageCache getSize] / 1024 / 1024];
+    self.imageSize.text = [NSString stringWithFormat:@"%luM", [sdImageCache getSize] / 1024 / 1024];
     
 }
 
@@ -47,7 +47,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 1) {
-        [[SDImageCache sharedImageCache] cleanDisk];
+        SDImageCache *sdImageCache = [SDImageCache sharedImageCache];
+        [sdImageCache cleanDisk];
         
         [self _initLabels];
     }

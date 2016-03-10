@@ -53,7 +53,7 @@
 #define QQAppKey @"101066212"
 #define QQappSecret @"09ef5bfed097b682a83b147d46e46a5a"
 
-/**微信*/
+/**微信*/ 
 #define WeiXinAppID @"wxaeda2d5603b12302"
 #define WeiXinAppSecret @"8c3b660de36a3b3fb678ca865e31f0f3"
 
@@ -65,7 +65,7 @@
 
 ///***服务器地址***/1.41
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
-#define MKMainUrl @"192.168.3.22:8080/duobao/app"
+#define MKMainUrl @"192.168.1.41:8080/duobao/app"
 //#define MKMainUrl @"duobao.51flashmall.com:8091/app"
 
 

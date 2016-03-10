@@ -17,6 +17,6 @@
 @property (nonatomic, strong) NSString *remark;
 @property (nonatomic, strong) NSNumber *startTime;
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) NSInteger redPacketType;
 
 @end

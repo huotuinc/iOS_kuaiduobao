@@ -24,6 +24,11 @@
     _model = model;
     self.minus.text = [NSString stringWithFormat:@"%@",model.minusMoney];
     self.full.text = [NSString stringWithFormat:@"满%@元使用", model.fullMoney];
+    if (model.redPacketType != 1) {
+        self.full.hidden = YES;
+    }else {
+        self.full.hidden = NO;
+    }
     self.titleName.text = model.title;
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];

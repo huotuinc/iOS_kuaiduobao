@@ -91,7 +91,12 @@
     dic[@"receiver"] = self.personName.text;
     dic[@"mobile"] = self.personIphone.text;
     dic[@"details"] = self.detailAddress.text;
-    dic[@"defaultAddress"] = @(self.defaultAddress.on);
+    if (self.defaultAddress.on) {
+        dic[@"defaultAddress"] = @1;
+    }else {
+        dic[@"defaultAddress"] = @0;
+    }
+//    dic[@"defaultAddress"] = @(self.defaultAddress.on);
     dic[@"addressId"] = self.model.addressId;
     
     [UserLoginTool loginRequestPostWithFile:@"updateAddress" parame:dic success:^(id json) {

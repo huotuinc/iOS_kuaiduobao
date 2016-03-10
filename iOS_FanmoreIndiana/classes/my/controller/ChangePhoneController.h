@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *captcha;
 @property (weak, nonatomic) IBOutlet UILabel *getCaptcha;
+@property (weak, nonatomic) IBOutlet UIButton *bindPhone;
 
 @end

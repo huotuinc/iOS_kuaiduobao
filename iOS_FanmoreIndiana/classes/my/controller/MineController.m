@@ -101,13 +101,13 @@
         
         [self.logo bk_whenTapped:^{
             UIStoryboard *stroy = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            if ([user.userFormType intValue] == 0) {
+//            if ([user.userFormType intValue] == 0) {
                 FanmoreUserController *fanmore = [stroy instantiateViewControllerWithIdentifier:@"FanmoreUserController"];
                 [self.navigationController pushViewController:fanmore animated:YES];
-            }else {
-                OtherUserController *other = [stroy instantiateViewControllerWithIdentifier:@"OtherUserController"];
-                [self.navigationController pushViewController:other animated:YES];
-            }
+//            }else {
+//                OtherUserController *other = [stroy instantiateViewControllerWithIdentifier:@"OtherUserController"];
+//                [self.navigationController pushViewController:other animated:YES];
+//            }
             
             
         }];
