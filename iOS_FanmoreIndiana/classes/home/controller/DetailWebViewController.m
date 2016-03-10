@@ -16,10 +16,14 @@
 @implementation DetailWebViewController
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden =YES;
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tabBarController.tabBar.hidden =YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self createWebView];
 }

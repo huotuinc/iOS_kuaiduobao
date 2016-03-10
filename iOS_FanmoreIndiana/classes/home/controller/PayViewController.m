@@ -57,7 +57,10 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     // Do any additional setup after loading the view.
     _whichPay = 2;
     _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector() name: object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserInfo) name:payMoneySuccess object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccessNotice) name:payMoneySuccessView object:nil];
+
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
     self.userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
@@ -118,6 +121,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             LWLog(@"%@",json[@"resultDescription"]);
             [SVProgressHUD showSuccessWithStatus:@"支付成功"];
             _payView.buttonPay.userInteractionEnabled = YES;
+            [self updateUserInfo];
             
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
@@ -138,8 +142,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 }
 - (void)paySuccess{
-    NSDictionary *dict  = [NSDictionary dictionary];
-    [[NSNotificationCenter defaultCenter]postNotificationName:CannelLoginFailure object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter]postNotificationName:CannelLoginFailure object:nil userInfo:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -505,6 +508,49 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark 支付成功刷新用户数据
+- (void)updateUserInfo {
+    
+    [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
+        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@"resultData"]];
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+        }
+    } failure:^(NSError *error) {
+        
+    } withFileKey:nil];
+    
+}
+
+
+
+//刷新用户数据
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    NSLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    //保存新的token
+    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    //购物车结算登陆时 需要提交数据
+    
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"addressModel"]];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+}
+
+- (void)paySuccessNotice {
+    [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccess) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+
+}
 /*
 #pragma mark - Navigation
 

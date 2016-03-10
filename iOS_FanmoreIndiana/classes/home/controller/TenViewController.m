@@ -223,10 +223,8 @@ static NSString *cellTenMain=@"cellTenMain";
     CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
     cell.viewProgress.progress=percent;
     [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
-    if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:5]]) {
-        cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_b"];
-    }
-    if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:10]]) {
+    cell.imageVSign.image = [UIImage imageNamed:@"line_touming"];
+    if ([model.areaAmount integerValue] > 0) {
         cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_a"];
     }
     cell.buttonAdd.tag = 500 +indexPath.row;

@@ -65,7 +65,7 @@
 
 ///***服务器地址***/1.41
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
-#define MKMainUrl @"192.168.3.22:8080/duobao/app"
+#define MKMainUrl @"192.168.3.86:8080/duobao/app"
 //#define MKMainUrl @"duobao.51flashmall.com:8091/app"
 
 
@@ -111,6 +111,8 @@
 #define HaveNotReadMessage @"HaveNotReadMessage" //点击看消息发送通知
 
 #define payMoneySuccess @"payMoneySuccess"
+
+#define payMoneySuccessView @"payMoneySuccessView"//支付成功后刷新界面
 
 
 #ifdef DEBUG
