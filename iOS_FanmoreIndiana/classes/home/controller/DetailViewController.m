@@ -708,8 +708,13 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         if (indexPath.row == 0) {
             DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
             cell.labelTitle.text=@"所有参与记录";
-            cell.labelAdvice.text=[NSString stringWithFormat:@"( %@开始 )",[self changeTheTimeStamps:_detailModel.firstBuyTime andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"]];
-            cell.selectionStyle=UITableViewCellSelectionStyleNone;
+            if (_detailModel.firstBuyTime == nil) {
+                cell.labelAdvice.text = @"";
+            }else {
+                cell.labelAdvice.text=[NSString stringWithFormat:@"( %@开始 )",[self changeTheTimeStamps:_detailModel.firstBuyTime andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"]];
+
+            }
+             cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;
         }
         if (indexPath.row == 1) {

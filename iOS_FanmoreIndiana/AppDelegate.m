@@ -271,17 +271,18 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"resultStatus = %@",resultDic[@"resultStatus"]);
             if([resultDic[@"resultStatus"] intValue] == 9000){
+                
+                NSLog(@"跳转支付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+
             }
         }];
     }
     
-    if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回 authCode
-        [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
-            
-        }];
-    }
     
     if ([url.host isEqualToString:@"pay"]) {
         [WXApi handleOpenURL:url delegate:self];
@@ -298,7 +299,12 @@
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             if([resultDic[@"resultStatus"] intValue] == 9000){
+                NSLog(@"跳转支付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
+
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+
+
             }
         }];
     }
@@ -331,6 +337,7 @@
                 //                NSLog(@"aaaasssss支付成功");
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
                 break;
             default:
 

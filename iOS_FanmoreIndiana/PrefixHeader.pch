@@ -112,6 +112,8 @@
 
 #define payMoneySuccess @"payMoneySuccess"
 
+#define payMoneySuccessView @"payMoneySuccessView"//支付成功后刷新界面
+
 
 #ifdef DEBUG
 #define LWLog(...) NSLog(__VA_ARGS__)

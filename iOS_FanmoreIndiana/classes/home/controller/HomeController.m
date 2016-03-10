@@ -52,7 +52,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 @property (nonatomic, strong) NSMutableArray *appGoodsList;
 @property (nonatomic, strong) NSMutableArray *appNoticeList;
 @property (nonatomic, strong) NSMutableArray *appSlideList;
-@property (nonatomic, strong) NSMutableArray *arrURLString;
+@property (nonatomic, strong) NSMutableArray *arrURLString;//轮播图片
 
 @property (nonatomic, strong) NSNumber *lastSort;
 
@@ -92,29 +92,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     
     self.tabBarController.tabBar.hidden = NO;
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
-        [self getAppNoticeList];
-    }];
-    NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
-        [self getAppSlideList];
-    }];
-    NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
-        [self createHeadView];
-    }];
-    NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
-        [self getGoodsList];
-    }];
-    
-    [op3 addDependency:op1];
-    [op3 addDependency:op2];
-    [op4 addDependency:op3];
-    
-    // 为队列添加线程
-    [queue addOperation:op1];
-    [queue addOperation:op2];
-    [queue addOperation:op3];
-    [queue addOperation:op4];
+    [self getHomeData];
 
 }
 
@@ -143,6 +121,32 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self createMainCollectionView];
 //    [self createBarButtonItem];
 //    [self createSearchView];
+}
+#pragma mark 获取数据 线程
+- (void)getHomeData {
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+        [self getAppNoticeList];
+    }];
+    NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
+        [self getAppSlideList];
+    }];
+    NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
+        [self createHeadView];
+    }];
+    NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
+        [self getGoodsList];
+    }];
+    
+    [op3 addDependency:op1];
+    [op3 addDependency:op2];
+    [op4 addDependency:op3];
+    
+    // 为队列添加线程
+    [queue addOperation:op1];
+    [queue addOperation:op2];
+    [queue addOperation:op3];
+    [queue addOperation:op4];
 }
 - (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -220,7 +224,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 {
     
     
-    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getGoodsList)];
+    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeData)];
     _collectionView.mj_header = headRe;
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
@@ -307,7 +311,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [SVProgressHUD show];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = self.type;
-    dic[@"lastSort"]= @0;
+    if (orderNumberNow == 2) {
+        dic[@"lastSort"]= @100;
+
+    }else {
+        dic[@"lastSort"]= @0;
+
+    }
     
     [UserLoginTool loginRequestGet:@"getGoodsListByIndex" parame:dic success:^(id json) {
         
@@ -397,14 +407,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
 }
 
-
-
--(void)createHeadView{
-    
-    _imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(440)+labelHeight+clearHeight+10)];
-    _imageV.image=[UIImage imageNamed:@"buy_fukuan_red"];
-//    
-//    _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(460)+labelHeight)];
+- (void)createHeadScrollView {
     _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) WithImageUrls:_arrURLString];
     //占位图片,你可以在下载图片失败处修改占位图片
     //        _headScrollView.placeImage = [UIImage imageNamed:@""];
@@ -421,18 +424,18 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             detail.whichAPI = [NSNumber numberWithInteger:1];
             [self.navigationController pushViewController:detail animated:YES];
         }
-
+        
         printf("第%zd张图片\n",index);
     }];
     //default is 2.0f,如果小于0.5不自动播放
     _headScrollView.AutoScrollDelay = 2.0f;
-
+}
+- (void)createFourBtnView {
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeFourBtnCView" owner:nil options:nil];
     _fourBtnView=[nib firstObject];
     _fourBtnView.frame=CGRectMake(0,ADAPT_HEIGHT(280), SCREEN_WIDTH, ADAPT_HEIGHT(160));
     for (int i =0; i<5; i++) {
         UIImageView *imageV=[_fourBtnView viewWithTag:200+i];
-        
         imageV.userInteractionEnabled=YES;
     }
 #pragma mark 分类
@@ -451,7 +454,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         RedViewController * red = [[RedViewController alloc] init];
         [self.navigationController pushViewController:red animated:YES];
     }];
-
+    
 #pragma mark 晒单
     [_fourBtnView.imageVShow bk_whenTapped:^{
         ShareViewController *share=[[ShareViewController alloc]init];
@@ -460,24 +463,38 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }];
 #pragma mark 分享
     [_fourBtnView.imageVHelp bk_whenTapped:^{
-
-//        DetailViewController *detail=[[DetailViewController alloc]init];
-//        detail.issueId=[NSNumber numberWithInteger:100000002];
-//        detail.whichAPI=[NSNumber numberWithInteger:2];
-//        [self.navigationController pushViewController:detail animated:YES];
-//        PayViewController *pay = [[PayViewController alloc] init];
-//        [self.navigationController pushViewController:pay animated:YES];
+        
+        //        DetailViewController *detail=[[DetailViewController alloc]init];
+        //        detail.issueId=[NSNumber numberWithInteger:100000002];
+        //        detail.whichAPI=[NSNumber numberWithInteger:2];
+        //        [self.navigationController pushViewController:detail animated:YES];
+        //        PayViewController *pay = [[PayViewController alloc] init];
+        //        [self.navigationController pushViewController:pay animated:YES];
         
     }];
-    
+
+}
+
+- (void)createImageVNotice {
     _imageVNotice=[[UIImageView alloc]initWithFrame:CGRectMake(20, ADAPT_HEIGHT(440)+5, 30, 30)];
     _imageVNotice.image=[UIImage imageNamed:@"news"];
-    
-    [self createLableCollectionView];
-    
+}
+
+- (void)createClearView {
     _clearView=[[UIView alloc]initWithFrame:CGRectMake(0, ADAPT_HEIGHT(440)+40, SCREEN_WIDTH, clearHeight)];
     _clearView.backgroundColor=COLOR_BACK_MAIN;
+}
+
+-(void)createHeadView{
+//    [self createHeadScrollView];
+//    _imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(440)+labelHeight+clearHeight+10)];
+//    _imageV.image=[UIImage imageNamed:@"buy_fukuan_red"];
+//    [self createFourBtnView];
+//    [self createImageVNotice];
+//    [self createLableCollectionView];
+//    [self createClearView];
     
+
 //    [_headView addSubview:_headScrollView];
 //    [_headView addSubview:_fourBtnView];
 //    [_headView addSubview:_imageVNotice];
@@ -569,8 +586,24 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     if (collectionView.tag == 100) {
         if (indexPath.section == 0) {
             HomeHeadCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellHead forIndexPath:indexPath ];
-            if (!_headScrollView) {
-                [self createHeadView];
+//            if (!_headScrollView) {
+            [_headScrollView removeFromSuperview];
+            [self createHeadScrollView];
+//            }
+            if (!_fourBtnView) {
+//            [_fourBtnView removeFromSuperview];
+            [self createFourBtnView];
+            }
+            if (!_imageVNotice) {
+                [self createImageVNotice];
+            }
+            if (!_labelCollectionView) {
+                [self createLableCollectionView];
+            }else {
+                [_labelCollectionView reloadData];
+            }
+            if (!_clearView) {
+                [self createClearView];
             }
             [cell addSubview:_headScrollView];
             [cell addSubview:_fourBtnView];
@@ -588,14 +621,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             
         }else {
             HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
+
+            
             AppGoodsListModel *model=_appGoodsList[indexPath.row];
             
-            if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:5]]) {
-                cell.imageVState.image=[UIImage imageNamed:@"zhuanqu_b"];
-            }
-            if ([model.areaAmount isEqualToNumber:[NSNumber numberWithInteger:10]]) {
+            cell.imageVState.image = [UIImage imageNamed:@""];
+            if ([model.areaAmount integerValue] > 0) {
                 cell.imageVState.image=[UIImage imageNamed:@"zhuanqu_a"];
             }
+
             
             cell.labelName.text=model.title;
             CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
@@ -777,6 +811,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                             orderNumberNow = 1;
 
                         }
+                        //进度
                         if (button.tag ==102) {
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             self.type = [NSNumber numberWithInteger:3];

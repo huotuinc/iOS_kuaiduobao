@@ -27,6 +27,7 @@
 @property (nonatomic, assign) BOOL isFirst;
 @property (nonatomic, assign) NSInteger count;
 
+@property (nonatomic, strong) UIImageView *imageVReturn;
 @property (nonatomic, strong) UIImageView *imageVXiu;
 @property (nonatomic, strong) UIImageView *imageVTop;
 @property (nonatomic, strong) UIImageView *imageVBack;
@@ -90,6 +91,7 @@
     [self createImageVBottom];
     [self createImageVXiu];
     [self createCountView];
+    [self creatImageVReturn];
     
     //    self.imgView = [[MyView alloc]init];
     //    self.imgView.backgroundColor = [UIColor clearColor];
@@ -97,6 +99,15 @@
     //    [self.view addSubview:self.imgView];
     [self startAnimation];
     
+}
+- (void) creatImageVReturn {
+    _imageVReturn = [[UIImageView alloc] initWithFrame:CGRectMake(15, 20, 25, 25)];
+    _imageVReturn.image = [UIImage imageNamed:@"back"];
+    _imageVReturn.userInteractionEnabled =YES;
+    [_imageVReturn bk_whenTapped:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [self.view addSubview:_imageVReturn];
 }
 - (void) createCountView {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RedCountCView" owner:nil options:nil];
@@ -273,32 +284,25 @@
     
     CGPoint point = [touch locationInView:self.view];
     
-    //    CGFloat x = CGRectGetMinX(self.view.frame);
-    //    CGFloat y = CGRectGetMinY(self.view.frame);
-    //
-    //    CGFloat xw = CGRectGetMaxX(self.view.frame);
-    //    CGFloat yh = CGRectGetMaxY(self.view.frame);
     CGFloat x = SCREEN_WIDTH/2 - ADAPT_HEIGHT(103);
     CGFloat y = ADAPT_HEIGHT(705);
     CGFloat xw =  SCREEN_WIDTH/2 + ADAPT_HEIGHT(103);
     CGFloat yh = ADAPT_HEIGHT(705) + ADAPT_HEIGHT(206);
     
-    
-    
     if (point.x > x && point.x < xw && point.y > y && point.y < yh) {
-        
+        //移除未点击时的动画
         [self.staticShadowLayer removeFromSuperlayer];
         [self.staticShadowLayer removeAnimationForKey:@"groupAnnimation"];
         [self.staticLayer removeFromSuperlayer];
         [self.staticLayer removeAnimationForKey:@"groupAnnimation"];
-
-        
+        //点击次数
         NSLog(@"**** %ld ****",(long)_count);
+        //开始xiu动画
         _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(click)];
         _disPlayLink.frameInterval = 40;
         [_disPlayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        
-        
+        //播放音效
+//        [self soundComeOut];
         self.isFirst = YES;
     }
     
@@ -334,6 +338,14 @@
     [_disPlayLink invalidate];
     _disPlayLink = nil;
     _count++;
+}
+//播放音效
+-(void)soundComeOut{
+    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"xiuVoice" ofType:@"mp3"];
+    NSURL *audioUrl = [NSURL fileURLWithPath:audioPath];
+    AVPlayerItem *item = [[AVPlayerItem alloc]initWithURL:audioUrl];
+    myplayer = [[AVPlayer alloc]initWithPlayerItem:item];
+    [myplayer play];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
