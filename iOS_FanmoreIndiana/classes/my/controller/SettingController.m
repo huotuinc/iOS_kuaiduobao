@@ -8,6 +8,8 @@
 
 #import "SettingController.h"
 #import "UIViewController+MonitorNetWork.h"
+#import "GlobalModel.h"
+#import "DetailWebViewController.h"
 #import <SDWebImageCompat.h>
 
 @interface SettingController ()
@@ -30,6 +32,7 @@
     
     self.imageSize.text = [NSString stringWithFormat:@"%uM", [sdImageCache getSize] / 1024 / 1024];
     
+    
 }
 
 
@@ -45,6 +48,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        DetailWebViewController *web = [[DetailWebViewController alloc] init];
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:GlobalInfo];
+        GlobalModel *global = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        web.webURL = global.helpURL;
+        [self.navigationController pushViewController:web animated:YES];
+    }
     
     if (indexPath.section == 1) {
         SDImageCache *sdImageCache = [SDImageCache sharedImageCache];

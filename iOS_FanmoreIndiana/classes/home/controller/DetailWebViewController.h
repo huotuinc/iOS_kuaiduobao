@@ -11,4 +11,5 @@
 @interface DetailWebViewController : UIViewController
 
 @property (nonatomic, copy) NSString * webURL;
+
 @end
