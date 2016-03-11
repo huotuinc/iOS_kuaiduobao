@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FanmoreUserController.h"
 
 @interface ForgetSecondController : UIViewController
 
@@ -16,6 +17,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *countCode;
 @property (weak, nonatomic) IBOutlet UIButton *next;
 
+@property (nonatomic, strong) FanmoreUserController *fan;
+
+/**
+ *  1.忘记密码 2.手机验证重置密码
+ */
+@property (nonatomic, assign) NSInteger type;
 
 - (IBAction)doNext:(id)sender;
 

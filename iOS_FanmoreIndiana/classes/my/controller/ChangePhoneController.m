@@ -112,7 +112,7 @@
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             [SVProgressHUD showSuccessWithStatus:@"绑定成功"];
             
-            [self updateUserInfo];
+            [self loginSuccessWith:json[@"resultData"]];
         }else {
             [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
         }
@@ -175,28 +175,12 @@
 }
 
 
-#pragma mark 支付成功刷新用户数据
-- (void)updateUserInfo {
-    
-    [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
-        LWLog(@"%@", json);
-        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
-            [self loginSuccessWith:json[@"resultData"]];
-        }else {
-//            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
-        }
-    } failure:^(NSError *error) {
-        
-    } withFileKey:nil];
-    
-}
-
-
+#pragma mark 刷新用户数据
 
 //刷新用户数据
 - (void)loginSuccessWith:(NSDictionary *) dic {
     
-    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"data"]];
     NSLog(@"userModel: %@",user);
     
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

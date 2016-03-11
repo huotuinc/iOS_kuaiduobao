@@ -82,6 +82,7 @@
 		6066B0B81C73175600B0A73C /* PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6066B0B71C73175600B0A73C /* PayController.m */; };
 		606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 606CA1D81C5B431900613E6A /* WinningCell.m */; };
 		606CA1DB1C5B431900613E6A /* WinningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606CA1D91C5B431900613E6A /* WinningCell.xib */; };
+		606CECAC1C926E9B00D0F938 /* ChangePasswordFromOldController.m in Sources */ = {isa = PBXBuildFile; fileRef = 606CECAB1C926E9B00D0F938 /* ChangePasswordFromOldController.m */; };
 		6073E1511C7AEC1F005AD927 /* MineShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6073E1501C7AEC1F005AD927 /* MineShareController.m */; };
 		608690821C8D4F2800705B24 /* AppShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 608690811C8D4F2800705B24 /* AppShareModel.m */; };
 		608D428A1C869434000C4845 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 608D42891C869434000C4845 /* Order.m */; };
@@ -484,6 +485,8 @@
 		606CA1D71C5B431900613E6A /* WinningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningCell.h; sourceTree = "<group>"; };
 		606CA1D81C5B431900613E6A /* WinningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningCell.m; sourceTree = "<group>"; };
 		606CA1D91C5B431900613E6A /* WinningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinningCell.xib; sourceTree = "<group>"; };
+		606CECAA1C926E9B00D0F938 /* ChangePasswordFromOldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordFromOldController.h; sourceTree = "<group>"; };
+		606CECAB1C926E9B00D0F938 /* ChangePasswordFromOldController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordFromOldController.m; sourceTree = "<group>"; };
 		6073E14F1C7AEC1F005AD927 /* MineShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineShareController.h; sourceTree = "<group>"; };
 		6073E1501C7AEC1F005AD927 /* MineShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineShareController.m; sourceTree = "<group>"; };
 		608690801C8D4F2800705B24 /* AppShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppShareModel.h; sourceTree = "<group>"; };
@@ -1348,6 +1351,8 @@
 				60C65BF91C80482500332AD8 /* WinningConfirmController.m */,
 				600EF8931C818CDE005DB7F2 /* NewShareController.h */,
 				600EF8941C818CDE005DB7F2 /* NewShareController.m */,
+				606CECAA1C926E9B00D0F938 /* ChangePasswordFromOldController.h */,
+				606CECAB1C926E9B00D0F938 /* ChangePasswordFromOldController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2033,6 +2038,7 @@
 				F29553991C91435E00D82B67 /* RedWaitCView.m in Sources */,
 				F26E0C911C86E38E00DB1908 /* RedViewController.m in Sources */,
 				6014A7241C7DB34A006B2900 /* PutModel.m in Sources */,
+				606CECAC1C926E9B00D0F938 /* ChangePasswordFromOldController.m in Sources */,
 				608690821C8D4F2800705B24 /* AppShareModel.m in Sources */,
 				F23DE3CD1C522E34002AB5FC /* DetailWinnerCView.m in Sources */,
 				F21E82E91C7813E500C732F1 /* ListTableViewCell.m in Sources */,

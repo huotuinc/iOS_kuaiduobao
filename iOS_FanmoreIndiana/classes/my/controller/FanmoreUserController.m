@@ -12,7 +12,20 @@
 #import "AdressController.h"
 #import "ChangeNickNameController.h"
 #import "ChangePhoneController.m"
+#import "UIViewController+MonitorNetWork.h"
+#import "LoginController.h"
+#import "ChangePasswordFromOldController.h"
+#import "ForgetThirdController.h"
+#import "ForgetSecondController.h"
 #import <ShareSDK/ShareSDK.h>
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信SDK头文件
+#import "WXApi.h"
+#import <AlipaySDK/AlipaySDK.h>
+
 
 @interface FanmoreUserController ()<UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -72,6 +85,13 @@
         self.qq.text = @"未绑定";
         self.qq.textColor = [UIColor redColor];
     }
+    if (self.userInfo.hasPassword) {
+        self.passwrod.text = @"修改";
+        self.passwrod.textColor = [UIColor blackColor];
+    }else {
+        self.passwrod.text = @"未设置";
+        self.passwrod.textColor = [UIColor redColor];
+    }
     
 }
 
@@ -80,90 +100,133 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
         {
-            if (IsIos8) {
-                
-                UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-                UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                }];
-                UIAlertAction * photo = [UIAlertAction actionWithTitle:@"从本地相册选择图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    UIImagePickerController * pc = [[UIImagePickerController alloc] init];
-                    pc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-                    pc.delegate = self;
-                    pc.allowsEditing = YES;
-                    [self presentViewController:pc animated:YES completion:nil];
-                }];
-                UIAlertAction * ceme  = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    UIImagePickerController * pc = [[UIImagePickerController alloc] init];
-                    pc.allowsEditing = YES;
-                    pc.sourceType=UIImagePickerControllerSourceTypeCamera;
-                    pc.delegate = self;
-                    [self presentViewController:pc animated:YES completion:nil];
-                }];
-                [alertVc addAction:photo];
-                [alertVc addAction:ceme];
-                [alertVc addAction:action];
-                [self presentViewController:alertVc animated:YES completion:nil];
-            }else{
-                
-                UIActionSheet * aa = [[UIActionSheet alloc] initWithTitle:@"选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册",@"相机", nil];
-                [aa showInView:self.view];
-                
+            if (indexPath.row == 0) {
+                if (IsIos8) {
+                    
+                    UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+                    UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    }];
+                    UIAlertAction * photo = [UIAlertAction actionWithTitle:@"从本地相册选择图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                        UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+                        pc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+                        pc.delegate = self;
+                        pc.allowsEditing = YES;
+                        [self presentViewController:pc animated:YES completion:nil];
+                    }];
+                    UIAlertAction * ceme  = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                        UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+                        pc.allowsEditing = YES;
+                        pc.sourceType=UIImagePickerControllerSourceTypeCamera;
+                        pc.delegate = self;
+                        [self presentViewController:pc animated:YES completion:nil];
+                    }];
+                    [alertVc addAction:photo];
+                    [alertVc addAction:ceme];
+                    [alertVc addAction:action];
+                    [self presentViewController:alertVc animated:YES completion:nil];
+                }else{
+                    
+                    UIActionSheet * aa = [[UIActionSheet alloc] initWithTitle:@"选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册",@"相机", nil];
+                    aa.tag = 200;
+                    [aa showInView:self.view];
+                    
+                }
+            }else if (indexPath.row == 1) {
+                /**
+                 *  修改昵称
+                 */
+                ChangeNickNameController *nick = [story instantiateViewControllerWithIdentifier:@"ChangeNickNameController"];
+                [self.navigationController pushViewController:nick animated:YES];
+                break;
             }
             break;
         }
         case 1:
         {
-            /**
-             *  修改昵称
-             */
-            ChangeNickNameController *nick = [story instantiateViewControllerWithIdentifier:@"ChangeNickNameController"];
-            [self.navigationController pushViewController:nick animated:YES];
+            if (indexPath.row == 0) {
+                /**
+                 *  绑定手机
+                 */
+                ChangePhoneController *phone = [story instantiateViewControllerWithIdentifier:@"ChangePhoneController"];
+                [self.navigationController pushViewController:phone animated:YES];
+            }else if (indexPath.row == 1){
+                /**
+                 *  绑定微信或者揭榜
+                 */
+                
+                if ([WXApi isWXAppInstalled]) {
+                    if (self.userInfo.wexinBanded) {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
+                        alert.tag = 1001;
+                        [alert show];
+                        
+                    }else {
+                        [self weichatEmpower];
+                    }
+                }
+            }else if (indexPath.row == 2) {
+                /**
+                 *  绑定qq或者解绑
+                 */
+                if ([TencentOAuth iphoneQQInstalled]) {
+                    if (self.userInfo.qqBanded) {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
+                        alert.tag = 1002;
+                        [alert show];
+                    }else {
+                        [self qqEmpower];
+                    }
+                }
+            }
             break;
         }
         case 2:
         {
-            /**
-             *  绑定手机
-             */
-            ChangePhoneController *phone = [story instantiateViewControllerWithIdentifier:@"ChangePhoneController"];
-            [self.navigationController pushViewController:phone animated:YES];
+            if (self.userInfo.hasPassword) {
+                if (self.userInfo.mobileBanded) {
+                    
+                    if (IsIos8) {
+                        
+                        UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"选择修改密码方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+                        UIAlertAction * action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                        }];
+                        UIAlertAction * photo = [UIAlertAction actionWithTitle:@"通过旧密码方式" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                            [self changePasswordFromOldPassword];
+                        }];
+                        UIAlertAction * ceme  = [UIAlertAction actionWithTitle:@"通过手机验证方式" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                            [self changePasswordFormPhone];
+                        }];
+                        [alertVc addAction:photo];
+                        [alertVc addAction:ceme];
+                        [alertVc addAction:action];
+                        [self presentViewController:alertVc animated:YES completion:nil];
+                    }else{
+                        
+                        UIActionSheet * aa = [[UIActionSheet alloc] initWithTitle:@"选择修改密码方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"通过旧密码方式",@"通过手机验证方式", nil];
+                        aa.tag = 201;
+                        [aa showInView:self.view];
+                        
+                    }
+                    
+                    
+                }else {
+                    [SVProgressHUD showErrorWithStatus:@"请先绑定手机"];
+                }
+            }else {
+                if (self.userInfo.mobileBanded) {
+                    ForgetThirdController *forget = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ForgetThirdController"];
+                    forget.type = 2;
+                    [self.navigationController pushViewController:forget animated:YES];
+                }else {
+                    [SVProgressHUD showErrorWithStatus:@"请先绑定手机"];
+                }
+            }
             break;
         }
         case 3:
-        {
-            /**
-             *  绑定微信或者揭榜
-             */
-            
-            if (self.userInfo.wexinBanded) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
-                alert.tag = 1001;
-                [alert show];
-                
-            }else {
-                [self weichatEmpower];
-            }
-            
-            break;
-        }
-        case 4:
-        {
-            /**
-             *  绑定qq或者解绑
-             */
-            if (self.userInfo.qqBanded) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
-                alert.tag = 1002;
-                [alert show];
-            }else {
-                [self qqEmpower];
-            }
-            break;
-        }
-        case 5:
         {
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             AdressController *address = [story instantiateViewControllerWithIdentifier:@"AdressController"];
@@ -184,7 +247,7 @@
         [self unwarpWithType:3];
         
     }
-    if (alertView.tag == 1001 && buttonIndex == 1) {
+    if (alertView.tag == 1002 && buttonIndex == 1) {
     //解除qq绑定
         
         [self unwarpWithType:2];
@@ -278,21 +341,71 @@
  *  @param buttonIndex <#buttonIndex description#>
  */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
-        UIImagePickerController * pc = [[UIImagePickerController alloc] init];
-        pc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-        pc.delegate = self;
-        pc.allowsEditing = YES;
-        [self presentViewController:pc animated:YES completion:nil];
-        
-    }else if(buttonIndex == 1) {
-        
-        UIImagePickerController * pc = [[UIImagePickerController alloc] init];
-        pc.allowsEditing = YES;
-        pc.sourceType=UIImagePickerControllerSourceTypeCamera;
-        pc.delegate = self;
-        [self presentViewController:pc animated:YES completion:nil];
+    if (actionSheet.tag == 200) {
+        if (buttonIndex == 0) {
+            UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+            pc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+            pc.delegate = self;
+            pc.allowsEditing = YES;
+            [self presentViewController:pc animated:YES completion:nil];
+            
+        }else if(buttonIndex == 1) {
+            
+            UIImagePickerController * pc = [[UIImagePickerController alloc] init];
+            pc.allowsEditing = YES;
+            pc.sourceType=UIImagePickerControllerSourceTypeCamera;
+            pc.delegate = self;
+            [self presentViewController:pc animated:YES completion:nil];
+        }
+    }else if (actionSheet.tag == 201) {
+        if (buttonIndex == 0) {
+            [self changePasswordFromOldPassword];
+        }else if (buttonIndex == 1) {
+            [self changePasswordFormPhone];
+        }
     }
+}
+
+#pragma mark 修改密码
+
+- (void)changePasswordFromOldPassword {
+    ChangePasswordFromOldController *change = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChangePasswordFromOldController"];
+    [self.navigationController pushViewController:change animated:YES];
+}
+
+- (void)changePasswordFormPhone {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"phone"] = self.userInfo.mobile;
+    dic[@"type"] = @2;
+    dic[@"codeType"] = @0;
+    
+    [UserLoginTool loginRequestGet:@"sendSMS" parame:dic success:^(id json) {
+        LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==53014) {
+            
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+            return ;
+        }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==54001) {
+            
+            [SVProgressHUD showErrorWithStatus:@"该账号已被注册"];
+            return ;
+        }else if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1){
+            
+            ForgetSecondController *second = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ForgetSecondController"];
+            second.type = 2;
+            second.userName = self.userInfo.mobile;
+            second.fan = self;
+            [self.navigationController pushViewController:second animated:YES];
+            
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 
 #pragma mark 第三方授权
@@ -357,23 +470,30 @@
 
 #pragma mark 刷新用户数据
 - (void)loginSuccessWith:(NSDictionary *) dic {
+    if (![dic[@"data"] isKindOfClass:[NSNull class]]) {
+        UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"data"]];
+        NSLog(@"userModel: %@",user);
     
-    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
-    NSLog(@"userModel: %@",user);
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+        [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+        [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+            //保存新的token
+        [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+        //购物车结算登陆时 需要提交数据
+        AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"appMyAddressListModel"]];
+        NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+        [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
     
-    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
-    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
-    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
-    //保存新的token
-    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
-    //购物车结算登陆时 需要提交数据
-    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"appMyAddressListModel"]];
-    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
-    [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
-    
-    self.userInfo = user;
-    
+        self.userInfo = user;
+    }else {
+        [UIViewController ToRemoveSandBoxDate];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
     [self _initLabels];
 }
 
@@ -394,6 +514,9 @@
         LWLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             [self loginSuccessWith:json[@"resultData"]];
+            
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
         }
     } failure:^(NSError *error) {
         

@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *weixin;
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
 @property (weak, nonatomic) IBOutlet UILabel *phone;
+@property (weak, nonatomic) IBOutlet UILabel *passwrod;
 
 @end
