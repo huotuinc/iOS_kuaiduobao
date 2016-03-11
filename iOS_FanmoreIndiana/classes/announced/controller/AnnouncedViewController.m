@@ -34,26 +34,19 @@ static NSString *cellABMain=@"cellABMain";
     self.navigationController.navigationBar.translucent=NO;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
-    _openList=[NSMutableArray array];
-    [self createNavgationBarTitle];
-    [self getOpenList ];
+    [self.navigationItem changeNavgationBarTitle:@"最新揭晓"];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _openList=[NSMutableArray array];
+
+    [self getOpenList ];
     [self createTimer];
 }
--(void)createNavgationBarTitle{
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(32)];
-    titleLabel.textColor = COLOR_TEXT_TITILE;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"最新揭晓";
-    self.navigationItem.titleView = titleLabel;
-}
+
 
 - (void)setupRefresh
 {
@@ -206,7 +199,7 @@ static NSString *cellABMain=@"cellABMain";
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    AppNewOpenListModel * model = _openList[indexPath.item];
+    AppNewOpenListModel * model = _openList[indexPath.row];
     //待开奖
     if ([model.status integerValue] == 1) {
         AnnouncedCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier: cellAMain forIndexPath:indexPath];

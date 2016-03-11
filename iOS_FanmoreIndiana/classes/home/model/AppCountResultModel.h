@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSNumber *luckNumber;
 @property (nonatomic, strong) NSNumber *numberA;
 @property (nonatomic, strong) NSNumber *numberB;
-@property (nonatomic, strong) NSMutableArray *userNumbers;
+@property (nonatomic, strong) NSArray *userNumbers;
 
 
 @end

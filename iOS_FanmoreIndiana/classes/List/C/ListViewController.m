@@ -36,19 +36,19 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationController.navigationBar.translucent=NO;
     
+
     [super viewWillAppear:animated];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationController.navigationBar.translucent=NO;
+    [self.navigationItem changeNavgationBarTitle:@"清单"];
     _selectedArray = [NSMutableArray array];
 //    //每次进入购物车的时候把选择的置空
 //    [_selectedArray removeAllObjects];
     isSelect = NO;
     _bottomView.buttonAll.selected = NO;
-    _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计: 0元"];
-    [self createNavgationBarTitle];
-    
+    _bottomView.labelMoney.text = @"总计: 0.00元";
     _cartList =[NSMutableArray array];
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
@@ -88,6 +88,8 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
 
         [self loadNotificationCell];
 }
+
+
 - (NSArray *)getLocalDataArray{
     NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
@@ -99,15 +101,7 @@ static NSInteger selectAllCount = 1;//用于判断buttonAll的选中状态 第�
     return namesArray;
 }
 
--(void)createNavgationBarTitle{
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(32)];
-    titleLabel.textColor = COLOR_TEXT_TITILE;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"清单";
-    self.navigationItem.titleView = titleLabel;
-}
+
 - (void)setupRefresh
 {
     

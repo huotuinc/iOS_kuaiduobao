@@ -7,7 +7,7 @@
 //
 
 #import "RedWaitCView.h"
-
+#import "AppRedPactketsDistributeSourceModel.h"
 @implementation RedWaitCView
 
 - (void)awakeFromNib {
@@ -21,6 +21,60 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+
+- (void)defaultConfig {
+    
+    [self registerNSNotificationCenter];
+    
+}
+
+- (void)buildViews{
+    
+}
+
+- (void)loadData:(id)data{
+    
+    if ([data isMemberOfClass:[AppRedPactketsDistributeSourceModel class]]) {
+        
+        [self storeWeakValueWithData:data];
+        
+        AppRedPactketsDistributeSourceModel *model = (AppRedPactketsDistributeSourceModel*)data;
+        
+        _labelTime.attributedText = [[NSAttributedString alloc] initWithAttributedString:[model currentTimeStringWait]];
+        NSLog(@"%@",_labelTime.text);
+    }
+    
+}
+- (void)storeWeakValueWithData:(id)data{
+    
+    self.m_data         = data;
+}
+
+#pragma mark - 通知中心
+- (void)registerNSNotificationCenter {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(AnotificationCenterEvent:)
+                                                 name:NOTIFICATION_RED_WAIT
+                                               object:nil];
+}
+
+
+- (void)dealloc {
+    
+    [self removeNSNotificationCenter];
+}
+
+- (void)removeNSNotificationCenter {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_RED_WAIT object:nil];
+}
+
+- (void)AnotificationCenterEvent:(id)sender {
+    
+    [self loadData:self.m_data];
 }
 
 @end

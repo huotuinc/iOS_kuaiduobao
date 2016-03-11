@@ -41,7 +41,7 @@ PODS:
     - Reachability (~> 3.1.0)
   - PNChart (0.8.8):
     - UICountingLabel (~> 1.2.0)
-  - pop (1.0.8)
+  - pop (1.0.9)
   - Reachability (3.1.1)
   - RESideMenu (4.0.7)
   - SDWebImage (3.7.5):
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
   PNChart: 25f91e9c4688af49c3647489760624d037f5383f
-  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461

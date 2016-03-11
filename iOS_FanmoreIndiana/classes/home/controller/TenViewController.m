@@ -31,8 +31,9 @@ static NSString *cellTenMain=@"cellTenMain";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden =YES;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [self.navigationItem changeNavgationBarTitle:@"十元专区"];
     self.view.backgroundColor=[UIColor whiteColor];
-
+    [self createBarButtonItem];
 }
 
 - (void)viewDidLoad {
@@ -50,6 +51,15 @@ static NSString *cellTenMain=@"cellTenMain";
     }
     _appGoodsList=[NSMutableArray array];
     [self getAppGoodsList];
+}
+- (void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+    [buttonL bk_whenTapped:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
 }
 - (void)setupRefresh
 {
@@ -75,19 +85,7 @@ static NSString *cellTenMain=@"cellTenMain";
     
     
 }
--(void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
-    
-    UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonR setBackgroundImage:[UIImage imageNamed:@"more_gray"]forState:UIControlStateNormal];
-    [buttonR addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
-    self.navigationItem.rightBarButtonItem=bbiR;
-}
+
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
 }

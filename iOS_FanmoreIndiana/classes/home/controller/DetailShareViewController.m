@@ -31,6 +31,7 @@ static NSString *cellDShare=@"cellDShare";
     self.tabBarController.tabBar.hidden=YES;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationItem changeNavgationBarTitle:@"晒单分享"];
     
 }
 
