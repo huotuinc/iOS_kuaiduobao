@@ -71,6 +71,7 @@
         _labelName.text = model.nickName;
         _labelAttend.text = [NSString stringWithFormat:@"%@",model.attendAmount];
         _labelTime.text = [self changeTheTimeStamps:model.time andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
+        _labelNumber.text = [NSString stringWithFormat:@"%@",model.luckyNumber];
         _labelTitle.text = model.title;
     }
     
