@@ -67,6 +67,7 @@
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
 //#define MKMainUrl @"192.168.1.41:8080/duobao/app"
 #define MKMainUrl @"duobao.51flashmall.com:8091/app"
+//#define MKMainUrl @"192.168.1.254:10001/app"
 
 
 
