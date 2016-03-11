@@ -26,6 +26,7 @@ static NSString *cellShare=@"cellShare";
     self.tabBarController.tabBar.hidden=YES;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationItem changeNavgationBarTitle:@"晒单分享"];
     
 }
 
@@ -33,20 +34,11 @@ static NSString *cellShare=@"cellShare";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _shareList = [NSMutableArray array];
-    [self createNavgationBarTitle];
     [self createBarButtonItem];
     [self getShareList];
 }
 
--(void)createNavgationBarTitle{
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
-    titleLabel.textColor = [UIColor blackColor];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"晒单分享";
-    self.navigationItem.titleView = titleLabel;
-}
+
 
 - (void)setupRefresh
 {

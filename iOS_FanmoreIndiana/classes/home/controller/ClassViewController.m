@@ -30,13 +30,13 @@ static NSString *cellClassB=@"cellClassB";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationItem changeNavgationBarTitle:@"分类浏览"];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _titleList = [NSMutableArray array];
     [self createBarButtonItem];
-    // Do any additional setup after loading the view.
     [self getTitleList];
 }
 - (void)getTitleList {
@@ -70,10 +70,12 @@ static NSString *cellClassB=@"cellClassB";
 }
 
 
--(void)createBarButtonItem{
+- (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+    [buttonL bk_whenTapped:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
     UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
     self.navigationItem.leftBarButtonItem=bbiL;
 }

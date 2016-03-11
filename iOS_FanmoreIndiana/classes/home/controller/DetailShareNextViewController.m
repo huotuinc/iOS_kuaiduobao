@@ -35,27 +35,19 @@ static NSString *cellDNimageV = @"cellDNimageV";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationItem changeNavgationBarTitle:@"晒单详情"];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self createNavgationBarTitle];
     [self createBarButtonItem];
 //    [self createBottomView];
     [self getDetailShareList];
 }
 
--(void)createNavgationBarTitle{
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(32)];
-    titleLabel.textColor = COLOR_TEXT_TITILE;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"晒单详情";
-    self.navigationItem.titleView = titleLabel;
-}
+
 - (void)setupRefresh
 {
     

@@ -75,6 +75,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
+    [self.navigationItem changeNavgationBarTitle:@"奖品详情"];
 
 }
 
@@ -645,7 +646,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 
     }
     _titleStateLabel.textAlignment=NSTextAlignmentCenter;
-    _titleStateLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
+    _titleStateLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
     _titleStateLabel.layer.borderWidth=1;
     _titleStateLabel.layer.cornerRadius=3;
     _titleStateLabel.layer.masksToBounds=YES;
@@ -657,7 +658,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]];
     [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(14+_detailModel.title.length+1,_detailModel.character.length)];
     _titleLabel.attributedText=attString;
-    _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(26)];
+    _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
     _titleLabel.numberOfLines=0;
     
     _titleLineCount =(NSInteger)[self lineCountForLabel:_titleLabel];

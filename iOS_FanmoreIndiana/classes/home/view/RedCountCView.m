@@ -7,7 +7,7 @@
 //
 
 #import "RedCountCView.h"
-
+#import "AppRedPactketsDistributeSourceModel.h"
 @implementation RedCountCView
 
 - (void)awakeFromNib {
@@ -26,18 +26,78 @@
     }
     
 }
-//ADAPT_HEIGHT(50) * 6 +5 * 5
-- (void) drawRect:(CGRect)rect {
-//    _viewCount.frame = CGRectMake(0, 0, ADAPT_HEIGHT(50) * 6 +5 * 5, ADAPT_HEIGHT(50));
-//    _viewCount.center = CGPointMake(self.center.x - (ADAPT_HEIGHT(50) * 6 +5 * 5)/2, ADAPT_HEIGHT(75));
-//    _viewCount.backgroundColor = COLOR_BUTTON_GREEN;
 
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)defaultConfig {
+    
+    [self registerNSNotificationCenter];
+    
+}
+
+- (void)buildViews{
+    
+}
+
+- (void)loadData:(id)data{
+    
+    if ([data isMemberOfClass:[AppRedPactketsDistributeSourceModel class]]) {
+        
+        [self storeWeakValueWithData:data];
+        
+        AppRedPactketsDistributeSourceModel *model = (AppRedPactketsDistributeSourceModel*)data;
+        NSInteger A = model.amount / 100000;
+        NSInteger B = model.amount / 10000 % 10;
+        NSInteger C = model.amount / 1000  % 10;
+        NSInteger D = model.amount / 100   % 10;
+        NSInteger E = model.amount / 10    % 10;
+        NSInteger F = model.amount / 1     % 10;
+        
+        _labelA.text = [NSString stringWithFormat:@"%ld",A];
+        _labelB.text = [NSString stringWithFormat:@"%ld",B];
+        _labelC.text = [NSString stringWithFormat:@"%ld",C];
+        _labelD.text = [NSString stringWithFormat:@"%ld",D];
+        _labelE.text = [NSString stringWithFormat:@"%ld",E];
+        _labelF.text = [NSString stringWithFormat:@"%ld",F];
+
+        _labelTime.text = [model currentTimeStringEnd];
+        LWLog(@"%@",_labelTime.text);
+    }
+    
+}
+- (void)storeWeakValueWithData:(id)data{
+    
+    self.m_data         = data;
+}
+
+#pragma mark - 通知中心
+- (void)registerNSNotificationCenter {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(AnotificationCenterEvent:)
+                                                 name:NOTIFICATION_RED_END
+                                               object:nil];
+}
+
+
+- (void)dealloc {
+    
+    [self removeNSNotificationCenter];
+}
+
+- (void)removeNSNotificationCenter {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_RED_END object:nil];
+}
+
+- (void)AnotificationCenterEvent:(id)sender {
+    
+    [self loadData:self.m_data];
 }
 
 @end

@@ -27,6 +27,7 @@ static NSString *cellDNumbers=@"cellDNumbers";
     self.tabBarController.tabBar.hidden=YES;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationItem changeNavgationBarTitle:@"夺宝号码"];
     
 }
 
@@ -37,10 +38,12 @@ static NSString *cellDNumbers=@"cellDNumbers";
     [self createHeadView];
     [self createTableView];
 }
--(void)createBarButtonItem{
+- (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+    [buttonL bk_whenTapped:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
     UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
     self.navigationItem.leftBarButtonItem=bbiL;
 }

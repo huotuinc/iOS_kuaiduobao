@@ -88,7 +88,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.view.backgroundColor=COLOR_BACK_MAIN;
     
     [self createBarButtonItem];
-    [self createNavgationBarTitle];
+    [self.navigationItem changeNavgationBarTitle:@"奇兵夺宝"];
+//    [self createNavgationBarTitle];
 
     
     self.tabBarController.tabBar.hidden = NO;
@@ -166,15 +167,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
 }
--(void)createNavgationBarTitle{
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
-    titleLabel.textColor = [UIColor blackColor];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"奇兵夺宝";
-    self.navigationItem.titleView = titleLabel;
-}
+//-(void)createNavgationBarTitle{
+//    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+//    titleLabel.backgroundColor = [UIColor clearColor];
+//    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
+//    titleLabel.textColor = [UIColor blackColor];
+//    titleLabel.textAlignment = NSTextAlignmentCenter;
+//    titleLabel.text = @"奇兵夺宝";
+//    self.navigationItem.titleView = titleLabel;
+//}
 //- (void)createSearchView{
 //    NSArray *nib= [[NSBundle mainBundle]loadNibNamed:@"HomeSearchCView" owner:nil options:nil];
 //    _searchV=[nib firstObject];
@@ -831,7 +832,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             LWLog(@"总需人次的第一次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_b"] forState:UIControlStateSelected];
-                            self.type = [NSNumber numberWithInteger:4];
+                            self.type = [NSNumber numberWithInteger:5];
                             [self getGoodsList];
                             orderNumberNow = 3;
 }
@@ -840,7 +841,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
                             LWLog(@"总需人次的第二次点击");
                             [button setImage:[UIImage imageNamed:@"paixu_a"] forState:UIControlStateSelected];
-                            self.type = [NSNumber numberWithInteger:5];
+                            self.type = [NSNumber numberWithInteger:4];
                             
                             orderNumberNow = 4;
 

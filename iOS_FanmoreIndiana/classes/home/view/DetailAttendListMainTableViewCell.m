@@ -15,8 +15,8 @@
     _imageVHead.image=[UIImage imageNamed:@"tou"];
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
     [UILabel changeLabel:_labelName AndFont:24 AndColor:COLOR_SHINE_BLUE];
-    [UILabel changeLabel:_labelCity AndFont:24 AndColor:COLOR_TEXT_DATE];
-    [UILabel changeLabel:_labelDate AndFont:24 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelCity AndFont:22 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelDate AndFont:22 AndColor:COLOR_TEXT_DATE];
     _viewBase.backgroundColor=COLOR_BACK_MAIN;
 
 }

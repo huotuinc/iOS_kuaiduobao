@@ -24,12 +24,12 @@
         label.backgroundColor=[UIColor clearColor];
         [UILabel changeLabel:label AndFont:24 AndColor:COLOR_TEXT_DATE];
     }
-    [UILabel changeLabel:_labelWinner AndFont:28 AndColor:COLOR_TEXT_CONTENT];
-    [UILabel changeLabel:_labelWinnerA AndFont:28 AndColor:COLOR_BUTTON_ORANGE];
+    [UILabel changeLabel:_labelWinner AndFont:30 AndColor:COLOR_TEXT_CONTENT];
+    [UILabel changeLabel:_labelWinnerA AndFont:30 AndColor:COLOR_BUTTON_ORANGE];
     [UILabel changeLabel:_labelAttendA AndFont:24 AndColor:COLOR_BUTTON_ORANGE];
     [UILabel changeLabel:_labelNumber AndFont:24 AndColor:[UIColor whiteColor]];
-    [UILabel changeLabel:_labelNumberA AndFont:28 AndColor:[UIColor whiteColor]];
-    [UIButton changeButton:_buttonContent AndFont:28 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:[UIColor clearColor] AndBorderColor:[UIColor whiteColor] AndCornerRadius:3 AndBorderWidth:1];
+    [UILabel changeLabel:_labelNumberA AndFont:30 AndColor:[UIColor whiteColor]];
+    [UIButton changeButton:_buttonContent AndFont:30 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:[UIColor clearColor] AndBorderColor:[UIColor whiteColor] AndCornerRadius:3 AndBorderWidth:1];
     _viewMain.backgroundColor = COLOR_BACK_WINNER;
 
 }

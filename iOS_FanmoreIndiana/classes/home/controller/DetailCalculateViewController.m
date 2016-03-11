@@ -37,14 +37,24 @@ static NSString *cellDCA = @"cellDCA";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationItem changeNavgationBarTitle:@"计算详情"];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self createBarButtonItem];
     [self getNumberList];
 }
-
+- (void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+    [buttonL bk_whenTapped:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
+}
 #pragma mark 网络请求计算详情
 - (void)getNumberList {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -82,7 +92,8 @@ static NSString *cellDCA = @"cellDCA";
 }
 
 #pragma mark UITableViewDelegate
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1 && _isExpanded == YES) {
         DetailCalculateATableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellDCA forIndexPath:indexPath];
         if (indexPath.row == 0) {
@@ -109,7 +120,7 @@ static NSString *cellDCA = @"cellDCA";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 1 && _isExpanded == YES) {
-        return 20;
+        return 50;
     }else {
         return 0;
     }

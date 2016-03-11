@@ -17,7 +17,7 @@
     _viewBack.layer.masksToBounds=YES;
     [UILabel changeLabel:_labelA AndFont:24 AndColor:COLOR_TEXT_DATE];
     [UILabel changeLabel:_labelB AndFont:24 AndColor:COLOR_TEXT_DATE];
-    [UILabel changeLabel:_labelCount AndFont:24 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelCount AndFont:28 AndColor:COLOR_TEXT_DATE];
 
 }
 

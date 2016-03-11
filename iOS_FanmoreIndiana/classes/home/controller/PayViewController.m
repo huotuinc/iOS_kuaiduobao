@@ -49,6 +49,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     self.tabBarController.tabBar.hidden = YES;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self.navigationItem changeNavgationBarTitle:@"支付订单"];
     
 }
 
@@ -82,15 +83,23 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             LWLog(@"%@",json[@"resultDescription"]);
-            _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
+            
             //支付类型 0微信 1支付宝 2用户余额
             if (_whichPay == 2) {
-                [self remainPay];
+                
+                [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+                _payView.buttonPay.userInteractionEnabled = YES;
+                [self updateUserInfo];
+                NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccess) userInfo:nil repeats:NO];
+                [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+                
             }
             if (_whichPay == 1) {
+                _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
                 [self PayByAlipay];
             }
             if (_whichPay == 0) {
+                _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
                 [self WeiChatPay];
             }
 
@@ -102,7 +111,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showSuccessWithStatus:@"支付失败"];
+        [SVProgressHUD showErrorWithStatus:@"支付失败"];
         _payView.buttonPay.userInteractionEnabled = YES;
 
         
@@ -126,6 +135,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
             _payView.buttonPay.userInteractionEnabled = YES;
+            [SVProgressHUD showErrorWithStatus:@"支付失败"];
+
         }
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccess) userInfo:nil repeats:NO];
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
@@ -134,7 +145,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showSuccessWithStatus:@"支付失败"];
+        [SVProgressHUD showErrorWithStatus:@"支付失败"];
         _payView.buttonPay.userInteractionEnabled = YES;
         
     } withFileKey:nil];
@@ -349,18 +360,11 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
     self.navigationItem.leftBarButtonItem=bbiL;
     
-    UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonR setBackgroundImage:[UIImage imageNamed:@"more_gray"]forState:UIControlStateNormal];
-    [buttonR addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
-    self.navigationItem.rightBarButtonItem=bbiR;
 }
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)clickRightButton{
-    
-}
+
 
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStylePlain];
