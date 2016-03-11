@@ -90,6 +90,7 @@
         success(completedOperation.responseJSON);
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         failure(error);
+        [SVProgressHUD showErrorWithStatus:@"无法连接到服务器"];
     }];
     
     [engine enqueueOperation:op];

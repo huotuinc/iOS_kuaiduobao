@@ -486,9 +486,8 @@ static NSString *payIdentify = @"payIdentifty";
     [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
     //保存新的token
     [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
-    //购物车结算登陆时 需要提交数据
     
-    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"addressModel"]];
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"appMyAddressListModel"]];
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
 }

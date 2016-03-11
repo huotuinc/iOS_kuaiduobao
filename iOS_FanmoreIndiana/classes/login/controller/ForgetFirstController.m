@@ -55,16 +55,18 @@
     
     if (self.userName.text.length != 0) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        dic[@"userName"] = self.userName.text;
-        
+        dic[@"phone"] = self.userName.text;
+        dic[@"type"] = @2;
         [UserLoginTool loginRequestGet:@"checkPhone" parame:dic success:^(id json) {
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                 UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 ForgetSecondController *second = [story instantiateViewControllerWithIdentifier:@"ForgetSecondController"];
                 second.userName = self.userName.text;
+                second.type = 1;
                 [self.navigationController pushViewController:second animated:YES];
-            }else {
+            }else if ([json[@"systemResultCode"] intValue] != 500){
                 [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+            }else {
                 return ;
             }
         } failure:^(NSError *error) {

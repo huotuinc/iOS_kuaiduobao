@@ -29,18 +29,20 @@
     
     self.phone.text = self.userName;
     
+    [self.security becomeFirstResponder];
+    
     self.next.layer.cornerRadius = 5;
 //    self.countCode.userInteractionEnabled = YES;≥
     [self.countCode bk_whenTapped:^{
         [self getSecurtityCode];
     }];
     
-    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.type == 2) {
+        [self settime];
+    }
 }
 
 - (void)getSecurtityCode {
@@ -118,6 +120,12 @@
                 UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 ForgetThirdController *next = [story instantiateViewControllerWithIdentifier:@"ForgetThirdController"];
                 next.userName = self.userName;
+                if (self.type == 1) {
+                    next.type = 1;
+                }else if (self.type == 2) {
+                    next.fan = self.fan;
+                    next.type = 3;
+                }
                 [self.navigationController pushViewController:next animated:YES];
             }
             
