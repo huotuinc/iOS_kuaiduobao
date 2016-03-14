@@ -115,6 +115,7 @@
 		60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EB31EC1C5764B9006C070B /* ForgetSecondController.m */; };
 		60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EB31EF1C5764E2006C070B /* ForgetThirdController.m */; };
 		60F154A01C76A8F90043ED3F /* ChangeNickNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */; };
+		60F30F071C964C440093A6B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F30F061C964C440093A6B7 /* InfoPlist.strings */; };
 		60F389EC1C7566AE0080D759 /* AdressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389EB1C7566AE0080D759 /* AdressController.m */; };
 		60F389F31C7567050080D759 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F389F11C7567050080D759 /* AddressCell.m */; };
 		60F389F41C7567050080D759 /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F389F21C7567050080D759 /* AddressCell.xib */; };
@@ -550,6 +551,7 @@
 		60EB31EF1C5764E2006C070B /* ForgetThirdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetThirdController.m; sourceTree = "<group>"; };
 		60F1549E1C76A8F90043ED3F /* ChangeNickNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeNickNameController.h; sourceTree = "<group>"; };
 		60F1549F1C76A8F90043ED3F /* ChangeNickNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeNickNameController.m; sourceTree = "<group>"; };
+		60F30F061C964C440093A6B7 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		60F389EA1C7566AE0080D759 /* AdressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressController.h; sourceTree = "<group>"; };
 		60F389EB1C7566AE0080D759 /* AdressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressController.m; sourceTree = "<group>"; };
 		60F389F01C7567050080D759 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
@@ -1443,6 +1445,7 @@
 				60DD42A91C43A8F90041572F /* Assets.xcassets */,
 				60DD42AE1C43A8F90041572F /* Info.plist */,
 				602BB5DC1C77FD9700C29F74 /* city.plist */,
+				60F30F061C964C440093A6B7 /* InfoPlist.strings */,
 				60DD429D1C43A8F90041572F /* Supporting Files */,
 			);
 			path = iOS_FanmoreIndiana;
@@ -1876,6 +1879,7 @@
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
 				604C62711C50C57900569F0B /* ShareSDK.bundle in Resources */,
 				F2573F431C57062C00EEB851 /* DetailBottomDoneCView.xib in Resources */,
+				60F30F071C964C440093A6B7 /* InfoPlist.strings in Resources */,
 				60AF18FC1C5E0CCA0002388D /* RechargeCell.xib in Resources */,
 				F262E8A11C55C0B900141EBC /* TenTableViewCell.xib in Resources */,
 				F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */,
