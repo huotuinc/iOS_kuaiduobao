@@ -99,7 +99,7 @@
 #define AppToken @"AppToken"
 
 
-/**************************/
+/*********用户属性*****************/
 #define CannelLoginFailure @"CannelLogin" //取消登陆
 #define UserInfo @"UserInfo"
 #define GlobalInfo @"GlobalInfo"
@@ -110,6 +110,7 @@
 #define Success @"Success" //成功
 #define Failure @"Failure" //失败
 
+/********通知消息**************/
 #define HaveNotReadMessage @"HaveNotReadMessage" //点击看消息发送通知
 
 #define payMoneySuccess @"payMoneySuccess"
