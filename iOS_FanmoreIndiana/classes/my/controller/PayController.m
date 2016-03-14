@@ -210,7 +210,13 @@ static NSString *payIdentify = @"payIdentifty";
         if (self.selectedPayButton) {
             dic[@"money"] = self.selectedPayButton.titleLabel.text;
         }else {
-            dic[@"money"] = self.payOther.text;
+            if ([self.payOther.text intValue] > 0) {
+                dic[@"money"] = self.payOther.text;
+            }else {
+                [SVProgressHUD showErrorWithStatus:@"输入金额必须为大于0"];
+                return;
+            }
+            
         }
         dic[@"payType"] = @(self.selectPay);
         
