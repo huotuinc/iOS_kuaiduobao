@@ -90,6 +90,10 @@
 		608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42901C86B4A7000C4845 /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 608D42931C86B4AC000C4845 /* WXUtil.mm */; };
 		608D42971C8859D4000C4845 /* NSData+NSDataDeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 608D42961C8859D4000C4845 /* NSData+NSDataDeal.m */; };
+		609D108E1C97F654009412E9 /* MCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D108D1C97F654009412E9 /* MCController.m */; };
+		609D10911C97F67D009412E9 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D10901C97F67D009412E9 /* MessageTableViewCell.m */; };
+		609D10961C97F6D2009412E9 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D10931C97F6D2009412E9 /* Message.m */; };
+		609D10971C97F6D2009412E9 /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D10951C97F6D2009412E9 /* MessageFrame.m */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AF18EF1C5DAFFB0002388D /* WinningController.m */; };
@@ -510,6 +514,14 @@
 		608D42931C86B4AC000C4845 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		608D42951C8859D4000C4845 /* NSData+NSDataDeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSDataDeal.h"; sourceTree = "<group>"; };
 		608D42961C8859D4000C4845 /* NSData+NSDataDeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSDataDeal.m"; sourceTree = "<group>"; };
+		609D108C1C97F654009412E9 /* MCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCController.h; sourceTree = "<group>"; };
+		609D108D1C97F654009412E9 /* MCController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCController.m; sourceTree = "<group>"; };
+		609D108F1C97F67D009412E9 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		609D10901C97F67D009412E9 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		609D10921C97F6D2009412E9 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		609D10931C97F6D2009412E9 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		609D10941C97F6D2009412E9 /* MessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFrame.h; sourceTree = "<group>"; };
+		609D10951C97F6D2009412E9 /* MessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrame.m; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -1111,6 +1123,8 @@
 				F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */,
 				F26E0C8F1C86E38E00DB1908 /* RedViewController.h */,
 				F26E0C901C86E38E00DB1908 /* RedViewController.m */,
+				609D108C1C97F654009412E9 /* MCController.h */,
+				609D108D1C97F654009412E9 /* MCController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1225,6 +1239,8 @@
 				F26E0C921C8702BC00DB1908 /* DetailGoodsSelectCView.h */,
 				F26E0C931C8702BC00DB1908 /* DetailGoodsSelectCView.m */,
 				F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */,
+				609D108F1C97F67D009412E9 /* MessageTableViewCell.h */,
+				609D10901C97F67D009412E9 /* MessageTableViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1750,6 +1766,10 @@
 				F29553A61C914B7C00D82B67 /* AppRedPactketsDistributeSourceModel.m */,
 				F2C4F6FD1C914EE800EE133C /* AppWinningInfoModel.h */,
 				F2C4F6FE1C914EE800EE133C /* AppWinningInfoModel.m */,
+				609D10921C97F6D2009412E9 /* Message.h */,
+				609D10931C97F6D2009412E9 /* Message.m */,
+				609D10941C97F6D2009412E9 /* MessageFrame.h */,
+				609D10951C97F6D2009412E9 /* MessageFrame.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2155,11 +2175,13 @@
 				60F389F71C75AEE80080D759 /* AddAddressController.m in Sources */,
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
 				600042971C744C5D00CEDC7A /* base64.m in Sources */,
+				609D10961C97F6D2009412E9 /* Message.m in Sources */,
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
 				608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */,
 				60C109A21C96AFC60025CE94 /* MallPayModel.m in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
 				F23BEFF11C5F2F5D00E87042 /* DetailShareTableViewCell.m in Sources */,
+				609D10971C97F6D2009412E9 /* MessageFrame.m in Sources */,
 				F2C426461C88246D00C9CEF0 /* ListNumberHeadCView.m in Sources */,
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
 				604926271C5EF3590092D231 /* RechargeController.m in Sources */,
@@ -2167,8 +2189,10 @@
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				F24119651C74440300C2B07E /* AppShareListModel.m in Sources */,
 				F28651D51C731789004E0357 /* AppPastListModel.m in Sources */,
+				609D10911C97F67D009412E9 /* MessageTableViewCell.m in Sources */,
 				608D428A1C869434000C4845 /* Order.m in Sources */,
 				F241196B1C74552000C2B07E /* AppCategoryListModel.m in Sources */,
+				609D108E1C97F654009412E9 /* MCController.m in Sources */,
 				F23DE3D71C522E34002AB5FC /* DetailAttendListMainTableViewCell.m in Sources */,
 				60F389EC1C7566AE0080D759 /* AdressController.m in Sources */,
 				F237B0D01C81979B00A743C7 /* RedChooseViewController.m in Sources */,
@@ -2357,7 +2381,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2415,7 +2439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yun he (U69X69TGU7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
