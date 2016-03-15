@@ -1369,20 +1369,43 @@
             </objects>
             <point key="canvasLocation" x="777" y="3162"/>
         </scene>
-        <!--商城-->
+        <!--兑换商城-->
         <scene sceneID="Lis-2c-GyG">
             <objects>
                 <navigationController id="0Ra-hr-M17" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="商城" id="kUa-JV-eNs"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="兑换商城" image="duihuan" id="kUa-JV-eNs"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Png-hJ-Vc3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="wtW-TE-jC9" kind="relationship" relationship="rootViewController" id="z47-We-Lc8"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Av5-xM-MZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-88" y="2515"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="w0M-DG-4CK">
+            <objects>
+                <viewController id="wtW-TE-jC9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f7Z-Ao-oIk"/>
+                        <viewControllerLayoutGuide type="bottom" id="wVH-gp-H7f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FTG-kS-dbV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hhs-nS-AaV"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K5W-k2-Ofu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="320" y="2515"/>
         </scene>
         <!--Winning Controller-->
         <scene sceneID="eyI-sQ-gu8">
@@ -3811,6 +3834,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="duihuan" width="25" height="25"/>
         <image name="duobao" width="50" height="50"/>
         <image name="heada" width="100" height="100"/>
         <image name="headd" width="100" height="100"/>
