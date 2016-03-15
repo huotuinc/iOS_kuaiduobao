@@ -99,6 +99,17 @@
 		60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B5A36E1C520B3900E4C7BB /* MineController.m */; };
 		60B6838B1C603F5500EDF671 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B683891C603F5500EDF671 /* RedPacketCell.m */; };
 		60B6838C1C603F5500EDF671 /* RedPacketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B6838A1C603F5500EDF671 /* RedPacketCell.xib */; };
+		60C109991C96AFC60025CE94 /* NSDictionary+HuoBanMallSign.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C109801C96AFC60025CE94 /* NSDictionary+HuoBanMallSign.m */; };
+		60C1099A1C96AFC60025CE94 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C109831C96AFC60025CE94 /* HomeViewController.m */; };
+		60C1099B1C96AFC60025CE94 /* MidTabelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C109861C96AFC60025CE94 /* MidTabelViewCell.m */; };
+		60C1099C1C96AFC60025CE94 /* MidTabelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60C109871C96AFC60025CE94 /* MidTabelViewCell.xib */; };
+		60C1099D1C96AFC60025CE94 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60C1098A1C96AFC60025CE94 /* ApiXml.mm */; };
+		60C1099E1C96AFC60025CE94 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60C1098C1C96AFC60025CE94 /* payRequsestHandler.mm */; };
+		60C1099F1C96AFC60025CE94 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60C1098E1C96AFC60025CE94 /* WXUtil.mm */; };
+		60C109A01C96AFC60025CE94 /* MallUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C109911C96AFC60025CE94 /* MallUser.m */; };
+		60C109A11C96AFC60025CE94 /* NewShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C109931C96AFC60025CE94 /* NewShareModel.m */; };
+		60C109A21C96AFC60025CE94 /* MallPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C109951C96AFC60025CE94 /* MallPayModel.m */; };
+		60C109A31C96AFC60025CE94 /* PushWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C109981C96AFC60025CE94 /* PushWebViewController.m */; };
 		60C65BF41C80392200332AD8 /* RedPacketsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C65BF31C80392200332AD8 /* RedPacketsModel.m */; };
 		60C65BF71C80393300332AD8 /* WinningModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C65BF61C80393300332AD8 /* WinningModel.m */; };
 		60C65BFA1C80482500332AD8 /* WinningConfirmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C65BF91C80482500332AD8 /* WinningConfirmController.m */; };
@@ -518,6 +529,27 @@
 		60B683881C603F5500EDF671 /* RedPacketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
 		60B683891C603F5500EDF671 /* RedPacketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketCell.m; sourceTree = "<group>"; };
 		60B6838A1C603F5500EDF671 /* RedPacketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedPacketCell.xib; sourceTree = "<group>"; };
+		60C1097F1C96AFC60025CE94 /* NSDictionary+HuoBanMallSign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HuoBanMallSign.h"; sourceTree = "<group>"; };
+		60C109801C96AFC60025CE94 /* NSDictionary+HuoBanMallSign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HuoBanMallSign.m"; sourceTree = "<group>"; };
+		60C109821C96AFC60025CE94 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		60C109831C96AFC60025CE94 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		60C109851C96AFC60025CE94 /* MidTabelViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidTabelViewCell.h; sourceTree = "<group>"; };
+		60C109861C96AFC60025CE94 /* MidTabelViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidTabelViewCell.m; sourceTree = "<group>"; };
+		60C109871C96AFC60025CE94 /* MidTabelViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MidTabelViewCell.xib; sourceTree = "<group>"; };
+		60C109891C96AFC60025CE94 /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
+		60C1098A1C96AFC60025CE94 /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
+		60C1098B1C96AFC60025CE94 /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
+		60C1098C1C96AFC60025CE94 /* payRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = payRequsestHandler.mm; sourceTree = "<group>"; };
+		60C1098D1C96AFC60025CE94 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
+		60C1098E1C96AFC60025CE94 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
+		60C109901C96AFC60025CE94 /* MallUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallUser.h; sourceTree = "<group>"; };
+		60C109911C96AFC60025CE94 /* MallUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallUser.m; sourceTree = "<group>"; };
+		60C109921C96AFC60025CE94 /* NewShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShareModel.h; sourceTree = "<group>"; };
+		60C109931C96AFC60025CE94 /* NewShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewShareModel.m; sourceTree = "<group>"; };
+		60C109941C96AFC60025CE94 /* MallPayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallPayModel.h; sourceTree = "<group>"; };
+		60C109951C96AFC60025CE94 /* MallPayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallPayModel.m; sourceTree = "<group>"; };
+		60C109971C96AFC60025CE94 /* PushWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushWebViewController.h; sourceTree = "<group>"; };
+		60C109981C96AFC60025CE94 /* PushWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushWebViewController.m; sourceTree = "<group>"; };
 		60C65BF21C80392200332AD8 /* RedPacketsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketsModel.h; sourceTree = "<group>"; };
 		60C65BF31C80392200332AD8 /* RedPacketsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketsModel.m; sourceTree = "<group>"; };
 		60C65BF51C80393300332AD8 /* WinningModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningModel.h; sourceTree = "<group>"; };
@@ -1037,6 +1069,7 @@
 				F21E82D91C78130000C732F1 /* List */,
 				60FFF2C11C4E142600A93D7E /* login */,
 				60B5A3691C520A5500E4C7BB /* my */,
+				60C1097D1C96AFC60025CE94 /* Mall */,
 				6029AB161C4DD85300198FE3 /* other */,
 			);
 			path = classes;
@@ -1409,6 +1442,82 @@
 				6014A7161C7D53A5006B2900 /* GoAheadCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		60C1097D1C96AFC60025CE94 /* Mall */ = {
+			isa = PBXGroup;
+			children = (
+				60C1097E1C96AFC60025CE94 /* categray */,
+				60C109811C96AFC60025CE94 /* Home */,
+				60C109881C96AFC60025CE94 /* lib */,
+				60C1098F1C96AFC60025CE94 /* Model */,
+				60C109961C96AFC60025CE94 /* pushWeb */,
+			);
+			path = Mall;
+			sourceTree = "<group>";
+		};
+		60C1097E1C96AFC60025CE94 /* categray */ = {
+			isa = PBXGroup;
+			children = (
+				60C1097F1C96AFC60025CE94 /* NSDictionary+HuoBanMallSign.h */,
+				60C109801C96AFC60025CE94 /* NSDictionary+HuoBanMallSign.m */,
+			);
+			path = categray;
+			sourceTree = "<group>";
+		};
+		60C109811C96AFC60025CE94 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				60C109821C96AFC60025CE94 /* HomeViewController.h */,
+				60C109831C96AFC60025CE94 /* HomeViewController.m */,
+				60C109841C96AFC60025CE94 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		60C109841C96AFC60025CE94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				60C109851C96AFC60025CE94 /* MidTabelViewCell.h */,
+				60C109861C96AFC60025CE94 /* MidTabelViewCell.m */,
+				60C109871C96AFC60025CE94 /* MidTabelViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		60C109881C96AFC60025CE94 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				60C109891C96AFC60025CE94 /* ApiXml.h */,
+				60C1098A1C96AFC60025CE94 /* ApiXml.mm */,
+				60C1098B1C96AFC60025CE94 /* payRequsestHandler.h */,
+				60C1098C1C96AFC60025CE94 /* payRequsestHandler.mm */,
+				60C1098D1C96AFC60025CE94 /* WXUtil.h */,
+				60C1098E1C96AFC60025CE94 /* WXUtil.mm */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		60C1098F1C96AFC60025CE94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				60C109901C96AFC60025CE94 /* MallUser.h */,
+				60C109911C96AFC60025CE94 /* MallUser.m */,
+				60C109921C96AFC60025CE94 /* NewShareModel.h */,
+				60C109931C96AFC60025CE94 /* NewShareModel.m */,
+				60C109941C96AFC60025CE94 /* MallPayModel.h */,
+				60C109951C96AFC60025CE94 /* MallPayModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		60C109961C96AFC60025CE94 /* pushWeb */ = {
+			isa = PBXGroup;
+			children = (
+				60C109971C96AFC60025CE94 /* PushWebViewController.h */,
+				60C109981C96AFC60025CE94 /* PushWebViewController.m */,
+			);
+			path = pushWeb;
 			sourceTree = "<group>";
 		};
 		60DD42911C43A8F90041572F = {
@@ -1870,6 +1979,7 @@
 				F23DE3D01C522E34002AB5FC /* DetailWayBCView.xib in Resources */,
 				60B6838C1C603F5500EDF671 /* RedPacketCell.xib in Resources */,
 				F21986A81C4F288500966A2C /* HomeHeadCollectionViewCell.xib in Resources */,
+				60C1099C1C96AFC60025CE94 /* MidTabelViewCell.xib in Resources */,
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				F2B3BCE01C7CA8D500AECFA5 /* HomeSearchCView.xib in Resources */,
 				F2C426561C882C2B00C9CEF0 /* ListNumberBottomCView.xib in Resources */,
@@ -1972,6 +2082,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
+				60C1099F1C96AFC60025CE94 /* WXUtil.mm in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
 				F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */,
 				F2C426421C88243800C9CEF0 /* ListNumberViewController.m in Sources */,
@@ -1989,8 +2100,10 @@
 				F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */,
 				601C712E1C7C419A00673B7F /* RecordController.m in Sources */,
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
+				60C109991C96AFC60025CE94 /* NSDictionary+HuoBanMallSign.m in Sources */,
 				6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
+				60C109A01C96AFC60025CE94 /* MallUser.m in Sources */,
 				F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */,
 				F2F587F81C7DA14A007187B0 /* DetailShareNextViewController.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
@@ -2018,6 +2131,7 @@
 				60B5A3681C51FDEA00E4C7BB /* NSDictionary+EXTERN.m in Sources */,
 				F2FF346F1C560D9F00558C13 /* DetailAttendCountCView.m in Sources */,
 				F23688B21C72B6DB00EF2762 /* AppGoodsListModel.m in Sources */,
+				60C1099D1C96AFC60025CE94 /* ApiXml.mm in Sources */,
 				60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */,
 				600042981C744C5D00CEDC7A /* DataSigner.m in Sources */,
 				F290AD121C4E5317005F05AC /* DCPicScrollView.m in Sources */,
@@ -2031,6 +2145,7 @@
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
 				60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */,
 				F23670091C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m in Sources */,
+				60C109A11C96AFC60025CE94 /* NewShareModel.m in Sources */,
 				F22A8D7C1C858E7100165BBC /* DetailCalculateATableViewCell.m in Sources */,
 				F2F587DD1C7D7C9C007187B0 /* AppBalanceModel.m in Sources */,
 				F24119711C74648900C2B07E /* DetailNumberTableViewCell.m in Sources */,
@@ -2059,6 +2174,7 @@
 				605E158C1C59A8AB00DBF8BA /* SettingController.m in Sources */,
 				6014A7171C7D53A5006B2900 /* GoAheadCell.m in Sources */,
 				60584F0B1C4E225F00F23B95 /* UIViewController+NAV.m in Sources */,
+				60C109A31C96AFC60025CE94 /* PushWebViewController.m in Sources */,
 				600042991C744C5D00CEDC7A /* DataVerifier.m in Sources */,
 				60EB31A81C55C892006C070B /* OtherUserController.m in Sources */,
 				60F389F71C75AEE80080D759 /* AddAddressController.m in Sources */,
@@ -2066,6 +2182,7 @@
 				600042971C744C5D00CEDC7A /* base64.m in Sources */,
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
 				608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */,
+				60C109A21C96AFC60025CE94 /* MallPayModel.m in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
 				F23BEFF11C5F2F5D00E87042 /* DetailShareTableViewCell.m in Sources */,
 				F2C426461C88246D00C9CEF0 /* ListNumberHeadCView.m in Sources */,
@@ -2086,6 +2203,7 @@
 				6000429C1C744C5D00CEDC7A /* openssl_wrapper.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				F2F587F41C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.m in Sources */,
+				60C1099B1C96AFC60025CE94 /* MidTabelViewCell.m in Sources */,
 				608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
 				F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */,
@@ -2093,9 +2211,11 @@
 				F2C426551C882C2B00C9CEF0 /* ListNumberBottomCView.m in Sources */,
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */,
+				60C1099A1C96AFC60025CE94 /* HomeViewController.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
 				608D42971C8859D4000C4845 /* NSData+NSDataDeal.m in Sources */,
 				F23670041C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m in Sources */,
+				60C1099E1C96AFC60025CE94 /* payRequsestHandler.mm in Sources */,
 				F25875A21C4FB407007967DC /* FL_Button.m in Sources */,
 				60525F631C51BF0E00CC4528 /* UserModel.m in Sources */,
 				600EF8951C818CDE005DB7F2 /* NewShareController.m in Sources */,
