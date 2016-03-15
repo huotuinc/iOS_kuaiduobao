@@ -7,19 +7,15 @@
 //  跳转的网页页面
 
 #import "PushWebViewController.h"
-
-
 #import "payRequsestHandler.h"
-
-#import "PayModel.h"
-
+#import "MallPayModel.h"
 #import "NSDictionary+HuoBanMallSign.h"
-
-
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
+#import "NewShareModel.h"
+#import "WXApi.h"
+#import "payRequsestHandler.h"
 
-#import "UIViewController+MMDrawerController.h"
 
 
 @interface PushWebViewController ()<UIWebViewDelegate,UIActionSheetDelegate,NJKWebViewProgressDelegate>
@@ -37,7 +33,7 @@
 @property(nonatomic,strong) NSString * proDes;       //订单描述
 
 
-@property(nonatomic,strong) PayModel * paymodel;
+@property(nonatomic,strong) MallPayModel * paymodel;
 
 /**支付的url*/
 @property(nonatomic,strong) NSString * ServerPayUrl;
@@ -135,10 +131,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    MMRootViewController * root = (MMRootViewController *)self.mm_drawerController;
-    [root setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
-    [root setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
 
 }
 
@@ -199,7 +191,7 @@
  */
 - (NSString *) toCutew:(NSString *)urs{
     
-    NSString * gduid =[[NSUserDefaults standardUserDefaults] objectForKey:PhoneLoginunionid];
+    NSString * gduid =[[NSUserDefaults standardUserDefaults] objectForKey:@"unionid"];
     
     NSRange rang = [urs rangeOfString:@"?"];
     
@@ -234,21 +226,21 @@
 
 - (void)shareSdkSha{
     if(self.webView.isLoading){
-        [MBProgressHUD showError:@"商城加载中.."];
+        [SVProgressHUD showErrorWithStatus:@"商城加载中.."];
         return;
     }
     
-    NSString * urs =  self.webView.request.URL.absoluteString;
-    NewShareModel * newshare= [[NewShareModel alloc] init];
-    newshare.taskInfo = urs;
-    newshare.taskName = @"万事利商城";
-#warning luohaibo
-    newshare.taskSmallImgUrl = nil;
-    [UserLoginTool LoginToShareMessageByShareSdk:newshare success:^(int json) {
-        LWLog(@"%d",json);
-    } failure:^(id error) {
-        
-    }];
+//    NSString * urs =  self.webView.request.URL.absoluteString;
+//    NewShareModel * newshare= [[NewShareModel alloc] init];
+//    newshare.taskInfo = urs;
+//    newshare.taskName = @"万事利商城";
+//#warning luohaibo
+//    newshare.taskSmallImgUrl = nil;
+//    [UserLoginTool LoginToShareMessageByShareSdk:newshare success:^(int json) {
+//        LWLog(@"%d",json);
+//    } failure:^(id error) {
+//        
+//    }];
     
 }
 
@@ -268,10 +260,10 @@
         return NO;
     }
     if ([url rangeOfString:@"/UserCenter/Login.aspx"].location != NSNotFound) {
-        UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController * login =  [main instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        UINavigationController * root = [[UINavigationController alloc] initWithRootViewController:login];
-        [self presentViewController:root animated:YES completion:nil];
+//        UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        LoginViewController * login =  [main instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//        UINavigationController * root = [[UINavigationController alloc] initWithRootViewController:login];
+//        [self presentViewController:root animated:YES completion:nil];
         return NO;
         
     }else{
@@ -307,7 +299,7 @@
                     self.proDes = [des copy];
                     //                    NSLog(@"%@",self.proDes);
                     if(namesArray.count == 1){
-                        PayModel * pay =  namesArray.firstObject;  //300微信  400支付宝
+                        MallPayModel * pay =  namesArray.firstObject;  //300微信  400支付宝
                         self.paymodel = pay;
                         if ([pay.payType integerValue] == 300) {//300微信
                             UIActionSheet * aa =  [[UIActionSheet alloc] initWithTitle:@"支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信", nil];
@@ -361,8 +353,8 @@
         // 3.解码并存到数组中
         NSArray *namesArray = [unArchiver decodeObjectForKey:PayTypeflat];
         if (buttonIndex==0) {//支付宝
-            PayModel * paymodel =  namesArray[0];
-            PayModel *cc =  [paymodel.payType integerValue] == 400?namesArray[0]:namesArray[1];
+            MallPayModel * paymodel =  namesArray[0];
+            MallPayModel *cc =  [paymodel.payType integerValue] == 400?namesArray[0]:namesArray[1];
             if (cc.webPagePay) {//网页支付
                 NSRange parameRange = [self.ServerPayUrl rangeOfString:@"?"];
                 NSString * par = [self.ServerPayUrl substringFromIndex:(parameRange.location+parameRange.length)];
@@ -380,7 +372,7 @@
             }
         }
         if (buttonIndex==1) {//微信
-            PayModel * paymodel =  namesArray[0];
+            MallPayModel * paymodel =  namesArray[0];
             if ([paymodel.payType integerValue] == 300) {
                 [self WeiChatPay:namesArray[0]];
             }else{
@@ -395,7 +387,7 @@
 /**
  *  商城支付宝支付
  */
-- (void)MallAliPay:(PayModel *)pay{
+- (void)MallAliPay:(MallPayModel *)pay{
 
 //    NSString *privateKey = pay.appKey;
 //    // @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAMCul0XS9X/cVMkmrSeaZXnSvrs/bK5EiZf3d3/lTwHx165wAX/UIz4AcZHbKkYKKzmZKrRsu3tLRKFuflooKSVmWxk2hmeMqRETPZ/t8rKf8UONZIpOlOXEmJ/rYwxhnMeVhbJJxsko2so/jc+XAPLyv0tsfoI/TsJuhaGQ569ZAgMBAAECgYAK4lHdOdtwS4vmiO7DC++rgAISJbUH6wsysGHpsZRS8cxTKDSNefg7ql6/9Hdg2XYznLlS08mLX2cTD2DHyvj38KtxLEhLP7MtgjFFeTJ5Ta1UuBRERcmy0xSLh2zayiSwGTM8Bwu7UD6LUSTGwrgRR2Gg4EDpSG08J5OCThKF4QJBAPOO6WKI/sEuoRDtcIJqtv58mc4RSmit/WszkvPlZrjNFDU6TrOEnPU0zi3f8scxpPxVYROBceGj362m+02G2I0CQQDKhlq4pIM2FLNoDP4mzEUyoXIwqn6vIsAv8n49Tr9QnBjCrKt8RiibhjSEvcYqM/1eocW0j2vUkqR17rNuVVz9AkBq+Z02gzdpwEJMPg3Jqnd/pViksuF8wtbo6/kimOKaTrEOg/KnVJrf9HaOnatzpDF0B0ghGhzb329SRWJhddXNAkAkjrgVmGyu+HGiGKZP7pOXHhl0u3H+vzEd9pHfEzXpoSO/EFgsKKXv3Pvh8jexKo1T5bPAchsu1gGl4B63jeUpAkBbgUalUpZWZ4Aii+Mfts+S2E5RooZfVFqVBIsK47hjcoqLw4JJenyjFu+Skl2jOQ8+I5y1Ggeg6fpBMr2rbVkf";
@@ -437,7 +429,7 @@
 /**
  *  微信支付
  */
-- (void)WeiChatPay:(PayModel *)model{
+- (void)WeiChatPay:(MallPayModel *)model{
     //获取到实际调起微信支付的参数后，在app端调起支付
     NSMutableDictionary *dict = [self PayByWeiXinParame:model];
     if(dict != nil){
@@ -461,7 +453,7 @@
 /**
  *  微信支付预zhifu
  */
-- (NSMutableDictionary *)PayByWeiXinParame:(PayModel *)paymodel{
+- (NSMutableDictionary *)PayByWeiXinParame:(MallPayModel *)paymodel{
 
     payRequsestHandler * payManager = [[payRequsestHandler alloc] init];
     [payManager setKey:paymodel.appKey];
@@ -487,9 +479,8 @@
         params[@"device_info"] = ([[UIDevice currentDevice].identifierForVendor UUIDString]);
         
         
-       InitModel * initmod =  (InitModel *)[UserLoginTool LoginReadModelDateFromCacheDateWithFileName:InitModelCaches];
         
-        params[@"attach"] = [NSString stringWithFormat:@"%@_0",initmod.customerId];
+        params[@"attach"] = [NSString stringWithFormat:@"%@_0",HuoBanMallBuyApp_Merchant_Id];
         //获取prepayId（预支付交易会话标识）
         NSString * prePayid = nil;
         prePayid  = [payManager sendPrepay:params];

@@ -14,6 +14,7 @@
 #import "PushWebViewController.h"
 #import "WXApi.h"
 #import "payRequsestHandler.h"
+#import "NSDictionary+HuoBanMallSign.h"
 
 @interface HomeViewController()<UIWebViewDelegate,UIActionSheetDelegate,NJKWebViewProgressDelegate>
 
@@ -107,18 +108,20 @@
 
 - (void)GoToLeft{
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
+    }];
 }
 
-- (UIButton *)shareBtn{
-    if (_shareBtn == nil) {
-        _shareBtn = [[UIButton alloc] init];
-        _shareBtn.frame = CGRectMake(0, 0, 25, 25);
-        [_shareBtn addTarget:self action:@selector(shareBtnClicks) forControlEvents:UIControlEventTouchUpInside];
-        [_shareBtn setBackgroundImage:[UIImage imageNamed:@"home_title_right_share"] forState:UIControlStateNormal];
-    }
-    return _shareBtn;
-}
+//- (UIButton *)shareBtn{
+//    if (_shareBtn == nil) {
+//        _shareBtn = [[UIButton alloc] init];
+//        _shareBtn.frame = CGRectMake(0, 0, 25, 25);
+//        [_shareBtn addTarget:self action:@selector(shareBtnClicks) forControlEvents:UIControlEventTouchUpInside];
+//        [_shareBtn setBackgroundImage:[UIImage imageNamed:@"home_title_right_share"] forState:UIControlStateNormal];
+//    }
+//    return _shareBtn;
+//}
 
 
 -(UIButton *)refreshBtn{
@@ -290,6 +293,7 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
+    [self.navigationController.navigationBar setBarTintColor:COLOR_NAVBAR_A];
 }
 
 
@@ -630,13 +634,12 @@
         [urls appendString:paymodel.notify];
         params[@"notify_url"] = urls;  //接收微信支付异步通知回调地址
         
-        InitModel * initmod =  (InitModel *)[UserLoginTool LoginReadModelDateFromCacheDateWithFileName:InitModelCaches];
-        NSString * order = [NSString stringWithFormat:@"%@_%@_%d",self.orderNo,initmod.customerId,(arc4random() % 900 + 100)];
+        NSString * order = [NSString stringWithFormat:@"%@_%@_%d",self.orderNo,HuoBanMallBuyApp_Merchant_Id,(arc4random() % 900 + 100)];
         params[@"out_trade_no"] = order; //订单号
         params[@"spbill_create_ip"] = @"192.168.1.1"; //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
         params[@"total_fee"] = [NSString stringWithFormat:@"%.f",[self.priceNumber floatValue] * 100];  //订单总金额，只能为整数，详见支付金额
         params[@"device_info"] = ([[UIDevice currentDevice].identifierForVendor UUIDString]);
-        params[@"attach"] = [NSString stringWithFormat:@"%@_0",initmod.customerId];
+        params[@"attach"] = [NSString stringWithFormat:@"%@_0",HuoBanMallBuyApp_Merchant_Id];
         //获取prepayId（预支付交易会话标识）
         NSString * prePayid = nil;
         prePayid  = [payManager sendPrepay:params];

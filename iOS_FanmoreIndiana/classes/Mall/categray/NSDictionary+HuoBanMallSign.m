@@ -54,9 +54,9 @@
 
 + (NSString *)ToSignUrlWithString:(NSString *)urlStr{
     
-    
-    
-//    UserModel * userInfo = (UserModel *)[UserLoginTool LoginReadModelDateFromCacheDateWithFileName:RegistUserDate];
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    UserModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
     NSMutableString * signUrl = [NSMutableString stringWithString:urlStr]; //元素url
     NSDate * timestamp = [[NSDate alloc] init];
     NSString *timeSp = [NSString stringWithFormat:@"%lld", (long long)[timestamp timeIntervalSince1970] * 1000];  //转化为UNIX时间戳
@@ -65,9 +65,11 @@
     
     NSString * bu = nil;
     NSString * un = nil;
+    
+    
 
-    bu = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:ChoneMallAccount]];
-    un = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:PhoneLoginunionid]];
+    bu = [NSString stringWithFormat:@"%@",user.userId];
+    un = [NSString stringWithFormat:@"%@",user.userId];
 
     
     LWLog(@"%@--------%@----%@",bu,un,[[NSUserDefaults standardUserDefaults] objectForKey:@"unionid"]);
@@ -105,7 +107,7 @@
                 [signCap appendFormat:@"&%@",arr[i]];
             }
         }
-        [signCap appendFormat:@"%@",HuoBanMallBuyAppSecrect];
+        [signCap appendFormat:@"%@",HTYMRSCREAT];
         NSString * sign = [MD5Encryption md5by32:signCap];
         [signUrl appendFormat:@"&sign=%@",sign];
         return signUrl;
