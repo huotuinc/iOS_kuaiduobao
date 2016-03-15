@@ -42,8 +42,11 @@
         
         AppRedPactketsDistributeSourceModel *model = (AppRedPactketsDistributeSourceModel*)data;
         
-        _labelTime.attributedText = [[NSAttributedString alloc] initWithAttributedString:[model currentTimeStringWait]];
-        NSLog(@"%@",_labelTime.text);
+        _labelTime.attributedText = [[NSAttributedString alloc] initWithAttributedString:[model WaitCurrentTimeString]];
+        if ([_labelTime.text isEqualToString:@"本期活动已开始"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ACTIVITY_START object:nil];
+        }
+//        NSLog(@"%@",_labelTime.text);
     }
     
 }

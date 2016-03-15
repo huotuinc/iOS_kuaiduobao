@@ -58,11 +58,11 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
         }
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
         
         
     } withFileKey:nil];
@@ -253,7 +253,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
             //写入
             [data writeToFile:filename atomically:YES];
-            [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
             
 
         }

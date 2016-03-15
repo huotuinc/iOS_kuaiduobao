@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="459" id="KGk-i7-Jjw" customClass="RedHopeCView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="459"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="458"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X45-kI-u0f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="458"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="敬 请 期 待" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Crg-1E-1D5">
+                                <rect key="frame" x="119" y="219" width="82" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Crg-1E-1D5" firstAttribute="centerY" secondItem="X45-kI-u0f" secondAttribute="centerY" id="C9d-pQ-7aU"/>
+                            <constraint firstItem="Crg-1E-1D5" firstAttribute="centerX" secondItem="X45-kI-u0f" secondAttribute="centerX" id="cM9-yc-aP4"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="X45-kI-u0f" secondAttribute="trailing" id="LqA-jr-CHJ"/>
+                    <constraint firstAttribute="bottom" secondItem="X45-kI-u0f" secondAttribute="bottom" id="OZB-JA-nFM"/>
+                    <constraint firstItem="X45-kI-u0f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gjc-pA-bCM"/>
+                    <constraint firstItem="X45-kI-u0f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rSn-7f-Ao2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="labelTitle" destination="Crg-1E-1D5" id="cwe-Ib-EYA"/>
+                <outlet property="viewBase" destination="X45-kI-u0f" id="t70-8J-JeX"/>
+            </connections>
+            <point key="canvasLocation" x="248" y="320.5"/>
+        </tableViewCell>
+    </objects>
+</document>

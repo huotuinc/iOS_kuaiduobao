@@ -22,18 +22,18 @@
                                 <rect key="frame" x="49" y="144" width="392" height="377"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7l-sz-mrA">
-                                <rect key="frame" x="0.0" y="237" width="490" height="42"/>
+                                <rect key="frame" x="0.0" y="277" width="490" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJ5-8V-0HZ">
                                         <rect key="frame" x="245" y="0.0" width="0.0" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nv7-l1-BAr">
                                         <rect key="frame" x="245" y="21" width="0.0" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -65,7 +65,7 @@
                             <constraint firstItem="woK-48-fsP" firstAttribute="leading" secondItem="mDH-N1-xJX" secondAttribute="leading" id="Hmb-Af-XLD"/>
                             <constraint firstAttribute="trailing" secondItem="b7l-sz-mrA" secondAttribute="trailing" id="Mpx-wp-Mhb"/>
                             <constraint firstItem="0el-Hu-L3a" firstAttribute="width" secondItem="mDH-N1-xJX" secondAttribute="width" multiplier="600:750" id="O2d-6W-bFH"/>
-                            <constraint firstItem="b7l-sz-mrA" firstAttribute="centerY" secondItem="0el-Hu-L3a" secondAttribute="centerY" multiplier="260:335" id="RuH-UH-1ky"/>
+                            <constraint firstItem="b7l-sz-mrA" firstAttribute="centerY" secondItem="0el-Hu-L3a" secondAttribute="centerY" multiplier="300:335" id="RuH-UH-1ky"/>
                             <constraint firstItem="b7l-sz-mrA" firstAttribute="centerX" secondItem="mDH-N1-xJX" secondAttribute="centerX" id="S4D-Kk-oMw"/>
                             <constraint firstItem="rBl-Z2-hb0" firstAttribute="centerY" secondItem="0el-Hu-L3a" secondAttribute="centerY" multiplier="450:355" id="Shw-bz-ElL"/>
                             <constraint firstItem="b7l-sz-mrA" firstAttribute="height" secondItem="0el-Hu-L3a" secondAttribute="height" multiplier="80:710" id="VxX-Yb-vNb"/>
@@ -112,7 +112,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="imageVBack" destination="0el-Hu-L3a" id="lU2-kA-EwT"/>
-                <outlet property="imageVRed" destination="rBl-Z2-hb0" id="Xd3-9C-TAu"/>
+                <outlet property="imageVRed" destination="rBl-Z2-hb0" id="MjI-Hr-EVq"/>
                 <outlet property="labelCount" destination="lJ5-8V-0HZ" id="ump-yf-ldM"/>
                 <outlet property="labelMoney" destination="Nv7-l1-BAr" id="isk-VV-6Ax"/>
                 <outlet property="viewBase" destination="mDH-N1-xJX" id="zOd-DB-dWR"/>

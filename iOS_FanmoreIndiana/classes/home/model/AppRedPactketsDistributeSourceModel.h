@@ -19,12 +19,11 @@
 
 + (instancetype)timeModelWithtime:(int)time;
 
-- (void)countDownWait;
-- (void)countDownEnd;
+- (void)WaitCountDown;
+- (void)EndCountDown;
 
-- (NSString *)currentTimeStringEnd;
-- (NSAttributedString *)currentTimeStringWait;
+- (NSString *)EndCurrentTimeString;
+- (NSAttributedString *)WaitCurrentTimeString;
 
-- (void)defaultConfig;
 
 @end

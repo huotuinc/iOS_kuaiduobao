@@ -182,6 +182,8 @@
 		F241196B1C74552000C2B07E /* AppCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F241196A1C74552000C2B07E /* AppCategoryListModel.m */; };
 		F24119711C74648900C2B07E /* DetailNumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F241196F1C74648900C2B07E /* DetailNumberTableViewCell.m */; };
 		F24119721C74648900C2B07E /* DetailNumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24119701C74648900C2B07E /* DetailNumberTableViewCell.xib */; };
+		F246B6711C97AB6500D0A381 /* GCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F246B6701C97AB6500D0A381 /* GCDTimerManager.m */; };
+		F246B6741C97EA4700D0A381 /* PlistManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F246B6731C97EA4700D0A381 /* PlistManager.m */; };
 		F24D60E11C927265006F6981 /* UINavigationItem+BCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F24D60E01C927265006F6981 /* UINavigationItem+BCTitleView.m */; };
 		F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2573F401C57062C00EEB851 /* DetailBottomDoneCView.m */; };
 		F2573F431C57062C00EEB851 /* DetailBottomDoneCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2573F411C57062C00EEB851 /* DetailBottomDoneCView.xib */; };
@@ -196,6 +198,10 @@
 		F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8A71C55C41B00141EBC /* ClassATableViewCell.xib */; };
 		F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */; };
 		F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */; };
+		F267B9941C96C4BD00B169F3 /* HomeGetRedPocketCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F267B9921C96C4BD00B169F3 /* HomeGetRedPocketCView.m */; };
+		F267B9951C96C4BD00B169F3 /* HomeGetRedPocketCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F267B9931C96C4BD00B169F3 /* HomeGetRedPocketCView.xib */; };
+		F267B9991C96C8F000B169F3 /* HomeSendRedPocketCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F267B9971C96C8F000B169F3 /* HomeSendRedPocketCView.m */; };
+		F267B99A1C96C8F000B169F3 /* HomeSendRedPocketCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F267B9981C96C8F000B169F3 /* HomeSendRedPocketCView.xib */; };
 		F26E0C8B1C8699DD00DB1908 /* AppCountResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */; };
 		F26E0C8E1C869A3800DB1908 /* AppUserNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C8D1C869A3800DB1908 /* AppUserNumberModel.m */; };
 		F26E0C911C86E38E00DB1908 /* RedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F26E0C901C86E38E00DB1908 /* RedViewController.m */; };
@@ -233,6 +239,8 @@
 		F2C426561C882C2B00C9CEF0 /* ListNumberBottomCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C426541C882C2B00C9CEF0 /* ListNumberBottomCView.xib */; };
 		F2C4F6FF1C914EE800EE133C /* AppWinningInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C4F6FE1C914EE800EE133C /* AppWinningInfoModel.m */; };
 		F2C7A4D21C75AD49002E08FA /* DetailNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7A4D11C75AD49002E08FA /* DetailNumberViewController.m */; };
+		F2D84A181C93F4E70095725D /* RedHopeCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D84A161C93F4E70095725D /* RedHopeCView.m */; };
+		F2D84A191C93F4E70095725D /* RedHopeCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D84A171C93F4E70095725D /* RedHopeCView.xib */; };
 		F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E241051C7C79BA004D222E /* HelpViewController.m */; };
 		F2F587C21C7D4249007187B0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587C11C7D4249007187B0 /* SearchViewController.m */; };
 		F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587C41C7D49CB007187B0 /* PayATableViewCell.m */; };
@@ -663,6 +671,10 @@
 		F241196E1C74648900C2B07E /* DetailNumberTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNumberTableViewCell.h; sourceTree = "<group>"; };
 		F241196F1C74648900C2B07E /* DetailNumberTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNumberTableViewCell.m; sourceTree = "<group>"; };
 		F24119701C74648900C2B07E /* DetailNumberTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNumberTableViewCell.xib; sourceTree = "<group>"; };
+		F246B66F1C97AB6500D0A381 /* GCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTimerManager.h; sourceTree = "<group>"; };
+		F246B6701C97AB6500D0A381 /* GCDTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTimerManager.m; sourceTree = "<group>"; };
+		F246B6721C97EA4700D0A381 /* PlistManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistManager.h; sourceTree = "<group>"; };
+		F246B6731C97EA4700D0A381 /* PlistManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistManager.m; sourceTree = "<group>"; };
 		F24D60DF1C927265006F6981 /* UINavigationItem+BCTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+BCTitleView.h"; sourceTree = "<group>"; };
 		F24D60E01C927265006F6981 /* UINavigationItem+BCTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+BCTitleView.m"; sourceTree = "<group>"; };
 		F2573F3F1C57062C00EEB851 /* DetailBottomDoneCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBottomDoneCView.h; sourceTree = "<group>"; };
@@ -686,6 +698,12 @@
 		F262E8AA1C55C42D00141EBC /* ClassBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBTableViewCell.h; sourceTree = "<group>"; };
 		F262E8AB1C55C42D00141EBC /* ClassBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBTableViewCell.m; sourceTree = "<group>"; };
 		F262E8AC1C55C42D00141EBC /* ClassBTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassBTableViewCell.xib; sourceTree = "<group>"; };
+		F267B9911C96C4BD00B169F3 /* HomeGetRedPocketCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGetRedPocketCView.h; sourceTree = "<group>"; };
+		F267B9921C96C4BD00B169F3 /* HomeGetRedPocketCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGetRedPocketCView.m; sourceTree = "<group>"; };
+		F267B9931C96C4BD00B169F3 /* HomeGetRedPocketCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeGetRedPocketCView.xib; sourceTree = "<group>"; };
+		F267B9961C96C8F000B169F3 /* HomeSendRedPocketCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSendRedPocketCView.h; sourceTree = "<group>"; };
+		F267B9971C96C8F000B169F3 /* HomeSendRedPocketCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSendRedPocketCView.m; sourceTree = "<group>"; };
+		F267B9981C96C8F000B169F3 /* HomeSendRedPocketCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeSendRedPocketCView.xib; sourceTree = "<group>"; };
 		F26E0C891C8699DD00DB1908 /* AppCountResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCountResultModel.h; sourceTree = "<group>"; };
 		F26E0C8A1C8699DD00DB1908 /* AppCountResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCountResultModel.m; sourceTree = "<group>"; };
 		F26E0C8C1C869A3800DB1908 /* AppUserNumberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUserNumberModel.h; sourceTree = "<group>"; };
@@ -751,6 +769,9 @@
 		F2C4F6FE1C914EE800EE133C /* AppWinningInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppWinningInfoModel.m; sourceTree = "<group>"; };
 		F2C7A4D01C75AD49002E08FA /* DetailNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNumberViewController.h; sourceTree = "<group>"; };
 		F2C7A4D11C75AD49002E08FA /* DetailNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNumberViewController.m; sourceTree = "<group>"; };
+		F2D84A151C93F4E70095725D /* RedHopeCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedHopeCView.h; sourceTree = "<group>"; };
+		F2D84A161C93F4E70095725D /* RedHopeCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedHopeCView.m; sourceTree = "<group>"; };
+		F2D84A171C93F4E70095725D /* RedHopeCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedHopeCView.xib; sourceTree = "<group>"; };
 		F2E241041C7C79BA004D222E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		F2E241051C7C79BA004D222E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		F2F587C01C7D4249007187B0 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -984,6 +1005,10 @@
 		6029AB171C4DD85300198FE3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				F246B6721C97EA4700D0A381 /* PlistManager.h */,
+				F246B6731C97EA4700D0A381 /* PlistManager.m */,
+				F246B66F1C97AB6500D0A381 /* GCDTimerManager.h */,
+				F246B6701C97AB6500D0A381 /* GCDTimerManager.m */,
 				F258759F1C4FB407007967DC /* FL_Button */,
 				F290AD0D1C4E5317005F05AC /* DCPicscrollView */,
 				F290AD0A1C4E5104005F05AC /* Measure.h */,
@@ -1092,6 +1117,9 @@
 		6031C5391C4C82C300D6B567 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F2D84A151C93F4E70095725D /* RedHopeCView.h */,
+				F2D84A161C93F4E70095725D /* RedHopeCView.m */,
+				F2D84A171C93F4E70095725D /* RedHopeCView.xib */,
 				F2B00D9B1C8EC79A001014DE /* RedCountCView.h */,
 				F2B00D9C1C8EC79A001014DE /* RedCountCView.m */,
 				F2B00D9D1C8EC79A001014DE /* RedCountCView.xib */,
@@ -1199,6 +1227,12 @@
 				F26E0C921C8702BC00DB1908 /* DetailGoodsSelectCView.h */,
 				F26E0C931C8702BC00DB1908 /* DetailGoodsSelectCView.m */,
 				F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */,
+				F267B9911C96C4BD00B169F3 /* HomeGetRedPocketCView.h */,
+				F267B9921C96C4BD00B169F3 /* HomeGetRedPocketCView.m */,
+				F267B9931C96C4BD00B169F3 /* HomeGetRedPocketCView.xib */,
+				F267B9961C96C8F000B169F3 /* HomeSendRedPocketCView.h */,
+				F267B9971C96C8F000B169F3 /* HomeSendRedPocketCView.m */,
+				F267B9981C96C8F000B169F3 /* HomeSendRedPocketCView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1838,9 +1872,11 @@
 				6014A7181C7D53A5006B2900 /* GoAheadCell.xib in Resources */,
 				60DD42AA1C43A8F90041572F /* Assets.xcassets in Resources */,
 				F23BEFFD1C5F338F00E87042 /* DetailNumberHeadCView.xib in Resources */,
+				F2D84A191C93F4E70095725D /* RedHopeCView.xib in Resources */,
 				F2F587C71C7D49CB007187B0 /* PayATableViewCell.xib in Resources */,
 				F2F587CF1C7D49EA007187B0 /* PayButtonTableViewCell.xib in Resources */,
 				F21E82EC1C7813E500C732F1 /* ListBottomCView.xib in Resources */,
+				F267B99A1C96C8F000B169F3 /* HomeSendRedPocketCView.xib in Resources */,
 				F262E8A91C55C41B00141EBC /* ClassATableViewCell.xib in Resources */,
 				601C712B1C7C2FDC00673B7F /* RecordCell.xib in Resources */,
 				F23DE3D41C522E34002AB5FC /* DetailNextTableViewCell.xib in Resources */,
@@ -1850,6 +1886,7 @@
 				F2C426511C882A9000C9CEF0 /* ListNumberMainTableViewCell.xib in Resources */,
 				F23DE3CE1C522E34002AB5FC /* DetailWinnerCView.xib in Resources */,
 				F29553A41C9147D100D82B67 /* RedDisGetCView.xib in Resources */,
+				F267B9951C96C4BD00B169F3 /* HomeGetRedPocketCView.xib in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
 				F236700A1C7EEB4E008A6576 /* AnnouncedCollectionViewCell.xib in Resources */,
 				F2C426471C88246D00C9CEF0 /* ListNumberHeadCView.xib in Resources */,
@@ -1983,10 +2020,12 @@
 				F26E0C8B1C8699DD00DB1908 /* AppCountResultModel.m in Sources */,
 				F21E82EF1C7813EC00C732F1 /* CartModel.m in Sources */,
 				F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */,
+				F246B6741C97EA4700D0A381 /* PlistManager.m in Sources */,
 				601C712E1C7C419A00673B7F /* RecordController.m in Sources */,
 				F262E8A41C55C24500141EBC /* ClassViewController.m in Sources */,
 				6014A71B1C7DA9E7006B2900 /* RaiderModel.m in Sources */,
 				F262E8AD1C55C42D00141EBC /* ClassBTableViewCell.m in Sources */,
+				F246B6711C97AB6500D0A381 /* GCDTimerManager.m in Sources */,
 				F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */,
 				F2F587F81C7DA14A007187B0 /* DetailShareNextViewController.m in Sources */,
 				F290AD131C4E5317005F05AC /* DCWebImageManager.m in Sources */,
@@ -2034,6 +2073,7 @@
 				60F389F31C7567050080D759 /* AddressCell.m in Sources */,
 				F2F587FB1C7DC667007187B0 /* AppShareOrderDetailModel.m in Sources */,
 				600042B31C746CA400CEDC7A /* PayModel.m in Sources */,
+				F267B9991C96C8F000B169F3 /* HomeSendRedPocketCView.m in Sources */,
 				60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */,
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
 				F29553991C91435E00D82B67 /* RedWaitCView.m in Sources */,
@@ -2061,6 +2101,7 @@
 				F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */,
 				600042971C744C5D00CEDC7A /* base64.m in Sources */,
 				F262E8991C55B36500141EBC /* DetailViewController.m in Sources */,
+				F2D84A181C93F4E70095725D /* RedHopeCView.m in Sources */,
 				608D42941C86B4AC000C4845 /* WXUtil.mm in Sources */,
 				F262E8A81C55C41B00141EBC /* ClassATableViewCell.m in Sources */,
 				F23BEFF11C5F2F5D00E87042 /* DetailShareTableViewCell.m in Sources */,
@@ -2086,6 +2127,7 @@
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
 				F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */,
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
+				F267B9941C96C4BD00B169F3 /* HomeGetRedPocketCView.m in Sources */,
 				F2C426551C882C2B00C9CEF0 /* ListNumberBottomCView.m in Sources */,
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */,

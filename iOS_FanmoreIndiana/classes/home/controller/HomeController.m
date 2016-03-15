@@ -32,9 +32,10 @@
 #import "CartModel.h"
 #import "RedViewController.h"
 #import "DetailWebViewController.h"
+#import "LoginController.h"
 
 static BOOL isExist = NO;//用于判断归档时有无该对象
-@interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface HomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
 @property (strong, nonatomic)  UICollectionView *collectionView;
 @property (strong, nonatomic)  HomeSearchCView *searchV;//搜索框
@@ -396,11 +397,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
         }
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showErrorWithStatus:@"加入购物车失败"];
+        [SVProgressHUD showErrorWithStatus:@"加入清单失败"];
 
         
     } withFileKey:nil];
@@ -429,7 +430,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         printf("第%zd张图片\n",index);
     }];
     //default is 2.0f,如果小于0.5不自动播放
-    _headScrollView.AutoScrollDelay = 2.0f;
+    if (_arrURLString.count == 0) {
+        _headScrollView.AutoScrollDelay = 0.f;
+    } else {
+        _headScrollView.AutoScrollDelay = 2.f;
+
+    }
 }
 - (void)createFourBtnView {
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeFourBtnCView" owner:nil options:nil];
@@ -452,8 +458,16 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }];
 #pragma mark 红包专区
     [_fourBtnView.imageVRed bk_whenTapped:^{
-        RedViewController * red = [[RedViewController alloc] init];
-        [self.navigationController pushViewController:red animated:YES];
+        
+        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+        if ([login isEqualToString:Success]) {
+            RedViewController * red = [[RedViewController alloc] init];
+            [self.navigationController pushViewController:red animated:YES];
+        }else{
+            [self goToLogin];
+        }
+        
+        
     }];
     
 #pragma mark 晒单
@@ -474,6 +488,19 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         
     }];
 
+}
+
+#pragma mark 网络请求结算 未登录 进行登陆
+- (void)goToLogin {
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+    login.logDelegate = self;
+    [self presentViewController:nav animated:YES completion:nil];
+    
+    
+    
 }
 
 - (void)createImageVNotice {
@@ -653,12 +680,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                     [self joinShoppingCart];
                 }else{
 #pragma mark 加入购物车 未登陆
-//                    [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
 
                     NSMutableArray *localArray = [NSMutableArray array];
-//                    localArray =nil;
                     //未进行归档
-                    if ([self getLocalDataArray] == nil) {
+                    if ([self getLocalDataArray].count == 0) {
                         CartModel *cModel = [[CartModel alloc] init];
                         cModel.areaAmount = joinModel.areaAmount;
                         cModel.attendAmount = joinModel.attendAmount;
@@ -719,7 +744,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                     NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
                     //写入
                     [data writeToFile:filename atomically:YES];
-                    [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+                    [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
                     
                 }
             }];
@@ -735,23 +760,23 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     else{
         labelCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:cellLabel forIndexPath:indexPath];
         if (indexPath.item >= _appNoticeList.count) {
-            NSInteger i = indexPath.item % _appNoticeList.count;
-            AppNoticeListModel *model =_appNoticeList[i];
-            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+1, model.title.length)];
-            cell.labelMain.attributedText = attString;
+//            NSInteger i = indexPath.item % _appNoticeList.count;
+//            AppNoticeListModel *model =_appNoticeList[i];
+//            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+1, model.title.length)];
+//            cell.labelMain.attributedText = attString;
             return cell;
 
         }
     else {
-            AppNoticeListModel *model =_appNoticeList[indexPath.item];
-            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+1, model.title.length)];
-            cell.labelMain.attributedText = attString;
+//            AppNoticeListModel *model =_appNoticeList[indexPath.item];
+//            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+1, model.title.length)];
+//            cell.labelMain.attributedText = attString;
             return cell;
 
 

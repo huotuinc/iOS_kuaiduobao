@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fly-K6-TFn">
                                 <rect key="frame" x="10" y="20" width="730" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="你没有参与本期夺宝哦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxQ-ev-4oG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="你没有参与本期夺宝哦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxQ-ev-4oG">
                                         <rect key="frame" x="10" y="0.0" width="710" height="69"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -30,6 +30,12 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YxQ-ev-4oG" secondAttribute="trailing" constant="10" id="OaY-iR-5sF"/>
+                                    <constraint firstItem="YxQ-ev-4oG" firstAttribute="leading" secondItem="fly-K6-TFn" secondAttribute="leading" constant="10" id="ac8-yi-5Ap"/>
+                                    <constraint firstAttribute="bottom" secondItem="YxQ-ev-4oG" secondAttribute="bottom" id="kSE-oe-meh"/>
+                                    <constraint firstItem="YxQ-ev-4oG" firstAttribute="top" secondItem="fly-K6-TFn" secondAttribute="top" id="rop-oh-fXA"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eaa-KJ-Lh3">
                                 <rect key="frame" x="40" y="20" width="42" height="69"/>
