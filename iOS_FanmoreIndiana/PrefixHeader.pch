@@ -67,7 +67,7 @@
 ///***服务器地址***/1.41
 //#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
 //#define MKMainUrl @"http://192.168.1.254:10001/duobao/app"
-#define MKMainUrl @"duobao.51flashmall.com:8091/app"
+//#define MKMainUrl @"duobao.51flashmall.com:8091/app"
 //#define MKMainUrl @"192.168.1.254:10001/app"
 
 
@@ -80,7 +80,7 @@
 #define HTYMRSCREAT @"4165a8d240b29af3f41818d10599d0d1"  //火图安全网络请求安全协议
 
 /**平台*/
-#define OPERATION_parame @"FANMORE2016AP"
+#define OPERATION_parame @"duobao2016AP"
 
 /**应用版本号*/
 #define AppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
@@ -99,7 +99,7 @@
 #define AppToken @"AppToken"
 
 
-/**************************/
+/*********用户属性*****************/
 #define CannelLoginFailure @"CannelLogin" //取消登陆
 #define UserInfo @"UserInfo"
 #define GlobalInfo @"GlobalInfo"
@@ -110,12 +110,18 @@
 #define Success @"Success" //成功
 #define Failure @"Failure" //失败
 
+/********通知消息**************/
 #define HaveNotReadMessage @"HaveNotReadMessage" //点击看消息发送通知
 
 #define payMoneySuccess @"payMoneySuccess"
 
 #define payMoneySuccessView @"payMoneySuccessView"//支付成功后刷新界面
 
+/*********商城******/
+#define PayTypeflat @"paytype" //支付数据存档
+#define HuoBanMallBuyAppId @"huotu686ad1fe2bd8a02ok" // app签名
+#define HuoBanMallBuyApp_Merchant_Id @"6987" //商户号
+#define WebSit @"WebSit" // 商城支付回调地址
 
 #ifdef DEBUG
 #define LWLog(...) NSLog(__VA_ARGS__)
