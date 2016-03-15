@@ -94,7 +94,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     
     self.tabBarController.tabBar.hidden = NO;
-    [self getHomeData];
+//    [self getHomeData];
 
 }
 
@@ -114,15 +114,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     // 创建操作队列
    
 
+    [self getHomeData];
 
-//    [self getAppSlideList];
+
+//    [self createHeadView];
 //    [self createMainCollectionView];
-//    [self getGoodsList];
-//    [self getAppNoticeList];
-    [self createHeadView];
-    [self createMainCollectionView];
-//    [self createBarButtonItem];
-//    [self createSearchView];
+
 }
 #pragma mark 获取数据 线程
 - (void)getHomeData {
@@ -697,7 +694,6 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                         cModel.issueId = joinModel.issueId;
                         cModel.userBuyAmount = joinModel.defaultAmount;
                         cModel.pricePercentAmount = joinModel.pricePercentAmount;
-
                         [localArray addObject:cModel];
                     }
                     //已进行

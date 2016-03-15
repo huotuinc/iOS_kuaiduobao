@@ -298,7 +298,7 @@
 //        [weakSelf popToHimeView];
 //    }];
     [GCDTimerManager cancelAllTimer];
-    _timerPopToHome = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(popToHimeView) userInfo:nil repeats:NO];
+//    _timerPopToHome = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(popToHimeView) userInfo:nil repeats:NO];
     
 
 }

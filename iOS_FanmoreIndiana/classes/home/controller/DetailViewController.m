@@ -461,7 +461,19 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
-        [_bottomView.buttonNext bk_whenTapped:^{
+        [_bottomView.buttonGo bk_whenTapped:^{
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+                self.issueId = _detailModel.issueId;
+                [self joinShoppingCart];
+            }else{
+#pragma mark 加入购物车 未登陆
+                
+            }
+        }];
+        
+        [_bottomView.buttonAdd bk_whenTapped:^{
         NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
         if ([login isEqualToString:Success]) {
 #pragma mark 加入购物车 已登陆
@@ -536,31 +548,8 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
         }
         }];
-//        [_bottomView.buttonAdd bk_whenTapped:^{
-////            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-////            if ([login isEqualToString:Success]) {
-////#pragma mark 加入购物车 已登陆
-////                self.issueId = _detailModel.issueId;
-////                [self joinShoppingCart];
-////            }else{
-////#pragma mark 加入购物车 未登陆
-////                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-////
-////            }
-//            [self createSelectView];
-//        }];
-//        [_bottomView.buttonGo bk_whenTapped:^{
-//            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-//            if ([login isEqualToString:Success]) {
-//#pragma mark 加入购物车 已登陆
-//                self.issueId = _detailModel.issueId;
-//                [self joinShoppingCart];
-//            }else{
-//#pragma mark 加入购物车 未登陆
-//                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-//                
-//            }
-//        }];
+
+
 //        _bottomView.imageVShop.userInteractionEnabled = YES;
 //        [_bottomView.imageVShop bk_whenTapped:^{
 //            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
