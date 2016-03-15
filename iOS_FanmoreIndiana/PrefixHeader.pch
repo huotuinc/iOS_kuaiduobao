@@ -82,7 +82,7 @@
 #define HTYMRSCREAT @"4165a8d240b29af3f41818d10599d0d1"  //火图安全网络请求安全协议
 
 /**平台*/
-#define OPERATION_parame @"FANMORE2016AP"
+#define OPERATION_parame @"duobao2016AP"
 
 /**应用版本号*/
 #define AppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
@@ -101,7 +101,7 @@
 #define AppToken @"AppToken"
 
 
-/**************************/
+/*********用户属性*****************/
 #define CannelLoginFailure @"CannelLogin" //取消登陆
 #define UserInfo @"UserInfo"
 #define GlobalInfo @"GlobalInfo"
@@ -112,6 +112,7 @@
 #define Success @"Success" //成功
 #define Failure @"Failure" //失败
 
+/********通知消息**************/
 #define HaveNotReadMessage @"HaveNotReadMessage" //点击看消息发送通知
 
 #define payMoneySuccess @"payMoneySuccess"
