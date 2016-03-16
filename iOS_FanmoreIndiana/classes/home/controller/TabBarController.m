@@ -35,18 +35,18 @@
     if (item.tag == 3) {
         
 
-        HomeViewController *home = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-        home.homeUrl = @"http://www.baidu.com";
-        home.buttomUrl = @"http://www.baidu.com";
-        
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:home];
-//
-        [self presentViewController:nav animated:YES completion:nil];
-//        [UserLoginTool loginRequestGet:@"getMallUrl" parame:nil success:^(id json) {
-//            LWLog(@"%@", json);
-//        } failure:^(NSError *error) {
-//            LWLog(@"%@", error);
-//        }];
+//        HomeViewController *home = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+//        home.homeUrl = @"http://www.baidu.com";
+//        home.buttomUrl = @"http://www.baidu.com";
+//        
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:home];
+////
+//        [self presentViewController:nav animated:YES completion:nil];
+        [UserLoginTool loginRequestGet:@"getMallLoginUrl" parame:nil success:^(id json) {
+            LWLog(@"%@", json);
+        } failure:^(NSError *error) {
+            LWLog(@"%@", error);
+        }];
        
     }
 }

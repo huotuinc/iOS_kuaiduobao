@@ -149,6 +149,8 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             AppShareModel *model = [AppShareModel mj_objectWithKeyValues:json[@"resultData"][@"share"]];
             [self goShare:model];
+        }else if ([json[@"resultCode"] intValue]== 500) {
+            
         }else {
             [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
         }

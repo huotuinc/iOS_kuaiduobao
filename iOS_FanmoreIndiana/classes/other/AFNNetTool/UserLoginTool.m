@@ -97,5 +97,19 @@
 }
 
 
++ (void)ordorRequestGet:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure {
+    MKNetworkEngine *engine = [[MKNetworkEngine alloc] initWithHostName:nil customHeaderFields:nil];
+    
+    MKNetworkOperation *op = [engine operationWithPath:urlStr params:params httpMethod:@"GET"];
+    
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        success(completedOperation.responseJSON);
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        failure(error);
+    }];
+    
+    [engine enqueueOperation:op];
+}
+
 
 @end
