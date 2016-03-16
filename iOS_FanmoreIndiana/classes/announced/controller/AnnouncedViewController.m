@@ -93,7 +93,6 @@ static NSString *cellABMain=@"cellABMain";
             
             LWLog(@"%@",json[@"resultDescription"]);
             NSArray *temp = [AppNewOpenListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
             [self.openList removeAllObjects];
             [self.openList addObjectsFromArray:temp];
             for (int i = 0; i < _openList.count; i++) {

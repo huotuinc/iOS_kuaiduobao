@@ -27,16 +27,20 @@
 #import "DetailCalculateViewController.h"
 #import "DetailGoodsSelectCView.h"
 #import "CartModel.h"
+#import "ArchiveLocalData.h"
+#import "CircleBannerView.h"
 
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 static NSString * cellDFirst=@"cellDFirst";
 static BOOL isExist = NO;//用于判断归档时有无该对象
-@interface DetailViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface DetailViewController ()<CircleBannerViewDelegate,UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIView * headView;
 @property (strong, nonatomic) UITableView * tableView;
-@property (strong, nonatomic)  DCPicScrollView *headScrollView;//头部视图-轮播视图
+//@property (strong, nonatomic)  DCPicScrollView *headScrollView;//头部视图-轮播视图
+@property (strong, nonatomic)  CircleBannerView *headScrollView;//头部视图-轮播视图
+
 @property (strong, nonatomic) UIView * titleView;//标题视图
 @property (strong, nonatomic) DetailProgressCView * progressView;//进度视图
 @property (strong, nonatomic) DetailAttendCountCView * countView;//参加次数视图
@@ -261,12 +265,17 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     if (num == 2) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight +3)];
         
-        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
-        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
-            printf("第%zd张图片\n",index);
-        }];
+        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+            _headScrollView.interval = 0.f;
+        _headScrollView.delegate =self;
+        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
+//        
+//        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
+//        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
+//            printf("第%zd张图片\n",index);
+//        }];
         //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 0.0f;
+//        _headScrollView.AutoScrollDelay = 0.0f;
         //3为间隔
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
@@ -327,12 +336,17 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     if (num == 1) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
         
-        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
-        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
-            printf("第%zd张图片\n",index);
-        }];
-        //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 0.0f;
+        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+        _headScrollView.interval = 0.f;
+        _headScrollView.delegate =self;
+
+        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
+//        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
+//        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
+//            printf("第%zd张图片\n",index);
+//        }];
+//        //default is 2.0f,如果小于0.5不自动播放
+//        _headScrollView.AutoScrollDelay = 0.0f;
         
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390) + 3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
@@ -390,12 +404,17 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     if (num == 0) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
         
-        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
-        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
-            printf("第%zd张图片\n",index);
-        }];
-        //default is 2.0f,如果小于0.5不自动播放
-        _headScrollView.AutoScrollDelay = 0.0f;
+        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+        _headScrollView.interval = 0.f;
+        _headScrollView.delegate =self;
+
+        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
+//        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
+//        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
+//            printf("第%zd张图片\n",index);
+//        }];
+//        //default is 2.0f,如果小于0.5不自动播放
+//        _headScrollView.AutoScrollDelay = 0.0f;
         
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
@@ -461,19 +480,8 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
+        //立刻去购物车
         [_bottomView.buttonGo bk_whenTapped:^{
-            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-            if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
-                self.issueId = _detailModel.issueId;
-                [self joinShoppingCart];
-            }else{
-#pragma mark 加入购物车 未登陆
-                
-            }
-        }];
-        
-        [_bottomView.buttonAdd bk_whenTapped:^{
         NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
         if ([login isEqualToString:Success]) {
 #pragma mark 加入购物车 已登陆
@@ -481,88 +489,30 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [self joinShoppingCart];
         }else{
 #pragma mark 加入购物车 未登陆
-            NSMutableArray *localArray = [NSMutableArray array];
-            //                    localArray =nil;
-            //未进行归档
-            if ([self getLocalDataArray] == nil) {
-                CartModel *cModel = [[CartModel alloc] init];
-                cModel.areaAmount = _joinModel.areaAmount;
-                cModel.attendAmount = _joinModel.attendAmount;
-                cModel.isSelect = _joinModel.isSelect;
-                cModel.pictureUrl = _joinModel.pictureUrl;
-                cModel.remainAmount = _joinModel.remainAmount;
-                cModel.sid = _joinModel.sid;
-                cModel.stepAmount = _joinModel.stepAmount;
-                cModel.title = _joinModel.title;
-                cModel.toAmount = _joinModel.toAmount;
-                cModel.issueId = _joinModel.issueId;
-                cModel.userBuyAmount = _joinModel.defaultAmount;
-                cModel.pricePercentAmount = _joinModel.pricePercentAmount;
-                
-                [localArray addObject:cModel];
-            }
-            //已进行
-            else{
-                localArray =[NSMutableArray arrayWithArray:[self getLocalDataArray]];
-                //查看本地是否已有这期商品
-                for (int i =0; i<localArray.count; i++) {
-                    CartModel *cModel = localArray[i];
-                    //有
-                    if ([cModel.issueId isEqualToNumber:_joinModel.issueId ]) {
-                        NSInteger prcie;
-                        prcie = [_joinModel.buyAmount integerValue] + [_joinModel.stepAmount integerValue];
-                        cModel.userBuyAmount = [NSNumber numberWithInteger:prcie];
-                        isExist = YES;
-                    }
-                }
-                if (!isExist) {
-                    CartModel *cModel = [[CartModel alloc] init];
-                    cModel.areaAmount = _joinModel.areaAmount;
-                    cModel.attendAmount = _joinModel.attendAmount;
-                    cModel.userBuyAmount = _joinModel.defaultAmount;
-                    cModel.isSelect = _joinModel.isSelect;
-                    cModel.pictureUrl = _joinModel.pictureUrl;
-                    cModel.remainAmount = _joinModel.remainAmount;
-                    cModel.sid = _joinModel.sid;
-                    cModel.stepAmount = _joinModel.stepAmount;
-                    cModel.title = _joinModel.title;
-                    cModel.toAmount = _joinModel.toAmount;
-                    cModel.issueId = _joinModel.issueId;
-                    cModel.pricePercentAmount = _joinModel.pricePercentAmount;
-                    
-                    [localArray addObject:cModel];
-                    isExist = NO;
-                }
-            }
-            NSMutableData *data = [[NSMutableData alloc] init];
-            //创建归档辅助类
-            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-            //编码
-            [archiver encodeObject:localArray forKey:LOCALCART];
-            //结束编码
-            [archiver finishEncoding];
-            NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
-            //写入
-            [data writeToFile:filename atomically:YES];
-            [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+            [ArchiveLocalData archiveLocalDataArrayWithModel:_joinModel];
         }
+            [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }];
+        [_bottomView.buttonAdd bk_whenTapped:^{
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+                self.issueId = _detailModel.issueId;
+                [self joinShoppingCart];
+            }else{
+#pragma mark 加入购物车 未登陆
+                [ArchiveLocalData archiveLocalDataArrayWithModel:_joinModel];
+                [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
 
-
-//        _bottomView.imageVShop.userInteractionEnabled = YES;
-//        [_bottomView.imageVShop bk_whenTapped:^{
-//            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-//            if ([login isEqualToString:Success]) {
-//#pragma mark 加入购物车 已登陆
-//                self.issueId = _detailModel.issueId;
-//                [self joinShoppingCart];
-//            }else{
-//#pragma mark 加入购物车 未登陆
-//                [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-//                
-//            }
-//        }];
+            }
+            [self createSelectView];
+        }];
+        _bottomView.imageVShop.userInteractionEnabled = YES;
+        [_bottomView.imageVShop bk_whenTapped:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
         [self.view addSubview:_bottomView];
     }else{
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomDoneCView" owner:nil options:nil];
@@ -839,7 +789,11 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     NSArray *namesArray = [unArchiver decodeObjectForKey:LOCALCART];
     return namesArray;
 }
-
+#pragma mark 轮播
+//加载图片的代理，你自己想 怎么加载 就怎么加载
+- (void)imageView:(UIImageView *)imageView loadImageForUrl:(NSString *)url{
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url] ];
+}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

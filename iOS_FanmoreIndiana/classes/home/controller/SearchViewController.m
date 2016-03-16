@@ -11,6 +11,7 @@
 #import "TenTableViewCell.h"
 #import "DetailViewController.h"
 #import "CartModel.h"
+#import "ArchiveLocalData.h"
 static NSString *cellSearch= @"cellSearch";
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface SearchViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -189,73 +190,8 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [self joinShoppingCart];
         }else{
 #pragma mark 加入购物车 未登陆
-            NSMutableArray *localArray = [NSMutableArray array];
-            //                    localArray =nil;
-            //未进行归档
-            if ([self getLocalDataArray] == nil) {
-                CartModel *cModel = [[CartModel alloc] init];
-                cModel.areaAmount = joinModel.areaAmount;
-                cModel.attendAmount = joinModel.attendAmount;
-                cModel.isSelect = joinModel.isSelect;
-                cModel.pictureUrl = joinModel.pictureUrl;
-                cModel.remainAmount = joinModel.remainAmount;
-                cModel.sid = joinModel.sid;
-                cModel.stepAmount = joinModel.stepAmount;
-                cModel.title = joinModel.title;
-                cModel.toAmount = joinModel.toAmount;
-                cModel.issueId = joinModel.issueId;
-                cModel.userBuyAmount = joinModel.defaultAmount;
-                cModel.pricePercentAmount = joinModel.pricePercentAmount;
-                
-                [localArray addObject:cModel];
-            }
-            //已进行
-            else{
-                localArray =[NSMutableArray arrayWithArray:[self getLocalDataArray]];
-                //查看本地是否已有这期商品
-                for (int i =0; i<localArray.count; i++) {
-                    CartModel *cModel = localArray[i];
-                    //有
-                    if ([cModel.issueId isEqualToNumber:joinModel.issueId ]) {
-                        NSInteger prcie;
-                        prcie = [model.buyAmount integerValue] + [joinModel.stepAmount integerValue];
-                        cModel.userBuyAmount = [NSNumber numberWithInteger:prcie];
-                        isExist = YES;
-                    }
-                }
-                if (!isExist) {
-                    CartModel *cModel = [[CartModel alloc] init];
-                    cModel.areaAmount = joinModel.areaAmount;
-                    cModel.attendAmount = joinModel.attendAmount;
-                    cModel.userBuyAmount = joinModel.defaultAmount;
-                    cModel.isSelect = joinModel.isSelect;
-                    cModel.pictureUrl = joinModel.pictureUrl;
-                    cModel.remainAmount = joinModel.remainAmount;
-                    cModel.sid = joinModel.sid;
-                    cModel.stepAmount = joinModel.stepAmount;
-                    cModel.title = joinModel.title;
-                    cModel.toAmount = joinModel.toAmount;
-                    cModel.issueId = joinModel.issueId;
-                    cModel.pricePercentAmount = joinModel.pricePercentAmount;
-                    
-                    [localArray addObject:cModel];
-                    isExist = NO;
-                }
-            }
-            NSMutableData *data = [[NSMutableData alloc] init];
-            //创建归档辅助类
-            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-            //编码
-            [archiver encodeObject:localArray forKey:LOCALCART];
-            //结束编码
-            [archiver finishEncoding];
-            NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
-            //写入
-            [data writeToFile:filename atomically:YES];
+            [ArchiveLocalData archiveLocalDataArrayWithModel:joinModel];
             [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
-            
-
         }
     }];
 
