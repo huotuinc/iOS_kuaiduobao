@@ -1387,10 +1387,10 @@
             </objects>
             <point key="canvasLocation" x="-88" y="2515"/>
         </scene>
-        <!--View Controller-->
+        <!--Mall View Controller-->
         <scene sceneID="w0M-DG-4CK">
             <objects>
-                <viewController id="wtW-TE-jC9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MallViewController" id="wtW-TE-jC9" customClass="MallViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f7Z-Ao-oIk"/>
                         <viewControllerLayoutGuide type="bottom" id="wVH-gp-H7f"/>

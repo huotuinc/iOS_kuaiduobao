@@ -487,7 +487,7 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[num doubleValue]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[num doubleValue] / 1000];
     return [formatter stringFromDate:date];
 }
 

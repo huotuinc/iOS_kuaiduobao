@@ -129,6 +129,7 @@
             dic[@"head"] = user.icon;
             dic[@"type"] = @"2";
             
+            
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
                 if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {

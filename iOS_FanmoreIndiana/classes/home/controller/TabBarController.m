@@ -8,6 +8,7 @@
 
 #import "TabBarController.h"
 #import "HomeViewController.h"
+#import "LoginController.h"
 
 @interface TabBarController ()<UITabBarDelegate>
 
@@ -32,24 +33,28 @@
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    if (item.tag == 3) {
-        
-
-//        HomeViewController *home = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-//        home.homeUrl = @"http://www.baidu.com";
-//        home.buttomUrl = @"http://www.baidu.com";
+//    if (item.tag == 3) {
 //        
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:home];
+//        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//        if (![login isEqualToString:Success]) {
+//            
+//            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+//            [self presentViewController:nav animated:YES completion:nil];
+//            
+//        }else {
+//            
+//            [self gotoMall];
+//            
+//        }
+//
 ////
-//        [self presentViewController:nav animated:YES completion:nil];
-        [UserLoginTool loginRequestGet:@"getMallLoginUrl" parame:nil success:^(id json) {
-            LWLog(@"%@", json);
-        } failure:^(NSError *error) {
-            LWLog(@"%@", error);
-        }];
-       
-    }
+//       
+//    }
 }
+
+
 
 
 /*

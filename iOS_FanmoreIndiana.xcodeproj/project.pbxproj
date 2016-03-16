@@ -94,6 +94,7 @@
 		609D10911C97F67D009412E9 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D10901C97F67D009412E9 /* MessageTableViewCell.m */; };
 		609D10961C97F6D2009412E9 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D10931C97F6D2009412E9 /* Message.m */; };
 		609D10971C97F6D2009412E9 /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D10951C97F6D2009412E9 /* MessageFrame.m */; };
+		609D109A1C994CCA009412E9 /* MallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D10991C994CCA009412E9 /* MallViewController.m */; };
 		60A1FB891C5080AD00F8DC4F /* RegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */; };
 		60A1FB8C1C5083DE00F8DC4F /* RegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A1FB8B1C5083DE00F8DC4F /* RegisterSecondController.m */; };
 		60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AF18EF1C5DAFFB0002388D /* WinningController.m */; };
@@ -522,6 +523,8 @@
 		609D10931C97F6D2009412E9 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		609D10941C97F6D2009412E9 /* MessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFrame.h; sourceTree = "<group>"; };
 		609D10951C97F6D2009412E9 /* MessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFrame.m; sourceTree = "<group>"; };
+		609D10981C994CCA009412E9 /* MallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallViewController.h; sourceTree = "<group>"; };
+		609D10991C994CCA009412E9 /* MallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallViewController.m; sourceTree = "<group>"; };
 		60A1FB871C5080AD00F8DC4F /* RegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterFirstController.h; sourceTree = "<group>"; };
 		60A1FB881C5080AD00F8DC4F /* RegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterFirstController.m; sourceTree = "<group>"; };
 		60A1FB8A1C5083DE00F8DC4F /* RegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSecondController.h; sourceTree = "<group>"; };
@@ -1477,6 +1480,8 @@
 				60C109821C96AFC60025CE94 /* HomeViewController.h */,
 				60C109831C96AFC60025CE94 /* HomeViewController.m */,
 				60C109841C96AFC60025CE94 /* View */,
+				609D10981C994CCA009412E9 /* MallViewController.h */,
+				609D10991C994CCA009412E9 /* MallViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2185,6 +2190,7 @@
 				F2C426461C88246D00C9CEF0 /* ListNumberHeadCView.m in Sources */,
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
 				604926271C5EF3590092D231 /* RechargeController.m in Sources */,
+				609D109A1C994CCA009412E9 /* MallViewController.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,
 				6031C53C1C4C89B900D6B567 /* HomeController.m in Sources */,
 				F24119651C74440300C2B07E /* AppShareListModel.m in Sources */,
