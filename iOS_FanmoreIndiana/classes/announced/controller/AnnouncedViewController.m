@@ -36,6 +36,9 @@ static NSString *cellABMain=@"cellABMain";
     self.view.backgroundColor=COLOR_BACK_MAIN;
     [self.navigationItem changeNavgationBarTitle:@"最新揭晓"];
     
+    
+    [self getOpenList ];
+    [self createTimer];
 }
 
 - (void)viewDidLoad {
@@ -43,8 +46,7 @@ static NSString *cellABMain=@"cellABMain";
     // Do any additional setup after loading the view.
     _openList=[NSMutableArray array];
 
-    [self getOpenList ];
-    [self createTimer];
+
 }
 
 
@@ -93,7 +95,6 @@ static NSString *cellABMain=@"cellABMain";
             
             LWLog(@"%@",json[@"resultDescription"]);
             NSArray *temp = [AppNewOpenListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
             [self.openList removeAllObjects];
             [self.openList addObjectsFromArray:temp];
             for (int i = 0; i < _openList.count; i++) {
@@ -146,13 +147,17 @@ static NSString *cellABMain=@"cellABMain";
             
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
-
-            [_collectionView reloadData];
+            if (temp.count == 0) {
+                return ;
+            }else {
+                [_collectionView reloadData];
+            }
         }
-        [_collectionView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
         LWLog (@"%@",error);
     }];
+    [_collectionView.mj_footer endRefreshing];
+
     
 }
 
@@ -176,22 +181,26 @@ static NSString *cellABMain=@"cellABMain";
 
 - (void)createCollectionView
 {
+    if (!_collectionView) {
+        XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc]init];
+        flowLayout.naviHeight=0;
+        flowLayout.minimumInteritemSpacing = 0.5;
+        flowLayout.minimumLineSpacing = 1;
+        
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:flowLayout];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.backgroundColor = COLOR_BACK_MAIN;
+        [_collectionView registerNib:[UINib nibWithNibName:@"AnnouncedCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellAMain];
+        [_collectionView registerNib:[UINib nibWithNibName:@"AnnouncedBCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellABMain];
+        
+        [self.view addSubview:_collectionView];
+        [self setupRefresh];
+    }else {
+        return;
+    }
     
-    XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc]init];
-    flowLayout.naviHeight=0;
-    flowLayout.minimumInteritemSpacing = 0.5;
-    flowLayout.minimumLineSpacing = 1;
-
-
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:flowLayout];
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    _collectionView.backgroundColor = COLOR_BACK_MAIN;
-    [_collectionView registerNib:[UINib nibWithNibName:@"AnnouncedCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellAMain];
-    [_collectionView registerNib:[UINib nibWithNibName:@"AnnouncedBCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellABMain];
-
-    [self.view addSubview:_collectionView];
-    [self setupRefresh];
     
 }
 
@@ -255,6 +264,7 @@ static NSString *cellABMain=@"cellABMain";
 }
 
 
+
 //-(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
 ////    AppNewOpenListModel * model = _openList[indexPath.item];
 ////    if ([model.status  integerValue] == 1) {
@@ -264,6 +274,8 @@ static NSString *cellABMain=@"cellABMain";
 ////
 //}
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    LWLog(@"Item ------ %ld",indexPath.item);
+    LWLog(@"openList ----- %@",_openList);
     DetailViewController *detail=[[DetailViewController alloc]init];
     AppNewOpenListModel *model = _openList[indexPath.item];
     detail.issueId=model.issueId;
@@ -279,6 +291,12 @@ static NSString *cellABMain=@"cellABMain";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.openList removeAllObjects];
+}
+
+- (void)dealloc {
+
+    [self.m_timer invalidate];//是唯一的方法将定时器从循环池中移除
+    self.m_timer=nil;//同时置空
 }
 
 /*

@@ -23,18 +23,18 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b7l-sz-mrA">
-                                <rect key="frame" x="0.0" y="239" width="490" height="42"/>
+                                <rect key="frame" x="0.0" y="279" width="490" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还没有咻到红包" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJ5-8V-0HZ">
                                         <rect key="frame" x="177" y="0.0" width="136" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="听说连刷更容易出红包哦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nv7-l1-BAr">
                                         <rect key="frame" x="152" y="21" width="187" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -61,7 +61,7 @@
                         <constraints>
                             <constraint firstItem="dPs-b6-kR4" firstAttribute="top" secondItem="mDH-N1-xJX" secondAttribute="top" id="169-zG-OEY"/>
                             <constraint firstItem="0el-Hu-L3a" firstAttribute="centerX" secondItem="mDH-N1-xJX" secondAttribute="centerX" id="2Is-m1-iO4"/>
-                            <constraint firstItem="b7l-sz-mrA" firstAttribute="centerY" secondItem="0el-Hu-L3a" secondAttribute="centerY" multiplier="260:355" id="5IK-Z9-3UF"/>
+                            <constraint firstItem="b7l-sz-mrA" firstAttribute="centerY" secondItem="0el-Hu-L3a" secondAttribute="centerY" multiplier="300:355" id="5IK-Z9-3UF"/>
                             <constraint firstItem="0el-Hu-L3a" firstAttribute="centerY" secondItem="mDH-N1-xJX" secondAttribute="centerY" id="5Kr-eS-EY3"/>
                             <constraint firstAttribute="trailing" secondItem="0el-Hu-L3a" secondAttribute="trailing" id="83j-Xy-TI1"/>
                             <constraint firstItem="q7a-pZ-l8R" firstAttribute="centerX" secondItem="mDH-N1-xJX" secondAttribute="centerX" id="9Sk-5d-hHy"/>

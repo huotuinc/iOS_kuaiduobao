@@ -11,6 +11,6 @@
 @interface AppWinningInfoModel : NSObject
 @property (nonatomic, strong) NSNumber *userId;;
 @property (nonatomic, copy) NSString *winningInfo;
-@property (nonatomic, strong) NSNumber *rId;
+@property (nonatomic, strong) NSNumber *rid;
 
 @end

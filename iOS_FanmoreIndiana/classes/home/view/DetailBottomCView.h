@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonAdd;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVShop;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVLine;
-@property (weak, nonatomic) IBOutlet UIButton *buttonNext;
+
 
 @end

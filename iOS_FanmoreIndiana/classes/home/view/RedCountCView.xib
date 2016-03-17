@@ -148,7 +148,7 @@
                 <outlet property="labelD" destination="8Ve-d5-U4D" id="2sf-wO-YYX"/>
                 <outlet property="labelE" destination="cuA-LP-adP" id="0F3-zy-ijM"/>
                 <outlet property="labelF" destination="i6t-Aj-RsV" id="KjD-8U-ldS"/>
-                <outlet property="labelTime" destination="rh2-0V-kGE" id="gr0-9h-HWk"/>
+                <outlet property="labelTimeA" destination="rh2-0V-kGE" id="Cfa-fr-ULk"/>
             </connections>
             <point key="canvasLocation" x="74" y="327"/>
         </tableViewCell>

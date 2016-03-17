@@ -17,108 +17,104 @@
     return model;
 }
 //等待倒计时
-- (void)countDownWait {
+- (void)WaitCountDown {
     
     
     _startTime -= 1;
 }
 //结束倒计时
-- (void)countDownEnd {
+- (void)EndCountDown {
     
     
     _endTime -= 1;
 }
 //
 
-- (NSAttributedString *)currentTimeStringWait{
-    NSUInteger hour = (NSUInteger)(_startTime / 3600);
-    NSUInteger min  = (NSUInteger)((_startTime - hour * 3600)/60);
+//等待倒计时
+- (NSAttributedString *)WaitCurrentTimeString{
+    NSUInteger Ahour = (NSUInteger)(_startTime / 3600);
+    NSUInteger Amin  = (NSUInteger)(_startTime % 3600 / 60);
+    NSUInteger Asecond = (NSUInteger)(_startTime % 60);
     
-    NSString *hourString=[NSString string];
-    NSString *minString=[NSString string];
     
-    if (hour < 10) {
-        hourString =[NSString stringWithFormat:@"0%ld",(long)hour];
+    NSString *AhourString=[NSString string];
+    NSString *AminString=[NSString string];
+    NSString *AsecondString=[NSString string];
+
+    if (Ahour < 10) {
+        AhourString =[NSString stringWithFormat:@"0%ld",(long)Ahour];
     }else{
-        minString=[NSString stringWithFormat:@"%ld",(long)hour];
+        AhourString=[NSString stringWithFormat:@"%ld",(long)Ahour];
     }
-    if (min < 10) {
-        minString =[NSString stringWithFormat:@"0%ld",(long)min];
+    if (Amin < 10) {
+        AminString =[NSString stringWithFormat:@"0%ld",(long)Amin];
     }else{
-        minString=[NSString stringWithFormat:@"%ld",(long)min];
+        AminString=[NSString stringWithFormat:@"%ld",(long)Amin];
+    }
+    if (Asecond < 10) {
+        AsecondString =[NSString stringWithFormat:@"0%ld",(long)Asecond];
+    }else{
+        AsecondString=[NSString stringWithFormat:@"%ld",(long)Asecond];
     }
 
     if (_startTime  <= 0) {
         NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"本期活动已开始"]];
         [attString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:FONT_SIZE(70)] range:NSMakeRange(0, 7)];
-//        [attString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:FONT_SIZE(70)] range:NSMakeRange(4, 2)];
         return attString;
         
+    } else if (Amin >= 1){
+        NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 小时%@ 分",AhourString,AminString]];
+        [attString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:FONT_SIZE(70)] range:NSMakeRange(0, AhourString.length)];
+        NSInteger strat = [NSString stringWithFormat:@"%@",AhourString].length + 3 ;
+        [attString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:FONT_SIZE(70)] range:NSMakeRange(strat, AminString.length)];
+        return attString;
     } else {
-
-        NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 小时%@ 分",hourString,minString]];
-        [attString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:FONT_SIZE(70)] range:NSMakeRange(0, [NSString stringWithFormat:@"%@",hourString].length)];
-        NSInteger strat = [NSString stringWithFormat:@"%@",hourString].length + 3 ;
-        [attString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:FONT_SIZE(70)] range:NSMakeRange(strat, [NSString stringWithFormat:@"%@",minString].length)];
+        NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@秒",AsecondString]];
+        [attString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:FONT_SIZE(70)] range:NSMakeRange(0, AsecondString.length)];
         return attString;
     }
 }
 
-- (NSString *)currentTimeStringEnd{
-    NSUInteger hour = (NSUInteger)(_endTime / 3600);
-    NSUInteger min  = (NSUInteger)((_endTime - hour * 3600)/60);
-    
-    NSString *hourString=[NSString string];
-    NSString *minString=[NSString string];
-    
-    if (hour < 10) {
-        hourString =[NSString stringWithFormat:@"0%ld",(long)hour];
+//开始倒计时
+- (NSString *)EndCurrentTimeString{
+    NSUInteger Bhour = (NSUInteger)(_endTime / 3600);
+    NSUInteger Bmin  = (NSUInteger)(_endTime % 3600 / 60);
+    NSUInteger Bsecond = (NSUInteger)(_endTime % 60);
+    NSString *BhourString=[NSString string];
+    NSString *BminString=[NSString string];
+    NSString *BsecondString=[NSString string];
+
+    if (Bhour < 10) {
+        BhourString =[NSString stringWithFormat:@"0%ld",(long)Bhour];
     }else{
-        minString=[NSString stringWithFormat:@"%ld",(long)hour];
+        BhourString=[NSString stringWithFormat:@"%ld",(long)Bhour];
     }
-    if (min < 10) {
-        minString =[NSString stringWithFormat:@"0%ld",(long)min];
+    if (Bmin < 10) {
+        BminString =[NSString stringWithFormat:@"0%ld",(long)Bmin];
     }else{
-        minString=[NSString stringWithFormat:@"%ld",(long)min];
+        BminString=[NSString stringWithFormat:@"%ld",(long)Bmin];
+    }
+    if (Bsecond < 10) {
+        BsecondString =[NSString stringWithFormat:@"0%ld",(long)Bsecond];
+    }else{
+        BsecondString=[NSString stringWithFormat:@"%ld",(long)Bsecond];
     }
     
-    if (_startTime  <= 0) {
-        NSString * timeString = @"本期活动已结束";
-        return timeString;
+    if (_endTime  <= 0) {
+        NSString * BtimeString = @"本期活动已结束";
+        return BtimeString;
         
-    } else {
-        NSString * timeString = [NSString stringWithFormat:@"距离结束还有%@:%@分钟",hourString,minString];
-        return timeString;
+    }else if (Bmin >= 1)
+    {
+        NSString * BtimeString = [NSString stringWithFormat:@"距离结束还有%@:%@分钟",BhourString,BminString];
+        return BtimeString;
+    }else {
+        NSString * BtimeString = [NSString stringWithFormat:@"距离结束还有%@秒",BsecondString];
+        return BtimeString;
+    
     }
 }
-//- (void) defaultConfig {
-//    [self registerNSNotificationCenter];
-//}
 
-//#pragma mark - 通知中心
-//- (void)registerNSNotificationCenter {
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(AnotificationCenterEvent:)
-//                                                 name:NOTIFICATION_RED0_WAIT
-//                                               object:nil];
-//}
-//
-//
-//- (void)dealloc {
-//    
-//    [self removeNSNotificationCenter];
-//}
-//
-//- (void)removeNSNotificationCenter {
-//    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_RED_END object:nil];
-//}
-//
-//- (void)AnotificationCenterEvent:(id)sender {
-//    
-//    [self loadData:self.m_data];
-//}
 
 
 @end

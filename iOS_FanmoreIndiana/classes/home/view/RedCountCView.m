@@ -14,7 +14,7 @@
     // Initialization code
     [UILabel changeLabel:_labelAA AndFont:30 AndColor:COLOR_PROGRESS_A];[UILabel changeLabel:_labelAA AndFont:30 AndColor:COLOR_PROGRESS_A];
     [UILabel changeLabel:_labelBB AndFont:30 AndColor:COLOR_PROGRESS_A];
-    [UILabel changeLabel:_labelTime AndFont:30 AndColor:COLOR_PROGRESS_A];
+    [UILabel changeLabel:_labelTimeA AndFont:30 AndColor:COLOR_PROGRESS_A];
     
     for (int i = 0 ; i<6; i++) {
         UILabel *label = [self viewWithTag:100 +i];
@@ -44,8 +44,7 @@
     
 }
 
-- (void)loadData:(id)data{
-    
+- (void)loadCountData:(id)data {
     if ([data isMemberOfClass:[AppRedPactketsDistributeSourceModel class]]) {
         
         [self storeWeakValueWithData:data];
@@ -65,21 +64,24 @@
         _labelE.text = [NSString stringWithFormat:@"%ld",E];
         _labelF.text = [NSString stringWithFormat:@"%ld",F];
 
-        _labelTime.text = [model currentTimeStringEnd];
-        LWLog(@"%@",_labelTime.text);
+        _labelTimeA.text = [model EndCurrentTimeString];
+        if ([_labelTimeA.text isEqualToString:@"本期活动已结束"]) {
+            LWLog(@"结束啦啦啦啦啦啦啦啦啦啦");
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ACTIVITY_END object:nil];
+        }
     }
     
 }
 - (void)storeWeakValueWithData:(id)data{
     
-    self.m_data         = data;
+    self.m_dataA         = data;
 }
 
 #pragma mark - 通知中心
 - (void)registerNSNotificationCenter {
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(AnotificationCenterEvent:)
+                                             selector:@selector(EndAnotificationCenterEvent:)
                                                  name:NOTIFICATION_RED_END
                                                object:nil];
 }
@@ -95,9 +97,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_RED_END object:nil];
 }
 
-- (void)AnotificationCenterEvent:(id)sender {
+- (void)EndAnotificationCenterEvent:(id)sender {
     
-    [self loadData:self.m_data];
+    [self loadCountData:self.m_dataA];
 }
 
 @end

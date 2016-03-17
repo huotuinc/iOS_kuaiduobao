@@ -145,7 +145,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="92h-nQ-Spo" firstAttribute="top" secondItem="Cov-gc-e3q" secondAttribute="top" id="8Yj-ha-adK"/>
                             <constraint firstItem="diQ-Fy-Xll" firstAttribute="leading" secondItem="92h-nQ-Spo" secondAttribute="trailing" id="Gfm-TG-F6V"/>

@@ -11,7 +11,7 @@
 //100 label tag 100 - 105
 @interface RedCountCView : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *labelTime;
+@property (weak, nonatomic) IBOutlet UILabel *labelTimeA;
 @property (weak, nonatomic) IBOutlet UILabel *labelAA;
 @property (weak, nonatomic) IBOutlet UILabel *labelBB;
 @property (weak, nonatomic) IBOutlet UILabel *labelA;
@@ -22,11 +22,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelF;
 
 
-@property (nonatomic, weak)   id           m_data;
+@property (nonatomic, weak)   id           m_dataA;
 
 // 获取table view cell 的indexPath
 
-@property (nonatomic)       BOOL         m_isDisplayed;
+@property (nonatomic)       BOOL         m_isDisplayedA;
 
 /**
  *  == [子类可以重写] ==
@@ -50,6 +50,6 @@
  *  @param data      数据
  *  @param indexPath 数据编号
  */
-- (void)loadData:(id)data;
+- (void)loadCountData:(id)data;
 
 @end

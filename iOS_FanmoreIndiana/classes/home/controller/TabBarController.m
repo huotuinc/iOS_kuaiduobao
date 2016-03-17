@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cannelLogin) name:CannelLoginFailure object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToList) name:GOTOLISTIMMEDIATELY object:nil];
 
 }
 
@@ -30,6 +31,10 @@
 
 - (void)cannelLogin {
     self.selectedIndex = 0;
+}
+
+- (void)goToList {
+    self.selectedIndex = 2;
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {

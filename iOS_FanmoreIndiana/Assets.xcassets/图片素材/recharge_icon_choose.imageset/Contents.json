@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "zhuanqu_b.png",
+      "filename" : "recharge_icon_choose.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "zhuanqu_b@2x.png",
+      "filename" : "recharge_icon_choose@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "zhuanqu_b@3x.png",
+      "filename" : "recharge_icon_choose@3x.png",
       "scale" : "3x"
     }
   ],
