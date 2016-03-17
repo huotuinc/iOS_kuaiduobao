@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *goahead;
 @property (weak, nonatomic) IBOutlet UIImageView *announced;
 @property (weak, nonatomic) IBOutlet UIImageView *record;
+@property (weak, nonatomic) IBOutlet UILabel *integral;
 
 - (IBAction)userAction:(id)sender;
 

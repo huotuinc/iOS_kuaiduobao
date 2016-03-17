@@ -73,7 +73,7 @@
     
     dic[@"password"] = [MD5Encryption md5by32:self.password.text];
     
-    [SVProgressHUD dismiss];
+    [SVProgressHUD showWithStatus:@"登录中"];
     [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
         [SVProgressHUD dismiss];
         LWLog(@"%@",json);
@@ -134,7 +134,7 @@
             dic[@"head"] = user.icon;
             dic[@"type"] = @"2";
             
-            [SVProgressHUD dismiss];
+            [SVProgressHUD showWithStatus:@"登录中"];
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
                 if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
