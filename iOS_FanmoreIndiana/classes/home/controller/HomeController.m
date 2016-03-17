@@ -895,7 +895,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if (indexPath.section == 0) {
             return  CGSizeMake(SCREEN_WIDTH, ADAPT_HEIGHT(440)+40+clearHeight);
         }else {
-            return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.45);
+            return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.3);
         }
     }
     else{
