@@ -203,22 +203,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }
     
 }
-#pragma mark 解归档
-- (NSArray *)getLocalDataArray{
-    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
-    NSData *data = [NSData dataWithContentsOfFile:filename];
-    // 2.创建反归档对象
-    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    // 3.解码并存到数组中
-    NSArray *namesArray = [unArchiver decodeObjectForKey:LOCALCART];
-    return namesArray;
-}
-
 - (void)setupRefresh
 {
-    
-    
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeData)];
     _collectionView.mj_header = headRe;
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
@@ -239,6 +225,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     
 }
+
+
 
 #pragma mark 网络请求中奖通知列表
 
