@@ -57,19 +57,19 @@ static NSString *addressIdentify = @"addressIdnetify";
     // Dispose of any resources that can be recreated.
 }
 
-/**
- *  取出默认地址保存本地
- */
-- (void)saveDefaultAddress {
-    for (AdressModel *address in _addressList) {
-        if (address.defaultAddress) {
-            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-            NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
-            [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
-            
-        }
-    }
-}
+///**
+// *  取出默认地址保存本地
+// */
+//- (void)saveDefaultAddress {
+//    for (AdressModel *address in _addressList) {
+//        if (address.defaultAddress) {
+//            NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory®, NSUserDomainMask, YES) lastObject];
+//            NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+//            [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+//            
+//        }
+//    }
+//}
 
 - (void)getNewAddressList {
     
@@ -84,8 +84,10 @@ static NSString *addressIdentify = @"addressIdnetify";
             if (![json[@"resultData"] isKindOfClass:[NSNull class]]) {
                 NSArray *array = [AdressModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
                 [self.addressList addObjectsFromArray:array];
-                [self.tableView reloadData];
-//                [self saveDefaultAddress];
+                [self.tableView reloadData];                                                                                                      
+                
+                
+                [self getDefaultAddress];
             }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
@@ -120,6 +122,11 @@ static NSString *addressIdentify = @"addressIdnetify";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:addressIdentify forIndexPath:indexPath];
     cell.model = _addressList[indexPath.row];
+    if (cell.model.defaultAddress) {
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+        [NSKeyedArchiver archiveRootObject:cell.model toFile:fileNameAdd];
+    }
     [cell.exchanage bk_whenTapped:^{
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         AddAddressController *add = [story instantiateViewControllerWithIdentifier:@"AddAddressController"];
@@ -175,6 +182,7 @@ static NSString *addressIdentify = @"addressIdnetify";
                 [self.addressList removeObject:model];
                 [self.tableView reloadData];
                 
+                [self getDefaultAddress];
             }
         } failure:^(NSError *error) {
             LWLog(@"%@",error);
@@ -189,6 +197,31 @@ static NSString *addressIdentify = @"addressIdnetify";
 }
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
+}
+
+- (void)getDefaultAddress {
+    if (_addressList.count != 0) {
+        
+        for (int i = 0; i < _addressList.count; i++) {
+            AdressModel *model = _addressList[i];
+            if (model.defaultAddress) {
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+                [NSKeyedArchiver archiveRootObject:model toFile:fileNameAdd];
+                return;
+            }else {
+                AdressModel *temp = [[AdressModel alloc] init];
+                NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+                [NSKeyedArchiver archiveRootObject:temp toFile:fileNameAdd];
+            }
+        }
+    }else {
+        AdressModel *temp = [[AdressModel alloc] init];
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+        [NSKeyedArchiver archiveRootObject:temp toFile:fileNameAdd];
+    }
 }
 
 @end

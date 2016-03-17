@@ -199,6 +199,7 @@ static NSString *cellABMain=@"cellABMain";
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    LWLog(@"%ld", (long)indexPath.row);
     AppNewOpenListModel * model = _openList[indexPath.row];
     //待开奖
     if ([model.status integerValue] == 1) {

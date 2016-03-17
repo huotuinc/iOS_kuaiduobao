@@ -252,6 +252,7 @@
     self.homeBottonWebView.delegate = self;
     self.homeBottonWebView.tag = 20;
 //    self.homeBottonWebView.hidden = YES;
+//    self.homeBottonWebView.backgroundColor = [UIColor blueColor];
     self.homeBottonWebView.scrollView.bounces = NO;
     self.homeBottonWebView.scrollView.scrollEnabled = NO;
     [self.homeBottonWebView loadRequest:Bottomreq];

@@ -60,6 +60,8 @@
             [SVProgressHUD showErrorWithStatus:@"请输入晒单描述"];
         }else if ([self picturesAreTheSame]) {
             [SVProgressHUD showErrorWithStatus:@"请设置4张晒单图片"];
+        }else if (self.shareTitle.text.length <= 5) {
+            [SVProgressHUD showErrorWithStatus:@"晒单主题，不少于6个字"];
         }else {
             [self.shareDetail resignFirstResponder];
             [self.shareTitle resignFirstResponder];
