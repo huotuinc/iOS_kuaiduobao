@@ -506,7 +506,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
                 [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
 
             }
-            [self createSelectView];
+//            [self createSelectView];
         }];
         _bottomView.imageVShop.userInteractionEnabled = YES;
         [_bottomView.imageVShop bk_whenTapped:^{
