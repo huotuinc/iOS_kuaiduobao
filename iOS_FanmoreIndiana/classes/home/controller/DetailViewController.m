@@ -29,6 +29,7 @@
 #import "CartModel.h"
 #import "ArchiveLocalData.h"
 #import "CircleBannerView.h"
+#import "ListViewController.h"
 
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
@@ -492,6 +493,8 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [ArchiveLocalData archiveLocalDataArrayWithModel:_joinModel];
         }
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
+//            ListViewController *list = [[ListViewController alloc] init];
+//            [self.navigationController pushViewController:list animated:YES];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
         [_bottomView.buttonAdd bk_whenTapped:^{
@@ -506,7 +509,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
                 [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
 
             }
-            [self createSelectView];
+//            [self createSelectView];
         }];
         _bottomView.imageVShop.userInteractionEnabled = YES;
         [_bottomView.imageVShop bk_whenTapped:^{
