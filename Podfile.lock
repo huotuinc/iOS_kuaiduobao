@@ -33,7 +33,7 @@ PODS:
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
-  - INTULocationManager (4.1.1)
+  - INTULocationManager (4.2.0)
   - iRate (1.10.3)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
@@ -44,9 +44,6 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
-  - PNChart (0.8.8):
-    - UICountingLabel (~> 1.2.0)
-  - pop (1.0.9)
   - Reachability (3.1.1)
   - RESideMenu (4.0.7)
   - SDWebImage (3.7.5):
@@ -58,7 +55,6 @@ PODS:
   - SVProgressHUD (HEAD based on 2.0-beta8)
   - SWTableViewCell (0.3.7)
   - TPKeyboardAvoiding (1.2.3)
-  - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -71,8 +67,6 @@ DEPENDENCIES:
   - MJRefresh
   - MKNetworkKit
   - NJKWebViewProgress
-  - PNChart
-  - pop (~> 1.0)
   - RESideMenu
   - SDWebImage (~> 3.7)
   - SHXMLParser (= 1.1.0)
@@ -97,14 +91,12 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ConciseKit: 6eda679f3a18c050490e018eae2b497e656055ff
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
-  INTULocationManager: 83c7373048d583cda57e25eefb9bb8a3675acf16
+  INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   iRate: 724a3e080d5b0681e50a57d6cef1a81f83c23df3
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
-  PNChart: 25f91e9c4688af49c3647489760624d037f5383f
-  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
@@ -114,6 +106,5 @@ SPEC CHECKSUMS:
   SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TPKeyboardAvoiding: ab1760b9813202b5a570a2cef4b4404ef36b50c5
-  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
 COCOAPODS: 0.39.0
