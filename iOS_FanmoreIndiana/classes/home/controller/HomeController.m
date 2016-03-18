@@ -76,8 +76,8 @@ static NSString *topIdentify = @"homeCellTopIdentify";
 static NSString *cellLabel = @"homeCellLabel";
 static NSString *cellHead = @"homeCellHead";
 
-static CGFloat labelHeight = 20;//中奖信息CollectionView高度
-static CGFloat clearHeight = 10;//中奖信息CollectionView高度
+static NSInteger labelHeight = 20;//中奖信息CollectionView高度
+static NSInteger clearHeight = 10;//中奖信息CollectionView高度
 static NSInteger num=0;//记录总需人数的点击次数
 static NSInteger orderNumberNow=0;//记录排序的当前点击
 
@@ -411,33 +411,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 
 
-//- (void)createHeadScrollView {
-//    _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) WithImageUrls:_arrURLString];
-//    //占位图片,你可以在下载图片失败处修改占位图片
-//    //        _headScrollView.placeImage = [UIImage imageNamed:@""];
-//    //图片被点击事件,当前第几张图片被点击了,和数组顺序一致
-//    [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
-//        AppSlideListModel *slideM = _appSlideList[index];
-//        if ([slideM.goodsId isEqualToNumber:[NSNumber numberWithInteger:0]]) {
-//            DetailWebViewController *web = [[DetailWebViewController alloc] init];
-//            web.webURL = slideM.link;
-//            [self.navigationController pushViewController:web animated:YES];
-//        }else {
-//            DetailViewController *detail = [[DetailViewController alloc] init];
-//            detail.goodsId = slideM.goodsId;
-//            detail.whichAPI = [NSNumber numberWithInteger:1];
-//            [self.navigationController pushViewController:detail animated:YES];
-//        }
-//        
-//    }];
-//    //default is 2.0f,如果小于0.5不自动播放
-//    if (_arrURLString.count == 0) {
-//        _headScrollView.AutoScrollDelay = 0.f;
-//    } else {
-//        _headScrollView.AutoScrollDelay = 2.f;
-//        
-//    }
-//}
+
 - (void)createFourBtnView {
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeFourBtnCView" owner:nil options:nil];
     _fourBtnView=[nib firstObject];
@@ -532,7 +506,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 -(void)createLableCollectionView{
     if (!_labelCollectionView) {
-        self.automaticallyAdjustsScrollViewInsets = NO;
+        _labelCollectionView.userInteractionEnabled = NO;
+//        self.automaticallyAdjustsScrollViewInsets = YES;
         UICollectionViewFlowLayout *viewlayout = [[UICollectionViewFlowLayout alloc]init];
         viewlayout.minimumLineSpacing = 0;
         viewlayout.minimumInteritemSpacing = 0;
@@ -572,7 +547,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 - (void)update:(NSTimer *)timer{
     CGPoint offSet = _labelCollectionView.contentOffset;
-    offSet.y +=labelHeight;
+    if ((NSInteger)offSet.y % labelHeight == 0) {
+        offSet.y +=labelHeight;
+    }else {
+        LWLog(@"labelCollectionV滚动错位 修复中");
+        NSInteger errorDistance = (NSInteger)offSet.y % labelHeight;
+        offSet.y -= errorDistance;
+        offSet.y +=labelHeight;
+    }
     [_labelCollectionView setContentOffset:offSet animated:YES];
 }
 - (void)didReceiveMemoryWarning {
@@ -706,20 +688,20 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if (indexPath.item >= _appNoticeList.count) {
             NSInteger i = indexPath.item % _appNoticeList.count;
             AppNoticeListModel *model =_appNoticeList[i];
-            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
+            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
-//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+2, model.title.length)];
+            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
             cell.labelMain.attributedText = attString;
             return cell;
 
         }
     else {
             AppNoticeListModel *model =_appNoticeList[indexPath.item];
-            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@",model.name,[model.time integerValue]/60,model.title]];
+            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.title integerValue]/60].length +5;
-//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange+1, model.title.length)];
+            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
             cell.labelMain.attributedText = attString;
             return cell;
 
@@ -833,18 +815,18 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
             }
             
-            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
-            imageVBack.image=[UIImage imageNamed:@"line_huise"];
+//            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
+//            imageVBack.image=[UIImage imageNamed:@"line_huise"];
             _imageVRed.image=[UIImage imageNamed:@"line_red"];
 
-            [localView addSubview:imageVBack];
+//            [localView addSubview:imageVBack];
             [localView addSubview:_imageVRed];
             
             if (_isFirstLoad == YES) {
                 FL_Button *buttonHot=[localView viewWithTag:100];
                 buttonHot.selected=YES;
                 _isFirstLoad = NO;
-                _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, localView.frame.size.height-1, SCREEN_WIDTH/4*4/5, 1)];
+                _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, localView.frame.size.height-1, SCREEN_WIDTH/4*4/5, 2)];
             }else{
                 if (orderNumberNow >3) {
                     FL_Button *buttonClicked=[localView viewWithTag:100 + orderNumberNow - 1];
@@ -948,7 +930,6 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-
 }
 
 @end

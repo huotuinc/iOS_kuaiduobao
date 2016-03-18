@@ -14,10 +14,10 @@
     // Initialization code
     [UILabel changeLabel:_labelA AndFont:26 AndColor:[UIColor whiteColor]];
     [UILabel changeLabel:_labelB AndFont:24 AndColor:[UIColor whiteColor]];
-    _viewBase.backgroundColor = COLOR_SHINE_RED;
+    _viewBase.backgroundColor = COLOR_BUTTON_ORANGE;
     _viewBase.layer.borderWidth = 1;
     _viewBase.layer.cornerRadius = 3;
-    _viewBase.layer.borderColor = COLOR_SHINE_RED.CGColor;
+    _viewBase.layer.borderColor = COLOR_BUTTON_ORANGE.CGColor;
     _viewBase.layer.masksToBounds =YES;
 }
 

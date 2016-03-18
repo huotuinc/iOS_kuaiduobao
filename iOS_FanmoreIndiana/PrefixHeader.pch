@@ -68,10 +68,10 @@
 
 
 ///***服务器地址***/1.41
-//#define MainUrl @"http://192.168.3.30:8080/duobao/app/"
-//#define MKMainUrl @"http://192.168.1.254:10001/duobao/app"
-#define MKMainUrl @"duobao.51flashmall.com:8091/app"
+//#define MainUrl @"http://192.168.3.22:8080/duobao/app/"
 //#define MKMainUrl @"192.168.1.254:10001/app"
+#define MKMainUrl @"duobao.51flashmall.com:8091/app"
+//#define MKMainUrl @"192.168.3.27:8080/duobao/app/"
 
 
 

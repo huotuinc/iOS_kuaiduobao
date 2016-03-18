@@ -14,5 +14,6 @@
 @property (nonatomic, assign) NSNumber *pid;
 @property (nonatomic, assign) NSNumber *lastSort;
 @property (nonatomic, assign) NSNumber *issueId;
+@property (nonatomic, copy) NSString *tenTitle;
 
 @end

@@ -141,6 +141,7 @@ static NSString *cellClassB=@"cellClassB";
     TenViewController *ten = [[TenViewController alloc]init];
     if (indexPath.row == 0) {
         ten.whichAPI = 2;
+        ten.tenTitle = @"全部商品";
         [self.navigationController pushViewController:ten animated:YES];
         return;
     }else if (indexPath.row == 1) {
@@ -149,15 +150,18 @@ static NSString *cellClassB=@"cellClassB";
         AppCategoryListModel *model = _titleList[indexPath.row - 2];
         if ([model.type integerValue] == 0) {
             ten.whichAPI = 1;
+            ten.tenTitle =model.title;
             [self.navigationController pushViewController:ten  animated:YES];
         }
         if ([model.type integerValue] == 1) {
             ten.whichAPI = 3;
             ten.pid = model.pid;
+            ten.tenTitle = model.title;
             [self.navigationController pushViewController:ten  animated:YES];
         }
         if ([model.type integerValue] == 2) {
             ten.whichAPI = 4;
+            ten.tenTitle = @"其它商品";
             [self.navigationController pushViewController:ten  animated:YES];
         }
 

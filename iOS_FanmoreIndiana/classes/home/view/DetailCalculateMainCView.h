@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelA;
 @property (weak, nonatomic) IBOutlet UILabel *labelB;
 @property (weak, nonatomic) IBOutlet UILabel *labelC;
-@property (weak, nonatomic) IBOutlet UIButton *buttonShow;
+@property (weak, nonatomic) IBOutlet UILabel *labelShow;
 
 @end

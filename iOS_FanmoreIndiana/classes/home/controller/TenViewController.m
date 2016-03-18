@@ -31,7 +31,17 @@ static NSString *cellTenMain=@"cellTenMain";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden =YES;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-    [self.navigationItem changeNavgationBarTitle:@"十元专区"];
+    if (self.whichAPI == 1) {
+        [self.navigationItem changeNavgationBarTitle:self.tenTitle];
+    } else if (self.whichAPI == 2) {
+        [self.navigationItem changeNavgationBarTitle:self.tenTitle];
+    } else if (self.whichAPI == 3) {
+        [self.navigationItem changeNavgationBarTitle:self.tenTitle];
+    } else if (self.whichAPI == 4) {
+        [self.navigationItem changeNavgationBarTitle:self.tenTitle];
+    } else {
+        [self.navigationItem changeNavgationBarTitle:@"专区商品"];
+    }
     self.view.backgroundColor=[UIColor whiteColor];
     [self createBarButtonItem];
 }
@@ -102,6 +112,9 @@ static NSString *cellTenMain=@"cellTenMain";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (_whichAPI == 1 || _whichAPI == 3) {
+        if (_whichAPI == 3) {
+            dic[@"categoryId"] = self.pid;
+        }
         
     }else {
         dic[@"lastSort"] =@0;

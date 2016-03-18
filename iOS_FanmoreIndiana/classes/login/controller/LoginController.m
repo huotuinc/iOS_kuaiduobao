@@ -15,7 +15,7 @@
 #import <MJExtension.h>
 #import "TabBarController.h"
 #import "AppDelegate.h"
-
+#import "ArchiveLocalData.h"
 @interface LoginController ()<UITextFieldDelegate>
 
 @end
@@ -156,9 +156,7 @@
     //保存新的token
     [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
     //购物车结算登陆时 需要提交数据
-    if (self.postData == 1) {
-        [self postDataToServe];
-    }
+    [self postDataToServe];
     [self dismissViewControllerAnimated:YES completion:nil];
     /**
      *  //////
@@ -169,8 +167,20 @@
 }
 #pragma mark 未登录提交购物车
 - (void)postDataToServe {
+    NSArray *cartArray = [NSArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
+    NSMutableString *AllCartsString = [NSMutableString string];
+    for ( int i =0 ; i<cartArray.count; i++) {
+        CartModel *model = cartArray[i];
+        if (i == cartArray.count - 1) {
+            [AllCartsString appendFormat:@"{issueId:%@,amount:%@}",model.issueId,model.userBuyAmount];
+        }else{
+            [AllCartsString appendFormat:@"{issueId:%@,amount:%@},",model.issueId,model.userBuyAmount];
+        }
+    }
+    [AllCartsString insertString:@"[" atIndex:0];
+    [AllCartsString appendString:@"]"];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-      dic[@"cartsJson"] = self.cartsString;
+      dic[@"cartsJson"] = AllCartsString;
     [UserLoginTool loginRequestPostWithFile:@"joinAllCartToServer" parame:dic success:^(id json) {
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {

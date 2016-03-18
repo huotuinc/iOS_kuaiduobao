@@ -171,7 +171,7 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = @(self.selectMark);
-    dic[@"lastId"] = @0;
+    dic[@"lastTime"] = @0;
     [SVProgressHUD showWithStatus:nil];
     [UserLoginTool loginRequestGet:@"getMyRaiderList" parame:dic success:^(id json) {
         LWLog(@"%@",json);
@@ -200,7 +200,7 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = @(self.selectMark);
     RaiderModel *model = [self.recordList lastObject];
-    dic[@"lastId"] = model.pid;
+    dic[@"lastTime"] = model.time;
     [SVProgressHUD showWithStatus:nil];
     [UserLoginTool loginRequestGet:@"getMyRaiderList" parame:dic success:^(id json) {
         LWLog(@"%@",json);

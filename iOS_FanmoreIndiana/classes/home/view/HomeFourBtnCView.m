@@ -14,7 +14,7 @@
 - (void)awakeFromNib {
     // Initialization code
     NSArray *arrTitle=@[@"分类",@"专区商品",@"晒单",@"常见问题",@"红包专区"];
-    for (int i=0; i<5; i++) {
+    for (int i=0 ; i<5 ; i++) {
         UILabel *label=[self viewWithTag:100+i];
         label.text=arrTitle[i];
         [UILabel changeLabel:label AndFont:24 AndColor:COLOR_TEXT_TITILE];
@@ -24,7 +24,7 @@
         UIImageView *imageV=[self viewWithTag:200+i];
         imageV.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@",arrImage[i]]];
     }
-    _imageVLine.image=[UIImage imageNamed:@"xian_3"];
+//    _imageVLine.image=[UIImage imageNamed:@"xian_3"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

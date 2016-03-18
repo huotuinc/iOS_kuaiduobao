@@ -198,7 +198,7 @@ static NSString *winningIdentify = @"winningIdentify";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
 
-    dic[@"lastId"] = @0;
+    dic[@"lastTime"] = @0;
     [SVProgressHUD showWithStatus:nil];
     [UserLoginTool loginRequestGet:@"getMyLotteryList" parame:dic success:^(id json) {
         LWLog(@"%@",json);
@@ -227,7 +227,7 @@ static NSString *winningIdentify = @"winningIdentify";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
 
     WinningModel *model = [self.winningArray lastObject];
-    dic[@"lastId"] = model.pid;
+    dic[@"lastTime"] = model.time;
     [SVProgressHUD showWithStatus:nil];
     [UserLoginTool loginRequestGet:@"getMyLotteryList" parame:dic success:^(id json) {
         LWLog(@"%@",json);

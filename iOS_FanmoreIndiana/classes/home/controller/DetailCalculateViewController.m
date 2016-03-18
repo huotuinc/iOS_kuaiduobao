@@ -65,7 +65,7 @@ static NSString *cellDCA = @"cellDCA";
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             _resultModel = [AppCountResultModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
-            _numberList = [NSMutableArray arrayWithArray:_resultModel.userNumbers];
+            _numberList = [AppUserNumberModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"data"][@"userNumbers"]];
             if (!_tableView) {
                 [self createTableView];
 
@@ -82,7 +82,7 @@ static NSString *cellDCA = @"cellDCA";
 
 - (void)createTableView{
     _isExpanded = NO;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     [_tableView registerNib:[UINib nibWithNibName:@"DetailCalculateATableViewCell" bundle:nil] forCellReuseIdentifier:cellDCA];
 
     _tableView.delegate = self;
@@ -99,11 +99,18 @@ static NSString *cellDCA = @"cellDCA";
         if (indexPath.row == 0) {
             cell.labelA.text = @"夺宝时间";
             cell.labelB.text = @"用户账号";
+            cell.labelDate.text = @"";
+            cell.labelNumber.text = @"";
+            cell.labelName.text = @"";
+
         }else {
-            AppUserNumberModel *userModel = _numberList[indexPath.row];
+            AppUserNumberModel *userModel = _numberList[indexPath.row - 1];
             cell.labelDate.text = userModel.buyTime;
             cell.labelNumber.text = userModel.number;
             cell.labelName.text = userModel.nickName;
+            cell.labelA.text = @"";
+            cell.labelB.text = @"";
+
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -120,7 +127,7 @@ static NSString *cellDCA = @"cellDCA";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 1 && _isExpanded == YES) {
-        return 50;
+        return 51;
     }else {
         return 0;
     }
@@ -142,19 +149,26 @@ static NSString *cellDCA = @"cellDCA";
         NSMutableAttributedString * attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"= %@",_resultModel.numberA]];
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 2)];
         _sectionBView.labelC.attributedText = attString;
-
-        _sectionBView.buttonShow.hidden = NO;
-        [_sectionBView.buttonShow bk_whenTapped:^{
+        _sectionBView.labelShow.userInteractionEnabled = YES;
+//        __block DetailCalculateViewController *weakSelf = self;
+        if (_isExpanded) {
+            _sectionBView.labelShow.text = @"收起";
+        }else {
+            _sectionBView.labelShow.text = @"展开";
+        }
+        [_sectionBView.labelShow bk_whenTapped:^{
             if (_isExpanded) {
-                _sectionBView.buttonShow.titleLabel.text = @"展开";
-                [_sectionBView.buttonShow setTitle:@"展开" forState:UIControlStateNormal];
+                LWLog(@"改成展开");
+                _sectionBView.labelShow.text = @"展开";
                 _isExpanded = NO;
             }else {
-                _sectionBView.buttonShow.titleLabel.text = @"收起";
-                [_sectionBView.buttonShow setTitle:@"收起" forState:UIControlStateNormal];
+                LWLog(@"改成收起");
+                _sectionBView.labelShow.text = @"收起";
                 _isExpanded = YES;
             }
             [tableView reloadData];
+//            _sectionBView.labelShow.userInteractionEnabled = YES;
+//            _sectionBView.labelShow.text = @"11111";
         }];
         return _sectionBView;
     }
@@ -167,6 +181,7 @@ static NSString *cellDCA = @"cellDCA";
         NSMutableAttributedString * attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"= %@",_resultModel.numberB]];
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 2)];
         _sectionCView.labelC.attributedText = attString;
+        _sectionCView.labelShow.hidden = YES;
         return _sectionCView;
     }
     if (section == 3) {
@@ -176,9 +191,19 @@ static NSString *cellDCA = @"cellDCA";
         NSMutableAttributedString * attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"幸运号码:  %@",_resultModel.luckNumber]];
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 5)];
         _sectionDView.labelB.attributedText = attString;
+        _sectionDView.backgroundColor = [UIColor clearColor];
+
         return _sectionDView;
     }
     return nil;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] init];
+    return  view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
