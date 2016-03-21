@@ -290,14 +290,11 @@ static NSString *cellABMain=@"cellABMain";
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.m_timer invalidate];
+    self.m_timer = nil;
     [self.openList removeAllObjects];
 }
 
-- (void)dealloc {
-
-    [self.m_timer invalidate];//是唯一的方法将定时器从循环池中移除
-    self.m_timer=nil;//同时置空
-}
 
 /*
 #pragma mark - Navigation

@@ -17,5 +17,7 @@
 
 @property (nonatomic,copy) NSString *selectedRedTitle;
 
+@property (nonatomic, copy) NSString *cartString;
+
 
 @end

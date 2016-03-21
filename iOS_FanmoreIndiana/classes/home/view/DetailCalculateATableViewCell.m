@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    for (int i =0; i<5; i++) {
+    for (int i =0; i<6; i++) {
         UILabel *label = [self viewWithTag:100+i];
         [UILabel changeLabel:label AndFont:24 AndColor:COLOR_TEXT_DATE];
         label.backgroundColor = [UIColor clearColor];

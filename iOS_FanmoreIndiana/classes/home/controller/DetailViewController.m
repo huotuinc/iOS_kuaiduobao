@@ -228,7 +228,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (_buyList.count > 0) {
         AppBuyListModel *model = [_buyList lastObject];
-        self.lastId = model.pid;
+        self.lastId = model.date;
     }
     dic[@"issueId"] = _detailModel.issueId;
     dic[@"lastId"] = self.lastId;
@@ -271,13 +271,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         _headScrollView.delegate =self;
         [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
 //        
-//        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
-//        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
-//            printf("第%zd张图片\n",index);
-//        }];
-        //default is 2.0f,如果小于0.5不自动播放
-//        _headScrollView.AutoScrollDelay = 0.0f;
-        //3为间隔
+
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
         [self createTitleLabel];
@@ -291,7 +285,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         _winnerView.labelIDA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserId];
         _winnerView.labelTermA.text=[NSString stringWithFormat:@"%@",_detailModel.issueId];
         _winnerView.labelAttendA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserBuyCount];
-        _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm;ss"];
+        _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
         [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead]];
         [_winnerView.buttonContent bk_whenTapped:^{
@@ -410,12 +404,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         _headScrollView.delegate =self;
 
         [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
-//        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
-//        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
-//            printf("第%zd张图片\n",index);
-//        }];
-//        //default is 2.0f,如果小于0.5不自动播放
-//        _headScrollView.AutoScrollDelay = 0.0f;
+
         
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
@@ -651,7 +640,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         if (indexPath.row == 0) {
             DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
             cell.labelTitle.text=@"所有参与记录";
-            if (_detailModel.firstBuyTime == nil) {
+            if ([_detailModel.firstBuyTime isEqualToNumber:@0]) {
                 cell.labelAdvice.text = @"";
             }else {
                 cell.labelAdvice.text=[NSString stringWithFormat:@"( %@开始 )",[self changeTheTimeStamps:_detailModel.firstBuyTime andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"]];
@@ -781,21 +770,12 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     return str;
 }
 
-#pragma mark 解归档
-- (NSArray *)getLocalDataArray{
-    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
-    NSData *data = [NSData dataWithContentsOfFile:filename];
-    // 2.创建反归档对象
-    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    // 3.解码并存到数组中
-    NSArray *namesArray = [unArchiver decodeObjectForKey:LOCALCART];
-    return namesArray;
-}
+
 #pragma mark 轮播
 //加载图片的代理，你自己想 怎么加载 就怎么加载
 - (void)imageView:(UIImageView *)imageView loadImageForUrl:(NSString *)url{
     [imageView sd_setImageWithURL:[NSURL URLWithString:url] ];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

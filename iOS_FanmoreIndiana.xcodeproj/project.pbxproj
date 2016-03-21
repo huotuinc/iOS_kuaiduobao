@@ -149,7 +149,6 @@
 		F21E82EB1C7813E500C732F1 /* ListBottomCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F21E82E71C7813E500C732F1 /* ListBottomCView.m */; };
 		F21E82EC1C7813E500C732F1 /* ListBottomCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21E82E81C7813E500C732F1 /* ListBottomCView.xib */; };
 		F21E82EF1C7813EC00C732F1 /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F21E82EE1C7813EC00C732F1 /* CartModel.m */; };
-		F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */; };
 		F22A8D6D1C85884500165BBC /* DetailCalculateFormulaCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D6B1C85884500165BBC /* DetailCalculateFormulaCView.m */; };
 		F22A8D6E1C85884500165BBC /* DetailCalculateFormulaCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D6C1C85884500165BBC /* DetailCalculateFormulaCView.xib */; };
 		F22A8D721C8588BA00165BBC /* DetailCalculateMainCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D701C8588BA00165BBC /* DetailCalculateMainCView.m */; };
@@ -201,6 +200,7 @@
 		F24119721C74648900C2B07E /* DetailNumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24119701C74648900C2B07E /* DetailNumberTableViewCell.xib */; };
 		F246B6711C97AB6500D0A381 /* GCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F246B6701C97AB6500D0A381 /* GCDTimerManager.m */; };
 		F246B6741C97EA4700D0A381 /* PlistManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F246B6731C97EA4700D0A381 /* PlistManager.m */; };
+		F24982E01C9A79230073C17F /* DetailCalculateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24982DF1C9A79230073C17F /* DetailCalculateViewController.m */; };
 		F24D60E11C927265006F6981 /* UINavigationItem+BCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F24D60E01C927265006F6981 /* UINavigationItem+BCTitleView.m */; };
 		F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2573F401C57062C00EEB851 /* DetailBottomDoneCView.m */; };
 		F2573F431C57062C00EEB851 /* DetailBottomDoneCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2573F411C57062C00EEB851 /* DetailBottomDoneCView.xib */; };
@@ -637,8 +637,6 @@
 		F21E82E81C7813E500C732F1 /* ListBottomCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListBottomCView.xib; sourceTree = "<group>"; };
 		F21E82ED1C7813EC00C732F1 /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
 		F21E82EE1C7813EC00C732F1 /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
-		F22A8D671C8586D800165BBC /* DetailCalculateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateViewController.h; sourceTree = "<group>"; };
-		F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateViewController.m; sourceTree = "<group>"; };
 		F22A8D6A1C85884500165BBC /* DetailCalculateFormulaCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateFormulaCView.h; sourceTree = "<group>"; };
 		F22A8D6B1C85884500165BBC /* DetailCalculateFormulaCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateFormulaCView.m; sourceTree = "<group>"; };
 		F22A8D6C1C85884500165BBC /* DetailCalculateFormulaCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateFormulaCView.xib; sourceTree = "<group>"; };
@@ -723,6 +721,8 @@
 		F246B6701C97AB6500D0A381 /* GCDTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTimerManager.m; sourceTree = "<group>"; };
 		F246B6721C97EA4700D0A381 /* PlistManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistManager.h; sourceTree = "<group>"; };
 		F246B6731C97EA4700D0A381 /* PlistManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistManager.m; sourceTree = "<group>"; };
+		F24982DE1C9A79230073C17F /* DetailCalculateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateViewController.h; sourceTree = "<group>"; };
+		F24982DF1C9A79230073C17F /* DetailCalculateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateViewController.m; sourceTree = "<group>"; };
 		F24D60DF1C927265006F6981 /* UINavigationItem+BCTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+BCTitleView.h"; sourceTree = "<group>"; };
 		F24D60E01C927265006F6981 /* UINavigationItem+BCTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+BCTitleView.m"; sourceTree = "<group>"; };
 		F2573F3F1C57062C00EEB851 /* DetailBottomDoneCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBottomDoneCView.h; sourceTree = "<group>"; };
@@ -1155,10 +1155,10 @@
 				F2C7A4D11C75AD49002E08FA /* DetailNumberViewController.m */,
 				F2F587F61C7DA14A007187B0 /* DetailShareNextViewController.h */,
 				F2F587F71C7DA14A007187B0 /* DetailShareNextViewController.m */,
+				F24982DE1C9A79230073C17F /* DetailCalculateViewController.h */,
+				F24982DF1C9A79230073C17F /* DetailCalculateViewController.m */,
 				F27C18A21C841E36002F32C5 /* InformationViewController.h */,
 				F27C18A31C841E36002F32C5 /* InformationViewController.m */,
-				F22A8D671C8586D800165BBC /* DetailCalculateViewController.h */,
-				F22A8D681C8586D800165BBC /* DetailCalculateViewController.m */,
 				F26E0C8F1C86E38E00DB1908 /* RedViewController.h */,
 				F26E0C901C86E38E00DB1908 /* RedViewController.m */,
 				609D108C1C97F654009412E9 /* MCController.h */,
@@ -2132,7 +2132,6 @@
 			files = (
 				6066B0B81C73175600B0A73C /* PayController.m in Sources */,
 				F2573F471C57218900EEB851 /* DetailTimeCView.m in Sources */,
-				F22A8D691C8586D800165BBC /* DetailCalculateViewController.m in Sources */,
 				F2C426421C88243800C9CEF0 /* ListNumberViewController.m in Sources */,
 				F21E82E21C7813B100C732F1 /* ListViewController.m in Sources */,
 				F23BEFFC1C5F338F00E87042 /* DetailNumberHeadCView.m in Sources */,
@@ -2194,6 +2193,7 @@
 				60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */,
 				60EB31F01C5764E2006C070B /* ForgetThirdController.m in Sources */,
 				F23670091C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m in Sources */,
+				F24982E01C9A79230073C17F /* DetailCalculateViewController.m in Sources */,
 				60C109A11C96AFC60025CE94 /* NewShareModel.m in Sources */,
 				F22A8D7C1C858E7100165BBC /* DetailCalculateATableViewCell.m in Sources */,
 				F2F587DD1C7D7C9C007187B0 /* AppBalanceModel.m in Sources */,

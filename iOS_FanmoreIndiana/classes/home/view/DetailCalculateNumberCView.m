@@ -13,11 +13,12 @@
 - (void)awakeFromNib {
     // Initialization code
     _imageVLineA.image = [UIImage imageNamed:@"line_huise"];
-    _imageVLine.image = [UIImage imageNamed:@"line_gray"];
-    _imageVLineB.image = [UIImage imageNamed:@"line_huise"];
+    _imageVLine.image = [UIImage imageNamed:@"line_huise"];
+//    _imageVLineB.image = [UIImage imageNamed:@"line_touming"];
+    _imageVLineB.backgroundColor = [UIColor clearColor];
     _imageVLineC.image = [UIImage imageNamed:@"line_huise"];
     [UILabel changeLabel:_labelA AndFont:26 AndColor:COLOR_TEXT_CONTENT];
-    [UILabel changeLabel:_labelB AndFont:26 AndColor:COLOR_SHINE_RED];
+    [UILabel changeLabel:_labelB AndFont:26 AndColor:COLOR_BUTTON_ORANGE];
 }
 
 

@@ -26,6 +26,7 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dvL-47-CAl">
                                 <rect key="frame" x="0.0" y="1" width="750" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCU-vH-glP">
                                 <rect key="frame" x="0.0" y="27" width="750" height="136"/>
@@ -75,7 +76,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3eZ-Dj-jVb" firstAttribute="leading" secondItem="Rvh-3M-993" secondAttribute="leading" id="0kT-ow-3e0"/>
                             <constraint firstItem="dvL-47-CAl" firstAttribute="height" secondItem="Rvh-3M-993" secondAttribute="height" multiplier="25:165" id="18B-f9-Ujg"/>
@@ -103,6 +104,7 @@
                         </variation>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Rvh-3M-993" secondAttribute="trailing" id="5TI-UM-i6D"/>
                     <constraint firstAttribute="bottom" secondItem="Rvh-3M-993" secondAttribute="bottom" id="Zua-CS-uBc"/>
@@ -110,6 +112,7 @@
                     <constraint firstItem="Rvh-3M-993" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="i3G-FG-KTN"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="imageVLine" destination="3eZ-Dj-jVb" id="wef-QZ-bgO"/>
                 <outlet property="imageVLineA" destination="s8i-ow-9jG" id="aPx-Yl-qdX"/>

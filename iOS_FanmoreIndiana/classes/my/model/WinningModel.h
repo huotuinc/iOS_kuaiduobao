@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSNumber *toAmount;
 @property (nonatomic, assign) NSInteger deliveryStatus;
 @property (nonatomic, strong) NSNumber *deliveryId;
+@property (nonatomic, strong) NSNumber *time;
 
 @end

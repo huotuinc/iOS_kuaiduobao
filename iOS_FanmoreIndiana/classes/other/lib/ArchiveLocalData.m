@@ -17,6 +17,7 @@
         CartModel *cModel = [[CartModel alloc] init];
         cModel.areaAmount = _joinModel.areaAmount;
         cModel.attendAmount = _joinModel.attendAmount;
+        cModel.userBuyAmount = _joinModel.defaultAmount;
         cModel.isSelect = _joinModel.isSelect;
         cModel.pictureUrl = _joinModel.pictureUrl;
         cModel.remainAmount = _joinModel.remainAmount;
@@ -25,10 +26,12 @@
         cModel.title = _joinModel.title;
         cModel.toAmount = _joinModel.toAmount;
         cModel.issueId = _joinModel.issueId;
-        cModel.userBuyAmount = _joinModel.defaultAmount;
         cModel.pricePercentAmount = _joinModel.pricePercentAmount;
-        
+        cModel.userBuyAmount = _joinModel.defaultAmount;
+        cModel.isSelect = YES;
+
         [localArray addObject:cModel];
+
     }
     //已进行
     else{
@@ -38,9 +41,14 @@
             CartModel *cModel = localArray[i];
             //有
             if ([cModel.issueId isEqualToNumber:_joinModel.issueId ]) {
-                NSInteger prcie;
-                prcie = [_joinModel.buyAmount integerValue] + [_joinModel.stepAmount integerValue];
-                cModel.userBuyAmount = [NSNumber numberWithInteger:prcie];
+                
+                CGFloat prcie;
+                prcie = [_joinModel.defaultAmount floatValue] + [cModel.userBuyAmount floatValue];
+                if (prcie > [cModel.toAmount floatValue]) {
+                    cModel.userBuyAmount = cModel.toAmount;
+                }else {
+                    cModel.userBuyAmount = [NSNumber numberWithFloat:prcie];
+                }
                 isExist = YES;
             }
         }
@@ -58,7 +66,12 @@
             cModel.toAmount = _joinModel.toAmount;
             cModel.issueId = _joinModel.issueId;
             cModel.pricePercentAmount = _joinModel.pricePercentAmount;
-            
+            cModel.userBuyAmount = _joinModel.defaultAmount;
+            cModel.isSelect = YES;
+
+//            NSInteger restAmount;
+//            restAmount =[_joinModel.toAmount integerValue]-[_joinModel.buyAmount integerValue] - [_joinModel.userBuyAmount integerValue];
+//            cModel.remainAmount = [NSNumber numberWithInteger:restAmount];
             [localArray addObject:cModel];
             isExist = NO;
         }

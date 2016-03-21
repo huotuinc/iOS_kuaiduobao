@@ -22,7 +22,10 @@
                                 <rect key="frame" x="10" y="10" width="355" height="500"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLm-dC-1N6">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="208"/>
+                                        <rect key="frame" x="74" y="0.0" width="208" height="208"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="RLm-dC-1N6" secondAttribute="height" multiplier="1:1" id="Jlo-Xu-LMf"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="苹果IPad Air3 苹果IPad Air3苹果IPad Air3苹果IPad Air3苹果IPad Air3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maP-jP-HT9">
                                         <rect key="frame" x="0.0" y="208" width="355" height="94"/>
@@ -36,61 +39,61 @@
                                             <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期    号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ0-yc-fmb">
                                                 <rect key="frame" x="0.0" y="0.0" width="57" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获得用户:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aih-bJ-r20">
                                                 <rect key="frame" x="0.0" y="40" width="73" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3251255" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKi-6e-24D">
                                                 <rect key="frame" x="62" y="0.0" width="68" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="106" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擦伤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dL-f3-fWb">
-                                                <rect key="frame" x="78" y="40" width="34" height="40"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="107" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="555" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHA-Bg-gTH">
                                                 <rect key="frame" x="78" y="80" width="31" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="108" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="122455" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hs-Rn-jDS">
                                                 <rect key="frame" x="78" y="120" width="58" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参与人次:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqa-tB-KFr">
                                                 <rect key="frame" x="0.0" y="80" width="73" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幸运号码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FI9-N5-MFt">
                                                 <rect key="frame" x="0.0" y="120" width="73" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="揭晓时间:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRb-AG-xO6">
                                                 <rect key="frame" x="0.0" y="160" width="73" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="109" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天 12:10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yN5-tC-Ft0">
                                                 <rect key="frame" x="78" y="160" width="79" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="106" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擦伤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dL-f3-fWb">
+                                                <rect key="frame" x="78" y="40" width="34" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -136,6 +139,8 @@
                                     <constraint firstAttribute="bottom" secondItem="GKq-lp-mnR" secondAttribute="bottom" id="1gJ-M0-0VJ"/>
                                     <constraint firstItem="GKq-lp-mnR" firstAttribute="top" secondItem="maP-jP-HT9" secondAttribute="bottom" id="2hw-4y-x8Z"/>
                                     <constraint firstAttribute="trailing" secondItem="RLm-dC-1N6" secondAttribute="trailing" id="J1H-cW-ejV"/>
+                                    <constraint firstItem="RLm-dC-1N6" firstAttribute="top" secondItem="bjR-No-PdK" secondAttribute="top" id="JhB-Cw-lUQ"/>
+                                    <constraint firstItem="RLm-dC-1N6" firstAttribute="centerX" secondItem="bjR-No-PdK" secondAttribute="centerX" id="OAe-Li-Qxd"/>
                                     <constraint firstItem="GKq-lp-mnR" firstAttribute="leading" secondItem="bjR-No-PdK" secondAttribute="leading" id="OgK-Ir-bis"/>
                                     <constraint firstItem="maP-jP-HT9" firstAttribute="top" secondItem="RLm-dC-1N6" secondAttribute="bottom" id="QRw-Pt-sKY"/>
                                     <constraint firstItem="maP-jP-HT9" firstAttribute="leading" secondItem="bjR-No-PdK" secondAttribute="leading" id="V6C-Zi-wyK"/>
@@ -143,9 +148,18 @@
                                     <constraint firstItem="RLm-dC-1N6" firstAttribute="top" secondItem="bjR-No-PdK" secondAttribute="top" id="dDJ-Zu-YN5"/>
                                     <constraint firstItem="maP-jP-HT9" firstAttribute="height" secondItem="bjR-No-PdK" secondAttribute="height" multiplier="90:480" id="ifc-rL-OQf"/>
                                     <constraint firstAttribute="trailing" secondItem="GKq-lp-mnR" secondAttribute="trailing" id="oGO-du-z3Q"/>
+                                    <constraint firstItem="maP-jP-HT9" firstAttribute="top" secondItem="RLm-dC-1N6" secondAttribute="bottom" id="syk-l9-GEi"/>
                                     <constraint firstItem="RLm-dC-1N6" firstAttribute="height" secondItem="bjR-No-PdK" secondAttribute="height" multiplier="200:480" id="tT1-ws-Xqc"/>
                                     <constraint firstItem="RLm-dC-1N6" firstAttribute="leading" secondItem="bjR-No-PdK" secondAttribute="leading" id="uod-Yo-huM"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="J1H-cW-ejV"/>
+                                        <exclude reference="dDJ-Zu-YN5"/>
+                                        <exclude reference="uod-Yo-huM"/>
+                                        <exclude reference="QRw-Pt-sKY"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iem-w8-6YK">
                                 <rect key="frame" x="10" y="0.0" width="60" height="60"/>

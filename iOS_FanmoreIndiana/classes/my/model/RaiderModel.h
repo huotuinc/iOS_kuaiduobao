@@ -22,5 +22,6 @@
 @property (nonatomic, strong) NSNumber *toAmount;
 @property (nonatomic, strong) NSString *winner;
 @property (nonatomic, strong) NSNumber *winnerAttendAmount;
+@property (nonatomic, strong) NSNumber *time;
 
 @end
