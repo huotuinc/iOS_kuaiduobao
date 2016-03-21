@@ -61,6 +61,43 @@
             </objects>
             <point key="canvasLocation" x="-88" y="1259"/>
         </scene>
+        <!--Controller-->
+        <scene sceneID="aZQ-x3-YOr">
+            <objects>
+                <viewController storyboardIdentifier="MCController" id="dtj-wF-YrK" customClass="MCController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fWM-Ix-Vfk"/>
+                        <viewControllerLayoutGuide type="bottom" id="C6t-Y8-WIw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jeP-EW-MMg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zve-Kx-TsT">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dtj-wF-YrK" id="OG1-tu-ndN"/>
+                                    <outlet property="delegate" destination="dtj-wF-YrK" id="uHx-yC-x4h"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zve-Kx-TsT" firstAttribute="top" secondItem="fWM-Ix-Vfk" secondAttribute="bottom" id="B53-qa-DJr"/>
+                            <constraint firstAttribute="trailing" secondItem="zve-Kx-TsT" secondAttribute="trailing" id="MP9-HE-1LO"/>
+                            <constraint firstItem="zve-Kx-TsT" firstAttribute="leading" secondItem="jeP-EW-MMg" secondAttribute="leading" id="eC3-Ng-FwW"/>
+                            <constraint firstItem="C6t-Y8-WIw" firstAttribute="top" secondItem="zve-Kx-TsT" secondAttribute="bottom" id="jKZ-w1-gID"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="zve-Kx-TsT" id="13P-tJ-JUA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Rq-4w-WsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1330" y="-226"/>
+        </scene>
         <!--Login Controller-->
         <scene sceneID="DTT-XE-FHx">
             <objects>
@@ -3882,7 +3919,7 @@
         <image name="trtr" width="56" height="56"/>
         <image name="weixin" width="48" height="64"/>
         <image name="xiaoxi" width="30" height="30"/>
-        <image name="yiyuan" width="25" height="25"/>
+        <image name="yiyuan" width="39" height="39"/>
         <image name="zuixin" width="25" height="25"/>
     </resources>
 </document>
