@@ -254,7 +254,7 @@
         } failure:^(NSError *error) {
             LWLog(@"%@", error);
             [SVProgressHUD dismiss];
-        } withFileKey:nil];
+        } withFileKey:@"profileData"];
     }];
     
     
