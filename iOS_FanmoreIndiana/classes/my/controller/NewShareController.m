@@ -19,6 +19,11 @@
 @property (nonatomic, strong) NSString *third;
 @property (nonatomic, strong) NSString *fourth;
 
+@property (nonatomic, strong) NSString *firstMini;
+@property (nonatomic, strong) NSString *secondMini;
+@property (nonatomic, strong) NSString *thirdMini;
+@property (nonatomic, strong) NSString *fourthMini;
+
 @end
 
 @implementation NewShareController
@@ -60,6 +65,8 @@
             [SVProgressHUD showErrorWithStatus:@"请输入晒单描述"];
         }else if ([self picturesAreTheSame]) {
             [SVProgressHUD showErrorWithStatus:@"请设置4张晒单图片"];
+        }else if (self.shareTitle.text.length <= 5) {
+            [SVProgressHUD showErrorWithStatus:@"晒单主题，不少于6个字"];
         }else {
             [self.shareDetail resignFirstResponder];
             [self.shareTitle resignFirstResponder];
@@ -103,7 +110,8 @@
     dic[@"issueId"] = self.WinningModel.issueId;
     dic[@"title"] = self.shareTitle.text;
     dic[@"content"] = self.shareDetail.text;
-    dic[@"profileData"] = [self getArrayFromImages];
+    dic[@"filenames"] = [self getArrayFromImages];
+    dic[@"miniFilenames"] = [self getArrayFromMiniImages];
     
     [SVProgressHUD showWithStatus:nil];
     [UserLoginTool loginRequestPostWithFile:@"addShareOrder" parame:dic success:^(id json) {
@@ -111,6 +119,8 @@
         [SVProgressHUD dismiss];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             [self.navigationController popViewControllerAnimated:YES];
+        }if ([json[@"systemResultCode"] intValue] == 500) {
+            [SVProgressHUD showErrorWithStatus:@"服务器错误"];
         }
     } failure:^(NSError *error) {
         LWLog(@"%@", error);
@@ -231,20 +241,24 @@
             [SVProgressHUD dismiss];
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                 if (_selectImage.tag == 101) {
-                    [self.firstImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    [self.firstImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"miniUrl"]] placeholderImage:nil options:SDWebImageRetryFailed];
                     self.first = json[@"resultData"][@"filename"];
+                    self.firstMini = json[@"resultData"][@"miniFilename"];
                 }
                 if (_selectImage.tag == 102) {
-                    [self.secondImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    [self.secondImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"miniUrl"]] placeholderImage:nil options:SDWebImageRetryFailed];
                     self.second = json[@"resultData"][@"filename"];
+                    self.secondMini = json[@"resultData"][@"miniFilename"];
                 }
                 if (_selectImage.tag == 103) {
-                    [self.thirdImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    [self.thirdImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"miniUrl"]] placeholderImage:nil options:SDWebImageRetryFailed];
                     self.third = json[@"resultData"][@"filename"];
+                    self.thirdMini = json[@"resultData"][@"miniFilename"];
                 }
                 if (_selectImage.tag == 104) {
-                    [self.fourthImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"url"]] placeholderImage:nil options:SDWebImageRetryFailed];
+                    [self.fourthImage sd_setImageWithURL:[NSURL URLWithString:json[@"resultData"][@"miniUrl"]] placeholderImage:nil options:SDWebImageRetryFailed];
                     self.fourth = json[@"resultData"][@"filename"];
+                    self.fourthMini = json[@"resultData"][@"miniFilename"];
                 }
             }else {
                 [SVProgressHUD showErrorWithStatus:@"图片上传失败"];
@@ -252,7 +266,7 @@
         } failure:^(NSError *error) {
             LWLog(@"%@", error);
             [SVProgressHUD dismiss];
-        } withFileKey:nil];
+        } withFileKey:@"profileData"];
     }];
     
     
@@ -323,6 +337,17 @@
     [temp appendFormat:@",%@" ,self.second];
     [temp appendFormat:@",%@" ,self.third];
     [temp appendFormat:@",%@" ,self.fourth];
+    
+    return temp;
+}
+
+- (NSString *)getArrayFromMiniImages {
+    NSMutableString *temp = [NSMutableString string];
+    
+    [temp appendString:self.firstMini];
+    [temp appendFormat:@",%@" ,self.secondMini];
+    [temp appendFormat:@",%@" ,self.thirdMini];
+    [temp appendFormat:@",%@" ,self.fourthMini];
     
     return temp;
 }

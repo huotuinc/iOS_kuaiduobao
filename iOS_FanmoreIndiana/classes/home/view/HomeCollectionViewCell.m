@@ -35,7 +35,7 @@
     [super layoutSubviews];
     
     self.joinList.layer.borderColor = [UIColor redColor].CGColor;
-    self.joinList.layer.borderWidth = 1;
+    self.joinList.layer.borderWidth = 0.5;
     self.joinList.tintColor = [UIColor redColor];
     self.joinList.layer.cornerRadius = 5;
     

@@ -73,8 +73,9 @@
     
     dic[@"password"] = [MD5Encryption md5by32:self.password.text];
     
+    [SVProgressHUD showWithStatus:@"登录中"];
     [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
-        
+        [SVProgressHUD dismiss];
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             [self loginSuccessWith:json[@"resultData"]];
@@ -100,13 +101,17 @@
             dic[@"head"] = user.icon;
             dic[@"type"] = @"1";
             
+            [SVProgressHUD showWithStatus:@"登录中"];
+            
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
                 if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                     [self loginSuccessWith:json[@"resultData"]];
                 }
+                [SVProgressHUD dismiss];
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
+                [SVProgressHUD dismiss];
             }];
             
         }else {
@@ -129,13 +134,16 @@
             dic[@"head"] = user.icon;
             dic[@"type"] = @"2";
             
+            [SVProgressHUD showWithStatus:@"登录中"];
             [UserLoginTool loginRequestGet:@"authLogin" parame:dic success:^(id json) {
                 LWLog(@"%@",json);
                 if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                     [self loginSuccessWith:json[@"resultData"]];
                 }
+                [SVProgressHUD dismiss];
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
+                [SVProgressHUD dismiss];
             }];
         }else {
 

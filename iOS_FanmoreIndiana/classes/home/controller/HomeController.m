@@ -244,7 +244,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     //#warning 自动刷新(一进入程序就下拉刷新)
     //    [self.tableView headerBeginRefreshing];
     // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了"
     //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
     //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
     
@@ -909,7 +909,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if (indexPath.section == 0) {
             return  CGSizeMake(SCREEN_WIDTH, ADAPT_HEIGHT(440)+40+clearHeight);
         }else {
-            return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.3);
+            return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.32);
         }
     }
     else{

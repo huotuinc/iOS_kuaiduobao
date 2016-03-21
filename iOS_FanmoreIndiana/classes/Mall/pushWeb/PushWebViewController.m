@@ -289,7 +289,7 @@
             NSMutableString * url = [NSMutableString stringWithString:[[NSUserDefaults standardUserDefaults] objectForKey:WebSit]];
             [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
             NSString * to = [NSDictionary ToSignUrlWithString:url];
-            [UserLoginTool loginRequestGet:to parame:nil success:^(id json) {
+            [UserLoginTool ordorRequestGet:to parame:nil success:^(id json) {
                 LWLog(@"%@",json);
                 if ([json[@"code"] integerValue] == 200) {
                     self.priceNumber = json[@"data"][@"Final_Amount"];

@@ -766,7 +766,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:dateFormat];
     //将13位时间戳转为正常时间格式
-    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue]/1000]];
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time doubleValue] / 1000]];
     return str;
 }
 

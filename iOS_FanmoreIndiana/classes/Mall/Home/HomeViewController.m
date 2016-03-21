@@ -109,8 +109,9 @@
 - (void)GoToLeft{
     
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
+        
     }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
 }
 
 //- (UIButton *)shareBtn{
@@ -252,6 +253,7 @@
     self.homeBottonWebView.delegate = self;
     self.homeBottonWebView.tag = 20;
 //    self.homeBottonWebView.hidden = YES;
+//    self.homeBottonWebView.backgroundColor = [UIColor blueColor];
     self.homeBottonWebView.scrollView.bounces = NO;
     self.homeBottonWebView.scrollView.scrollEnabled = NO;
     [self.homeBottonWebView loadRequest:Bottomreq];
@@ -391,10 +393,10 @@
                 NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                 // 3.解码并存到数组中
                 NSArray *namesArray = [unArchiver decodeObjectForKey:PayTypeflat];
-                NSMutableString * url = [NSMutableString stringWithString:self.ordorUrl];
+                NSMutableString * url = [NSMutableString stringWithString:[[NSUserDefaults standardUserDefaults] objectForKey:WebSit]];
                 [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
                 NSString * to = [NSDictionary ToSignUrlWithString:url];
-                [UserLoginTool loginRequestGet:to parame:nil success:^(id json) {
+                [UserLoginTool ordorRequestGet:to parame:nil success:^(id json) {
                     if ([json[@"code"] integerValue] == 200) {
                         self.priceNumber = json[@"data"][@"Final_Amount"];
                         NSString * des =  json[@"data"][@"ToStr"]; //商品描述
