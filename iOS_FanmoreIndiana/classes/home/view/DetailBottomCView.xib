@@ -27,40 +27,66 @@
                                 <rect key="frame" x="335" y="15" width="290" height="70"/>
                                 <state key="normal" title="加入清单"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v0e-jd-j94">
-                                <rect key="frame" x="655" y="15" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="v0e-jd-j94" secondAttribute="height" multiplier="1:1" id="959-HR-BQk"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9tO-SL-NEC">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="hxg-OD-tgw"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWj-Nl-aA3">
+                                <rect key="frame" x="678" y="38" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fWj-Nl-aA3" secondAttribute="height" multiplier="1:1" id="SeL-BO-n6t"/>
+                                    <constraint firstAttribute="width" secondItem="fWj-Nl-aA3" secondAttribute="height" multiplier="1:1" id="ui2-YV-LNZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="SeL-BO-n6t"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v0e-jd-j94">
+                                <rect key="frame" x="665" y="25" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="v0e-jd-j94" secondAttribute="height" multiplier="1:1" id="959-HR-BQk"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fWj-Nl-aA3" firstAttribute="top" secondItem="v0e-jd-j94" secondAttribute="top" constant="-5" id="3my-JE-zsw"/>
+                            <constraint firstItem="fWj-Nl-aA3" firstAttribute="centerY" secondItem="v0e-jd-j94" secondAttribute="centerY" multiplier="1:1" id="5Wn-fP-r1J"/>
                             <constraint firstItem="9tO-SL-NEC" firstAttribute="top" secondItem="8XW-ih-9DL" secondAttribute="top" id="ARP-LW-BTU"/>
                             <constraint firstAttribute="trailing" secondItem="9tO-SL-NEC" secondAttribute="trailing" id="BYz-BS-k8Q"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="leading" secondItem="9tO-SL-NEC" secondAttribute="trailing" id="EyO-Ec-RNI"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="width" secondItem="8XW-ih-9DL" secondAttribute="width" multiplier="290:750" id="IC4-Z7-Gfn"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="height" secondItem="8XW-ih-9DL" secondAttribute="height" multiplier="70:100" id="JlC-ER-B1q"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="centerX" secondItem="8XW-ih-9DL" secondAttribute="centerX" multiplier="165:375" id="MIN-ad-tNp"/>
+                            <constraint firstItem="fWj-Nl-aA3" firstAttribute="centerX" secondItem="v0e-jd-j94" secondAttribute="centerX" multiplier="1:1" id="MoC-Qo-877"/>
                             <constraint firstItem="9tO-SL-NEC" firstAttribute="leading" secondItem="8XW-ih-9DL" secondAttribute="leading" id="O7G-vD-Ra8"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="centerX" secondItem="8XW-ih-9DL" secondAttribute="centerX" multiplier="690:375" id="UxP-Rl-jmU"/>
                             <constraint firstItem="v0e-jd-j94" firstAttribute="centerY" secondItem="z30-MT-A96" secondAttribute="centerY" id="VNs-Ar-FdY"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="width" secondItem="z30-MT-A96" secondAttribute="width" id="X9u-06-TFc"/>
+                            <constraint firstItem="fWj-Nl-aA3" firstAttribute="centerX" secondItem="v0e-jd-j94" secondAttribute="centerX" multiplier="3.5:4" id="XPw-Ii-jDN"/>
+                            <constraint firstItem="fWj-Nl-aA3" firstAttribute="height" secondItem="v0e-jd-j94" secondAttribute="height" multiplier="1:2" id="Yct-Lt-MHY"/>
                             <constraint firstItem="z30-MT-A96" firstAttribute="centerY" secondItem="8XW-ih-9DL" secondAttribute="centerY" id="a2W-VX-a0s"/>
+                            <constraint firstItem="fWj-Nl-aA3" firstAttribute="height" secondItem="v0e-jd-j94" secondAttribute="height" multiplier="1:2" id="lBx-Xt-SE0"/>
+                            <constraint firstItem="fWj-Nl-aA3" firstAttribute="trailing" secondItem="v0e-jd-j94" secondAttribute="trailing" constant="5" id="mUh-j1-A3E"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="height" secondItem="z30-MT-A96" secondAttribute="height" id="p4b-kJ-fsr"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="centerX" secondItem="8XW-ih-9DL" secondAttribute="centerX" multiplier="480:375" id="wGO-tF-Jlx"/>
-                            <constraint firstItem="v0e-jd-j94" firstAttribute="height" secondItem="z30-MT-A96" secondAttribute="height" id="wYd-te-vzT"/>
+                            <constraint firstItem="v0e-jd-j94" firstAttribute="height" secondItem="z30-MT-A96" secondAttribute="height" multiplier="50:70" id="wYd-te-vzT"/>
                             <constraint firstItem="ylJ-ud-smS" firstAttribute="centerY" secondItem="z30-MT-A96" secondAttribute="centerY" id="yqC-Sb-UVg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="EyO-Ec-RNI"/>
+                                <exclude reference="3my-JE-zsw"/>
+                                <exclude reference="XPw-Ii-jDN"/>
+                                <exclude reference="lBx-Xt-SE0"/>
+                                <exclude reference="mUh-j1-A3E"/>
                             </mask>
                         </variation>
                     </view>
@@ -77,6 +103,7 @@
                 <outlet property="buttonGo" destination="z30-MT-A96" id="g1S-ca-40J"/>
                 <outlet property="imageVLine" destination="9tO-SL-NEC" id="LOw-D0-1CV"/>
                 <outlet property="imageVShop" destination="v0e-jd-j94" id="i1s-y9-zpV"/>
+                <outlet property="labelCount" destination="fWj-Nl-aA3" id="EQs-tD-bEo"/>
             </connections>
         </tableViewCell>
     </objects>

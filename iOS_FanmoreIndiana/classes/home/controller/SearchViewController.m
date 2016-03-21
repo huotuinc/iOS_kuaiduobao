@@ -56,14 +56,15 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             LWLog(@"%@",json[@"resultDescription"]);
+            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
+
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
+            [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
         }
-        [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
         
         
     } withFileKey:nil];

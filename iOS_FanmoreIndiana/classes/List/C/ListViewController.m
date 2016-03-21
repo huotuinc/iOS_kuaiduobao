@@ -14,17 +14,24 @@
 #import "LoginController.h"
 #import "ArchiveLocalData.h"
 static NSString *cellLMain=@"cellLMain";
-static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第一次点击为全选文字显示未全选 1为selected 2为unselected
+/**
+ *  用于表示buttonAll的选中状态
+ *  = 1 的时候 buttonAll为选中状态(selected) 此时labelAll.text= @"取消全选"
+ *  = 2 的时候 buttonAll为选中状态(unselected) 此时labelAll.text= @"全选"
+ */
+static NSInteger selectAllCount = 1;
+
 @interface ListViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,logVCdelegate>
 
 @property (strong, nonatomic)  UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *cartList;//数据源数组
 @property (strong, nonatomic)  ListBottomCView *bottomView;//结算视图
-@property(nonatomic,strong)UIToolbar *toolbar;//完成视图
+@property(nonatomic,strong) UIToolbar *toolbar;//完成视图
 @property (nonatomic,strong) UIBarButtonItem *previousBarButton;//完成选项
 @property (strong, nonatomic)  NSMutableArray *selectedArray; //选中商品的数组
 @property (strong, nonatomic)  UIImageView *imageVBack; //选中商品的数组
 @property (strong, nonatomic)  AppBalanceModel *balanceModel; //选中商品的数组
+@property (assign, nonatomic)  BOOL emptyTheCart; //是否清空购物车
 
 @end
 
@@ -46,6 +53,7 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
     [self.navigationItem changeNavgationBarTitle:@"清单"];
     [self createBarButtonItem];
     _selectedArray = [NSMutableArray array];
+    _cartList = [NSMutableArray array];
 //    //每次进入购物车的时候把选择的置空
 //    [_selectedArray removeAllObjects];
     isSelect = YES;
@@ -69,17 +77,13 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
             if (_tableView) {
                 self.imageVBack.hidden = YES;
                 [self.tableView reloadData];
-//                _bottomView.labelAll.text = @"取消全选";
-//                _bottomView.buttonAll.selected = YES;
-//                [self countPrice];
-//                selectAllCount = 1;
             }else{
                 [self createTableView];
             }
             _bottomView.buttonAll.selected = YES;
             _bottomView.labelAll.text = @"取消全选";
             [self countPrice];
-            selectAllCount = 2;
+            selectAllCount = 1;
         }
         
         
@@ -96,12 +100,42 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
         [self loadNotificationCell];
 }
 - (void)createBarButtonItem{
-    UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
     [UIButton changeButton:buttonR AndFont:30 AndTitleColor:COLOR_SHINE_BLUE AndBackgroundColor:[UIColor whiteColor] AndBorderColor:nil AndCornerRadius:0 AndBorderWidth:0];
-    buttonR.titleLabel.text = @"清空列表";
+    [buttonR setTitle:@"清空清单" forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
-        
+        //提示框
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要清空清单?" preferredStyle:1];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //判断是否登陆
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+                _emptyTheCart = YES;
+                //已登陆
+                [self deleteShoppingCart];
+                [_cartList removeAllObjects];
+                [_selectedArray removeAllObjects];
+                [_tableView removeFromSuperview];
+                [self createImageVBack];
+
+            }else{
+                //未登录
+                [_cartList removeAllObjects];
+                [_selectedArray removeAllObjects];
+                [ArchiveLocalData emptyTheLocalDataArray];
+                [_tableView removeFromSuperview];
+                [self createImageVBack];
+            }
+
+            
+            
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
+    
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
 }
@@ -150,6 +184,7 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
  */
 - (void)getShoppingList{
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    //已登陆
     if ([login isEqualToString:Success]) {
         [SVProgressHUD show];
         [UserLoginTool loginRequestGet:@"getShoppingList" parame:nil success:^(id json) {
@@ -161,6 +196,9 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
                 //            self.lastSort =json[@"resultData"][@"sort"];
                 [self.cartList removeAllObjects];
                 [self.cartList addObjectsFromArray:temp];
+                for (CartModel *item in _cartList) {
+                    item.isSelect = YES;
+                }
                 
                 
             }else{
@@ -170,17 +208,18 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
             if (_cartList.count == 0) {
                 [self createImageVBack];
             }else {
+                self.imageVBack.hidden = YES;
                 if (_tableView) {
-                    self.imageVBack.hidden = YES;
                     [self.tableView reloadData];
-                    _bottomView.labelAll.text = @"取消全选";
-                    [_selectedArray removeAllObjects];
-                    [self countPrice];
-                    _bottomView.buttonAll.selected = YES;
-                    selectAllCount = 1;
                 }else{
                     [self createTableView];
                 }
+                _bottomView.labelAll.text = @"取消全选";
+                [_selectedArray removeAllObjects];
+                _selectedArray = [NSMutableArray arrayWithArray:_cartList];
+                [self countPrice];
+                _bottomView.buttonAll.selected = YES;
+                selectAllCount = 1;
             }
             [_tableView.mj_header endRefreshing];
             
@@ -189,7 +228,9 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
             LWLog(@"%@",error);
         }];
 
-    }else{
+    }
+    //未登录
+    else{
         _cartList = [[NSMutableArray alloc] initWithArray:[self getLocalDataArray]];
         for (int i = 0; i<_cartList.count; i++) {
             CartModel *cartM = _cartList[i];
@@ -204,6 +245,7 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
                 [self.tableView reloadData];
                 _bottomView.labelAll.text = @"取消全选";
                 _bottomView.buttonAll.selected = YES;
+                _selectedArray = [NSMutableArray arrayWithArray:_cartList];
                 [self countPrice];
                 selectAllCount = 1;
 
@@ -222,7 +264,25 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
 
 -(void)deleteShoppingCart {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"shoppingCartId"] = self.shoppingCartId;
+    if (_emptyTheCart == YES) {
+        NSMutableString *emptyCartString = [NSMutableString string];
+        for ( int i =0 ; i<_cartList.count; i++) {
+            CartModel *model = _cartList[i];
+            if (i == _cartList.count - 1) {
+                [emptyCartString appendFormat:@"{shoppingCartId:%@}",model.sid];
+            }else{
+                [emptyCartString appendFormat:@"{shoppingCartId:%@},",model.sid];
+            }
+        }
+        [emptyCartString insertString:@"[" atIndex:0];
+        [emptyCartString appendString:@"]"];
+        dic[@"shoppingCarts"] = emptyCartString;
+        
+    } else {
+        NSString *delecateString = [[NSString alloc] initWithFormat:@"[{shoppingCartId:%@}]",self.shoppingCartId];
+        dic[@"shoppingCartId"] = delecateString;
+    }
+    
     
     [UserLoginTool loginRequestPostWithFile:@"deleteShoppingCart" parame:dic success:^(id json) {
         LWLog(@"%@",json);
@@ -317,48 +377,7 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
 
 
 
--(void)createCartList{
-    for (int i = 0; i < 5; i++) {
-        CartModel *model = [[CartModel alloc]init];
-        if (i == 1) {
-            model.title=[NSString stringWithFormat:@"%d%d%d",i,i,i];
-            model.areaAmount=[NSNumber numberWithInteger:5];
-            model.attendAmount=[NSNumber numberWithInteger:20];
-            model.remainAmount=[NSNumber numberWithInteger:100];
-            model.toAmount=[NSNumber numberWithInteger:200];
-            model.pictureUrl=@"http://www.itouxiang.net/uploads/allimg/20151218/16500749163352.jpg";
-            model.isSelect = NO;
-            
-        }else if (i == 3) {
-            model.title=[NSString stringWithFormat:@"%d%d%d",i,i,i];
-            model.areaAmount=[NSNumber numberWithInteger:10];
-            model.attendAmount=[NSNumber numberWithInteger:50];
-            model.remainAmount=[NSNumber numberWithInteger:20];
-            model.toAmount=[NSNumber numberWithInteger:400];
-            model.pictureUrl=@"http://dmimg.5054399.com/allimg/xyytuku/120518/a004.jpg";
-            model.isSelect = NO;
-            
-            
-        }else{
-            model.title=[NSString stringWithFormat:@"%d%d%d",i,i,i];
-            model.areaAmount=[NSNumber numberWithInteger:1];
-            model.remainAmount=[NSNumber numberWithInteger:100+i*i];
-            model.toAmount=[NSNumber numberWithInteger:200+i*i];
-            model.attendAmount=[NSNumber numberWithInteger:i*i+1];
-            model.pictureUrl=@"http://img009.hc360.cn/m2/M02/86/3A/wKhQclQnXySELH6LAAAAAHbVBoc180.jpg..210x210.jpg";
-            model.isSelect = NO;
-            
-        }
-        [_cartList addObject:model];
-    }
-    if (_tableView) {
-        [self.tableView reloadData];
-    }else{
-        [self createTableView];
-    }
-    
-    
-}
+
 
 -(void)loadNotificationCell
 {
@@ -492,17 +511,35 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
         }
         else
         {
-            model.isSelect = NO;
+            CartModel *removeModel = [_cartList objectAtIndex:indexPath.row];
+            NSLog(@"%@",removeModel.title);
             [_selectedArray removeObject:[_cartList objectAtIndex:indexPath.row]];
+            model.isSelect = NO;
+
+//            CartModel *cartM = [_cartList objectAtIndex:indexPath.row];
+//            for (CartModel *removeModel in _selectedArray) {
+//                if (removeModel.issueId == cartM.issueId) {
+//                    [_selectedArray removeObject:removeModel];
+//                }
+//            CartModel *removeModel = [_cartList objectAtIndex:indexPath.row];
+//            NSLog(@"%@",removeModel.title);
+//            if ([_selectedArray containsObject:removeModel]) {
+//                NSLog(@"存在");
+//                [_selectedArray removeObject:removeModel];
+//            } else {
+//                NSLog(@"不存在");
+//                
+//            }
+            
             _bottomView.labelAll.text = @"全选";
             _bottomView.buttonAll.selected = NO;
-            selectAllCount = 1;//点击buttonALL 进入selected状态
+            selectAllCount = 2;//再次点击buttonALL 进入selected状态
         }
         
         if (_selectedArray.count == _cartList.count) {
             _bottomView.buttonAll.selected = YES;
             _bottomView.labelAll.text = @"取消全选";
-            selectAllCount = 2;
+            selectAllCount = 1;
         }
         else
         {
@@ -511,7 +548,7 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
         
         //选中商品为0 相当于click一次buttonAll操作
         if (_selectedArray.count == 0) {
-            selectAllCount = 1;
+            selectAllCount = 2;
         }
         
         [self countPrice];
@@ -630,7 +667,7 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
             
             
             
-            //判断是否选择
+            //判断删除的商品是否被选中
             if ([_selectedArray containsObject:model]) {
                 //从已选中删除,重新计算价格
                 [_selectedArray removeObject:model];
@@ -640,11 +677,11 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
             if (_cartList.count == _selectedArray.count) {
                 _bottomView.labelAll.text = @"取消全选";
                 _bottomView.buttonAll.selected = YES;
-                selectAllCount= 2;//buttonAll再次点击进入 unselected状态
+                selectAllCount= 1;//buttonAll再次点击进入 unselected状态
             }else{
                 _bottomView.labelAll.text = @"全选";
                 _bottomView.buttonAll.selected = NO;
-                selectAllCount = 1;
+                selectAllCount = 2;
             }
             
             if (_cartList.count == 0) {
@@ -703,25 +740,27 @@ static NSInteger selectAllCount = 2;//用于判断buttonAll的选中状态 第�
 {
     //全选中
     if (selectAllCount  == 1) {
-        _bottomView.labelAll.text = @"取消全选";
-        _bottomView.buttonAll.selected = YES;
+        _bottomView.labelAll.text = @"全选";
+        _bottomView.buttonAll.selected = NO;
         [_selectedArray removeAllObjects];
         for (CartModel *model in _cartList) {
-            model.isSelect = YES;
-            [_selectedArray addObject:model];
+            model.isSelect = NO;
+//            [_selectedArray addObject:model];
         }
         [self.tableView reloadData];
+        
         [self countPrice];
         selectAllCount = 2;
         return;
     }
     //未选中
     if (selectAllCount == 2) {
-        _bottomView.labelAll.text = @"全选";
-        _bottomView.buttonAll.selected = NO;
+        _bottomView.labelAll.text = @"取消全选";
+        _bottomView.buttonAll.selected = YES;
         [_selectedArray removeAllObjects];
         for (CartModel *model in _cartList) {
-            model.isSelect = NO;
+            model.isSelect = YES;
+            [_selectedArray addObject:model];
         }
         [self.tableView reloadData];
         [self countPrice];

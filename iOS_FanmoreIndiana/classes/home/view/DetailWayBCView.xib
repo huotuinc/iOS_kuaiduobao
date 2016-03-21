@@ -58,14 +58,14 @@
                                                 <rect key="frame" x="0.0" y="91" width="440" height="28"/>
                                                 <subviews>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Jjl-NQ-HHf">
-                                                        <rect key="frame" x="0.0" y="6" width="440" height="16"/>
+                                                        <rect key="frame" x="0.0" y="7" width="440" height="14"/>
                                                     </progressView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="Jjl-NQ-HHf" firstAttribute="centerY" secondItem="VGk-Yd-Vwm" secondAttribute="centerY" id="AES-bt-kml"/>
                                                     <constraint firstAttribute="trailing" secondItem="Jjl-NQ-HHf" secondAttribute="trailing" id="B1D-nK-eHB"/>
-                                                    <constraint firstItem="Jjl-NQ-HHf" firstAttribute="height" secondItem="VGk-Yd-Vwm" secondAttribute="height" multiplier="3:5" id="B67-UL-CYe"/>
+                                                    <constraint firstItem="Jjl-NQ-HHf" firstAttribute="height" secondItem="VGk-Yd-Vwm" secondAttribute="height" multiplier="1:2" id="B67-UL-CYe"/>
                                                     <constraint firstItem="Jjl-NQ-HHf" firstAttribute="leading" secondItem="VGk-Yd-Vwm" secondAttribute="leading" id="R9K-tO-qb0"/>
                                                     <constraint firstItem="Jjl-NQ-HHf" firstAttribute="centerX" secondItem="VGk-Yd-Vwm" secondAttribute="centerX" id="WvG-R2-9qn"/>
                                                 </constraints>
@@ -111,8 +111,8 @@
                                                 <rect key="frame" x="45" y="85" width="200" height="50"/>
                                                 <state key="normal" title="加入清单"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y07-78-AqN">
-                                                <rect key="frame" x="45" y="8" width="200" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y07-78-AqN">
+                                                <rect key="frame" x="45" y="7" width="200" height="50"/>
                                                 <state key="normal" title="1元抢购"/>
                                             </button>
                                         </subviews>

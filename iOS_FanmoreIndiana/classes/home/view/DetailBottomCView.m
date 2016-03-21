@@ -20,6 +20,16 @@
 
     _imageVShop.image=[UIImage imageNamed:@"gouwuche"];
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
+    
+    [UILabel changeLabel:_labelCount AndFont:20 AndColor:[UIColor whiteColor]];
+    _labelCount.text = @"5";
+    _labelCount.backgroundColor = COLOR_BUTTON_ORANGE;
+}
+
+- (void)drawRect:(CGRect)rect {
+    _labelCount.layer.cornerRadius = _labelCount.frame.size.height/2;
+    _labelCount.layer.masksToBounds = YES;
+    _labelCount.center = CGPointMake(_imageVShop.frame.origin.x+_imageVShop.frame.size.width, _imageVShop.frame.origin.y);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
