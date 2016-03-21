@@ -109,8 +109,9 @@
 - (void)GoToLeft{
     
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
+        
     }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
 }
 
 //- (UIButton *)shareBtn{

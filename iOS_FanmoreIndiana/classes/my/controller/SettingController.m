@@ -30,11 +30,18 @@
 - (void)_initLabels {
     SDImageCache *sdImageCache = [SDImageCache sharedImageCache];
     
-    self.imageSize.text = [NSString stringWithFormat:@"%uM", [sdImageCache getSize] / 1024 / 1024];
+    self.imageSize.text = [NSString stringWithFormat:@"%luM", [sdImageCache getSize] / 1024 / 1024];
     
     
 }
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.tabBarController.tabBar.hidden = YES;
+    
+}
 
 
 
