@@ -35,6 +35,9 @@
 #import "LoginController.h"
 #import "ArchiveLocalData.h"
 #import "CircleBannerView.h"
+#import "HomeSearchCView.h"
+#import "HomeGetRedPocketCView.h"
+#import "HomeSendRedPocketCView.h"
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<CircleBannerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
@@ -48,6 +51,8 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 @property (strong, nonatomic)  UIImageView *imageVNotice;//头部视图-提醒
 @property (strong, nonatomic)  UIView *headView;//头部视图
 @property (strong, nonatomic)  UIView *clearView;//分割的View
+@property (strong, nonatomic)  HomeGetRedPocketCView *getRedView;//弹框 得到红包
+@property (strong, nonatomic)  HomeSendRedPocketCView *sendRedView;//弹框 发出红包
 @property (strong, nonatomic)  NSTimer *timer;//定时器
 @property (strong , nonatomic) UIImageView *imageVRed;//中间四个选项 下划线
 @property (weak , nonatomic) UIView *viewChoice;//中间四个选项
