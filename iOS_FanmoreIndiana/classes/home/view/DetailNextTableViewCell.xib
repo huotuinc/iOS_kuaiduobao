@@ -20,7 +20,7 @@
                         <rect key="frame" x="10" y="0.0" width="300" height="70"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NA7-Wc-dJ2">
-                                <rect key="frame" x="272" y="21" width="28" height="28"/>
+                                <rect key="frame" x="279" y="25" width="21" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NA7-Wc-dJ2" secondAttribute="height" multiplier="1:1" id="LU3-Qn-Xeu"/>
                                 </constraints>
@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEJ-7X-xgW">
-                                <rect key="frame" x="267" y="36" width="0.0" height="0.0"/>
+                                <rect key="frame" x="274" y="36" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                             <constraint firstItem="T9p-Q2-4vE" firstAttribute="leading" secondItem="7II-5x-sbD" secondAttribute="leading" id="6X8-us-61z"/>
                             <constraint firstItem="NA7-Wc-dJ2" firstAttribute="centerY" secondItem="7II-5x-sbD" secondAttribute="centerY" id="PiD-E8-BSG"/>
                             <constraint firstAttribute="trailing" secondItem="NA7-Wc-dJ2" secondAttribute="trailing" id="Q8b-JD-IJA"/>
-                            <constraint firstItem="NA7-Wc-dJ2" firstAttribute="height" secondItem="7II-5x-sbD" secondAttribute="height" multiplier="40:100" id="lZC-Bt-LUE"/>
+                            <constraint firstItem="NA7-Wc-dJ2" firstAttribute="height" secondItem="7II-5x-sbD" secondAttribute="height" multiplier="30:100" id="lZC-Bt-LUE"/>
                             <constraint firstItem="gEJ-7X-xgW" firstAttribute="centerY" secondItem="T9p-Q2-4vE" secondAttribute="centerY" id="ldY-qJ-HBQ"/>
                             <constraint firstItem="T9p-Q2-4vE" firstAttribute="centerY" secondItem="7II-5x-sbD" secondAttribute="centerY" id="wIy-cZ-htB"/>
                         </constraints>

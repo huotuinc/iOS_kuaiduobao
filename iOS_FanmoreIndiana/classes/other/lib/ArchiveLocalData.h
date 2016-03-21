@@ -25,5 +25,8 @@
  *  @return <#return value description#>
  */
 + (NSArray *)unarchiveLocalDataArray;
-
+/**
+ *  清空归档
+ */
++ (void) emptyTheLocalDataArray;
 @end

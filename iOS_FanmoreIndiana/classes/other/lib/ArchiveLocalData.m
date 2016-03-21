@@ -102,4 +102,20 @@
 
 }
 
++ (void) emptyTheLocalDataArray {
+    NSArray *localArray = [NSArray array];
+    NSMutableData *data = [[NSMutableData alloc] init];
+    //创建归档辅助类
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    //编码
+    [archiver encodeObject:localArray forKey:LOCALCART];
+    //结束编码
+    [archiver finishEncoding];
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+    //写入
+    [data writeToFile:filename atomically:YES];
+
+}
+
 @end

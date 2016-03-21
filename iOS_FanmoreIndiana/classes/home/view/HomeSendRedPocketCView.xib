@@ -111,16 +111,16 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="3qJ-6s-dM3"/>
+                                <exclude reference="0D2-wm-GgX"/>
+                                <exclude reference="9SR-FM-hMv"/>
+                                <exclude reference="Vf5-98-00Y"/>
+                                <exclude reference="z8Z-85-iV7"/>
                                 <exclude reference="57W-Sj-W13"/>
                                 <exclude reference="9B3-u1-E37"/>
                                 <exclude reference="h3e-K9-2fA"/>
                                 <exclude reference="vG0-8a-t1t"/>
                                 <exclude reference="wiQ-Dz-tOz"/>
                                 <exclude reference="xs7-SC-UiK"/>
-                                <exclude reference="0D2-wm-GgX"/>
-                                <exclude reference="9SR-FM-hMv"/>
-                                <exclude reference="Vf5-98-00Y"/>
-                                <exclude reference="z8Z-85-iV7"/>
                             </mask>
                         </variation>
                     </view>

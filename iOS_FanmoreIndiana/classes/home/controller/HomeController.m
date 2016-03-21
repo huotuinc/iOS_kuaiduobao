@@ -118,6 +118,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
    
 
     [self getHomeData];
+//    [self createGetRedView];
 
 
 //    [self createHeadView];
@@ -144,6 +145,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }];
     NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
 //        [self getAppSlideList];
+//        NSString * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:UserInfo];
+//        if ([login isEqualToString:Success]) {
+//            [self getShoppingList];
+//        }else{
 
     }];
     
@@ -174,6 +179,28 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
+}
+- (void)createGetRedView {
+    NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeGetRedPocketCView" owner:nil options:nil];
+    _getRedView=[nib firstObject];
+    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    [_getRedView.imageVBack bk_whenTapped:^{
+        _getRedView.hidden = YES;
+        [_getRedView removeFromSuperview];
+    }];
+//    [self.view addSubview:_getRedView];
+    [self.view insertSubview:_getRedView aboveSubview:_collectionView];
+//    [self.view bringSubviewToFront:_getRedView];
+}
+- (void)createSendRedView {
+    NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
+    _sendRedView=[nib firstObject];
+    _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    [_sendRedView bk_whenTapped:^{
+        _sendRedView.hidden = YES;
+        [_sendRedView removeFromSuperview];
+    }];
+    [self.view bringSubviewToFront:_sendRedView];
 }
 
 -(void)createMainCollectionView{
