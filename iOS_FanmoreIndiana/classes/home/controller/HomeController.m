@@ -35,6 +35,7 @@
 #import "LoginController.h"
 #import "ArchiveLocalData.h"
 #import "CircleBannerView.h"
+#import "MCController.h"
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<CircleBannerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
@@ -171,6 +172,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
+        MCController *mc = [[MCController alloc] init];
+        [self.navigationController pushViewController:mc animated:YES];
     }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
@@ -206,7 +209,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)setupRefresh
 {
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeData)];
-    _collectionView.mj_header = headRe;
+    self.collectionView.mj_header = headRe;
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
     //#warning 自动刷新(一进入程序就下拉刷新)
@@ -219,7 +222,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     
     MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
-    _collectionView.mj_footer = Footer;
+    self.collectionView.mj_footer = Footer;
     
     //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
     
