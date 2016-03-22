@@ -339,7 +339,7 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
         cell.model = self.recordList[indexPath.row];
         return cell;
     }
-    return nil;
+    return [[UITableViewCell alloc] init];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

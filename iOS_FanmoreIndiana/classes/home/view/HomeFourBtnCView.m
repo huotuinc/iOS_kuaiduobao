@@ -24,7 +24,7 @@
         UIImageView *imageV=[self viewWithTag:200+i];
         imageV.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@",arrImage[i]]];
     }
-//    _imageVLine.image=[UIImage imageNamed:@"xian_3"];
+    _imageVLine.image=[UIImage imageNamed:@"xian_3"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

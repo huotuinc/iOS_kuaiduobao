@@ -717,6 +717,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 
             }
             
+            cell.layer.borderColor = [UIColor clearColor].CGColor;
+            
             return cell;
         }
     }
@@ -914,7 +916,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if (indexPath.section == 0) {
             return  CGSizeMake(SCREEN_WIDTH, ADAPT_HEIGHT(440)+40+clearHeight);
         }else {
-            return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.32);
+            if (KScreenWidth == 414) {
+                
+                return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 1, [UIScreen mainScreen].bounds.size.width / 2 * 1.32);
+            }else {
+                return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.32);
+            }
         }
     }
     else{
@@ -975,7 +982,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
     flowLayout.naviHeight = 0;
     flowLayout.minimumInteritemSpacing = 0.5;
-    flowLayout.minimumLineSpacing = 1;
+    if (KScreenWidth == 414) {
+        flowLayout.minimumLineSpacing = 2;
+    }else {
+        flowLayout.minimumLineSpacing = 1;
+    }
+    
     flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
     
     
@@ -993,6 +1005,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];
 }
+
+
 
 
 @end
