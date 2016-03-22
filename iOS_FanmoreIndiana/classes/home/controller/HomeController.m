@@ -129,6 +129,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
 //    [self createHeadView];
 //    [self createMainCollectionView];
+    
+    [self _initCollectionView];
 
 }
 #pragma mark 获取数据 线程
@@ -215,26 +217,26 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     if (self.collectionView) {
         return;
     }else {
-        XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
-        flowLayout.naviHeight = 0;
-        flowLayout.minimumInteritemSpacing = 0.5;
-        flowLayout.minimumLineSpacing = 1;
-        flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
-        
-        
-        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 64 -5) collectionViewLayout:flowLayout];
-        self.collectionView.tag=100;
-        self.collectionView.delegate = self;
-        self.collectionView.dataSource = self;
-        self.collectionView.backgroundColor=COLOR_BACK_MAIN;
-        [self.view addSubview:self.collectionView];
-        
-        [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
-        [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellHead];
-        
-        [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
-        [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
-        [self setupRefresh];
+//        XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
+//        flowLayout.naviHeight = 0;
+//        flowLayout.minimumInteritemSpacing = 0.5;
+//        flowLayout.minimumLineSpacing = 1;
+//        flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
+//        
+//        
+//        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 64 -5) collectionViewLayout:flowLayout];
+//        self.collectionView.tag=100;
+//        self.collectionView.delegate = self;
+//        self.collectionView.dataSource = self;
+//        self.collectionView.backgroundColor=COLOR_BACK_MAIN;
+//        [self.view addSubview:self.collectionView];
+//        
+//        [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
+//        [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellHead];
+//        
+//        [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
+//        [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
+//        [self setupRefresh];
     }
     
 }
@@ -277,11 +279,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             NSArray *temp = [AppNoticeListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             [self.appNoticeList removeAllObjects];
             [self.appNoticeList addObjectsFromArray:temp];
-            if (!_labelCollectionView) {
-                [self createLableCollectionView];
-            }else {
+//            if (!_labelCollectionView) {
+//                [self createLableCollectionView];
+//            }else {
                 [_labelCollectionView reloadData];
-            }
+//            }
             
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
@@ -349,13 +351,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
-            if (!_collectionView) {
-                [self createMainCollectionView];
-            }else {
+//            if (!_collectionView) {
+//                [self createMainCollectionView];
+//            }else {
                 [_collectionView reloadData];
                 [SVProgressHUD dismiss];
 
-            }
+//            }
 
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
@@ -966,5 +968,31 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 }
+
+#pragma mark 
+
+- (void)_initCollectionView {
+    XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
+    flowLayout.naviHeight = 0;
+    flowLayout.minimumInteritemSpacing = 0.5;
+    flowLayout.minimumLineSpacing = 1;
+    flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
+    
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - 64 -5) collectionViewLayout:flowLayout];
+    self.collectionView.tag=100;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor=COLOR_BACK_MAIN;
+    [self.view addSubview:self.collectionView];
+    
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellHead];
+    
+    [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
+    [self setupRefresh];
+}
+
 
 @end
