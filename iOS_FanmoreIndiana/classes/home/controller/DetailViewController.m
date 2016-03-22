@@ -34,7 +34,6 @@
 static NSString *cellDNext=@"cellDNext";
 static NSString * cellDTMain=@"cellDTMain";
 static NSString * cellDFirst=@"cellDFirst";
-static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface DetailViewController ()<CircleBannerViewDelegate,UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIView * headView;
@@ -52,6 +51,9 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 
 @property (nonatomic, strong) NSMutableArray *goodsDetailList;
 @property (nonatomic, strong) NSMutableArray *buyList;
+@property (nonatomic, strong) NSMutableArray *cartList;
+
+@property (nonatomic, assign) NSInteger cartCount;//购物车个数
 
 @property (nonatomic, strong) AppGoodsDetailModel *detailModel;
 @property (nonatomic, strong) AppBuyListModel *buyModel;
@@ -60,6 +62,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 @property (nonatomic, strong) UIView * backView;//背景灰色视图
 @property (nonatomic, strong) DetailGoodsSelectCView * selectView;//背景灰色视图
 
+@property (nonatomic, assign) BOOL isExist;//用于判断归档时有无该对象 默认没归档
 
 
 @end
@@ -81,6 +84,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
     [self.navigationItem changeNavgationBarTitle:@"奖品详情"];
+    
 
 }
 
@@ -91,6 +95,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     [self createBarButtonItem];
     _goodsDetailList=[NSMutableArray array];
     _buyList=[NSMutableArray array];
+    _isExist = NO;
     self.lastId = [NSNumber numberWithInteger:0];
     
 
@@ -103,7 +108,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     }
     [self createDataArray];
     [self getGoodsDetailList];
-    [self createBottomView];
+
 }
 
 - (void)createTimer {
@@ -202,6 +207,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [self createHeadView];
             [self createTimer];
             _arrURLString = [NSMutableArray arrayWithArray:_detailModel.pictureUrl];
+            [self getShoppingCount];
 
             if (_tableView) {
                 [_tableView reloadData];
@@ -250,13 +256,73 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     
 }
 
+#pragma mark 网络请求购物车商品个数
+/**
+ *  下拉刷新
+ */
+- (void)getShoppingCount{
+//    [SVProgressHUD show];
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    //已登陆
+    if ([login isEqualToString:Success]) {
+        [UserLoginTool loginRequestGet:@"getShoppingList" parame:nil success:^(id json) {
+            LWLog(@"%@",json);
+            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+                LWLog(@"%@",json[@"resultDescription"]);
+                _cartList = [NSMutableArray array];
+                NSArray *temp = [CartModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+                [_cartList removeAllObjects];
+                [_cartList addObjectsFromArray:temp];
+                //遍历 查看是否已添加本商品
+                for (CartModel *cartM in _cartList) {
+                    if (cartM.issueId == _detailModel.issueId) {
+                        _isExist = YES;
+                    }
+                }
+                self.cartCount = temp.count;
+                if (_bottomView) {
+                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount];
+                } else {
+                    [self createBottomView];
+                }
+                
+            }else{
+                LWLog(@"%@",json[@"resultDescription"]);
+            }
+//            [SVProgressHUD dismiss];
+
+        } failure:^(NSError *error) {
+//            [SVProgressHUD dismiss];
+            LWLog(@"%@",error);
+        }];
+        
+    }
+    //未登录
+    else{
+        NSMutableArray *cartArray =[[NSMutableArray alloc] initWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
+        _cartCount = cartArray.count;
+        for (CartModel *item in cartArray) {
+            if (item.issueId == _detailModel.issueId) {
+                _isExist = YES;
+            }
+        }
+        if (_bottomView) {
+            _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount];
+        } else {
+            [self createBottomView];
+        }
+
+
+
+    }
+//    [SVProgressHUD dismiss];
+
+}
+
 
 -(void)createDataArray{
     _titleArray=[NSMutableArray arrayWithArray:@[@"图文详情",@"往期揭晓",@"晒单分享"]];
-//    _arrURLString=[NSMutableArray arrayWithArray:@[@"http://p1.qqyou.com/pic/UploadPic/2013-3/19/2013031923222781617.jpg",
-//                                                   @"http://cdn.duitang.com/uploads/item/201409/27/20140927192649_NxVKT.thumb.700_0.png",
-//                                                   @"http://img4.duitang.com/uploads/item/201409/27/20140927192458_GcRxV.jpeg",
-//                                                   @"http://cdn.duitang.com/uploads/item/201304/20/20130420192413_TeRRP.thumb.700_0.jpeg"]];
+
 }
 #pragma mark 构建头部视图
 -(void)createHeadView{
@@ -465,7 +531,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 }
 #pragma mark 底部选项
 -(void)createBottomView{
-    
+    //可以参与
     if ([_whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
@@ -479,24 +545,42 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [self joinShoppingCart];
         }else{
 #pragma mark 加入购物车 未登陆
-            [ArchiveLocalData archiveLocalDataArrayWithModel:_joinModel];
+            if (_joinModel == nil) {
+                [ArchiveLocalData archiveLocalDataArrayWithDetailModel:_detailModel];
+            } else {
+                [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:_joinModel];
+
+            }
         }
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
 //            ListViewController *list = [[ListViewController alloc] init];
 //            [self.navigationController pushViewController:list animated:YES];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
+        //加入清单
         [_bottomView.buttonAdd bk_whenTapped:^{
             NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
             if ([login isEqualToString:Success]) {
 #pragma mark 加入购物车 已登陆
+                //如果购物车已有本商品 级数不加1
                 self.issueId = _detailModel.issueId;
                 [self joinShoppingCart];
+                if (!_isExist) {
+                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount + 1];
+                }
             }else{
 #pragma mark 加入购物车 未登陆
-                [ArchiveLocalData archiveLocalDataArrayWithModel:_joinModel];
-                [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+                if (_joinModel == nil) {
+                    [ArchiveLocalData archiveLocalDataArrayWithDetailModel:_detailModel];
 
+                } else {
+                    [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:_joinModel];
+                }
+
+                if (!_isExist) {
+                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount + 1];
+                }
+                [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
             }
 //            [self createSelectView];
         }];
@@ -505,8 +589,16 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
+        if (self.cartCount == 0) {
+            _bottomView.labelCount.hidden = YES;
+        } else {
+            _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount];
+
+        }
         [self.view addSubview:_bottomView];
-    }else{
+    }
+    //新的一期
+    else{
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomDoneCView" owner:nil options:nil];
         _bottomDoneView=[nib firstObject];
         _bottomDoneView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
@@ -516,6 +608,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             detail.goodsId = _detailModel.pid;
             [self.navigationController pushViewController:detail animated:YES];
         }];
+        
         [self.view addSubview:_bottomDoneView];
         
     }

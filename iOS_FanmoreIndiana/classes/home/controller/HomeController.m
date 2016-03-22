@@ -184,8 +184,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
-        MCController *mc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MCController"];
-        [self.navigationController pushViewController:mc animated:YES];
+        MCController *MC = [[MCController alloc] init];
+        [self.navigationController pushViewController:MC animated:YES];
     }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
@@ -706,7 +706,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                     [self joinShoppingCart];
                 }else{
 #pragma mark 加入购物车 未登陆
-                    [ArchiveLocalData archiveLocalDataArrayWithModel:joinModel];
+                    [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
                     [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
                     
                 }

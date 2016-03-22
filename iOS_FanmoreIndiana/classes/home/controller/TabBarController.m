@@ -21,6 +21,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cannelLogin) name:CannelLoginFailure object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToList) name:GOTOLISTIMMEDIATELY object:nil];
+    
+    
 
 }
 

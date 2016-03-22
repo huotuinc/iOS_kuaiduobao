@@ -22,7 +22,6 @@
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
     
     [UILabel changeLabel:_labelCount AndFont:20 AndColor:[UIColor whiteColor]];
-    _labelCount.text = @"5";
     _labelCount.backgroundColor = COLOR_BUTTON_ORANGE;
 }
 
