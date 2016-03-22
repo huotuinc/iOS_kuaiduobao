@@ -53,6 +53,7 @@
 {
     [super viewWillAppear:animated];
 
+    [self getNewMoreData];
 }
 
 
@@ -61,6 +62,8 @@
  */
 - (void)setupRefresh
 {
+    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewMoreData)];
+    self.tableView.mj_header = headRe;
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
 //    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
 //    //#warning 自动刷新(一进入程序就下拉刷新)
@@ -77,7 +80,8 @@
 //    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
 //    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
 //    self.tableView.footerRefreshingText = @"正在加载更多数据,请稍等";
-    
+    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreData:)];
+    self.tableView.mj_footer = Footer;
 }
 #pragma mark 开始进入刷新状态
 //头部刷新
@@ -118,14 +122,14 @@
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:params success:^(id json) {
         
-//        NSLog(@"%@",json);
+        LWLog(@"%@",json);
 
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==56001){
 
             return ;
         }
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {//访问成果
-            NSArray * taskArray = [Message objectArrayWithKeyValuesArray:json[@"resultData"][@"messages"]];
+            NSArray * taskArray = [Message mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"messages"]];
             if (taskArray.count > 0) {
                 for (Message * aa in taskArray) {
                     //                    NSLog(@"%@  %lld",aa.context,aa.date);
@@ -138,11 +142,13 @@
             }
             
         }
-
+        
+        [_tableView.mj_header endRefreshing];
     } failure:^(NSError *error) {
         
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         
+        [_tableView.mj_header endRefreshing];
     }];
     
 }
@@ -161,12 +167,12 @@
     __weak MCController * wself = self;
     [UserLoginTool loginRequestGet:@"messages" parame:parame success:^(id json) {
         
-//        NSLog(@"%@",json);
+        LWLog(@"%@",json);
         
         NSMutableArray * aaframe = [NSMutableArray array];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
-            NSArray *messageArrays = [Message objectArrayWithKeyValuesArray:json[@"resultData"][@"messages"]];
+            NSArray *messageArrays = [Message mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"messages"]];
             
             if (messageArrays.count == 0) {
 //                [self.tableView setTabelViewListIsZero];
@@ -189,11 +195,11 @@
             
             
         }
-
+        [_tableView.mj_header endRefreshing];
     } failure:^(NSError *error) {
         
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
-        
+        [_tableView.mj_header endRefreshing];
     }];
     
 }
