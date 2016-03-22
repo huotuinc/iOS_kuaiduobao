@@ -33,6 +33,9 @@
 @property (nonatomic, copy) NSString *awardingUserCityName;
 @property (nonatomic, strong) NSNumber *awardingUserIp;
 @property (nonatomic, copy) NSString *awardingUserHead;
+@property (nonatomic, strong) NSNumber *areaAmount;
+@property (nonatomic, strong) NSNumber *defaultAmount;
+@property (nonatomic, strong) NSNumber *pricePercentAmount;
 
 + (instancetype)timeModelWithtime:(int)time;
 

@@ -38,6 +38,7 @@
 #import "HomeSearchCView.h"
 #import "HomeGetRedPocketCView.h"
 #import "HomeSendRedPocketCView.h"
+#import "MCController.h"
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<CircleBannerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
@@ -181,6 +182,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
+        MCController *MC = [[MCController alloc] init];
+        [self.navigationController pushViewController:MC animated:YES];
     }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
@@ -701,7 +704,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                     [self joinShoppingCart];
                 }else{
 #pragma mark 加入购物车 未登陆
-                    [ArchiveLocalData archiveLocalDataArrayWithModel:joinModel];
+                    [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
                     [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
                     
                 }

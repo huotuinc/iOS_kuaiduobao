@@ -191,7 +191,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [self joinShoppingCart];
         }else{
 #pragma mark 加入购物车 未登陆
-            [ArchiveLocalData archiveLocalDataArrayWithModel:joinModel];
+            [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
             [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         }
     }];

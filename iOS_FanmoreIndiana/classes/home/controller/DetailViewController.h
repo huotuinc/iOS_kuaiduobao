@@ -16,4 +16,5 @@
 @property (nonatomic, assign) NSNumber *whichAPI;//1 为正常状态 2为倒计时
 @property (nonatomic, strong) AppGoodsListModel *joinModel;
 
+
 @end

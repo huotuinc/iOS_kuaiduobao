@@ -10,7 +10,7 @@
 
 @implementation ArchiveLocalData
 
-+ (void)archiveLocalDataArrayWithModel:(AppGoodsListModel *)_joinModel {
++ (void)archiveLocalDataArrayWithGoodsModel:(AppGoodsListModel *)_joinModel {
     NSMutableArray *localArray = [NSMutableArray array];
     BOOL isExist = NO;
     if ([self unarchiveLocalDataArray] == nil) {
@@ -89,6 +89,86 @@
     [data writeToFile:filename atomically:YES];
 
 }
+
++ (void)archiveLocalDataArrayWithDetailModel:(AppGoodsDetailModel *)_detailModel {
+    NSMutableArray *localArray = [NSMutableArray array];
+    BOOL isExist = NO;
+    if ([self unarchiveLocalDataArray] == nil) {
+        CartModel *cModel = [[CartModel alloc] init];
+        cModel.areaAmount = _detailModel.areaAmount;
+//        cModel.attendAmount = _detailModel.attendAmount;
+        cModel.userBuyAmount = _detailModel.defaultAmount;
+        cModel.isSelect = YES;
+        cModel.pictureUrl = _detailModel.pictureUrl[0];
+        cModel.remainAmount = _detailModel.remainAmount;
+//        cModel.sid = _detailModel.sid;
+        cModel.stepAmount = _detailModel.stepAmount;
+        cModel.title = _detailModel.title;
+        cModel.toAmount = _detailModel.toAmount;
+        cModel.issueId = _detailModel.issueId;
+        cModel.pricePercentAmount = _detailModel.pricePercentAmount;
+        cModel.userBuyAmount = _detailModel.defaultAmount;
+        cModel.isSelect = YES;
+        
+        [localArray addObject:cModel];
+        
+    }
+    //已进行
+    else{
+        localArray =[NSMutableArray arrayWithArray:[self unarchiveLocalDataArray]];
+        //查看本地是否已有这期商品
+        for (int i =0; i<localArray.count; i++) {
+            CartModel *cModel = localArray[i];
+            //有
+            if ([cModel.issueId isEqualToNumber:_detailModel.issueId ]) {
+                
+                CGFloat prcie;
+                prcie = [_detailModel.defaultAmount floatValue] + [cModel.userBuyAmount floatValue];
+                if (prcie > [cModel.toAmount floatValue]) {
+                    cModel.userBuyAmount = cModel.toAmount;
+                }else {
+                    cModel.userBuyAmount = [NSNumber numberWithFloat:prcie];
+                }
+                isExist = YES;
+            }
+        }
+        if (!isExist) {
+            CartModel *cModel = [[CartModel alloc] init];
+            cModel.areaAmount = _detailModel.areaAmount;
+//            cModel.attendAmount = _detailModel.attendAmount;
+            cModel.userBuyAmount = _detailModel.defaultAmount;
+            cModel.pictureUrl = _detailModel.pictureUrl[0];
+            cModel.remainAmount = _detailModel.remainAmount;
+//            cModel.sid = _detailModel.sid;
+            cModel.stepAmount = _detailModel.stepAmount;
+            cModel.title = _detailModel.title;
+            cModel.toAmount = _detailModel.toAmount;
+            cModel.issueId = _detailModel.issueId;
+            cModel.pricePercentAmount = _detailModel.pricePercentAmount;
+            cModel.userBuyAmount = _detailModel.defaultAmount;
+            cModel.isSelect = YES;
+            
+            //            NSInteger restAmount;
+            //            restAmount =[_joinModel.toAmount integerValue]-[_joinModel.buyAmount integerValue] - [_joinModel.userBuyAmount integerValue];
+            //            cModel.remainAmount = [NSNumber numberWithInteger:restAmount];
+            [localArray addObject:cModel];
+            isExist = NO;
+        }
+    }
+    NSMutableData *data = [[NSMutableData alloc] init];
+    //创建归档辅助类
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    //编码
+    [archiver encodeObject:localArray forKey:LOCALCART];
+    //结束编码
+    [archiver finishEncoding];
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
+    //写入
+    [data writeToFile:filename atomically:YES];
+    
+}
+
 
 + (NSArray *)unarchiveLocalDataArray {
     NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

@@ -69,6 +69,7 @@
         [_imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
         _labelItem.text = [NSString stringWithFormat:@"%@",model.issueId];
         _labelName.text = model.nickName;
+        _labelName.lineBreakMode = NSLineBreakByTruncatingTail;
         _labelAttend.text = [NSString stringWithFormat:@"%@",model.attendAmount];
         _labelTime.text = [self changeTheTimeStamps:model.time andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
         _labelNumber.text = [NSString stringWithFormat:@"%@",model.luckyNumber];
@@ -77,6 +78,9 @@
     
 }
 
+- (void)drawRect:(CGRect)rect {
+
+}
 
 - (void)storeWeakValueWithData:(id)data indexPath:(NSIndexPath *)indexPath {
     
