@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ShD-Ke-i4B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ShD-Ke-i4B">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -125,7 +125,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vM-kk-cY8">
-                                <rect key="frame" x="0.0" y="380" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="360" width="320" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="或从以下方式登陆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hP-JI-QmY">
                                         <rect key="frame" x="108" y="0.0" width="104" height="16"/>
@@ -152,7 +152,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0w-ZW-JKq">
-                                        <rect key="frame" x="86" y="18" width="48" height="64"/>
+                                        <rect key="frame" x="86" y="28" width="48" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="4ac-sM-52d"/>
                                             <constraint firstAttribute="width" constant="48" id="BTi-pK-K0L"/>
@@ -163,7 +163,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzy-eJ-Inh">
-                                        <rect key="frame" x="186" y="18" width="48" height="64"/>
+                                        <rect key="frame" x="186" y="28" width="48" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="FTL-w6-hTx"/>
                                             <constraint firstAttribute="width" constant="48" id="WHs-eJ-ahK"/>
@@ -178,7 +178,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="RLW-sE-gLV" secondAttribute="trailing" constant="15" id="0Sy-ir-V1v"/>
                                     <constraint firstItem="zzy-eJ-Inh" firstAttribute="centerY" secondItem="5vM-kk-cY8" secondAttribute="centerY" id="26d-OB-Mwi"/>
-                                    <constraint firstAttribute="height" constant="100" id="6kz-qo-ng5"/>
+                                    <constraint firstAttribute="height" constant="120" id="6kz-qo-ng5"/>
                                     <constraint firstItem="o0w-ZW-JKq" firstAttribute="centerX" secondItem="5vM-kk-cY8" secondAttribute="centerX" constant="-50" id="Dlg-82-8TQ"/>
                                     <constraint firstItem="RLW-sE-gLV" firstAttribute="centerY" secondItem="8hP-JI-QmY" secondAttribute="centerY" id="Fj3-ug-Jh5"/>
                                     <constraint firstItem="xQj-kQ-H1h" firstAttribute="leading" secondItem="5vM-kk-cY8" secondAttribute="leading" constant="15" id="NCq-dp-AVA"/>
