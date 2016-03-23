@@ -95,6 +95,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.navigationController.navigationBar.translucent=NO;
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD setMinimumDismissTimeInterval:0.7];
     self.view.backgroundColor=COLOR_BACK_MAIN;
     
     [self createBarButtonItem];
