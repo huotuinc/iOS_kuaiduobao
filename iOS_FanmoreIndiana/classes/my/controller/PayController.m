@@ -331,7 +331,10 @@ static NSString *payIdentify = @"payIdentifty";
                        orderSpec, signedString, @"RSA"];
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            NSLog(@"reslut = %@",resultDic);
+            LWLog(@"reslut = %@",resultDic);
+           if([resultDic[@"resultStatus"] intValue] == 9000){
+               [self updateUserInfo];
+           }
         }];
     }
     

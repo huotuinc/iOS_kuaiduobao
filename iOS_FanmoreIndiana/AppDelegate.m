@@ -308,7 +308,8 @@
     
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic) {
             if([resultDic[@"resultStatus"] intValue] == 9000){
                 NSLog(@"跳转支付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
 
