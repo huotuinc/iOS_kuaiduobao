@@ -62,14 +62,11 @@ static NSInteger selectAllCount = 1;
 
 //    _bottomView.labelMoney.text = @"总计: 0.00元";
 //    _cartList =[NSMutableArray array];
-    [self createTableView];
-    [self finshBarView];
-    [self createBottomView];
+
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
         [self getShoppingList];
     }else{
-        [_selectedArray removeAllObjects];
         _cartList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
         _selectedArray = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
         if (_cartList.count == 0) {
@@ -100,7 +97,9 @@ static NSInteger selectAllCount = 1;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 //    _cartList =[NSMutableArray array];
-
+    [self createTableView];
+    [self finshBarView];
+    [self createBottomView];
         [self loadNotificationCell];
 }
 - (void)createBarButtonItem{
@@ -189,7 +188,8 @@ static NSInteger selectAllCount = 1;
                 for (CartModel *item in _cartList) {
                     item.isSelect = YES;
                 }
-                
+                _selectedArray = [NSMutableArray arrayWithArray:_cartList];
+
                 
             }else{
                 LWLog(@"%@",json[@"resultDescription"]);
@@ -199,18 +199,13 @@ static NSInteger selectAllCount = 1;
                 [self createImageVBack];
             }else {
                 self.imageVBack.hidden = YES;
-                if (_tableView) {
-                    [self.tableView reloadData];
-                }else{
-                    [self createTableView];
-                }
+                [self.tableView reloadData];
                 _bottomView.labelAll.text = @"取消全选";
-                [_selectedArray removeAllObjects];
-                _selectedArray = [NSMutableArray arrayWithArray:_cartList];
                 [self countPrice];
                 _bottomView.buttonAll.selected = YES;
                 selectAllCount = 1;
             }
+            
             [_tableView.mj_header endRefreshing];
             
         } failure:^(NSError *error) {
@@ -226,7 +221,6 @@ static NSInteger selectAllCount = 1;
             CartModel *cartM = _cartList[i];
             cartM.isSelect = YES;
         }
-        [_selectedArray removeAllObjects];
         if (_cartList.count == 0) {
             [self createImageVBack];
         }else {
@@ -397,7 +391,7 @@ static NSInteger selectAllCount = 1;
 -(void)finshBarView
 {
 //    if (!_toolbar) {
-        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, 44)];
+        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 49 - 64, SCREEN_WIDTH, 44)];
         // _toolbar.frame = CGRectMake(0, 0, APPScreenWidth, 44);
         [_toolbar setBarStyle:UIBarStyleDefault];
         //    _toolbar.backgroundColor = COLOR_BUTTON_ORANGE;
@@ -436,7 +430,7 @@ static NSInteger selectAllCount = 1;
 //    if (!_bottomView) {
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"ListBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
-        _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
+        _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 49 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
         _bottomView.buttonAll.userInteractionEnabled=YES;
         [_bottomView.buttonAll addTarget:self action:@selector(selectAllBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.buttonGo bk_whenTapped:^{
@@ -465,7 +459,7 @@ static NSInteger selectAllCount = 1;
 }
 
 -(void)createTableView{
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-ADAPT_HEIGHT(130)-64 -44 ) style:UITableViewStylePlain];
+    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-ADAPT_HEIGHT(130) -64 -49 ) style:UITableViewStylePlain];
     
     [_tableView registerNib:[UINib nibWithNibName:@"ListTableViewCell" bundle:nil] forCellReuseIdentifier:cellLMain];
     _tableView.delegate=self;
@@ -561,15 +555,17 @@ static NSInteger selectAllCount = 1;
         NSLog(@"%@",_cartList[0]);
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
         
-        for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
+        for (int i = (int)_selectedArray.count - 1; i>=0; i--) {
             CartModel *cModel = _selectedArray[i];
             if (cModel.issueId == model.issueId) {
-                [_selectedArray removeObject:cModel];
-                [_selectedArray addObject:model];
-                [self countPrice];
+                cModel.userBuyAmount = model.userBuyAmount;
+//                [_selectedArray removeObject:cModel];
+//                [_selectedArray addObject:model];
                 
             }
         }
+        [self countPrice];
+
 //        if ([_selectedArray containsObject:model]) {
 //            [_selectedArray removeObject:model];
 //            [_selectedArray addObject:model];
@@ -604,12 +600,11 @@ static NSInteger selectAllCount = 1;
         for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
             CartModel *cModel = _selectedArray[i];
             if (cModel.issueId == model.issueId) {
-                [_selectedArray removeObject:cModel];
-                [_selectedArray addObject:model];
-                [self countPrice];
-                
+                cModel.userBuyAmount = model.userBuyAmount;
             }
         }
+        [self countPrice];
+
         //
     };
     cell.textFNumber.delegate=self;
@@ -729,7 +724,9 @@ static NSInteger selectAllCount = 1;
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
     return 1;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+}
 
 -(void)selectAllBtnClick:(UIButton*)button
 {
@@ -859,6 +856,7 @@ static NSInteger selectAllCount = 1;
 }
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    LWLog(@"tf结束编辑");
     NSInteger row = textField.tag -300;
     CartModel * model = _cartList[row];
     //倍数值
@@ -871,25 +869,36 @@ static NSInteger selectAllCount = 1;
     if ([textField.text integerValue] % areNumber != 0 ) {
         textField.text = [NSString stringWithFormat:@"%@",_beginNumber];
 //        model.buyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
+        for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
+            CartModel *cModel = _selectedArray[i];
+            if (cModel.issueId == model.issueId) {
+                cModel.userBuyAmount = model.userBuyAmount;
+            }
+        }
         [self countPrice];
-
         return YES;
     }
     if ([textField.text integerValue] > [model.remainAmount integerValue]) {
         textField.text = [NSString stringWithFormat:@"%@",model.remainAmount];
-
         model.userBuyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
+        for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
+            CartModel *cModel = _selectedArray[i];
+            if (cModel.issueId == model.issueId) {
+                cModel.userBuyAmount = model.userBuyAmount;
+            }
+        }
         [self countPrice];
-
         return YES;
     }
     model.userBuyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
     //判断已选择数组里有无该对象,有就删除  重新添加
-    if ([_selectedArray containsObject:model]) {
-        [_selectedArray removeObject:model];
-        [_selectedArray addObject:model];
-        [self countPrice];
+    for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
+        CartModel *cModel = _selectedArray[i];
+        if (cModel.issueId == model.issueId) {
+            cModel.userBuyAmount = model.userBuyAmount;
+        }
     }
+    [self countPrice];
     return YES;
 }
 
