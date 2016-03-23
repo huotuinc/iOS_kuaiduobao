@@ -129,7 +129,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
 //    [self createHeadView];
 //    [self createMainCollectionView];
-    
+//    [self createLableCollectionView];
     [self _initCollectionView];
 
 }
@@ -184,8 +184,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
-        MCController *MC = [[MCController alloc] init];
-        [self.navigationController pushViewController:MC animated:YES];
+        MCController *mc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MCController"];
+        [self.navigationController pushViewController:mc animated:YES];
     }];
     UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
     self.navigationItem.rightBarButtonItem=bbiR;
@@ -328,7 +328,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
  *  下拉刷新
  */
 - (void)getGoodsList {
-
+    [SVProgressHUD show];
 
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = self.type;
@@ -355,17 +355,20 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //                [self createMainCollectionView];
 //            }else {
                 [_collectionView reloadData];
-                [SVProgressHUD dismiss];
 
 //            }
 
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
+        [SVProgressHUD dismiss];
+
+        
 
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     }];
+//    [SVProgressHUD dismiss];
     [_collectionView.mj_header endRefreshing];
 
     
@@ -542,7 +545,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [_headView addSubview:_clearView];
 }
 -(void)createLableCollectionView{
-    if (!_labelCollectionView) {
+//    if (!_labelCollectionView) {
         _labelCollectionView.userInteractionEnabled = NO;
 //        self.automaticallyAdjustsScrollViewInsets = YES;
         UICollectionViewFlowLayout *viewlayout = [[UICollectionViewFlowLayout alloc]init];
@@ -563,9 +566,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         _labelCollectionView.showsHorizontalScrollIndicator = NO;
         _labelCollectionView.tag=101;
         _labelCollectionView.backgroundColor=[UIColor whiteColor];
-    }else {
-        return;
-    }
+//    }else {
+//        return;
+//    }
     
 
     //    _collectionView.contentSize=CGSizeMake(_collectionView.frame.size.width,100*_arr.count );
@@ -649,11 +652,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [self createImageVNotice];
 //            [self.labelCollectionView removeFromSuperview];
 //            [self createLableCollectionView];
-//            if (!_labelCollectionView) {
-//                [self createLableCollectionView];
-//            }else {
-//                [_labelCollectionView reloadData];
-//            }
+            if (!_labelCollectionView) {
+                [self createLableCollectionView];
+            }else {
+                [_labelCollectionView reloadData];
+            }
             [self getAppNoticeList];
             [self.clearView removeFromSuperview];
             [self createClearView];
@@ -852,11 +855,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
             }
             
-//            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
-//            imageVBack.image=[UIImage imageNamed:@"line_huise"];
+            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
+            imageVBack.image=[UIImage imageNamed:@"line_huise"];
             _imageVRed.image=[UIImage imageNamed:@"line_red"];
 
-//            [localView addSubview:imageVBack];
+            [localView addSubview:imageVBack];
             [localView addSubview:_imageVRed];
             
             if (_isFirstLoad == YES) {

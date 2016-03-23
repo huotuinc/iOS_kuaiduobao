@@ -16,12 +16,12 @@
     if ([self unarchiveLocalDataArray] == nil) {
         CartModel *cModel = [[CartModel alloc] init];
         cModel.areaAmount = _joinModel.areaAmount;
-        cModel.attendAmount = _joinModel.attendAmount;
+        cModel.attendAmount = @0;
         cModel.userBuyAmount = _joinModel.defaultAmount;
         cModel.isSelect = _joinModel.isSelect;
         cModel.pictureUrl = _joinModel.pictureUrl;
         cModel.remainAmount = _joinModel.remainAmount;
-        cModel.sid = _joinModel.sid;
+        cModel.sid = @0;
         cModel.stepAmount = _joinModel.stepAmount;
         cModel.title = _joinModel.title;
         cModel.toAmount = _joinModel.toAmount;
@@ -55,12 +55,12 @@
         if (!isExist) {
             CartModel *cModel = [[CartModel alloc] init];
             cModel.areaAmount = _joinModel.areaAmount;
-            cModel.attendAmount = _joinModel.attendAmount;
+            cModel.attendAmount = @0;
             cModel.userBuyAmount = _joinModel.defaultAmount;
             cModel.isSelect = _joinModel.isSelect;
             cModel.pictureUrl = _joinModel.pictureUrl;
             cModel.remainAmount = _joinModel.remainAmount;
-            cModel.sid = _joinModel.sid;
+            cModel.sid = @0;
             cModel.stepAmount = _joinModel.stepAmount;
             cModel.title = _joinModel.title;
             cModel.toAmount = _joinModel.toAmount;
@@ -96,12 +96,12 @@
     if ([self unarchiveLocalDataArray] == nil) {
         CartModel *cModel = [[CartModel alloc] init];
         cModel.areaAmount = _detailModel.areaAmount;
-//        cModel.attendAmount = _detailModel.attendAmount;
+        cModel.attendAmount = @0;
         cModel.userBuyAmount = _detailModel.defaultAmount;
         cModel.isSelect = YES;
         cModel.pictureUrl = _detailModel.pictureUrl[0];
         cModel.remainAmount = _detailModel.remainAmount;
-//        cModel.sid = _detailModel.sid;
+        cModel.sid = @0;
         cModel.stepAmount = _detailModel.stepAmount;
         cModel.title = _detailModel.title;
         cModel.toAmount = _detailModel.toAmount;
@@ -135,11 +135,11 @@
         if (!isExist) {
             CartModel *cModel = [[CartModel alloc] init];
             cModel.areaAmount = _detailModel.areaAmount;
-//            cModel.attendAmount = _detailModel.attendAmount;
+            cModel.attendAmount = @0;
             cModel.userBuyAmount = _detailModel.defaultAmount;
             cModel.pictureUrl = _detailModel.pictureUrl[0];
             cModel.remainAmount = _detailModel.remainAmount;
-//            cModel.sid = _detailModel.sid;
+            cModel.sid = @0;
             cModel.stepAmount = _detailModel.stepAmount;
             cModel.title = _detailModel.title;
             cModel.toAmount = _detailModel.toAmount;

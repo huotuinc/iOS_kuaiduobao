@@ -24,12 +24,13 @@ static NSInteger selectAllCount = 1;
 @interface ListViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,logVCdelegate>
 
 @property (strong, nonatomic)  UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *cartList;//数据源数组
+@property (nonatomic, strong)  NSMutableArray *cartList;//数据源数组
+@property (nonatomic, strong)  NSMutableArray *selectedArray; //选中商品的数组
+
 @property (strong, nonatomic)  ListBottomCView *bottomView;//结算视图
 @property(nonatomic,strong) UIToolbar *toolbar;//完成视图
 @property (nonatomic,strong) UIBarButtonItem *previousBarButton;//完成选项
-@property (strong, nonatomic)  NSMutableArray *selectedArray; //选中商品的数组
-@property (strong, nonatomic)  UIImageView *imageVBack; //选中商品的数组
+@property (strong, nonatomic)  UIImageView *imageVBack; //购物车为0的时候的图片
 @property (strong, nonatomic)  AppBalanceModel *balanceModel; //选中商品的数组
 @property (assign, nonatomic)  BOOL emptyTheCart; //是否清空购物车
 
@@ -52,8 +53,7 @@ static NSInteger selectAllCount = 1;
     self.navigationController.navigationBar.translucent=NO;
     [self.navigationItem changeNavgationBarTitle:@"清单"];
     [self createBarButtonItem];
-    _selectedArray = [NSMutableArray array];
-    _cartList = [NSMutableArray array];
+
 //    //每次进入购物车的时候把选择的置空
 //    [_selectedArray removeAllObjects];
     isSelect = YES;
@@ -62,24 +62,28 @@ static NSInteger selectAllCount = 1;
 
 //    _bottomView.labelMoney.text = @"总计: 0.00元";
 //    _cartList =[NSMutableArray array];
-
+    [self createTableView];
+    
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
         [self getShoppingList];
     }else{
         [_selectedArray removeAllObjects];
-        _cartList = [[NSMutableArray alloc] initWithArray:[self getLocalDataArray]];
+        _cartList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
         _selectedArray = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
         if (_cartList.count == 0) {
             [self createImageVBack];
         }else {
 
             if (_tableView) {
+                
                 self.imageVBack.hidden = YES;
                 [self.tableView reloadData];
             }else{
                 [self createTableView];
             }
+            [self finshBarView];
+            [self createBottomView];
             _bottomView.buttonAll.selected = YES;
             _bottomView.labelAll.text = @"取消全选";
             [self countPrice];
@@ -100,7 +104,7 @@ static NSInteger selectAllCount = 1;
         [self loadNotificationCell];
 }
 - (void)createBarButtonItem{
-    UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
+    UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 25)];
     [UIButton changeButton:buttonR AndFont:30 AndTitleColor:COLOR_SHINE_BLUE AndBackgroundColor:[UIColor whiteColor] AndBorderColor:nil AndCornerRadius:0 AndBorderWidth:0];
     [buttonR setTitle:@"清空清单" forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
@@ -159,23 +163,7 @@ static NSInteger selectAllCount = 1;
     
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getShoppingList)];
     _tableView.mj_header = headRe;
-    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
-    //#warning 自动刷新(一进入程序就下拉刷新)
-    //    [self.tableView headerBeginRefreshing];
-    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
-    //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
-    //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
-    
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    
-//    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShoppingList)];
-//    _tableView.mj_footer = Footer;
-    
-    //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
-    
-    
+
 }
 
 #pragma mark 网络请求购物车商品列表
@@ -194,6 +182,8 @@ static NSInteger selectAllCount = 1;
                 LWLog(@"%@",json[@"resultDescription"]);
                 NSArray *temp = [CartModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
                 //            self.lastSort =json[@"resultData"][@"sort"];
+                _cartList = [NSMutableArray array];
+                _selectedArray = [NSMutableArray array];
                 [self.cartList removeAllObjects];
                 [self.cartList addObjectsFromArray:temp];
                 for (CartModel *item in _cartList) {
@@ -280,7 +270,7 @@ static NSInteger selectAllCount = 1;
         
     } else {
         NSString *delecateString = [[NSString alloc] initWithFormat:@"[{shoppingCartId:%@}]",self.shoppingCartId];
-        dic[@"shoppingCartId"] = delecateString;
+        dic[@"shoppingCarts"] = delecateString;
     }
     
     
@@ -406,17 +396,20 @@ static NSInteger selectAllCount = 1;
 
 -(void)finshBarView
 {
-    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, 44)];
-    // _toolbar.frame = CGRectMake(0, 0, APPScreenWidth, 44);
-    [_toolbar setBarStyle:UIBarStyleDefault];
-//    _toolbar.backgroundColor = COLOR_BUTTON_ORANGE;
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    self.previousBarButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(previousButtonIsClicked:)];
-//    NSDictionary * attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Heiti SC" size:ADAPT_HEIGHT(50)]};
-//    [self.previousBarButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    NSArray *barButtonItems = @[flexBarButton,self.previousBarButton];
-    _toolbar.items = barButtonItems;
-    [self.view addSubview:_toolbar];
+    if (!_toolbar) {
+        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, 44)];
+        // _toolbar.frame = CGRectMake(0, 0, APPScreenWidth, 44);
+        [_toolbar setBarStyle:UIBarStyleDefault];
+        //    _toolbar.backgroundColor = COLOR_BUTTON_ORANGE;
+        UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        self.previousBarButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(previousButtonIsClicked:)];
+        //    NSDictionary * attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Heiti SC" size:ADAPT_HEIGHT(50)]};
+        //    [self.previousBarButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        NSArray *barButtonItems = @[flexBarButton,self.previousBarButton];
+        _toolbar.items = barButtonItems;
+        [self.view addSubview:_toolbar];
+    }
+
 }
 
 - (void) previousButtonIsClicked:(id)sender
@@ -440,32 +433,34 @@ static NSInteger selectAllCount = 1;
 }
 
 -(void)createBottomView{
+    if (!_bottomView) {
+        NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"ListBottomCView" owner:nil options:nil];
+        _bottomView=[nib firstObject];
+        _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
+        _bottomView.buttonAll.userInteractionEnabled=YES;
+        [_bottomView.buttonAll addTarget:self action:@selector(selectAllBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView.buttonGo bk_whenTapped:^{
+            NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+            if ([login isEqualToString:Success]) {
+                if (_selectedArray.count != 0) {
+                    _bottomView.buttonGo.userInteractionEnabled = NO;
+                    [self goToPay];
+                } else {
+                    [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
+                }
+            }else{
+                if (_selectedArray.count != 0) {
+                    _bottomView.buttonGo.userInteractionEnabled = NO;
+                    [self goToLogin];
+                } else {
+                    [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
+                }
+            }
+            
+        }];
+        [self.view addSubview:_bottomView];
+    }
 
-    NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"ListBottomCView" owner:nil options:nil];
-    _bottomView=[nib firstObject];
-    _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
-    _bottomView.buttonAll.userInteractionEnabled=YES;
-    [_bottomView.buttonAll addTarget:self action:@selector(selectAllBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_bottomView.buttonGo bk_whenTapped:^{
-        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-        if ([login isEqualToString:Success]) {
-            if (_selectedArray.count != 0) {
-                _bottomView.buttonGo.userInteractionEnabled = NO;
-                [self goToPay];
-            } else {
-                [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
-            }
-        }else{
-            if (_selectedArray.count != 0) {
-                _bottomView.buttonGo.userInteractionEnabled = NO;
-                [self goToLogin];
-            } else {
-                [SVProgressHUD showInfoWithStatus:@"没有选中商品"];
-            }
-        }
-        
-    }];
-    [self.view addSubview:_bottomView];
     
 }
 
@@ -483,12 +478,7 @@ static NSInteger selectAllCount = 1;
 //    if ([login isEqualToString:Success]) {
         [self setupRefresh];
 //    }
-    if (_cartList == nil) {
-        LWLog(@"购物车为空");
-    }else {
-        [self finshBarView];
-        [self createBottomView];
-    }
+    
     
     
 }
@@ -512,24 +502,15 @@ static NSInteger selectAllCount = 1;
         else
         {
             CartModel *removeModel = [_cartList objectAtIndex:indexPath.row];
-            NSLog(@"%@",removeModel.title);
-            [_selectedArray removeObject:[_cartList objectAtIndex:indexPath.row]];
+            for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
+                CartModel *model = _selectedArray[i];
+                if (model.issueId == removeModel.issueId) {
+                    [_selectedArray removeObject:model];
+                }
+            }
             model.isSelect = NO;
 
-//            CartModel *cartM = [_cartList objectAtIndex:indexPath.row];
-//            for (CartModel *removeModel in _selectedArray) {
-//                if (removeModel.issueId == cartM.issueId) {
-//                    [_selectedArray removeObject:removeModel];
-//                }
-//            CartModel *removeModel = [_cartList objectAtIndex:indexPath.row];
-//            NSLog(@"%@",removeModel.title);
-//            if ([_selectedArray containsObject:removeModel]) {
-//                NSLog(@"存在");
-//                [_selectedArray removeObject:removeModel];
-//            } else {
-//                NSLog(@"不存在");
-//                
-//            }
+
             
             _bottomView.labelAll.text = @"全选";
             _bottomView.buttonAll.selected = NO;
@@ -570,35 +551,45 @@ static NSInteger selectAllCount = 1;
     
         count+= addNumber;
         if(count > remainAmount){
-            return ;
+            count = remainAmount;
         }
         NSString *numStr = [NSString stringWithFormat:@"%ld",(long)count];
         
         
         weakCell.textFNumber.text = numStr;
         model.userBuyAmount = [NSNumber numberWithInteger:count];
-        
+        NSLog(@"%@",_cartList[0]);
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
-        if ([_selectedArray containsObject:model]) {
-            [_selectedArray removeObject:model];
-            [_selectedArray addObject:model];
-            [self countPrice];
+        
+        for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
+            CartModel *cModel = _selectedArray[i];
+            if (cModel.issueId == model.issueId) {
+                [_selectedArray removeObject:cModel];
+                [_selectedArray addObject:model];
+                [self countPrice];
+                
+            }
         }
+//        if ([_selectedArray containsObject:model]) {
+//            [_selectedArray removeObject:model];
+//            [_selectedArray addObject:model];
+//            [self countPrice];
+//        }
     };
     
     cell.numCutBlock =^(){
         NSLog(@"*******");
         NSInteger count = [weakCell.textFNumber.text integerValue];
         CartModel *model = [_cartList objectAtIndex:indexPath.row];
-        NSInteger addNumber = [model.stepAmount integerValue];
+        NSInteger cutNumber = [model.stepAmount integerValue];
 //        if ([model.areaAmount integerValue] == 0) {
 //            addNumber = 1;
 //        }else {
 //            addNumber = [model.areaAmount integerValue];
 //        }
-        count-= addNumber;
+        count-= cutNumber;
         if(count <= 0){
-            return ;
+            count = cutNumber;
         }
         NSString *numStr = [NSString stringWithFormat:@"%ld",(long)count];
         
@@ -610,10 +601,14 @@ static NSInteger selectAllCount = 1;
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
         
         //判断已选择数组里有无该对象,有就删除  重新添加
-        if ([_selectedArray containsObject:model]) {
-            [_selectedArray removeObject:model];
-            [_selectedArray addObject:model];
-            [self countPrice];
+        for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
+            CartModel *cModel = _selectedArray[i];
+            if (cModel.issueId == model.issueId) {
+                [_selectedArray removeObject:cModel];
+                [_selectedArray addObject:model];
+                [self countPrice];
+                
+            }
         }
         //
     };

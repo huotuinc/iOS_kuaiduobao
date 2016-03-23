@@ -36,7 +36,7 @@ static NSString *cellABMain=@"cellABMain";
     self.view.backgroundColor=COLOR_BACK_MAIN;
     [self.navigationItem changeNavgationBarTitle:@"最新揭晓"];
     
-    
+    [self createCollectionView];
     [self getOpenList ];
     [self createTimer];
 }
@@ -103,11 +103,11 @@ static NSString *cellABMain=@"cellABMain";
             }
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
-            if (!_collectionView) {
-                [self createCollectionView];
-            }else {
+//            if (!_collectionView) {
+//                [self createCollectionView];
+//            }else {
                 [_collectionView reloadData];
-            }
+//            }
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
