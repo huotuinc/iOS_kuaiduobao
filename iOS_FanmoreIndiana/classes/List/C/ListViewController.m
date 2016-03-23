@@ -396,7 +396,7 @@ static NSInteger selectAllCount = 1;
 
 -(void)finshBarView
 {
-    if (!_toolbar) {
+//    if (!_toolbar) {
         _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, 44)];
         // _toolbar.frame = CGRectMake(0, 0, APPScreenWidth, 44);
         [_toolbar setBarStyle:UIBarStyleDefault];
@@ -408,7 +408,7 @@ static NSInteger selectAllCount = 1;
         NSArray *barButtonItems = @[flexBarButton,self.previousBarButton];
         _toolbar.items = barButtonItems;
         [self.view addSubview:_toolbar];
-    }
+//    }
 
 }
 
@@ -433,7 +433,7 @@ static NSInteger selectAllCount = 1;
 }
 
 -(void)createBottomView{
-    if (!_bottomView) {
+//    if (!_bottomView) {
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"ListBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 44 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
@@ -459,7 +459,7 @@ static NSInteger selectAllCount = 1;
             
         }];
         [self.view addSubview:_bottomView];
-    }
+//    }
 
     
 }
