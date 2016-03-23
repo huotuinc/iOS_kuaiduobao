@@ -63,7 +63,8 @@ static NSInteger selectAllCount = 1;
 //    _bottomView.labelMoney.text = @"总计: 0.00元";
 //    _cartList =[NSMutableArray array];
     [self createTableView];
-    
+    [self finshBarView];
+    [self createBottomView];
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
         [self getShoppingList];
@@ -82,8 +83,7 @@ static NSInteger selectAllCount = 1;
             }else{
                 [self createTableView];
             }
-            [self finshBarView];
-            [self createBottomView];
+            
             _bottomView.buttonAll.selected = YES;
             _bottomView.labelAll.text = @"取消全选";
             [self countPrice];
