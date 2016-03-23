@@ -159,7 +159,7 @@ static NSString *cellShare=@"cellShare";
     cell.labelGoods.text=model.title;
     cell.labelItem.text=[NSString stringWithFormat:@"期号: %@",model.issueNo];
     cell.labelContent.text=model.content;
-    for (int i = 0 ; i<4; i++) {
+    for (int i = 0 ; i<model.pictureUrls.count; i++) {
         UIImageView *imageV=[cell viewWithTag:200+i];
         [imageV sd_setImageWithURL:[NSURL URLWithString:model.pictureUrls[i]]];
     }
@@ -203,6 +203,8 @@ static NSString *cellShare=@"cellShare";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    
 }
 
 

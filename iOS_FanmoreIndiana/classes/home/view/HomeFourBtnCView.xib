@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -78,8 +78,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" tag="202" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0o-WW-eAl">
-                                        <rect key="frame" x="21" y="15" width="33" height="34"/>
+                                    <imageView userInteractionEnabled="NO" tag="202" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N0o-WW-eAl">
+                                        <rect key="frame" x="21" y="15" width="34" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="N0o-WW-eAl" secondAttribute="height" multiplier="1:1" id="d93-Mj-jac"/>
                                         </constraints>
@@ -128,8 +128,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" tag="204" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AtI-6A-wy1">
-                                        <rect key="frame" x="21" y="15" width="33" height="34"/>
+                                    <imageView userInteractionEnabled="NO" tag="204" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AtI-6A-wy1">
+                                        <rect key="frame" x="21" y="15" width="34" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="AtI-6A-wy1" secondAttribute="height" multiplier="1:1" id="l7x-dO-ZNd"/>
                                         </constraints>
@@ -184,7 +184,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kcI-oe-shc">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_huise" translatesAutoresizingMaskIntoConstraints="NO" id="kcI-oe-shc">
                         <rect key="frame" x="0.0" y="78" width="375" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="4dY-pN-avO"/>
@@ -216,4 +216,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="line_huise" width="1" height="1"/>
+    </resources>
 </document>

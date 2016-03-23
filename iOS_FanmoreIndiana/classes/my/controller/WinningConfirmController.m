@@ -270,7 +270,7 @@
     self.confirmGoodButton.hidden = YES;
     self.confirmGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.confirmGoodTime.textColor = COLOR_TEXT_DATE;
-    self.confirmGoodTime.text = [self getStringFromNunber:self.model.RecieveGoodsTime];
+    self.confirmGoodTime.text = [self getStringFromNunber:self.model.recieveGoodsTime];
     self.confirmGoodTime.hidden = NO;
     
     self.endButton.hidden = NO;
@@ -315,7 +315,7 @@
     self.confirmGoodButton.hidden = YES;
     self.confirmGoodLabel.textColor = COLOR_TEXT_CONTENT;
     self.confirmGoodTime.textColor = COLOR_TEXT_DATE;
-    self.confirmGoodTime.text = [self getStringFromNunber:self.model.RecieveGoodsTime];
+    self.confirmGoodTime.text = [self getStringFromNunber:self.model.recieveGoodsTime];
     self.confirmGoodTime.hidden = NO;
     
     self.endButton.hidden = YES;
@@ -340,7 +340,7 @@
     _person.text = [NSString stringWithFormat:@"总需：%@", self.winningModel.toAmount];
     _luckyNum.text = [self.winningModel.luckyNumber stringValue];
     _joinCount.text = [NSString stringWithFormat:@"本期参与：%@人次", self.winningModel.amount];
-    _time.text = [self getStringFromNunber:self.winningModel.awardingDate];
+    _time.text = [NSString stringWithFormat:@"揭晓时间:%@", [self getStringFromNunber:self.winningModel.awardingDate]];
 }
 
 - (void)_initAddressCell {
@@ -409,6 +409,11 @@
     
     [UserLoginTool loginRequestGet:@"confirmReceipt" parame:dic success:^(id json) {
         LWLog(@"%@",json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            [SVProgressHUD showSuccessWithStatus:@"确认收货成功"];
+            [self getWinningDeliveryModel];
+            
+        }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     }];
@@ -443,10 +448,17 @@
  *  确认收货地址提示
  */
 - (void)confirmationOfAddress {
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    AdressModel *address = [NSKeyedUnarchiver unarchiveObjectWithFile:fileNameAdd];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请确认收货地址" message:nil delegate:self cancelButtonTitle:@"使用默认地址" otherButtonTitles:@"使用其他地址", nil];
-    alert.tag = 1;
-    [alert show];
+    if (address.receiver.length != 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请确认收货地址" message:nil delegate:self cancelButtonTitle:@"使用默认地址" otherButtonTitles:@"使用其他地址", nil];
+        alert.tag = 1;
+        [alert show];
+    }else {
+        [SVProgressHUD showErrorWithStatus:@"请使用默认地址"];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -466,7 +478,7 @@
         case 2:
         {
             if (buttonIndex == 0) {
-                
+                [self confirmationOfGoods];
             }
             
             break;

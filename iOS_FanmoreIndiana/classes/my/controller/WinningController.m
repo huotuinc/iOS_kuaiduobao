@@ -355,9 +355,17 @@ static NSString *winningIdentify = @"winningIdentify";
  */
 - (void)confirmationOfAddress {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请确认收货地址" message:nil delegate:self cancelButtonTitle:@"使用默认地址" otherButtonTitles:@"使用其他地址", nil];
-    alert.tag = 1;
-    [alert show];
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    AdressModel *address = [NSKeyedUnarchiver unarchiveObjectWithFile:fileNameAdd];
+    
+    if (address.receiver.length != 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请确认收货地址" message:nil delegate:self cancelButtonTitle:@"使用默认地址" otherButtonTitles:@"使用其他地址", nil];
+        alert.tag = 1;
+        [alert show];
+    }else {
+        [SVProgressHUD showErrorWithStatus:@"请设置默认地址"];
+    }
 }
 
 

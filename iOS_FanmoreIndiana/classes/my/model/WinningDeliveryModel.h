@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSNumber *issueId;
 @property (nonatomic, strong) NSNumber *mobile;
 @property (nonatomic, strong) NSString *receiver;
-@property (nonatomic, strong) NSNumber *RecieveGoodsTime;
+@property (nonatomic, strong) NSNumber *recieveGoodsTime;
 @property (nonatomic, strong) NSNumber *userId;
 @property (nonatomic, strong) NSString *username;
 

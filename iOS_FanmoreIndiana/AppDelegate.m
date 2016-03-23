@@ -86,6 +86,17 @@
         }
     }
     
+#pragma mark 处理通知
+    
+    if (launchOptions) {
+        NSDictionary *dicRemote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (dicRemote) {
+            if (IsIos8) {
+#warning 处理通知
+            }
+        }
+    }
+    
     return YES;
 }
 
@@ -346,6 +357,10 @@
     }
 }
 
+
+- (void)pushRedPacketNotifation {
+    
+}
 
 
 
