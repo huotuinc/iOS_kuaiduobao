@@ -301,10 +301,10 @@ static NSString *payIdentify = @"payIdentifty";
     Order *order = [[Order alloc] init];
     order.partner = partner;
     order.seller = seller;
-    order.tradeNO = [self.payModel.orderNo stringValue]; //订单ID（由商家自行制定）
+    order.tradeNO = self.payModel.orderNo; //订单ID（由商家自行制定）
     order.productName = @"粉猫夺宝充值"; //商品标题
     order.productDescription = self.payModel.detail; //商品描述
-    order.amount = self.payModel.alipayFee; //商品价格
+    order.amount = self.payModel.alipayFee ; //商品价格
     order.notifyURL =  self.payModel.alipayCallbackUrl; //回调URL
     
     order.service = @"mobile.securitypay.pay";
@@ -331,7 +331,10 @@ static NSString *payIdentify = @"payIdentifty";
                        orderSpec, signedString, @"RSA"];
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            NSLog(@"reslut = %@",resultDic);
+            LWLog(@"reslut = %@",resultDic);
+           if([resultDic[@"resultStatus"] intValue] == 9000){
+               [self updateUserInfo];
+           }
         }];
     }
     
@@ -403,7 +406,7 @@ static NSString *payIdentify = @"payIdentifty";
         
         params[@"notify_url"] = self.payModel.wxCallbackUrl;  //接收微信支付异步通知回调地址
         
-        params[@"out_trade_no"] = [self.payModel.orderNo stringValue]; //订单号
+        params[@"out_trade_no"] = [NSString stringWithFormat:@"%@", self.payModel.orderNo]; //订单号
         params[@"spbill_create_ip"] = @"192.168.1.1"; //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
         
         
@@ -420,7 +423,7 @@ static NSString *payIdentify = @"payIdentifty";
         NSString * prePayid = nil;
         prePayid  = [payManager sendPrepay:params];
         
-        
+        LWLog(@"xcaccasc%@",[payManager getDebugifo]);
         if ( prePayid != nil) {
             //获取到prepayid后进行第二次签名
             

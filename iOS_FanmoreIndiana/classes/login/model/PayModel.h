@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *alipayFee;
 @property (nonatomic, strong) NSString *wxFee;
 @property (nonatomic, strong) NSString *detail;
-@property (nonatomic, strong) NSNumber *orderNo;
+@property (nonatomic, strong) NSString *orderNo;
 @property (nonatomic, strong) NSString *remainPayUrl;
 @property (nonatomic, strong) NSString *wxCallbackUrl;
 
