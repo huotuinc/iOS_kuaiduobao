@@ -99,6 +99,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     [self createBarButtonItem];
     [self.navigationItem changeNavgationBarTitle:@"奇兵夺宝"];
+
 //    [self createNavgationBarTitle];
 
     
@@ -717,7 +718,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 
             }
             
-            cell.layer.borderColor = [UIColor clearColor].CGColor;
+//            cell.layer.borderColor=[UIColor whiteColor].CGColor;
+//            cell.layer.borderWidth=0;
             
             return cell;
         }
@@ -854,11 +856,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
             }
             
-//            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
+            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
 //            imageVBack.image=[UIImage imageNamed:@"line_huise"];
+            imageVBack.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];
             _imageVRed.image=[UIImage imageNamed:@"line_red"];
 
-//            [localView addSubview:imageVBack];
+            [localView addSubview:imageVBack];
             [localView addSubview:_imageVRed];
             
             if (_isFirstLoad == YES) {
@@ -918,7 +921,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }else {
             if (KScreenWidth == 414) {
                 
-                return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 1, [UIScreen mainScreen].bounds.size.width / 2 * 1.32);
+                return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.32);
             }else {
                 return CGSizeMake([UIScreen mainScreen].bounds.size.width / 2 - 0.5, [UIScreen mainScreen].bounds.size.width / 2 * 1.32);
             }
@@ -981,10 +984,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)_initCollectionView {
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
     flowLayout.naviHeight = 0;
-    flowLayout.minimumInteritemSpacing = 0.5;
     if (KScreenWidth == 414) {
-        flowLayout.minimumLineSpacing = 2;
+        flowLayout.minimumInteritemSpacing = 0.5;
+        flowLayout.minimumLineSpacing = 0.5;
     }else {
+        flowLayout.minimumInteritemSpacing = 0.5;
         flowLayout.minimumLineSpacing = 1;
     }
     
@@ -1004,6 +1008,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];
+//    self.collectionView.
 }
 
 

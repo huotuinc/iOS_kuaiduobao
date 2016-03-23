@@ -124,7 +124,6 @@
         }
     } failure:^(NSError *error) {
         LWLog(@"%@", error);
-        [SVProgressHUD dismiss];
     } withFileKey:nil];
 }
 
@@ -168,8 +167,8 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.WinningModel.awardingDate doubleValue]];
-    self.goodTime.text = [NSString stringWithFormat:@"揭晓时间：%@",[formatter stringFromDate:date]];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.WinningModel.awardingDate doubleValue] / 1000];
+    self.goodTime.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
 }
 
 #pragma mark 调用现实图片
