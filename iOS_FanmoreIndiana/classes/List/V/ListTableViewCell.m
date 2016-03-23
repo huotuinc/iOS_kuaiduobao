@@ -48,17 +48,26 @@
         btn.layer.borderColor=[UIColor grayColor].CGColor;
         btn.layer.borderWidth=1;
     }
-    _textFNumber.layer.borderWidth=1;
-    _textFNumber.layer.borderColor=[UIColor grayColor].CGColor;
+    _labelTop.backgroundColor = [UIColor grayColor];
+    _labelBottom.backgroundColor = [UIColor grayColor];
+
+//    _textFNumber.layer.borderWidth=1;
+//    _textFNumber.layer.borderColor=[UIColor grayColor].CGColor;
     _textFNumber.keyboardType = UIKeyboardTypeNumberPad;
+    _textFNumber.textColor = COLOR_BUTTON_ORANGE;
     
-    [UILabel changeLabel:_labelTitle AndFont:26 AndColor:nil];
+    [UILabel changeLabel:_labelTitle AndFont:26 AndColor:COLOR_TEXT_TITILE];
     _labelTitle.numberOfLines=2;
-    [UILabel changeLabel:_labelRest AndFont:22 AndColor:nil];
-    [UILabel changeLabel:_labelTotal AndFont:22 AndColor:nil];
-    [UILabel changeLabel:_labelNotice AndFont:22 AndColor:nil];
-    [UILabel changeLabel:_lableAttend AndFont:22 AndColor:nil];
+    [UILabel changeLabel:_labelRest AndFont:22 AndColor:COLOR_SHINE_BLUE];
+    [UILabel changeLabel:_labelTotal AndFont:22 AndColor:COLOR_TEXT_DATE];
+    [UILabel changeLabel:_labelNotice AndFont:22 AndColor:COLOR_BUTTON_ORANGE];
+    [UILabel changeLabel:_lableAttend AndFont:22 AndColor:COLOR_TEXT_DATE];
     
+    [_buttonAdd setTitle:@"+" forState:UIControlStateNormal];
+    [_buttonCut setTitle:@"-" forState:UIControlStateNormal];
+
+//    [UIButton changeButton:_buttonAdd AndFont:50 AndTitleColor:COLOR_TEXT_CONTENT AndBackgroundColor:nil AndBorderColor:[UIColor grayColor] AndCornerRadius:0 AndBorderWidth:1];
+//    [UIButton changeButton:_buttonCut AndFont:50 AndTitleColor:COLOR_TEXT_CONTENT AndBackgroundColor:nil AndBorderColor:[UIColor grayColor] AndCornerRadius:0 AndBorderWidth:1];
     [_buttonSelected setBackgroundImage:[UIImage imageNamed:@"recharge_icon_choose_none"] forState:UIControlStateNormal];
     
     [_buttonSelected setBackgroundImage:[UIImage imageNamed:@"recharge_icon_choose"] forState:UIControlStateSelected];
@@ -95,7 +104,9 @@
 
         [_imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
         _labelTitle.text=model.title;
-        _labelRest.text=[NSString stringWithFormat:@"剩余%@人次",model.remainAmount];
+        NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"剩余%@人次",model.remainAmount]];
+        [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 2)];
+        _labelRest.attributedText = attString;
         _labelTotal.text=[NSString stringWithFormat:@"总需%@人次",model.toAmount];
         _textFNumber.text=[NSString stringWithFormat:@"%@",model.userBuyAmount
 ];

@@ -38,6 +38,8 @@ typedef void(^LQQNumChange)();
 @property (weak, nonatomic) IBOutlet UITextField *textFNumber;
 @property (weak, nonatomic) IBOutlet UIButton *buttonAdd;
 @property (weak, nonatomic) IBOutlet UILabel *labelNotice;
+@property (weak, nonatomic) IBOutlet UILabel *labelTop;
+@property (weak, nonatomic) IBOutlet UILabel *labelBottom;
 
 
 @property (nonatomic,assign) CGFloat keyBoardHeight;

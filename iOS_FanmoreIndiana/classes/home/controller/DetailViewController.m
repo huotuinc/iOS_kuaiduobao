@@ -794,7 +794,7 @@ static NSString * cellDFirst=@"cellDFirst";
     return ADAPT_HEIGHT(50);
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return ADAPT_HEIGHT(120);
+    return ADAPT_HEIGHT(100);
 }
 // 去掉UItableview headerview黏性(sticky)
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

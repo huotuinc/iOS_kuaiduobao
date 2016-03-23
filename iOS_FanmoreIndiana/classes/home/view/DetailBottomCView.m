@@ -21,7 +21,7 @@
     _imageVShop.image=[UIImage imageNamed:@"gouwuche"];
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
     
-    [UILabel changeLabel:_labelCount AndFont:20 AndColor:[UIColor whiteColor]];
+    [UILabel changeLabel:_labelCount AndFont:22 AndColor:[UIColor whiteColor]];
     _labelCount.backgroundColor = COLOR_BUTTON_ORANGE;
 }
 

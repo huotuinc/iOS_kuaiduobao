@@ -30,9 +30,9 @@ PODS:
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
   - ConciseKit (0.1.2)
-  - FMDB (2.6):
-    - FMDB/standard (= 2.6)
-  - FMDB/standard (2.6)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - INTULocationManager (4.2.0)
   - iRate (1.10.3)
   - MJExtension (3.0.10)
@@ -90,7 +90,7 @@ SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ConciseKit: 6eda679f3a18c050490e018eae2b497e656055ff
-  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   iRate: 724a3e080d5b0681e50a57d6cef1a81f83c23df3
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
