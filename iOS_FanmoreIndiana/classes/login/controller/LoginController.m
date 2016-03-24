@@ -114,6 +114,7 @@
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
                 [SVProgressHUD dismiss];
+                self.weixinLogin.userInteractionEnabled = YES;
             }];
             
         }else {
@@ -149,9 +150,10 @@
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
                 [SVProgressHUD dismiss];
+                self.weixinLogin.userInteractionEnabled = YES;
             }];
         }else {
-            self.qqLogin.userInteractionEnabled = NO;
+            self.qqLogin.userInteractionEnabled = YES;
         }
     }];
     
