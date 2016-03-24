@@ -33,6 +33,8 @@
 #define REDGETPAST @"redGetPast"
 /*立刻去购物车*/
 #define GOTOLISTIMMEDIATELY @"goTOListImmediately"
+/*支付成功之后判断时候可以发送红包*/
+#define canSendRedPocketOrNot @"canSendRedPocketOrNot"
 /**支付宝支付*/
 #define AliPayPid @"2088211251545121"
 #define AliPayKey @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAMCul0XS9X/cVMkmrSeaZXnSvrs/bK5EiZf3d3/lTwHx165wAX/UIz4AcZHbKkYKKzmZKrRsu3tLRKFuflooKSVmWxk2hmeMqRETPZ/t8rKf8UONZIpOlOXEmJ/rYwxhnMeVhbJJxsko2so/jc+XAPLyv0tsfoI/TsJuhaGQ569ZAgMBAAECgYAK4lHdOdtwS4vmiO7DC++rgAISJbUH6wsysGHpsZRS8cxTKDSNefg7ql6/9Hdg2XYznLlS08mLX2cTD2DHyvj38KtxLEhLP7MtgjFFeTJ5Ta1UuBRERcmy0xSLh2zayiSwGTM8Bwu7UD6LUSTGwrgRR2Gg4EDpSG08J5OCThKF4QJBAPOO6WKI/sEuoRDtcIJqtv58mc4RSmit/WszkvPlZrjNFDU6TrOEnPU0zi3f8scxpPxVYROBceGj362m+02G2I0CQQDKhlq4pIM2FLNoDP4mzEUyoXIwqn6vIsAv8n49Tr9QnBjCrKt8RiibhjSEvcYqM/1eocW0j2vUkqR17rNuVVz9AkBq+Z02gzdpwEJMPg3Jqnd/pViksuF8wtbo6/kimOKaTrEOg/KnVJrf9HaOnatzpDF0B0ghGhzb329SRWJhddXNAkAkjrgVmGyu+HGiGKZP7pOXHhl0u3H+vzEd9pHfEzXpoSO/EFgsKKXv3Pvh8jexKo1T5bPAchsu1gGl4B63jeUpAkBbgUalUpZWZ4Aii+Mfts+S2E5RooZfVFqVBIsK47hjcoqLw4JJenyjFu+Skl2jOQ8+I5y1Ggeg6fpBMr2rbVkf"
@@ -71,7 +73,7 @@
 //#define MainUrl @"http://192.168.3.22:8080/duobao/app/"
 //#define MKMainUrl @"192.168.1.254:10001/app"
 #define MKMainUrl @"duobao.51flashmall.com:8091/app"
-//#define MKMainUrl @"192.168.3.30:8080/duobao/app/"
+//#define MKMainUrl @"192.168.1.41:8080/duobao/app/"
 
 
    

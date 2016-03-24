@@ -289,6 +289,7 @@
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
 
             }
         }];
@@ -315,6 +316,7 @@
 
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
 
 
             }
@@ -350,6 +352,7 @@
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
                 break;
             default:
 
