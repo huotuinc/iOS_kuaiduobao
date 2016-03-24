@@ -113,7 +113,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showErrorWithStatus:@"支付失败"];
+//        [SVProgressHUD showErrorWithStatus:@"支付失败"];
         _payView.buttonPay.userInteractionEnabled = YES;
 
         
@@ -342,6 +342,9 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
+            [self updateUserInfo];
+            [self paySuccessNotice];
+
         }];
     }
     

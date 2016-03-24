@@ -20,6 +20,7 @@
     [UILabel changeLabel:_labelC AndFont:36 AndColor:[UIColor whiteColor]];
     [UILabel changeLabel:_labelA AndFont:50 AndColor:COLOR_BUTTON_ORANGE];
     [UILabel changeLabel:_labelB AndFont:108 AndColor:COLOR_BUTTON_ORANGE];
+    _viewBase.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.8];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
