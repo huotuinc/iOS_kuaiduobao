@@ -240,6 +240,7 @@
     
     NSURL * urlStr = [NSURL URLWithString:self.homeUrl];
     NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.homeWebView.scalesPageToFit = YES;
     self.homeWebView.tag = 100;
     self.homeWebView.delegate = _webViewProgress;
@@ -263,7 +264,9 @@
     [self AddMjRefresh];
     
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:self.shareBtn]];
-
+    
+    [self.homeWebView layoutIfNeeded];
+    [self.homeBottonWebView layoutIfNeeded];
 }
 
 
