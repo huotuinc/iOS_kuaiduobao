@@ -34,10 +34,10 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *start = [NSDate dateWithTimeIntervalSince1970:[model.startTime doubleValue]];
+    NSDate *start = [NSDate dateWithTimeIntervalSince1970:[model.startTime doubleValue] / 1000];
     self.start.text =[NSString stringWithFormat:@"生效期：%@",[formatter stringFromDate:start]];
     
-    NSDate *endTime = [NSDate dateWithTimeIntervalSince1970:[model.endTime doubleValue]];
+    NSDate *endTime = [NSDate dateWithTimeIntervalSince1970:[model.endTime doubleValue] / 1000];
     self.end.text = [NSString stringWithFormat:@"有效期：%@", [formatter stringFromDate:endTime]];
     
     self.remark.text = model.remark;
