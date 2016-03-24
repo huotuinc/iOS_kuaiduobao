@@ -91,6 +91,8 @@
 
 - (IBAction)loginWithWeixin:(id)sender {
     
+    self.weixinLogin.userInteractionEnabled = NO;
+    
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
         if (state == SSDKResponseStateSuccess) {
             LWLog(@"%@",user);
@@ -115,6 +117,7 @@
             }];
             
         }else {
+            self.weixinLogin.userInteractionEnabled = YES;
             LWLog(@"%@",error);
         }
     }];
@@ -123,6 +126,8 @@
 }
 
 - (IBAction)loginWithQQ:(id)sender {
+    
+    self.qqLogin.userInteractionEnabled = NO;
     
     [ShareSDK getUserInfo:SSDKPlatformTypeQQ onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
         if (state == SSDKResponseStateSuccess) {
@@ -146,7 +151,7 @@
                 [SVProgressHUD dismiss];
             }];
         }else {
-
+            self.qqLogin.userInteractionEnabled = NO;
         }
     }];
     
