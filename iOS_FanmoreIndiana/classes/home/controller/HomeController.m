@@ -39,6 +39,7 @@
 #import "HomeGetRedPocketCView.h"
 #import "HomeSendRedPocketCView.h"
 #import "MCController.h"
+#import "AppDelegate.h"
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<CircleBannerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
@@ -184,7 +185,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.navigationItem.leftBarButtonItem=bbiL;
     
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (app.unreadMessage == 0) {
+        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
+    } else {
+        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi_red"]forState:UIControlStateNormal];
+    }
     [buttonR bk_whenTapped:^{
         MCController *mc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MCController"];
         [self.navigationController pushViewController:mc animated:YES];
