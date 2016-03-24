@@ -63,6 +63,7 @@ static NSString * cellDFirst=@"cellDFirst";
 @property (nonatomic, strong) DetailGoodsSelectCView * selectView;//背景灰色视图
 
 @property (nonatomic, assign) BOOL isExist;//用于判断归档时有无该对象 默认没归档
+@property (nonatomic, assign) BOOL goImmediately;//用于判断是否立刻去购物车
 
 
 @end
@@ -84,6 +85,7 @@ static NSString * cellDFirst=@"cellDFirst";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
     [self.navigationItem changeNavgationBarTitle:@"奖品详情"];
+    _goImmediately = NO;
     
 
 }
@@ -169,16 +171,20 @@ static NSString * cellDFirst=@"cellDFirst";
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
         }
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        if (_goImmediately) {
+            _goImmediately = NO;
+            [self.navigationController popToRootViewControllerAnimated:YES];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
+        } else {
+            [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+        }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
         [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
         
         
     } withFileKey:nil];
-    
     
 }
 #pragma mark 网络请求详情列表
@@ -532,7 +538,7 @@ static NSString * cellDFirst=@"cellDFirst";
 }
 #pragma mark 底部选项
 -(void)createBottomView{
-    //可以参与
+    //立即参与
     if ([_whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
@@ -542,8 +548,10 @@ static NSString * cellDFirst=@"cellDFirst";
         NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
         if ([login isEqualToString:Success]) {
 #pragma mark 加入购物车 已登陆
+            _goImmediately = YES;
             self.issueId = _detailModel.issueId;
             [self joinShoppingCart];
+
         }else{
 #pragma mark 加入购物车 未登陆
             if (_joinModel == nil) {
@@ -552,10 +560,9 @@ static NSString * cellDFirst=@"cellDFirst";
                 [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:_joinModel];
 
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
-            [self.navigationController popToRootViewControllerAnimated:YES];
 
         }
+            
 //            [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
 ////            ListViewController *list = [[ListViewController alloc] init];
 ////            [self.navigationController pushViewController:list animated:YES];
@@ -572,6 +579,7 @@ static NSString * cellDFirst=@"cellDFirst";
                 if (!_isExist) {
                     _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount + 1];
                 }
+                
             }else{
 #pragma mark 加入购物车 未登陆
                 if (_joinModel == nil) {

@@ -203,14 +203,14 @@
             
             _distributeModel = [AppRedPactketsDistributeSourceModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             _redRestNumber = _distributeModel.amount;
-            [self refreshRestRedPocketNumber];
         }
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
         
     }];
-    
+    [self refreshRestRedPocketNumber];
+
 }
 #pragma mark xiuxiu请求
 - (void)getXiuXiuXiu {
@@ -226,7 +226,7 @@
             [self.redList removeAllObjects];
             self.redList = [NSMutableArray arrayWithArray:temp];
             
-            [PlistManager createPlist];
+//            [PlistManager createPlist];
             //获取plistManager存放的活动期号 不同存放新的数据  相同获取_redPastList
 //            NSInteger redPastItemId = [PlistManager readDataWithKey:@"redItemId"];
 //            if (redPastItemId != _RedItemId) {
@@ -242,13 +242,17 @@
                     self.redPastList = [NSMutableArray arrayWithArray:temp];
                     _winningModel = _redList[0];
                 }else {
+                    _winningModel = [[AppWinningInfoModel alloc] init];
                     _winningModel = [self getNewRedPocket];
+                    
 //                    [PlistManager writeToPlistWithKey:@"data" value:self.redList];
-//                    self.redPastList = [NSMutableArray arrayWithArray:self.redList];
+                    self.redPastList = [NSMutableArray arrayWithArray:self.redList];
                 }
                 //如果未中奖
                 if (_winningModel.rid == nil) {
                     [self createDisGetView];
+                    _winningModel = [[AppWinningInfoModel alloc] init];
+
                 } else {
                     [self createGetView];
                 }

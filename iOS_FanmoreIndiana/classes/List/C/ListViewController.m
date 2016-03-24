@@ -45,7 +45,10 @@ static NSInteger selectAllCount = 1;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    [self createTableView];
+    [self finshBarView];
+    [self createBottomView];
+    [self loadNotificationCell];
 
     [super viewWillAppear:animated];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
@@ -62,22 +65,6 @@ static NSInteger selectAllCount = 1;
 
 //    _bottomView.labelMoney.text = @"总计: 0.00元";
 //    _cartList =[NSMutableArray array];
-    [self LoginOrNot];
-    
-
-    
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-//    _cartList =[NSMutableArray array];
-    [self createTableView];
-    [self finshBarView];
-    [self createBottomView];
-    [self loadNotificationCell];
-}
-- (void)LoginOrNot {
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
         [self getShoppingList];
@@ -95,10 +82,21 @@ static NSInteger selectAllCount = 1;
             [self countPrice];
             selectAllCount = 1;
         }
-        
-        
     }
+
+    
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+//    _cartList =[NSMutableArray array];
+    [self createTableView];
+    [self finshBarView];
+    [self createBottomView];
+    [self loadNotificationCell];
+}
+
 - (void)createBarButtonItem{
     UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 25)];
     [UIButton changeButton:buttonR AndFont:30 AndTitleColor:COLOR_SHINE_BLUE AndBackgroundColor:[UIColor whiteColor] AndBorderColor:nil AndCornerRadius:0 AndBorderWidth:0];
@@ -383,6 +381,7 @@ static NSInteger selectAllCount = 1;
 -(void)finshBarView
 {
 //    if (!_toolbar) {
+    [_toolbar removeFromSuperview];
         _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 49 - 64, SCREEN_WIDTH, 44)];
         // _toolbar.frame = CGRectMake(0, 0, APPScreenWidth, 44);
         [_toolbar setBarStyle:UIBarStyleDefault];
@@ -420,6 +419,7 @@ static NSInteger selectAllCount = 1;
 
 -(void)createBottomView{
 //    if (!_bottomView) {
+    [_bottomView removeFromSuperview];
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"ListBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 49 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
@@ -451,18 +451,23 @@ static NSInteger selectAllCount = 1;
 }
 
 -(void)createTableView{
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-ADAPT_HEIGHT(130) -64 -49 ) style:UITableViewStylePlain];
-    
-    [_tableView registerNib:[UINib nibWithNibName:@"ListTableViewCell" bundle:nil] forCellReuseIdentifier:cellLMain];
-    _tableView.delegate=self;
-    _tableView.dataSource=self;
-//self.tableView.tableFooterView=[[UIView alloc]init];
-    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_tableView];
-    
-//    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-//    if ([login isEqualToString:Success]) {
-    [self setupRefresh];
+    if (_tableView) {
+        return;
+    } else {
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-ADAPT_HEIGHT(130) -64 -49 ) style:UITableViewStylePlain];
+        
+        [_tableView registerNib:[UINib nibWithNibName:@"ListTableViewCell" bundle:nil] forCellReuseIdentifier:cellLMain];
+        _tableView.delegate=self;
+        _tableView.dataSource=self;
+        //self.tableView.tableFooterView=[[UIView alloc]init];
+        _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+        [self.view addSubview:_tableView];
+        
+        //    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+        //    if ([login isEqualToString:Success]) {
+        [self setupRefresh];
+    }
+
 //    }
     
     

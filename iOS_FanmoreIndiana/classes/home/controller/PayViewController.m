@@ -92,7 +92,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
                 [SVProgressHUD showSuccessWithStatus:@"支付成功"];
                 _payView.buttonPay.userInteractionEnabled = YES;
                 [self updateUserInfo];
-                NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccess) userInfo:nil repeats:NO];
+                NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
                 [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
                 
             }
@@ -140,9 +140,9 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             [SVProgressHUD showErrorWithStatus:@"支付失败"];
 
         }
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccess) userInfo:nil repeats:NO];
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-
+        
         
         
     } failure:^(NSError *error) {
@@ -154,8 +154,9 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 
 }
-- (void)paySuccess{
+- (void)paySuccessed{
     [[NSNotificationCenter defaultCenter]postNotificationName:CannelLoginFailure object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -532,6 +533,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     } withFileKey:nil];
     
 }
+
+
 
 
 

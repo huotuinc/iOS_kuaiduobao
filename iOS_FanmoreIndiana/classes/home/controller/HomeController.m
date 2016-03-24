@@ -40,6 +40,9 @@
 #import "HomeSendRedPocketCView.h"
 #import "MCController.h"
 #import "AppDelegate.h"
+#import "AppShareModel.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<CircleBannerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
@@ -67,6 +70,8 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 @property (nonatomic, strong) NSMutableArray *arrRedList;//弹窗红包
 
 @property (nonatomic, strong) NSNumber *lastSort;
+@property (nonatomic, strong) NSNumber *sendRedNumber;//判断是否弹出发红包视图 1可以
+
 
 @property (nonatomic, assign) BOOL isLoadView;
 @property (nonatomic, assign) BOOL isFirstLoad;
@@ -122,7 +127,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     self.isFirstLoad = YES;
     self.isLoadView = NO;
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendRedPocketYesOrNo) name:canSendRedPocketOrNot object:nil];
     _appGoodsList=[NSMutableArray array];
     _appNoticeList=[NSMutableArray array];
     _appSlideList=[NSMutableArray array];
@@ -146,41 +151,43 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 #pragma mark 获取数据 线程
 - (void)getHomeData {
-    [SVProgressHUD show];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
-//        [self getAppNoticeList];
-        [self createMainCollectionView];
+//    [SVProgressHUD show];
+    [self getGoodsList];
 
-    }];
-    NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
-        [self getGoodsList];
-
-    }];
-    NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
-//        [self createHeadView];
-//        [self getAppNoticeList];
-
-    }];
-    NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
-//        [self getAppSlideList];
-//        NSString * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:UserInfo];
-//        if ([login isEqualToString:Success]) {
-//            [self getShoppingList];
-//        }else{
-
-    }];
-    
-    [op2 addDependency:op1];
-//    [op3 addDependency:op1];
-    [op3 addDependency:op2];
-    [op4 addDependency:op2];
-    
-    // 为队列添加线程
-    [queue addOperation:op1];
-    [queue addOperation:op2];
-    [queue addOperation:op3];
-    [queue addOperation:op4];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+////        [self getAppNoticeList];
+////        [self createMainCollectionView];
+//
+//    }];
+//    NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
+//        [self getGoodsList];
+//
+//    }];
+//    NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
+////        [self createHeadView];
+////        [self getAppNoticeList];
+//
+//    }];
+//    NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
+////        [self getAppSlideList];
+////        NSString * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:UserInfo];
+////        if ([login isEqualToString:Success]) {
+////            [self getShoppingList];
+////        }else{
+//
+//    }];
+//    
+//    [op2 addDependency:op1];
+////    [op3 addDependency:op1];
+//    [op3 addDependency:op2];
+//    [op4 addDependency:op2];
+//    
+//    // 为队列添加线程
+//    [queue addOperation:op1];
+//    [queue addOperation:op2];
+//    [queue addOperation:op3];
+//    [queue addOperation:op4];
 }
 - (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -209,31 +216,49 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)createGetRedView {
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeGetRedPocketCView" owner:nil options:nil];
     _getRedView=[nib firstObject];
-    _getRedView.frame=CGRectMake(0,-64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
     if (_arrRedList.count == 1) {
         _getRedView.labelB.text = [NSString stringWithFormat:@"%@",_arrRedList[0]];
+        _getRedView.labelC.text = @"您有一个金币红包";
     } else {
-    
+        NSInteger totalMoney = 0;
+        for (int i = 0 ; i < _arrRedList.count; i++) {
+            NSInteger step =[_arrRedList[i] integerValue];
+            totalMoney += step;
+        }
+        _getRedView.labelB.text = [NSString stringWithFormat:@"%ld",(long)totalMoney];
+        _getRedView.labelC.text = @"您有金币红包";
     }
-    
-    [_getRedView.imageVBack bk_whenTapped:^{
-        _getRedView.hidden = YES;
+    _getRedView.imageVClose.userInteractionEnabled = YES;
+    [_getRedView.imageVClose bk_whenTapped:^{
+        NSLog(@"点击了");
         [_getRedView removeFromSuperview];
     }];
+    [_getRedView.buttonGet bk_whenTapped:^{
+        [_getRedView removeFromSuperview];
+    }];
+     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    [window addSubview:_getRedView];
 //    [self.view addSubview:_getRedView];
-    [self.view insertSubview:_getRedView aboveSubview:_collectionView];
+//    [self.view insertSubview:_getRedView aboveSubview:_collectionView];
 //    [self.view bringSubviewToFront:_getRedView];
 }
 - (void)createSendRedView {
+    [_getRedView removeFromSuperview];
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
     _sendRedView=[nib firstObject];
     _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    [_sendRedView bk_whenTapped:^{
+    _sendRedView.imageVClose.userInteractionEnabled = YES;
+    [_sendRedView.imageVClose bk_whenTapped:^{
         _sendRedView.hidden = YES;
         [_sendRedView removeFromSuperview];
     }];
-    [self.view bringSubviewToFront:_sendRedView];
-}
+    [_sendRedView.buttonSend bk_whenTapped:^{
+        [_sendRedView removeFromSuperview];
+        [self shareRedPackets];
+    }];
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    [window addSubview:_sendRedView];}
 
 -(void)createMainCollectionView{
     if (self.collectionView) {
@@ -1028,6 +1053,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.hidden =NO;
 }
 
 #pragma mark 
@@ -1062,7 +1088,95 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    self.collectionView.
 }
 
+#pragma mark 支付成功后是否刷新红包
 
+- (void)sendRedPocketYesOrNo{
+    
+    [UserLoginTool loginRequestGet:@"judgeIfCanShareRedpackets" parame:nil success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            _sendRedNumber = json[@"resultData"][@"canShare"];
+            if ([_sendRedNumber isEqualToNumber:@1]) {
+                [self createSendRedView];
+            }
+            
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
+
+- (void)shareRedPackets {
+    [UserLoginTool loginRequestGet:@"shareRedPackets" parame:nil success:^(id json) {
+        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            AppShareModel *model = [AppShareModel mj_objectWithKeyValues:json[@"resultData"][@"share"]];
+            [self goShare:model];
+        }else if ([json[@"resultCode"] intValue]== 500) {
+            
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@", error);
+    }];
+}
+
+
+- (void)goShare:(AppShareModel *) model {
+    
+    
+    //1、创建分享参数
+    NSArray* imageArray = @[model.imgUrl];
+    if (imageArray) {
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:model.text
+                                         images:imageArray
+                                            url:[NSURL URLWithString:model.url]
+                                          title:model.title
+                                           type:SSDKContentTypeAuto];
+        //2、分享（可以弹出我们的分享菜单和编辑界面）
+        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+                                 items:nil
+                           shareParams:shareParams
+                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                       
+                       switch (state) {
+                           case SSDKResponseStateSuccess:
+                           {
+                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                                   message:nil
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"确定"
+                                                                         otherButtonTitles:nil];
+                               [alertView show];
+                               break;
+                           }
+                           case SSDKResponseStateFail:
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:[NSString stringWithFormat:@"%@",error]
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           default:
+                               break;
+                       }
+                       
+                   }];
+        
+    }
+}
 
 
 @end
