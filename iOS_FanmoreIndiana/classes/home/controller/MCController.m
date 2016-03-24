@@ -10,7 +10,7 @@
 #import "MessageTableViewCell.h"
 #import "Message.h"
 #import "MessageFrame.h"
-
+#import "AppDelegate.h"
 #define pageSize 10
 
 @interface MCController ()
@@ -52,7 +52,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    app.unreadMessage = NO;
     [self getNewMoreData];
 }
 

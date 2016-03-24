@@ -170,7 +170,8 @@ static NSString * cellDFirst=@"cellDFirst";
             LWLog(@"%@",json[@"resultDescription"]);
         }
         [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
         [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
@@ -551,11 +552,14 @@ static NSString * cellDFirst=@"cellDFirst";
                 [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:_joinModel];
 
             }
-        }
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
-//            ListViewController *list = [[ListViewController alloc] init];
-//            [self.navigationController pushViewController:list animated:YES];
             [self.navigationController popToRootViewControllerAnimated:YES];
+
+        }
+//            [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
+////            ListViewController *list = [[ListViewController alloc] init];
+////            [self.navigationController pushViewController:list animated:YES];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         }];
         //加入清单
         [_bottomView.buttonAdd bk_whenTapped:^{

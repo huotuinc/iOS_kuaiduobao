@@ -64,6 +64,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 @property (nonatomic, strong) NSMutableArray *appNoticeList;
 @property (nonatomic, strong) NSMutableArray *appSlideList;
 @property (nonatomic, strong) NSMutableArray *arrURLString;//轮播图片
+@property (nonatomic, strong) NSMutableArray *arrRedList;//弹窗红包
 
 @property (nonatomic, strong) NSNumber *lastSort;
 
@@ -101,13 +102,18 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     [self createBarButtonItem];
     [self.navigationItem changeNavgationBarTitle:@"奇兵夺宝"];
-
 //    [self createNavgationBarTitle];
 
     
     self.tabBarController.tabBar.hidden = NO;
-//    [self getHomeData];
-
+    [self getHomeData];
+    
+//    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//    if ([login isEqualToString:Success]) {
+//        [self getRedList];
+//    }
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -121,12 +127,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     _appNoticeList=[NSMutableArray array];
     _appSlideList=[NSMutableArray array];
     _arrURLString=[NSMutableArray array];
-    
+    _arrRedList = [NSMutableArray array];
+
     self.type = [NSNumber numberWithInteger:1];
     // 创建操作队列
    
 
-    [self getHomeData];
+//    [self getHomeData];
 //    [self createGetRedView];
 
 
@@ -134,6 +141,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [self createMainCollectionView];
 //    [self createLableCollectionView];
     [self _initCollectionView];
+//    [self ]
 
 }
 #pragma mark 获取数据 线程
@@ -186,10 +194,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (app.unreadMessage == 0) {
-        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
-    } else {
+    if (app.unreadMessage) {
         [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi_red"]forState:UIControlStateNormal];
+    } else {
+        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     }
     [buttonR bk_whenTapped:^{
         MCController *mc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MCController"];
@@ -201,7 +209,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)createGetRedView {
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeGetRedPocketCView" owner:nil options:nil];
     _getRedView=[nib firstObject];
-    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _getRedView.frame=CGRectMake(0,-64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    if (_arrRedList.count == 1) {
+        _getRedView.labelB.text = [NSString stringWithFormat:@"%@",_arrRedList[0]];
+    } else {
+    
+    }
+    
     [_getRedView.imageVBack bk_whenTapped:^{
         _getRedView.hidden = YES;
         [_getRedView removeFromSuperview];
@@ -301,7 +315,31 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     }];
     
 }
+#pragma mark 网络弹窗红包列表
 
+- (void)getRedList{
+    
+    [UserLoginTool loginRequestGet:@"getRemindRedPackets" parame:nil success:^(id json) {
+        
+        LWLog(@"%@",json);
+        
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+            LWLog(@"%@",json[@"resultDescription"]);
+            NSArray *temp = [NSArray arrayWithArray:json[@"resultData"][@"redpackets"]];
+            [self.arrRedList removeAllObjects];
+            [self.arrRedList addObjectsFromArray:temp];
+            if (_arrRedList.count != 0) {
+                [self createGetRedView];
+            }
+        }else{
+            LWLog(@"%@",json[@"resultDescription"]);
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@",error);
+    }];
+    
+}
 #pragma mark 网络顶部轮播视图列表
 
 - (void)getAppSlideList{
@@ -379,7 +417,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [SVProgressHUD dismiss];
     [_collectionView.mj_header endRefreshing];
 
-    
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    if ([login isEqualToString:Success]) {
+        [self getRedList];
+    }
 }
 
 /**

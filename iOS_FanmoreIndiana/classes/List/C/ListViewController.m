@@ -62,33 +62,8 @@ static NSInteger selectAllCount = 1;
 
 //    _bottomView.labelMoney.text = @"总计: 0.00元";
 //    _cartList =[NSMutableArray array];
-
-    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-    if ([login isEqualToString:Success]) {
-        [self getShoppingList];
-    }else{
-        _cartList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
-        _selectedArray = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
-        if (_cartList.count == 0) {
-            [self createImageVBack];
-        }else {
-
-            if (_tableView) {
-                
-                self.imageVBack.hidden = YES;
-                [self.tableView reloadData];
-            }else{
-                [self createTableView];
-            }
-            
-            _bottomView.buttonAll.selected = YES;
-            _bottomView.labelAll.text = @"取消全选";
-            [self countPrice];
-            selectAllCount = 1;
-        }
-        
-        
-    }
+    [self LoginOrNot];
+    
 
     
 }
@@ -100,7 +75,29 @@ static NSInteger selectAllCount = 1;
     [self createTableView];
     [self finshBarView];
     [self createBottomView];
-        [self loadNotificationCell];
+    [self loadNotificationCell];
+}
+- (void)LoginOrNot {
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    if ([login isEqualToString:Success]) {
+        [self getShoppingList];
+    }else{
+        _cartList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
+        _selectedArray = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
+        if (_cartList.count == 0) {
+            [self createImageVBack];
+        }else {
+            self.imageVBack.hidden = YES;
+            [self.tableView reloadData];
+            
+            _bottomView.buttonAll.selected = YES;
+            _bottomView.labelAll.text = @"取消全选";
+            [self countPrice];
+            selectAllCount = 1;
+        }
+        
+        
+    }
 }
 - (void)createBarButtonItem{
     UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 25)];
@@ -224,7 +221,6 @@ static NSInteger selectAllCount = 1;
         if (_cartList.count == 0) {
             [self createImageVBack];
         }else {
-            if (_tableView) {
                 self.imageVBack.hidden = YES;
                 [self.tableView reloadData];
                 _bottomView.labelAll.text = @"取消全选";
@@ -233,10 +229,6 @@ static NSInteger selectAllCount = 1;
                 [self countPrice];
                 selectAllCount = 1;
 
-            }else{
-                [self createTableView];
-
-            }
         }
         [_tableView.mj_header endRefreshing];
     }
@@ -470,7 +462,7 @@ static NSInteger selectAllCount = 1;
     
 //    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
 //    if ([login isEqualToString:Success]) {
-        [self setupRefresh];
+    [self setupRefresh];
 //    }
     
     
@@ -866,7 +858,7 @@ static NSInteger selectAllCount = 1;
 //    }else {
 //        areNumber = [model.areaAmount integerValue];
 //    }
-    if ([textField.text integerValue] % areNumber != 0 ) {
+    if ([textField.text integerValue] % areNumber != 0 || [textField.text integerValue] <= 0) {
         textField.text = [NSString stringWithFormat:@"%@",_beginNumber];
 //        model.buyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
         for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
@@ -878,7 +870,7 @@ static NSInteger selectAllCount = 1;
         [self countPrice];
         return YES;
     }
-    if ([textField.text integerValue] > [model.remainAmount integerValue]) {
+    if ([textField.text integerValue] > [model.remainAmount integerValue] || [textField.text integerValue] <= 0) {
         textField.text = [NSString stringWithFormat:@"%@",model.remainAmount];
         model.userBuyAmount = [NSNumber numberWithInteger:[textField.text integerValue]];
         for (NSInteger i = _selectedArray.count - 1; i>=0; i--) {
