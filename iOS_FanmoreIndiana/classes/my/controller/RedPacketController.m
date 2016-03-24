@@ -236,7 +236,7 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
 
 - (void)getNewList {
     
-    [self.redList removeAllObjects];
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"type"] = @(self.selectMark);
     dic[@"lastId"] = @0;
@@ -247,6 +247,7 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
         [_tableView.mj_header endRefreshing];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             NSArray *temp = [RedPacketsModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            [self.redList removeAllObjects];
             [self.redList addObjectsFromArray:temp];
             [self.tableView reloadData];
         }

@@ -224,6 +224,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
 //    [self SelectMoreAccount];
     _webViewProgress = [[NJKWebViewProgress alloc] init];
     _webViewProgress.webViewProxyDelegate = self;
@@ -240,7 +241,7 @@
     
     NSURL * urlStr = [NSURL URLWithString:self.homeUrl];
     NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.homeWebView.scalesPageToFit = YES;
     self.homeWebView.tag = 100;
     self.homeWebView.delegate = _webViewProgress;
@@ -401,6 +402,7 @@
                 [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
                 NSString * to = [NSDictionary ToSignUrlWithString:url];
                 [UserLoginTool ordorRequestGet:to parame:nil success:^(id json) {
+                    LWLog(@"%@", json);
                     if ([json[@"code"] integerValue] == 200) {
                         self.priceNumber = json[@"data"][@"Final_Amount"];
                         NSString * des =  json[@"data"][@"ToStr"]; //商品描述
@@ -486,9 +488,9 @@
                 NSRange cc = NSMakeRange(ran.location+ran.length, 1);
                 newUrl = [newUrls stringByReplacingCharactersInRange:cc withString:@"?"];
             }
-            NSString * dddd = [NSDictionary ToSignUrlWithString:newUrl];
-            NSURL * urlStr = [NSURL URLWithString:dddd];
-            NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
+//            NSString * dddd = [NSDictionary ToSignUrlWithString:newUrl];
+//            NSURL * urlStr = [NSURL URLWithString:dddd];
+            NSURLRequest * req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:newUrl]];
             [self.homeWebView loadRequest:req];
             return NO;
         }
