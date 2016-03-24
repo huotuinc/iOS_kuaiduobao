@@ -160,7 +160,6 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-
 /**
  *  微信pay
  */
@@ -184,11 +183,11 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             req.sign                = [dict objectForKey:@"sign"];
             [WXApi sendReq:req];
         }else{
-            //            NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
+            NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
         }
         
     }else{
-        //        NSLog(@"提示信息返回错误");
+        NSLog(@"提示信息返回错误");
         
     }
     
@@ -239,7 +238,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         NSString * prePayid = nil;
         prePayid  = [payManager sendPrepay:params];
         
-        
+        LWLog(@"xcaccasc%@",[payManager getDebugifo]);
         if ( prePayid != nil) {
             //获取到prepayid后进行第二次签名
             
@@ -279,6 +278,91 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     }
     return nil;
 }
+///**
+// *  微信支付预zhifu
+// */
+//- (NSMutableDictionary *)PayByWeiXinParame{
+//    
+//    payRequsestHandler * payManager = [[payRequsestHandler alloc] init];
+//    [payManager setKey:wxpayKey];
+//    BOOL isOk = [payManager init:WeiXinPayId mch_id:WeiXinPayMerchantId];
+//    if (isOk) {
+//        
+//        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//        
+//        NSString *noncestr  = [NSString stringWithFormat:@"%d", rand()];
+//        params[@"appid"] = WeiXinPayId;
+//        params[@"mch_id"] = WeiXinPayMerchantId;     //微信支付分配的商户号
+//        
+//        //商品价格
+//        
+//        NSString * a  = self.payBackModel.wxFee;
+//        //        NSString *a = [self.payModel.fee stringValue];
+//        //商品价格
+//        
+//        params[@"nonce_str"] = noncestr; //随机字符串，不长于32位。推荐随机数生成算法
+//        params[@"trade_type"] = @"APP";   //取值如下：JSAPI，NATIVE，APP，WAP,详细说明见参数规定
+//        params[@"body"] = self.payBackModel.detail; //商品或支付单简要描述
+//        
+//        params[@"notify_url"] = self.payBackModel.wxCallbackUrl;  //接收微信支付异步通知回调地址
+//        
+//        params[@"out_trade_no"] = [self.payBackModel.orderNo stringValue]; //订单号
+//        params[@"spbill_create_ip"] = @"192.168.1.1"; //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
+//        
+//        
+//        
+//        
+//        params[@"total_fee"] = a;  //订单总金额，只能为整数，详见支付金额
+//        params[@"device_info"] = DeviceNo;
+//        
+//        
+//        
+//        //        params[@"sign"] = [payManager createMd5Sign:params];
+//        
+//        //获取prepayId（预支付交易会话标识）
+//        NSString * prePayid = nil;
+//        prePayid  = [payManager sendPrepay:params];
+//        
+//        
+//        if ( prePayid != nil) {
+//            //获取到prepayid后进行第二次签名
+//            
+//            NSString    *package, *time_stamp, *nonce_str;
+//            //设置支付参数
+//            time_t now;
+//            time(&now);
+//            time_stamp  = [NSString stringWithFormat:@"%ld", now];
+//            nonce_str	= [WXUtil md5:time_stamp];
+//            //重新按提交格式组包，微信客户端暂只支持package=Sign=WXPay格式，须考虑升级后支持携带package具体参数的情况
+//            //package       = [NSString stringWithFormat:@"Sign=%@",package];
+//            package         = @"Sign=WXPay";
+//            //第二次签名参数列表
+//            NSMutableDictionary *signParams = [NSMutableDictionary dictionary];
+//            [signParams setObject: WeiXinPayId  forKey:@"appid"];
+//            [signParams setObject: nonce_str    forKey:@"noncestr"];
+//            [signParams setObject: package      forKey:@"package"];
+//            [signParams setObject: WeiXinPayMerchantId   forKey:@"partnerid"];
+//            [signParams setObject: time_stamp   forKey:@"timestamp"];
+//            [signParams setObject: prePayid     forKey:@"prepayid"];
+//            //[signParams setObject: @"MD5"       forKey:@"signType"];
+//            //生成签名
+//            NSString *sign  = [payManager createMd5Sign:signParams];
+//            
+//            //添加签名
+//            [signParams setObject: sign         forKey:@"sign"];
+//            
+//            [_debugInfo appendFormat:@"第二步签名成功，sign＝%@\n",sign];
+//            
+//            //返回参数列表
+//            return signParams;
+//            
+//        }else{
+//            [_debugInfo appendFormat:@"获取prepayid失败！\n"];
+//        }
+//        
+//    }
+//    return nil;
+//}
 
 
 /**
