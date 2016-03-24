@@ -86,6 +86,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     _webViewProgress = [[NJKWebViewProgress alloc] init];
     _webViewProgress.webViewProxyDelegate = self;

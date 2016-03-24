@@ -98,18 +98,30 @@
 
 
 + (void)ordorRequestGet:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure {
-    MKNetworkEngine *engine = [[MKNetworkEngine alloc] initWithHostName:nil customHeaderFields:nil];
     
-    MKNetworkOperation *op = [engine operationWithPath:urlStr params:params httpMethod:@"GET"];
-    
-    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        success(completedOperation.responseJSON);
-    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    [manager GET:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        LWLog(@"%@",task.originalRequest);
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        LWLog(@"%@",task);
         failure(error);
         [SVProgressHUD showErrorWithStatus:@"无法连接到服务器"];
     }];
     
-    [engine enqueueOperation:op];
+    
+//    MKNetworkEngine *engine = [[MKNetworkEngine alloc] initWithHostName:nil customHeaderFields:nil];
+//    
+//    MKNetworkOperation *op = [engine operationWithPath:urlStr params:params httpMethod:@"GET"];
+//    
+//    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+//        success(completedOperation.responseJSON);
+//    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+//        failure(error);
+//
+//    }];
+    
+//    [engine enqueueOperation:op];
 }
 
 

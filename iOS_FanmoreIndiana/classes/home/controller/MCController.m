@@ -63,7 +63,7 @@
  */
 - (void)setupRefresh
 {
-    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewMoreData)];
+    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRereshing)];
     self.tableView.mj_header = headRe;
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
 //    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
@@ -81,7 +81,7 @@
 //    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
 //    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
 //    self.tableView.footerRefreshingText = @"正在加载更多数据,请稍等";
-    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreData:)];
+    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
     self.tableView.mj_footer = Footer;
 }
 #pragma mark 开始进入刷新状态
@@ -144,12 +144,12 @@
             
         }
         
-        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
         
         [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络"];
         
-        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
     }];
     
 }

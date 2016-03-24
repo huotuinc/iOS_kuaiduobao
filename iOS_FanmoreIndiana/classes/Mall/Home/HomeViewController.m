@@ -224,6 +224,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
 //    [self SelectMoreAccount];
     _webViewProgress = [[NJKWebViewProgress alloc] init];
     _webViewProgress.webViewProxyDelegate = self;
@@ -240,6 +241,7 @@
     
     NSURL * urlStr = [NSURL URLWithString:self.homeUrl];
     NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
+    
     self.homeWebView.scalesPageToFit = YES;
     self.homeWebView.tag = 100;
     self.homeWebView.delegate = _webViewProgress;
@@ -249,20 +251,23 @@
     
     
     NSURLRequest * Bottomreq = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:_buttomUrl]];
-    self.homeBottonWebView.scalesPageToFit = YES;
+//    self.homeBottonWebView.scalesPageToFit = YES;
     self.homeBottonWebView.delegate = self;
     self.homeBottonWebView.tag = 20;
 //    self.homeBottonWebView.hidden = YES;
-//    self.homeBottonWebView.backgroundColor = [UIColor blueColor];
+    self.homeBottonWebView.backgroundColor = [UIColor blueColor];
     self.homeBottonWebView.scrollView.bounces = NO;
     self.homeBottonWebView.scrollView.scrollEnabled = NO;
     [self.homeBottonWebView loadRequest:Bottomreq];
+    
 
     //集成刷新控件
     [self AddMjRefresh];
     
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:self.shareBtn]];
-
+    
+    [self.homeWebView layoutIfNeeded];
+    [self.homeBottonWebView layoutIfNeeded];
 }
 
 
@@ -397,6 +402,7 @@
                 [url appendFormat:@"%@?orderid=%@",@"/order/GetOrderInfo",trade_noss];
                 NSString * to = [NSDictionary ToSignUrlWithString:url];
                 [UserLoginTool ordorRequestGet:to parame:nil success:^(id json) {
+                    LWLog(@"%@", json);
                     if ([json[@"code"] integerValue] == 200) {
                         self.priceNumber = json[@"data"][@"Final_Amount"];
                         NSString * des =  json[@"data"][@"ToStr"]; //商品描述
@@ -456,7 +462,7 @@
 //        InitModel * ini = (InitModel * )[UserLoginTool LoginReadModelDateFromCacheDateWithFileName:InitModelCaches];
 //        NSString * uraaaaa = [[NSUserDefaults standardUserDefaults] objectForKey:WebSit];
 //        NSString * cc = [NSString stringWithFormat:@"%@%@%@",uraaaaa,@"/bottom.aspx?customerid=",ini.customerId];
-        if ([url isEqualToString:self.homeUrl]) {
+        if ([url isEqualToString:self.buttomUrl]) {
             return YES;
         }else if([url rangeOfString:@"http://wpa.qq.com/msgrd?v=3&uin"].location != NSNotFound){
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
@@ -484,8 +490,8 @@
             }
 //            NSString * dddd = [NSDictionary ToSignUrlWithString:newUrl];
 //            NSURL * urlStr = [NSURL URLWithString:dddd];
-//            NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
-//            [self.homeWebView loadRequest:req];
+            NSURLRequest * req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:newUrl]];
+            [self.homeWebView loadRequest:req];
             return NO;
         }
     }
