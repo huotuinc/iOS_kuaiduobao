@@ -448,6 +448,7 @@
  *  确认收货地址提示
  */
 - (void)confirmationOfAddress {
+    
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     AdressModel *address = [NSKeyedUnarchiver unarchiveObjectWithFile:fileNameAdd];
@@ -457,7 +458,7 @@
         alert.tag = 1;
         [alert show];
     }else {
-        [SVProgressHUD showErrorWithStatus:@"请使用默认地址"];
+        [self goToAddressListChoose];
     }
 }
 
