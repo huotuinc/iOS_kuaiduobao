@@ -17,6 +17,7 @@
 #import "DetailViewController.h"
 #import "AppGoodsListModel.h"
 #import "RecordController.h"
+#import "MCController.h"
 
 @interface MineController ()
 
@@ -112,6 +113,13 @@
             
         }];
         
+    }
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    if (app.applicationIconBadgeNumber) {
+        [_message setBackgroundImage:[UIImage imageNamed:@"xiaoxi_red"]forState:UIControlStateNormal];
+    } else {
+        [_message setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     }
     
 }
