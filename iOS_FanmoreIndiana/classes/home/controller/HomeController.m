@@ -127,12 +127,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     self.isFirstLoad = YES;
     self.isLoadView = NO;
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendRedPocketYesOrNo) name:canSendRedPocketOrNot object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendRedPocketYesOrNo) name:canSendRedPocketOrNot object:nil];
     _appGoodsList=[NSMutableArray array];
     _appNoticeList=[NSMutableArray array];
     _appSlideList=[NSMutableArray array];
     _arrURLString=[NSMutableArray array];
     _arrRedList = [NSMutableArray array];
+    
+    
 
     self.type = [NSNumber numberWithInteger:1];
     // 创建操作队列
@@ -244,13 +247,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [self.view bringSubviewToFront:_getRedView];
 }
 - (void)createSendRedView {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:payMoneySuccess object:self];
+
     [_getRedView removeFromSuperview];
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
     _sendRedView=[nib firstObject];
     _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _sendRedView.imageVClose.userInteractionEnabled = YES;
     [_sendRedView.imageVClose bk_whenTapped:^{
-        _sendRedView.hidden = YES;
         [_sendRedView removeFromSuperview];
     }];
     [_sendRedView.buttonSend bk_whenTapped:^{

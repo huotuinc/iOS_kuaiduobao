@@ -27,15 +27,15 @@
     self.minus.text = [NSString stringWithFormat:@"%@",model.minusMoney];
     self.full.text = [NSString stringWithFormat:@"满%@元使用", model.fullMoney];
     self.titleName.text = model.title;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *start = [NSDate dateWithTimeIntervalSince1970:[model.startTime doubleValue]];
-    self.start.text =[NSString stringWithFormat:@"生效期：%@",[formatter stringFromDate:start]];
-    
-    NSDate *endTime = [NSDate dateWithTimeIntervalSince1970:[model.endTime doubleValue]];
-    self.end.text = [NSString stringWithFormat:@"有效期：%@", [formatter stringFromDate:endTime]];
+//    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateStyle:NSDateFormatterMediumStyle];
+//    [formatter setTimeStyle:NSDateFormatterShortStyle];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
+//    NSDate *start = [NSDate dateWithTimeIntervalSince1970:[model.startTime doubleValue]];
+    NSString *str1 = [self changeTheTimeStamps:model.startTime];
+    self.start.text =[NSString stringWithFormat:@"生效期：%@",str1];
+    NSString *str2 = [self changeTheTimeStamps:model.endTime];
+    self.end.text = [NSString stringWithFormat:@"有效期：%@",str2];
     
     self.remark.text = model.remark;
 }
@@ -48,6 +48,23 @@
 //        self.redPacket.image = [UIImage imageNamed:@"hb_gray"];
 //        self.endImage.hidden = NO;
 //    }
+}
+
+/**
+ *  13位时间戳转为正常时间(可设置样式)
+ *
+ *  @param time 时间戳
+ *
+ *  @return
+ */
+-(NSString *)changeTheTimeStamps:(NSNumber *)time{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //将13位时间戳转为正常时间格式
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue]/1000]];
+    return str;
 }
 
 @end
