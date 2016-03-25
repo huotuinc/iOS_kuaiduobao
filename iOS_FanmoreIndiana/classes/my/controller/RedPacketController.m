@@ -298,7 +298,7 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewList)];
     _tableView.mj_header = headRe;
     
-    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreList)];
+    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreList)];
     _tableView.mj_footer = Footer;
     
 }

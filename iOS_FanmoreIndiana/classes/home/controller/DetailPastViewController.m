@@ -64,7 +64,7 @@ static NSString * cellDPasting=@"cellDPasting";
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     
-        MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
+        MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
         _tableView.mj_footer = Footer;
     
     //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];

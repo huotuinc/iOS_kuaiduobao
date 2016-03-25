@@ -320,7 +320,7 @@
         return YES;
     }
     if ([self.thirdImage.image isEqual:temp]) {
-        return NO;
+        return YES;
     }
     if ([self.fourthImage.image isEqual:temp]) {
         return YES;

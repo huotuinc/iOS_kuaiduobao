@@ -52,8 +52,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    app.unreadMessage = NO;
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    app.applicationIconBadgeNumber = 0;
+    
     [self getNewMoreData];
 }
 
@@ -81,8 +83,9 @@
 //    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
 //    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
 //    self.tableView.footerRefreshingText = @"正在加载更多数据,请稍等";
-    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
+    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRereshing)];
     self.tableView.mj_footer = Footer;
+//    self.tableView.mj_footer.hidden = YES;
 }
 #pragma mark 开始进入刷新状态
 //头部刷新

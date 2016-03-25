@@ -77,12 +77,6 @@
         NSDictionary *dicRemote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (dicRemote) {
             
-            if (application.applicationIconBadgeNumber) {
-                self.unreadMessage = YES;
-            }else {
-                self.unreadMessage = NO;
-            }
-
         }
     }
     
@@ -107,11 +101,6 @@
  */
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
-    if (application.applicationIconBadgeNumber) {
-        self.unreadMessage = YES;
-    }else {
-        self.unreadMessage = NO;
-    }
     
 }
 

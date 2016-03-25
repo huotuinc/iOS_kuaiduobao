@@ -17,6 +17,7 @@
 #import "DetailViewController.h"
 #import "AppGoodsListModel.h"
 #import "RecordController.h"
+#import "MCController.h"
 
 @interface MineController ()
 
@@ -97,8 +98,8 @@
         UserModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
         [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
         self.nickname.text = user.realName;
-        self.money.text = [user.money stringValue];
-        self.integral.text = [NSString stringWithFormat:@"积分:%d", user.integral];
+        self.money.text = [NSString stringWithFormat:@"%.2f", [user.money floatValue]];
+        self.integral.text = [NSString stringWithFormat:@"积分:%ld", (long)user.integral];
         [self.logo bk_whenTapped:^{
             UIStoryboard *stroy = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //            if ([user.userFormType intValue] == 0) {
@@ -112,6 +113,13 @@
             
         }];
         
+    }
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    if (app.applicationIconBadgeNumber) {
+        [_message setBackgroundImage:[UIImage imageNamed:@"xiaoxi_red"]forState:UIControlStateNormal];
+    } else {
+        [_message setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     }
     
 }

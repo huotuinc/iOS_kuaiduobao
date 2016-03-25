@@ -34,7 +34,6 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - INTULocationManager (4.2.0)
-  - iRate (1.10.3)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
   - MKNetworkKit (0.87):
@@ -62,7 +61,6 @@ DEPENDENCIES:
   - ConciseKit (= 0.1.2)
   - FMDB
   - INTULocationManager
-  - iRate (~> 1.10.3)
   - MJExtension
   - MJRefresh
   - MKNetworkKit
@@ -92,7 +90,6 @@ SPEC CHECKSUMS:
   ConciseKit: 6eda679f3a18c050490e018eae2b497e656055ff
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
-  iRate: 724a3e080d5b0681e50a57d6cef1a81f83c23df3
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de

@@ -252,7 +252,7 @@ static NSString *winningIdentify = @"winningIdentify";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewList)];
     _tableView.mj_header = headRe;
     
-    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreList)];
+    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreList)];
     _tableView.mj_footer = Footer;
     
 }
@@ -364,7 +364,7 @@ static NSString *winningIdentify = @"winningIdentify";
         alert.tag = 1;
         [alert show];
     }else {
-        [SVProgressHUD showErrorWithStatus:@"请设置默认地址"];
+        [self goToAddressListChoose:self.selectModel];
     }
 }
 
