@@ -172,6 +172,7 @@ static NSString *cellTenMain=@"cellTenMain";
         }
         [_tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
+        [_tableView.mj_footer endRefreshing];
         LWLog (@"%@",error);
     }];
     

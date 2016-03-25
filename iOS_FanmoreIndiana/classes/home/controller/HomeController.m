@@ -106,7 +106,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.view.backgroundColor=COLOR_BACK_MAIN;
     
     [self createBarButtonItem];
-    [self.navigationItem changeNavgationBarTitle:@"奇兵夺宝"];
+//    [self.navigationItem changeNavgationBarTitle:@"奇兵夺宝"];
 //    [self createNavgationBarTitle];
 
     
@@ -151,6 +151,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self _initCollectionView];
 //    [self ]
 
+}
+- (void)createNavigationTitle {
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"奇兵夺宝";
+    self.navigationController.navigationItem.titleView = titleLabel;
 }
 #pragma mark 获取数据 线程
 - (void)getHomeData {
@@ -1066,7 +1075,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
     flowLayout.naviHeight = 0;
     if (KScreenWidth == 414) {
-        flowLayout.minimumInteritemSpacing = 0.5;
+        flowLayout.minimumInteritemSpacing = 1;
         flowLayout.minimumLineSpacing = 0.5;
     }else {
         flowLayout.minimumInteritemSpacing = 0.5;

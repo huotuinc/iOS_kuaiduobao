@@ -87,7 +87,7 @@
         _backArrow = [[UIButton alloc] init];
         _backArrow.frame = CGRectMake(0, 0, 25, 25);
         [_backArrow addTarget:self action:@selector(BackToWebView) forControlEvents:UIControlEventTouchUpInside];
-        [_backArrow setBackgroundImage:[UIImage imageNamed:@"main_title_left_back"] forState:UIControlStateNormal];
+        [_backArrow setBackgroundImage:[UIImage imageNamed:@"gb"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backArrow];
     }
     return _backArrow;

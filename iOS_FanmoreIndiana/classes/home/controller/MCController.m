@@ -53,10 +53,22 @@
 {
     [super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    self.tabBarController.tabBar.hidden =YES;
+    
     UIApplication *app = [UIApplication sharedApplication];
     app.applicationIconBadgeNumber = 0;
     
     [self getNewMoreData];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    self.tabBarController.tabBar.hidden = NO;
+    
+    
 }
 
 

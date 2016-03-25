@@ -66,6 +66,8 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
             [self seleceMarkChanged];
         }
     }];
+    
+    self.goHome.layer.cornerRadius = 5;
 }
 
 

@@ -60,7 +60,7 @@
         self.contextLable = contextLable;
         contextLable.font = [UIFont systemFontOfSize:14];
 //        contextLable.backgroundColor = [UIColor blueColor];
-        self.contextLable.textAlignment = NSTextAlignmentCenter;
+        self.contextLable.textAlignment = NSTextAlignmentLeft;
         [contextLable setTextColor:[UIColor blackColor]];
         [aview addSubview:contextLable];
         
