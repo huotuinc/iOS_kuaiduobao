@@ -287,9 +287,9 @@
                 
                 NSLog(@"跳转支付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
 
             }
         }];
@@ -315,8 +315,8 @@
                 NSLog(@"跳转支付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
 
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
 
 
             }
@@ -351,8 +351,8 @@
                 //                NSLog(@"aaaasssss支付成功");
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
                 break;
             default:
 

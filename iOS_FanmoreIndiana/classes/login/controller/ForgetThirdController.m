@@ -133,6 +133,11 @@
         
     } withFileKey:nil];
     
+    
+    [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    
 }
 
 

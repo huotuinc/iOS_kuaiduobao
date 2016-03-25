@@ -34,6 +34,9 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 @property(nonatomic,strong) NSMutableString * debugInfo;
 
+@property(nonatomic) BOOL AliPayDone;
+@property(nonatomic) BOOL WeiPayDone;
+
 
 
 @end
@@ -57,10 +60,12 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _whichPay = 2;
+    _AliPayDone = NO;
+    _WeiPayDone = NO;
     _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserInfo) name:payMoneySuccess object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccessNotice) name:payMoneySuccessView object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payUpdateUserInfo) name:payMoneySuccess object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccessNotice) name:payMoneySuccessView object:nil];
 
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
@@ -91,7 +96,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
                 
                 [SVProgressHUD showSuccessWithStatus:@"支付成功"];
                 _payView.buttonPay.userInteractionEnabled = YES;
-                [self updateUserInfo];
+                [self payUpdateUserInfo];
+//                [self paySuccessNotice];
                 NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
                 [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
                 
@@ -101,6 +107,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
                 [self PayByAlipay];
             }
             if (_whichPay == 0) {
+                _WeiPayDone = YES;
                 _payBackModel = [AppPayModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
                 [self WeiChatPay];
             }
@@ -122,42 +129,46 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     
     
 }
-- (void)remainPay {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"orderNo"] = _payBackModel.orderNo;
-    dic[@"money"] = self.payBackModel.alipayFee;
-    [UserLoginTool loginRequestPostWithFile:@"remainPay" parame:dic success:^(id json) {
-        LWLog(@"%@",json);
-        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-            LWLog(@"%@",json[@"resultDescription"]);
-            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
-            _payView.buttonPay.userInteractionEnabled = YES;
-            [self updateUserInfo];
-            
-        }else {
-            LWLog(@"%@",json[@"resultDescription"]);
-            _payView.buttonPay.userInteractionEnabled = YES;
-            [SVProgressHUD showErrorWithStatus:@"支付失败"];
-
-        }
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
-        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-        
-        
-        
-    } failure:^(NSError *error) {
-        LWLog(@"%@",error);
-        [SVProgressHUD showErrorWithStatus:@"支付失败"];
-        _payView.buttonPay.userInteractionEnabled = YES;
-        
-    } withFileKey:nil];
-
-
-}
+//- (void)remainPay {
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    dic[@"orderNo"] = _payBackModel.orderNo;
+//    dic[@"money"] = self.payBackModel.alipayFee;
+//    [UserLoginTool loginRequestPostWithFile:@"remainPay" parame:dic success:^(id json) {
+//        LWLog(@"%@",json);
+//        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+//            LWLog(@"%@",json[@"resultDescription"]);
+//            [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+//            _payView.buttonPay.userInteractionEnabled = YES;
+//            [self payUpdateUserInfo];
+////            [self paySuccessNotice];
+//            
+//        }else {
+//            LWLog(@"%@",json[@"resultDescription"]);
+//            _payView.buttonPay.userInteractionEnabled = YES;
+//            [SVProgressHUD showErrorWithStatus:@"支付失败"];
+//
+//        }
+//        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
+//        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+//        
+//        
+//        
+//    } failure:^(NSError *error) {
+//        LWLog(@"%@",error);
+//        [SVProgressHUD showErrorWithStatus:@"支付失败"];
+//        _payView.buttonPay.userInteractionEnabled = YES;
+//        
+//    } withFileKey:nil];
+//
+//
+//}
 - (void)paySuccessed{
     [[NSNotificationCenter defaultCenter]postNotificationName:CannelLoginFailure object:nil userInfo:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (_AliPayDone || _WeiPayDone) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+
 }
 
 /**
@@ -221,7 +232,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         
         params[@"notify_url"] = self.payBackModel.wxCallbackUrl;  //接收微信支付异步通知回调地址
         
-        params[@"out_trade_no"] = [self.payBackModel.orderNo stringValue]; //订单号
+        params[@"out_trade_no"] = self.payBackModel.orderNo; //订单号
         params[@"spbill_create_ip"] = @"192.168.1.1"; //APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
         
         
@@ -429,8 +440,12 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             LWLog(@"reslut = %@",resultDic);
             if([resultDic[@"resultStatus"] intValue] == 9000){
-                [self updateUserInfo];
-                [self paySuccessNotice];
+                _AliPayDone = YES;
+                [self payUpdateUserInfo];
+//                [self paySuccessNotice];
+
+                
+
             }
         }];
     }
@@ -677,7 +692,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 }
 
 #pragma mark 支付成功刷新用户数据
-- (void)updateUserInfo {
+- (void)payUpdateUserInfo {
     
     [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
         LWLog(@"%@", json);
@@ -689,6 +704,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     } failure:^(NSError *error) {
         
     } withFileKey:nil];
+    
+    [self paySuccessNotice];
     
 }
 
@@ -717,9 +734,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 - (void)paySuccessNotice {
     [SVProgressHUD showSuccessWithStatus:@"支付成功"];
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccess) userInfo:nil repeats:NO];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-
 }
 /*
 #pragma mark - Navigation
