@@ -32,6 +32,8 @@ static NSString *shareCIdentifier = @"shareCIdentifier";
     [self setupRefresh];
     [self.tableView removeSpaces];
     
+    self.snatch.layer.cornerRadius = 5;
+    
 }
 
 - (void)didReceiveMemoryWarning {

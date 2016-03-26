@@ -159,7 +159,7 @@
                 
                 if ([WXApi isWXAppInstalled]) {
                     if (self.userInfo.wexinBanded) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"解除帐号与微信的关联么？解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
                         alert.tag = 1001;
                         [alert show];
                         
@@ -173,7 +173,7 @@
                  */
                 if ([TencentOAuth iphoneQQInstalled]) {
                     if (self.userInfo.qqBanded) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"去定窑解除帐号与微信的关联么？/n解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"解除帐号与微信的关联么？解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
                         alert.tag = 1002;
                         [alert show];
                     }else {
@@ -426,7 +426,10 @@
                 LWLog(@"%@",json);
                 if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                     [self loginSuccessWith:json[@"resultData"]];
+                }else {
+                    [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
                 }
+                
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);
             }];
@@ -454,6 +457,8 @@
                 LWLog(@"%@",json);
                 if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                     [self loginSuccessWith:json[@"resultData"]];
+                }else {
+                    [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
                 }
             } failure:^(NSError *error) {
                 LWLog(@"%@",error);

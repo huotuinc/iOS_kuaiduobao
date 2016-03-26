@@ -1085,7 +1085,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
     flowLayout.naviHeight = 0;
     if (KScreenWidth == 414) {
-        flowLayout.minimumInteritemSpacing = 0.5;
+        flowLayout.minimumInteritemSpacing = 1;
         flowLayout.minimumLineSpacing = 0.5;
     }else {
         flowLayout.minimumInteritemSpacing = 0.5;

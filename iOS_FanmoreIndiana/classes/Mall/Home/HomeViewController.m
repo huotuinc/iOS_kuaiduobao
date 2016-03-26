@@ -99,7 +99,7 @@
         _leftOption = [[UIButton alloc] init];
         _leftOption.frame = CGRectMake(0, 0, 25, 25);
         [_leftOption addTarget:self action:@selector(GoToLeft) forControlEvents:UIControlEventTouchUpInside];
-        [_leftOption setBackgroundImage:[UIImage imageNamed:@"main_title_left_sideslip"] forState:UIControlStateNormal];
+        [_leftOption setBackgroundImage:[UIImage imageNamed:@"bg"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftOption];
     }
     return _leftOption;

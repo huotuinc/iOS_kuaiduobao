@@ -40,8 +40,8 @@
 #define AliPayKey @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAMCul0XS9X/cVMkmrSeaZXnSvrs/bK5EiZf3d3/lTwHx165wAX/UIz4AcZHbKkYKKzmZKrRsu3tLRKFuflooKSVmWxk2hmeMqRETPZ/t8rKf8UONZIpOlOXEmJ/rYwxhnMeVhbJJxsko2so/jc+XAPLyv0tsfoI/TsJuhaGQ569ZAgMBAAECgYAK4lHdOdtwS4vmiO7DC++rgAISJbUH6wsysGHpsZRS8cxTKDSNefg7ql6/9Hdg2XYznLlS08mLX2cTD2DHyvj38KtxLEhLP7MtgjFFeTJ5Ta1UuBRERcmy0xSLh2zayiSwGTM8Bwu7UD6LUSTGwrgRR2Gg4EDpSG08J5OCThKF4QJBAPOO6WKI/sEuoRDtcIJqtv58mc4RSmit/WszkvPlZrjNFDU6TrOEnPU0zi3f8scxpPxVYROBceGj362m+02G2I0CQQDKhlq4pIM2FLNoDP4mzEUyoXIwqn6vIsAv8n49Tr9QnBjCrKt8RiibhjSEvcYqM/1eocW0j2vUkqR17rNuVVz9AkBq+Z02gzdpwEJMPg3Jqnd/pViksuF8wtbo6/kimOKaTrEOg/KnVJrf9HaOnatzpDF0B0ghGhzb329SRWJhddXNAkAkjrgVmGyu+HGiGKZP7pOXHhl0u3H+vzEd9pHfEzXpoSO/EFgsKKXv3Pvh8jexKo1T5bPAchsu1gGl4B63jeUpAkBbgUalUpZWZ4Aii+Mfts+S2E5RooZfVFqVBIsK47hjcoqLw4JJenyjFu+Skl2jOQ8+I5y1Ggeg6fpBMr2rbVkf"
 
 /**微信支付*/
-#define WeiXinPayId @"wxaeda2d5603b12302"
-#define WeiXinPayMerchantId @"1251040401"
+#define WeiXinPayId @"wx7f47df3d33fd57f7"
+#define WeiXinPayMerchantId @"1323237061"
 #define wxpayKey @"0db0d4908a6ae6a09b0a7727878f0ca6"
 
 
@@ -60,8 +60,8 @@
 #define QQappSecret @"09ef5bfed097b682a83b147d46e46a5a"
 
 /**微信*/ 
-#define WeiXinAppID @"wxaeda2d5603b12302"
-#define WeiXinAppSecret @"8c3b660de36a3b3fb678ca865e31f0f3"
+#define WeiXinAppID @"wx7f47df3d33fd57f7"
+#define WeiXinAppSecret @"a98a14f00e2e358fb3cb8fe7ed06051b"
 
 
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
