@@ -38,7 +38,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幸运号码 10000003" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rca-SS-3Ag">
-                                        <rect key="frame" x="299" y="55" width="153" height="81"/>
+                                        <rect key="frame" x="10" y="55" width="153" height="81"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -49,6 +49,7 @@
                                     <constraint firstItem="rca-SS-3Ag" firstAttribute="centerX" secondItem="jCU-vH-glP" secondAttribute="centerX" id="6VI-p1-NZQ"/>
                                     <constraint firstAttribute="bottom" secondItem="rca-SS-3Ag" secondAttribute="bottom" id="7SK-kD-0Cd"/>
                                     <constraint firstItem="rca-SS-3Ag" firstAttribute="top" secondItem="ekO-GK-7qe" secondAttribute="bottom" id="8Rg-SL-W3m"/>
+                                    <constraint firstItem="rca-SS-3Ag" firstAttribute="leading" secondItem="jCU-vH-glP" secondAttribute="leading" constant="10" id="HxU-jQ-ijc"/>
                                     <constraint firstItem="rca-SS-3Ag" firstAttribute="leading" secondItem="jCU-vH-glP" secondAttribute="leading" id="LWV-Gc-pMT"/>
                                     <constraint firstAttribute="trailing" secondItem="rca-SS-3Ag" secondAttribute="trailing" id="Uaq-Y8-uP3"/>
                                     <constraint firstItem="ekO-GK-7qe" firstAttribute="height" secondItem="jCU-vH-glP" secondAttribute="height" multiplier="2:5" id="VZX-Tq-nnc"/>
@@ -58,6 +59,7 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="6VI-p1-NZQ"/>
                                         <exclude reference="LWV-Gc-pMT"/>
                                         <exclude reference="Uaq-Y8-uP3"/>
                                     </mask>

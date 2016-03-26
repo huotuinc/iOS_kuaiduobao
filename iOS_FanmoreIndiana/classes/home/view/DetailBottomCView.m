@@ -28,7 +28,7 @@
 - (void)drawRect:(CGRect)rect {
     _labelCount.layer.cornerRadius = _labelCount.frame.size.height/2;
     _labelCount.layer.masksToBounds = YES;
-    _labelCount.center = CGPointMake(_imageVShop.frame.origin.x+_imageVShop.frame.size.width, _imageVShop.frame.origin.y);
+    _labelCount.center = CGPointMake(_imageVShop.frame.origin.x+_imageVShop.frame.size.width, _imageVShop.frame.origin.y+3);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

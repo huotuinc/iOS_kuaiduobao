@@ -45,8 +45,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="展开" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFy-xQ-BvS">
-                                        <rect key="frame" x="667" y="121" width="34" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="展开" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFy-xQ-BvS">
+                                        <rect key="frame" x="574" y="113" width="146" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -54,8 +54,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="FFy-xQ-BvS" secondAttribute="trailing" id="0FC-TP-ykc"/>
+                                    <constraint firstAttribute="trailing" secondItem="FFy-xQ-BvS" secondAttribute="trailing" constant="10" id="0FC-TP-ykc"/>
                                     <constraint firstAttribute="trailing" secondItem="vs5-bV-6Sk" secondAttribute="trailing" id="2nc-2g-wIS"/>
+                                    <constraint firstItem="FFy-xQ-BvS" firstAttribute="width" secondItem="D30-hJ-HjM" secondAttribute="width" multiplier="1:5" id="DRy-e2-RPS"/>
                                     <constraint firstAttribute="trailing" secondItem="mYc-TM-bro" secondAttribute="trailing" id="RIY-Lv-JGA"/>
                                     <constraint firstItem="vs5-bV-6Sk" firstAttribute="leading" secondItem="D30-hJ-HjM" secondAttribute="leading" id="RcW-pB-Vro"/>
                                     <constraint firstItem="M7s-hE-OT7" firstAttribute="top" secondItem="mYc-TM-bro" secondAttribute="bottom" id="Skd-ZQ-NOl"/>
@@ -69,7 +70,7 @@
                                     <constraint firstItem="mYc-TM-bro" firstAttribute="leading" secondItem="D30-hJ-HjM" secondAttribute="leading" id="huk-Rl-QHc"/>
                                     <constraint firstAttribute="bottom" secondItem="vs5-bV-6Sk" secondAttribute="bottom" id="nCJ-kW-YK1"/>
                                     <constraint firstAttribute="trailing" secondItem="M7s-hE-OT7" secondAttribute="trailing" id="ofr-tG-vfq"/>
-                                    <constraint firstItem="FFy-xQ-BvS" firstAttribute="height" secondItem="vs5-bV-6Sk" secondAttribute="height" multiplier="1:2" id="qhv-fV-89z"/>
+                                    <constraint firstItem="FFy-xQ-BvS" firstAttribute="height" secondItem="vs5-bV-6Sk" secondAttribute="height" multiplier="3:4" id="qhv-fV-89z"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">

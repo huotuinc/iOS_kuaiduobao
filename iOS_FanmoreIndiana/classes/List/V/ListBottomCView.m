@@ -17,7 +17,7 @@
     [UILabel changeLabel:_labelMoney AndFont:22 AndColor:nil];
     [UILabel changeLabel:_labelAll AndFont:22 AndColor:nil];
     
-    [UIButton changeButton:_buttonGo AndFont:24 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:COLOR_BUTTON_ORANGE AndBorderColor:COLOR_BUTTON_ORANGE AndCornerRadius:3 AndBorderWidth:1];
+    [UIButton changeButton:_buttonGo AndFont:28 AndTitleColor:[UIColor whiteColor] AndBackgroundColor:COLOR_BUTTON_ORANGE AndBorderColor:COLOR_BUTTON_ORANGE AndCornerRadius:3 AndBorderWidth:1];
 
 
     [_buttonAll setBackgroundImage:[UIImage imageNamed:@"recharge_icon_choose_none"] forState:UIControlStateNormal];

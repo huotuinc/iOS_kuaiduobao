@@ -43,6 +43,7 @@
 #import "AppShareModel.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+#import "GlobalModel.h"
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<CircleBannerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
@@ -106,7 +107,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.view.backgroundColor=COLOR_BACK_MAIN;
     
     [self createBarButtonItem];
-    [self.navigationItem changeNavgationBarTitle:@"奇兵夺宝"];
+//    [self.navigationItem changeNavgationBarTitle:@"奇兵夺宝"];
 //    [self createNavgationBarTitle];
 
     
@@ -151,6 +152,16 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self _initCollectionView];
 //    [self ]
 
+}
+
+-(void)createNavgationBarTitle{
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
+    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = @"奇兵夺宝";
+    self.navigationItem.titleView = titleLabel;
 }
 #pragma mark 获取数据 线程
 - (void)getHomeData {
@@ -203,9 +214,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.navigationItem.leftBarButtonItem=bbiL;
     
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (app.unreadMessage) {
-        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi_r"]forState:UIControlStateNormal];
+    UIApplication *app = [UIApplication sharedApplication];
+    if (app.applicationIconBadgeNumber != 0) {
+        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi_red"]forState:UIControlStateNormal];
     } else {
         [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     }
@@ -219,7 +230,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)createGetRedView {
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeGetRedPocketCView" owner:nil options:nil];
     _getRedView=[nib firstObject];
-    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
     if (_arrRedList.count == 1) {
         _getRedView.labelB.text = [NSString stringWithFormat:@"%@",_arrRedList[0]];
         _getRedView.labelC.text = @"您有一个金币红包";
@@ -252,7 +263,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [_getRedView removeFromSuperview];
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
     _sendRedView=[nib firstObject];
-    _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
     _sendRedView.imageVClose.userInteractionEnabled = YES;
     [_sendRedView.imageVClose bk_whenTapped:^{
         [_sendRedView removeFromSuperview];
@@ -578,6 +589,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         //        [self.navigationController pushViewController:detail animated:YES];
         //        PayViewController *pay = [[PayViewController alloc] init];
         //        [self.navigationController pushViewController:pay animated:YES];
+        
+        DetailWebViewController *web = [[DetailWebViewController alloc] init];
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:GlobalInfo];
+        GlobalModel *global = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        web.webURL = global.helpURL;
+        [self.navigationController pushViewController:web animated:YES];
+        
         
     }];
 

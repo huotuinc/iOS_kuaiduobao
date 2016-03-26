@@ -72,8 +72,8 @@
 ///***服务器地址***/
 //#define MainUrl @"http://192.168.3.22:8080/duobao/app/"
 //#define MKMainUrl @"192.168.1.254:10001/app"
-//#define MKMainUrl @"duobao.51flashmall.com:8091/app"
-#define MKMainUrl @"192.168.1.41:8080/duobao/app/"
+#define MKMainUrl @"duobao.51flashmall.com:8091/app"
+//#define MKMainUrl @"192.168.1.41:8080/duobao/app/"
 
 
    
@@ -125,6 +125,9 @@
 /*********咻咻红包***********/
 #define NOTIFICATION_ACTIVITY_START  @"NotificationActivityStart"//活动开始后刷新界面
 #define NOTIFICATION_ACTIVITY_END  @"NotificationActivityEnd"//活动结束后刷新界面
+/**********更新定时器时间************/
+#define NOTIFICATION_RESIGN_ACTIVE              @"appResignActive"
+#define NOTIFICATION_BECOME_ACTIVE              @"appBecomeActive"
 /*********商城******/
 #define PayTypeflat @"paytype" //支付数据存档
 #define HuoBanMallBuyAppId @"huotu686ad1fe2bd8a02ok" // app签名用于商城

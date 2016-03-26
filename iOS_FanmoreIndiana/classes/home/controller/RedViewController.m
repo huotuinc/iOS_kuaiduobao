@@ -77,6 +77,9 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self getDistuributeModel];
+
 }
 
 
@@ -89,8 +92,8 @@
     _redPastList = [NSMutableArray array];
     
     
-    
-    [self getDistuributeModel];
+    [self createMainXiuView];
+
 
 
     
@@ -161,7 +164,6 @@
 //
 //            }
             
-            [self createMainXiuView];
 
 
             //开始
@@ -246,7 +248,7 @@
                     _winningModel = [self getNewRedPocket];
                     
 //                    [PlistManager writeToPlistWithKey:@"data" value:self.redList];
-                    self.redPastList = [NSMutableArray arrayWithArray:self.redList];
+                    self.redPastList = [NSMutableArray arrayWithArray:temp];
                 }
                 //如果未中奖
                 if (_winningModel.rid == nil) {
@@ -275,7 +277,7 @@
 }
 #pragma mark 活动开始切换界面
 - (void)ActivityStart {
-    if (_waitView) {
+//    if (_waitView) {
         [_waitView removeFromSuperview];
 //        [GCDTimerManager cancelTimerWithName:@"timerWait"];
         [self.timerWait invalidate];
@@ -292,8 +294,8 @@
         }];
 //        self.timerEnd = [NSTimer timerWithTimeInterval:1.f target:self selector:@selector(EndTimeEvent) userInfo:nil repeats:YES];
 //        [[NSRunLoop currentRunLoop] addTimer:_timerEnd forMode:NSRunLoopCommonModes];
-//        [self createTimerRedNumber];
-    }
+        [self createTimerRedNumber];
+//    }
 }
 #pragma mark 活动结束切换界面
 - (void)ActivityEnd {
@@ -303,6 +305,7 @@
 //    }];
     [GCDTimerManager cancelAllTimer];
 //    _timerPopToHome = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(popToHimeView) userInfo:nil repeats:NO];
+    [self getDistuributeModel];
     
 
 }
@@ -360,12 +363,12 @@
 - (void) createImageVNone {
     NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"RedHopeCView" owner:nil options:nil];
     _imageVHope = [nib firstObject];
-    _imageVHope.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _imageVHope.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
     [self.view addSubview:_imageVHope];
     [self createImageVBack];
 }
 - (void) createImageVError {
-    _imageVError = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _imageVError = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+10)];
     _imageVError.image = [UIImage imageNamed:@"wuhuodong"];
     [self.view addSubview:_imageVError];
     [self createImageVBack];
@@ -374,7 +377,7 @@
     [_getView removeFromSuperview];
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"RedGetCView" owner:nil options:nil];
     _getView = [nib firstObject];
-    _getView.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
+    _getView.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT+10);
     [_getView.viewClear bk_whenTapped:^{
         LWLog(@"点击了clearV");
         [_getView removeFromSuperview];
@@ -386,7 +389,7 @@
     [_disGetView removeFromSuperview];
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"RedDisGetCView" owner:nil options:nil];
     _disGetView = [nib firstObject];
-    _disGetView.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
+    _disGetView.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT+10);
     [_disGetView.viewClear bk_whenTapped:^{
         LWLog(@"点击了clearV");
         [_disGetView removeFromSuperview];
@@ -396,7 +399,7 @@
 - (void)createHopeView {
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"RedHopeCView" owner:nil options:nil];
     _hopeView = [nib firstObject];
-    _hopeView.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
+    _hopeView.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT+10);
     [self.view addSubview:_hopeView];
 }
 - (void)createMainXiuView {
@@ -432,7 +435,7 @@
 - (void)createWaitView {
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"RedWaitCView" owner:nil options:nil];
     _waitView = [nib firstObject];
-    _waitView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _waitView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+20);
     [_waitView defaultConfig];
     [_waitView loadData:_distributeModel];
     [self.view addSubview:_waitView];
@@ -450,7 +453,7 @@
     [self.view addSubview:_imageVTop];
 }
 - (void) createImageVBack {
-    self.imageVBack = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.imageVBack = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+10)];
     _imageVBack.image = [UIImage imageNamed:@"hb_c"];
     [self.view addSubview:_imageVBack];
 }
@@ -630,6 +633,10 @@
 //    self.timerRedNumber = nil;
     [self.timerPopToHome invalidate];
     self.timerPopToHome = nil;
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 

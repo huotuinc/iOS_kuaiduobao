@@ -56,7 +56,7 @@
     _textFNumber.keyboardType = UIKeyboardTypeNumberPad;
     _textFNumber.textColor = COLOR_BUTTON_ORANGE;
     
-    [UILabel changeLabel:_labelTitle AndFont:26 AndColor:COLOR_TEXT_TITILE];
+    [UILabel changeLabel:_labelTitle AndFont:24 AndColor:COLOR_TEXT_TITILE];
     _labelTitle.numberOfLines=2;
     [UILabel changeLabel:_labelRest AndFont:22 AndColor:COLOR_SHINE_BLUE];
     [UILabel changeLabel:_labelTotal AndFont:22 AndColor:COLOR_TEXT_DATE];
@@ -74,7 +74,12 @@
     
     [_buttonCut addTarget:self action:@selector(cutBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [_buttonAdd addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
+    [_buttonAdd setTitleColor:COLOR_TEXT_DATE forState:UIControlStateNormal];
+    [_buttonCut setTitleColor:COLOR_TEXT_DATE forState:UIControlStateNormal];
+//    _buttonCut.titleLabel.font = [UIFont systemFontOfSize:ADAPT_HEIGHT(32)];
+//    _buttonAdd.titleLabel.font = [UIFont systemFontOfSize:ADAPT_HEIGHT(32)];
+    _buttonCut.titleLabel.textColor = COLOR_TEXT_DATE;
+    _buttonAdd.titleLabel.textColor = COLOR_TEXT_DATE;
     [_buttonSelected addTarget:self action:@selector(clickButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     _buttonSelected.selected = self.isSelected;
     
