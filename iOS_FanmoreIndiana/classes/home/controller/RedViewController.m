@@ -27,7 +27,8 @@
     NSInteger _statusNumber; //用于判断当前活动的状态0 已经开始 1还没开始 2没有活动
     NSInteger _redRequestNumber;//点击多少次请求一次服务器
     NSInteger _RedItemId; //活动期号
-    
+    NSDate *resignBackgroundDate;
+
 
     
 }
@@ -77,7 +78,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    [self registerBackgoundNotification];
+
     [self getDistuributeModel];
 
 }
@@ -97,17 +99,42 @@
 
 
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityStart) name:NOTIFICATION_ACTIVITY_START object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityEnd) name:NOTIFICATION_ACTIVITY_END object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityStart) name:NOTIFICATION_ACTIVITY_START object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityEnd) name:NOTIFICATION_ACTIVITY_END object:nil];
 
     
 
     
 }
 
+- (void)registerBackgoundNotification
+{
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(resignActiveToRecordState)
+//                                                 name:NOTIFICATION_RESIGN_ACTIVE
+//                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(becomeActiveToRecordState)
+//                                                 name:NOTIFICATION_BECOME_ACTIVE
+//                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityStart) name:NOTIFICATION_ACTIVITY_START object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityEnd) name:NOTIFICATION_ACTIVITY_END object:nil];
+}
 
-
+//- (void)resignActiveToRecordState
+//{
+//    resignBackgroundDate = [NSDate date];
+//}
+//
+//- (void)becomeActiveToRecordState
+//{
+//    NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
+//    NSLog(@"%f",timeHasGone);
+//    DemoModel *model = _dataArray[0];
+//    model.time =  model.time -timeHasGone * 100 ;
+//    //
+//}
 - (void)createTimer {
     //开始
 //    __block RedViewController *weakSelf = self;

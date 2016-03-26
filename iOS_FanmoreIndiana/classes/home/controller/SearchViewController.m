@@ -50,6 +50,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     [self createTableView];
     
 }
+
 - (void)createImageVNone {
     _imageVNone = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _imageVNone.image = [UIImage imageNamed:@"wss"];
