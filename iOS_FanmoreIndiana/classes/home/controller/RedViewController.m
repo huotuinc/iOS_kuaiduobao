@@ -110,31 +110,34 @@
 
 - (void)registerBackgoundNotification
 {
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(resignActiveToRecordState)
-//                                                 name:NOTIFICATION_RESIGN_ACTIVE
-//                                               object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(becomeActiveToRecordState)
-//                                                 name:NOTIFICATION_BECOME_ACTIVE
-//                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resignActiveToRecordState)
+                                                 name:NOTIFICATION_RESIGN_ACTIVE
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(becomeActiveToRecordState)
+                                                 name:NOTIFICATION_BECOME_ACTIVE
+                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityStart) name:NOTIFICATION_ACTIVITY_START object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityEnd) name:NOTIFICATION_ACTIVITY_END object:nil];
 }
 
-//- (void)resignActiveToRecordState
-//{
-//    resignBackgroundDate = [NSDate date];
-//}
-//
-//- (void)becomeActiveToRecordState
-//{
+- (void)resignActiveToRecordState
+{
+//    [self.navigationController popViewControllerAnimated:YES];
+    resignBackgroundDate = [NSDate date];
+}
+
+- (void)becomeActiveToRecordState
+{
+//    [self removea]
 //    NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
 //    NSLog(@"%f",timeHasGone);
 //    DemoModel *model = _dataArray[0];
 //    model.time =  model.time -timeHasGone * 100 ;
+//    [self getDistuributeModel];
 //    //
-//}
+}
 - (void)createTimer {
     //开始
 //    __block RedViewController *weakSelf = self;
