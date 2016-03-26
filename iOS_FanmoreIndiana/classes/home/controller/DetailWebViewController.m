@@ -20,15 +20,15 @@
     
     [super viewWillAppear:animated];
     
-    self.tabBarController.tabBar.hidden =YES;
+    [self.tabBarController.tabBar setHidden:YES];
 
+    [self createWebView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    [self createWebView];
 }
 -(void)createWebView{
     _webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
