@@ -72,11 +72,13 @@ static NSString * cellDPasting=@"cellDPasting";
     
 }
 -(void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
+//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+//    self.navigationItem.leftBarButtonItem=bbiL;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
@@ -192,7 +194,8 @@ static NSString * cellDPasting=@"cellDPasting";
         [countString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_ORANGE range:NSMakeRange(6, [NSString stringWithFormat:@"%@",model.attendAmount].length)];
         cell.labelAttend.attributedText=countString;
         
-        [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl]];
+        [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl] placeholderImage:[UIImage imageNamed:@"mrtx"]];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
     return nil;

@@ -22,6 +22,8 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) UIImageView *imageVNone;
+
 @end
 
 @implementation SearchViewController{
@@ -43,7 +45,15 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     // Do any additional setup after loading the view.
     self.searchList = [NSMutableArray array];
     [self createSearchBar];
+    [self createImageVNone];
+
+    [self createTableView];
     
+}
+- (void)createImageVNone {
+    _imageVNone = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _imageVNone.image = [UIImage imageNamed:@"wss"];
+    [self.view addSubview:_imageVNone];
 }
 
 #pragma mark  网络加入购物车
@@ -91,13 +101,19 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             
             [self.searchList addObjectsFromArray:temp];
             
-            if (_tableView) {
-                [_tableView reloadData];
+            if (self.searchList.count == 0) {
+                _tableView.hidden = YES;
+                _imageVNone.hidden =NO;
             }else {
-                [self createTableView];
+                _imageVNone.hidden =YES;
+                _tableView.hidden = NO;
+
+                if (_tableView) {
+                    [_tableView reloadData];
+                } else {
+                }
             }
             [_search resignFirstResponder];
-
         }
         
     } failure:^(NSError *error) {
@@ -146,6 +162,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     [_tableView registerNib:[UINib nibWithNibName:@"TenTableViewCell" bundle:nil] forCellReuseIdentifier:cellSearch];
     _tableView.delegate=self;
     _tableView.dataSource=self;
+    [_tableView setTableFooterView:[[UIView alloc]initWithFrame:CGRectZero]];
     [self.view addSubview:_tableView];
     
 }

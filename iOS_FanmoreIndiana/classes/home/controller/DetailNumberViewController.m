@@ -39,13 +39,15 @@ static NSString *cellDNumbers=@"cellDNumbers";
     [self createTableView];
 }
 - (void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL bk_whenTapped:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
+//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+//    [buttonL bk_whenTapped:^{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
+//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+//    self.navigationItem.leftBarButtonItem=bbiL;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];

@@ -151,11 +151,13 @@ static NSString * cellDFirst=@"cellDFirst";
 }
 
 -(void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
+//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+//    self.navigationItem.leftBarButtonItem=bbiL;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
@@ -387,7 +389,7 @@ static NSString * cellDFirst=@"cellDFirst";
         _winnerView.labelAttendA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserBuyCount];
         _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
-        [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead]];
+        [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead] placeholderImage:[UIImage imageNamed:@"mrtx"]];
         [_winnerView.buttonContent bk_whenTapped:^{
             DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
             calculate.issueId = _detailModel.issueId;
@@ -802,7 +804,7 @@ static NSString * cellDFirst=@"cellDFirst";
             
             cell.labelDate.attributedText=AttributedStr;
             
-            [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl]];
+            [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl] placeholderImage:[UIImage imageNamed:@"mrtx"]];
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -907,7 +909,7 @@ static NSString * cellDFirst=@"cellDFirst";
 #pragma mark 轮播
 //加载图片的代理，你自己想 怎么加载 就怎么加载
 - (void)imageView:(UIImageView *)imageView loadImageForUrl:(NSString *)url{
-    [imageView sd_setImageWithURL:[NSURL URLWithString:url] ];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@"wtx"]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;;
 }
 

@@ -771,6 +771,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
             cell.selectedBackgroundView = [[UIView alloc] init];
             cell.backgroundColor = [UIColor whiteColor];
+            
             return cell;
             
         }else {
@@ -1002,6 +1003,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 1) {
         DetailViewController *detail=[[DetailViewController alloc]init];
         AppGoodsListModel *aModel=[[AppGoodsListModel alloc]init];
@@ -1052,11 +1056,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark 轮播
 //加载图片的代理，你自己想 怎么加载 就怎么加载
 - (void)imageView:(UIImageView *)imageView loadImageForUrl:(NSString *)url{
-    [imageView sd_setImageWithURL:[NSURL URLWithString:url] ];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@"wtx"]];
 }
 
 //点击回调
 - (void)bannerView:(CircleBannerView *)bannerView didSelectAtIndex:(NSUInteger)index {
+    if (_appSlideList.count == 0) {
+        return;
+    }
+    
     if (bannerView == self.headScrollView) {
         AppSlideListModel *slideM = _appSlideList[index];
         if ([slideM.goodsId isEqualToNumber:[NSNumber numberWithInteger:0]]) {
