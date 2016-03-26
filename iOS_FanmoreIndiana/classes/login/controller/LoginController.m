@@ -75,9 +75,10 @@
     
     [SVProgressHUD showWithStatus:@"登录中"];
     [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
-        [SVProgressHUD dismiss];
+        
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [SVProgressHUD dismiss];
             [self loginSuccessWith:json[@"resultData"]];
         }else {
             [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];

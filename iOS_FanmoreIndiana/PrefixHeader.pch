@@ -41,8 +41,8 @@
 
 /**微信支付*/
 #define WeiXinPayId @"wx7f47df3d33fd57f7"
-#define WeiXinPayMerchantId @"1323237061"
-#define wxpayKey @"0db0d4908a6ae6a09b0a7727878f0ca6"
+#define WeiXinPayMerchantId @"1323237601"
+#define wxpayKey @"21b7468d09e647ecae5580a2f458e68e"
 
 
 //有盟appKey
