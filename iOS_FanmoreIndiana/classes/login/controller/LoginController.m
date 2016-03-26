@@ -79,6 +79,8 @@
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             [self loginSuccessWith:json[@"resultData"]];
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
         }
         
     } failure:^(NSError *error) {
