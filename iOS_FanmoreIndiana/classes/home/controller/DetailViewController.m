@@ -778,6 +778,7 @@ static NSString * cellDFirst=@"cellDFirst";
                 cell.labelAdvice.text=[NSString stringWithFormat:@"( %@开始 )",[self changeTheTimeStamps:_detailModel.firstBuyTime andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"]];
 
             }
+            cell.imageVNext.hidden = YES;
              cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;
         }
