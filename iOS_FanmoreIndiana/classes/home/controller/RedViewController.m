@@ -125,11 +125,20 @@
 - (void)resignActiveToRecordState
 {
 //    [self.navigationController popViewControllerAnimated:YES];
-    resignBackgroundDate = [NSDate date];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.navigationController popViewControllerAnimated:NO];
+//    resignBackgroundDate = [NSDate date];
 }
 
 - (void)becomeActiveToRecordState
 {
+//    for(UIView *view in [self.view subviews])
+//    {
+//        [view removeFromSuperview];
+//    }
+//    [self createMainXiuView];
+//    [self getDistuributeModel];
+
 //    [self removea]
 //    NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
 //    NSLog(@"%f",timeHasGone);

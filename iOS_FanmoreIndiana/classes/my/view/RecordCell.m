@@ -31,13 +31,31 @@
     self.winnerName.text = model.winner;
     self.winnerAmount.text = [NSString stringWithFormat:@"%@", model.winnerAttendAmount];
     self.lucky.text = [NSString stringWithFormat:@"%@", model.lunkyNumber];
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.awardingDate doubleValue]];
-    NSString *temp = [formatter stringFromDate:date];
-    self.time.text = temp;
+//    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateStyle:NSDateFormatterMediumStyle];
+//    [formatter setTimeStyle:NSDateFormatterShortStyle];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.awardingDate doubleValue]];
+//    NSString *temp = [formatter stringFromDate:date];
+//    self.time.text = temp;
+    self.time.text = [self changeTheTimeStamps:model.awardingDate];
+}
+
+/**
+ *  13位时间戳转为正常时间(可设置样式)
+ *
+ *  @param time 时间戳
+ *
+ *  @return
+ */
+-(NSString *)changeTheTimeStamps:(NSNumber *)time{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //将13位时间戳转为正常时间格式
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue]/1000]];
+    return str;
 }
 
 @end

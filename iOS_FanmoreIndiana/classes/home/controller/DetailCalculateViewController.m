@@ -129,7 +129,7 @@ static NSString *cellDCA = @"cellDCA";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 1 && _isExpanded == YES) {
-        return 51;
+        return _numberList.count + 1;
     }else {
         return 0;
     }
@@ -152,13 +152,15 @@ static NSString *cellDCA = @"cellDCA";
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 2)];
         _sectionBView.labelC.attributedText = attString;
         _sectionBView.labelShow.userInteractionEnabled = YES;
+        _sectionBView.labelB.text = [NSString stringWithFormat:@"= 截止该商品开奖时间点前最后%ld条全站参与记录",_numberList.count];
 //        __block DetailCalculateViewController *weakSelf = self;
+        
         if (_isExpanded) {
             _sectionBView.labelShow.text = @"收起";
         }else {
             _sectionBView.labelShow.text = @"展开";
         }
-        [_sectionBView.labelShow bk_whenTapped:^{
+        [_sectionBView bk_whenTapped:^{
             if (_isExpanded) {
                 LWLog(@"改成展开");
                 _sectionBView.labelShow.text = @"展开";
@@ -169,9 +171,21 @@ static NSString *cellDCA = @"cellDCA";
                 _isExpanded = YES;
             }
             [tableView reloadData];
-//            _sectionBView.labelShow.userInteractionEnabled = YES;
-//            _sectionBView.labelShow.text = @"11111";
         }];
+//        [_sectionBView.labelShow bk_whenTapped:^{
+//            if (_isExpanded) {
+//                LWLog(@"改成展开");
+//                _sectionBView.labelShow.text = @"展开";
+//                _isExpanded = NO;
+//            }else {
+//                LWLog(@"改成收起");
+//                _sectionBView.labelShow.text = @"收起";
+//                _isExpanded = YES;
+//            }
+//            [tableView reloadData];
+////            _sectionBView.labelShow.userInteractionEnabled = YES;
+////            _sectionBView.labelShow.text = @"11111";
+//        }];
         return _sectionBView;
     }
     if (section == 2) {

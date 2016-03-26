@@ -84,8 +84,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     dic[@"carts"] = self.cartString;
     dic[@"allPay"] = @0;
 //    dic[@"redPacketsId"] = nil;
-    NSInteger payMoney = [_payModel.totalMoney integerValue] - [_payModel.redPacketsMinusMoney integerValue];
-    dic[@"money"] = [NSNumber numberWithInteger:payMoney];
+    CGFloat payMoney = [_payModel.totalMoney floatValue] - [_payModel.redPacketsMinusMoney floatValue];
+    dic[@"money"] = [NSNumber numberWithFloat:payMoney];
     [UserLoginTool loginRequestPostWithFile:@"pay" parame:dic success:^(id json) {
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {

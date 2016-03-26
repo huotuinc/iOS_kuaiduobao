@@ -173,7 +173,7 @@
                  */
                 if ([TencentOAuth iphoneQQInstalled]) {
                     if (self.userInfo.qqBanded) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"解除帐号与QQ的关联么？解除后将无法使用微信登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"解除绑定" message:@"解除帐号与QQ的关联么？解除后将无法使用QQ登录此帐号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"解除绑定", nil];
                         alert.tag = 1002;
                         [alert show];
                     }else {

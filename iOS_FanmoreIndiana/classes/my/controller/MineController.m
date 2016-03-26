@@ -98,6 +98,10 @@
         UserModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
         [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
         self.nickname.text = user.realName;
+//        NSLog(@"钱 %@",user.money);
+//        CGFloat money = [user.money floatValue];
+//        NSLog(@"展示 %.2f",money);
+#pragma bug
         self.money.text = [NSString stringWithFormat:@"%.2f", [user.money floatValue]];
         self.integral.text = [NSString stringWithFormat:@"积分:%ld", (long)user.integral];
         [self.logo bk_whenTapped:^{

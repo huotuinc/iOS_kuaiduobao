@@ -721,7 +721,7 @@ static NSString * cellDFirst=@"cellDFirst";
     
     _titleLabel=[[UILabel alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, _titleStrHeight)];
     NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"                %@ %@",_detailModel.title,_detailModel.character]];
-    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(14+_detailModel.title.length+1,_detailModel.character.length)];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(15+_detailModel.title.length+1,_detailModel.character.length)];
     _titleLabel.attributedText=attString;
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
     _titleLabel.numberOfLines=0;
