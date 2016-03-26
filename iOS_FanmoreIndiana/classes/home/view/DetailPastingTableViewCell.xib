@@ -68,7 +68,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="labelItem" destination="YPE-YI-hmX" id="1ru-Ei-Sde"/>
+                <outlet property="labelItem" destination="YPE-YI-hmX" id="TLV-SB-zOh"/>
                 <outlet property="viewItem" destination="Lvv-Ly-rsk" id="wZx-Im-kFE"/>
             </connections>
         </tableViewCell>

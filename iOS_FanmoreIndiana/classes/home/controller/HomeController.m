@@ -43,6 +43,7 @@
 #import "AppShareModel.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+#import "GlobalModel.h"
 static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface HomeController ()<CircleBannerViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,logVCdelegate>
 
@@ -152,14 +153,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [self ]
 
 }
-- (void)createNavigationTitle {
+
+-(void)createNavgationBarTitle{
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = [UIColor blackColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = @"奇兵夺宝";
-    self.navigationController.navigationItem.titleView = titleLabel;
+    self.navigationItem.titleView = titleLabel;
 }
 #pragma mark 获取数据 线程
 - (void)getHomeData {
@@ -228,7 +230,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)createGetRedView {
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeGetRedPocketCView" owner:nil options:nil];
     _getRedView=[nib firstObject];
-    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
     if (_arrRedList.count == 1) {
         _getRedView.labelB.text = [NSString stringWithFormat:@"%@",_arrRedList[0]];
         _getRedView.labelC.text = @"您有一个金币红包";
@@ -261,7 +263,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [_getRedView removeFromSuperview];
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
     _sendRedView=[nib firstObject];
-    _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
     _sendRedView.imageVClose.userInteractionEnabled = YES;
     [_sendRedView.imageVClose bk_whenTapped:^{
         [_sendRedView removeFromSuperview];
@@ -588,6 +590,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         //        PayViewController *pay = [[PayViewController alloc] init];
         //        [self.navigationController pushViewController:pay animated:YES];
         
+        DetailWebViewController *web = [[DetailWebViewController alloc] init];
+        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName = [path stringByAppendingPathComponent:GlobalInfo];
+        GlobalModel *global = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        web.webURL = global.helpURL;
+        [self.navigationController pushViewController:web animated:YES];
+        
+        
     }];
 
 }
@@ -761,6 +771,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
             cell.selectedBackgroundView = [[UIView alloc] init];
             cell.backgroundColor = [UIColor whiteColor];
+            
             return cell;
             
         }else {
@@ -992,6 +1003,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 1) {
         DetailViewController *detail=[[DetailViewController alloc]init];
         AppGoodsListModel *aModel=[[AppGoodsListModel alloc]init];
@@ -1042,11 +1056,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark 轮播
 //加载图片的代理，你自己想 怎么加载 就怎么加载
 - (void)imageView:(UIImageView *)imageView loadImageForUrl:(NSString *)url{
-    [imageView sd_setImageWithURL:[NSURL URLWithString:url] ];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@"wtx"]];
 }
 
 //点击回调
 - (void)bannerView:(CircleBannerView *)bannerView didSelectAtIndex:(NSUInteger)index {
+    if (_appSlideList.count == 0) {
+        return;
+    }
+    
     if (bannerView == self.headScrollView) {
         AppSlideListModel *slideM = _appSlideList[index];
         if ([slideM.goodsId isEqualToNumber:[NSNumber numberWithInteger:0]]) {

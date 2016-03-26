@@ -98,8 +98,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
                 _payView.buttonPay.userInteractionEnabled = YES;
                 [self payUpdateUserInfo];
 //                [self paySuccessNotice];
-                NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
-                [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+//                NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
+//                [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
                 
             }
             if (_whichPay == 1) {
@@ -166,8 +166,9 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     [[NSNotificationCenter defaultCenter]postNotificationName:CannelLoginFailure object:nil userInfo:nil];
     if (_AliPayDone || _WeiPayDone) {
         [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
     }
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
 
 }
 
@@ -533,12 +534,13 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     }];
 }
 -(void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
-    
+//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+//    self.navigationItem.leftBarButtonItem=bbiL;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
@@ -699,7 +701,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             [self loginSuccessWith:json[@"resultData"]];
         }else {
-            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+//            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
         }
     } failure:^(NSError *error) {
         

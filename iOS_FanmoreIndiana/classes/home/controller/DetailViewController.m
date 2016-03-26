@@ -77,6 +77,8 @@ static NSString * cellDFirst=@"cellDFirst";
     CGFloat _titleStrHeight;//标题高度
     NSInteger _titleLineCount;//标题行数
     NSMutableString * _API;
+    NSDate *resignBackgroundDate;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -85,6 +87,7 @@ static NSString * cellDFirst=@"cellDFirst";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
     [self.navigationItem changeNavgationBarTitle:@"奖品详情"];
+    
     _goImmediately = NO;
     
 
@@ -99,6 +102,7 @@ static NSString * cellDFirst=@"cellDFirst";
     _buyList=[NSMutableArray array];
     _isExist = NO;
     self.lastId = [NSNumber numberWithInteger:0];
+    [self registerBackgoundNotification];
     
 
     self.view.backgroundColor=[UIColor whiteColor];
@@ -110,6 +114,29 @@ static NSString * cellDFirst=@"cellDFirst";
     }
     [self createDataArray];
     [self getGoodsDetailList];
+
+}
+- (void)registerBackgoundNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resignActiveToRecordState)
+                                                 name:NOTIFICATION_RESIGN_ACTIVE
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(becomeActiveToRecordState)
+                                                 name:NOTIFICATION_BECOME_ACTIVE
+                                               object:nil];
+}
+- (void)resignActiveToRecordState
+{
+    resignBackgroundDate = [NSDate date];
+}
+
+- (void)becomeActiveToRecordState
+{
+    NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
+    NSLog(@"%f",timeHasGone);
+    _detailModel.remainSecond = _detailModel.remainSecond - timeHasGone * 100 ;
 
 }
 
@@ -124,11 +151,13 @@ static NSString * cellDFirst=@"cellDFirst";
 }
 
 -(void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
+//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+//    self.navigationItem.leftBarButtonItem=bbiL;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
@@ -334,7 +363,7 @@ static NSString * cellDFirst=@"cellDFirst";
 #pragma mark 构建头部视图
 -(void)createHeadView{
     NSInteger num =[_detailModel.status integerValue];
-    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]].height;
+    _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"                %@ %@",_detailModel.title,_detailModel.character]].height;
 //已经结束
     if (num == 2) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight +3)];
@@ -360,7 +389,7 @@ static NSString * cellDFirst=@"cellDFirst";
         _winnerView.labelAttendA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserBuyCount];
         _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
-        [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead]];
+        [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead] placeholderImage:[UIImage imageNamed:@"mrtx"]];
         [_winnerView.buttonContent bk_whenTapped:^{
             DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
             calculate.issueId = _detailModel.issueId;
@@ -691,7 +720,7 @@ static NSString * cellDFirst=@"cellDFirst";
 -(void)createTitleLabel{
     
     _titleLabel=[[UILabel alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, _titleStrHeight)];
-    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"              %@ %@",_detailModel.title,_detailModel.character]];
+    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"                %@ %@",_detailModel.title,_detailModel.character]];
     [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(14+_detailModel.title.length+1,_detailModel.character.length)];
     _titleLabel.attributedText=attString;
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
@@ -751,6 +780,7 @@ static NSString * cellDFirst=@"cellDFirst";
                 cell.labelAdvice.text=[NSString stringWithFormat:@"( %@开始 )",[self changeTheTimeStamps:_detailModel.firstBuyTime andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"]];
 
             }
+            cell.imageVNext.hidden = YES;
              cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -774,7 +804,7 @@ static NSString * cellDFirst=@"cellDFirst";
             
             cell.labelDate.attributedText=AttributedStr;
             
-            [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl]];
+            [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl] placeholderImage:[UIImage imageNamed:@"mrtx"]];
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -803,7 +833,7 @@ static NSString * cellDFirst=@"cellDFirst";
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return ADAPT_HEIGHT(50);
+    return ADAPT_HEIGHT(25);
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return ADAPT_HEIGHT(100);
@@ -879,7 +909,7 @@ static NSString * cellDFirst=@"cellDFirst";
 #pragma mark 轮播
 //加载图片的代理，你自己想 怎么加载 就怎么加载
 - (void)imageView:(UIImageView *)imageView loadImageForUrl:(NSString *)url{
-    [imageView sd_setImageWithURL:[NSURL URLWithString:url] ];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@"wtx"]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;;
 }
 
@@ -888,7 +918,10 @@ static NSString * cellDFirst=@"cellDFirst";
     self.tabBarController.tabBar.hidden=NO;
     
 }
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
 
 /*
 #pragma mark - Navigation

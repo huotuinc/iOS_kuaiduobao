@@ -18,7 +18,7 @@
 }
 -(void)drawRect:(CGRect)rect{
     _labelDate.layer.cornerRadius=_labelDate.frame.size.height/2;
-    _labelDate.layer.borderColor=COLOR_BACK_MAIN.CGColor;
+    _labelDate.layer.borderColor=[UIColor colorWithRed:200/255.0f green:199/255.0f blue:204/255.0f alpha:1].CGColor;
     _labelDate.layer.borderWidth=1;
     _labelDate.layer.masksToBounds=YES;
 

@@ -100,7 +100,8 @@
  *  @param application
  */
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    
+    //从后台进入程序时调用
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BECOME_ACTIVE object:nil];
     
 }
 
@@ -353,6 +354,10 @@
 
 - (void)pushRedPacketNotifation {
     
+}
+- (void)applicationWillResignActive:(UIApplication *)application {
+    //进入后台时调用
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_RESIGN_ACTIVE object:nil];
 }
 
 

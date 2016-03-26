@@ -71,7 +71,7 @@
         _labelName.text = model.nickName;
         _labelName.lineBreakMode = NSLineBreakByTruncatingTail;
         _labelAttend.text = [NSString stringWithFormat:@"%@",model.attendAmount];
-        _labelTime.text = [self changeTheTimeStamps:model.time andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
+        _labelTime.text = [self changeTheTimeStamps:model.time];
         _labelNumber.text = [NSString stringWithFormat:@"%@",model.luckyNumber];
         _labelTitle.text = model.title;
     }
@@ -88,8 +88,6 @@
     self.m_tmpIndexPath = indexPath;
 }
 
-
-
 /**
  *  13位时间戳转为正常时间(可设置样式)
  *
@@ -97,15 +95,17 @@
  *
  *  @return
  */
--(NSString *)changeTheTimeStamps:(NSNumber *)time andTheDateFormat:(NSString *)dateFormat{
+-(NSString *)changeTheTimeStamps:(NSNumber *)time{
     //实例化一个NSDateFormatter对象
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //设定时间格式,这里可以设置成自己需要的格式
-    [dateFormatter setDateFormat:dateFormat];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     //将13位时间戳转为正常时间格式
-    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue]]];
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue]/1000]];
     return str;
 }
+
+
 
 
 

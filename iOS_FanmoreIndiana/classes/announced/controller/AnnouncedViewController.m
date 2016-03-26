@@ -26,6 +26,8 @@ static NSString *cellABMain=@"cellABMain";
 
 @implementation AnnouncedViewController{
     NSMutableArray *_timeArray;
+    NSDate *resignBackgroundDate;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -35,7 +37,6 @@ static NSString *cellABMain=@"cellABMain";
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
     [self.navigationItem changeNavgationBarTitle:@"最新揭晓"];
-    
     [self createCollectionView];
     [self getOpenList ];
     [self createTimer];
@@ -45,11 +46,36 @@ static NSString *cellABMain=@"cellABMain";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _openList=[NSMutableArray array];
+    [self registerBackgoundNotification];
 
 
 }
+- (void)registerBackgoundNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resignActiveToRecordState)
+                                                 name:NOTIFICATION_RESIGN_ACTIVE
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(becomeActiveToRecordState)
+                                                 name:NOTIFICATION_BECOME_ACTIVE
+                                               object:nil];
+}
 
+- (void)resignActiveToRecordState
+{
+    resignBackgroundDate = [NSDate date];
+}
 
+- (void)becomeActiveToRecordState
+{
+    NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
+    NSLog(@"%f",timeHasGone);
+    for (AppNewOpenListModel *openModel in _openList) {
+        openModel.toAwardingTime =openModel.toAwardingTime - timeHasGone * 100;
+    }
+    //
+}
 - (void)setupRefresh
 {
     
@@ -295,7 +321,11 @@ static NSString *cellABMain=@"cellABMain";
     [self.openList removeAllObjects];
 }
 
+- (void)dealloc {
+//    NSLog(@"被释放了啊啊啊啊啊啊");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 
+}
 /*
 #pragma mark - Navigation
 

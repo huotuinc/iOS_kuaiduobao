@@ -73,11 +73,13 @@ static NSString *cellDNimageV = @"cellDNimageV";
     
 }
 -(void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-    self.navigationItem.leftBarButtonItem=bbiL;
+//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+//    self.navigationItem.leftBarButtonItem=bbiL;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
     
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     [buttonR setBackgroundImage:[UIImage imageNamed:@"more_gray"]forState:UIControlStateNormal];
@@ -169,7 +171,7 @@ static NSString *cellDNimageV = @"cellDNimageV";
         if (indexPath.row != 5) {
             cell.imageVLine.hidden =YES;
         }
-        [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:_shareModel.pictureUrls[indexPath.row - 2]]];
+        [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:_shareModel.pictureUrls[indexPath.row - 2]] placeholderImage:[UIImage imageNamed:@"mrtx"]];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
