@@ -1188,6 +1188,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                                                                          cancelButtonTitle:@"确定"
                                                                          otherButtonTitles:nil];
                                [alertView show];
+                               [UserLoginTool loginRequestGet:@"successShareRedPackets" parame:nil success:^(id json) {
+                                   LWLog(@"%@", json);
+                               } failure:^(NSError *error) {
+                                   LWLog(@"%@", error);
+                               }];
                                break;
                            }
                            case SSDKResponseStateFail:

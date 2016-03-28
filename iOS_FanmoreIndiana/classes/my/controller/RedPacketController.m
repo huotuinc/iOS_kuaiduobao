@@ -187,6 +187,13 @@ static NSString *redPacketIdentify = @"redPactetIdentify";
                                                                          cancelButtonTitle:@"确定"
                                                                          otherButtonTitles:nil];
                                [alertView show];
+                               
+                               
+                               [UserLoginTool loginRequestGet:@"successShareRedPackets" parame:nil success:^(id json) {
+                                   LWLog(@"%@", json);
+                               } failure:^(NSError *error) {
+                                   LWLog(@"%@", error);
+                               }];
                                break;
                            }
                            case SSDKResponseStateFail:

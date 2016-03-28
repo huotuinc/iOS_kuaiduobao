@@ -48,6 +48,7 @@
     }else if (sender.tag == 102) {
         self.Password.secureTextEntry = !sender.on;
     }
+
 }
 
 - (void)resetPassword {

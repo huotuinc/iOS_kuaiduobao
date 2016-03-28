@@ -330,6 +330,10 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
             RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:recordCellIdentify forIndexPath:indexPath];
             cell.model = self.recordList[indexPath.row];
             return cell;
+        }else if ([model.status integerValue] == 1) {
+            GoAheadCell *cell = [tableView dequeueReusableCellWithIdentifier:goAheadCellIdentify forIndexPath:indexPath];
+            cell.model = self.recordList[indexPath.row];
+            return cell;
         }
         
     }else if (self.selectMark == 1) {
