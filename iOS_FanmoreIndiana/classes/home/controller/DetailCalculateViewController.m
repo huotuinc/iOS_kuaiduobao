@@ -108,7 +108,7 @@ static NSString *cellDCA = @"cellDCA";
         }else {
             AppUserNumberModel *userModel = _numberList[indexPath.row - 1];
             cell.labelDate.text = userModel.buyTime;
-            cell.labelNumber.text = userModel.number;
+            cell.labelNumber.text = [NSString stringWithFormat:@"→%@",userModel.number];
             cell.labelName.text = userModel.nickName;
             cell.labelA.text = @"";
             cell.labelB.text = @"";

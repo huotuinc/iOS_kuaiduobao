@@ -654,7 +654,7 @@ static NSInteger clickCount = 0; //点击次数
 }
 //播放音效
 -(void)soundComeOut{
-    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"xiuVoice" ofType:@"mp3"];
+    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"xiuVoice" ofType:@"wav"];
     NSURL *audioUrl = [NSURL fileURLWithPath:audioPath];
     AVPlayerItem *item = [[AVPlayerItem alloc]initWithURL:audioUrl];
     myplayer = [[AVPlayer alloc]initWithPlayerItem:item];

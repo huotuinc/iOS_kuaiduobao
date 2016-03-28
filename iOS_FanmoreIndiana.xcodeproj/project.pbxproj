@@ -240,7 +240,6 @@
 		F2A1058B1C99432000A5AFA5 /* CircleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A105891C99432000A5AFA5 /* CircleBannerView.m */; };
 		F2B00D9E1C8EC79A001014DE /* RedCountCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B00D9C1C8EC79A001014DE /* RedCountCView.m */; };
 		F2B00D9F1C8EC79A001014DE /* RedCountCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B00D9D1C8EC79A001014DE /* RedCountCView.xib */; };
-		F2B00DA11C8ED240001014DE /* xiuVoice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F2B00DA01C8ED240001014DE /* xiuVoice.mp3 */; };
 		F2B3BCDF1C7CA8D500AECFA5 /* HomeSearchCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B3BCDD1C7CA8D500AECFA5 /* HomeSearchCView.m */; };
 		F2B3BCE01C7CA8D500AECFA5 /* HomeSearchCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B3BCDE1C7CA8D500AECFA5 /* HomeSearchCView.xib */; };
 		F2C426421C88243800C9CEF0 /* ListNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C426411C88243800C9CEF0 /* ListNumberViewController.m */; };
@@ -258,6 +257,7 @@
 		F2D84A181C93F4E70095725D /* RedHopeCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D84A161C93F4E70095725D /* RedHopeCView.m */; };
 		F2D84A191C93F4E70095725D /* RedHopeCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D84A171C93F4E70095725D /* RedHopeCView.xib */; };
 		F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E241051C7C79BA004D222E /* HelpViewController.m */; };
+		F2E7A4011CA8C0EB0030DCCC /* xiuVoice.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2E7A4001CA8C0EB0030DCCC /* xiuVoice.wav */; };
 		F2F587C21C7D4249007187B0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587C11C7D4249007187B0 /* SearchViewController.m */; };
 		F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587C41C7D49CB007187B0 /* PayATableViewCell.m */; };
 		F2F587C71C7D49CB007187B0 /* PayATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F587C51C7D49CB007187B0 /* PayATableViewCell.xib */; };
@@ -791,7 +791,6 @@
 		F2B00D9B1C8EC79A001014DE /* RedCountCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedCountCView.h; sourceTree = "<group>"; };
 		F2B00D9C1C8EC79A001014DE /* RedCountCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedCountCView.m; sourceTree = "<group>"; };
 		F2B00D9D1C8EC79A001014DE /* RedCountCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedCountCView.xib; sourceTree = "<group>"; };
-		F2B00DA01C8ED240001014DE /* xiuVoice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = xiuVoice.mp3; sourceTree = "<group>"; };
 		F2B3BCDC1C7CA8D500AECFA5 /* HomeSearchCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSearchCView.h; sourceTree = "<group>"; };
 		F2B3BCDD1C7CA8D500AECFA5 /* HomeSearchCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSearchCView.m; sourceTree = "<group>"; };
 		F2B3BCDE1C7CA8D500AECFA5 /* HomeSearchCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeSearchCView.xib; sourceTree = "<group>"; };
@@ -820,6 +819,7 @@
 		F2D84A171C93F4E70095725D /* RedHopeCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedHopeCView.xib; sourceTree = "<group>"; };
 		F2E241041C7C79BA004D222E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		F2E241051C7C79BA004D222E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		F2E7A4001CA8C0EB0030DCCC /* xiuVoice.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = xiuVoice.wav; sourceTree = "<group>"; };
 		F2F587C01C7D4249007187B0 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		F2F587C11C7D4249007187B0 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		F2F587C31C7D49CB007187B0 /* PayATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayATableViewCell.h; path = ../../home/view/PayATableViewCell.h; sourceTree = "<group>"; };
@@ -1587,7 +1587,7 @@
 		60DD429C1C43A8F90041572F /* iOS_FanmoreIndiana */ = {
 			isa = PBXGroup;
 			children = (
-				F2B00DA01C8ED240001014DE /* xiuVoice.mp3 */,
+				F2E7A4001CA8C0EB0030DCCC /* xiuVoice.wav */,
 				6031C5351C4C818400D6B567 /* classes */,
 				60DD42A01C43A8F90041572F /* AppDelegate.h */,
 				60DD42A11C43A8F90041572F /* AppDelegate.m */,
@@ -2043,6 +2043,7 @@
 				F262E8A11C55C0B900141EBC /* TenTableViewCell.xib in Resources */,
 				F262E8AE1C55C42D00141EBC /* ClassBTableViewCell.xib in Resources */,
 				F23BEFEA1C5F279800E87042 /* DetailPastTableViewCell.xib in Resources */,
+				F2E7A4011CA8C0EB0030DCCC /* xiuVoice.wav in Resources */,
 				F2F587F01C7D9BA6007187B0 /* DetailShareNextContentTableViewCell.xib in Resources */,
 				F2F587F51C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.xib in Resources */,
 				F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */,
@@ -2052,7 +2053,6 @@
 				F22A8D7D1C858E7100165BBC /* DetailCalculateATableViewCell.xib in Resources */,
 				F22A8D6E1C85884500165BBC /* DetailCalculateFormulaCView.xib in Resources */,
 				F26E0C961C8702BC00DB1908 /* DetailGoodsSelectCView.xib in Resources */,
-				F2B00DA11C8ED240001014DE /* xiuVoice.mp3 in Resources */,
 				F22A8D731C8588BA00165BBC /* DetailCalculateMainCView.xib in Resources */,
 				604C628C1C50C61800569F0B /* WeiboSDK.bundle in Resources */,
 				F23DE3D21C522E34002AB5FC /* DetailBottomCView.xib in Resources */,
