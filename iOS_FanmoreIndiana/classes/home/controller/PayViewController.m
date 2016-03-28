@@ -695,7 +695,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 #pragma mark 支付成功刷新用户数据
 - (void)payUpdateUserInfo {
-    [SVProgressHUD showSuccessWithStatus:@"充值成功，积分将在10分钟左右到账，可去积分商城兑换"];
+    [SVProgressHUD showSuccessWithStatus:@"支付成功，积分将在10分钟左右到账，可去积分商城兑换"];
 
     [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
         LWLog(@"%@", json);

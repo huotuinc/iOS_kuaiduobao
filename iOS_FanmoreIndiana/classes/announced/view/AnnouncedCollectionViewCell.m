@@ -62,6 +62,10 @@
         _labelTitle.text = model.title;
         _labelItem.text  = [NSString stringWithFormat:@"期号 : %@",[model issueId]];
         _labelTime.text = [NSString stringWithFormat:@"%@",[model currentTimeString]];
+        if ([model.areaAmount isEqualToNumber:@0]) {
+            _imageVKind.hidden = YES;
+        }
+        
         
     }
     

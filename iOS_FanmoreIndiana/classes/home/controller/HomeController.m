@@ -63,7 +63,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 @property (strong , nonatomic) UIImageView *imageVRed;//中间四个选项 下划线
 @property (weak , nonatomic) UIView *viewChoice;//中间四个选项
 @property (strong, nonatomic)  UIImageView *imageV;//头部视图-提醒
-
+@property (strong, nonatomic)  UIView *viewBackShare;//弹出红包时的背景
 @property (nonatomic, strong) NSMutableArray *appGoodsList;
 @property (nonatomic, strong) NSMutableArray *appNoticeList;
 @property (nonatomic, strong) NSMutableArray *appSlideList;
@@ -72,6 +72,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 
 @property (nonatomic, strong) NSNumber *lastSort;
 @property (nonatomic, strong) NSNumber *sendRedNumber;//判断是否弹出发红包视图 1可以
+@property (nonatomic, strong) NSString *redShareInfo;//弹出红包的文字描述
 
 
 @property (nonatomic, assign) BOOL isLoadView;
@@ -135,6 +136,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     _appSlideList=[NSMutableArray array];
     _arrURLString=[NSMutableArray array];
     _arrRedList = [NSMutableArray array];
+    [self createNavgationBarTitle];
     
     
 
@@ -148,8 +150,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
 //    [self createHeadView];
 //    [self createMainCollectionView];
-//    [self createLableCollectionView];
     [self _initCollectionView];
+        [self createLableCollectionView];
+
 //    [self ]
 
 }
@@ -158,7 +161,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
-    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.textColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = @"奇兵夺宝";
     self.navigationItem.titleView = titleLabel;
@@ -228,9 +231,14 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.navigationItem.rightBarButtonItem=bbiR;
 }
 - (void)createGetRedView {
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    _viewBackShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+10)];
+    _viewBackShare.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.8];
+    [window addSubview:_viewBackShare];
+    
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeGetRedPocketCView" owner:nil options:nil];
     _getRedView=[nib firstObject];
-    _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
+    _getRedView.frame=CGRectMake(0,-SCREEN_HEIGHT-10, SCREEN_WIDTH, SCREEN_HEIGHT+10);
     if (_arrRedList.count == 1) {
         _getRedView.labelB.text = [NSString stringWithFormat:@"%@",_arrRedList[0]];
         _getRedView.labelC.text = @"您有一个金币红包";
@@ -243,36 +251,62 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         _getRedView.labelB.text = [NSString stringWithFormat:@"%ld",(long)totalMoney];
         _getRedView.labelC.text = @"您有金币红包";
     }
+    [UIView animateWithDuration:0.5f animations:^{
+        _getRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
+    }];
+    
     _getRedView.imageVClose.userInteractionEnabled = YES;
     [_getRedView.imageVClose bk_whenTapped:^{
         NSLog(@"点击了");
         [_getRedView removeFromSuperview];
+        [_viewBackShare removeFromSuperview];
     }];
     [_getRedView.buttonGet bk_whenTapped:^{
         [_getRedView removeFromSuperview];
+        [_viewBackShare removeFromSuperview];
     }];
-     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    [_getRedView.imageVBack bk_whenTapped:^{
+        [_getRedView removeFromSuperview];
+        [_viewBackShare removeFromSuperview];
+    }];
     [window addSubview:_getRedView];
-//    [self.view addSubview:_getRedView];
-//    [self.view insertSubview:_getRedView aboveSubview:_collectionView];
-//    [self.view bringSubviewToFront:_getRedView];
+
 }
 - (void)createSendRedView {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:payMoneySuccess object:self];
-
     [_getRedView removeFromSuperview];
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    _viewBackShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+10)];
+    _viewBackShare.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.8];
+    [window addSubview:_viewBackShare];
+    
+    
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
     _sendRedView=[nib firstObject];
-    _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
+    _sendRedView.frame=CGRectMake(0,-SCREEN_HEIGHT-10, SCREEN_WIDTH, SCREEN_HEIGHT+10);
+    _sendRedView.labelMain.text = _redShareInfo;
+
     _sendRedView.imageVClose.userInteractionEnabled = YES;
     [_sendRedView.imageVClose bk_whenTapped:^{
         [_sendRedView removeFromSuperview];
+        [_viewBackShare removeFromSuperview];
+
+    }];
+    [_sendRedView.imageVBack bk_whenTapped:^{
+        [_sendRedView removeFromSuperview];
+        [_viewBackShare removeFromSuperview];
+
     }];
     [_sendRedView.buttonSend bk_whenTapped:^{
         [_sendRedView removeFromSuperview];
+        [_viewBackShare removeFromSuperview];
         [self shareRedPackets];
     }];
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    [UIView animateWithDuration:0.5f animations:^{
+        _sendRedView.frame=CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT+10);
+    }];
+    
+    
     [window addSubview:_sendRedView];}
 
 -(void)createMainCollectionView{
@@ -740,15 +774,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if (indexPath.section == 0) {
             HomeHeadCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellHead forIndexPath:indexPath ];
 //
-            [self getAppSlideList];
+//            [self getAppSlideList];
             [_headScrollView removeFromSuperview];
             [self createHeadScrollView];
             [_fourBtnView removeFromSuperview];
             [self createFourBtnView];
             [self.imageVNotice removeFromSuperview];
             [self createImageVNotice];
-//            [self.labelCollectionView removeFromSuperview];
-//            [self createLableCollectionView];
+            [self.labelCollectionView removeFromSuperview];
+            [self createLableCollectionView];
             if (!_labelCollectionView) {
                 [self createLableCollectionView];
             }else {
@@ -1116,6 +1150,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];
+//    [self getAppNoticeList];
+
 //    self.collectionView.
 }
 
@@ -1131,6 +1167,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             
             LWLog(@"%@",json[@"resultDescription"]);
             _sendRedNumber = json[@"resultData"][@"canShare"];
+            _redShareInfo = json[@"resultData"][@"redShareInfo"];
             if ([_sendRedNumber isEqualToNumber:@1]) {
                 [self createSendRedView];
             }

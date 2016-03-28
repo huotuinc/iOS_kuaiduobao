@@ -22,8 +22,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xsy-ET-SMr">
                                 <rect key="frame" x="33" y="140" width="310" height="444"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoE-CT-u4m">
-                                <rect key="frame" x="175" y="364" width="9" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoE-CT-u4m">
+                                <rect key="frame" x="175" y="355" width="9" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -34,8 +34,8 @@
                                     <constraint firstAttribute="width" secondItem="BNE-16-Ufd" secondAttribute="height" multiplier="1:1" id="zgL-Jc-3My"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2W-IX-alf">
-                                <rect key="frame" x="194" y="364" width="8" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2W-IX-alf">
+                                <rect key="frame" x="194" y="355" width="8" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -44,14 +44,14 @@
                                 <rect key="frame" x="98" y="487" width="180" height="50"/>
                                 <state key="normal" title="我要发红包"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您获得了一次发红包的机会" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXR-hJ-Jto">
-                                <rect key="frame" x="86" y="413" width="204" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXR-hJ-Jto">
+                                <rect key="frame" x="189" y="413" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请好友参与即可获得金币奖励" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEP-zu-3FF">
-                                <rect key="frame" x="69" y="439" width="238" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEP-zu-3FF">
+                                <rect key="frame" x="188" y="439" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -145,9 +145,8 @@
                 <outlet property="imageVLine" destination="rQM-xw-kNj" id="HDG-s3-8pV"/>
                 <outlet property="imageVMoney" destination="BNE-16-Ufd" id="hTS-qB-FM0"/>
                 <outlet property="labelA" destination="AoE-CT-u4m" id="H2j-ro-aV9"/>
+                <outlet property="labelMain" destination="zXR-hJ-Jto" id="u8O-nb-kXD"/>
                 <outlet property="labelNumber" destination="U2W-IX-alf" id="uV0-5l-6Uw"/>
-                <outlet property="labelYao" destination="rEP-zu-3FF" id="jZk-6c-AuG"/>
-                <outlet property="labelYou" destination="zXR-hJ-Jto" id="PTk-lu-6la"/>
                 <outlet property="viewBase" destination="fZF-hn-pGQ" id="AwM-ub-QmG"/>
             </connections>
             <point key="canvasLocation" x="145.5" y="343.5"/>

@@ -74,6 +74,9 @@
         _labelTime.text = [self changeTheTimeStamps:model.time];
         _labelNumber.text = [NSString stringWithFormat:@"%@",model.luckyNumber];
         _labelTitle.text = model.title;
+        if ([model.areaAmount isEqualToNumber:@0]) {
+            _imageVKind.hidden = YES;
+        }
     }
     
 }

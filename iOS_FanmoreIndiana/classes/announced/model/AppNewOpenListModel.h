@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 //最新揭晓
 @interface AppNewOpenListModel : NSObject
-
+@property (nonatomic, strong) NSNumber *areaAmount;
 @property (nonatomic, strong) NSNumber *attendAmount;
 @property (nonatomic, strong) NSNumber *issueId;
 @property (nonatomic, strong) NSNumber *luckyNumber;
