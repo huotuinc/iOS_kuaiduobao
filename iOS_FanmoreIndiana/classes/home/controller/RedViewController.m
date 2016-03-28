@@ -19,6 +19,8 @@
 #import "GCDTimerManager.h"
 #import "PlistManager.h"
 #import "LoginController.h"
+#import "ArchiveLocalData.h"
+#import "Singleton.h"
 static NSInteger clickCount = 0; //点击次数
 @interface RedViewController ()<logVCdelegate>{
     CALayer *_layer;
@@ -27,8 +29,9 @@ static NSInteger clickCount = 0; //点击次数
     AVPlayer* myplayer;
     NSInteger _statusNumber; //用于判断当前活动的状态0 已经开始 1还没开始 2没有活动
     NSInteger _redRequestNumber;//点击多少次请求一次服务器
-    NSInteger _RedItemId; //活动期号
+    NSNumber *_RedItemId; //活动期号
     NSDate *resignBackgroundDate;
+    Singleton *_singleton;
 
 
     
@@ -196,9 +199,8 @@ static NSInteger clickCount = 0; //点击次数
             
             _distributeModel = [AppRedPactketsDistributeSourceModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             _statusNumber = [json[@"resultData"][@"flag"] integerValue];
-            _RedItemId = [json[@"resultData"][@"sourceId"] integerValue];
             _redRequestNumber = [json[@"resultData"][@"count"] integerValue];
-
+            
 //            if (_statusNumber == 1) {
 //                _distributeModel.endTime = _distributeModel.endTime - _distributeModel.startTime;
 //
@@ -221,7 +223,7 @@ static NSInteger clickCount = 0; //点击次数
                 [self createHopeView];
                 
             }
-            [self creatImageVReturn];
+//            [self creatImageVReturn];
             [self createTimer];
             
         }
@@ -232,7 +234,8 @@ static NSInteger clickCount = 0; //点击次数
         [self createImageVError];
 
     }];
-    
+    [self creatImageVReturn];
+
 }
 #pragma mark 剩余红包个数
 - (void)getRedPocketRestNumber {
@@ -251,7 +254,6 @@ static NSInteger clickCount = 0; //点击次数
         LWLog(@"%@",error);
         
     }];
-    [self refreshRestRedPocketNumber];
 
 }
 #pragma mark xiuxiu请求
@@ -265,9 +267,25 @@ static NSInteger clickCount = 0; //点击次数
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             NSArray *temp = [AppWinningInfoModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+//            _RedItemId = json[@"resultData"][@"sourceId"];
+
             [self.redList removeAllObjects];
             self.redList = [NSMutableArray arrayWithArray:temp];
-            
+            _singleton = [Singleton shareSingle];
+            if ([json[@"resultData"][@"sourceId"] isKindOfClass:[NSNumber class]] || [json[@"resultData"][@"sourceId"] isKindOfClass:[NSNull class]]) {
+                if ([json[@"resultData"][@"sourceId"] isKindOfClass:[NSNull class]]) {
+                    
+                } else {
+                    if ([_singleton.sourceId isEqualToNumber:json[@"resultData"][@"sourceId"] ]) {
+                        
+                    } else{
+                        _singleton.sourceId = json[@"resultData"][@"sourceId"];
+                        [ArchiveLocalData emptyTheRedPastArray];
+                    }
+                    
+                }
+            }
+
 //            [PlistManager createPlist];
             //获取plistManager存放的活动期号 不同存放新的数据  相同获取_redPastList
 //            NSInteger redPastItemId = [PlistManager readDataWithKey:@"redItemId"];
@@ -279,9 +297,11 @@ static NSInteger clickCount = 0; //点击次数
             //正在中奖或者已中奖
             if (_redList.count != 0) {
                 //第一次
+                self.redPastList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveRedPastArray]];
                 if (_redPastList.count == 0) {
                     [self.redPastList removeAllObjects];
                     self.redPastList = [NSMutableArray arrayWithArray:temp];
+                    [ArchiveLocalData archiveRedPastArrayWithArray:self.redPastList];
                     _winningModel = _redList[0];
                 }else {
                     _winningModel = [[AppWinningInfoModel alloc] init];
@@ -289,6 +309,7 @@ static NSInteger clickCount = 0; //点击次数
                     
 //                    [PlistManager writeToPlistWithKey:@"data" value:self.redList];
                     self.redPastList = [NSMutableArray arrayWithArray:temp];
+                    [ArchiveLocalData archiveRedPastArrayWithArray:self.redPastList];
                 }
                 //如果未中奖
                 if (_winningModel.rid == nil) {
@@ -343,6 +364,7 @@ static NSInteger clickCount = 0; //点击次数
 //    [GCDTimerManager scheduledDispatchTimerWithName:@"timerPopToHome" timeInterval:5.f queue:nil repeats:YES actionOption:LastJobManagerDisabled action:^{
 //        [weakSelf popToHimeView];
 //    }];
+    [ArchiveLocalData emptyTheRedPastArray];
     [GCDTimerManager cancelAllTimer];
 //    _timerPopToHome = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(popToHimeView) userInfo:nil repeats:NO];
     [self getDistuributeModel];
@@ -383,6 +405,7 @@ static NSInteger clickCount = 0; //点击次数
 }
 //遍历找出是否获得新的红包
 - (AppWinningInfoModel *)getNewRedPocket {
+    self.redPastList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveRedPastArray]];
     for (NSInteger i = _redPastList.count - 1; i >= 0; i--) {
         AppWinningInfoModel *redPastM = _redPastList[i];
         for (NSInteger j = _redList.count - 1; j >= 0; j--) {
@@ -440,6 +463,9 @@ static NSInteger clickCount = 0; //点击次数
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"RedHopeCView" owner:nil options:nil];
     _hopeView = [nib firstObject];
     _hopeView.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT+10);
+    [_hopeView bk_whenTapped:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
     [self.view addSubview:_hopeView];
 }
 - (void)createMainXiuView {
@@ -448,21 +474,28 @@ static NSInteger clickCount = 0; //点击次数
     [self createImageVBottom];
     [self createImageVXiu];
     [self createCountView];
+    [self refreshRestRedPocketNumber];
+
 }
 
 
 
 - (void) creatImageVReturn {
-    _imageVReturn = [[UIImageView alloc] initWithFrame:CGRectMake(15, 20, 25, 25)];
-    _imageVReturn.image = [UIImage imageNamed:@"back"];
-    UIView *backV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    backV.userInteractionEnabled = YES;
-    [backV bk_whenTapped:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    [self.view addSubview:_imageVReturn];
-    [self.view addSubview:backV];
-    [self.view bringSubviewToFront:backV];
+    if (_imageVReturn) {
+        return;
+    }else {
+        _imageVReturn = [[UIImageView alloc] initWithFrame:CGRectMake(15, 20, 25, 25)];
+        _imageVReturn.image = [UIImage imageNamed:@"back"];
+        UIView *backV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        backV.userInteractionEnabled = YES;
+        [backV bk_whenTapped:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [self.view addSubview:_imageVReturn];
+        [self.view addSubview:backV];
+        [self.view bringSubviewToFront:backV];
+    }
+
 }
 - (void) createCountView {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RedCountCView" owner:nil options:nil];
@@ -476,6 +509,9 @@ static NSInteger clickCount = 0; //点击次数
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"RedWaitCView" owner:nil options:nil];
     _waitView = [nib firstObject];
     _waitView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+20);
+    [_waitView bk_whenTapped:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
     [_waitView defaultConfig];
     [_waitView loadData:_distributeModel];
     [self.view addSubview:_waitView];
@@ -661,8 +697,50 @@ static NSInteger clickCount = 0; //点击次数
     [myplayer play];
 }
 
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+}
+#pragma mark 支付成功刷新用户数据
+- (void)updateUserInfo {
+    
+    [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
+        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@"resultData"]];
+        }else {
+            
+        }
+    } failure:^(NSError *error) {
+        
+    } withFileKey:nil];
+    
+}
+
+
+
+//刷新用户数据
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    NSLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    //保存新的token
+    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"appMyAddressListModel"]];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+    
+}
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self updateUserInfo];
     self.tabBarController.tabBar.hidden =YES;
     [GCDTimerManager cancelAllTimer];
     
@@ -670,15 +748,10 @@ static NSInteger clickCount = 0; //点击次数
     self.timerEnd = nil;
     [self.timerWait invalidate];
     self.timerWait = nil;
-//    [self.timerRedNumber invalidate];
-//    self.timerRedNumber = nil;
+    //    [self.timerRedNumber invalidate];
+    //    self.timerRedNumber = nil;
     [self.timerPopToHome invalidate];
     self.timerPopToHome = nil;
 }
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-}
-
 
 @end

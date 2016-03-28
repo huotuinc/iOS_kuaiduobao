@@ -9,5 +9,6 @@
 #import "AppWinningInfoModel.h"
 
 @implementation AppWinningInfoModel
+MJCodingImplementation
 
 @end

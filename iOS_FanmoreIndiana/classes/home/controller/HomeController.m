@@ -1122,7 +1122,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark 支付成功后是否刷新红包
 
 - (void)sendRedPocketYesOrNo{
-    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:canSendRedPocketOrNot object:nil];
     [UserLoginTool loginRequestGet:@"judgeIfCanShareRedpackets" parame:nil success:^(id json) {
         
         LWLog(@"%@",json);

@@ -164,9 +164,9 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 //}
 - (void)paySuccessed{
     [[NSNotificationCenter defaultCenter]postNotificationName:CannelLoginFailure object:nil userInfo:nil];
-    if (_AliPayDone || _WeiPayDone) {
+//    if (_AliPayDone || _WeiPayDone) {
         [[NSNotificationCenter defaultCenter] postNotificationName:canSendRedPocketOrNot object:nil];
-    }
+//    }
     [self.navigationController popToRootViewControllerAnimated:YES];
 
 
@@ -695,7 +695,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 #pragma mark 支付成功刷新用户数据
 - (void)payUpdateUserInfo {
-    
+    [SVProgressHUD showSuccessWithStatus:@"充值成功，积分将在10分钟左右到账，可去积分商城兑换"];
+
     [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
         LWLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
@@ -717,7 +718,6 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 //刷新用户数据
 - (void)loginSuccessWith:(NSDictionary *) dic {
-    
     UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
     NSLog(@"userModel: %@",user);
     
@@ -735,7 +735,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 }
 
 - (void)paySuccessNotice {
-    [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+//    [SVProgressHUD showSuccessWithStatus:@"支付成功"];
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(paySuccessed) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
