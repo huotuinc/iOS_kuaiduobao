@@ -15,6 +15,7 @@
 #import "WXApi.h"
 #import "payRequsestHandler.h"
 #import "NSDictionary+HuoBanMallSign.h"
+#import "LoginController.h"
 
 @interface HomeViewController()<UIWebViewDelegate,UIActionSheetDelegate,NJKWebViewProgressDelegate>
 
@@ -99,7 +100,7 @@
         _leftOption = [[UIButton alloc] init];
         _leftOption.frame = CGRectMake(0, 0, 25, 25);
         [_leftOption addTarget:self action:@selector(GoToLeft) forControlEvents:UIControlEventTouchUpInside];
-        [_leftOption setBackgroundImage:[UIImage imageNamed:@"bg"] forState:UIControlStateNormal];
+        [_leftOption setBackgroundImage:[UIImage imageNamed:@"gb"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftOption];
     }
     return _leftOption;
@@ -380,7 +381,7 @@
     }
     if (webView.tag == 100) {
         if ([url rangeOfString:@"/UserCenter/Login.aspx"].location !=  NSNotFound) {
-            
+                        
         }else if([url rangeOfString:@"AppAlipay.aspx"].location != NSNotFound){
                 self.ServerPayUrl = [url copy];
                 NSRange trade_no = [url rangeOfString:@"trade_no="];

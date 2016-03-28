@@ -51,13 +51,13 @@
 #define ShareSDKAppKey @"f01c25532708" //19b4b4d45192 
 
 /**新浪微博*/
-#define XinLangAppkey @"1994677353"
-#define XinLangAppSecret @"0783d8dd1f0eb5a45687cde79aa10108"
+#define XinLangAppkey @"1093694002"
+#define XinLangAppSecret @"48a20ffcdc17ed0884c53fd9e8bae2f5"
 #define XinLangRedirectUri @"https://api.weibo.com/oauth2/default.html"
 
 /**QQ**/
-#define QQAppKey @"101066212"
-#define QQappSecret @"09ef5bfed097b682a83b147d46e46a5a"
+#define QQAppKey @"1105178159"
+#define QQappSecret @"jF0YdvmJ8UW38dZL"
 
 /**微信*/ 
 #define WeiXinAppID @"wx7f47df3d33fd57f7"
@@ -72,11 +72,11 @@
 ///***服务器地址***/
 //#define MainUrl @"http://192.168.3.22:8080/duobao/app/"
 //#define MKMainUrl @"192.168.1.254:10001/app"
-//#define MKMainUrl @"duobao.51flashmall.com:8091/app"
+#define MKMainUrl @"duobao.51flashmall.com:8091/app"
 //#define MKMainUrl @"192.168.3.27:8080/duobao/app/"
 
 //服务器正式地址
-#define MKMainUrl @"duobao.huobanplus.com/app"
+//#define MKMainUrl @"duobao.huobanplus.com/app"
 
 
 /**时间*/

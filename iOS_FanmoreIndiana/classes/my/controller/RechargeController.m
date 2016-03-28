@@ -30,7 +30,7 @@ static NSString *rechargeIdentify = @"rechargeIdentify";
     
     self.rechargeList = [NSMutableArray array];
     
-    UITableView *table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) style:UITableViewStylePlain];
+    UITableView *table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight +44) style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
     table.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];

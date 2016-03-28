@@ -310,7 +310,10 @@ static NSString *goAheadCellIdentify = @"goAheadCellIdentify";
         }else if([model.status integerValue] == 2) {
             
             return 235;
-        };
+        }else if ([model.status integerValue] == 1) {
+            
+            return 127;
+        }
     }else if (self.selectMark == 1) {
         return 127;
     }else if (self.selectMark == 2) {

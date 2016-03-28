@@ -468,6 +468,8 @@ static NSString *payIdentify = @"payIdentifty";
 #pragma mark 支付成功刷新用户数据
 - (void)updateUserInfo {
     
+    [SVProgressHUD showSuccessWithStatus:@"充值成功，积分将在10分钟左右到账，可去积分商城兑换"];
+    
     [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
         LWLog(@"%@", json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {

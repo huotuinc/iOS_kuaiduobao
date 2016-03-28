@@ -1435,11 +1435,11 @@
             </objects>
             <point key="canvasLocation" x="777" y="3162"/>
         </scene>
-        <!--兑换商城-->
+        <!--积分兑换-->
         <scene sceneID="Lis-2c-GyG">
             <objects>
                 <navigationController id="0Ra-hr-M17" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="兑换商城" image="duihuan" id="kUa-JV-eNs"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="积分兑换" image="duihuan" id="kUa-JV-eNs"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Png-hJ-Vc3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1856,6 +1856,9 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获奖商品：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuQ-cx-ii1">
                                                             <rect key="frame" x="10" y="10" width="65" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="65" id="Z76-k1-Jgd"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1885,7 +1888,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxg-sr-ty6">
-                                                            <rect key="frame" x="75" y="10" width="52" height="16"/>
+                                                            <rect key="frame" x="75" y="10" width="299" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1938,6 +1941,7 @@
                                                         <constraint firstItem="ySx-j4-pXm" firstAttribute="centerY" secondItem="6jQ-P2-S65" secondAttribute="centerY" id="e30-Jy-Ics"/>
                                                         <constraint firstItem="vBz-PI-TeZ" firstAttribute="leading" secondItem="s2s-vZ-bpc" secondAttribute="leading" constant="10" id="ev8-pC-2RX"/>
                                                         <constraint firstItem="uxg-sr-ty6" firstAttribute="centerY" secondItem="xuQ-cx-ii1" secondAttribute="centerY" id="gd1-x6-xgu"/>
+                                                        <constraint firstAttribute="trailing" secondItem="uxg-sr-ty6" secondAttribute="trailing" constant="20" id="keo-Gn-FC7"/>
                                                         <constraint firstItem="EZL-8Y-dcN" firstAttribute="leading" secondItem="s2s-vZ-bpc" secondAttribute="leading" constant="10" id="lEz-ws-uMc"/>
                                                         <constraint firstItem="ZU9-ZL-F85" firstAttribute="top" secondItem="xuQ-cx-ii1" secondAttribute="bottom" constant="5" id="lZn-Eb-PIL"/>
                                                         <constraint firstItem="ySx-j4-pXm" firstAttribute="leading" secondItem="6jQ-P2-S65" secondAttribute="trailing" id="qVL-ee-WO9"/>
@@ -3784,13 +3788,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mkf-JS-gku" secondAttribute="trailing" id="6ga-FX-1h6"/>
                             <constraint firstItem="UYG-Zj-XXi" firstAttribute="top" secondItem="mkf-JS-gku" secondAttribute="bottom" id="GK7-Ss-rcb"/>
-                            <constraint firstItem="xT0-cV-Wks" firstAttribute="top" secondItem="F3W-R8-tLr" secondAttribute="bottom" id="Oa8-rc-IHi"/>
                             <constraint firstAttribute="trailing" secondItem="F3W-R8-tLr" secondAttribute="trailing" id="PKS-sx-Di2"/>
                             <constraint firstItem="UYG-Zj-XXi" firstAttribute="leading" secondItem="7Xk-2E-sCZ" secondAttribute="leading" id="RIJ-DK-2YI"/>
+                            <constraint firstItem="mkf-JS-gku" firstAttribute="top" secondItem="kPf-Tt-9KS" secondAttribute="bottom" id="Yrm-Ut-wkP"/>
                             <constraint firstAttribute="trailing" secondItem="UYG-Zj-XXi" secondAttribute="trailing" id="eZ9-LA-2K9"/>
                             <constraint firstItem="F3W-R8-tLr" firstAttribute="leading" secondItem="7Xk-2E-sCZ" secondAttribute="leading" id="guh-Q2-kbL"/>
                             <constraint firstItem="F3W-R8-tLr" firstAttribute="top" secondItem="mkf-JS-gku" secondAttribute="bottom" constant="1" id="qgu-8k-UdL"/>
-                            <constraint firstItem="mkf-JS-gku" firstAttribute="top" secondItem="kPf-Tt-9KS" secondAttribute="bottom" id="rQP-or-e6W"/>
+                            <constraint firstItem="xT0-cV-Wks" firstAttribute="top" secondItem="F3W-R8-tLr" secondAttribute="bottom" id="tIL-Lx-zMj"/>
                             <constraint firstItem="mkf-JS-gku" firstAttribute="leading" secondItem="7Xk-2E-sCZ" secondAttribute="leading" id="tri-nG-CBO"/>
                         </constraints>
                     </view>
