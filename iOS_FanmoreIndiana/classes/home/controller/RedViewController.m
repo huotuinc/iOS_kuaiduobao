@@ -19,6 +19,7 @@
 #import "GCDTimerManager.h"
 #import "PlistManager.h"
 #import "LoginController.h"
+static NSInteger clickCount = 0; //点击次数
 @interface RedViewController ()<logVCdelegate>{
     CALayer *_layer;
     CAAnimationGroup *_animaTionGroup;
@@ -196,7 +197,7 @@
             _distributeModel = [AppRedPactketsDistributeSourceModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             _statusNumber = [json[@"resultData"][@"flag"] integerValue];
             _RedItemId = [json[@"resultData"][@"sourceId"] integerValue];
-            
+            _redRequestNumber = [json[@"resultData"][@"count"] integerValue];
 
 //            if (_statusNumber == 1) {
 //                _distributeModel.endTime = _distributeModel.endTime - _distributeModel.startTime;
@@ -601,15 +602,16 @@
     CGFloat yh = ADAPT_HEIGHT(705) + ADAPT_HEIGHT(206);
     
     if (point.x > x && point.x < xw && point.y > y && point.y < yh) {
-
+        clickCount ++;
         //点击次数
         NSLog(@"**** %ld ****",(long)_count);
         //百分之一的概率 发送请求
-//        int luckNumber = arc4random() % 10;
-//        if (luckNumber == 1) {
-            //
+        //        int luckNumber = arc4random() % 10;
+        if (clickCount == _redRequestNumber) {
+            
             [self getXiuXiuXiu];
-//        }
+            clickCount = 0;
+        }
         //开始xiu动画
         _disPlayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(click)];
         _disPlayLink.frameInterval = 40;

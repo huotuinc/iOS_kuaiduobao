@@ -62,7 +62,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     _whichPay = 2;
     _AliPayDone = NO;
     _WeiPayDone = NO;
-    _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
+    _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付",@"余额支付"]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payUpdateUserInfo) name:payMoneySuccess object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccessNotice) name:payMoneySuccessView object:nil];
@@ -589,7 +589,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
                 
             }
             if (indexPath.row == 1) {
-                cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %@元)",self.userInfo.money];
+                cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %.2f元)",self.userInfo.money.floatValue];
             }
             if (indexPath.row == 2) {
                 CGFloat elsePay = [_payModel.totalMoney floatValue] - [_payModel.redPacketsMinusMoney floatValue];
@@ -661,8 +661,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             [self.navigationController pushViewController:red animated:YES];
         }
         //支付类型 0微信 1支付宝 2用户余额
-        if (indexPath.row == 3 || indexPath.row == 4) {
-            for (int i = 3; i < 5; i++) {
+        if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5) {
+            for (int i = 3; i < 6; i++) {
                 PayBTableViewCell * aCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
                 aCell.buttonSelect.selected = NO;
             }

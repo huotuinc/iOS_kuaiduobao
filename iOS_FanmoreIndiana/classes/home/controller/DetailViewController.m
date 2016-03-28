@@ -583,11 +583,22 @@ static NSString * cellDFirst=@"cellDFirst";
 
         }else{
 #pragma mark 加入购物车 未登陆
+            _goImmediately = YES;
+
             if (_joinModel == nil) {
+
                 [ArchiveLocalData archiveLocalDataArrayWithDetailModel:_detailModel];
             } else {
                 [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:_joinModel];
 
+            }
+            if (_goImmediately) {
+                _goImmediately = NO;
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
+            } else {
+                [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
             }
 
         }
@@ -721,7 +732,7 @@ static NSString * cellDFirst=@"cellDFirst";
     
     _titleLabel=[[UILabel alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, _titleStrHeight)];
     NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"                %@ %@",_detailModel.title,_detailModel.character]];
-    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(15+_detailModel.title.length+1,_detailModel.character.length)];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(16+_detailModel.title.length+1,_detailModel.character.length)];
     _titleLabel.attributedText=attString;
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
     _titleLabel.numberOfLines=0;
