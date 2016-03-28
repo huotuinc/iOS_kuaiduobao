@@ -198,4 +198,43 @@
 
 }
 
++ (void)archiveRedPastArrayWithArray:(NSMutableArray *)_redPastArray {
+    NSMutableData *data = [[NSMutableData alloc] init];
+    //创建归档辅助类
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    //编码
+    [archiver encodeObject:_redPastArray forKey:WINNINGRECORD];
+    //结束编码
+    [archiver finishEncoding];
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:WINNINGRECORD];
+    //写入
+    [data writeToFile:filename atomically:YES];
+}
++ (NSArray *)unarchiveRedPastArray {
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:WINNINGRECORD];
+    NSData *data = [NSData dataWithContentsOfFile:filename];
+    // 2.创建反归档对象
+    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    // 3.解码并存到数组中
+    NSArray *pastArray = [unArchiver decodeObjectForKey:WINNINGRECORD];
+    return pastArray;
+}
++ (void) emptyTheRedPastArray {
+    NSArray *pastArray = [NSArray array];
+    NSMutableData *data = [[NSMutableData alloc] init];
+    //创建归档辅助类
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    //编码
+    [archiver encodeObject:pastArray forKey:WINNINGRECORD];
+    //结束编码
+    [archiver finishEncoding];
+    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:WINNINGRECORD];
+    //写入
+    [data writeToFile:filename atomically:YES];
+}
+
+
 @end

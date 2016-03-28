@@ -10,11 +10,30 @@
 #import "AppGoodsListModel.h"
 #import "AppGoodsDetailModel.h"
 #import "CartModel.h"
-
+#import "AppWinningInfoModel.h"
 @interface ArchiveLocalData : NSObject
 
 @property (nonatomic, assign) BOOL bannerAttend;//从banner进入 pictureUrl是个数组
 @property (nonatomic, assign) NSInteger arrayOrNot;
+
+
+/**
+ *  归档
+ *
+ *  @param _joinModel 要归档的商品数据
+ */
++ (void)archiveRedPastArrayWithArray:(NSMutableArray *)_redPastArray;
+/**
+ *  解归档
+ *
+ *  @return <#return value description#>
+ */
++ (NSArray *)unarchiveRedPastArray;
+/**
+ *  清空归档
+ */
++ (void) emptyTheRedPastArray;
+
 
 /**
  *  归档

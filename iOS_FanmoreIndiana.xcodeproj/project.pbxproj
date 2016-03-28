@@ -258,6 +258,7 @@
 		F2D84A191C93F4E70095725D /* RedHopeCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D84A171C93F4E70095725D /* RedHopeCView.xib */; };
 		F2E241061C7C79BA004D222E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E241051C7C79BA004D222E /* HelpViewController.m */; };
 		F2E7A4011CA8C0EB0030DCCC /* xiuVoice.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2E7A4001CA8C0EB0030DCCC /* xiuVoice.wav */; };
+		F2E7A4041CA8D4C70030DCCC /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E7A4031CA8D4C70030DCCC /* Singleton.m */; };
 		F2F587C21C7D4249007187B0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587C11C7D4249007187B0 /* SearchViewController.m */; };
 		F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F587C41C7D49CB007187B0 /* PayATableViewCell.m */; };
 		F2F587C71C7D49CB007187B0 /* PayATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F587C51C7D49CB007187B0 /* PayATableViewCell.xib */; };
@@ -820,6 +821,8 @@
 		F2E241041C7C79BA004D222E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		F2E241051C7C79BA004D222E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		F2E7A4001CA8C0EB0030DCCC /* xiuVoice.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = xiuVoice.wav; sourceTree = "<group>"; };
+		F2E7A4021CA8D4C70030DCCC /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		F2E7A4031CA8D4C70030DCCC /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		F2F587C01C7D4249007187B0 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		F2F587C11C7D4249007187B0 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		F2F587C31C7D49CB007187B0 /* PayATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayATableViewCell.h; path = ../../home/view/PayATableViewCell.h; sourceTree = "<group>"; };
@@ -1053,6 +1056,8 @@
 			children = (
 				F2A1058A1C99432000A5AFA5 /* CircleBannerView.h */,
 				F2A105891C99432000A5AFA5 /* CircleBannerView.m */,
+				F2E7A4021CA8D4C70030DCCC /* Singleton.h */,
+				F2E7A4031CA8D4C70030DCCC /* Singleton.m */,
 				F206D2111C99336600BC4E10 /* DCPicscrollView */,
 				F246B6721C97EA4700D0A381 /* PlistManager.h */,
 				F246B6731C97EA4700D0A381 /* PlistManager.m */,
@@ -2239,6 +2244,7 @@
 				609D10971C97F6D2009412E9 /* MessageFrame.m in Sources */,
 				F2C426461C88246D00C9CEF0 /* ListNumberHeadCView.m in Sources */,
 				606CA1DA1C5B431900613E6A /* WinningCell.m in Sources */,
+				F2E7A4041CA8D4C70030DCCC /* Singleton.m in Sources */,
 				604926271C5EF3590092D231 /* RechargeController.m in Sources */,
 				609D109A1C994CCA009412E9 /* MallViewController.m in Sources */,
 				F21986A71C4F288500966A2C /* HomeHeadCollectionViewCell.m in Sources */,

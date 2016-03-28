@@ -29,6 +29,8 @@
 
 /*未登录购物车*/
 #define LOCALCART @"localCart"
+/*咻咻 中奖纪录*/
+#define WINNINGRECORD @"WinningRecord"
 /*存放已中奖咻咻*/
 #define REDGETPAST @"redGetPast"
 /*立刻去购物车*/

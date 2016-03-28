@@ -114,6 +114,7 @@ static NSString * cellDFirst=@"cellDFirst";
     }
     [self createDataArray];
     [self getGoodsDetailList];
+    [self createBottomView];
 
 }
 - (void)registerBackgoundNotification
