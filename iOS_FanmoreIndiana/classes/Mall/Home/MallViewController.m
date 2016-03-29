@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"jz"]];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"jz"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,19 +29,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-    if (![login isEqualToString:Success]) {
-        
-        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
-        [self presentViewController:nav animated:YES completion:nil];
-        
-    }else {
-        
+//    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//    if (![login isEqualToString:Success]) {
+//        
+//        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+//        [self presentViewController:nav animated:YES completion:nil];
+//        
+//    }else {
+    
         [self gotoMall];
         
-    }
+//    }
 }
 
 - (void)gotoMall {
@@ -55,8 +55,10 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:json[@"resultData"][@"orderRequestUrl"] forKey:WebSit];
             
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:home];
-            [self presentViewController:nav animated:YES completion:nil];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:home];
+//            [self presentViewController:nav animated:YES completion:nil];
+            
+            [self.navigationController pushViewController:home animated:YES];
             
         }
     } failure:^(NSError *error) {

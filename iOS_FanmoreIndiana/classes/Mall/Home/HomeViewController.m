@@ -100,7 +100,7 @@
         _leftOption = [[UIButton alloc] init];
         _leftOption.frame = CGRectMake(0, 0, 25, 25);
         [_leftOption addTarget:self action:@selector(GoToLeft) forControlEvents:UIControlEventTouchUpInside];
-        [_leftOption setBackgroundImage:[UIImage imageNamed:@"gb"] forState:UIControlStateNormal];
+        [_leftOption setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftOption];
     }
     return _leftOption;
@@ -269,6 +269,10 @@
     
     [self.homeWebView layoutIfNeeded];
     [self.homeBottonWebView layoutIfNeeded];
+    
+    
+    
+    
 }
 
 
@@ -302,6 +306,9 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     [self.navigationController.navigationBar setBarTintColor:COLOR_NAVBAR_A];
+    
+    
+    self.tabBarController.tabBar.hidden = YES;
 }
 
 
@@ -381,7 +388,13 @@
     }
     if (webView.tag == 100) {
         if ([url rangeOfString:@"/UserCenter/Login.aspx"].location !=  NSNotFound) {
-                        
+            
+            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+            login.isFromMall = YES;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+            [self presentViewController:nav animated:YES completion:nil];
+            
         }else if([url rangeOfString:@"AppAlipay.aspx"].location != NSNotFound){
                 self.ServerPayUrl = [url copy];
                 NSRange trade_no = [url rangeOfString:@"trade_no="];
@@ -694,6 +707,28 @@
     [_webViewProgressView setProgress:progress animated:YES];
 }
 
+
+#pragma mark - 如果没登录，登录成功后的操作 
+
+- (void)loginSuccessAndReloadWeb {
+    
+    [UserLoginTool loginRequestGet:@"getMallLoginUrl" parame:nil success:^(id json) {
+        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
+            
+
+            self.homeUrl = json[@"resultData"][@"loginUrl"];
+            self.buttomUrl = json[@"resultData"][@"bottomNavUrl"];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:json[@"resultData"][@"orderRequestUrl"] forKey:WebSit];
+            
+            
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@", error);
+    }];
+    
+}
 
 
 

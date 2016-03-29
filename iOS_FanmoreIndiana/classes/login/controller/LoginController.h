@@ -40,5 +40,7 @@
 
 @property (nonatomic,weak)id<logVCdelegate>logDelegate;
 
+@property (nonatomic, assign) BOOL isFromMall;
+
 
 @end

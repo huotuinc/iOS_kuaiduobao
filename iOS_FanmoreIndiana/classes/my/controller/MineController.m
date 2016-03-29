@@ -89,6 +89,7 @@
         
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+        login.isFromMall = NO;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
         [self presentViewController:nav animated:YES completion:nil];
         
