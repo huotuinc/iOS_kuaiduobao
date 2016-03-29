@@ -391,6 +391,7 @@ static NSString * cellDFirst=@"cellDFirst";
         _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
         [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead] placeholderImage:[UIImage imageNamed:@"mrtx"]];
+        
         [_winnerView.buttonContent bk_whenTapped:^{
             DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
             calculate.issueId = _detailModel.issueId;

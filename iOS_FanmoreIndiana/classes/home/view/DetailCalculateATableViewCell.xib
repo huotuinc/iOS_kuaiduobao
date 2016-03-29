@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="750" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="750" height="49"/>
+                <rect key="frame" x="0.0" y="0.0" width="750" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4t-jE-NbL">
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="10" y="1" width="730" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpP-KK-u9v">
-                                        <rect key="frame" x="473" y="0.0" width="257" height="48"/>
+                                        <rect key="frame" x="506" y="0.0" width="224" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKj-20-7dQ">
-                                        <rect key="frame" x="473" y="0.0" width="257" height="48"/>
+                                        <rect key="frame" x="506" y="0.0" width="224" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -68,19 +68,21 @@
                                     <constraint firstItem="crI-FN-xW5" firstAttribute="top" secondItem="66B-Ve-117" secondAttribute="top" id="Giy-Sh-Vcj"/>
                                     <constraint firstAttribute="bottom" secondItem="gKj-20-7dQ" secondAttribute="bottom" id="O8j-D5-vmx"/>
                                     <constraint firstItem="veq-8f-WKj" firstAttribute="leading" secondItem="crI-FN-xW5" secondAttribute="trailing" constant="5" id="Qr4-gv-KEb"/>
-                                    <constraint firstItem="gKj-20-7dQ" firstAttribute="width" secondItem="66B-Ve-117" secondAttribute="width" multiplier="250:710" id="Swf-mL-y8E"/>
+                                    <constraint firstItem="gKj-20-7dQ" firstAttribute="width" secondItem="66B-Ve-117" secondAttribute="width" multiplier="230:750" id="Swf-mL-y8E"/>
                                     <constraint firstItem="gKj-20-7dQ" firstAttribute="top" secondItem="66B-Ve-117" secondAttribute="top" id="VMM-xU-Pgz"/>
                                     <constraint firstAttribute="trailing" secondItem="LpP-KK-u9v" secondAttribute="trailing" id="XPp-fm-0UU"/>
                                     <constraint firstItem="LpP-KK-u9v" firstAttribute="leading" secondItem="veq-8f-WKj" secondAttribute="trailing" id="b4J-IF-Jbd"/>
                                     <constraint firstItem="crI-FN-xW5" firstAttribute="leading" secondItem="66B-Ve-117" secondAttribute="leading" id="c0V-Kk-3yU"/>
+                                    <constraint firstItem="crI-FN-xW5" firstAttribute="width" secondItem="66B-Ve-117" secondAttribute="width" multiplier="300:710" id="ecf-hH-KYW"/>
                                     <constraint firstAttribute="bottom" secondItem="crI-FN-xW5" secondAttribute="bottom" id="mf3-4J-r97"/>
                                     <constraint firstAttribute="bottom" secondItem="8kf-xy-SYa" secondAttribute="bottom" id="nTf-U6-3Rl"/>
                                     <constraint firstItem="LpP-KK-u9v" firstAttribute="top" secondItem="66B-Ve-117" secondAttribute="top" id="tf8-wE-Izv"/>
                                     <constraint firstItem="8kf-xy-SYa" firstAttribute="leading" secondItem="66B-Ve-117" secondAttribute="leading" id="vRe-wN-iXB"/>
-                                    <constraint firstItem="LpP-KK-u9v" firstAttribute="width" secondItem="66B-Ve-117" secondAttribute="width" multiplier="250:710" id="z6O-oM-s7j"/>
+                                    <constraint firstItem="LpP-KK-u9v" firstAttribute="width" secondItem="66B-Ve-117" secondAttribute="width" multiplier="230:750" id="z6O-oM-s7j"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="ecf-hH-KYW"/>
                                         <exclude reference="b4J-IF-Jbd"/>
                                     </mask>
                                 </variation>

@@ -284,7 +284,12 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
     _sendRedView=[nib firstObject];
     _sendRedView.frame=CGRectMake(0,-SCREEN_HEIGHT-10, SCREEN_WIDTH, SCREEN_HEIGHT+10);
-    _sendRedView.labelMain.text = _redShareInfo;
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:_redShareInfo];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineSpacing = 5;//行距
+    style.alignment = NSTextAlignmentCenter;
+    [attString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attString.length)];
+    _sendRedView.labelMain.attributedText = attString;
 
     _sendRedView.imageVClose.userInteractionEnabled = YES;
     [_sendRedView.imageVClose bk_whenTapped:^{
