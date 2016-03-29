@@ -722,6 +722,7 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:json[@"resultData"][@"orderRequestUrl"] forKey:WebSit];
             
+            [self reloadWeb];
             
         }
     } failure:^(NSError *error) {
@@ -730,6 +731,15 @@
     
 }
 
+- (void)reloadWeb {
+    
+    NSURL * urlStr = [NSURL URLWithString:self.homeUrl];
+    NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
+    [self.homeWebView loadRequest:req];
+    
+    NSURLRequest * Bottomreq = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:_buttomUrl]];
+    [self.homeBottonWebView loadRequest:Bottomreq];
+}
 
 
 @end
