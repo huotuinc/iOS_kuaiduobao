@@ -106,7 +106,6 @@ static NSString *cellABMain=@"cellABMain";
  */
 - (void)getOpenList {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    AppNewOpenListModel *new = [self.openList lastObject];
 
     dic[@"lastId"] = @0;
     dic[@"curType"] = @0;

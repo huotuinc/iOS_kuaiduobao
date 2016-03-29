@@ -42,7 +42,7 @@
     for (NSString * dicKey in arr) {
         [signCap appendString:[NSString stringWithFormat:@"%@=%@&",dicKey,[dict valueForKey:dicKey]]];
     }
-    NSString * aa = [signCap substringToIndex:signCap.length-1];
+
     
     //NSString * cc  = [NSString stringWithFormat:@"%@%@",aa,HuoBanMallBuyAppSecrect];
 //    dict[@"sign"] = [MD5Encryption md5by32:cc];

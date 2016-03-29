@@ -7,6 +7,8 @@
 //
 
 #import "UIViewController+MonitorNetWork.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
 
 @implementation UIViewController (MonitorNetWork)
 
@@ -53,6 +55,8 @@
 
         }
     }
- 
+    
+    [ShareSDK cancelAuthorize:SSDKPlatformTypeQQ];
+    [ShareSDK cancelAuthorize:SSDKPlatformTypeWechat];
 }
 @end

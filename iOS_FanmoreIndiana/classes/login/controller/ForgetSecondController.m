@@ -40,6 +40,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if (self.type == 2) {
         [self settime];
     }

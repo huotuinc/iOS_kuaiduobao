@@ -1042,8 +1042,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     if (indexPath.section == 1) {
         DetailViewController *detail=[[DetailViewController alloc]init];
-        AppGoodsListModel *aModel=[[AppGoodsListModel alloc]init];
-        aModel=_appGoodsList[indexPath.row];
+        AppGoodsListModel *aModel=_appGoodsList[indexPath.row];
         detail.joinModel = aModel;
         detail.goodsId=aModel.pid;
         detail.whichAPI=[NSNumber numberWithInteger:1];

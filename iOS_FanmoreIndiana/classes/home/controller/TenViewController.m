@@ -222,8 +222,7 @@ static NSString *cellTenMain=@"cellTenMain";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TenTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellTenMain forIndexPath:indexPath];
-    AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
-    model=_appGoodsList[indexPath.row];
+    AppGoodsListModel *model=_appGoodsList[indexPath.row];
     cell.labelTitle.text=model.title;
     
     NSMutableAttributedString *attStringA = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"总需 %ld",(long)[model.toAmount integerValue]]];
