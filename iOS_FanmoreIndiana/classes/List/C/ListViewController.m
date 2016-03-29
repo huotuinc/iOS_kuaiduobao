@@ -98,6 +98,12 @@ static NSInteger selectAllCount = 1;
 }
 
 - (void)createBarButtonItem{
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 25)];
+    buttonL.backgroundColor = [UIColor clearColor];
+    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
+    self.navigationItem.leftBarButtonItem=bbiL;
+    
+    
     UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 25)];
     [UIButton changeButton:buttonR AndFont:30 AndTitleColor:COLOR_SHINE_BLUE AndBackgroundColor:[UIColor whiteColor] AndBorderColor:nil AndCornerRadius:0 AndBorderWidth:0];
     [buttonR setTitle:@"清空清单" forState:UIControlStateNormal];

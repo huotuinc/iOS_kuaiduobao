@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageVBack;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVLine;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVClose;
+@property (weak, nonatomic) IBOutlet UILabel *labelMain;
 
 
 @end

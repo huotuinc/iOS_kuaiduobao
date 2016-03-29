@@ -22,7 +22,8 @@
     [UILabel changeLabel:_labelNumber AndFont:108 AndColor:orangeColor];
     [UILabel changeLabel:_labelYou AndFont:40 AndColor:[UIColor whiteColor]];
     [UILabel changeLabel:_labelYao AndFont:36 AndColor:[UIColor whiteColor]];
-    _viewBase.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.8];
+//    _viewBase.backgroundColor = [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.8];
+    _viewBase.backgroundColor = [UIColor clearColor];
 
     
     

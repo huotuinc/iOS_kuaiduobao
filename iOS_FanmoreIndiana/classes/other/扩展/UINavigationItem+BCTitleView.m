@@ -16,6 +16,7 @@
     titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.center = self.titleView.center;
     titleLabel.text = title;
     self.titleView = titleLabel;
     return self.titleView;
