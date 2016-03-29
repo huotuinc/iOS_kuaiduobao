@@ -1066,19 +1066,21 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
             }
             
-            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
-//            imageVBack.image=[UIImage imageNamed:@"line_huise"];
-            imageVBack.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];
-            _imageVRed.image=[UIImage imageNamed:@"line_red"];
+//            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
+////            imageVBack.image=[UIImage imageNamed:@"line_huise"];
+//            imageVBack.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];
+//            [localView addSubview:imageVBack];
 
-            [localView addSubview:imageVBack];
-            [localView addSubview:_imageVRed];
+
             
             if (_isFirstLoad == YES) {
                 FL_Button *buttonHot=[localView viewWithTag:100];
                 buttonHot.selected=YES;
                 _isFirstLoad = NO;
                 _imageVRed=[[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/4-SCREEN_WIDTH/4*4/5)/2, localView.frame.size.height-1, SCREEN_WIDTH/4*4/5, 2)];
+//                _imageVRed.image=[UIImage imageNamed:@"line_red"];
+//                [localView addSubview:_imageVRed];
+
             }else{
                 if (orderNumberNow >3) {
                     FL_Button *buttonClicked=[localView viewWithTag:100 + orderNumberNow - 1];
@@ -1094,7 +1096,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 }
             
             }
-
+            _imageVRed.image=[UIImage imageNamed:@"line_red"];
+            [localView addSubview:_imageVRed];
                 [view addSubview:localView];
                 _viewChoice = localView;
                 
