@@ -113,8 +113,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     
     self.tabBarController.tabBar.hidden = NO;
-    [self getHomeData];
-    
+    [self getAppNoticeList];
+//    [self getAppSlideList];
+    [self getGoodsList];
+    if (_timer) {
+    }else {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    }
+    //  将定时器添加到主线程
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 //    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
 //    if ([login isEqualToString:Success]) {
 //        [self getRedList];
@@ -137,21 +144,51 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     _arrURLString=[NSMutableArray array];
     _arrRedList = [NSMutableArray array];
     [self createNavgationBarTitle];
-    
+//    [self getAppSlideList];
+
     
 
     self.type = [NSNumber numberWithInteger:1];
-    // 创建操作队列
-   
+//     创建操作队列
+    [self getAppSlideList];
+//        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//        NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+//    //        [self getAppNoticeList];
+//    //        [self createMainCollectionView];
+//            [self getAppSlideList];
+//
+//        }];
+//        NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
+//            [self _initCollectionView];
+//    
+//        }];
+    //    NSBlockOperation *op3 = [NSBlockOperation blockOperationWithBlock:^{
+    ////        [self createHeadView];
+    ////        [self getAppNoticeList];
+    //
+    //    }];
+    //    NSBlockOperation *op4 = [NSBlockOperation blockOperationWithBlock:^{
+    ////        [self getAppSlideList];
+    ////        NSString * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:UserInfo];
+    ////        if ([login isEqualToString:Success]) {
+    ////            [self getShoppingList];
+    ////        }else{
+    //
+    //    }];
+    //
+//        [op2 addDependency:op1];
+    ////    [op3 addDependency:op1];
+    //    [op3 addDependency:op2];
+    //    [op4 addDependency:op2];
+    //
+    //    // 为队列添加线程
+//        [queue addOperation:op1];
+//        [queue addOperation:op2];
+    //    [queue addOperation:op3];
+    //    [queue addOperation:op4];
 
-//    [self getHomeData];
-//    [self createGetRedView];
-
-
+    //viewDidLoad里 创建collctionV和
 //    [self createHeadView];
-//    [self createMainCollectionView];
-    [self _initCollectionView];
-    [self createLableCollectionView];
 
 //    [self ]
 
@@ -163,13 +200,15 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"奇兵夺宝";
+    titleLabel.text = @"";
     self.navigationItem.titleView = titleLabel;
 }
 #pragma mark 获取数据 线程
 - (void)getHomeData {
-//    [SVProgressHUD show];
+    [self getAppNoticeList];
     [self getGoodsList];
+//    [SVProgressHUD show];
+//    [self getGoodsList];
 
 //    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 //    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
@@ -205,6 +244,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [queue addOperation:op2];
 //    [queue addOperation:op3];
 //    [queue addOperation:op4];
+}
+- (void)getMoreHomeData {
+    [self getMoreGoodsList];
 }
 - (void)createBarButtonItem{
     UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -356,7 +398,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
+    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreHomeData)];
     self.collectionView.mj_footer = Footer;
     
     //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
@@ -380,11 +422,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             NSArray *temp = [AppNoticeListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             [self.appNoticeList removeAllObjects];
             [self.appNoticeList addObjectsFromArray:temp];
-//            if (!_labelCollectionView) {
-//                [self createLableCollectionView];
-//            }else {
-                [_labelCollectionView reloadData];
-//            }
+            [_labelCollectionView reloadData];
+            _labelCollectionView.contentOffset = CGPointMake(0, 0);
             
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
@@ -392,7 +431,6 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     }];
-    
 }
 #pragma mark 网络弹窗红包列表
 
@@ -422,7 +460,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark 网络顶部轮播视图列表
 
 - (void)getAppSlideList{
-
+//网络请求
     [UserLoginTool loginRequestGet:@"getSlideList" parame:nil success:^(id json) {
         
         LWLog(@"%@",json);
@@ -438,13 +476,20 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 AppSlideListModel *model = _appSlideList[i];
                 [_arrURLString addObject:model.pictureUrl];
             }
-           
+            //创建视图
+            if (!self.collectionView) {
+                [self _initCollectionView];
+            }
+//            [self createHeadScrollView];
             
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
+        if (!self.collectionView) {
+            [self _initCollectionView];
+        }
     }];
     
 }
@@ -566,15 +611,20 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
 }
 - (void)createHeadScrollView {
-    _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280))];
-    _headScrollView.delegate = self;
-    if (_arrURLString.count == 1) {
-        _headScrollView.interval = 0.f;
-    }else {
-        _headScrollView.interval = 2.f;
-        
+    if (_headScrollView) {
+        return;
+    } else {
+        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) urlArray:_arrURLString];
+        _headScrollView.delegate = self;
+        if (_arrURLString.count == 1) {
+            _headScrollView.interval = 0.f;
+        }else {
+            _headScrollView.interval = 3.f;
+            
+        }
+    
     }
-    [_headScrollView circleBannerWithURLArray:_arrURLString];
+    
 
 }
 
@@ -665,20 +715,21 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 
 -(void)createHeadView{
-    [self createHeadScrollView];
+    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(440)+40+clearHeight)];
+//    [self createHeadScrollView];
 //    _imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(440)+labelHeight+clearHeight+10)];
 //    _imageV.image=[UIImage imageNamed:@"buy_fukuan_red"];
-//    [self createFourBtnView];
-//    [self createImageVNotice];
-//    [self createLableCollectionView];
-//    [self createClearView];
+    [self createFourBtnView];
+    [self createImageVNotice];
+    [self createLableCollectionView];
+    [self createClearView];
     
 
-//    [_headView addSubview:_headScrollView];
-//    [_headView addSubview:_fourBtnView];
-//    [_headView addSubview:_imageVNotice];
-//    [_headView addSubview:_labelCollectionView];
-//    [_headView addSubview:_clearView];
+    [_headView addSubview:_headScrollView];
+    [_headView addSubview:_fourBtnView];
+    [_headView addSubview:_imageVNotice];
+    [_headView addSubview:_labelCollectionView];
+    [_headView addSubview:_clearView];
 }
 -(void)createLableCollectionView{
 //    if (!_labelCollectionView) {
@@ -779,35 +830,55 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         if (indexPath.section == 0) {
             HomeHeadCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellHead forIndexPath:indexPath ];
 //
-//            [self getAppSlideList];
-//            [_headScrollView removeFromSuperview];
-            [self createHeadScrollView];
-//            [_fourBtnView removeFromSuperview];
-            [self createFourBtnView];
-//            [self.imageVNotice removeFromSuperview];
-            [self createImageVNotice];
-//            [self.labelCollectionView removeFromSuperview];
-            [self createLableCollectionView];
+            if (!_headScrollView) {
+                [self createHeadScrollView];
+            }
+            if (!_fourBtnView) {
+                [self createFourBtnView];
+            }
+            if (!_imageVNotice) {
+                [self createImageVNotice];
+            }
             if (!_labelCollectionView) {
                 [self createLableCollectionView];
-            }else {
-                [_labelCollectionView reloadData];
             }
-            [self getAppNoticeList];
-            [self.clearView removeFromSuperview];
-            [self createClearView];
-            
+            if (!_clearView) {
+                [self createClearView];
+            }
+//            [self getAppSlideList];
+//            [_headScrollView removeFromSuperview];
+//            [self createHeadScrollView];
+//            [_fourBtnView removeFromSuperview];
+//            [self createFourBtnView];
+//            [self.imageVNotice removeFromSuperview];
+//            [self createImageVNotice];
+//            [self.labelCollectionView removeFromSuperview];
+//            [self createLableCollectionView];
+//            if (!_labelCollectionView) {
+//                [self createLableCollectionView];
+//            }else {
+//                [_labelCollectionView reloadData];
+//            }
+//            [self getAppNoticeList];
+//            [self.clearView removeFromSuperview];
+//            [self createClearView];
+//            
             [cell addSubview:_headScrollView];
             [cell addSubview:_fourBtnView];
             [cell addSubview:_imageVNotice];
             [cell addSubview:_labelCollectionView];
             [cell addSubview:_clearView];
-            if (_timer) {
-            }else {
-                _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
-            }
-            //  将定时器添加到主线程
-            [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+//            [self createHeadScrollView];
+
+            
+            
+            [cell addSubview:_headView];
+//            if (_timer) {
+//            }else {
+//                _timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(update:) userInfo:nil repeats:YES];
+//            }
+//            //  将定时器添加到主线程
+//            [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
             cell.selectedBackgroundView = [[UIView alloc] init];
             cell.backgroundColor = [UIColor whiteColor];
             
@@ -1124,6 +1195,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     self.tabBarController.tabBar.hidden =NO;
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 #pragma mark 
@@ -1151,6 +1224,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellHead];
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];

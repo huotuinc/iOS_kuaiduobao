@@ -368,12 +368,12 @@ static NSString * cellDFirst=@"cellDFirst";
 //已经结束
     if (num == 2) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight +3)];
-        
-        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
+
+//        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
             _headScrollView.interval = 0.f;
         _headScrollView.delegate =self;
-        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
-//        
+//
 
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
@@ -434,12 +434,12 @@ static NSString * cellDFirst=@"cellDFirst";
 //正在抽奖
     if (num == 1) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
-        
-        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+                _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
+//        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
         _headScrollView.interval = 0.f;
         _headScrollView.delegate =self;
 
-        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
+//        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
 //        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
 //        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
 //            printf("第%zd张图片\n",index);
@@ -503,11 +503,12 @@ static NSString * cellDFirst=@"cellDFirst";
     if (num == 0) {
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
         
-        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+//        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+                _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
         _headScrollView.interval = 0.f;
         _headScrollView.delegate =self;
 
-        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
+//        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
 
         
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
