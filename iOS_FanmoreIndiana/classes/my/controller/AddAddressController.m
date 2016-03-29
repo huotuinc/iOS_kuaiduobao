@@ -9,7 +9,11 @@
 #import "AddAddressController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 #import "UITableView+CJ.h"
-@interface AddAddressController ()<UITableViewDelegate>
+#import "AreaPickerView.h"
+
+@interface AddAddressController ()<UITableViewDelegate,AreaPickerDelegate>
+
+@property (nonatomic, strong) AreaPickerView *pick;
 
 @end
 
@@ -27,6 +31,9 @@
     
     [self.tableView removeSpaces];
 
+    _pick = [[AreaPickerView alloc] init];
+    _pick.delegate = self;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -139,11 +146,24 @@
     }else if (indexPath.row == 1) {
         [self.personIphone becomeFirstResponder];
     }else if (indexPath.row == 2) {
+        UIWindow * window = [UIApplication sharedApplication].keyWindow;
+        [self.pick showInView:window];
+    }else if (indexPath.row == 3) {
         [self.detailAddress becomeFirstResponder];
     }
     
 }
 
+
+#pragma mark pick 
+
+- (void)pickerDidChaneStatus:(AreaPickerView *)picker {
+    
+}
+
+- (void)pickerViewSelectAreaOfCode:(NSNumber *)code {
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
