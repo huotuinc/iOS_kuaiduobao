@@ -31,7 +31,7 @@
 @property (nonatomic, strong) NSNumber *toAmount;
 @property (nonatomic, strong) NSNumber *firstBuyTime;
 @property (nonatomic, copy) NSString *awardingUserCityName;
-@property (nonatomic, strong) NSNumber *awardingUserIp;
+@property (nonatomic, copy) NSString *awardingUserIp;
 @property (nonatomic, copy) NSString *awardingUserHead;
 @property (nonatomic, strong) NSNumber *areaAmount;
 @property (nonatomic, strong) NSNumber *defaultAmount;
