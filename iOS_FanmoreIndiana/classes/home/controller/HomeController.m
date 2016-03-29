@@ -151,7 +151,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 //    [self createHeadView];
 //    [self createMainCollectionView];
     [self _initCollectionView];
-        [self createLableCollectionView];
+    [self createLableCollectionView];
 
 //    [self ]
 
@@ -780,13 +780,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             HomeHeadCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellHead forIndexPath:indexPath ];
 //
 //            [self getAppSlideList];
-            [_headScrollView removeFromSuperview];
+//            [_headScrollView removeFromSuperview];
             [self createHeadScrollView];
-            [_fourBtnView removeFromSuperview];
+//            [_fourBtnView removeFromSuperview];
             [self createFourBtnView];
-            [self.imageVNotice removeFromSuperview];
+//            [self.imageVNotice removeFromSuperview];
             [self createImageVNotice];
-            [self.labelCollectionView removeFromSuperview];
+//            [self.labelCollectionView removeFromSuperview];
             [self createLableCollectionView];
             if (!_labelCollectionView) {
                 [self createLableCollectionView];
@@ -1151,7 +1151,6 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellHead];
-    
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
     [self setupRefresh];

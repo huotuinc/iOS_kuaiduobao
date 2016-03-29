@@ -237,6 +237,8 @@
 		F29553A31C9147D100D82B67 /* RedDisGetCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F29553A11C9147D100D82B67 /* RedDisGetCView.m */; };
 		F29553A41C9147D100D82B67 /* RedDisGetCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29553A21C9147D100D82B67 /* RedDisGetCView.xib */; };
 		F29553A71C914B7C00D82B67 /* AppRedPactketsDistributeSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F29553A61C914B7C00D82B67 /* AppRedPactketsDistributeSourceModel.m */; };
+		F2977D621CAA14A400DCD74E /* HomeCollectionTopCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2977D601CAA14A400DCD74E /* HomeCollectionTopCView.m */; };
+		F2977D631CAA14A400DCD74E /* HomeCollectionTopCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2977D611CAA14A400DCD74E /* HomeCollectionTopCView.xib */; };
 		F2A1058B1C99432000A5AFA5 /* CircleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A105891C99432000A5AFA5 /* CircleBannerView.m */; };
 		F2B00D9E1C8EC79A001014DE /* RedCountCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B00D9C1C8EC79A001014DE /* RedCountCView.m */; };
 		F2B00D9F1C8EC79A001014DE /* RedCountCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B00D9D1C8EC79A001014DE /* RedCountCView.xib */; };
@@ -787,6 +789,9 @@
 		F29553A21C9147D100D82B67 /* RedDisGetCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedDisGetCView.xib; sourceTree = "<group>"; };
 		F29553A51C914B7C00D82B67 /* AppRedPactketsDistributeSourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppRedPactketsDistributeSourceModel.h; sourceTree = "<group>"; };
 		F29553A61C914B7C00D82B67 /* AppRedPactketsDistributeSourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppRedPactketsDistributeSourceModel.m; sourceTree = "<group>"; };
+		F2977D5F1CAA14A400DCD74E /* HomeCollectionTopCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionTopCView.h; sourceTree = "<group>"; };
+		F2977D601CAA14A400DCD74E /* HomeCollectionTopCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionTopCView.m; sourceTree = "<group>"; };
+		F2977D611CAA14A400DCD74E /* HomeCollectionTopCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionTopCView.xib; sourceTree = "<group>"; };
 		F2A105891C99432000A5AFA5 /* CircleBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleBannerView.m; sourceTree = "<group>"; };
 		F2A1058A1C99432000A5AFA5 /* CircleBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleBannerView.h; sourceTree = "<group>"; };
 		F2B00D9B1C8EC79A001014DE /* RedCountCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedCountCView.h; sourceTree = "<group>"; };
@@ -1293,6 +1298,9 @@
 				F267B9961C96C8F000B169F3 /* HomeSendRedPocketCView.h */,
 				F267B9971C96C8F000B169F3 /* HomeSendRedPocketCView.m */,
 				F267B9981C96C8F000B169F3 /* HomeSendRedPocketCView.xib */,
+				F2977D5F1CAA14A400DCD74E /* HomeCollectionTopCView.h */,
+				F2977D601CAA14A400DCD74E /* HomeCollectionTopCView.m */,
+				F2977D611CAA14A400DCD74E /* HomeCollectionTopCView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2017,6 +2025,7 @@
 				F29553A41C9147D100D82B67 /* RedDisGetCView.xib in Resources */,
 				F267B9951C96C4BD00B169F3 /* HomeGetRedPocketCView.xib in Resources */,
 				6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */,
+				F2977D631CAA14A400DCD74E /* HomeCollectionTopCView.xib in Resources */,
 				F236700A1C7EEB4E008A6576 /* AnnouncedCollectionViewCell.xib in Resources */,
 				F2C426471C88246D00C9CEF0 /* ListNumberHeadCView.xib in Resources */,
 				F2B00D9F1C8EC79A001014DE /* RedCountCView.xib in Resources */,
@@ -2208,6 +2217,7 @@
 				F2F587FB1C7DC667007187B0 /* AppShareOrderDetailModel.m in Sources */,
 				600042B31C746CA400CEDC7A /* PayModel.m in Sources */,
 				F267B9991C96C8F000B169F3 /* HomeSendRedPocketCView.m in Sources */,
+				F2977D621CAA14A400DCD74E /* HomeCollectionTopCView.m in Sources */,
 				60EB31ED1C5764B9006C070B /* ForgetSecondController.m in Sources */,
 				60FFF3101C4E1B8800A93D7E /* UITableView+CJ.m in Sources */,
 				F29553991C91435E00D82B67 /* RedWaitCView.m in Sources */,
