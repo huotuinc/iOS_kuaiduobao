@@ -12,6 +12,8 @@
 
 @interface MallViewController ()
 
+@property (nonatomic, assign) BOOL isFromBar;
+
 @end
 
 @implementation MallViewController
@@ -19,7 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"jz"]];
+    
+    _isFromBar = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dontGotoMall) name:CannelLoginFailure object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(gotoMallSecond) name:GotoMallSecond object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,19 +36,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-//    if (![login isEqualToString:Success]) {
-//        
-//        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
-//        [self presentViewController:nav animated:YES completion:nil];
-//        
-//    }else {
-    
-        [self gotoMall];
+
+    if (_isFromBar) {
         
-//    }
+        [self gotoMall];
+    }
+    
+
 }
 
 - (void)gotoMall {
@@ -55,15 +56,27 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:json[@"resultData"][@"orderRequestUrl"] forKey:WebSit];
             
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:home];
-//            [self presentViewController:nav animated:YES completion:nil];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:home];
+            [self presentViewController:nav animated:YES completion:nil];
             
-            [self.navigationController pushViewController:home animated:YES];
+//            [self.navigationController pushViewController:home animated:YES];
             
         }
     } failure:^(NSError *error) {
         LWLog(@"%@", error);
     }];
+}
+
+- (void)dontGotoMall {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CannelLoginFailure object:nil];
+    
+    self.isFromBar = NO;
+}
+
+- (void)gotoMallSecond {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:GotoMallSecond object:nil];
+    self.isFromBar = YES;
 }
 
 /*

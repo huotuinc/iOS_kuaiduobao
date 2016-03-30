@@ -40,25 +40,11 @@
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-//    if (item.tag == 3) {
-//        
-//        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-//        if (![login isEqualToString:Success]) {
-//            
-//            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
-//            [self presentViewController:nav animated:YES completion:nil];
-//            
-//        }else {
-//            
-//            [self gotoMall];
-//            
-//        }
-//
-////
-//       
-//    }
+    if (item.tag == 3) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:GotoMallSecond object:nil];
+        
+    }
 }
 
 

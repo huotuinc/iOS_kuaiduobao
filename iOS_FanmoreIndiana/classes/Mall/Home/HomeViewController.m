@@ -16,6 +16,7 @@
 #import "payRequsestHandler.h"
 #import "NSDictionary+HuoBanMallSign.h"
 #import "LoginController.h"
+#import <UIBarButtonItem+BlocksKit.h>
 
 @interface HomeViewController()<UIWebViewDelegate,UIActionSheetDelegate,NJKWebViewProgressDelegate>
 
@@ -100,7 +101,7 @@
         _leftOption = [[UIButton alloc] init];
         _leftOption.frame = CGRectMake(0, 0, 25, 25);
         [_leftOption addTarget:self action:@selector(GoToLeft) forControlEvents:UIControlEventTouchUpInside];
-        [_leftOption setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [_leftOption setBackgroundImage:[UIImage imageNamed:@"gb"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftOption];
     }
     return _leftOption;
@@ -109,10 +110,13 @@
 
 - (void)GoToLeft{
     
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
         
     }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:CannelLoginFailure object:nil];
+    
 }
 
 //- (UIButton *)shareBtn{
@@ -271,8 +275,15 @@
     [self.homeBottonWebView layoutIfNeeded];
     
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessAndReloadWeb) name:LoginFromMallNot object:nil];
     
     
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_leftOption];
+    UIImage *image = [UIImage imageNamed:@"gb"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] bk_initWithImage:image style:UIBarButtonItemStylePlain handler:^(id sender) {
+        [self GoToLeft];
+    }];
 }
 
 
@@ -309,6 +320,9 @@
     
     
     self.tabBarController.tabBar.hidden = YES;
+    
+    [self.homeBottonWebView layoutIfNeeded];
+    [self.homeWebView layoutIfNeeded];
 }
 
 
@@ -388,12 +402,11 @@
     }
     if (webView.tag == 100) {
         if ([url rangeOfString:@"/UserCenter/Login.aspx"].location !=  NSNotFound) {
-            
-            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+            LoginController *login = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginController"];
             login.isFromMall = YES;
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
             [self presentViewController:nav animated:YES completion:nil];
+            return NO;
             
         }else if([url rangeOfString:@"AppAlipay.aspx"].location != NSNotFound){
                 self.ServerPayUrl = [url copy];
@@ -711,6 +724,8 @@
 #pragma mark - 如果没登录，登录成功后的操作 
 
 - (void)loginSuccessAndReloadWeb {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LoginFromMallNot object:nil];
     
     [UserLoginTool loginRequestGet:@"getMallLoginUrl" parame:nil success:^(id json) {
         LWLog(@"%@", json);

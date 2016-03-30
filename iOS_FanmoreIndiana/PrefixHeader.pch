@@ -135,6 +135,7 @@
 #define HuoBanMallBuyApp_Merchant_Id @"6987" //商户号
 #define WebSit @"WebSit" // 商城支付回调地址
 #define LoginFromMallNot @"LoginFromMallNot"  //商城登录成功后发送的通知
+#define GotoMallSecond @"GotoMallSecond" //bar点击商城载入
 
 
 #ifdef DEBUG
