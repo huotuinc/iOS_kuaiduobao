@@ -10,16 +10,19 @@
 
 @interface AreaPickerView ()<UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (strong, nonatomic) UIPickerView *locatePicker;
-
+//省份数组
 @property (nonatomic, strong) NSArray *provinces;
 
+//城市数组
 @property (nonatomic, strong) NSArray *cities;
 
+//地区数组
 @property (nonatomic, strong) NSMutableArray *areas;
 
+//区域ID数组
 @property (nonatomic, strong) NSMutableArray *codeArray;
 
+//区域ID
 @property (nonatomic, strong) NSNumber *areaID;
 
 @end
@@ -33,6 +36,7 @@
     return _locate;
 }
 
+#pragma mark - 初始化
 - (id)initWithDelegate:(id<AreaPickerDelegate>)delegate {
     self = [super init];
     
@@ -42,11 +46,13 @@
         CGFloat height = CGRectGetHeight([UIScreen mainScreen].bounds);
         self.frame = CGRectMake(0, 0, width, height);
         
-        self.locatePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, height - 250, width, 250)];
-        self.locatePicker.backgroundColor = [UIColor whiteColor];
-        [self addSubview:_locatePicker];
+        UIPickerView *locatePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, height - 216, width, 216)];
+        locatePicker.backgroundColor = [UIColor whiteColor];
+        locatePicker.dataSource = self;
+        locatePicker.delegate = self;
+        [self addSubview:locatePicker];
         
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, height - CGRectGetMinY(_locatePicker.frame) - 40, width, 40)];
+        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, height - CGRectGetHeight(locatePicker.frame) - 40, width, 40)];
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"   取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelPicker)];
         UIBarButtonItem *centerSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
         UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定   " style:UIBarButtonItemStylePlain target:self action:@selector(doneClick)];
@@ -55,18 +61,11 @@
         
         [self addSubview:toolbar];
         
-        
-        self.delegate = delegate;
-        self.locatePicker.dataSource = self;
-        self.locatePicker.delegate = self;
-        
+        //加载数据
+        self.provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"areaCode.plist" ofType:nil]];
+        self.cities = [[self.provinces objectAtIndex:0] objectForKey:@"city"];
         self.areas = [NSMutableArray array];
         self.codeArray = [NSMutableArray array];
-        //加载数据
-        
-        self.provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"areaCode.plist" ofType:nil]];
-        
-        self.cities = [[self.provinces objectAtIndex:0] objectForKey:@"city"];
         
         NSDictionary *areaDic = [[self.cities objectAtIndex:0] objectForKey:@"area"];
         
@@ -76,20 +75,20 @@
         }
         
         self.locate.province = [[self.provinces objectAtIndex:0] objectForKey:@"name"];
-        
         self.locate.city = [[self.cities objectAtIndex:0] objectForKey:@"name"];
-        
         if (self.areas.count > 0) {
             self.locate.area = [self.areas objectAtIndex:0];
             self.areaID = [self.codeArray objectAtIndex:0];
         } else {
             self.locate.area = @"";
         }
+        //代理
+        self.delegate = delegate;
     }
     return self;
 }
 
-#pragma mark - PickerView lifecycle
+#pragma mark - pickerView代理
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 3;
 }
@@ -140,18 +139,12 @@
             [self.codeArray removeAllObjects];
             
             self.cities = [[self.provinces objectAtIndex:row] objectForKey:@"city"];
-            [self.locatePicker selectRow:0 inComponent:1 animated:YES];
-            [self.locatePicker reloadComponent:1];
-            
             NSDictionary *areaDic = [[self.cities objectAtIndex:0] objectForKey:@"area"];
-            
             for (NSDictionary *nameDic in areaDic) {
                 [self.areas addObject:nameDic[@"name"]];
                 [self.codeArray addObject:nameDic[@"id"]];
             }
-            [self.locatePicker selectRow:0 inComponent:2 animated:YES];
-            [self.locatePicker reloadComponent:2];
-            
+
             self.locate.province = [[self.provinces objectAtIndex:row] objectForKey:@"name"];
             self.locate.city = [[self.cities objectAtIndex:0] objectForKey:@"name"];
             
@@ -161,6 +154,13 @@
             } else {
                 self.locate.area = @"";
             }
+            
+            [pickerView reloadComponent:1];
+            [pickerView reloadComponent:2];
+
+            [pickerView selectRow:0 inComponent:1 animated:YES];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+            
             break;
         }
         case 1:
@@ -174,9 +174,6 @@
                 [self.codeArray addObject:nameDic[@"id"]];
             }
             
-            [self.locatePicker selectRow:0 inComponent:2 animated:YES];
-            [self.locatePicker reloadComponent:2];
-            
             self.locate.city = [[self.cities objectAtIndex:row] objectForKey:@"name"];
             if ([self.areas count] > 0) {
                 self.areaID = [self.codeArray objectAtIndex:0];
@@ -184,6 +181,10 @@
             } else {
                 self.locate.area = @"";
             }
+            
+            [pickerView reloadComponent:2];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+  
             break;
         }
         case 2:

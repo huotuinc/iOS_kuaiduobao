@@ -31,8 +31,8 @@
     
     [self.tableView removeSpaces];
 
-    _pick = [[AreaPickerView alloc] init];
-    _pick.delegate = self;
+    _pick = [[AreaPickerView alloc] initWithDelegate:self];
+   
     
 }
 

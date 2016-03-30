@@ -29,6 +29,9 @@
 		600042AE1C744D8500CEDC7A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600042AD1C744D8500CEDC7A /* UIKit.framework */; };
 		600042B01C744D8E00CEDC7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600042AF1C744D8E00CEDC7A /* Foundation.framework */; };
 		600042B31C746CA400CEDC7A /* PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 600042B21C746CA400CEDC7A /* PayModel.m */; };
+		600B3F5A1CABC0D900A8D393 /* areaCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 600B3F551CABC0D900A8D393 /* areaCode.plist */; };
+		600B3F5B1CABC0D900A8D393 /* AreaLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 600B3F571CABC0D900A8D393 /* AreaLocation.m */; };
+		600B3F5C1CABC0D900A8D393 /* AreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 600B3F591CABC0D900A8D393 /* AreaPickerView.m */; };
 		600DA59F1C75C7EC007DAB27 /* RedPacketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600DA59E1C75C7EC007DAB27 /* RedPacketController.m */; };
 		600EF8951C818CDE005DB7F2 /* NewShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600EF8941C818CDE005DB7F2 /* NewShareController.m */; };
 		6014A7171C7D53A5006B2900 /* GoAheadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7151C7D53A5006B2900 /* GoAheadCell.m */; };
@@ -116,9 +119,6 @@
 		60C78D431C84231100AED37E /* WinningDeliveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C78D421C84231100AED37E /* WinningDeliveryModel.m */; };
 		60CD60B31CA8FC8A008F1AAB /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60CD60A61CA8FC8A008F1AAB /* libWeiboSDK.a */; };
 		60CD60B41CA8FC8A008F1AAB /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60CD60B01CA8FC8A008F1AAB /* WeiboSDK.bundle */; };
-		60CE89CA1CAA2A9C00F35420 /* areaCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60CE89C51CAA2A9C00F35420 /* areaCode.plist */; };
-		60CE89CB1CAA2A9C00F35420 /* AreaLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CE89C71CAA2A9C00F35420 /* AreaLocation.m */; };
-		60CE89CC1CAA2A9C00F35420 /* AreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CE89C91CAA2A9C00F35420 /* AreaPickerView.m */; };
 		60DD429F1C43A8F90041572F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD429E1C43A8F90041572F /* main.m */; };
 		60DD42A21C43A8F90041572F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD42A11C43A8F90041572F /* AppDelegate.m */; };
 		60DD42A81C43A8F90041572F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DD42A61C43A8F90041572F /* Main.storyboard */; };
@@ -413,6 +413,11 @@
 		600042AF1C744D8E00CEDC7A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		600042B11C746CA400CEDC7A /* PayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayModel.h; path = ../../login/model/PayModel.h; sourceTree = "<group>"; };
 		600042B21C746CA400CEDC7A /* PayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayModel.m; path = ../../login/model/PayModel.m; sourceTree = "<group>"; };
+		600B3F551CABC0D900A8D393 /* areaCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = areaCode.plist; sourceTree = "<group>"; };
+		600B3F561CABC0D900A8D393 /* AreaLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaLocation.h; sourceTree = "<group>"; };
+		600B3F571CABC0D900A8D393 /* AreaLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaLocation.m; sourceTree = "<group>"; };
+		600B3F581CABC0D900A8D393 /* AreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaPickerView.h; sourceTree = "<group>"; };
+		600B3F591CABC0D900A8D393 /* AreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaPickerView.m; sourceTree = "<group>"; };
 		600DA59D1C75C7EC007DAB27 /* RedPacketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPacketController.h; sourceTree = "<group>"; };
 		600DA59E1C75C7EC007DAB27 /* RedPacketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedPacketController.m; sourceTree = "<group>"; };
 		600EF8931C818CDE005DB7F2 /* NewShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewShareController.h; sourceTree = "<group>"; };
@@ -578,11 +583,6 @@
 		60CD60B01CA8FC8A008F1AAB /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		60CD60B11CA8FC8A008F1AAB /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		60CD60B21CA8FC8A008F1AAB /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
-		60CE89C51CAA2A9C00F35420 /* areaCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = areaCode.plist; sourceTree = "<group>"; };
-		60CE89C61CAA2A9C00F35420 /* AreaLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaLocation.h; sourceTree = "<group>"; };
-		60CE89C71CAA2A9C00F35420 /* AreaLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaLocation.m; sourceTree = "<group>"; };
-		60CE89C81CAA2A9C00F35420 /* AreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaPickerView.h; sourceTree = "<group>"; };
-		60CE89C91CAA2A9C00F35420 /* AreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaPickerView.m; sourceTree = "<group>"; };
 		60DD429A1C43A8F90041572F /* iOS_FanmoreIndiana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FanmoreIndiana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DD429E1C43A8F90041572F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60DD42A01C43A8F90041572F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1044,6 +1044,18 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		600B3F541CABC0D900A8D393 /* AreaPickerView-master */ = {
+			isa = PBXGroup;
+			children = (
+				600B3F551CABC0D900A8D393 /* areaCode.plist */,
+				600B3F561CABC0D900A8D393 /* AreaLocation.h */,
+				600B3F571CABC0D900A8D393 /* AreaLocation.m */,
+				600B3F581CABC0D900A8D393 /* AreaPickerView.h */,
+				600B3F591CABC0D900A8D393 /* AreaPickerView.m */,
+			);
+			path = "AreaPickerView-master";
+			sourceTree = "<group>";
+		};
 		6029AB161C4DD85300198FE3 /* other */ = {
 			isa = PBXGroup;
 			children = (
@@ -1391,7 +1403,7 @@
 		60B5A3691C520A5500E4C7BB /* my */ = {
 			isa = PBXGroup;
 			children = (
-				60CE89C41CAA2A9C00F35420 /* AreaPickerView-master */,
+				600B3F541CABC0D900A8D393 /* AreaPickerView-master */,
 				60B5A36A1C520A5500E4C7BB /* controller */,
 				60B5A36B1C520A5500E4C7BB /* model */,
 				60B5A36C1C520A5500E4C7BB /* view */,
@@ -1574,18 +1586,6 @@
 				60CD60B21CA8FC8A008F1AAB /* WeiboUser.h */,
 			);
 			path = SinaWeiboSDK;
-			sourceTree = "<group>";
-		};
-		60CE89C41CAA2A9C00F35420 /* AreaPickerView-master */ = {
-			isa = PBXGroup;
-			children = (
-				60CE89C51CAA2A9C00F35420 /* areaCode.plist */,
-				60CE89C61CAA2A9C00F35420 /* AreaLocation.h */,
-				60CE89C71CAA2A9C00F35420 /* AreaLocation.m */,
-				60CE89C81CAA2A9C00F35420 /* AreaPickerView.h */,
-				60CE89C91CAA2A9C00F35420 /* AreaPickerView.m */,
-			);
-			path = "AreaPickerView-master";
 			sourceTree = "<group>";
 		};
 		60DD42911C43A8F90041572F = {
@@ -2017,7 +2017,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60CE89CA1CAA2A9C00F35420 /* areaCode.plist in Resources */,
+				600B3F5A1CABC0D900A8D393 /* areaCode.plist in Resources */,
 				F2C4264C1C88277E00C9CEF0 /* ListNumberTopTableViewCell.xib in Resources */,
 				F23DE3D61C522E34002AB5FC /* DetailProgressCView.xib in Resources */,
 				6014A7181C7D53A5006B2900 /* GoAheadCell.xib in Resources */,
@@ -2183,7 +2183,7 @@
 				60C109A01C96AFC60025CE94 /* MallUser.m in Sources */,
 				F23BEFE91C5F279800E87042 /* DetailPastTableViewCell.m in Sources */,
 				F2F587F81C7DA14A007187B0 /* DetailShareNextViewController.m in Sources */,
-				60CE89CC1CAA2A9C00F35420 /* AreaPickerView.m in Sources */,
+				600B3F5C1CABC0D900A8D393 /* AreaPickerView.m in Sources */,
 				F23DE3D31C522E34002AB5FC /* DetailNextTableViewCell.m in Sources */,
 				60F154A01C76A8F90043ED3F /* ChangeNickNameController.m in Sources */,
 				F2B00D9E1C8EC79A001014DE /* RedCountCView.m in Sources */,
@@ -2201,7 +2201,7 @@
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */,
 				F29553A31C9147D100D82B67 /* RedDisGetCView.m in Sources */,
-				60CE89CB1CAA2A9C00F35420 /* AreaLocation.m in Sources */,
+				600B3F5B1CABC0D900A8D393 /* AreaLocation.m in Sources */,
 				F2F587C61C7D49CB007187B0 /* PayATableViewCell.m in Sources */,
 				60C78D431C84231100AED37E /* WinningDeliveryModel.m in Sources */,
 				F2F587EF1C7D9BA6007187B0 /* DetailShareNextContentTableViewCell.m in Sources */,

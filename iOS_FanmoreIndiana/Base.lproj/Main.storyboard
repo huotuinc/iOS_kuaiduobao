@@ -2977,7 +2977,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jnS-U6-W1L">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jnS-U6-W1L">
                                 <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2990,9 +2990,15 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jnS-U6-W1L" secondAttribute="trailing" id="9zW-fI-7eI"/>
                             <constraint firstItem="jnS-U6-W1L" firstAttribute="leading" secondItem="oCN-NQ-Azi" secondAttribute="leading" id="hV5-RD-q7T"/>
+                            <constraint firstItem="jnS-U6-W1L" firstAttribute="top" secondItem="oCN-NQ-Azi" secondAttribute="top" constant="64" id="lbU-mz-5ho"/>
                             <constraint firstItem="jnS-U6-W1L" firstAttribute="top" secondItem="QKo-JP-G5p" secondAttribute="bottom" id="mrF-4H-8mE"/>
                             <constraint firstItem="Qad-ef-RBz" firstAttribute="top" secondItem="jnS-U6-W1L" secondAttribute="bottom" id="usY-mj-LwE"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mrF-4H-8mE"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
