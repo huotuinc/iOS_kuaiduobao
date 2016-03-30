@@ -168,7 +168,7 @@ static NSString *cellDNimageV = @"cellDNimageV";
         return cell;
     }else{
         DetailShareNextImageVTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellDNimageV forIndexPath:indexPath];
-        if (indexPath.row != 5) {
+        if (indexPath.row != _shareModel.pictureUrls.count + 1) {
             cell.imageVLine.hidden =YES;
         }
         [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:_shareModel.pictureUrls[indexPath.row - 2]] placeholderImage:[UIImage imageNamed:@"mrtx"]];
@@ -178,7 +178,7 @@ static NSString *cellDNimageV = @"cellDNimageV";
    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return 2 + _shareModel.pictureUrls.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
