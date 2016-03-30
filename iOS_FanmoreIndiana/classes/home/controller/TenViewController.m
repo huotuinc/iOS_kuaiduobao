@@ -193,11 +193,11 @@ static NSString *cellTenMain=@"cellTenMain";
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
         }
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
         
         
     } withFileKey:nil];

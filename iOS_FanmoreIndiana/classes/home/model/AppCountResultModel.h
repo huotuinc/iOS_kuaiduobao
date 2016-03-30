@@ -12,8 +12,8 @@
 
 @property (nonatomic, copy) NSString *issueNo;
 @property (nonatomic, strong) NSNumber *luckNumber;
-@property (nonatomic, strong) NSNumber *numberA;
-@property (nonatomic, strong) NSNumber *numberB;
+@property (nonatomic, copy) NSString *numberA;
+@property (nonatomic, copy) NSString *numberB;
 @property (nonatomic, strong) NSArray *userNumbers;
 
 
