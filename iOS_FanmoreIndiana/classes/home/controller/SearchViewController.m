@@ -178,8 +178,7 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TenTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellSearch forIndexPath:indexPath];
-    AppGoodsListModel *model=[[AppGoodsListModel alloc]init];
-    model=_searchList[indexPath.row];
+    AppGoodsListModel *model=_searchList[indexPath.row];    
     cell.labelTitle.text=model.title;
     
     NSMutableAttributedString *attStringA = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"总需 %ld",(long)[model.toAmount integerValue]]];

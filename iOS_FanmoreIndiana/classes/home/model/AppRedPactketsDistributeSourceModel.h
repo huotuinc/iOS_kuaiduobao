@@ -17,6 +17,9 @@
 @property (nonatomic) int endTime;
 
 
+
+
+
 + (instancetype)timeModelWithtime:(int)time;
 
 - (void)WaitCountDown;
