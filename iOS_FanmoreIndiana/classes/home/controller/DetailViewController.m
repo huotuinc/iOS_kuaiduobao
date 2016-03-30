@@ -207,11 +207,11 @@ static NSString * cellDFirst=@"cellDFirst";
 
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
         } else {
-            [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        [SVProgressHUD showSuccessWithStatus:@"加入购物车失败"];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
         
         
     } withFileKey:nil];
@@ -388,7 +388,7 @@ static NSString * cellDFirst=@"cellDFirst";
         _winnerView.labelIDA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserId];
         _winnerView.labelTermA.text=[NSString stringWithFormat:@"%@",_detailModel.issueId];
         _winnerView.labelAttendA.text=[NSString stringWithFormat:@"%@",_detailModel.awardingUserBuyCount];
-        _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yy-MM-dd HH:mm:ss"];
+        _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
         [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead] placeholderImage:[UIImage imageNamed:@"mrtx"]];
         
@@ -579,13 +579,13 @@ static NSString * cellDFirst=@"cellDFirst";
         [_bottomView.buttonGo bk_whenTapped:^{
         NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
         if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
+#pragma mark 加入清单 已登陆
             _goImmediately = YES;
             self.issueId = _detailModel.issueId;
             [self joinShoppingCart];
 
         }else{
-#pragma mark 加入购物车 未登陆
+#pragma mark 加入清单 未登陆
             _goImmediately = YES;
 
             if (_joinModel == nil) {
@@ -601,7 +601,7 @@ static NSString * cellDFirst=@"cellDFirst";
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
             } else {
-                [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+                [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
             }
 
         }
@@ -635,7 +635,7 @@ static NSString * cellDFirst=@"cellDFirst";
                 if (!_isExist) {
                     _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount + 1];
                 }
-                [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
+                [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
             }
 //            [self createSelectView];
         }];

@@ -73,7 +73,7 @@
 //            restAmount =[_joinModel.toAmount integerValue]-[_joinModel.buyAmount integerValue] - [_joinModel.userBuyAmount integerValue];
 //            cModel.remainAmount = [NSNumber numberWithInteger:restAmount];
             [localArray addObject:cModel];
-            isExist = NO;
+//            isExist = NO;
         }
     }
     NSMutableData *data = [[NSMutableData alloc] init];

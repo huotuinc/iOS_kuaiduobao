@@ -8,7 +8,14 @@
 
 #import "AppRedPactketsDistributeSourceModel.h"
 
-@implementation AppRedPactketsDistributeSourceModel
+@implementation AppRedPactketsDistributeSourceModel{
+    NSString *AhourString;
+    NSString *AminString;
+    NSString *AsecondString;
+    NSString *BhourString;
+    NSString *BminString;
+    NSString *BsecondString;
+}
 
 + (instancetype)timeModelWithtime:(int)time {
     
@@ -37,9 +44,9 @@
     NSUInteger Asecond = (NSUInteger)(_startTime % 60);
     
     
-    NSString *AhourString=[NSString string];
-    NSString *AminString=[NSString string];
-    NSString *AsecondString=[NSString string];
+//    NSString *AhourString=[[NSString alloc] init];
+//    NSString *AminString=[NSString string];
+//    NSString *AsecondString=[NSString string];
 
     if (Ahour < 10) {
         AhourString =[NSString stringWithFormat:@"0%ld",(long)Ahour];
@@ -80,9 +87,9 @@
     NSUInteger Bhour = (NSUInteger)(_endTime / 3600);
     NSUInteger Bmin  = (NSUInteger)(_endTime % 3600 / 60);
     NSUInteger Bsecond = (NSUInteger)(_endTime % 60);
-    NSString *BhourString=[NSString string];
-    NSString *BminString=[NSString string];
-    NSString *BsecondString=[NSString string];
+//    NSString *BhourString=[NSString string];
+//    NSString *BminString=[NSString string];
+//    NSString *BsecondString=[NSString string];
 
     if (Bhour < 10) {
         BhourString =[NSString stringWithFormat:@"0%ld",(long)Bhour];

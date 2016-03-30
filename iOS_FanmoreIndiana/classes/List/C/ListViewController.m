@@ -55,6 +55,7 @@ static NSInteger selectAllCount = 1;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     [self.navigationItem changeNavgationBarTitle:@"清单"];
+    self.tabBarController.tabBar.hidden = NO;
     [self createBarButtonItem];
 
 //    //每次进入购物车的时候把选择的置空

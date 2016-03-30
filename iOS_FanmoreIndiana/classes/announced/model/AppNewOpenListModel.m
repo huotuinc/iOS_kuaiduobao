@@ -37,7 +37,7 @@
         NSUInteger second = (NSUInteger)(_toAwardingTime/100%60);
         NSUInteger msecond =
         (NSUInteger)(_toAwardingTime%100);
-        NSString *minString=[NSString string];
+        NSString *minString=[[NSString alloc] init];
         NSString *secondString=[NSString string];
         NSString *msecondString=[NSString string];
         
