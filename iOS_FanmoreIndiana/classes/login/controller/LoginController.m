@@ -182,6 +182,12 @@
     AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"appMyAddressListModel"]];
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+    
+    if (self.isFromMall) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:LoginFromMallNot object:nil];
+    }
+    
+    
 }
 #pragma mark 未登录提交购物车
 - (void)postDataToServe {

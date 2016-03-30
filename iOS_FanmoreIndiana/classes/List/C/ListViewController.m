@@ -298,6 +298,7 @@ static NSInteger selectAllCount = 1;
     
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
+    login.isFromMall = NO;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
     login.logDelegate = self;
 //    login.cartsString = AllCartsString;

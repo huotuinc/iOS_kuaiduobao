@@ -648,6 +648,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     LoginController *login = [story instantiateViewControllerWithIdentifier:@"LoginController"];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
     login.logDelegate = self;
+    login.isFromMall = NO;
     [self presentViewController:nav animated:YES completion:nil];
     
     
