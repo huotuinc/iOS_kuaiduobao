@@ -282,13 +282,13 @@ static NSString *winningIdentify = @"winningIdentify";
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     AdressModel *address = [NSKeyedUnarchiver unarchiveObjectWithFile:fileNameAdd];
-    
+    NSArray *array = [address.cityName componentsSeparatedByString:@"|"];
     if (address.receiver.length != 0) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"deliveryId"] = self.selectModel.deliveryId;
         dic[@"receiver"] = address.receiver;
         dic[@"mobile"] = address.mobile;
-        dic[@"details"] = address.details;
+        dic[@"details"] = [NSString stringWithFormat:@"%@%@%@%@", array[0], array[1], array[2], address.details];
         
         [UserLoginTool loginRequestGet:@"addLotteryReceiverInfo" parame:dic success:^(id json) {
             LWLog(@"%@",json);

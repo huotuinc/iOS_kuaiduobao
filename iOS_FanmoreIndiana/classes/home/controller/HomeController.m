@@ -487,8 +487,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
+        [SVProgressHUD dismiss];
     }];
-//    [SVProgressHUD dismiss];
     [_collectionView.mj_header endRefreshing];
 
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];

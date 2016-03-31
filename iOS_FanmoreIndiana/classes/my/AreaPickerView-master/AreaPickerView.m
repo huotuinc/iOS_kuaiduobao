@@ -25,6 +25,8 @@
 //区域ID
 @property (nonatomic, strong) NSNumber *areaID;
 
+@property (nonatomic, strong) NSString *cityName;
+
 @end
 
 @implementation AreaPickerView
@@ -219,7 +221,7 @@
 #pragma mark - 确定
 - (void)doneClick {
     if ([self.delegate respondsToSelector:@selector(pickerViewSelectAreaOfCode:)]) {
-        [self.delegate pickerViewSelectAreaOfCode:_areaID];
+        [self.delegate pickerViewSelectAreaOfCode:self.locate];
     }
     [self cancelPicker];
 }

@@ -17,7 +17,7 @@
 
 - (void)pickerDidChaneStatus:(AreaPickerView *)picker;
 
-- (void)pickerViewSelectAreaOfCode:(NSNumber *)code;
+- (void)pickerViewSelectAreaOfCode:(AreaLocation *)locate;
 
 @end
 

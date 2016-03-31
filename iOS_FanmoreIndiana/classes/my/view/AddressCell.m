@@ -25,12 +25,16 @@
     self.nema.text = model.receiver;
     self.phone.text = model.mobile;
     if (model.defaultAddress) {
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"[默认]%@",model.details]];
+        
+        NSArray *array = [model.cityName componentsSeparatedByString:@"|"];
+        
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @"[默认]%@%@%@%@",array[0],array[1],array[2],model.details]];
         [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, 4)];
         self.address.attributedText = str;
 
     }else {
-        self.address.text = model.details;
+        NSArray *array = [model.cityName componentsSeparatedByString:@"|"];
+        self.address.text = [NSString stringWithFormat:@"%@%@%@%@", array[0], array[1], array[2], model.details];
     }
 }
 

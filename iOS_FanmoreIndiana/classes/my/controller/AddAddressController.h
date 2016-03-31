@@ -12,6 +12,7 @@
 @interface AddAddressController : UITableViewController
 @property (weak, nonatomic) IBOutlet UITextField *personName;
 @property (weak, nonatomic) IBOutlet UITextField *personIphone;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UITextView *detailAddress;
 @property (weak, nonatomic) IBOutlet UISwitch *defaultAddress;
 
@@ -19,5 +20,7 @@
 @property (nonatomic, assign) NSInteger temp;
 
 @property (nonatomic, strong) AdressModel *model;
+
+@property (nonatomic, strong) NSString *cityName;
 
 @end
