@@ -261,7 +261,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
     UIApplication *app = [UIApplication sharedApplication];
     if (app.applicationIconBadgeNumber != 0) {
-        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi_red"]forState:UIControlStateNormal];
+        [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi_r"]forState:UIControlStateNormal];
     } else {
         [buttonR setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     }

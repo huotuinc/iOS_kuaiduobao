@@ -50,7 +50,7 @@
         self.personName.text = _model.receiver;
         self.personIphone.text = _model.mobile;
         self.detailAddress.text = _model.details;
-        NSArray *array = [_model.cityName componentsSeparatedByString:@"|"];
+        NSArray *array = [_model.cityName componentsSeparatedByString:@"&"];
         self.cityLabel.text = [NSString stringWithFormat:@"%@ %@ %@", array[0], array[1], array[2]];
         
         self.defaultAddress.on = _model.defaultAddress;
@@ -192,7 +192,7 @@
 //    [self.detailAddressStr stringByAppendingString:locate.city];
 //    [self.detailAddressStr stringByAppendingString:locate.area];
     
-    self.cityName = [NSString stringWithFormat:@"%@|%@|%@", locate.province, locate.city, locate.area];
+    self.cityName = [NSString stringWithFormat:@"%@&%@&%@", locate.province, locate.city, locate.area];
     
 }
 

@@ -120,7 +120,7 @@
     
     UIApplication *app = [UIApplication sharedApplication];
     if (app.applicationIconBadgeNumber) {
-        [_message setBackgroundImage:[UIImage imageNamed:@"xiaoxi_red"]forState:UIControlStateNormal];
+        [_message setBackgroundImage:[UIImage imageNamed:@"xiaoxi_r"]forState:UIControlStateNormal];
     } else {
         [_message setBackgroundImage:[UIImage imageNamed:@"xiaoxi"]forState:UIControlStateNormal];
     }

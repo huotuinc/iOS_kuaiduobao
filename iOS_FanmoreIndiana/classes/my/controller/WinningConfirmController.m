@@ -376,7 +376,7 @@
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     AdressModel *address = [NSKeyedUnarchiver unarchiveObjectWithFile:fileNameAdd];
-    NSArray *array = [address.cityName componentsSeparatedByString:@"|"];
+    NSArray *array = [address.cityName componentsSeparatedByString:@"&"];
     if (address != nil) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"deliveryId"] = self.winningModel.deliveryId;
