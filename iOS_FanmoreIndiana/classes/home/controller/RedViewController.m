@@ -349,12 +349,13 @@ static NSInteger clickCount = 0; //点击次数
     NSInteger E = _redRestNumber / 10    % 10;
     NSInteger F = _redRestNumber / 1     % 10;
     
-    _countView.labelA.text = [NSString stringWithFormat:@"%ld",A];
-    _countView.labelB.text = [NSString stringWithFormat:@"%ld",B];
-    _countView.labelC.text = [NSString stringWithFormat:@"%ld",C];
-    _countView.labelD.text = [NSString stringWithFormat:@"%ld",D];
-    _countView.labelE.text = [NSString stringWithFormat:@"%ld",E];
-    _countView.labelF.text = [NSString stringWithFormat:@"%ld",F];
+    _countView.labelA.text = [[NSString alloc] initWithFormat:@"%ld",A];
+    _countView.labelB.text = [[NSString alloc] initWithFormat:@"%ld",B];
+    _countView.labelC.text = [[NSString alloc] initWithFormat:@"%ld",C];
+    _countView.labelD.text = [[NSString alloc] initWithFormat:@"%ld",D];
+    _countView.labelE.text = [[NSString alloc] initWithFormat:@"%ld",E];
+    _countView.labelF.text = [[NSString alloc] initWithFormat:@"%ld",F];
+
 
 }
 //遍历找出是否获得新的红包
