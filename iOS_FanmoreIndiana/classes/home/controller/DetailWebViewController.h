@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//详情 图文详情
 @interface DetailWebViewController : UIViewController
 
 @property (nonatomic, copy) NSString * webURL;

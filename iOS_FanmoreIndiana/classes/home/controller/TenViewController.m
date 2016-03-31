@@ -11,7 +11,7 @@
 #import "AppGoodsListModel.h"
 #import <UIImageView+WebCache.h>
 #import "DetailViewController.h"
-
+#import "ArchiveLocalData.h"
 static NSString *cellTenMain=@"cellTenMain";
 
 @interface TenViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -44,6 +44,8 @@ static NSString *cellTenMain=@"cellTenMain";
     }
     self.view.backgroundColor=[UIColor whiteColor];
     [self createBarButtonItem];
+    [self getAppGoodsList];
+
 }
 
 - (void)viewDidLoad {
@@ -60,52 +62,25 @@ static NSString *cellTenMain=@"cellTenMain";
         _tenAPI = @"getGoodsListByOtherCategory";
     }
     _appGoodsList=[NSMutableArray array];
-    [self getAppGoodsList];
+    [self createTableView];
 }
 - (void)createBarButtonItem{
-//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-//    [buttonL bk_whenTapped:^{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-//    self.navigationItem.leftBarButtonItem=bbiL;
+
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
 - (void)setupRefresh
 {
-    
-    
+
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getAppGoodsList)];
     _tableView.mj_header = headRe;
-    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
-    //#warning 自动刷新(一进入程序就下拉刷新)
-    //    [self.tableView headerBeginRefreshing];
-    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
-    //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
-    //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
-    
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     
     MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
     _tableView.mj_footer = Footer;
-    
-    //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
-    
-    
-}
-
--(void)clickLightButton{
-    [self.navigationController popViewControllerAnimated:YES];
-}
--(void)clickRightButton{
 
 }
+
 //1 10元专区进去 2 全部进入(有分页参数) 3商品分类(pid)进入 4其他进入(有分页参数)
-
 #pragma mark 网络请求专区商品列表
 /**
  *  下拉刷新
@@ -117,15 +92,11 @@ static NSString *cellTenMain=@"cellTenMain";
         if (_whichAPI == 3) {
             dic[@"categoryId"] = self.pid;
         }
-        
     }else {
         dic[@"lastSort"] =@0;
     }
-    
     [UserLoginTool loginRequestGet:_tenAPI parame:dic success:^(id json) {
-        
         LWLog(@"%@",json);
-        
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             LWLog(@"%@",json[@"resultDescription"]);
@@ -133,11 +104,8 @@ static NSString *cellTenMain=@"cellTenMain";
             self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
-            if (!_tableView) {
-                [self createTableView];
-            }else {
-                [_tableView reloadData];
-            }
+            [_tableView reloadData];
+
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -159,7 +127,6 @@ static NSString *cellTenMain=@"cellTenMain";
     }else {
         dic[@"lastSort"] =self.lastSort;
     }
-    
     [UserLoginTool loginRequestGet:_tenAPI parame:dic success:^(id json) {
         
         LWLog(@"%@",json);
@@ -167,9 +134,7 @@ static NSString *cellTenMain=@"cellTenMain";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
             [self.appGoodsList addObjectsFromArray:temp];
-            
             [_tableView reloadData];
         }
         [_tableView.mj_footer endRefreshing];
@@ -181,7 +146,6 @@ static NSString *cellTenMain=@"cellTenMain";
 }
 
 #pragma mark  网络加入购物车
-
 -(void)joinShoppingCart {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"issueId"] = self.issueId;
@@ -194,15 +158,10 @@ static NSString *cellTenMain=@"cellTenMain";
             LWLog(@"%@",json[@"resultDescription"]);
         }
         [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
-        
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
         [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
-        
-        
     } withFileKey:nil];
-    
-    
 }
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
@@ -213,7 +172,6 @@ static NSString *cellTenMain=@"cellTenMain";
     if (_whichAPI == 1 || _whichAPI == 3) {
     }else {
         [self setupRefresh];
-
     }
 }
 
@@ -251,12 +209,10 @@ static NSString *cellTenMain=@"cellTenMain";
             [self joinShoppingCart];
         }else{
 #pragma mark 加入购物车 未登陆
-            [SVProgressHUD showInfoWithStatus:@"未登录状态购买商品代码编写中"];
-            
+            [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:GoodM];
+            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         }
     }];
-
-    
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
     

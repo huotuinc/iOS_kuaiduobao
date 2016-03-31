@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//首页
 @interface HomeController : UIViewController
 
 @property (nonatomic, assign) NSNumber *type;

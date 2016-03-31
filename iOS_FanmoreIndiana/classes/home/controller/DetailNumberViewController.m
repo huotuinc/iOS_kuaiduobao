@@ -39,20 +39,11 @@ static NSString *cellDNumbers=@"cellDNumbers";
     [self createTableView];
 }
 - (void)createBarButtonItem{
-//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-//    [buttonL bk_whenTapped:^{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-//    self.navigationItem.leftBarButtonItem=bbiL;
+
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
--(void)clickLightButton{
-    [self.navigationController popViewControllerAnimated:YES];
 
-}
 //中奖号码
 -(void)createHeadView{
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailNumberHeadCView" owner:nil options:nil];
@@ -60,8 +51,8 @@ static NSString *cellDNumbers=@"cellDNumbers";
     _headView.frame=CGRectMake(0, 64, SCREEN_WIDTH, ADAPT_HEIGHT(180));
     _headView.labelTitle.text=self.goodsName;
     _headView.labelItem.text = [NSString stringWithFormat:@"期号: %@",self.issueId];
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"参与了%ld人次, 以下是所有夺宝号码:",self.numberArray.count]];
-    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(3, [NSString stringWithFormat:@"%ld",self.numberArray.count].length)];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"参与了%ld人次, 以下是所有夺宝号码:",(unsigned long)self.numberArray.count]];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(3, [NSString stringWithFormat:@"%ld",(unsigned long)self.numberArray.count].length)];
     _headView.labelAttend.attributedText=attString;
     
 }

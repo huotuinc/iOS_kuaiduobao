@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+// 详情 用户号码
 @interface DetailNumberViewController : UIViewController
 
 @property (nonatomic ,strong) NSMutableArray *numberArray;

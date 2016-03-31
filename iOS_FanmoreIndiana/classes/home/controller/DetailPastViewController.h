@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//往期揭晓
+//详情 往期揭晓
 @interface DetailPastViewController : UIViewController
 
 @property (nonatomic, assign) NSNumber *goodsId;

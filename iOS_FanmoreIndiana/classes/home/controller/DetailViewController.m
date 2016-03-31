@@ -38,7 +38,6 @@ static NSString * cellDFirst=@"cellDFirst";
 
 @property (strong, nonatomic) UIView * headView;
 @property (strong, nonatomic) UITableView * tableView;
-//@property (strong, nonatomic)  DCPicScrollView *headScrollView;//头部视图-轮播视图
 @property (strong, nonatomic)  CircleBannerView *headScrollView;//头部视图-轮播视图
 
 @property (strong, nonatomic) UIView * titleView;//标题视图
@@ -50,14 +49,14 @@ static NSString * cellDFirst=@"cellDFirst";
 @property (strong, nonatomic) DetailTimeCView * timeView;//揭晓倒计时
 
 @property (nonatomic, strong) NSMutableArray *goodsDetailList;
-@property (nonatomic, strong) NSMutableArray *buyList;
+@property (nonatomic, strong) NSMutableArray *buyList;//参与记录
 @property (nonatomic, strong) NSMutableArray *cartList;
 
 @property (nonatomic, assign) NSInteger cartCount;//购物车个数
 
 @property (nonatomic, strong) AppGoodsDetailModel *detailModel;
 @property (nonatomic, strong) AppBuyListModel *buyModel;
-@property (nonatomic, strong) NSTimer *countTimer;
+@property (nonatomic, strong) NSTimer *countTimer;//倒计时状态定时器
 
 @property (nonatomic, strong) UIView * backView;//背景灰色视图
 @property (nonatomic, strong) DetailGoodsSelectCView * selectView;//背景灰色视图
@@ -69,15 +68,15 @@ static NSString * cellDFirst=@"cellDFirst";
 @end
 
 @implementation DetailViewController{
-    NSMutableArray * _arrURLString;
+    NSMutableArray * _arrURLString;//轮播图片数组
     NSMutableArray *_titleArray;
     UILabel *_titleStateLabel;//标题状态
-    UILabel *_titleLabel;
+    UILabel *_titleLabel;//商品标题
     NSString *_titleString;//标题内容
     CGFloat _titleStrHeight;//标题高度
     NSInteger _titleLineCount;//标题行数
     NSMutableString * _API;
-    NSDate *resignBackgroundDate;
+    NSDate *resignBackgroundDate;//
 
 }
 
@@ -87,10 +86,7 @@ static NSString * cellDFirst=@"cellDFirst";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
     [self.navigationItem changeNavgationBarTitle:@"奖品详情"];
-    
     _goImmediately = NO;
-    
-
 }
 
 - (void)viewDidLoad {
@@ -102,21 +98,20 @@ static NSString * cellDFirst=@"cellDFirst";
     _buyList=[NSMutableArray array];
     _isExist = NO;
     self.lastId = [NSNumber numberWithInteger:0];
-    [self registerBackgoundNotification];
-    
-
     self.view.backgroundColor=[UIColor whiteColor];
-//    _titleString=@"              Apple/苹果 iPhone6 全新未激活4.7寸美版 港版三网苹果6正品手机";
+//选择接口
     if ([self.whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
         _API=[[NSMutableString alloc]initWithString:@"getGoodsDetailByGoodsId"];
     }else{
         _API=[[NSMutableString alloc]initWithString:@"getGoodsDetailByIssueId"];
     }
+    [self registerBackgoundNotification];
     [self createDataArray];
     [self getGoodsDetailList];
     [self createBottomView];
 
 }
+//针对 锁屏唤醒app 定时器停止
 - (void)registerBackgoundNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -130,13 +125,14 @@ static NSString * cellDFirst=@"cellDFirst";
 }
 - (void)resignActiveToRecordState
 {
+    //程序开始"休眠"的时间
     resignBackgroundDate = [NSDate date];
 }
-
 - (void)becomeActiveToRecordState
 {
+    //timeHasGone是程序进入后台与后台进入程序的时间差。
     NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
-    NSLog(@"%f",timeHasGone);
+//    NSLog(@"%f",timeHasGone);
     _detailModel.remainSecond = _detailModel.remainSecond - timeHasGone * 100 ;
 
 }
@@ -145,18 +141,12 @@ static NSString * cellDFirst=@"cellDFirst";
     self.countTimer = [NSTimer scheduledTimerWithTimeInterval:0.01f target:self selector:@selector(createTimerEventA) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_countTimer forMode:NSRunLoopCommonModes];
 }
-
+//用于商品倒计时状态 倒计时
 - (void)createTimerEventA {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_COUNT_TIME object:nil];
     [_detailModel countDown];
 }
-
 -(void)createBarButtonItem{
-//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-//    self.navigationItem.leftBarButtonItem=bbiL;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
@@ -165,31 +155,14 @@ static NSString * cellDFirst=@"cellDFirst";
 }
 - (void)setupRefresh
 {
-    
-    
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getGoodsDetailList)];
     _tableView.mj_header = headRe;
-    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
-    //#warning 自动刷新(一进入程序就下拉刷新)
-    //    [self.tableView headerBeginRefreshing];
-    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
-    //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
-    //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
-    
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    
+
     MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsDetailList)];
     _tableView.mj_footer = Footer;
-    
-    //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
-    
-    
 }
 
 #pragma mark  网络加入购物车
-
 -(void)joinShoppingCart {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"issueId"] = self.issueId;
@@ -204,7 +177,7 @@ static NSString * cellDFirst=@"cellDFirst";
         if (_goImmediately) {
             _goImmediately = NO;
             [self.navigationController popToRootViewControllerAnimated:YES];
-
+            //先回首页然后 呈现列表 (无push效果)
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
         } else {
             [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
@@ -212,17 +185,13 @@ static NSString * cellDFirst=@"cellDFirst";
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
         [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
-        
-        
     } withFileKey:nil];
-    
 }
 #pragma mark 网络请求详情列表
 /**
  *  下拉刷新
  */
 - (void)getGoodsDetailList {
-    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if ([_whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
         dic[@"goodsId"] = self.goodsId;
@@ -230,42 +199,32 @@ static NSString * cellDFirst=@"cellDFirst";
         dic[@"issueId"] = self.issueId;
     }
     [UserLoginTool loginRequestGet:_API parame:dic success:^(id json) {
-        
         LWLog(@"%@",json);
-        
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             LWLog(@"%@",json[@"resultDescription"]);
             _detailModel = [AppGoodsDetailModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             _detailModel.remainSecond = _detailModel.remainSecond*100;
-//            [self.goodsDetailList removeAllObjects];
-//            [self.goodsDetailList addObject:model];
-
             [self createHeadView];
             [self createTimer];
             _arrURLString = [NSMutableArray arrayWithArray:_detailModel.pictureUrl];
             [self getShoppingCount];
-
             if (_tableView) {
                 [_tableView reloadData];
             } else {
                 [self createTableView];
-
             }
-            
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
         [_tableView.mj_header endRefreshing];
-        
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     }];
-    
 }
 
 /**
- *  上拉加载更多
+ *  上拉加载更多   加载所有参与记录
  */
 - (void)getMoreGoodsDetailList {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -276,29 +235,20 @@ static NSString * cellDFirst=@"cellDFirst";
     dic[@"issueId"] = _detailModel.issueId;
     dic[@"lastId"] = self.lastId;
     [UserLoginTool loginRequestGet:@"getBuyList" parame:dic success:^(id json) {
-        
         LWLog(@"%@",json);
-        
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             NSArray *temp = [AppBuyListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             LWLog(@"resultDescription");
             [self.buyList addObjectsFromArray:temp];
-            
             [_tableView reloadData];
         }
         [_tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
         LWLog (@"%@",error);
     }];
-    
 }
-
-#pragma mark 网络请求购物车商品个数
-/**
- *  下拉刷新
- */
+#pragma mark 网络请求购物车商品个数 已登陆请求清单的接口 未登录本地解归档计算
 - (void)getShoppingCount{
-//    [SVProgressHUD show];
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     //已登陆
     if ([login isEqualToString:Success]) {
@@ -317,22 +267,12 @@ static NSString * cellDFirst=@"cellDFirst";
                     }
                 }
                 self.cartCount = temp.count;
-                if (_bottomView) {
-                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount];
-                } else {
-                    [self createBottomView];
-                }
-                
             }else{
                 LWLog(@"%@",json[@"resultDescription"]);
             }
-//            [SVProgressHUD dismiss];
-
         } failure:^(NSError *error) {
-//            [SVProgressHUD dismiss];
             LWLog(@"%@",error);
         }];
-        
     }
     //未登录
     else{
@@ -343,43 +283,39 @@ static NSString * cellDFirst=@"cellDFirst";
                 _isExist = YES;
             }
         }
-        if (_bottomView) {
-            _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount];
-        } else {
-            [self createBottomView];
-        }
-
-
-
     }
-//    [SVProgressHUD dismiss];
-
+    if (_bottomView) {
+        _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount];
+    } else {
+        [self createBottomView];
+    }
 }
 
 
 -(void)createDataArray{
     _titleArray=[NSMutableArray arrayWithArray:@[@"图文详情",@"往期揭晓",@"晒单分享"]];
-
 }
-#pragma mark 构建头部视图
+#pragma mark 构建头部视图 有空整体优化下代码 代码繁琐
 -(void)createHeadView{
+    //num =0 正常状态, =1 正在抽奖, =2 本期商品已结束
     NSInteger num =[_detailModel.status integerValue];
+    //计算标题+描述性文字的高度
     _titleStrHeight=[self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-20, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(26)] string:[NSString stringWithFormat:@"                %@ %@",_detailModel.title,_detailModel.character]].height;
 //已经结束
     if (num == 2) {
-        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(750)+_titleStrHeight +3)];
+        //总需高度
+        _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(840)+_titleStrHeight +3)];
+        //轮播视图
         _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
-
-//        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
-            _headScrollView.interval = 0.f;
+        _headScrollView.interval = 0.f;
         _headScrollView.delegate =self;
-//
-
+        //状态 +标题+描述性文字 (整体可优化为富文本)
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
         [self createTitleLabel];
+        //状态文字 (优化为图片)
         [self createStateLabel];
-        
+        //获奖者视图
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailWinnerCView" owner:nil options:nil];
         _winnerView= [nib firstObject];
         _winnerView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + 3 + _titleStrHeight, SCREEN_WIDTH, ADAPT_HEIGHT(360));
@@ -391,13 +327,17 @@ static NSString * cellDFirst=@"cellDFirst";
         _winnerView.labelTimeA.text=[self changeTheTimeStamps:_detailModel.awardingDate andTheDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
         [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead] placeholderImage:[UIImage imageNamed:@"mrtx"]];
-        
+        //计算详情点击
         [_winnerView.buttonContent bk_whenTapped:^{
             DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
             calculate.issueId = _detailModel.issueId;
             [self.navigationController pushViewController:calculate animated:YES];
         }];
-        
+        //参与视图 向上偏移了ADAPT_HEIGHT(20)后期调整
+        NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
+        _countView= [nibA firstObject];
+        _countView.frame = CGRectMake(0, ADAPT_HEIGHT(730) + _titleStrHeight+3, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        //根据numbers判断用户是否参与本期夺宝 count=0未参与
         if (_detailModel.numbers.count > 0) {
             NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
@@ -407,6 +347,7 @@ static NSString * cellDFirst=@"cellDFirst";
             _countView.labelA.hidden=NO;
             _countView.labelB.hidden=NO;
             _countView.viewNext.hidden=NO;
+            //参与号码点击
             [_countView.viewNext bk_whenTapped:^{
                 DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
                 number.numberArray = _detailModel.numbers;
@@ -415,16 +356,12 @@ static NSString * cellDFirst=@"cellDFirst";
                 [self.navigationController pushViewController:number animated:YES];
             }];
         }else{
+            //未参与本期夺宝
             _countView.labelCount.hidden=NO;
-            _countView.userInteractionEnabled=YES;
-            [_countView.labelCount bk_whenTapped:^{
-                LWLog(@"****");
-            }];
             _countView.labelA.hidden=YES;
             _countView.labelB.hidden=YES;
             _countView.viewNext.hidden=YES;
         }
-        
         [_headView addSubview:_headScrollView];
         [_headView addSubview:_titleView];
         [_headView addSubview:_winnerView];
@@ -433,40 +370,30 @@ static NSString * cellDFirst=@"cellDFirst";
     }
 //正在抽奖
     if (num == 1) {
+        //总需高度
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
-                _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
-//        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
+        //轮播视图
+        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
         _headScrollView.interval = 0.f;
         _headScrollView.delegate =self;
-
-//        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
-//        _headScrollView = [DCPicScrollView picScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) WithImageUrls:_detailModel.pictureUrl];
-//        [_headScrollView setImageViewDidTapAtIndex:^(NSInteger index) {
-//            printf("第%zd张图片\n",index);
-//        }];
-//        //default is 2.0f,如果小于0.5不自动播放
-//        _headScrollView.AutoScrollDelay = 0.0f;
-        
+        //状态 +标题+描述性文字 (整体可优化为富文本)
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390) + 3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
+        //标题+描述性文字
         [self createTitleLabel];
+        //状态文字 (优化为图片)
         [self createStateLabel];
-        
+        //倒计时视图
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailTimeCView" owner:nil options:nil];
         _timeView= [nib firstObject];
         [_timeView defaultConfig];
         [_timeView loadData:_detailModel];
         _timeView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
-//        [_timeView.buttonDetail bk_whenTapped:^{
-//            DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
-//            calculate.issueId = _detailModel.issueId;
-//            [self.navigationController pushViewController:calculate animated:YES];
-//
-//        }];
-        
+        //参与视图
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
         _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        //根据numbers判断用户是否参与本期夺宝 count=0未参与
         if (_detailModel.numbers.count > 0) {
             NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
@@ -485,15 +412,10 @@ static NSString * cellDFirst=@"cellDFirst";
             }];
         }else{
             _countView.labelCount.hidden=NO;
-            _countView.userInteractionEnabled=YES;
-            [_countView.labelCount bk_whenTapped:^{
-                LWLog(@"****");
-            }];
             _countView.labelA.hidden=YES;
             _countView.labelB.hidden=YES;
             _countView.viewNext.hidden=YES;
         }
-        
         [_headView addSubview:_headScrollView];
         [_headView addSubview:_titleView];
         [_headView addSubview:_timeView];
@@ -501,22 +423,20 @@ static NSString * cellDFirst=@"cellDFirst";
     }
 //正常状态
     if (num == 0) {
+        //总需高度
         _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_WIDTH(610)+_titleStrHeight+6)];
-        
-//        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390))];
-                _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
+        //轮播视图
+        _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(390)) urlArray:_detailModel.pictureUrl];
         _headScrollView.interval = 0.f;
         _headScrollView.delegate =self;
-
-//        [_headScrollView circleBannerWithURLArray:_detailModel.pictureUrl];
-
-        
+        //状态 +标题+描述性文字 (整体可优化为富文本)
         _titleView = [[UIView alloc]initWithFrame:CGRectMake(10, ADAPT_HEIGHT(390)+3, SCREEN_WIDTH-20, _titleStrHeight)];
         _titleView.backgroundColor=[UIColor whiteColor];
-        
+        //标题+描述性文字
         [self createTitleLabel];
+        //状态文字 (优化为图片)
         [self createStateLabel];
-        
+        //倒计时视图
         NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"DetailProgressCView" owner:nil options:nil];
         _progressView= [nib firstObject];
         _progressView.frame = CGRectMake(0, ADAPT_HEIGHT(390) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
@@ -528,10 +448,11 @@ static NSString * cellDFirst=@"cellDFirst";
         self.issueId = _detailModel.issueId;
         CGFloat percent=(_detailModel.toAmount.floatValue -_detailModel.remainAmount.floatValue)/(_detailModel.toAmount.floatValue);
         _progressView.viewProgress.progress=percent;
-        
+        //参与视图
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
         _countView.frame = CGRectMake(0, ADAPT_HEIGHT(500) + _titleStrHeight+6, SCREEN_WIDTH, ADAPT_HEIGHT(110));
+        //根据numbers判断用户是否参与本期夺宝 count=0未参与
         if (_detailModel.numbers.count > 0) {
             NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"您参与了%ld人次",(unsigned long)_detailModel.numbers.count]];
             [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(4, [NSString stringWithFormat:@"%ld",(unsigned long)_detailModel.numbers.count].length)];
@@ -550,10 +471,6 @@ static NSString * cellDFirst=@"cellDFirst";
             }];
         }else{
             _countView.labelCount.hidden=NO;
-            _countView.userInteractionEnabled=YES;
-            [_countView.labelCount bk_whenTapped:^{
-                LWLog(@"****");
-            }];
             _countView.labelA.hidden=YES;
             _countView.labelB.hidden=YES;
             _countView.viewNext.hidden=YES;
@@ -563,19 +480,15 @@ static NSString * cellDFirst=@"cellDFirst";
         [_headView addSubview:_titleView];
         [_headView addSubview:_headScrollView];
     }
-        
-    
-    
-    
 }
 #pragma mark 底部选项
 -(void)createBottomView{
-    //立即参与
+    //商品正常状态的底部选项
     if ([_whichAPI isEqualToNumber:[NSNumber numberWithInteger:1]]) {
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(100)-64, SCREEN_WIDTH, ADAPT_HEIGHT(100));
-        //立刻去购物车
+        //立刻去购物车  两种情况 登陆 未登录
         [_bottomView.buttonGo bk_whenTapped:^{
         NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
         if ([login isEqualToString:Success]) {
@@ -583,35 +496,26 @@ static NSString * cellDFirst=@"cellDFirst";
             _goImmediately = YES;
             self.issueId = _detailModel.issueId;
             [self joinShoppingCart];
-
         }else{
 #pragma mark 加入清单 未登陆
             _goImmediately = YES;
-
             if (_joinModel == nil) {
-
+                //归档
                 [ArchiveLocalData archiveLocalDataArrayWithDetailModel:_detailModel];
             } else {
+                //归档
                 [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:_joinModel];
-
             }
             if (_goImmediately) {
                 _goImmediately = NO;
                 [self.navigationController popToRootViewControllerAnimated:YES];
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
             } else {
                 [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
             }
-
         }
-            
-//            [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
-////            ListViewController *list = [[ListViewController alloc] init];
-////            [self.navigationController pushViewController:list animated:YES];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
         }];
-        //加入清单
+        //加入清单  两种情况 登陆 未登录
         [_bottomView.buttonAdd bk_whenTapped:^{
             NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
             if ([login isEqualToString:Success]) {
@@ -620,25 +524,25 @@ static NSString * cellDFirst=@"cellDFirst";
                 self.issueId = _detailModel.issueId;
                 [self joinShoppingCart];
                 if (!_isExist) {
-                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount + 1];
+                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount + 1];
                 }
-                
             }else{
 #pragma mark 加入购物车 未登陆
                 if (_joinModel == nil) {
+                    //归档
                     [ArchiveLocalData archiveLocalDataArrayWithDetailModel:_detailModel];
-
                 } else {
+                    //归档
                     [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:_joinModel];
                 }
-
+                //列表中无本商品 计数+1
                 if (!_isExist) {
-                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount + 1];
+                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount + 1];
                 }
                 [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
             }
-//            [self createSelectView];
         }];
+        //购物车图标点击后 立刻进入清单
         _bottomView.imageVShop.userInteractionEnabled = YES;
         [_bottomView.imageVShop bk_whenTapped:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
@@ -647,12 +551,12 @@ static NSString * cellDFirst=@"cellDFirst";
         if (self.cartCount == 0) {
             _bottomView.labelCount.hidden = YES;
         } else {
-            _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",self.cartCount];
+            _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",(long)self.cartCount];
 
         }
         [self.view addSubview:_bottomView];
     }
-    //新的一期
+    //倒计时 已揭晓 的底部选项
     else{
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"DetailBottomDoneCView" owner:nil options:nil];
         _bottomDoneView=[nib firstObject];
@@ -663,12 +567,10 @@ static NSString * cellDFirst=@"cellDFirst";
             detail.goodsId = _detailModel.pid;
             [self.navigationController pushViewController:detail animated:YES];
         }];
-        
         [self.view addSubview:_bottomDoneView];
-        
     }
-    
 }
+//立即参与的弹框 暂无调用
 - (void)createSelectView{
     if (!_backView) {
         _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -682,7 +584,6 @@ static NSString * cellDFirst=@"cellDFirst";
         [UIView animateWithDuration:0.3f animations:^{
             _selectView.frame = CGRectMake(0, SCREEN_HEIGHT - ADAPT_HEIGHT(460) - 64, SCREEN_WIDTH, ADAPT_HEIGHT(460));
         }];
-        
         [_selectView.buttonClose bk_whenTapped:^{
             [UIView animateWithDuration:0.3f animations:^{
                 _selectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, ADAPT_HEIGHT(460));
@@ -692,15 +593,12 @@ static NSString * cellDFirst=@"cellDFirst";
                 _selectView = nil;
                 _backView = nil;
             }];
-            
         }];
-
     }
     [self.view addSubview:_backView];
     [self.view addSubview:_selectView];
-
 }
-
+//状态label
 -(void)createStateLabel{
     _titleStateLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _titleStrHeight/_titleLineCount*3,_titleStrHeight/_titleLineCount)];
     if ([_detailModel.status isEqualToNumber:[NSNumber numberWithInteger:0]]) {
@@ -721,8 +619,6 @@ static NSString * cellDFirst=@"cellDFirst";
         _titleStateLabel.textColor = [UIColor whiteColor];
         _titleStateLabel.backgroundColor = [UIColor colorWithRed:31/255.0f green:202/255.0f blue:46/255.0f alpha:1];
         _titleStateLabel.layer.borderColor=[UIColor colorWithRed:31/255.0f green:202/255.0f blue:46/255.0f alpha:1].CGColor;
-
-
     }
     _titleStateLabel.textAlignment=NSTextAlignmentCenter;
     _titleStateLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
@@ -731,15 +627,14 @@ static NSString * cellDFirst=@"cellDFirst";
     _titleStateLabel.layer.masksToBounds=YES;
     [_titleView addSubview:_titleStateLabel];
 }
+//标题+描述性文字 (整体可优化为富文本)
 -(void)createTitleLabel{
-    
     _titleLabel=[[UILabel alloc ]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, _titleStrHeight)];
     NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"                %@ %@",_detailModel.title,_detailModel.character]];
     [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_RED range:NSMakeRange(16+_detailModel.title.length+1,_detailModel.character.length)];
     _titleLabel.attributedText=attString;
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
     _titleLabel.numberOfLines=0;
-    
     _titleLineCount =(NSInteger)[self lineCountForLabel:_titleLabel];
     NSLog(@"%ld",(long)_titleLineCount);
     [_titleView addSubview:_titleLabel];
@@ -774,7 +669,6 @@ static NSString * cellDFirst=@"cellDFirst";
     return 2;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UITableViewCell *_cell;
     if (indexPath.section == 0) {
         DetailNextTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDNext forIndexPath:indexPath];
         cell.labelTitle.text=_titleArray[indexPath.row];
@@ -815,9 +709,7 @@ static NSString * cellDFirst=@"cellDFirst";
             NSMutableAttributedString *AttributedStr=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"参与了%@人次 %@",model.attendAmount,dateString]];
             [AttributedStr addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(0, 5+[NSString stringWithFormat:@"%@",model.attendAmount].length)];
             [AttributedStr addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_ORANGE range:NSMakeRange(3, [NSString stringWithFormat:@"%@",model.attendAmount].length)];
-            
             cell.labelDate.attributedText=AttributedStr;
-            
             [cell.imageVHead sd_setImageWithURL:[NSURL URLWithString:model.userHeadUrl] placeholderImage:[UIImage imageNamed:@"mrtx"]];
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
             return cell;

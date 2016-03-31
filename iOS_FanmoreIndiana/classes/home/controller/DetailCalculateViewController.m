@@ -38,22 +38,17 @@ static NSString *cellDCA = @"cellDCA";
     self.tabBarController.tabBar.hidden=YES;
     self.view.backgroundColor=[UIColor whiteColor];
     [self.navigationItem changeNavgationBarTitle:@"计算详情"];
-    
+    [self getNumberList];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self createBarButtonItem];
-    [self getNumberList];
+    [self createTableView];
 }
 - (void)createBarButtonItem{
-//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-//    [buttonL bk_whenTapped:^{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-//    self.navigationItem.leftBarButtonItem=bbiL;
+
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
@@ -68,12 +63,7 @@ static NSString *cellDCA = @"cellDCA";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             _resultModel = [AppCountResultModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             _numberList = [AppUserNumberModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"data"][@"userNumbers"]];
-            if (!_tableView) {
-                [self createTableView];
-
-            }else {
-                [_tableView reloadData];
-            }
+            [_tableView reloadData];
         }
         [_tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
@@ -152,8 +142,7 @@ static NSString *cellDCA = @"cellDCA";
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0, 2)];
         _sectionBView.labelC.attributedText = attString;
         _sectionBView.labelShow.userInteractionEnabled = YES;
-        _sectionBView.labelB.text = [NSString stringWithFormat:@"= 截止该商品开奖时间点前最后%ld条全站参与记录",_numberList.count];
-//        __block DetailCalculateViewController *weakSelf = self;
+        _sectionBView.labelB.text = [NSString stringWithFormat:@"= 截止该商品开奖时间点前最后%ld条全站参与记录",(unsigned long)_numberList.count];
         
         if (_isExpanded) {
             _sectionBView.labelShow.text = @"收起";
@@ -172,20 +161,7 @@ static NSString *cellDCA = @"cellDCA";
             }
             [tableView reloadData];
         }];
-//        [_sectionBView.labelShow bk_whenTapped:^{
-//            if (_isExpanded) {
-//                LWLog(@"改成展开");
-//                _sectionBView.labelShow.text = @"展开";
-//                _isExpanded = NO;
-//            }else {
-//                LWLog(@"改成收起");
-//                _sectionBView.labelShow.text = @"收起";
-//                _isExpanded = YES;
-//            }
-//            [tableView reloadData];
-////            _sectionBView.labelShow.userInteractionEnabled = YES;
-////            _sectionBView.labelShow.text = @"11111";
-//        }];
+
         return _sectionBView;
     }
     if (section == 2) {

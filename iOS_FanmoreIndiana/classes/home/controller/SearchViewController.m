@@ -13,7 +13,6 @@
 #import "CartModel.h"
 #import "ArchiveLocalData.h"
 static NSString *cellSearch= @"cellSearch";
-static BOOL isExist = NO;//用于判断归档时有无该对象
 @interface SearchViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSString *searchKey;
@@ -46,69 +45,46 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     self.searchList = [NSMutableArray array];
     [self createSearchBar];
     [self createImageVNone];
-
     [self createTableView];
-    
 }
-
 - (void)createImageVNone {
     _imageVNone = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _imageVNone.image = [UIImage imageNamed:@"wss"];
     [self.view addSubview:_imageVNone];
 }
-
 #pragma mark  网络加入购物车
-
 -(void)joinShoppingCart {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"issueId"] = self.issueId;
-    
     [UserLoginTool loginRequestPostWithFile:@"joinShoppingCart" parame:dic success:^(id json) {
         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             LWLog(@"%@",json[@"resultDescription"]);
             [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
-
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
             [SVProgressHUD showSuccessWithStatus:@"加入清单失败"];
         }
-        
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        
-        
     } withFileKey:nil];
-    
-    
 }
-
 #pragma mark 请求搜索结果列表
 - (void)getSearchList {
-    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"title"] = self.searchTitle;
-    
-    
     [UserLoginTool loginRequestGet:@"searchGoods" parame:dic success:^(id json) {
-        
         LWLog(@"%@",json);
-        
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
-            
             NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
-            
             [self.searchList removeAllObjects];
-            
             [self.searchList addObjectsFromArray:temp];
-            
             if (self.searchList.count == 0) {
                 _tableView.hidden = YES;
                 _imageVNone.hidden =NO;
             }else {
                 _imageVNone.hidden =YES;
                 _tableView.hidden = NO;
-
                 if (_tableView) {
                     [_tableView reloadData];
                 } else {
@@ -116,34 +92,23 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             }
             [_search resignFirstResponder];
         }
-        
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
     }];
-    
 }
-
-
-
-
-
 -(void)createSearchBar{
     _search = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH , 44)];
     _search.placeholder=@"搜索";
     _search.delegate=self;
     _search.showsCancelButton=YES;
     [_search setImage:[UIImage imageNamed:@"search"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
-    
     _search.barTintColor = [UIColor whiteColor];
     for (UIView* subview in [[_search.subviews lastObject] subviews]) {
-        
         if ([subview isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField*)subview;
             [textField setBackgroundColor:COLOR_BACK_MAIN];      //修改输入框的颜色
         }
     }
-    
-    
     for(UIView *view in  [[[_search subviews] objectAtIndex:0] subviews]) {
         if([view isKindOfClass:[NSClassFromString(@"UINavigationButton") class]]) {
             UIButton * cancel =(UIButton *)view;
@@ -154,7 +119,6 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [cancel addTarget:self action:@selector(clickCancelButton) forControlEvents:UIControlEventTouchUpInside];
         }
     }
-    
     [_search becomeFirstResponder];
     [self.view addSubview:_search];
 }
@@ -165,7 +129,6 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     _tableView.dataSource=self;
     [_tableView setTableFooterView:[[UIView alloc]initWithFrame:CGRectZero]];
     [self.view addSubview:_tableView];
-    
 }
 -(void)clickLightButton{
     [self.navigationController popViewControllerAnimated:YES];
@@ -176,19 +139,15 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
 }
 #pragma mark UITableViewDelegate
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     TenTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellSearch forIndexPath:indexPath];
     AppGoodsListModel *model=_searchList[indexPath.row];;
     cell.labelTitle.text=model.title;
-    
     NSMutableAttributedString *attStringA = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"总需 %ld",(long)[model.toAmount integerValue]]];
     [attStringA addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0,2)];
     cell.labelTotal.attributedText=attStringA;
-    
     NSMutableAttributedString *attStringB = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"剩余 %ld",(long)[model.remainAmount integerValue]]];
     [attStringB addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_DATE range:NSMakeRange(0,2)];
     cell.labelRest.attributedText=attStringB;
-    
     CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
     cell.viewProgress.progress=percent;
     [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
@@ -212,29 +171,21 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
             [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         }
     }];
-
-    
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
-    
-    
-    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (_searchList == nil) {
         return 0;
     }else {
         return _searchList.count;
-
     }
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
-    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return ADAPT_HEIGHT(200);
-    
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailViewController *detail = [[DetailViewController alloc] init];
@@ -243,27 +194,11 @@ static BOOL isExist = NO;//用于判断归档时有无该对象
     detail.whichAPI = [NSNumber numberWithInteger:1];
     [self.navigationController pushViewController:detail animated:YES];
 }
-
 #pragma mark 搜索方法
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"点击了搜索");
     self.searchTitle = searchBar.text;
     [self getSearchList];
 }
-
-#pragma mark 解归档
-- (NSArray *)getLocalDataArray{
-    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:LOCALCART];
-    NSData *data = [NSData dataWithContentsOfFile:filename];
-    // 2.创建反归档对象
-    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    // 3.解码并存到数组中
-    NSArray *namesArray = [unArchiver decodeObjectForKey:LOCALCART];
-    return namesArray;
-}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
