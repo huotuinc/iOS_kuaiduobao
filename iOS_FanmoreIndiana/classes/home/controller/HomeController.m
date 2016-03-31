@@ -247,7 +247,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"HomeSendRedPocketCView" owner:nil options:nil];
     _sendRedView=[nib firstObject];
     _sendRedView.frame=CGRectMake(0,-SCREEN_HEIGHT-10, SCREEN_WIDTH, SCREEN_HEIGHT+10);
-    if (_redShareInfo == nil) {
+    if (_redShareInfo == nil || [_redShareInfo isEqualToString:@"\n"] ) {
         _redShareInfo =  @"您获得一个发红包的机会\n邀请好友参与即可获得金币奖励";
     }
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:_redShareInfo];

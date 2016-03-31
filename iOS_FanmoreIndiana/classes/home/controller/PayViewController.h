@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppBalanceModel.h"
 #import "RedChooseViewController.h"
-
+//支付列表
 @interface PayViewController : UIViewController<redVDelegate>
 
 @property (nonatomic,strong) AppBalanceModel *payModel;

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//红包选择
 @protocol redVDelegate <NSObject>
 
 -(void)sendRedId:(NSNumber *)redId andTitle: (NSString *)title andDiscountMoney: (NSNumber *)discountMoeny;
