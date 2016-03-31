@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ *  清单
+ *  分本地网络 两种
+ */
 @interface ListViewController : UIViewController
 
 @property (nonatomic, strong) NSNumber *shoppingCartId;

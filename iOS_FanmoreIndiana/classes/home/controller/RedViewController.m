@@ -566,19 +566,6 @@ static NSInteger clickCount = 0; //点击次数
     [layer removeAnimationForKey:@"groupAnnimation"];
     
 }
-#pragma mark 解归档
-- (NSArray *)getLocalRedPastArray{
-    NSArray *array =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * filename = [[array objectAtIndex:0] stringByAppendingPathComponent:REDGETPAST];
-    NSData *data = [NSData dataWithContentsOfFile:filename];
-    // 2.创建反归档对象
-    NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    // 3.解码并存到数组中
-    NSArray *RedGetPastArray = [unArchiver decodeObjectForKey:REDGETPAST];
-    return RedGetPastArray;
-}
-
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
@@ -630,8 +617,6 @@ static NSInteger clickCount = 0; //点击次数
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-
-    
     [super touchesEnded:touches withEvent:event];
     [self cancle];
 }

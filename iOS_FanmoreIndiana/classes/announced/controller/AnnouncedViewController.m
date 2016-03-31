@@ -18,7 +18,6 @@ static NSString *cellABMain=@"cellABMain";
 @interface AnnouncedViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic)  UICollectionView *collectionView;
 @property (nonatomic, strong) NSTimer        *m_timer;
-
 @property (nonatomic, strong) NSMutableArray *openList;
 
 
@@ -37,7 +36,6 @@ static NSString *cellABMain=@"cellABMain";
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
     [self.navigationItem changeNavgationBarTitle:@"最新揭晓"];
-    [self createCollectionView];
     [self getOpenList ];
     [self createTimer];
 }
@@ -47,6 +45,7 @@ static NSString *cellABMain=@"cellABMain";
     // Do any additional setup after loading the view.
     _openList=[NSMutableArray array];
     [self registerBackgoundNotification];
+    [self createCollectionView];
 
 
 }
@@ -128,11 +127,7 @@ static NSString *cellABMain=@"cellABMain";
             }
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
-//            if (!_collectionView) {
-//                [self createCollectionView];
-//            }else {
-                [_collectionView reloadData];
-//            }
+            [_collectionView reloadData];
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }

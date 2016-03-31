@@ -15,7 +15,7 @@
 #import "ArchiveLocalData.h"
 static NSString *cellLMain=@"cellLMain";
 /**
- *  用于表示buttonAll的选中状态
+ *  用于标识buttonAll的选中状态
  *  = 1 的时候 buttonAll为选中状态(selected) 此时labelAll.text= @"取消全选"
  *  = 2 的时候 buttonAll为选中状态(unselected) 此时labelAll.text= @"全选"
  */
@@ -45,10 +45,7 @@ static NSInteger selectAllCount = 1;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self createTableView];
-    [self finshBarView];
-    [self createBottomView];
-    [self loadNotificationCell];
+
 
     [super viewWillAppear:animated];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
@@ -56,16 +53,9 @@ static NSInteger selectAllCount = 1;
     self.navigationController.navigationBar.translucent=NO;
     [self.navigationItem changeNavgationBarTitle:@"清单"];
     self.tabBarController.tabBar.hidden = NO;
-    [self createBarButtonItem];
 
-//    //每次进入购物车的时候把选择的置空
-//    [_selectedArray removeAllObjects];
     isSelect = YES;
 
-    
-
-//    _bottomView.labelMoney.text = @"总计: 0.00元";
-//    _cartList =[NSMutableArray array];
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
         [self getShoppingList];
@@ -391,13 +381,9 @@ static NSInteger selectAllCount = 1;
 //    if (!_toolbar) {
     [_toolbar removeFromSuperview];
         _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 49 - 64, SCREEN_WIDTH, 44)];
-        // _toolbar.frame = CGRectMake(0, 0, APPScreenWidth, 44);
         [_toolbar setBarStyle:UIBarStyleDefault];
-        //    _toolbar.backgroundColor = COLOR_BUTTON_ORANGE;
         UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         self.previousBarButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(previousButtonIsClicked:)];
-        //    NSDictionary * attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Heiti SC" size:ADAPT_HEIGHT(50)]};
-        //    [self.previousBarButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
         NSArray *barButtonItems = @[flexBarButton,self.previousBarButton];
         _toolbar.items = barButtonItems;
         [self.view addSubview:_toolbar];
@@ -509,8 +495,6 @@ static NSInteger selectAllCount = 1;
             }
             model.isSelect = NO;
 
-
-            
             _bottomView.labelAll.text = @"全选";
             _bottomView.buttonAll.selected = NO;
             selectAllCount = 2;//再次点击buttonALL 进入selected状态
@@ -534,6 +518,7 @@ static NSInteger selectAllCount = 1;
         [self countPrice];
     };
     __block ListTableViewCell *weakCell = cell;
+    //商品 + 方法
     cell.numAddBlock =^(){
         NSLog(@"*******");
 
@@ -571,23 +556,15 @@ static NSInteger selectAllCount = 1;
         }
         [self countPrice];
 
-//        if ([_selectedArray containsObject:model]) {
-//            [_selectedArray removeObject:model];
-//            [_selectedArray addObject:model];
-//            [self countPrice];
-//        }
+
     };
-    
+    //商品 - 方法
     cell.numCutBlock =^(){
         NSLog(@"*******");
         NSInteger count = [weakCell.textFNumber.text integerValue];
         CartModel *model = [_cartList objectAtIndex:indexPath.row];
         NSInteger cutNumber = [model.stepAmount integerValue];
-//        if ([model.areaAmount integerValue] == 0) {
-//            addNumber = 1;
-//        }else {
-//            addNumber = [model.areaAmount integerValue];
-//        }
+
         count-= cutNumber;
         if(count <= 0){
             count = cutNumber;

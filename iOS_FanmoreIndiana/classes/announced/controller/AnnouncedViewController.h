@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//最新揭晓
 @interface AnnouncedViewController : UIViewController
 
 @property (nonatomic, strong) NSNumber *curType;
