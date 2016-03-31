@@ -28,7 +28,6 @@
 #import "DetailShareNextViewController.h"//
 #import "AppNoticeListModel.h"
 #import "AppSlideListModel.h"
-#import "InformationViewController.h"
 #import "CartModel.h"
 #import "RedViewController.h"
 #import "DetailWebViewController.h"
