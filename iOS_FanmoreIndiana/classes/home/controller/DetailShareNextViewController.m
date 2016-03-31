@@ -36,15 +36,15 @@ static NSString *cellDNimageV = @"cellDNimageV";
     self.tabBarController.tabBar.hidden=YES;
     self.view.backgroundColor=[UIColor whiteColor];
     [self.navigationItem changeNavgationBarTitle:@"晒单详情"];
-    
+    [self getDetailShareList];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self createBarButtonItem];
-//    [self createBottomView];
-    [self getDetailShareList];
+    [self createTableView];
 }
 
 
@@ -54,45 +54,18 @@ static NSString *cellDNimageV = @"cellDNimageV";
     
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getDetailShareList)];
     _tableView.mj_header = headRe;
-    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
-    //#warning 自动刷新(一进入程序就下拉刷新)
-    //    [self.tableView headerBeginRefreshing];
-    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
-    //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
-    //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
-    
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    
-    //    MJRefreshAutoNormalFooter * Footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsDetailList)];
-    //    _tableView.mj_footer = Footer;
-    
-    //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
+
     
     
 }
 -(void)createBarButtonItem{
-//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-//    self.navigationItem.leftBarButtonItem=bbiL;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
     
-    UIButton *buttonR=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [buttonR setBackgroundImage:[UIImage imageNamed:@"more_gray"]forState:UIControlStateNormal];
-    [buttonR addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bbiR=[[UIBarButtonItem alloc]initWithCustomView:buttonR];
-    self.navigationItem.rightBarButtonItem=bbiR;
+
 }
--(void)clickLightButton{
-    [self.navigationController popViewControllerAnimated:YES];
-}
--(void)clickRightButton{
-    
-}
+
+
 #pragma mark 网络请求晒单列表
 
 - (void)getDetailShareList {
@@ -109,11 +82,8 @@ static NSString *cellDNimageV = @"cellDNimageV";
             LWLog(@"%@",json[@"resultDescription"]);
             _shareModel = [AppShareOrderDetailModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             
-            if (_tableView) {
-                [_tableView reloadData];
-            }else {
-                [self createTableView];
-            }
+            [_tableView reloadData];
+
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -135,7 +105,6 @@ static NSString *cellDNimageV = @"cellDNimageV";
     [_tableView registerNib:[UINib nibWithNibName:@"DetailShareNextImageVTableViewCell" bundle:nil] forCellReuseIdentifier:cellDNimageV];
     _tableView.delegate=self;
     _tableView.dataSource=self;
-//    _tableView.tableFooterView = _bottomView;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     [self setupRefresh];

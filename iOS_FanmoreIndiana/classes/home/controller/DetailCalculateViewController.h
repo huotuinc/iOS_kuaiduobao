@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//计算详情
+//详情 计算详情
 @interface DetailCalculateViewController : UIViewController
 @property (nonatomic, strong) NSNumber *issueId;
 

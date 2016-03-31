@@ -34,7 +34,8 @@ static NSString * cellDPasting=@"cellDPasting";
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=[UIColor whiteColor];
     [self.navigationItem changeNavgationBarTitle:@"往期揭晓"];
-    
+    [self getAppPastList];
+
 }
 
 - (void)viewDidLoad {
@@ -43,40 +44,21 @@ static NSString * cellDPasting=@"cellDPasting";
     self.pastList=[NSMutableArray array];
     [self createBarButtonItem];
     [self createHeadView];
-    [self getAppPastList];
+    [self createTableView];
 }
 
 
 - (void)setupRefresh
 {
-    
-    
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getAppPastList)];
     _tableView.mj_header = headRe;
-    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    //    [self.tableView addHeaderWithTarget:self action:@selector(getNewData)];
-    //#warning 自动刷新(一进入程序就下拉刷新)
-    //    [self.tableView headerBeginRefreshing];
-    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    //    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
-    //    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
-    //    self.tableView.headerRefreshingText = @"正在刷新最新数据,请稍等";
     
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    
-        MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
-        _tableView.mj_footer = Footer;
-    
-    //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];
-    
+    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
+    _tableView.mj_footer = Footer;
     
 }
 -(void)createBarButtonItem{
-//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-//    [buttonL addTarget:self action:@selector(clickLightButton) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-//    self.navigationItem.leftBarButtonItem=bbiL;
+
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
@@ -119,11 +101,7 @@ static NSString * cellDPasting=@"cellDPasting";
             
             [self.pastList removeAllObjects];
             [self.pastList addObjectsFromArray:temp];
-            if (!_tableView) {
-                [self createTableView];
-            }else {
-                [_tableView reloadData];
-            }
+            [_tableView reloadData];
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }

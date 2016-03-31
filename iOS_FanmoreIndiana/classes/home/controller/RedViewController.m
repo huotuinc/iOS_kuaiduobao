@@ -31,12 +31,11 @@ static NSInteger clickCount = 0; //点击次数
     NSInteger _redRequestNumber;//点击多少次请求一次服务器
     NSNumber *_RedItemId; //活动期号
     NSDate *resignBackgroundDate;
-    Singleton *_singleton;
+    Singleton *_singleton;//单例 存放红包期号
 
 
     
 }
-//@property (nonatomic,retain) UIView *imgView;
 
 @property (nonatomic, strong) UIImageView * backImageV;
 
@@ -57,12 +56,12 @@ static NSInteger clickCount = 0; //点击次数
 @property (nonatomic, strong) RedGetCView *getView;//咻中红包
 @property (nonatomic, strong) RedHopeCView *hopeView;//咻中红包
 
-@property (nonatomic, strong) AppRedPactketsDistributeSourceModel *distributeModel;
-@property (nonatomic, strong) AppWinningInfoModel *winningModel;
+@property (nonatomic, strong) AppRedPactketsDistributeSourceModel *distributeModel;//
+@property (nonatomic, strong) AppWinningInfoModel *winningModel;//咻中红包返回
 
 
-@property (nonatomic, strong) NSTimer * timerWait;
-@property (nonatomic, strong) NSTimer * timerEnd;
+@property (nonatomic, strong) NSTimer * timerWait;//活动未开始倒计时
+@property (nonatomic, strong) NSTimer * timerEnd;//活动进行中倒计时
 //@property (nonatomic, strong) NSTimer * timerRedNumber;//刷新剩余红包个数
 @property (nonatomic, strong) NSTimer * timerPopToHome;//5秒后返回首页
 
@@ -99,16 +98,6 @@ static NSInteger clickCount = 0; //点击次数
     
     
     [self createMainXiuView];
-
-
-
-    
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityStart) name:NOTIFICATION_ACTIVITY_START object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityEnd) name:NOTIFICATION_ACTIVITY_END object:nil];
-
-    
-
     
 }
 
@@ -125,35 +114,18 @@ static NSInteger clickCount = 0; //点击次数
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityStart) name:NOTIFICATION_ACTIVITY_START object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActivityEnd) name:NOTIFICATION_ACTIVITY_END object:nil];
 }
-
+//锁屏直接返回首页
 - (void)resignActiveToRecordState
 {
-//    [self.navigationController popViewControllerAnimated:YES];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.navigationController popViewControllerAnimated:NO];
-//    resignBackgroundDate = [NSDate date];
 }
 
 - (void)becomeActiveToRecordState
 {
-//    for(UIView *view in [self.view subviews])
-//    {
-//        [view removeFromSuperview];
-//    }
-//    [self createMainXiuView];
-//    [self getDistuributeModel];
 
-//    [self removea]
-//    NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
-//    NSLog(@"%f",timeHasGone);
-//    DemoModel *model = _dataArray[0];
-//    model.time =  model.time -timeHasGone * 100 ;
-//    [self getDistuributeModel];
-//    //
 }
 - (void)createTimer {
     //开始
-//    __block RedViewController *weakSelf = self;
     if (_statusNumber == 0) {
         [GCDTimerManager scheduledDispatchTimerWithName:@"timerEnd" timeInterval:1.f queue:dispatch_get_main_queue() repeats:YES actionOption:LastJobManagerDisabled action:^{
 //            [weakSelf EndTimeEvent];
@@ -162,10 +134,7 @@ static NSInteger clickCount = 0; //点击次数
             [_countView loadCountData:_distributeModel];
             
         }];
-    
-        
-//        self.timerEnd = [NSTimer timerWithTimeInterval:1.f target:self selector:@selector(EndTimeEvent) userInfo:nil repeats:YES];
-//        [[NSRunLoop currentRunLoop] addTimer:_timerEnd forMode:NSRunLoopCommonModes];
+
     }
     //等待
     if (_statusNumber == 1) {
@@ -182,7 +151,6 @@ static NSInteger clickCount = 0; //点击次数
     [_distributeModel WaitCountDown];
 }
 - (void)EndTimeEvent {
-
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_RED_END object:nil];
     [_distributeModel EndCountDown];
 }
@@ -200,13 +168,6 @@ static NSInteger clickCount = 0; //点击次数
             _distributeModel = [AppRedPactketsDistributeSourceModel mj_objectWithKeyValues:json[@"resultData"][@"data"]];
             _statusNumber = [json[@"resultData"][@"flag"] integerValue];
             _redRequestNumber = [json[@"resultData"][@"count"] integerValue];
-            
-//            if (_statusNumber == 1) {
-//                _distributeModel.endTime = _distributeModel.endTime - _distributeModel.startTime;
-//
-//            }
-            
-
 
             //开始
             if (_statusNumber == 0) {
@@ -286,14 +247,7 @@ static NSInteger clickCount = 0; //点击次数
                 }
             }
 
-//            [PlistManager createPlist];
-            //获取plistManager存放的活动期号 不同存放新的数据  相同获取_redPastList
-//            NSInteger redPastItemId = [PlistManager readDataWithKey:@"redItemId"];
-//            if (redPastItemId != _RedItemId) {
-//                [PlistManager writeToPlistWithKey:@"data" value:self.redList];
-//            } else {
-//                _redPastList = [PlistManager readDataWithKey:@"data"];
-//            }
+
             //正在中奖或者已中奖
             if (_redList.count != 0) {
                 //第一次

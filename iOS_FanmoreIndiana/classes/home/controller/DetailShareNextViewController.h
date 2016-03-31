@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//详情 晒单分享 晒单详情
 @interface DetailShareNextViewController : UIViewController
 @property (nonatomic, strong) NSNumber *shareId;
 

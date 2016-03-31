@@ -31,13 +31,16 @@ static NSString *cellClassB=@"cellClassB";
     self.navigationController.navigationBar.translucent=NO;
     self.view.backgroundColor=[UIColor whiteColor];
     [self.navigationItem changeNavgationBarTitle:@"分类浏览"];
+    [self getTitleList];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _titleList = [NSMutableArray array];
     [self createBarButtonItem];
-    [self getTitleList];
+    [self createTableView];
+
 }
 - (void)getTitleList {
     
@@ -54,11 +57,7 @@ static NSString *cellClassB=@"cellClassB";
             
             [self.titleList removeAllObjects];
             [self.titleList addObjectsFromArray:temp];
-            if (!_tableView) {
-                [self createTableView];
-            }else {
-                [_tableView reloadData];
-            }
+            [_tableView reloadData];
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -71,24 +70,10 @@ static NSString *cellClassB=@"cellClassB";
 
 
 - (void)createBarButtonItem{
-//    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [buttonL setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-//    [buttonL bk_whenTapped:^{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
-//    self.navigationItem.leftBarButtonItem=bbiL;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:COLOR_NAV_BACK];
 }
--(void)clickLightButton{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
-//-(void) createTitleArray{
-//    _titleArray = [NSMutableArray arrayWithArray:@[@"全部商品",@"分类浏览",@"十元夺宝",@"手机平板",@"电脑办公",@"数码影音",@"女性时尚",@"美食天地",@"潮流新品",@"其它商品"]];
-//
-//}
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"ClassATableViewCell" bundle:nil]forCellReuseIdentifier:cellClassA];

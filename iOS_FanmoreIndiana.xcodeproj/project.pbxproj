@@ -225,7 +225,6 @@
 		F26E0C961C8702BC00DB1908 /* DetailGoodsSelectCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */; };
 		F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F271EAF61C72B896003E782D /* AppBuyListModel.m */; };
 		F277EF5A1C60A073007D4F8D /* AppNewOpenListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F277EF591C60A073007D4F8D /* AppNewOpenListModel.m */; };
-		F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F27C18A31C841E36002F32C5 /* InformationViewController.m */; };
 		F28651D51C731789004E0357 /* AppPastListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F28651D41C731789004E0357 /* AppPastListModel.m */; };
 		F290AD011C4E5068005F05AC /* UILabel+FMLableStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD001C4E5068005F05AC /* UILabel+FMLableStyle.m */; };
 		F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F290AD031C4E50A3005F05AC /* HomeFourBtnCView.m */; };
@@ -766,8 +765,6 @@
 		F271EAF61C72B896003E782D /* AppBuyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBuyListModel.m; sourceTree = "<group>"; };
 		F277EF581C60A073007D4F8D /* AppNewOpenListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNewOpenListModel.h; sourceTree = "<group>"; };
 		F277EF591C60A073007D4F8D /* AppNewOpenListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppNewOpenListModel.m; sourceTree = "<group>"; };
-		F27C18A21C841E36002F32C5 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
-		F27C18A31C841E36002F32C5 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		F28651D31C731789004E0357 /* AppPastListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppPastListModel.h; sourceTree = "<group>"; };
 		F28651D41C731789004E0357 /* AppPastListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppPastListModel.m; sourceTree = "<group>"; };
 		F290ACFF1C4E5068005F05AC /* UILabel+FMLableStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FMLableStyle.h"; sourceTree = "<group>"; };
@@ -1167,8 +1164,6 @@
 				F2F587F71C7DA14A007187B0 /* DetailShareNextViewController.m */,
 				F24982DE1C9A79230073C17F /* DetailCalculateViewController.h */,
 				F24982DF1C9A79230073C17F /* DetailCalculateViewController.m */,
-				F27C18A21C841E36002F32C5 /* InformationViewController.h */,
-				F27C18A31C841E36002F32C5 /* InformationViewController.m */,
 				F26E0C8F1C86E38E00DB1908 /* RedViewController.h */,
 				F26E0C901C86E38E00DB1908 /* RedViewController.m */,
 				609D108C1C97F654009412E9 /* MCController.h */,
@@ -2158,7 +2153,6 @@
 				F22A8D6D1C85884500165BBC /* DetailCalculateFormulaCView.m in Sources */,
 				F26E0C8B1C8699DD00DB1908 /* AppCountResultModel.m in Sources */,
 				F21E82EF1C7813EC00C732F1 /* CartModel.m in Sources */,
-				F27C18A41C841E36002F32C5 /* InformationViewController.m in Sources */,
 				F246B6741C97EA4700D0A381 /* PlistManager.m in Sources */,
 				F2CAB4C41CAA7D0C00DD6405 /* CircleBannerView.m in Sources */,
 				601C712E1C7C419A00673B7F /* RecordController.m in Sources */,

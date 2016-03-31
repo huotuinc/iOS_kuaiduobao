@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ *  专区
+ *  多界面跳转此界面 _whichAPI
+ */
 @interface TenViewController : UIViewController
 @property (nonatomic, assign) NSNumber *step;//专区起始价格 todo 在全局中赋值
 @property (nonatomic, assign) NSInteger whichAPI;//1 10元专区进去 2 全部进入(有分页参数) 3商品分类(pid)进入 4其他进入(有分页参数)
