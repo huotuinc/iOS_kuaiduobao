@@ -158,7 +158,7 @@ static NSString * cellDFirst=@"cellDFirst";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getGoodsDetailList)];
     _tableView.mj_header = headRe;
 
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsDetailList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsDetailList)];
     _tableView.mj_footer = Footer;
 }
 

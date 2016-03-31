@@ -287,7 +287,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeData)];
     self.collectionView.mj_header = headRe;
 
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreHomeData)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreHomeData)];
     self.collectionView.mj_footer = Footer;
     
 }

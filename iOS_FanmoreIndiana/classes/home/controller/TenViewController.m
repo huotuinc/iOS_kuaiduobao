@@ -75,7 +75,7 @@ static NSString *cellTenMain=@"cellTenMain";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getAppGoodsList)];
     _tableView.mj_header = headRe;
     
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
     _tableView.mj_footer = Footer;
 
 }

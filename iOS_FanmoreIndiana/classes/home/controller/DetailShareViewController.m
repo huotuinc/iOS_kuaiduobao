@@ -63,7 +63,7 @@ static NSString *cellDShare=@"cellDShare";
     _tableView.mj_header = headRe;
 
     
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShareList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShareList)];
     _tableView.mj_footer = Footer;
     
     

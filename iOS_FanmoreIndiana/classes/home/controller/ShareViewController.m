@@ -42,7 +42,7 @@ static NSString *cellShare=@"cellShare";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getShareList)];
     _tableView.mj_header = headRe;
 
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShareList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShareList)];
     _tableView.mj_footer = Footer;
 }
 #pragma mark 网络请求往期分享列表

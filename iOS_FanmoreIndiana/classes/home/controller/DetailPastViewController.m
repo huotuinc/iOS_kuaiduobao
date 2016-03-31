@@ -53,7 +53,7 @@ static NSString * cellDPasting=@"cellDPasting";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getAppPastList)];
     _tableView.mj_header = headRe;
     
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
     _tableView.mj_footer = Footer;
     
 }
