@@ -9,7 +9,17 @@
 #import "AddAddressController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 #import "UITableView+CJ.h"
-@interface AddAddressController ()<UITableViewDelegate>
+#import "AreaPickerView.h"
+
+@interface AddAddressController ()<UITableViewDelegate,AreaPickerDelegate>
+
+@property (nonatomic, strong) AreaPickerView *pick;
+
+
+
+@property (nonatomic, strong) NSMutableString *detailAddressStr;
+
+
 
 @end
 
@@ -27,6 +37,11 @@
     
     [self.tableView removeSpaces];
 
+    _pick = [[AreaPickerView alloc] initWithDelegate:self];
+//    _pick.locate
+   
+//    self.detailAddressStr = [NSMutableString string];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,6 +50,9 @@
         self.personName.text = _model.receiver;
         self.personIphone.text = _model.mobile;
         self.detailAddress.text = _model.details;
+        NSArray *array = [_model.cityName componentsSeparatedByString:@"|"];
+        self.cityLabel.text = [NSString stringWithFormat:@"%@ %@ %@", array[0], array[1], array[2]];
+        
         self.defaultAddress.on = _model.defaultAddress;
     }
 }
@@ -49,6 +67,8 @@
         [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
     }else if (_detailAddress.text == nil) {
         [SVProgressHUD showErrorWithStatus:@"请输入详细地址"];
+    }else if(self.cityName.length == 0 ){
+        [SVProgressHUD showErrorWithStatus:@"选择地区"];
     }else {
         if ([self checkTel:_personIphone.text]) {
             
@@ -70,6 +90,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"receiver"] = self.personName.text;
     dic[@"mobile"] = self.personIphone.text;
+    dic[@"cityName"] = self.cityName;
     dic[@"details"] = self.detailAddress.text;
     dic[@"defaultAddress"] = @(self.defaultAddress.on);
     
@@ -90,6 +111,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"receiver"] = self.personName.text;
     dic[@"mobile"] = self.personIphone.text;
+    dic[@"cityName"] = self.cityName;
     dic[@"details"] = self.detailAddress.text;
     if (self.defaultAddress.on) {
         dic[@"defaultAddress"] = @1;
@@ -139,11 +161,40 @@
     }else if (indexPath.row == 1) {
         [self.personIphone becomeFirstResponder];
     }else if (indexPath.row == 2) {
+        [self.personName resignFirstResponder];
+        [self.personIphone resignFirstResponder];
+        [self.detailAddress resignFirstResponder];
+        UIWindow * window = [UIApplication sharedApplication].keyWindow;
+        [self.pick showInView:window];
+    }else if (indexPath.row == 3) {
         [self.detailAddress becomeFirstResponder];
     }
     
 }
 
+
+#pragma mark pick 
+
+- (void)pickerDidChaneStatus:(AreaPickerView *)picker {
+    
+}
+
+- (void)pickerViewSelectAreaOfCode:(AreaLocation *)locate {
+    
+//    self.detailAddressStr = nil;
+
+    
+//    self.cityName = [NSString stringWithFormat:@"%@/%@/%@", locate.province, locate.city, locate.area];
+    
+    self.cityLabel.text = [NSString stringWithFormat:@"%@  %@  %@", locate.province, locate.city, locate.area];
+    
+//    [self.detailAddressStr stringByAppendingString:locate.province];
+//    [self.detailAddressStr stringByAppendingString:locate.city];
+//    [self.detailAddressStr stringByAppendingString:locate.area];
+    
+    self.cityName = [NSString stringWithFormat:@"%@|%@|%@", locate.province, locate.city, locate.area];
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

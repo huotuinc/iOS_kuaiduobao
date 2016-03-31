@@ -45,6 +45,8 @@ static NSString *addressIdentify = @"addressIdnetify";
     }
     [self.tableView registerNib:[UINib nibWithNibName:@"AddressCell" bundle:nil] forCellReuseIdentifier:addressIdentify];
     [self.tableView removeSpaces];
+    
+    [self.tableView layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -144,13 +146,14 @@ static NSString *addressIdentify = @"addressIdnetify";
     }
     if (_tpye == 2) {
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:self.selected inSection:0] animated:YES];
+        AddressCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         self.selected = indexPath.row;
         AdressModel *model = self.addressList[indexPath.row];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"deliveryId"] = self.winningModel.deliveryId;
         dic[@"receiver"] = model.receiver;
         dic[@"mobile"] = model.mobile;
-        dic[@"details"] = model.details;
+        dic[@"details"] = cell.address.text;
         
         [UserLoginTool loginRequestGet:@"addLotteryReceiverInfo" parame:dic success:^(id json) {
             LWLog(@"%@",json);
