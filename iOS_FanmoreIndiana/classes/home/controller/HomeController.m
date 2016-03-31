@@ -219,7 +219,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     _getRedView.imageVClose.userInteractionEnabled = YES;
     [_getRedView.imageVClose bk_whenTapped:^{
-        NSLog(@"点击了");
+//        NSLog(@"点击了");
         [_getRedView removeFromSuperview];
         [_viewBackShare removeFromSuperview];
     }];

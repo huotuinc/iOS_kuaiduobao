@@ -191,7 +191,7 @@ static NSInteger clickCount = 0; //点击次数
         
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        NSLog(@"*************网络连接失败************");
+        LWLog(@"*************网络连接失败************");
         [self createImageVError];
 
     }];
@@ -582,7 +582,7 @@ static NSInteger clickCount = 0; //点击次数
     if (point.x > x && point.x < xw && point.y > y && point.y < yh) {
         clickCount ++;
         //点击次数
-        NSLog(@"**** %ld ****",(long)_count);
+        LWLog(@"**** %ld ****",(long)_count);
         //百分之一的概率 发送请求
         //        int luckNumber = arc4random() % 10;
         if (clickCount == _redRequestNumber) {
@@ -664,7 +664,7 @@ static NSInteger clickCount = 0; //点击次数
 - (void)loginSuccessWith:(NSDictionary *) dic {
     
     UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
-    NSLog(@"userModel: %@",user);
+    LWLog(@"userModel: %@",user);
     
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:UserInfo];

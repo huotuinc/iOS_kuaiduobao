@@ -305,7 +305,7 @@
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
                 //                [self loginSuccessWith:json[@"resultData"]];
                 UserModel *user = [UserModel mj_objectWithKeyValues:json[@"resultData"][@"user"]];
-                NSLog(@"userModel: %@",user);
+//                NSLog(@"userModel: %@",user);
                 [self.logo sd_setImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
                 NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
@@ -477,7 +477,7 @@
 - (void)loginSuccessWith:(NSDictionary *) dic {
     if (![dic[@"data"] isKindOfClass:[NSNull class]]) {
         UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"data"]];
-        NSLog(@"userModel: %@",user);
+//        NSLog(@"userModel: %@",user);
     
         NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSString *fileName = [path stringByAppendingPathComponent:UserInfo];

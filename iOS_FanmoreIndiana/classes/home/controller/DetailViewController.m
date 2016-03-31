@@ -636,7 +636,7 @@ static NSString * cellDFirst=@"cellDFirst";
     _titleLabel.font=[UIFont systemFontOfSize:FONT_SIZE(24)];
     _titleLabel.numberOfLines=0;
     _titleLineCount =(NSInteger)[self lineCountForLabel:_titleLabel];
-    NSLog(@"%ld",(long)_titleLineCount);
+//    NSLog(@"%ld",(long)_titleLineCount);
     [_titleView addSubview:_titleLabel];
 }
 #pragma mark 创建tableView

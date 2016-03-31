@@ -195,11 +195,11 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             req.sign                = [dict objectForKey:@"sign"];
             [WXApi sendReq:req];
         }else{
-            NSLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
+            LWLog(@"提示信息%@",[dict objectForKey:@"retmsg"]);
         }
         
     }else{
-        NSLog(@"提示信息返回错误");
+        LWLog(@"提示信息返回错误");
         
     }
     
@@ -426,7 +426,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];
-    NSLog(@"orderSpec = %@",orderSpec);
+    LWLog(@"orderSpec = %@",orderSpec);
     
     //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
     id<DataSigner> signer = CreateRSADataSigner(privateKey);
@@ -719,7 +719,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 //刷新用户数据
 - (void)loginSuccessWith:(NSDictionary *) dic {
     UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
-    NSLog(@"userModel: %@",user);
+    LWLog(@"userModel: %@",user);
     
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:UserInfo];

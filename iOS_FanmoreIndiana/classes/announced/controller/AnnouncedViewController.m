@@ -69,7 +69,7 @@ static NSString *cellABMain=@"cellABMain";
 - (void)becomeActiveToRecordState
 {
     NSTimeInterval timeHasGone = [[NSDate date] timeIntervalSinceDate:resignBackgroundDate];
-    NSLog(@"%f",timeHasGone);
+//    (@"%f",timeHasGone);
     for (AppNewOpenListModel *openModel in _openList) {
         openModel.toAwardingTime =openModel.toAwardingTime - timeHasGone * 100;
     }

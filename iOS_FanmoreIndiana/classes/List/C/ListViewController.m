@@ -520,7 +520,7 @@ static NSInteger selectAllCount = 1;
     __block ListTableViewCell *weakCell = cell;
     //商品 + 方法
     cell.numAddBlock =^(){
-        NSLog(@"*******");
+//        NSLog(@"*******");
 
         NSInteger count = [weakCell.textFNumber.text integerValue];
         CartModel *model = [_cartList objectAtIndex:indexPath.row];
@@ -542,7 +542,7 @@ static NSInteger selectAllCount = 1;
         
         weakCell.textFNumber.text = numStr;
         model.userBuyAmount = [NSNumber numberWithInteger:count];
-        NSLog(@"%@",_cartList[0]);
+//        NSLog(@"%@",_cartList[0]);
         [_cartList replaceObjectAtIndex:indexPath.row withObject:model];
         
         for (int i = (int)_selectedArray.count - 1; i>=0; i--) {
@@ -560,7 +560,7 @@ static NSInteger selectAllCount = 1;
     };
     //商品 - 方法
     cell.numCutBlock =^(){
-        NSLog(@"*******");
+//        NSLog(@"*******");
         NSInteger count = [weakCell.textFNumber.text integerValue];
         CartModel *model = [_cartList objectAtIndex:indexPath.row];
         NSInteger cutNumber = [model.stepAmount integerValue];
@@ -830,7 +830,7 @@ static NSInteger selectAllCount = 1;
 
 #pragma UITextFieldDelegate
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    NSLog(@"tf开始编辑");
+//    NSLog(@"tf开始编辑");
     _beginNumber = textField.text;
 
 

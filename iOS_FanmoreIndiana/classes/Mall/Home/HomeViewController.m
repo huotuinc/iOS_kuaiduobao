@@ -456,7 +456,7 @@
                     }
 
                 } failure:^(NSError *error) {
-                    NSLog(@"%@",error.description);
+//                    NSLog(@"%@",error.description);
                 }];
                 return NO;
          
@@ -644,7 +644,7 @@
         req.sign                = [dict objectForKey:@"sign"];
         [WXApi sendReq:req];
     }else{
-        NSLog(@"提示信息----微信预支付失败");
+//        NSLog(@"提示信息----微信预支付失败");
     }
 }
 
