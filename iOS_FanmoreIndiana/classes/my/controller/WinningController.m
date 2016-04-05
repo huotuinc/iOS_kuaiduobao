@@ -203,9 +203,9 @@ static NSString *winningIdentify = @"winningIdentify";
     [UserLoginTool loginRequestGet:@"getMyLotteryList" parame:dic success:^(id json) {
         LWLog(@"%@",json);
         [SVProgressHUD dismiss];
-        [self.winningArray removeAllObjects];
         [_tableView.mj_header endRefreshing];
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self.winningArray removeAllObjects];
             NSArray *temp = [WinningModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             [self.winningArray addObjectsFromArray:temp];
             [self.tableView reloadData];

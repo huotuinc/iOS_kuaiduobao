@@ -303,6 +303,7 @@
             [SVProgressHUD dismiss];
             
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
                 //                [self loginSuccessWith:json[@"resultData"]];
                 UserModel *user = [UserModel mj_objectWithKeyValues:json[@"resultData"][@"user"]];
                 [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
@@ -312,6 +313,8 @@
                 //保存新的token
                 [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
                 //                [self.navigationController popViewControllerAnimated:YES];
+            }else {
+                [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
             }
             
         } failure:^(NSError *error) {
