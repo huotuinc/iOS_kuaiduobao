@@ -86,16 +86,17 @@ static NSInteger selectAllCount = 1;
     [self finshBarView];
     [self createBottomView];
     [self loadNotificationCell];
+    [self createBarButtonItem];
 }
 
 - (void)createBarButtonItem{
-    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 25)];
+    UIButton *buttonL=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 70, 25)];
     buttonL.backgroundColor = [UIColor clearColor];
     UIBarButtonItem *bbiL=[[UIBarButtonItem alloc]initWithCustomView:buttonL];
     self.navigationItem.leftBarButtonItem=bbiL;
     
     
-    UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 25)];
+    UIButton *buttonR = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 25)];
     [UIButton changeButton:buttonR AndFont:30 AndTitleColor:COLOR_SHINE_BLUE AndBackgroundColor:[UIColor whiteColor] AndBorderColor:nil AndCornerRadius:0 AndBorderWidth:0];
     [buttonR setTitle:@"清空清单" forState:UIControlStateNormal];
     [buttonR bk_whenTapped:^{
@@ -110,7 +111,7 @@ static NSInteger selectAllCount = 1;
                 [self deleteShoppingCart];
                 [_cartList removeAllObjects];
                 [_selectedArray removeAllObjects];
-                [_tableView removeFromSuperview];
+//                [_tableView removeFromSuperview];
                 [self createImageVBack];
 
             }else{
@@ -118,7 +119,7 @@ static NSInteger selectAllCount = 1;
                 [_cartList removeAllObjects];
                 [_selectedArray removeAllObjects];
                 [ArchiveLocalData emptyTheLocalDataArray];
-                [_tableView removeFromSuperview];
+//                [_tableView removeFromSuperview];
                 [self createImageVBack];
             }
 
@@ -191,6 +192,7 @@ static NSInteger selectAllCount = 1;
                 [self createImageVBack];
             }else {
                 self.imageVBack.hidden = YES;
+                self.tableView.hidden = NO;
                 [self.tableView reloadData];
                 _bottomView.labelAll.text = @"取消全选";
                 [self countPrice];
@@ -200,8 +202,11 @@ static NSInteger selectAllCount = 1;
             
             [_tableView.mj_header endRefreshing];
             
+//            [self.tableView reloadData];
+            
         } failure:^(NSError *error) {
             [SVProgressHUD dismiss];
+            [_tableView.mj_header endRefreshing];
             LWLog(@"%@",error);
         }];
 
@@ -400,7 +405,7 @@ static NSInteger selectAllCount = 1;
     _tableView.hidden = YES;
     _toolbar.hidden =YES;
     _bottomView.hidden =YES;
-    _tableView = nil;
+//    _tableView = nil;
     if (_imageVBack) {
         _imageVBack.hidden =NO;
     }else {

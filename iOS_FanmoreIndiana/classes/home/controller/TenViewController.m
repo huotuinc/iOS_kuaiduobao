@@ -71,6 +71,7 @@ static NSString *cellTenMain=@"cellTenMain";
 }
 - (void)setupRefresh
 {
+    [self.tableView removeSpaces];
 
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getAppGoodsList)];
     _tableView.mj_header = headRe;
