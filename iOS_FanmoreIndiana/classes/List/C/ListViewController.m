@@ -445,9 +445,9 @@ static NSInteger selectAllCount = 1;
 }
 
 -(void)createTableView{
-    if (_tableView) {
-        return;
-    } else {
+//    if (_tableView) {
+//        return;
+//    } else {
         _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-ADAPT_HEIGHT(130) -64 -49 ) style:UITableViewStylePlain];
         
         [_tableView registerNib:[UINib nibWithNibName:@"ListTableViewCell" bundle:nil] forCellReuseIdentifier:cellLMain];
@@ -460,7 +460,7 @@ static NSInteger selectAllCount = 1;
         //    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
         //    if ([login isEqualToString:Success]) {
         [self setupRefresh];
-    }
+//    }
 
 //    }
     
