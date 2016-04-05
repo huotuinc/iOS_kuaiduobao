@@ -16,6 +16,13 @@
 #import "TabBarController.h"
 #import "AppDelegate.h"
 #import "ArchiveLocalData.h"
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信SDK头文件
+#import "WXApi.h"
+#import <AlipaySDK/AlipaySDK.h>
 @interface LoginController ()<UITextFieldDelegate>
 
 @end
@@ -29,6 +36,9 @@
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     self.title = @"登录";
+    
+    self.weixinLogin.hidden = ![WXApi isWXAppInstalled];
+    self.qqLogin.hidden = ![TencentOAuth iphoneQQInstalled];
     
     self.userName.delegate = self;
     self.password.delegate = self;

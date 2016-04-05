@@ -39,7 +39,7 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.awardingDate doubleValue] / 1000];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.awardingDate longLongValue] / 1000];
     self.time.text = [NSString stringWithFormat:@"揭晓时间：%@",[formatter stringFromDate:date]];
 }
 
