@@ -62,6 +62,7 @@
         NSString *fileName = [path stringByAppendingPathComponent:GlobalInfo];
         GlobalModel *global = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
         web.webURL = global.helpURL;
+        web.title = @"常见问题";
         [self.navigationController pushViewController:web animated:YES];
     }
     

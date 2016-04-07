@@ -174,6 +174,8 @@ static NSString *cellTenMain=@"cellTenMain";
     }else {
         [self setupRefresh];
     }
+    
+    [_tableView removeSpaces];
 }
 
 
