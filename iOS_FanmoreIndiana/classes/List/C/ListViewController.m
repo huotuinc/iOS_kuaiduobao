@@ -66,6 +66,8 @@ static NSInteger selectAllCount = 1;
             [self createImageVBack];
         }else {
             self.imageVBack.hidden = YES;
+            self.tableView.hidden = NO;
+            self.bottomView.hidden = NO;
             [self.tableView reloadData];
             
             _bottomView.buttonAll.selected = YES;
@@ -193,6 +195,7 @@ static NSInteger selectAllCount = 1;
             }else {
                 self.imageVBack.hidden = YES;
                 self.tableView.hidden = NO;
+                self.bottomView.hidden = NO;
                 [self.tableView reloadData];
                 _bottomView.labelAll.text = @"取消全选";
                 [self countPrice];
@@ -222,6 +225,8 @@ static NSInteger selectAllCount = 1;
             [self createImageVBack];
         }else {
                 self.imageVBack.hidden = YES;
+                self.tableView.hidden = NO;
+                self.bottomView.hidden = NO;
                 [self.tableView reloadData];
                 _bottomView.labelAll.text = @"取消全选";
                 _bottomView.buttonAll.selected = YES;
@@ -418,7 +423,7 @@ static NSInteger selectAllCount = 1;
 
 -(void)createBottomView{
 //    if (!_bottomView) {
-    [_bottomView removeFromSuperview];
+//    [_bottomView removeFromSuperview];
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"ListBottomCView" owner:nil options:nil];
         _bottomView=[nib firstObject];
         _bottomView.frame=CGRectMake(0, SCREEN_HEIGHT-ADAPT_HEIGHT(130) - 49 - 64, SCREEN_WIDTH, ADAPT_HEIGHT(130));
