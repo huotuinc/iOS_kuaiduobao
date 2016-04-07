@@ -54,6 +54,10 @@
         self.cityLabel.text = [NSString stringWithFormat:@"%@ %@ %@", array[0], array[1], array[2]];
         
         self.defaultAddress.on = _model.defaultAddress;
+        
+        self.title = @"修改地址";
+    }else {
+        self.title = @"新增地址";
     }
 }
 
