@@ -17,6 +17,8 @@
 #import "ChangePasswordFromOldController.h"
 #import "ForgetThirdController.h"
 #import "ForgetSecondController.h"
+#import "UIImage+Compression.h"
+
 #import <ShareSDK/ShareSDK.h>
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -288,6 +290,13 @@
     } else {
         
         data = UIImagePNGRepresentation(photoImage);
+        
+        
+        if ([data length] / 1000 > 2000) {
+            data = UIImagePNGRepresentation([UIImage imageWithImageSimple:photoImage scaledToSize:CGSizeMake(800, 800)]);
+        }
+        
+        
     }
     
     NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];

@@ -50,6 +50,7 @@
 		6031C5431C4C922600D6B567 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */; };
 		6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */; };
 		6031C5461C4CE63E00D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
+		6032D50B1CB4FB2B001930C3 /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 6032D50A1CB4FB2B001930C3 /* UIImage+Compression.m */; };
 		604926271C5EF3590092D231 /* RechargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 604926261C5EF3590092D231 /* RechargeController.m */; };
 		604C626E1C50C57900569F0B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 604C62611C50C57900569F0B /* libWeChatSDK.a */; };
 		604C626F1C50C57900569F0B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 604C62621C50C57900569F0B /* read_me.txt */; };
@@ -452,6 +453,8 @@
 		6031C5411C4C922600D6B567 /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
 		6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		6031C5451C4CDF9900D6B567 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		6032D5091CB4FB2B001930C3 /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
+		6032D50A1CB4FB2B001930C3 /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
 		604926251C5EF3590092D231 /* RechargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeController.h; sourceTree = "<group>"; };
 		604926261C5EF3590092D231 /* RechargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeController.m; sourceTree = "<group>"; };
 		604C62611C50C57900569F0B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -1125,6 +1128,8 @@
 				60525F5F1C50F8A000CC4528 /* UIButton+CountDown.m */,
 				F24D60DF1C927265006F6981 /* UINavigationItem+BCTitleView.h */,
 				F24D60E01C927265006F6981 /* UINavigationItem+BCTitleView.m */,
+				6032D5091CB4FB2B001930C3 /* UIImage+Compression.h */,
+				6032D50A1CB4FB2B001930C3 /* UIImage+Compression.m */,
 			);
 			path = "扩展";
 			sourceTree = "<group>";
@@ -2201,6 +2206,7 @@
 				F206D2171C99336600BC4E10 /* DCWebImageManager.m in Sources */,
 				60EB31EA1C57610C006C070B /* ForgetFirstController.m in Sources */,
 				F262E8A01C55C0B900141EBC /* TenTableViewCell.m in Sources */,
+				6032D50B1CB4FB2B001930C3 /* UIImage+Compression.m in Sources */,
 				601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */,
 				F290AD051C4E50A3005F05AC /* HomeFourBtnCView.m in Sources */,
 				60AF18F01C5DAFFB0002388D /* WinningController.m in Sources */,

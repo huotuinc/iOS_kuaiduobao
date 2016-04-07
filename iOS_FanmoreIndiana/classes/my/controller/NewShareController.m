@@ -9,6 +9,7 @@
 #import "NewShareController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 #import <UIImageView+WebCache.h>
+#import "UIImage+Compression.h"
 
 @interface NewShareController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate>
 
@@ -225,6 +226,8 @@
         } else {
             // 照片的元数据参数
             photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+            
+            
         }
     }
     
@@ -360,6 +363,9 @@
     } else {
         
         data = UIImagePNGRepresentation(image);
+        if ([data length] / 1000 > 2000) {
+            data = UIImagePNGRepresentation([UIImage imageWithImageSimple:image scaledToSize:CGSizeMake(800, 800)]);
+        }
     }
     
     NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
