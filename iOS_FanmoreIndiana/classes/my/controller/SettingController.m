@@ -25,6 +25,8 @@
     
     [self _initLabels];
     
+    self.title = @"设置";
+    
 }
 
 - (void)_initLabels {
@@ -68,7 +70,7 @@
     
     if (indexPath.section == 1) {
         SDImageCache *sdImageCache = [SDImageCache sharedImageCache];
-        [sdImageCache cleanDisk];
+        [sdImageCache clearDisk];
         
         [self _initLabels];
     }

@@ -81,26 +81,31 @@
     
     if (self.userName.text.length != 0 && self.password.text.length != 0) {
         
-        dic[@"username"] = self.userName.text;
+        if (self.password.text.length < 6 || self.password.text.length > 16) {
+            [SVProgressHUD showErrorWithStatus:@"密码长度6-16位"];
+        }else {
         
-        dic[@"password"] = [MD5Encryption md5by32:self.password.text];
+            dic[@"username"] = self.userName.text;
+            
+            dic[@"password"] = [MD5Encryption md5by32:self.password.text];
         
-        [SVProgressHUD showWithStatus:@"登录中"];
-        [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
+            [SVProgressHUD showWithStatus:@"登录中"];
+            [UserLoginTool loginRequestGet:@"login" parame:dic success:^(id json) {
             
-            LWLog(@"%@",json);
-            if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
-                [SVProgressHUD dismiss];
-                [self loginSuccessWith:json[@"resultData"]];
-            }else {
-                [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
-            }
+                LWLog(@"%@",json);
+                if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                    [SVProgressHUD dismiss];
+                    [self loginSuccessWith:json[@"resultData"]];
+                }else {
+                    [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+                }
             
-        } failure:^(NSError *error) {
+            } failure:^(NSError *error) {
             
-            LWLog(@"%@",error);
+                LWLog(@"%@",error);
             
-        }];
+            }];
+        }
     }
     
     
