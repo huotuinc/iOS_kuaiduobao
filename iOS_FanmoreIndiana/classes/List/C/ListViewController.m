@@ -48,7 +48,7 @@ static NSInteger selectAllCount = 1;
 
 
     [super viewWillAppear:animated];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
     [self.navigationItem changeNavgationBarTitle:@"清单"];
@@ -56,24 +56,27 @@ static NSInteger selectAllCount = 1;
 
     isSelect = YES;
 
-    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-    if ([login isEqualToString:Success]) {
-        [self getShoppingList];
-    }else{
-        _cartList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
-        _selectedArray = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
-        if (_cartList.count == 0) {
-            [self createImageVBack];
-        }else {
-            self.imageVBack.hidden = YES;
-            [self.tableView reloadData];
-            
-            _bottomView.buttonAll.selected = YES;
-            _bottomView.labelAll.text = @"取消全选";
-            [self countPrice];
-            selectAllCount = 1;
-        }
-    }
+    [self getShoppingList];
+
+    
+//    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//    if ([login isEqualToString:Success]) {
+//        [self getShoppingList];
+//    }else{
+//        _cartList = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
+//        _selectedArray = [NSMutableArray arrayWithArray:[ArchiveLocalData unarchiveLocalDataArray]];
+//        if (_cartList.count == 0) {
+//            [self createImageVBack];
+//        }else {
+//            self.imageVBack.hidden = YES;
+//            [self.tableView reloadData];
+//            
+//            _bottomView.buttonAll.selected = YES;
+//            _bottomView.labelAll.text = @"取消全选";
+//            [self countPrice];
+//            selectAllCount = 1;
+//        }
+//    }
 
     
 }
