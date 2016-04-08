@@ -25,6 +25,8 @@
     
     [self _initLabels];
     
+    self.title = @"设置";
+    
 }
 
 - (void)_initLabels {
@@ -62,12 +64,13 @@
         NSString *fileName = [path stringByAppendingPathComponent:GlobalInfo];
         GlobalModel *global = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
         web.webURL = global.helpURL;
+        web.title = @"常见问题";
         [self.navigationController pushViewController:web animated:YES];
     }
     
     if (indexPath.section == 1) {
         SDImageCache *sdImageCache = [SDImageCache sharedImageCache];
-        [sdImageCache cleanDisk];
+        [sdImageCache clearDisk];
         
         [self _initLabels];
     }

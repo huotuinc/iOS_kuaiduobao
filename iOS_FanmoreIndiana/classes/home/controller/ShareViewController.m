@@ -42,7 +42,7 @@ static NSString *cellShare=@"cellShare";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getShareList)];
     _tableView.mj_header = headRe;
 
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShareList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreShareList)];
     _tableView.mj_footer = Footer;
 }
 #pragma mark 网络请求往期分享列表
@@ -153,7 +153,7 @@ static NSString *cellShare=@"cellShare";
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:dateFormat];
     //将13位时间戳转为正常时间格式
-    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time doubleValue] / 1000]];
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue] / 1000]];
     return str;
 }
 

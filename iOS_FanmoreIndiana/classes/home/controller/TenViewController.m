@@ -71,11 +71,12 @@ static NSString *cellTenMain=@"cellTenMain";
 }
 - (void)setupRefresh
 {
+    [self.tableView removeSpaces];
 
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getAppGoodsList)];
     _tableView.mj_header = headRe;
     
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
     _tableView.mj_footer = Footer;
 
 }
@@ -134,6 +135,7 @@ static NSString *cellTenMain=@"cellTenMain";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList addObjectsFromArray:temp];
             [_tableView reloadData];
         }
@@ -173,6 +175,8 @@ static NSString *cellTenMain=@"cellTenMain";
     }else {
         [self setupRefresh];
     }
+    
+    [_tableView removeSpaces];
 }
 
 

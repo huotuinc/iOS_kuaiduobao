@@ -30,15 +30,10 @@
         self.full.hidden = NO;
     }
     self.titleName.text = model.title;
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *start = [NSDate dateWithTimeIntervalSince1970:[model.startTime doubleValue] / 1000];
-    self.start.text =[NSString stringWithFormat:@"生效期：%@",[formatter stringFromDate:start]];
+
+    self.start.text =[self changeTheTimeStamps:model.startTime];
     
-    NSDate *endTime = [NSDate dateWithTimeIntervalSince1970:[model.endTime doubleValue] / 1000];
-    self.end.text = [NSString stringWithFormat:@"有效期：%@", [formatter stringFromDate:endTime]];
+    self.end.text = [self changeTheTimeStamps:model.endTime];
     
     self.remark.text = model.remark;
 }
@@ -53,5 +48,23 @@
         self.endImage.hidden = NO;
     }
 }
+
+/**
+ *  13位时间戳转为正常时间(可设置样式)
+ *
+ *  @param time 时间戳
+ *
+ *  @return
+ */
+-(NSString *)changeTheTimeStamps:(NSNumber *)time{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //将13位时间戳转为正常时间格式
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue]/1000]];
+    return str;
+}
+
 
 @end

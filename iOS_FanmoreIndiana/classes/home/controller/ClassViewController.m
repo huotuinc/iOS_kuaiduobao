@@ -32,6 +32,8 @@ static NSString *cellClassB=@"cellClassB";
     self.view.backgroundColor=[UIColor whiteColor];
     [self.navigationItem changeNavgationBarTitle:@"分类浏览"];
     [self getTitleList];
+    
+    self.tabBarController.tabBar.hidden = YES;
 
 }
 

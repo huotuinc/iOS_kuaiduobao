@@ -9,6 +9,7 @@
 #import "NewShareController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 #import <UIImageView+WebCache.h>
+#import "UIImage+Compression.h"
 
 @interface NewShareController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate>
 
@@ -167,7 +168,7 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:MM:ss"];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.WinningModel.awardingDate doubleValue] / 1000];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.WinningModel.awardingDate longLongValue] / 1000];
     self.goodTime.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
 }
 
@@ -225,6 +226,8 @@
         } else {
             // 照片的元数据参数
             photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+            
+            
         }
     }
     
@@ -360,6 +363,9 @@
     } else {
         
         data = UIImagePNGRepresentation(image);
+        if ([data length] / 1000 > 2000) {
+            data = UIImagePNGRepresentation([UIImage imageWithImageSimple:image scaledToSize:CGSizeMake(600, 600)]);
+        }
     }
     
     NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];

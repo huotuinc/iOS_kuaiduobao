@@ -53,7 +53,10 @@
     NSString *passwordNumber = self.password.text;
     if ([passwordNumber isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
-    }else {
+    }else if (passwordNumber.length < 6 || passwordNumber.length > 16) {
+        [SVProgressHUD showErrorWithStatus:@"密码长度6-16位"];
+    }
+    else {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"password"] = [MD5Encryption md5by32:passwordNumber];
         dic[@"phone"] = self.phone;

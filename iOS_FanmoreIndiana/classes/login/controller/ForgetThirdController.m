@@ -65,7 +65,10 @@
     NSString *passwordNumber = self.passwrod.text;
     if ([passwordNumber isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
-    }else {
+    }else if (passwordNumber.length < 6 || passwordNumber.length > 16) {
+        [SVProgressHUD showErrorWithStatus:@"密码长度6-16位"];
+    }
+    else {
         
         if (self.type == 1 || self.type == 3) {
             

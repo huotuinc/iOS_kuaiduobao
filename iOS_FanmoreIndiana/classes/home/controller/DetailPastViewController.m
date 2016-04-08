@@ -53,7 +53,7 @@ static NSString * cellDPasting=@"cellDPasting";
     MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getAppPastList)];
     _tableView.mj_header = headRe;
     
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMorePastList)];
     _tableView.mj_footer = Footer;
     
 }
@@ -212,7 +212,7 @@ static NSString * cellDPasting=@"cellDPasting";
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:dateFormat];
     //将13位时间戳转为正常时间格式
-    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time doubleValue] / 1000]];
+    NSString * str = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time longLongValue] / 1000]];
     return str;
 }
 

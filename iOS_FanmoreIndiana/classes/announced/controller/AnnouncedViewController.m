@@ -92,7 +92,7 @@ static NSString *cellABMain=@"cellABMain";
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreOpenList)];
+    MJRefreshAutoFooter * Footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreOpenList)];
     _collectionView.mj_footer = Footer;
     
     //        [_tableView addFooterWithTarget:self action:@selector(getMoreGoodList)];

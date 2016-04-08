@@ -524,6 +524,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         NSString *fileName = [path stringByAppendingPathComponent:GlobalInfo];
         GlobalModel *global = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
         web.webURL = global.helpURL;
+        web.title = @"常见问题";
         [self.navigationController pushViewController:web animated:YES];
     }];
 }
@@ -927,13 +928,13 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 - (void)_initCollectionView {
     XLPlainFlowLayout *flowLayout = [[XLPlainFlowLayout alloc] init];
     flowLayout.naviHeight = 0;
-    if (KScreenWidth == 414) {
-        flowLayout.minimumInteritemSpacing = 1;
-        flowLayout.minimumLineSpacing = 0.5;
-    }else {
+//    if (KScreenWidth == 414) {
+//        flowLayout.minimumInteritemSpacing = 0.5;
+//        flowLayout.minimumLineSpacing = 1;
+//    }else {
         flowLayout.minimumInteritemSpacing = 0.5;
         flowLayout.minimumLineSpacing = 1;
-    }
+//    }
     
     flowLayout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
     

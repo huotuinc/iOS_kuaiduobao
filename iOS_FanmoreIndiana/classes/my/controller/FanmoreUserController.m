@@ -17,6 +17,8 @@
 #import "ChangePasswordFromOldController.h"
 #import "ForgetThirdController.h"
 #import "ForgetSecondController.h"
+#import "UIImage+Compression.h"
+
 #import <ShareSDK/ShareSDK.h>
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -288,6 +290,13 @@
     } else {
         
         data = UIImagePNGRepresentation(photoImage);
+        
+        
+        if ([data length] / 1000 > 2000) {
+            data = UIImagePNGRepresentation([UIImage imageWithImageSimple:photoImage scaledToSize:CGSizeMake(800, 800)]);
+        }
+        
+        
     }
     
     NSString * imagefile = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
@@ -303,16 +312,18 @@
             [SVProgressHUD dismiss];
             
             if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+                [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
                 //                [self loginSuccessWith:json[@"resultData"]];
                 UserModel *user = [UserModel mj_objectWithKeyValues:json[@"resultData"][@"user"]];
-//                NSLog(@"userModel: %@",user);
-                [self.logo sd_setImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
+                [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
                 NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
                 [NSKeyedArchiver archiveRootObject:user toFile:fileName];
                 //保存新的token
                 [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
                 //                [self.navigationController popViewControllerAnimated:YES];
+            }else {
+                [SVProgressHUD showErrorWithStatus:@"头像上传失败"];
             }
             
         } failure:^(NSError *error) {
