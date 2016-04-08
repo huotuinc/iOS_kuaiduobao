@@ -110,7 +110,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     
     self.tabBarController.tabBar.hidden = NO;
-    [self getHomeData];
+//    [self getHomeData];
+    [self getAppNoticeList];
+
+    [self getGoodsList];
 //    [self getAppNoticeList];
 //    [self getGoodsList];
     //中奖消息滚动 定时器
@@ -284,10 +287,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 #pragma mark MJ刷新
 - (void)setupRefresh
 {
-    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getHomeData)];
+    MJRefreshNormalHeader * headRe = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getGoodsList)];
     self.collectionView.mj_header = headRe;
 
-    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreHomeData)];
+    MJRefreshBackNormalFooter * Footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreGoodsList)];
     self.collectionView.mj_footer = Footer;
     
 }
@@ -397,6 +400,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             [self.appGoodsList removeAllObjects];
             [self.appGoodsList addObjectsFromArray:temp];
             [_collectionView reloadData];
+            [_collectionView.mj_header endRefreshing];
+
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
@@ -405,7 +410,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         LWLog(@"%@",error);
         [SVProgressHUD dismiss];
     }];
-    [_collectionView.mj_header endRefreshing];
+//    [_collectionView.mj_header endRefreshing];
     NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
     if ([login isEqualToString:Success]) {
         [self getRedList];

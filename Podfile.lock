@@ -51,13 +51,13 @@ PODS:
   - SHXMLParser (1.1.0)
   - SSToolkit (1.0.4)
   - SSZipArchive (1.1)
-  - SVProgressHUD (2.0.2)
+  - SVProgressHUD (2.0.3)
   - SWTableViewCell (0.3.7)
   - TPKeyboardAvoiding (1.2.3)
 
 DEPENDENCIES:
   - AFNetworking
-  - BlocksKit (= 2.2.5)
+  - BlocksKit (~> 2.2.5)
   - ConciseKit (= 0.1.2)
   - FMDB
   - INTULocationManager
@@ -100,7 +100,7 @@ SPEC CHECKSUMS:
   SHXMLParser: 3e5ada336541b3e5b8d66046a14c2bf49742c62e
   SSToolkit: f75a749d3ccb3f9b32bb135c24958fc4265374e7
   SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
-  SVProgressHUD: e4020e23badbd7cc61bc4a80d3c1da57f166a978
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TPKeyboardAvoiding: ab1760b9813202b5a570a2cef4b4404ef36b50c5
 
