@@ -424,6 +424,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
+            [_collectionView.mj_footer endRefreshing];
             NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
             self.lastSort =json[@"resultData"][@"sort"];
 
@@ -438,9 +439,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
-        [_collectionView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
         LWLog (@"%@",error);
+        [_collectionView.mj_footer endRefreshing];
     }];
 
 }
@@ -661,7 +662,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             //商品
             HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
             AppGoodsListModel *model=_appGoodsList[indexPath.row];
-            cell.imageVState.image = [UIImage imageNamed:@""];
+//            cell.imageVState.image = [UIImage imageNamed:@""];
             if ([model.areaAmount integerValue] > 0) {
                 cell.imageVState.image=[UIImage imageNamed:@"zhuanqu_a"];
             }
@@ -729,7 +730,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             NSArray *arr=@[@"人气",@"最新",@"进度",@"总需人次"];
             if (_viewChoice != nil) {
                 [_viewChoice removeFromSuperview];
-                _viewChoice = nil;
+//                _viewChoice = nil;
             }
             UIView* localView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
             for (int i=0; i<4; i++) {
