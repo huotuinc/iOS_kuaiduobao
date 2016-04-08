@@ -135,6 +135,7 @@ static NSString *cellTenMain=@"cellTenMain";
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue] == 1) {
             
             NSArray *temp = [AppGoodsListModel mj_objectArrayWithKeyValuesArray:json[@"resultData"][@"list"]];
+            self.lastSort =json[@"resultData"][@"sort"];
             [self.appGoodsList addObjectsFromArray:temp];
             [_tableView reloadData];
         }
