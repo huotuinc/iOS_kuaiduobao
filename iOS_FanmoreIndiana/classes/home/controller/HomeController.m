@@ -140,7 +140,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     self.type = [NSNumber numberWithInteger:1];
     [self getAppSlideList];
 
-
+    
+    [self _initCollectionView];
 
 }
 //导航栏标题
@@ -361,18 +362,18 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 [_arrURLString addObject:model.pictureUrl];
             }
             //创建视图
-            if (!self.collectionView) {
-                [self _initCollectionView];
-            }
+//            if (!self.collectionView) {
+//                [self _initCollectionView];
+//            }
             
         }else{
             LWLog(@"%@",json[@"resultDescription"]);
         }
     } failure:^(NSError *error) {
         LWLog(@"%@",error);
-        if (!self.collectionView) {
-            [self _initCollectionView];
-        }
+//        if (!self.collectionView) {
+//            [self _initCollectionView];
+//        }
     }];
     
 }
@@ -465,9 +466,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 //顶部轮播视图 不支持下拉刷新
 - (void)createHeadScrollView {
-    if (_headScrollView) {
-        return;
-    } else {
+//    if (_headScrollView) {
+//        return;
+//    } else {
+    
         _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) urlArray:_arrURLString];
         _headScrollView.delegate = self;
         if (_arrURLString.count == 1) {
@@ -475,7 +477,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }else {
             _headScrollView.interval = 3.f;
         }
-    }
+//    }
 }
 #pragma mark 五个选项
 - (void)createFourBtnView {
@@ -635,9 +637,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         //顶部视图集合
         if (indexPath.section == 0) {
             HomeHeadCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellHead forIndexPath:indexPath ];
-            if (!_headScrollView) {
+//            if (!_headScrollView) {
                 [self createHeadScrollView];
-            }
+//            }
             if (!_fourBtnView) {
                 [self createFourBtnView];
             }

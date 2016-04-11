@@ -55,7 +55,7 @@
 /**新浪微博*/
 #define XinLangAppkey @"1093694002"
 #define XinLangAppSecret @"48a20ffcdc17ed0884c53fd9e8bae2f5"
-#define XinLangRedirectUri @"https://api.weibo.com/oauth2/default.html"
+#define XinLangRedirectUri @"https://api.weibo.com/oauth2/default.html"5t4555
 
 /**QQ**/
 #define QQAppKey @"1105178159"
@@ -75,7 +75,7 @@
 //#define MainUrl @"http://192.168.3.22:8080/duobao/app/"
 //#define MKMainUrl @"192.168.1.254:10001/app"
 //#define MKMainUrl @"duobao.51flashmall.com:8091/app"
-//#define MKMainUrl @"192.168.3.27:8080/duobao/app/"
+//#define MKMainUrl @"192.168.1.92:8080/duobao/app/"
 
 //服务器正式地址
 #define MKMainUrl @"duobao.huobanplus.com/app"
