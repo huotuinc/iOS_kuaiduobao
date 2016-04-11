@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppGoodsListModel.h"
 
 @interface HomeCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIButton *joinList;
@@ -17,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageVState;
 
+@property (nonatomic, strong) AppGoodsListModel *model;
 
 
 @end

@@ -55,7 +55,7 @@
 /**新浪微博*/
 #define XinLangAppkey @"1093694002"
 #define XinLangAppSecret @"48a20ffcdc17ed0884c53fd9e8bae2f5"
-#define XinLangRedirectUri @"https://api.weibo.com/oauth2/default.html"5t4555
+#define XinLangRedirectUri @"https://api.weibo.com/oauth2/default.html"
 
 /**QQ**/
 #define QQAppKey @"1105178159"
@@ -124,6 +124,8 @@
 #define payMoneySuccess @"payMoneySuccess"
 
 #define payMoneySuccessView @"payMoneySuccessView"//支付成功后刷新界面
+
+#define homeJoinListAction @"homeJoinListAction" //首页点击加入清单
 
 /*********咻咻红包***********/
 #define NOTIFICATION_ACTIVITY_START  @"NotificationActivityStart"//活动开始后刷新界面

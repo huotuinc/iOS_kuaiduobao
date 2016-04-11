@@ -48,4 +48,9 @@ typedef NS_ENUM(NSInteger, CircleBannerViewScrollDirection) {
 //本地图片
 - (instancetype)initWithFrame:(CGRect)frame imageArray:(NSArray *)imageArray;
 
+- (void)initSubviews;
+
+- (void)bannerWithImageArray:(NSArray *)imageArray;
+
+
 @end

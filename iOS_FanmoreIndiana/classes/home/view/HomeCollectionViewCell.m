@@ -43,4 +43,39 @@
     
 }
 
+- (void)setModel:(AppGoodsListModel *)model {
+    _model = model;
+    
+    if ([model.areaAmount integerValue] > 0) {
+        _imageVState.image=[UIImage imageNamed:@"zhuanqu_a"];
+    }
+    _labelName.text=model.title;
+    CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
+    _viewProgress.progress=percent;
+    NSString *percentString = [NSString stringWithFormat:@"%.0f%%",percent*100];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"开奖进度 %@",percentString]];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_TITILE range:NSMakeRange(0,4)];
+    [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_BLUE range:NSMakeRange(5,percentString.length)];
+    _labelProgress.attributedText = attString;
+    [_imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
+    
+    [_joinList addTarget:self action:@selector(joinListAction) forControlEvents:UIControlEventTouchUpInside];
+    
+//    [_joinList bk_whenTapped:^{
+//       
+//        NSDictionary *dic = [NSDictionary dictionaryWithObject:model.issueId  forKey:@"issueId"];
+//        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:homeJoinListAction object:nil userInfo:dic];
+//
+//    }];
+}
+
+- (void)joinListAction {
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:self.model.issueId  forKey:@"issueId"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:homeJoinListAction object:nil userInfo:dic];
+
+}
+
+
 @end

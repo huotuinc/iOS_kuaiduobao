@@ -123,6 +123,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
     
     
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -143,6 +145,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     [self _initCollectionView];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(joinListAction:) name:homeJoinListAction object:nil];
+    
+    
 }
 //导航栏标题
 -(void)createNavgationBarTitle{
@@ -433,7 +438,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             LWLog(@"%@",json[@"resultDescription"]);
 
             if (temp.count == 0) {
-                return ;
+//                return ;
             }else {
                 [_collectionView reloadData];
             }
@@ -466,9 +471,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 }
 //顶部轮播视图 不支持下拉刷新
 - (void)createHeadScrollView {
-//    if (_headScrollView) {
-//        return;
-//    } else {
+    if (_headScrollView) {
+        [_headScrollView initSubviews];
+        [_headScrollView bannerWithImageArray:self.arrURLString];
+    } else {
     
         _headScrollView = [[CircleBannerView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(280)) urlArray:_arrURLString];
         _headScrollView.delegate = self;
@@ -477,7 +483,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         }else {
             _headScrollView.interval = 3.f;
         }
-//    }
+    }
 }
 #pragma mark 五个选项
 - (void)createFourBtnView {
@@ -664,36 +670,25 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             //商品
             HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
             AppGoodsListModel *model=_appGoodsList[indexPath.row];
-//            cell.imageVState.image = [UIImage imageNamed:@""];
-            if ([model.areaAmount integerValue] > 0) {
-                cell.imageVState.image=[UIImage imageNamed:@"zhuanqu_a"];
-            }
-            cell.labelName.text=model.title;
-            CGFloat percent=(model.toAmount.floatValue -model.remainAmount.floatValue)/(model.toAmount.floatValue);
-            cell.viewProgress.progress=percent;
-            NSString *percentString = [NSString stringWithFormat:@"%.0f%%",percent*100];
-            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"开奖进度 %@",percentString]];
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_TITILE range:NSMakeRange(0,4)];
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_SHINE_BLUE range:NSMakeRange(5,percentString.length)];
-            cell.labelProgress.attributedText = attString;
-            [cell.imageVGoods sd_setImageWithURL:[NSURL URLWithString:model.pictureUrl]];
-            cell.joinList.tag = 500 + indexPath.row;
-            [cell.joinList bk_whenTapped:^{
-                NSInteger row = cell.joinList.tag - 500;
-                AppGoodsListModel * joinModel = _appGoodsList[row];
-                //加入购物车
-                NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-                if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
-                    self.issueId = joinModel.issueId;
-                    [self joinShoppingCart];
-                }else{
-#pragma mark 加入购物车 未登陆
-                    [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
-                    [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
-                    
-                }
-            }];
+            cell.model = model;
+            
+//            cell.joinList.tag = 500 + indexPath.row;
+//            [cell.joinList bk_whenTapped:^{
+//                NSInteger row = cell.joinList.tag - 500;
+//                AppGoodsListModel * joinModel = _appGoodsList[row];
+//                //加入购物车
+//                NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//                if ([login isEqualToString:Success]) {
+//#pragma mark 加入购物车 已登陆
+//                    self.issueId = joinModel.issueId;
+//                    [self joinShoppingCart];
+//                }else{
+//#pragma mark 加入购物车 未登陆
+//                    [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
+//                    [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
+//                    
+//                }
+//            }];
             return cell;
         }
     }
@@ -702,23 +697,23 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         labelCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:cellLabel forIndexPath:indexPath];
         //无限滚动 开始重复滚动
         if (indexPath.item >= _appNoticeList.count) {
-            NSInteger i = indexPath.item % _appNoticeList.count;
-            AppNoticeListModel *model =_appNoticeList[i];
-            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
-            cell.labelMain.attributedText = attString;
+//            NSInteger i = indexPath.item % _appNoticeList.count;
+//            AppNoticeListModel *model =_appNoticeList[i];
+//            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
+//            cell.labelMain.attributedText = attString;
             return cell;
         }
         //第一圈数据
         else {
-            AppNoticeListModel *model =_appNoticeList[indexPath.item];
-            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
-            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
-            cell.labelMain.attributedText = attString;
+//            AppNoticeListModel *model =_appNoticeList[indexPath.item];
+//            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
+//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
+//            cell.labelMain.attributedText = attString;
             return cell;
         }
     }
@@ -729,6 +724,9 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     if (collectionView.tag == 100) {
         if (kind == UICollectionElementKindSectionHeader) {
             UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify forIndexPath:indexPath];
+            if (indexPath.section == 0) {
+                return view;
+            }else {
             NSArray *arr=@[@"人气",@"最新",@"进度",@"总需人次"];
             if (_viewChoice != nil) {
                 [_viewChoice removeFromSuperview];
@@ -840,6 +838,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 _viewChoice = localView;
                 view.backgroundColor=[UIColor whiteColor];
                 return view;
+            }
         }
         return nil;
     }
@@ -881,7 +880,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 {
     if (collectionView.tag == 100) {
         if (section == 0) {
-            return CGSizeZero;
+            return CGSizeMake(100, 0);
         }else {
             
             return CGSizeMake([UIScreen mainScreen].bounds.size.width, 44);
@@ -946,6 +945,8 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headIdentify];
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeHeadCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellHead];
+    
+//    self.collectionView registerNib:<#(nullable UINib *)#> forSupplementaryViewOfKind:<#(nonnull NSString *)#> withReuseIdentifier:<#(nonnull NSString *)#>
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"HomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identify];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:topIdentify];
@@ -1056,4 +1057,28 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     [self.timer invalidate];
     self.timer = nil;
 }
+
+- (void)joinListAction:(NSNotification *) not {
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+        self.issueId = not.userInfo[@"issueId"];
+        [self joinShoppingCart];
+    }else{
+#pragma mark 加入购物车 未登陆
+        for (AppGoodsListModel *model in _appGoodsList) {
+            if (model.issueId == not.userInfo[@"issueId"]) {
+                
+                [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:model];
+                [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
+                break;
+            }
+        }
+        
+        
+    }
+
+}
+
+
 @end
