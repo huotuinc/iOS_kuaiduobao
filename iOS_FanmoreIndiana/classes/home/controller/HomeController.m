@@ -666,7 +666,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
             //商品
             HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
             AppGoodsListModel *model=_appGoodsList[indexPath.row];
-            cell.imageVState.image = [UIImage imageNamed:@""];
+            cell.imageVState.hidden = YES;
             if ([model.areaAmount integerValue] > 0) {
                 cell.imageVState.image=[UIImage imageNamed:@"zhuanqu_a"];
             }
