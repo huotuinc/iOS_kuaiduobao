@@ -149,6 +149,9 @@ static NSString *cellDCA = @"cellDCA";
         }else {
             _sectionBView.labelShow.text = @"展开";
         }
+//        _sectionBView.userInteractionEnabled = YES;
+//        UIGestureRecognizer *tapB = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(tapTheSectionBView)];
+//        [_sectionBView addGestureRecognizer:tapB];
         [_sectionBView bk_whenTapped:^{
             if (_isExpanded) {
                 LWLog(@"改成展开");
@@ -210,6 +213,20 @@ static NSString *cellDCA = @"cellDCA";
     return 0.f;
 }
 
+- (void)tapTheSectionBView {
+    LWLog(@"点击了");
+    if (_isExpanded) {
+        LWLog(@"改成展开");
+        _sectionBView.labelShow.text = @"展开";
+        _isExpanded = NO;
+    }else {
+        LWLog(@"改成收起");
+        _sectionBView.labelShow.text = @"收起";
+        _isExpanded = YES;
+    }
+    [_tableView reloadData];
+
+}
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.tabBarController.tabBar.hidden=NO;

@@ -168,7 +168,7 @@ static NSString *cellABMain=@"cellABMain";
             self.lastId = json[@"resultData"][@"sort"];
             self.curType = json[@"resultData"][@"type"];
             if (temp.count == 0) {
-                return ;
+                
             }else {
                 [_collectionView reloadData];
             }
@@ -218,7 +218,7 @@ static NSString *cellABMain=@"cellABMain";
         [self.view addSubview:_collectionView];
         [self setupRefresh];
     }else {
-        return;
+        
     }
     
     

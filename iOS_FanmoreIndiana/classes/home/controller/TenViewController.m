@@ -203,20 +203,21 @@ static NSString *cellTenMain=@"cellTenMain";
         cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_a"];
     }
     cell.buttonAdd.tag = 500 +indexPath.row;
-    [cell.buttonAdd bk_whenTapped:^{
-        NSInteger row = cell.buttonAdd.tag - 500;
-        AppGoodsListModel *GoodM = _appGoodsList[row];
-        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-        if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
-            self.issueId = GoodM.issueId;
-            [self joinShoppingCart];
-        }else{
-#pragma mark 加入购物车 未登陆
-            [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:GoodM];
-            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
-        }
-    }];
+    [cell.buttonAdd addTarget:self action:@selector(clickButtonAdd:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.buttonAdd bk_whenTapped:^{
+//        NSInteger row = cell.buttonAdd.tag - 500;
+//        AppGoodsListModel *GoodM = _appGoodsList[row];
+//        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//        if ([login isEqualToString:Success]) {
+//#pragma mark 加入购物车 已登陆
+//            self.issueId = GoodM.issueId;
+//            [self joinShoppingCart];
+//        }else{
+//#pragma mark 加入购物车 未登陆
+//            [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:GoodM];
+//            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
+//        }
+//    }];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
     
@@ -244,6 +245,20 @@ static NSString *cellTenMain=@"cellTenMain";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)clickButtonAdd:(UIButton *)buttonAdd {
+    NSInteger row = buttonAdd.tag - 500;
+    AppGoodsListModel *GoodM = _appGoodsList[row];
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+        self.issueId = GoodM.issueId;
+        [self joinShoppingCart];
+    }else{
+#pragma mark 加入购物车 未登陆
+        [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:GoodM];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

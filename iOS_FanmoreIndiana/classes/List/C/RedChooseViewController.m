@@ -110,21 +110,22 @@ static NSString * cellLRed=@"cellLRed";
     [cell setModel:model];
     cell.buttonSelect.tag = 200 +indexPath.row;
 #pragma mark 红包选择
-    [cell.buttonSelect bk_whenTapped:^{
-//        for (int i =0; i<_redList.count; i++) {
-//            UIButton *btn = [cell viewWithTag:200+i];
-//            btn.selected =NO;
+    [cell.buttonSelect addTarget: self action:@selector(clickButtonSelect:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.buttonSelect bk_whenTapped:^{
+////        for (int i =0; i<_redList.count; i++) {
+////            UIButton *btn = [cell viewWithTag:200+i];
+////            btn.selected =NO;
+////        }
+//        cell.buttonSelect.selected =YES;
+//        NSInteger row = cell.buttonSelect.tag -200;
+//        RedPacketsModel *RedModel = _redList[row];
+//        //增加代码的安全性
+//        if ([self.delegate respondsToSelector:@selector(sendRedId:andTitle:andDiscountMoney:)]) {
+//            [self.delegate sendRedId:RedModel.pid andTitle:RedModel.title andDiscountMoney:RedModel.minusMoney];
 //        }
-        cell.buttonSelect.selected =YES;
-        NSInteger row = cell.buttonSelect.tag -200;
-        RedPacketsModel *RedModel = _redList[row];
-        //增加代码的安全性
-        if ([self.delegate respondsToSelector:@selector(sendRedId:andTitle:andDiscountMoney:)]) {
-            [self.delegate sendRedId:RedModel.pid andTitle:RedModel.title andDiscountMoney:RedModel.minusMoney];
-        }
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    }];
+//        [self.navigationController popViewControllerAnimated:YES];
+//        
+//    }];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
@@ -144,6 +145,16 @@ static NSString * cellLRed=@"cellLRed";
     
 }
 
+- (void)clickButtonSelect:(UIButton *)buttonSelect {
+    buttonSelect.selected =YES;
+    NSInteger row = buttonSelect.tag -200;
+    RedPacketsModel *RedModel = _redList[row];
+    //增加代码的安全性
+    if ([self.delegate respondsToSelector:@selector(sendRedId:andTitle:andDiscountMoney:)]) {
+        [self.delegate sendRedId:RedModel.pid andTitle:RedModel.title andDiscountMoney:RedModel.minusMoney];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /**
  *  13位时间戳转为正常时间(可设置样式)
  *

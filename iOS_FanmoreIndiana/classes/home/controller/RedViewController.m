@@ -437,7 +437,7 @@ static NSInteger clickCount = 0; //点击次数
 
 - (void) creatImageVReturn {
     if (_imageVReturn) {
-        return;
+        
     }else {
         _imageVReturn = [[UIImageView alloc] initWithFrame:CGRectMake(15, 20, 25, 25)];
         _imageVReturn.image = [UIImage imageNamed:@"back"];

@@ -328,11 +328,12 @@ static NSString * cellDFirst=@"cellDFirst";
         _winnerView.labelNumberA.text=[NSString stringWithFormat:@"%@",_detailModel.luckyNumber];
         [_winnerView.imageVHead sd_setImageWithURL:[NSURL URLWithString:_detailModel.awardingUserHead] placeholderImage:[UIImage imageNamed:@"mrtx"]];
         //计算详情点击
-        [_winnerView.buttonContent bk_whenTapped:^{
-            DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
-            calculate.issueId = _detailModel.issueId;
-            [self.navigationController pushViewController:calculate animated:YES];
-        }];
+        [_winnerView.buttonContent addTarget:self action:@selector(clickButtonConcent:) forControlEvents:UIControlEventTouchUpInside];
+//        [_winnerView.buttonContent bk_whenTapped:^{
+//            DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
+//            calculate.issueId = _detailModel.issueId;
+//            [self.navigationController pushViewController:calculate animated:YES];
+//        }];
         //参与视图 向上偏移了ADAPT_HEIGHT(20)后期调整
         NSArray *nibA = [[NSBundle mainBundle]loadNibNamed:@"DetailAttendCountCView" owner:nil options:nil];
         _countView= [nibA firstObject];
@@ -348,13 +349,16 @@ static NSString * cellDFirst=@"cellDFirst";
             _countView.labelB.hidden=NO;
             _countView.viewNext.hidden=NO;
             //参与号码点击
-            [_countView.viewNext bk_whenTapped:^{
-                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
-                number.numberArray = _detailModel.numbers;
-                number.goodsName=_detailModel.title;
-                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
-                [self.navigationController pushViewController:number animated:YES];
-            }];
+            _countView.viewNext.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapC = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapViewNext)];
+            [_countView.viewNext addGestureRecognizer:tapC];
+//            [_countView.viewNext bk_whenTapped:^{
+//                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
+//                number.numberArray = _detailModel.numbers;
+//                number.goodsName=_detailModel.title;
+//                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+//                [self.navigationController pushViewController:number animated:YES];
+//            }];
         }else{
             //未参与本期夺宝
             _countView.labelCount.hidden=NO;
@@ -403,13 +407,17 @@ static NSString * cellDFirst=@"cellDFirst";
             _countView.labelA.hidden=NO;
             _countView.labelB.hidden=NO;
             _countView.viewNext.hidden=NO;
-            [_countView.viewNext bk_whenTapped:^{
-                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
-                number.numberArray = _detailModel.numbers;
-                number.goodsName=_detailModel.title;
-                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
-                [self.navigationController pushViewController:number animated:YES];
-            }];
+            //参与号码点击
+            _countView.viewNext.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapC = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapViewNext)];
+            [_countView.viewNext addGestureRecognizer:tapC];
+//            [_countView.viewNext bk_whenTapped:^{
+//                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
+//                number.numberArray = _detailModel.numbers;
+//                number.goodsName=_detailModel.title;
+//                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+//                [self.navigationController pushViewController:number animated:YES];
+//            }];
         }else{
             _countView.labelCount.hidden=NO;
             _countView.labelA.hidden=YES;
@@ -462,13 +470,17 @@ static NSString * cellDFirst=@"cellDFirst";
             _countView.labelA.hidden=NO;
             _countView.labelB.hidden=NO;
             _countView.viewNext.hidden=NO;
-            [_countView.viewNext bk_whenTapped:^{
-                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
-                number.numberArray = _detailModel.numbers;
-                number.goodsName=_detailModel.title;
-                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
-                [self.navigationController pushViewController:number animated:YES];
-            }];
+            //参与号码点击
+            _countView.viewNext.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapC = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapViewNext)];
+            [_countView.viewNext addGestureRecognizer:tapC];
+//            [_countView.viewNext bk_whenTapped:^{
+//                DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
+//                number.numberArray = _detailModel.numbers;
+//                number.goodsName=_detailModel.title;
+//                number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+//                [self.navigationController pushViewController:number animated:YES];
+//            }];
         }else{
             _countView.labelCount.hidden=NO;
             _countView.labelA.hidden=YES;
@@ -818,7 +830,18 @@ static NSString * cellDFirst=@"cellDFirst";
     [imageView sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@"wtx"]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;;
 }
-
+- (void)clickButtonConcent:(UIButton *)buttonConcent {
+    DetailCalculateViewController *calculate = [[DetailCalculateViewController alloc] init];
+    calculate.issueId = _detailModel.issueId;
+    [self.navigationController pushViewController:calculate animated:YES];
+}
+- (void)tapViewNext {
+    DetailNumberViewController *number=[[DetailNumberViewController alloc]init];
+    number.numberArray = _detailModel.numbers;
+    number.goodsName=_detailModel.title;
+    number.issueId=[NSString stringWithFormat:@"%@",_detailModel.issueId];
+    [self.navigationController pushViewController:number animated:YES];
+}
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.tabBarController.tabBar.hidden=NO;
@@ -828,6 +851,7 @@ static NSString * cellDFirst=@"cellDFirst";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
+
 
 /*
 #pragma mark - Navigation

@@ -48,6 +48,8 @@ static NSInteger selectAllCount = 1;
 
 
     [super viewWillAppear:animated];
+    LWLog(@"viewWillAppearAAAAAAAAAA");
+
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationController.navigationBar.translucent=NO;
@@ -55,7 +57,6 @@ static NSInteger selectAllCount = 1;
     self.tabBarController.tabBar.hidden = NO;
 
     isSelect = YES;
-
     [self getShoppingList];
 
     
@@ -736,7 +737,6 @@ static NSInteger selectAllCount = 1;
         
         [self countPrice];
         selectAllCount = 2;
-        return;
     }
     //未选中
     if (selectAllCount == 2) {
@@ -750,7 +750,6 @@ static NSInteger selectAllCount = 1;
         [self.tableView reloadData];
         [self countPrice];
         selectAllCount = 1;
-        return;
         
     }
 }
@@ -777,7 +776,7 @@ static NSInteger selectAllCount = 1;
 
 - (void)keyboardWillShow:(NSNotification *)notif {
     if (self.view.hidden == YES) {
-        return;
+        
     }
     
     CGRect rect = [[notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -810,13 +809,13 @@ static NSInteger selectAllCount = 1;
 
 - (void)keyboardShow:(NSNotification *)notif {
     if (self.view.hidden == YES) {
-        return;
+        
     }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notif {
     if (self.view.hidden == YES) {
-        return;
+        
     }
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25];
@@ -835,7 +834,7 @@ static NSInteger selectAllCount = 1;
 
 - (void)keyboardHide:(NSNotification *)notif {
     if (self.view.hidden == YES) {
-        return;
+        
     }
 }
 

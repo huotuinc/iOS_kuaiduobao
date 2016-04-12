@@ -156,21 +156,22 @@ static NSString *cellSearch= @"cellSearch";
         cell.imageVSign.image=[UIImage imageNamed:@"zhuanqu_a"];
     }
     cell.buttonAdd.tag = 500 + indexPath.row;
-    [cell.buttonAdd bk_whenTapped:^{
-        NSInteger row = cell.buttonAdd.tag - 500;
-        AppGoodsListModel * joinModel = _searchList[row];
-        //加入购物车
-        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
-        if ([login isEqualToString:Success]) {
-#pragma mark 加入购物车 已登陆
-            self.issueId = joinModel.issueId;
-            [self joinShoppingCart];
-        }else{
-#pragma mark 加入购物车 未登陆
-            [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
-            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
-        }
-    }];
+    [cell.buttonAdd addTarget:self action:@selector(clickAddButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.buttonAdd bk_whenTapped:^{
+//        NSInteger row = cell.buttonAdd.tag - 500;
+//        AppGoodsListModel * joinModel = _searchList[row];
+//        //加入购物车
+//        NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+//        if ([login isEqualToString:Success]) {
+//#pragma mark 加入购物车 已登陆
+//            self.issueId = joinModel.issueId;
+//            [self joinShoppingCart];
+//        }else{
+//#pragma mark 加入购物车 未登陆
+//            [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
+//            [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
+//        }
+//    }];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -210,6 +211,22 @@ static NSString *cellSearch= @"cellSearch";
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 
     
+}
+- (void)clickAddButton:(UIButton *)buttonAdd {
+    NSInteger row = buttonAdd.tag - 500;
+    AppGoodsListModel * joinModel = _searchList[row];
+    //加入购物车
+    NSString * login = [[NSUserDefaults standardUserDefaults] objectForKey:LoginStatus];
+    if ([login isEqualToString:Success]) {
+#pragma mark 加入购物车 已登陆
+        self.issueId = joinModel.issueId;
+        [self joinShoppingCart];
+    }else{
+#pragma mark 加入购物车 未登陆
+        [ArchiveLocalData archiveLocalDataArrayWithGoodsModel:joinModel];
+        [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
+    }
+
 }
 
 
