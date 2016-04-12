@@ -245,6 +245,7 @@ static NSString * cellDFirst=@"cellDFirst";
         [_tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
         LWLog (@"%@",error);
+        [_tableView.mj_footer endRefreshing];
     }];
 }
 #pragma mark 网络请求购物车商品个数 已登陆请求清单的接口 未登录本地解归档计算
