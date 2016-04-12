@@ -697,23 +697,23 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         labelCollectionViewCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:cellLabel forIndexPath:indexPath];
         //无限滚动 开始重复滚动
         if (indexPath.item >= _appNoticeList.count) {
-//            NSInteger i = indexPath.item % _appNoticeList.count;
-//            AppNoticeListModel *model =_appNoticeList[i];
-//            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
-//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
-//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
-//            cell.labelMain.attributedText = attString;
+            NSInteger i = indexPath.item % _appNoticeList.count;
+            AppNoticeListModel *model =_appNoticeList[i];
+            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
+            cell.labelMain.attributedText = attString;
             return cell;
         }
         //第一圈数据
         else {
-//            AppNoticeListModel *model =_appNoticeList[indexPath.item];
-//            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
-//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
-//            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
-//            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
-//            cell.labelMain.attributedText = attString;
+            AppNoticeListModel *model =_appNoticeList[indexPath.item];
+            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"恭喜%@%ld分钟前获得了%@ ",model.name,[model.time integerValue]/60,model.title]];
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_BUTTON_BLUE range:NSMakeRange(2, model.name.length)];
+            NSInteger startRange = 2 +model.name.length +[NSString stringWithFormat:@"%ld",[model.time integerValue]/60].length +6;
+            [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(startRange, model.title.length)];
+            cell.labelMain.attributedText = attString;
             return cell;
         }
     }
