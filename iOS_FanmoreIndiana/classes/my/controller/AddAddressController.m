@@ -52,7 +52,7 @@
         self.detailAddress.text = _model.details;
         NSArray *array = [_model.cityName componentsSeparatedByString:@"&"];
         self.cityLabel.text = [NSString stringWithFormat:@"%@ %@ %@", array[0], array[1], array[2]];
-        
+        self.cityName = _model.cityName;
         self.defaultAddress.on = _model.defaultAddress;
         
         self.title = @"修改地址";
