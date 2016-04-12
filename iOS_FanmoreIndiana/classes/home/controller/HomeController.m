@@ -795,10 +795,10 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 }];
                 [localView addSubview:button];
             }
-//            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
-////            imageVBack.image=[UIImage imageNamed:@"line_huise"];
-//            imageVBack.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];
-//            [localView addSubview:imageVBack];
+            UIImageView *imageVBack=[[UIImageView alloc]initWithFrame:CGRectMake(0, localView.frame.size.height-1, SCREEN_WIDTH, 1)];
+//            imageVBack.image=[UIImage imageNamed:@"line_huise"];
+            imageVBack.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];
+            [localView addSubview:imageVBack];
             if (_isFirstLoad == YES) {
                 FL_Button *buttonHot=[localView viewWithTag:100];
                 buttonHot.selected=YES;
