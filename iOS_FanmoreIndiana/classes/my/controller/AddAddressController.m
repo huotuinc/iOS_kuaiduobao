@@ -38,9 +38,7 @@
     [self.tableView removeSpaces];
 
     _pick = [[AreaPickerView alloc] initWithDelegate:self];
-//    _pick.locate
-   
-//    self.detailAddressStr = [NSMutableString string];
+    
     
 }
 
@@ -56,6 +54,14 @@
         self.defaultAddress.on = _model.defaultAddress;
         
         self.title = @"修改地址";
+        
+        AreaLocation *address = [[AreaLocation alloc] init];
+        address.province = array[0];
+        address.city = array[1];
+        address.area = array[2];
+        
+        self.pick.selectedLocate = address;
+        
     }else {
         self.title = @"新增地址";
     }
@@ -185,19 +191,13 @@
 
 - (void)pickerViewSelectAreaOfCode:(AreaLocation *)locate {
     
-//    self.detailAddressStr = nil;
-
-    
-//    self.cityName = [NSString stringWithFormat:@"%@/%@/%@", locate.province, locate.city, locate.area];
-    
     self.cityLabel.text = [NSString stringWithFormat:@"%@  %@  %@", locate.province, locate.city, locate.area];
-    
-//    [self.detailAddressStr stringByAppendingString:locate.province];
-//    [self.detailAddressStr stringByAppendingString:locate.city];
-//    [self.detailAddressStr stringByAppendingString:locate.area];
     
     self.cityName = [NSString stringWithFormat:@"%@&%@&%@", locate.province, locate.city, locate.area];
     
+    if (_temp == 0) {
+        _pick.selectedLocate = locate;
+    }
 }
 
 

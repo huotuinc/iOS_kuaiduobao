@@ -28,6 +28,9 @@
 //可以返回当前选择的区域
 @property (strong, nonatomic) AreaLocation *locate;
 
+@property (strong, nonatomic) AreaLocation *selectedLocate;
+
+
 //初始化，默认frame在底部，包含toolbar，不要再设置frame
 - (id)initWithDelegate:(id <AreaPickerDelegate>)delegate;
 
