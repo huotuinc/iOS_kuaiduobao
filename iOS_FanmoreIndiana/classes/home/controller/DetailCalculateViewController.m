@@ -68,6 +68,7 @@ static NSString *cellDCA = @"cellDCA";
         [_tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
         LWLog (@"%@",error);
+         [_tableView.mj_footer endRefreshing];
     }];
     
 }
