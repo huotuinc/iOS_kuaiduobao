@@ -61,13 +61,7 @@
     
     [_joinList addTarget:self action:@selector(joinListAction) forControlEvents:UIControlEventTouchUpInside];
     
-    [_joinList bk_whenTapped:^{
-       
-        NSDictionary *dic = [NSDictionary dictionaryWithObject:model.issueId  forKey:@"issueId"];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:homeJoinListAction object:nil userInfo:dic];
 
-    }];
 }
 
 - (void)joinListAction {
