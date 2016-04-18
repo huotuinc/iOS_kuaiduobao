@@ -61,7 +61,7 @@
     
     [_joinList addTarget:self action:@selector(joinListAction) forControlEvents:UIControlEventTouchUpInside];
     
-
+    
 }
 
 - (void)joinListAction {
