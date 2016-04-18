@@ -374,7 +374,7 @@
     //add my info to the new agent
     NSString *newAgent = nil;
     
-    newAgent = [Agent stringByAppendingString:@";moble;qibin"];
+    newAgent = [Agent stringByAppendingString:@";mobile;qibing"];
     
     //regist the new agent
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent",nil];
