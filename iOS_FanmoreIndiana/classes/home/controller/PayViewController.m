@@ -422,7 +422,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         order.showUrl = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"newfanmore2015";
+    NSString *appScheme = @"qibinTreasure2016";
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];
