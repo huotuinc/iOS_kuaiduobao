@@ -114,7 +114,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
         }else {
             LWLog(@"%@",json[@"resultDescription"]);
-            [SVProgressHUD showErrorWithStatus:@"支付失败"];
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
             _payView.buttonPay.userInteractionEnabled = YES;
         }
         
