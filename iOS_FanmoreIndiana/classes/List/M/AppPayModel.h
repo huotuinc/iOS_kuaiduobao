@@ -18,5 +18,6 @@
 @property (nonatomic, copy) NSString *orderNo;
 @property (nonatomic, copy) NSString *remainPayUrl;
 @property (nonatomic, copy) NSString *wxCallbackUrl;
+@property (nonatomic, copy) NSString *alipayWebUrl;
 
 @end
