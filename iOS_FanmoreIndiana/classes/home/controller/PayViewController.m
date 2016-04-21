@@ -541,7 +541,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             [self.navigationController pushViewController:red animated:YES];
         }
         //支付类型 0微信 1支付宝 2用户余额
-        if (indexPath.row != 1 || indexPath.row != 2) {
+        if (indexPath.row != 1 && indexPath.row != 2) {
             for (int i = 3; i < _titleArray.count; i++) {
                 PayBTableViewCell * aCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
                 aCell.buttonSelect.selected = NO;
