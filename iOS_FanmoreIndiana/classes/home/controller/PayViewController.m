@@ -21,6 +21,7 @@
 #import "TabBarController.h"
 #import "AppPayResultModel.h"
 #import "PayWebViewController.h"
+
 static NSString *cellPA=@"cellPA";
 static NSString *cellPB=@"cellPB";
 static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
@@ -70,7 +71,12 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     _whichPay = 2;
     _AliPayDone = NO;
     _WeiPayDone = NO;
-    _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付",@"余额支付"]];
+    if ([WXApi isWXAppInstalled]) {
+        _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付",@"余额支付"]];
+    }else {
+        _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"支付宝支付",@"余额支付"]];
+    }
+    
 
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payUpdateUserInfo) name:payMoneySuccess object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccessNotice) name:payMoneySuccessView object:nil];
@@ -476,7 +482,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
                 cell.imageVLine.hidden = YES;
 
             }
-            if (indexPath.row == 5) {
+            if (indexPath.row == _titleArray.count -1) {
                 cell.buttonSelect.selected= YES;
             }
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
@@ -535,14 +541,17 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
             [self.navigationController pushViewController:red animated:YES];
         }
         //支付类型 0微信 1支付宝 2用户余额
-        if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5) {
-            for (int i = 3; i < 6; i++) {
+        if (indexPath.row != 1 || indexPath.row != 2) {
+            for (int i = 3; i < _titleArray.count; i++) {
                 PayBTableViewCell * aCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
                 aCell.buttonSelect.selected = NO;
             }
-
             PayBTableViewCell * theCell = [_tableView cellForRowAtIndexPath:indexPath];
-            _whichPay = indexPath.row - 3;
+            if ([WXApi isWXAppInstalled]) {
+                _whichPay = indexPath.row - 3;
+            } else {
+                _whichPay = indexPath.row - 2;
+            }
             theCell.buttonSelect.selected = YES;
         }
     }
