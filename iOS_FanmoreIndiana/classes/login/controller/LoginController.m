@@ -186,7 +186,6 @@
 - (void)loginSuccessWith:(NSDictionary *) dic {
     
     UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
-    NSLog(@"userModel: %@",user);
     
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
