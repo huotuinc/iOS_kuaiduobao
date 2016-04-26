@@ -145,7 +145,7 @@
 
 
 #ifdef DEBUG
-#define LWLog(...) NSLog(__VA_ARGS__)
+#define LWLog(...) 7(__VA_ARGS__)
 #else
 #define LWLog(...)
 #endif 
