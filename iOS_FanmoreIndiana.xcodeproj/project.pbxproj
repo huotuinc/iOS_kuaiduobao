@@ -2611,7 +2611,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: xianrong lu (6U3A4YWDBC)";
 				INFOPLIST_FILE = iOS_FanmoreIndianaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndianaTests";
@@ -2624,7 +2624,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: xianrong lu (6U3A4YWDBC)";
 				INFOPLIST_FILE = iOS_FanmoreIndianaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndianaTests";
@@ -2636,7 +2636,7 @@
 		60DD42CE1C43A8F90041572F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: xianrong lu (6U3A4YWDBC)";
 				INFOPLIST_FILE = iOS_FanmoreIndianaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndianaUITests";
@@ -2649,7 +2649,7 @@
 		60DD42CF1C43A8F90041572F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: xianrong lu (6U3A4YWDBC)";
 				INFOPLIST_FILE = iOS_FanmoreIndianaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-231.iOS-FanmoreIndianaUITests";

@@ -85,6 +85,8 @@
     NSString * appExamineString = [[NSUserDefaults standardUserDefaults] stringForKey:AppExamine];
     if ([appExamineString isEqualToString:@"1"] ) {
         self.pay.hidden = YES;
+    } else {
+        self.pay.hidden = NO;
     }
 }
 
