@@ -724,34 +724,70 @@ static NSInteger selectAllCount = 1;
 
 -(void)selectAllBtnClick:(UIButton*)button
 {
+    switch (selectAllCount) {
+        case 1:
+        {
+            //全选中
+            _bottomView.labelAll.text = @"全选";
+            _bottomView.buttonAll.selected = NO;
+            [_selectedArray removeAllObjects];
+            for (CartModel *model in _cartList) {
+                model.isSelect = NO;
+                //            [_selectedArray addObject:model];
+            }
+            [self.tableView reloadData];
+            
+            [self countPrice];
+            selectAllCount = 2;
+            break;
+        }
+        case 2:
+        {
+            //未选中
+            _bottomView.labelAll.text = @"取消全选";
+            _bottomView.buttonAll.selected = YES;
+            [_selectedArray removeAllObjects];
+            for (CartModel *model in _cartList) {
+                model.isSelect = YES;
+                [_selectedArray addObject:model];
+            }
+            [self.tableView reloadData];
+            [self countPrice];
+            selectAllCount = 1;
+            break;
+        }
+            
+        default:
+            break;
+    }
     //全选中
-    if (selectAllCount  == 1) {
-        _bottomView.labelAll.text = @"全选";
-        _bottomView.buttonAll.selected = NO;
-        [_selectedArray removeAllObjects];
-        for (CartModel *model in _cartList) {
-            model.isSelect = NO;
+//    if (selectAllCount  == 1) {
+//        _bottomView.labelAll.text = @"全选";
+//        _bottomView.buttonAll.selected = NO;
+//        [_selectedArray removeAllObjects];
+//        for (CartModel *model in _cartList) {
+//            model.isSelect = NO;
+////            [_selectedArray addObject:model];
+//        }
+//        [self.tableView reloadData];
+//        
+//        [self countPrice];
+//        selectAllCount = 2;
+//    }
+//    //未选中
+//    if (selectAllCount == 2) {
+//        _bottomView.labelAll.text = @"取消全选";
+//        _bottomView.buttonAll.selected = YES;
+//        [_selectedArray removeAllObjects];
+//        for (CartModel *model in _cartList) {
+//            model.isSelect = YES;
 //            [_selectedArray addObject:model];
-        }
-        [self.tableView reloadData];
-        
-        [self countPrice];
-        selectAllCount = 2;
-    }
-    //未选中
-    if (selectAllCount == 2) {
-        _bottomView.labelAll.text = @"取消全选";
-        _bottomView.buttonAll.selected = YES;
-        [_selectedArray removeAllObjects];
-        for (CartModel *model in _cartList) {
-            model.isSelect = YES;
-            [_selectedArray addObject:model];
-        }
-        [self.tableView reloadData];
-        [self countPrice];
-        selectAllCount = 1;
-        
-    }
+//        }
+//        [self.tableView reloadData];
+//        [self countPrice];
+//        selectAllCount = 1;
+//        
+//    }
 }
 
 #pragma mark 计算价格

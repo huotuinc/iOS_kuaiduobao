@@ -72,6 +72,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self updateUserInfo];
+    
     self.tabBarController.tabBar.hidden = NO;
     
     self.view.backgroundColor = COLOR_NAVBAR_A;
@@ -106,15 +109,15 @@
         [self presentViewController:nav animated:YES completion:nil];
         
     }else {
-        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
-        UserModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
-        [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
-        self.nickname.text = user.realName;
-
-#pragma bug
-        self.money.text = [NSString stringWithFormat:@"%.2f", [user.money floatValue]];
-        self.integral.text = [NSString stringWithFormat:@"积分:%ld", (long)user.integral];
+//        NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//        NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+//        UserModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+//        [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
+//        self.nickname.text = user.realName;
+//
+//#pragma bug
+//        self.money.text = [NSString stringWithFormat:@"%f", [user.money floatValue]];
+//        self.integral.text = [NSString stringWithFormat:@"积分:%ld", (long)user.integral];
         [self.logo bk_whenTapped:^{
             UIStoryboard *stroy = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //            if ([user.userFormType intValue] == 0) {
@@ -159,70 +162,48 @@
 
 
 
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+#pragma mark 支付成功刷新用户数据
+- (void)updateUserInfo {
     
-    // Configure the cell...
+//    [SVProgressHUD showSuccessWithStatus:@"充值成功，积分将在10分钟左右到账，可去积分商城兑换"];
     
-    return cell;
+    [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
+        //        LWLog(@"%@", json);
+        if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
+            [self loginSuccessWith:json[@"resultData"]];
+        }else {
+            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+        }
+    } failure:^(NSError *error) {
+        
+    } withFileKey:nil];
+    
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+
+//刷新用户数据
+- (void)loginSuccessWith:(NSDictionary *) dic {
+    
+    UserModel *user = [UserModel mj_objectWithKeyValues:dic[@"user"]];
+    //    LWLog(@"userModel: %@",user);
+    
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
+    [NSKeyedArchiver archiveRootObject:user toFile:fileName];
+    [[NSUserDefaults standardUserDefaults] setObject:Success forKey:LoginStatus];
+    //保存新的token
+    [[NSUserDefaults standardUserDefaults] setObject:user.token forKey:AppToken];
+    
+    AdressModel *address = [AdressModel mj_objectWithKeyValues:dic[@"user"][@"appMyAddressListModel"]];
+    NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
+    [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
+    
+    self.money.text = [NSString stringWithFormat:@"%f", [user.money floatValue]];
+    self.integral.text = [NSString stringWithFormat:@"积分:%ld", (long)user.integral];
+    [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
+    self.nickname.text = user.realName;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)userAction:(id)sender {
 }
