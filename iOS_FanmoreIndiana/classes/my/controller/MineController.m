@@ -172,7 +172,7 @@
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             [self loginSuccessWith:json[@"resultData"]];
         }else {
-            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
+//            [SVProgressHUD showErrorWithStatus:json[@"resultDescription"]];
         }
     } failure:^(NSError *error) {
         
@@ -199,7 +199,7 @@
     NSString *fileNameAdd = [path stringByAppendingPathComponent:DefaultAddress];
     [NSKeyedArchiver archiveRootObject:address toFile:fileNameAdd];
     
-    self.money.text = [NSString stringWithFormat:@"%f", [user.money floatValue]];
+    self.money.text = [NSString stringWithFormat:@"%ld", (long)[user.money integerValue]];
     self.integral.text = [NSString stringWithFormat:@"积分:%ld", (long)user.integral];
     [self.logo sd_setBackgroundImageWithURL:[NSURL URLWithString:user.userHead] forState:UIControlStateNormal];
     self.nickname.text = user.realName;

@@ -263,6 +263,7 @@ static NSInteger clickCount = 0; //点击次数
 //                    [PlistManager writeToPlistWithKey:@"data" value:self.redList];
                     self.redPastList = [NSMutableArray arrayWithArray:temp];
                     [ArchiveLocalData archiveRedPastArrayWithArray:self.redPastList];
+                    [self getRedPocketRestNumber];
                 }
                 //如果未中奖
                 if (_winningModel.rid == nil) {

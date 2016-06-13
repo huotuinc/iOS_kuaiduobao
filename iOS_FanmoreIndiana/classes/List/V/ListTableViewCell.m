@@ -15,9 +15,9 @@
 //选中按钮点击事件
 -(void)clickButtonSelected:(UIButton*)button
 {
-    button.selected = !button.selected;
+    _buttonSelected.selected = !_buttonSelected.selected;
     if (self.cartBlock) {
-        self.cartBlock(button.selected);
+        self.cartBlock(_buttonSelected.selected);
     }
 }
 
@@ -87,9 +87,15 @@
     _imageVLine.image = [UIImage imageNamed:@"line_huise"];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(KeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
+    
+    UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickButtonSelected:)];
+    _imageVGoods.userInteractionEnabled = YES;
+    [_imageVGoods addGestureRecognizer:ges];
 
 }
+
+
+
 //@property (nonatomic, strong) NSNumber *areaAmount;
 //@property (nonatomic, strong) NSNumber *attendAmount;
 //@property (nonatomic, copy) NSString *pictureUrl;

@@ -551,20 +551,21 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
-        if (indexPath.row == 0 && [_payModel.redPacketsNumber integerValue] != 0) {
+        if (indexPath.row == 0) {
             RedChooseViewController *red = [[RedChooseViewController alloc] init];
             red.delegate = self;
             red.money = _payModel.totalMoney;
             [self.navigationController pushViewController:red animated:YES];
-        }
-        //支付类型 0微信 1支付宝 2用户余额
-        if (indexPath.row != 1 && indexPath.row != 2) {
+        }else if (indexPath.row != 1 && indexPath.row != 2) {
+            //支付类型 0微信 1支付宝 2用户余额
             for (int i = 3; i < _titleArray.count; i++) {
                 PayBTableViewCell * aCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
                 aCell.buttonSelect.selected = NO;
             }
             PayBTableViewCell * theCell = [_tableView cellForRowAtIndexPath:indexPath];
-            theCell.buttonSelect.selected = YES;
+//            if (indexPath.row <= 5 && indexPath.row >= 3) {
+                theCell.buttonSelect.selected = YES;
+//            }
             if ([WXApi isWXAppInstalled]) {
                 _whichPay = indexPath.row - 3;
             } else {

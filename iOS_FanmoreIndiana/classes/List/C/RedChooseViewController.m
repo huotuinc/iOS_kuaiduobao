@@ -34,7 +34,7 @@ static NSString * cellLRed=@"cellLRed";
     // Do any additional setup after loading the view.
     self.redList=[NSMutableArray array];
     [self createNavgationBarTitle];
-    [self createBarButtonItem];
+//    [self createBarButtonItem];
     [self getAppRedList];
 }
 
@@ -64,6 +64,7 @@ static NSString * cellLRed=@"cellLRed";
     [_tableView registerNib:[UINib nibWithNibName:@"ListRedPacketCell" bundle:nil] forCellReuseIdentifier:cellLRed];
     _tableView.delegate=self;
     _tableView.dataSource=self;
+    [_tableView removeSpaces];
     [self.view addSubview:_tableView];
     
 }
