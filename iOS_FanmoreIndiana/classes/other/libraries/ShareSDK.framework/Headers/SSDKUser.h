@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, SSDKGender){
      *  女
      */
     SSDKGenderFemale    = 1,
-    /**
+    /**Ô
      *  未知
      */
     SSDKGenderUnknown   = 2,

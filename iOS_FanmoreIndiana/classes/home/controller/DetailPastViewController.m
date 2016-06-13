@@ -146,7 +146,7 @@ static NSString * cellDPasting=@"cellDPasting";
 
     AppPastListModel *model = _pastList[indexPath.row];
     if ([model.status isEqualToNumber:[NSNumber numberWithInteger:1]]) {
-        DetailPastingTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDPasting forIndexPath:indexPath];
+        DetailPastingTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellDPasting ];
         NSMutableAttributedString *attString=[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"期号 : %@ 请稍后,正在揭晓...",model.issueId]];
         [attString addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_CONTENT range:NSMakeRange(0, 6+[NSString stringWithFormat:@"%@",model.issueId].length)];
         cell.labelItem.attributedText=attString;

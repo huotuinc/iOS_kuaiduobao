@@ -11,7 +11,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-
+    [super awakeFromNib];
     
     _labelTitle.numberOfLines=0;
     _labelTitle.text=@"网易云音乐都发生的发的说说的服务渐渐离开";

@@ -38,32 +38,32 @@
 /*支付成功之后判断时候可以发送红包*/
 #define canSendRedPocketOrNot @"canSendRedPocketOrNot"
 /**支付宝支付*/
-#define AliPayPid @"2088211251545121"
-#define AliPayKey @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAMCul0XS9X/cVMkmrSeaZXnSvrs/bK5EiZf3d3/lTwHx165wAX/UIz4AcZHbKkYKKzmZKrRsu3tLRKFuflooKSVmWxk2hmeMqRETPZ/t8rKf8UONZIpOlOXEmJ/rYwxhnMeVhbJJxsko2so/jc+XAPLyv0tsfoI/TsJuhaGQ569ZAgMBAAECgYAK4lHdOdtwS4vmiO7DC++rgAISJbUH6wsysGHpsZRS8cxTKDSNefg7ql6/9Hdg2XYznLlS08mLX2cTD2DHyvj38KtxLEhLP7MtgjFFeTJ5Ta1UuBRERcmy0xSLh2zayiSwGTM8Bwu7UD6LUSTGwrgRR2Gg4EDpSG08J5OCThKF4QJBAPOO6WKI/sEuoRDtcIJqtv58mc4RSmit/WszkvPlZrjNFDU6TrOEnPU0zi3f8scxpPxVYROBceGj362m+02G2I0CQQDKhlq4pIM2FLNoDP4mzEUyoXIwqn6vIsAv8n49Tr9QnBjCrKt8RiibhjSEvcYqM/1eocW0j2vUkqR17rNuVVz9AkBq+Z02gzdpwEJMPg3Jqnd/pViksuF8wtbo6/kimOKaTrEOg/KnVJrf9HaOnatzpDF0B0ghGhzb329SRWJhddXNAkAkjrgVmGyu+HGiGKZP7pOXHhl0u3H+vzEd9pHfEzXpoSO/EFgsKKXv3Pvh8jexKo1T5bPAchsu1gGl4B63jeUpAkBbgUalUpZWZ4Aii+Mfts+S2E5RooZfVFqVBIsK47hjcoqLw4JJenyjFu+Skl2jOQ8+I5y1Ggeg6fpBMr2rbVkf"
+#define AliPayPid @"2088221703541531"
+#define AliPayKey @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMI47aqcOFrJZwAKyhxT5/yejJsqdQT6VOyq6PdRZ7vrrVyHG0GbsB/EGJ4T7bWAh5r3Nj6O1yj16Hz+QM+ExjqNZOXIcfVfapVth+45ZPPRgCayWwnCGbexvMn/1oMNjqytlqSfKRZMaLhMKUUD17pJP6yTVP4NxHQvb1wYHEYzAgMBAAECgYBJAE7MlsVT0mmliWioNx12RT3CQLYVNeZfwmmoM+/SoWXa5mlnQpZziihamlD5rKLLq2m3H8ddfPhyqro/hb9fsMSXPaQaS51gvs28a6pKlZR2O9XYYoE7wSHKPIZ3yqihR56Geog/2FwXOZUBTHo2xs/8LDUyld51TXpD3Kgn8QJBAOyUs9PImGX6OjOHAFhIeYg9qcbhTtihg7Ke/Anvvf+QR85xkGEtTLQZINH2b7f89+3uHxmyf03SAbt1WO3kAOsCQQDSKiSGrxRqm14P1gQYLzZ/L63q7IOBbv4beNmWKGfnoWGYbOv9uqnsKKULBDvy84L7iw4KHmMS3m3hh3Oc/r3ZAkAFB1AfM0dR+5SbHcZ7GedDZxQhvw4++ofjFxACYg8mzHlKQQ2xkxXrShFxhQxw27alXwdYM3wTOmCBDIh8XflLAkEAx4wAFmmSRw6yJvMb/CKH6gdJaO+chX7vgwIiBrLixUmzstho0gc0Y+jLnEQu76VKzq/fargjdb0AM806duxhMQJBAKTbMcT7LI5Jh4L7mR7n7uR9l0jfvQ+QkEGd7XwK/814dx8rlU77dNZgQywF/Ra5BZ8/zS1KeoKeJFBu3StgZvI="
 
 /**微信支付*/
-#define WeiXinPayId @"wx7f47df3d33fd57f7"
-#define WeiXinPayMerchantId @"1323237601"
-#define wxpayKey @"21b7468d09e647ecae5580a2f458e68e"
+#define WeiXinPayId @"wx6b0a63c6daa7dc0e"
+#define WeiXinPayMerchantId @"1342465901"
+#define wxpayKey @"Nb9WK2a1hJeaNYnbqme9zMl25ji85Djk"
 
 
 //有盟appKey
-#define UMAppKey @"52faffcf56240bc21a023179"
+#define UMAppKey @""
 /**shareSDK */
-#define ShareSDKAppKey @"f01c25532708" //19b4b4d45192 
+#define ShareSDKAppKey @"128d3cbd5584f" //19b4b4d45192
 
 /**新浪微博*/
-#define XinLangAppkey @"1093694002"
-#define XinLangAppSecret @"48a20ffcdc17ed0884c53fd9e8bae2f5"
-#define XinLangRedirectUri @"https://api.weibo.com/oauth2/default.html"
+#define XinLangAppkey @"447434972"
+#define XinLangAppSecret @"d6c68e2134718939a1a25bb505ae3e74"
+#define XinLangRedirectUri @"http://www.baidu.com"
 
 /**QQ**/
-#define QQAppKey @"1105178159"
-#define QQappSecret @"jF0YdvmJ8UW38dZL"
+#define QQAppKey @"1105404306"
+#define QQappSecret @"g8YpilkHWIZgARvG"
 
 /**微信*/ 
-#define WeiXinAppID @"wx7f47df3d33fd57f7"
-#define WeiXinAppSecret @"a98a14f00e2e358fb3cb8fe7ed06051b"
+#define WeiXinAppID @"wx6b0a63c6daa7dc0e"
+#define WeiXinAppSecret @"0cdac1454cea320d9cee52d06717522a"
 
 
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
@@ -71,14 +71,10 @@
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width
 
 
-///***服务器地址***/
-//#define MainUrl @"http://192.168.3.22:8080/duobao/app/"
-//#define MKMainUrl @"192.168.1.41:10001/app"
-//#define MKMainUrl @"duobao.51flashmall.com:8091/app"
-//#define MKMainUrl @"192.168.1.41:8080/duobao/app/"
+
 
 //服务器正式地址
-#define MKMainUrl @"duobao.huobanplus.com/app"
+#define MKMainUrl @"www.kdbkdb.cn/app"
 
 
 /**时间*/
@@ -88,7 +84,7 @@
 #define HTYMRSCREAT @"4165a8d240b29af3f41818d10599d0d1"  //火图安全网络请求安全协议
 
 /**平台*/
-#define OPERATION_parame @"duobao2016AP"
+#define OPERATION_parame @"KuaiDB2016AP"
 
 /**应用版本号*/
 #define AppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]

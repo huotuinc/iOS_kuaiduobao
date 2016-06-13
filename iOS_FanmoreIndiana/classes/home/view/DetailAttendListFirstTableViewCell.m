@@ -11,7 +11,8 @@
 @implementation DetailAttendListFirstTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    // Initialization code.
+    [super awakeFromNib];
     _imageVLine.image=[UIImage imageNamed:@"line_huise"];
     _viewBase.backgroundColor=COLOR_BACK_MAIN;
     [UILabel changeLabel:_labelDate AndFont:24 AndColor:COLOR_TEXT_CONTENT];

@@ -27,6 +27,8 @@
 //}
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
+
     _imageVKind.image=[UIImage imageNamed:@"zhuanqu_a"];
     _imageVGoods.image=[UIImage imageNamed:@"imga"];
     _imageVNotice.image=[UIImage imageNamed:@"main_jiexiao"];

@@ -11,7 +11,7 @@
 #import "UITableView+CJ.h"
 #import "AreaPickerView.h"
 
-@interface AddAddressController ()<UITableViewDelegate,AreaPickerDelegate>
+@interface AddAddressController ()<UITableViewDelegate,AreaPickerDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) AreaPickerView *pick;
 
@@ -67,7 +67,14 @@
     }
 }
 
-
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == self.personIphone) {
+        if (textField.text.length >13) {
+            return NO;
+        }
+    }
+    return YES;
+}
 
 
 - (void)addNewAddress {

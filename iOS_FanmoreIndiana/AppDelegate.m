@@ -34,7 +34,7 @@
     [self _initShare];
     
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
-        LWLog(@"%@",json);
+//         NSLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             GlobalModel *global = [GlobalModel mj_objectWithKeyValues:json[@"resultData"][@"global"]];
             NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

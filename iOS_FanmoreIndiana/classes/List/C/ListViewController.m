@@ -894,6 +894,21 @@ static NSInteger selectAllCount = 1;
     return YES;
 }
 
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSInteger row = textField.tag -300;
+    CartModel * model = _cartList[row];
+    if ([string isEqualToString:@"0"]) {
+        textField.text = @"1";
+        return NO;
+    }else if ([[NSString stringWithFormat:@"%@%@",textField.text,string] integerValue] > [model.remainAmount integerValue]) {
+        textField.text = [NSString stringWithFormat:@"%@", model.remainAmount];
+        return NO;
+    }
+    return YES;
+}
+
+
 -(void)tableViewReloadData{
     [self getShoppingList];
 }

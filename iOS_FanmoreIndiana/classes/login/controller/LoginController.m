@@ -23,6 +23,9 @@
 //微信SDK头文件
 #import "WXApi.h"
 #import <AlipaySDK/AlipaySDK.h>
+
+
+
 @interface LoginController ()<UITextFieldDelegate>
 
 @end
@@ -41,6 +44,7 @@
     
     self.weixinLogin.hidden = ![WXApi isWXAppInstalled];
     self.qqLogin.hidden = ![TencentOAuth iphoneQQInstalled];
+//    self.qqLogin.hidden = YES;
     
     self.userName.delegate = self;
     self.password.delegate = self;
@@ -119,11 +123,13 @@
     
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
         if (state == SSDKResponseStateSuccess) {
+            //BC
+            LWLog(@"***********user信息***********");
             LWLog(@"%@",user);
-            
+            NSString *unionid = [user.rawData objectForKey:@"unionid"];
             NSMutableDictionary *dic = [NSMutableDictionary dictionary];
             dic[@"username"] = user.nickname;
-            dic[@"unionId"] = user.uid;
+            dic[@"unionId"] = unionid;
             dic[@"head"] = user.icon;
             dic[@"type"] = @"1";
             

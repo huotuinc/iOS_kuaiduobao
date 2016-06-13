@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>qibinTreasure2016</string>
+				<string>huataiyimeikuaiduobao</string>
 			</array>
 		</dict>
 		<dict>
@@ -33,16 +33,16 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ41DFAE2F</string>
-				<string>tencent1105178159</string>
-				<string>wb1093694002</string>
-				<string>wb1093694002</string>
-				<string>wx7f47df3d33fd57f7</string>
+				<string>QQ41E32192</string>
+				<string>tencent1105404306</string>
+				<string>wb447434972</string>
+				<string>wb447434972</string>
+				<string>wx6b0a63c6daa7dc0e</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>3</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>

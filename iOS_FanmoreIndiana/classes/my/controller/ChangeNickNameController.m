@@ -9,7 +9,7 @@
 #import "ChangeNickNameController.h"
 #import <UIBarButtonItem+BlocksKit.h>
 
-@interface ChangeNickNameController ()
+@interface ChangeNickNameController ()<UITextFieldDelegate>
 
 @end
 
@@ -30,6 +30,7 @@
     
     self.textField.text = user.realName;
     [self.textField becomeFirstResponder];
+    self.textField.delegate = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithTitle:@"保存" style:UIBarButtonItemStylePlain handler:^(id sender) {
         if (self.textField.text != user.realName) {
@@ -57,6 +58,13 @@
         LWLog(@"%@",error);
     }];
     
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.text.length > 11) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

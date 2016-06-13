@@ -46,6 +46,7 @@ static NSString *cellABMain=@"cellABMain";
     _openList=[NSMutableArray array];
     [self registerBackgoundNotification];
     [self createCollectionView];
+    
 
 
 }

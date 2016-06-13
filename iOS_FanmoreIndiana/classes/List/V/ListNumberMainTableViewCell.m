@@ -11,7 +11,8 @@
 @implementation ListNumberMainTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    // Initialization code。
+    [super awakeFromNib];
     _imageVLA.image = [UIImage imageNamed:@"line_huise"];
     _imageVLB.image = [UIImage imageNamed:@"line_huise"];
     for (int i =0; i<104; i++) {

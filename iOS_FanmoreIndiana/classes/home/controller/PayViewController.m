@@ -368,7 +368,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         order.partner = partner;
         order.seller = seller;
         order.tradeNO = self.payBackModel.orderNo ; //订单ID（由商家自行制定）
-        order.productName = @"粉猫夺宝支付"; //商品标题
+        order.productName = @"快夺宝支付"; //商品标题
         order.productDescription = self.payBackModel.detail; //商品描述
         order.amount = [NSString stringWithFormat:@"%@" ,self.payBackModel.alipayFee ]; //商品价格
         order.notifyURL =  self.payBackModel.alipayCallbackUrl; //回调URL
@@ -380,7 +380,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
         order.showUrl = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"qibinTreasure2016";
+    NSString *appScheme = @"huataiyimeikuaiduobao";
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];

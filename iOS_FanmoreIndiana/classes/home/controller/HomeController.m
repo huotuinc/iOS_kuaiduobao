@@ -19,7 +19,7 @@
 #import "ClassViewController.h"
 #import "FL_Button.h"
 #import "AppGoodsListModel.h"
-#import <MJRefresh.h>
+#import <MJRefresh/MJRefresh.h>
 #import <UIImageView+WebCache.h>
 #import "ShareViewController.h"
 #import "HomeSearchCView.h"
@@ -159,7 +159,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
     titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE(36)];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"奇兵夺宝";
+    titleLabel.text = @"快夺宝";
     self.navigationItem.titleView = titleLabel;
 }
 #pragma mark 获取数据(上拉刷新) 最好不请求中奖消息
@@ -369,10 +369,7 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
                 AppSlideListModel *model = _appSlideList[i];
                 [_arrURLString addObject:model.pictureUrl];
             }
-            //创建视图
-//            if (!self.collectionView) {
-//                [self _initCollectionView];
-//            }
+            [self.collectionView reloadData];
             
         }else{
             LWLog(@"%@",json[@"resultDescription"]);

@@ -40,6 +40,10 @@
 		6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7201C7DB07C006B2900 /* ShareOrderModel.m */; };
 		6014A7241C7DB34A006B2900 /* PutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7231C7DB34A006B2900 /* PutModel.m */; };
 		6014A7271C7DC8C4006B2900 /* BuyFlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */; };
+		601630B71D0D38E900861ECB /* DetailCalculateATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 601630B51D0D38E900861ECB /* DetailCalculateATableViewCell.m */; };
+		601630B81D0D38E900861ECB /* DetailCalculateATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601630B61D0D38E900861ECB /* DetailCalculateATableViewCell.xib */; };
+		601630BC1D0D3A8400861ECB /* DetailPastingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 601630BA1D0D3A8400861ECB /* DetailPastingTableViewCell.m */; };
+		601630BD1D0D3A8400861ECB /* DetailPastingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601630BB1D0D3A8400861ECB /* DetailPastingTableViewCell.xib */; };
 		601769A61C589121009E503F /* AdressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 601769A51C589121009E503F /* AdressModel.m */; };
 		601C712A1C7C2FDC00673B7F /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 601C71281C7C2FDC00673B7F /* RecordCell.m */; };
 		601C712B1C7C2FDC00673B7F /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601C71291C7C2FDC00673B7F /* RecordCell.xib */; };
@@ -159,8 +163,6 @@
 		F22A8D731C8588BA00165BBC /* DetailCalculateMainCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D711C8588BA00165BBC /* DetailCalculateMainCView.xib */; };
 		F22A8D771C8588CD00165BBC /* DetailCalculateNumberCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D751C8588CD00165BBC /* DetailCalculateNumberCView.m */; };
 		F22A8D781C8588CD00165BBC /* DetailCalculateNumberCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D761C8588CD00165BBC /* DetailCalculateNumberCView.xib */; };
-		F22A8D7C1C858E7100165BBC /* DetailCalculateATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */; };
-		F22A8D7D1C858E7100165BBC /* DetailCalculateATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */; };
 		F23293A01C8FBB9E0064D248 /* RedGetCView.m in Sources */ = {isa = PBXBuildFile; fileRef = F232939E1C8FBB9E0064D248 /* RedGetCView.m */; };
 		F23293A11C8FBB9E0064D248 /* RedGetCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F232939F1C8FBB9E0064D248 /* RedGetCView.xib */; };
 		F23670041C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23670021C7EDBCD008A6576 /* AnnouncedBCollectionViewCell.m */; };
@@ -196,7 +198,6 @@
 		F23DE3D81C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3C91C522E34002AB5FC /* DetailAttendListMainTableViewCell.xib */; };
 		F23DE3D91C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */; };
 		F23DE3DA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */; };
-		F24119621C74057D00C2B07E /* DetailPastingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24119601C74057D00C2B07E /* DetailPastingTableViewCell.xib */; };
 		F24119651C74440300C2B07E /* AppShareListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F24119641C74440300C2B07E /* AppShareListModel.m */; };
 		F24119681C74526100C2B07E /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24119671C74526100C2B07E /* ShareViewController.m */; };
 		F241196B1C74552000C2B07E /* AppCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F241196A1C74552000C2B07E /* AppCategoryListModel.m */; };
@@ -437,6 +438,12 @@
 		6014A7231C7DB34A006B2900 /* PutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PutModel.m; sourceTree = "<group>"; };
 		6014A7251C7DC8C4006B2900 /* BuyFlowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyFlowModel.h; sourceTree = "<group>"; };
 		6014A7261C7DC8C4006B2900 /* BuyFlowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyFlowModel.m; sourceTree = "<group>"; };
+		601630B41D0D38E900861ECB /* DetailCalculateATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateATableViewCell.h; sourceTree = "<group>"; };
+		601630B51D0D38E900861ECB /* DetailCalculateATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateATableViewCell.m; sourceTree = "<group>"; };
+		601630B61D0D38E900861ECB /* DetailCalculateATableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateATableViewCell.xib; sourceTree = "<group>"; };
+		601630B91D0D3A8400861ECB /* DetailPastingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPastingTableViewCell.h; sourceTree = "<group>"; };
+		601630BA1D0D3A8400861ECB /* DetailPastingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPastingTableViewCell.m; sourceTree = "<group>"; };
+		601630BB1D0D3A8400861ECB /* DetailPastingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailPastingTableViewCell.xib; sourceTree = "<group>"; };
 		601769A41C589121009E503F /* AdressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdressModel.h; sourceTree = "<group>"; };
 		601769A51C589121009E503F /* AdressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdressModel.m; sourceTree = "<group>"; };
 		601C71271C7C2FDC00673B7F /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
@@ -661,9 +668,6 @@
 		F22A8D741C8588CD00165BBC /* DetailCalculateNumberCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateNumberCView.h; sourceTree = "<group>"; };
 		F22A8D751C8588CD00165BBC /* DetailCalculateNumberCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateNumberCView.m; sourceTree = "<group>"; };
 		F22A8D761C8588CD00165BBC /* DetailCalculateNumberCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateNumberCView.xib; sourceTree = "<group>"; };
-		F22A8D791C858E7100165BBC /* DetailCalculateATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCalculateATableViewCell.h; sourceTree = "<group>"; };
-		F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCalculateATableViewCell.m; sourceTree = "<group>"; };
-		F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCalculateATableViewCell.xib; sourceTree = "<group>"; };
 		F232939D1C8FBB9E0064D248 /* RedGetCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedGetCView.h; sourceTree = "<group>"; };
 		F232939E1C8FBB9E0064D248 /* RedGetCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedGetCView.m; sourceTree = "<group>"; };
 		F232939F1C8FBB9E0064D248 /* RedGetCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedGetCView.xib; sourceTree = "<group>"; };
@@ -720,9 +724,6 @@
 		F23DE3CA1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAttendListFirstTableViewCell.h; sourceTree = "<group>"; };
 		F23DE3CB1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAttendListFirstTableViewCell.m; sourceTree = "<group>"; };
 		F23DE3CC1C522E34002AB5FC /* DetailAttendListFirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAttendListFirstTableViewCell.xib; sourceTree = "<group>"; };
-		F241195E1C74057D00C2B07E /* DetailPastingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPastingTableViewCell.h; sourceTree = "<group>"; };
-		F241195F1C74057D00C2B07E /* DetailPastingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPastingTableViewCell.m; sourceTree = "<group>"; };
-		F24119601C74057D00C2B07E /* DetailPastingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailPastingTableViewCell.xib; sourceTree = "<group>"; };
 		F24119631C74440300C2B07E /* AppShareListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppShareListModel.h; sourceTree = "<group>"; };
 		F24119641C74440300C2B07E /* AppShareListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppShareListModel.m; sourceTree = "<group>"; };
 		F24119661C74526100C2B07E /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
@@ -1280,9 +1281,9 @@
 				F23BEFE61C5F279800E87042 /* DetailPastTableViewCell.h */,
 				F23BEFE71C5F279800E87042 /* DetailPastTableViewCell.m */,
 				F23BEFE81C5F279800E87042 /* DetailPastTableViewCell.xib */,
-				F241195E1C74057D00C2B07E /* DetailPastingTableViewCell.h */,
-				F241195F1C74057D00C2B07E /* DetailPastingTableViewCell.m */,
-				F24119601C74057D00C2B07E /* DetailPastingTableViewCell.xib */,
+				601630B91D0D3A8400861ECB /* DetailPastingTableViewCell.h */,
+				601630BA1D0D3A8400861ECB /* DetailPastingTableViewCell.m */,
+				601630BB1D0D3A8400861ECB /* DetailPastingTableViewCell.xib */,
 				F23BEFEE1C5F2F5D00E87042 /* DetailShareTableViewCell.h */,
 				F23BEFEF1C5F2F5D00E87042 /* DetailShareTableViewCell.m */,
 				F23BEFF01C5F2F5D00E87042 /* DetailShareTableViewCell.xib */,
@@ -1310,9 +1311,9 @@
 				F22A8D741C8588CD00165BBC /* DetailCalculateNumberCView.h */,
 				F22A8D751C8588CD00165BBC /* DetailCalculateNumberCView.m */,
 				F22A8D761C8588CD00165BBC /* DetailCalculateNumberCView.xib */,
-				F22A8D791C858E7100165BBC /* DetailCalculateATableViewCell.h */,
-				F22A8D7A1C858E7100165BBC /* DetailCalculateATableViewCell.m */,
-				F22A8D7B1C858E7100165BBC /* DetailCalculateATableViewCell.xib */,
+				601630B41D0D38E900861ECB /* DetailCalculateATableViewCell.h */,
+				601630B51D0D38E900861ECB /* DetailCalculateATableViewCell.m */,
+				601630B61D0D38E900861ECB /* DetailCalculateATableViewCell.xib */,
 				F26E0C921C8702BC00DB1908 /* DetailGoodsSelectCView.h */,
 				F26E0C931C8702BC00DB1908 /* DetailGoodsSelectCView.m */,
 				F26E0C941C8702BC00DB1908 /* DetailGoodsSelectCView.xib */,
@@ -1998,7 +1999,7 @@
 				TargetAttributes = {
 					60DD42991C43A8F90041572F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = U9B3995C94;
+						DevelopmentTeam = C5G667F6MC;
 					};
 					60DD42B21C43A8F90041572F = {
 						CreatedOnToolsVersion = 7.2;
@@ -2043,6 +2044,7 @@
 				F23BEFFD1C5F338F00E87042 /* DetailNumberHeadCView.xib in Resources */,
 				F2D84A191C93F4E70095725D /* RedHopeCView.xib in Resources */,
 				F2F587C71C7D49CB007187B0 /* PayATableViewCell.xib in Resources */,
+				601630BD1D0D3A8400861ECB /* DetailPastingTableViewCell.xib in Resources */,
 				F2F587CF1C7D49EA007187B0 /* PayButtonTableViewCell.xib in Resources */,
 				F21E82EC1C7813E500C732F1 /* ListBottomCView.xib in Resources */,
 				F267B99A1C96C8F000B169F3 /* HomeSendRedPocketCView.xib in Resources */,
@@ -2078,7 +2080,6 @@
 				604C627C1C50C60E00569F0B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				F2B3BCE01C7CA8D500AECFA5 /* HomeSearchCView.xib in Resources */,
 				F2C426561C882C2B00C9CEF0 /* ListNumberBottomCView.xib in Resources */,
-				F24119621C74057D00C2B07E /* DetailPastingTableViewCell.xib in Resources */,
 				602BB5DD1C77FD9700C29F74 /* city.plist in Resources */,
 				F23293A11C8FBB9E0064D248 /* RedGetCView.xib in Resources */,
 				604C626F1C50C57900569F0B /* read_me.txt in Resources */,
@@ -2096,10 +2097,10 @@
 				60DD42A81C43A8F90041572F /* Main.storyboard in Resources */,
 				F2F587EB1C7D9863007187B0 /* DetailShareNextHeadTableViewCell.xib in Resources */,
 				F22A8D781C8588CD00165BBC /* DetailCalculateNumberCView.xib in Resources */,
-				F22A8D7D1C858E7100165BBC /* DetailCalculateATableViewCell.xib in Resources */,
 				F22A8D6E1C85884500165BBC /* DetailCalculateFormulaCView.xib in Resources */,
 				F26E0C961C8702BC00DB1908 /* DetailGoodsSelectCView.xib in Resources */,
 				F22A8D731C8588BA00165BBC /* DetailCalculateMainCView.xib in Resources */,
+				601630B81D0D38E900861ECB /* DetailCalculateATableViewCell.xib in Resources */,
 				60CD60B41CA8FC8A008F1AAB /* WeiboSDK.bundle in Resources */,
 				F23DE3D21C522E34002AB5FC /* DetailBottomCView.xib in Resources */,
 				60F389F41C7567050080D759 /* AddressCell.xib in Resources */,
@@ -2244,7 +2245,6 @@
 				F23670091C7EEB4E008A6576 /* AnnouncedCollectionViewCell.m in Sources */,
 				F24982E01C9A79230073C17F /* DetailCalculateViewController.m in Sources */,
 				60C109A11C96AFC60025CE94 /* NewShareModel.m in Sources */,
-				F22A8D7C1C858E7100165BBC /* DetailCalculateATableViewCell.m in Sources */,
 				F2F587DD1C7D7C9C007187B0 /* AppBalanceModel.m in Sources */,
 				F24119711C74648900C2B07E /* DetailNumberTableViewCell.m in Sources */,
 				60584F141C4E228D00F23B95 /* Base64Util.m in Sources */,
@@ -2308,6 +2308,7 @@
 				6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */,
 				6000429C1C744C5D00CEDC7A /* openssl_wrapper.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
+				601630BC1D0D3A8400861ECB /* DetailPastingTableViewCell.m in Sources */,
 				F2F6FBBB1CC7768F00948B19 /* PayWebViewController.m in Sources */,
 				F2F587F41C7D9D25007187B0 /* DetailShareNextImageVTableViewCell.m in Sources */,
 				60C1099B1C96AFC60025CE94 /* MidTabelViewCell.m in Sources */,
@@ -2320,6 +2321,7 @@
 				60AF18FB1C5E0CCA0002388D /* RechargeCell.m in Sources */,
 				F2C4DD0E1C98ED84005BCEEF /* ArchiveLocalData.m in Sources */,
 				F2F587E61C7D86CF007187B0 /* AppSlideListModel.m in Sources */,
+				601630B71D0D38E900861ECB /* DetailCalculateATableViewCell.m in Sources */,
 				60C1099A1C96AFC60025CE94 /* HomeViewController.m in Sources */,
 				F2573F421C57062C00EEB851 /* DetailBottomDoneCView.m in Sources */,
 				F206D21A1C99341F00BC4E10 /* DetailViewController.m in Sources */,
@@ -2493,8 +2495,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2539,7 +2541,7 @@
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/WeChatSDK",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/支付宝",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hangzhou.hutu.takeTreasure;
+				PRODUCT_BUNDLE_IDENTIFIER = hangzhou.huataiyimei.kdb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
@@ -2553,8 +2555,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Hot Technology Co., Ltd. (U9B3995C94)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2599,7 +2601,7 @@
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/libraries/extends/WeChatSDK",
 					"$(PROJECT_DIR)/iOS_FanmoreIndiana/classes/other/支付宝",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hangzhou.hutu.takeTreasure;
+				PRODUCT_BUNDLE_IDENTIFIER = hangzhou.huataiyimei.kdb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
