@@ -158,8 +158,8 @@ static NSString *cellDNimageV = @"cellDNimageV";
         return ADAPT_HEIGHT(340) + 10.f;
     }else if (indexPath.row == 1) {
         return [self boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-40, MAXFLOAT) font:[UIFont systemFontOfSize:FONT_SIZE(22)] string:_shareModel.content].height +1.0f;
-            }else {
-        return ADAPT_HEIGHT(500);
+    }else {
+        return KScreenWidth - 40 + 10;
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

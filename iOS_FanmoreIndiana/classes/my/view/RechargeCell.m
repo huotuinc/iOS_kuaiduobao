@@ -31,7 +31,7 @@
 //    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[model.time doubleValue] / 1000];
     _time.text = [self changeTheTimeStamps:model.time];
     _paySuccess.text = model.remark;
-    _money.text = [NSString stringWithFormat:@"%@元",model.money];
+    _money.text = [NSString stringWithFormat:@"%@夺宝币",model.money];
 }
 
 /**

@@ -42,8 +42,8 @@
     
     self.title = @"登录";
     
-    self.weixinLogin.hidden = ![WXApi isWXAppInstalled];
-    self.qqLogin.hidden = ![TencentOAuth iphoneQQInstalled];
+    self.weixinLogin.hidden = YES;
+    self.qqLogin.hidden = YES;
 //    self.qqLogin.hidden = YES;
     
     self.userName.delegate = self;

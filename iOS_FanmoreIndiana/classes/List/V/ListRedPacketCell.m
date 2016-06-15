@@ -26,7 +26,7 @@
 - (void)setModel:(RedPacketsModel *)model {
     _model = model;
     self.minus.text = [NSString stringWithFormat:@"%@",model.minusMoney];
-    self.full.text = [NSString stringWithFormat:@"满%@元使用", model.fullMoney];
+    self.full.text = [NSString stringWithFormat:@"满%@夺宝币使用", model.fullMoney];
     self.titleName.text = model.title;
 //    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
 //    [formatter setDateStyle:NSDateFormatterMediumStyle];

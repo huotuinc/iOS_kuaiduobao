@@ -81,15 +81,15 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     
     if ([appExamineString isEqualToString:@"1"]) {
         if ([WXApi isWXAppInstalled]) {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
         }else {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"支付宝支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"支付宝支付"]];
         }
     } else {
         if ([WXApi isWXAppInstalled]) {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"微信支付",@"支付宝支付",@"余额支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付",@"支付宝支付",@"夺宝币支付"]];
         }else {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"余额支付",@"其他支付方式",@"支付宝支付",@"余额支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"支付宝支付",@"夺宝币支付"]];
         }
     }
 
@@ -461,7 +461,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     
     if (indexPath.section == 0) {
         PayATableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellPA forIndexPath:indexPath];
-        cell.labelA.text = @"奖品合计";
+        cell.labelA.text = @"总计";
         cell.labelB.text = [NSString stringWithFormat:@"%@",_payModel.totalMoney];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
@@ -483,11 +483,11 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
                 
             }
             if (indexPath.row == 1) {
-                cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %.2f元)",self.userInfo.money.floatValue];
+                cell.labelMoney.text = [NSString stringWithFormat:@"(余额: %.2f夺宝币)",self.userInfo.money.floatValue];
             }
             if (indexPath.row == 2) {
                 CGFloat elsePay = [_payModel.totalMoney floatValue] - [_payModel.redPacketsMinusMoney floatValue];
-                cell.labelB.text = [NSString stringWithFormat:@"%.2f元",elsePay];
+                cell.labelB.text = [NSString stringWithFormat:@"%.2f夺宝币",elsePay];
             }
             return cell;
         }else{
@@ -663,7 +663,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 
 #pragma mark 支付成功刷新用户数据
 - (void)payUpdateUserInfo {
-    [SVProgressHUD showSuccessWithStatus:@"支付成功，积分将在10分钟左右到账，可去积分商城兑换"];
+//    [SVProgressHUD showSuccessWithStatus:@"支付成功，积分将在10分钟左右到账，可去积分商城兑换"];
 
     [UserLoginTool loginRequestPostWithFile:@"updateUserInformation" parame:nil success:^(id json) {
         LWLog(@"%@", json);

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailShareNextViewController.h"
 //首页晒单
 @interface ShareViewController : UIViewController
 @property (nonatomic, assign) NSNumber *lastId;

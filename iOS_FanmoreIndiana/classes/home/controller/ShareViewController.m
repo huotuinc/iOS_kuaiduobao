@@ -9,6 +9,7 @@
 #import "ShareViewController.h"
 #import "DetailShareTableViewCell.h"
 #import "AppShareListModel.h"
+
 static NSString *cellShare=@"cellShare";
 @interface ShareViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -138,7 +139,10 @@ static NSString *cellShare=@"cellShare";
     return ADAPT_HEIGHT(500);
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    AppShareListModel *model = _shareList[indexPath.row];
+    DetailShareNextViewController *next =[[DetailShareNextViewController alloc] init];
+    next.shareId = model.pid;
+    [self.navigationController pushViewController:next animated:YES];
 }
 
 /**

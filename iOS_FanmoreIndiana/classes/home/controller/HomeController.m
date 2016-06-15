@@ -874,6 +874,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
         return CGSizeZero;
     }
 }
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
 #pragma mark 轮播
 //加载图片的代理，你自己想 怎么加载 就怎么加载
 - (void)imageView:(UIImageView *)imageView loadImageForUrl:(NSString *)url{
