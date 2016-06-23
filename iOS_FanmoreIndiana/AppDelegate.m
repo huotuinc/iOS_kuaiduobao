@@ -179,16 +179,11 @@
  *  注册远程通知
  */
 - (void)registRemoteNotification:(UIApplication *)application{
-    if (IsIos8) { //iOS 8 remoteNotification
+
         UIUserNotificationType type = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
         UIUserNotificationSettings * settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
         [application registerUserNotificationSettings:settings];
-    }else{
-        
-        UIRemoteNotificationType type = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeNewsstandContentAvailability;
-        [application registerForRemoteNotificationTypes:type];
-        
-    }
+    
 }
 
 /**
@@ -224,16 +219,18 @@
     
 }
 
-/**
- *  iOS7收到推送后的处理
- *
- *  @param application <#application description#>
- *  @param userInfo    <#userInfo description#>
- */
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    
-}
+///**
+// *  iOS7收到推送后的处理
+// *
+// *  @param application <#application description#>
+// *  @param userInfo    <#userInfo description#>
+// */
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//     [UIApplication sharedApplication].applicationIconBadgeNumber++;
+//}
+
+
 
 
 /**

@@ -86,6 +86,7 @@ static NSString * cellDFirst=@"cellDFirst";
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.hidden=YES;
     [self.navigationItem changeNavgationBarTitle:@"奖品详情"];
+    [self getGoodsDetailList];
     _goImmediately = NO;
 }
 
@@ -105,9 +106,10 @@ static NSString * cellDFirst=@"cellDFirst";
     }else{
         _API=[[NSMutableString alloc]initWithString:@"getGoodsDetailByIssueId"];
     }
+    _cartCount = 0;
+    
     [self registerBackgoundNotification];
     [self createDataArray];
-    [self getGoodsDetailList];
     [self createBottomView];
 
 }
@@ -180,6 +182,7 @@ static NSString * cellDFirst=@"cellDFirst";
             //先回首页然后 呈现列表 (无push效果)
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
         } else {
+            [self getShoppingCount];
             [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
         }
     } failure:^(NSError *error) {
@@ -268,6 +271,7 @@ static NSString * cellDFirst=@"cellDFirst";
                     }
                 }
                 self.cartCount = temp.count;
+                [self changeShoppingList];
             }else{
                 LWLog(@"%@",json[@"resultDescription"]);
             }
@@ -284,9 +288,10 @@ static NSString * cellDFirst=@"cellDFirst";
                 _isExist = YES;
             }
         }
+        [self changeShoppingList];
     }
     if (_bottomView) {
-        _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount];
+        _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",(long)self.cartCount];
     } else {
         [self createBottomView];
     }
@@ -526,6 +531,7 @@ static NSString * cellDFirst=@"cellDFirst";
             } else {
                 [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
             }
+            [self changeShoppingList];
         }
         }];
         //加入清单  两种情况 登陆 未登录
@@ -537,7 +543,9 @@ static NSString * cellDFirst=@"cellDFirst";
                 self.issueId = _detailModel.issueId;
                 [self joinShoppingCart];
                 if (!_isExist) {
-                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount + 1];
+                    self.cartCount++;
+//                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount + 1];
+                    [self changeShoppingList];
                 }
             }else{
 #pragma mark 加入购物车 未登陆
@@ -550,8 +558,10 @@ static NSString * cellDFirst=@"cellDFirst";
                 }
                 //列表中无本商品 计数+1
                 if (!_isExist) {
-                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount + 1];
+                    self.cartCount++;
+//                    _bottomView.labelCount.text = [NSString stringWithFormat:@"%d",self.cartCount + 1];
                 }
+                [self changeShoppingList];
                 [SVProgressHUD showSuccessWithStatus:@"加入清单成功"];
             }
         }];
@@ -561,12 +571,7 @@ static NSString * cellDFirst=@"cellDFirst";
             [[NSNotificationCenter defaultCenter] postNotificationName:GOTOLISTIMMEDIATELY object:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
-        if (self.cartCount == 0) {
-            _bottomView.labelCount.hidden = YES;
-        } else {
-            _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",(long)self.cartCount];
-
-        }
+        
         [self.view addSubview:_bottomView];
     }
     //倒计时 已揭晓 的底部选项
@@ -851,6 +856,17 @@ static NSString * cellDFirst=@"cellDFirst";
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+}
+
+#pragma mark 购物车个数修改
+- (void)changeShoppingList {
+    if (self.cartCount == 0) {
+        _bottomView.labelCount.hidden = YES;
+    } else {
+        _bottomView.labelCount.hidden = NO;
+        _bottomView.labelCount.text = [NSString stringWithFormat:@"%ld",(long)self.cartCount];
+        
+    }
 }
 
 

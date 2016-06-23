@@ -877,7 +877,11 @@ static NSInteger orderNumberNow=0;//记录排序的当前点击
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    if (indexPath.section == 0) {
+        return NO;
+    }else {
+        return YES;
+    }
 }
 #pragma mark 轮播
 //加载图片的代理，你自己想 怎么加载 就怎么加载

@@ -65,7 +65,7 @@
         }else if (self.shareDetail.text.length == 0) {
             [SVProgressHUD showErrorWithStatus:@"请输入晒单描述"];
         }else if ([self picturesAreTheSame]) {
-            [SVProgressHUD showErrorWithStatus:@"请设置4张晒单图片"];
+            [SVProgressHUD showErrorWithStatus:@"请上传晒单图片"];
         }else if (self.shareTitle.text.length <= 5) {
             [SVProgressHUD showErrorWithStatus:@"晒单主题，不少于6个字"];
         }else {
@@ -316,29 +316,57 @@
 
 - (BOOL)picturesAreTheSame {
     UIImage *temp = [UIImage imageNamed:@"trtr"];
-    if ([self.firstImage.image isEqual:temp]) {
+//    if ([self.firstImage.image isEqual:temp]) {
+//        return YES;
+//    }
+//    if ([self.secondImage.image isEqual:temp]) {
+//        return YES;
+//    }
+//    if ([self.thirdImage.image isEqual:temp]) {
+//        return YES;
+//    }
+//    if ([self.fourthImage.image isEqual:temp]) {
+//        return YES;
+//    }
+    if ([self.firstImage.image isEqual:temp]||[self.secondImage.image isEqual:temp]||[self.thirdImage.image isEqual:temp]||[self.fourthImage.image isEqual:temp]) {
+        return NO;
+    }else {
         return YES;
     }
-    if ([self.secondImage.image isEqual:temp]) {
-        return YES;
-    }
-    if ([self.thirdImage.image isEqual:temp]) {
-        return YES;
-    }
-    if ([self.fourthImage.image isEqual:temp]) {
-        return YES;
-    }
-    return NO;
+//    return NO;
 }
 
 - (NSString *)getArrayFromImages {
-    
+    UIImage *tempImage = [UIImage imageNamed:@"trtr"];
     NSMutableString *temp = [NSMutableString string];
     
-    [temp appendString:self.first];
-    [temp appendFormat:@",%@" ,self.second];
-    [temp appendFormat:@",%@" ,self.third];
-    [temp appendFormat:@",%@" ,self.fourth];
+    if (![_firstImage.image isEqual:tempImage]) {
+        [temp appendString:self.first];
+        if (![_secondImage.image isEqual:tempImage]) {
+            [temp appendFormat:@",%@" ,self.second];
+        }
+        if (![_thirdImage.image isEqual:tempImage]) {
+            [temp appendFormat:@",%@" ,self.third];
+        }
+        if (![_fourthImage.image isEqual:tempImage]) {
+            [temp appendFormat:@",%@" ,self.fourth];
+        }
+    }else if (![_secondImage.image isEqual:tempImage]){
+        [temp appendString:self.second];
+        if (![_thirdImage.image isEqual:tempImage]) {
+            [temp appendFormat:@",%@" ,self.third];
+        }
+        if (![_fourthImage.image isEqual:tempImage]) {
+            [temp appendFormat:@",%@" ,self.fourth];
+        }
+    }else if (![_thirdImage.image isEqual:tempImage]) {
+        [temp appendString:self.third];
+        if (![_fourthImage.image isEqual:tempImage]) {
+            [temp appendFormat:@",%@" ,self.fourth];
+        }
+    }else if (![_fourthImage.image isEqual:tempImage]) {
+        [temp appendString:self.fourth];
+    }
     
     return temp;
 }

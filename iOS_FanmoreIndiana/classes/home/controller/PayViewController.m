@@ -421,7 +421,7 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 -(void)createPayView{
     NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"PayButtonTableViewCell" owner:nil options:nil];
     _payView=[nib firstObject];
-    _payView.frame = CGRectMake(0, 0, SCREEN_WIDTH, ADAPT_HEIGHT(130));
+    _payView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 110);
     [_payView.buttonPay bk_whenTapped:^{
         _payView.buttonPay.userInteractionEnabled = NO;
         [self paySuccessOrFail];
