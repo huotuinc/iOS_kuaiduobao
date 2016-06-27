@@ -205,7 +205,7 @@
  */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     
-    //    NSLog(@"%@",deviceToken);
+     NSLog(@"%@",deviceToken);
     NSString * aa = [deviceToken hexadecimalString] ;
     //    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];

@@ -34,6 +34,8 @@ static NSInteger selectAllCount = 1;
 @property (strong, nonatomic)  AppBalanceModel *balanceModel; //选中商品的数组
 @property (assign, nonatomic)  BOOL emptyTheCart; //是否清空购物车
 
+@property (nonatomic, strong) UITextField *tempTextField;
+
 @end
 
 @implementation ListViewController{
@@ -878,10 +880,12 @@ static NSInteger selectAllCount = 1;
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
 //    NSLog(@"tf开始编辑");
     _beginNumber = textField.text;
-
+    
+    self.tempTextField = textField;
 
     return YES;
 }
+
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
 //    LWLog(@"tf结束编辑");
@@ -934,7 +938,8 @@ static NSInteger selectAllCount = 1;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSInteger row = textField.tag -300;
     CartModel * model = _cartList[row];
-    if ([string isEqualToString:@"0"]) {
+    NSString *str = [textField.text stringByAppendingString:string];
+    if ([str isEqualToString:@"0"]) {
         textField.text = @"1";
         return NO;
     }else if ([[NSString stringWithFormat:@"%@%@",textField.text,string] integerValue] > [model.remainAmount integerValue]) {
@@ -942,6 +947,10 @@ static NSInteger selectAllCount = 1;
         return NO;
     }
     return YES;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 
