@@ -139,6 +139,8 @@
 #define LoginFromMallNot @"LoginFromMallNot"  //商城登录成功后发送的通知
 #define GotoMallSecond @"GotoMallSecond" //bar点击商城载入
 
+#define LWNewFeatureImageCount 4
+
 #ifdef DEBUG
 #define LWLog(...) NSLog(__VA_ARGS__)
 #else

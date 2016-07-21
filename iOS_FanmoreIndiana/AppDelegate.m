@@ -21,6 +21,9 @@
 #import "WXApi.h"
 #import <AlipaySDK/AlipaySDK.h>
 
+#import "LWNewFeatureController.h"
+#import "TabBarController.h"
+
 @interface AppDelegate ()<WXApiDelegate>
 
 @end
@@ -32,6 +35,19 @@
     
     
     [self _initShare];
+     
+     NSString * localVersion = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppVerSion"];
+     if (localVersion.length == 0 || [localVersion isEqualToString:AppVersion] == NO) {
+          LWNewFeatureController * new = [[LWNewFeatureController alloc] init];
+          self.window.rootViewController = new;
+          [self.window makeKeyAndVisible];
+          [[NSUserDefaults standardUserDefaults] setObject:AppVersion forKey:@"AppVerSion"];
+     }else {
+
+          TabBarController *bar = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TabBarController"];
+          self.window.rootViewController = bar;
+          [self.window makeKeyAndVisible];
+     }
     
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
 //         NSLog(@"%@",json);

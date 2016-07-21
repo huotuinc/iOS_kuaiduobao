@@ -55,6 +55,8 @@
 		6031C5441C4C922600D6B567 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6031C5421C4C922600D6B567 /* HomeCollectionViewCell.xib */; };
 		6031C5461C4CE63E00D6B567 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031C53B1C4C89B900D6B567 /* HomeController.m */; };
 		6032D50B1CB4FB2B001930C3 /* UIImage+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 6032D50A1CB4FB2B001930C3 /* UIImage+Compression.m */; };
+		60416CA81D407064007B0B72 /* LWNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60416CA41D407064007B0B72 /* LWNewFeatureController.m */; };
+		60416CA91D407064007B0B72 /* WeiXinLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60416CA71D407064007B0B72 /* WeiXinLoginModel.m */; };
 		604926271C5EF3590092D231 /* RechargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 604926261C5EF3590092D231 /* RechargeController.m */; };
 		604C626E1C50C57900569F0B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 604C62611C50C57900569F0B /* libWeChatSDK.a */; };
 		604C626F1C50C57900569F0B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 604C62621C50C57900569F0B /* read_me.txt */; };
@@ -464,6 +466,10 @@
 		6031C5451C4CDF9900D6B567 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6032D5091CB4FB2B001930C3 /* UIImage+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Compression.h"; sourceTree = "<group>"; };
 		6032D50A1CB4FB2B001930C3 /* UIImage+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Compression.m"; sourceTree = "<group>"; };
+		60416CA31D407064007B0B72 /* LWNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWNewFeatureController.h; sourceTree = "<group>"; };
+		60416CA41D407064007B0B72 /* LWNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWNewFeatureController.m; sourceTree = "<group>"; };
+		60416CA61D407064007B0B72 /* WeiXinLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinLoginModel.h; sourceTree = "<group>"; };
+		60416CA71D407064007B0B72 /* WeiXinLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinLoginModel.m; sourceTree = "<group>"; };
 		604926251C5EF3590092D231 /* RechargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeController.h; sourceTree = "<group>"; };
 		604926261C5EF3590092D231 /* RechargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeController.m; sourceTree = "<group>"; };
 		604C62611C50C57900569F0B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -1144,6 +1150,7 @@
 		6031C5351C4C818400D6B567 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				60416CA11D407064007B0B72 /* NewFeature(版本新特性) */,
 				6031C5361C4C82C300D6B567 /* home */,
 				F23BF0081C5F4C2500E87042 /* announced */,
 				F21E82D91C78130000C732F1 /* List */,
@@ -1330,6 +1337,33 @@
 				F2977D611CAA14A400DCD74E /* HomeCollectionTopCView.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		60416CA11D407064007B0B72 /* NewFeature(版本新特性) */ = {
+			isa = PBXGroup;
+			children = (
+				60416CA21D407064007B0B72 /* Controller */,
+				60416CA51D407064007B0B72 /* Model */,
+			);
+			path = "NewFeature(版本新特性)";
+			sourceTree = "<group>";
+		};
+		60416CA21D407064007B0B72 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				60416CA31D407064007B0B72 /* LWNewFeatureController.h */,
+				60416CA41D407064007B0B72 /* LWNewFeatureController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		60416CA51D407064007B0B72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				60416CA61D407064007B0B72 /* WeiXinLoginModel.h */,
+				60416CA71D407064007B0B72 /* WeiXinLoginModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		604C62581C50C57900569F0B /* libraries */ = {
@@ -1999,7 +2033,7 @@
 				TargetAttributes = {
 					60DD42991C43A8F90041572F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = C5G667F6MC;
+						DevelopmentTeam = SC97784VSF;
 					};
 					60DD42B21C43A8F90041572F = {
 						CreatedOnToolsVersion = 7.2;
@@ -2307,6 +2341,7 @@
 				F20DDD941C50B14E004C9467 /* UIButton+FMButtonStyle.m in Sources */,
 				6014A7211C7DB07C006B2900 /* ShareOrderModel.m in Sources */,
 				6000429C1C744C5D00CEDC7A /* openssl_wrapper.m in Sources */,
+				60416CA81D407064007B0B72 /* LWNewFeatureController.m in Sources */,
 				60DD429F1C43A8F90041572F /* main.m in Sources */,
 				601630BC1D0D3A8400861ECB /* DetailPastingTableViewCell.m in Sources */,
 				F2F6FBBB1CC7768F00948B19 /* PayWebViewController.m in Sources */,
@@ -2314,6 +2349,7 @@
 				60C1099B1C96AFC60025CE94 /* MidTabelViewCell.m in Sources */,
 				608D42911C86B4A7000C4845 /* ApiXml.mm in Sources */,
 				F290AD1A1C4E6811005F05AC /* labelCollectionViewCell.m in Sources */,
+				60416CA91D407064007B0B72 /* WeiXinLoginModel.m in Sources */,
 				F271EAF71C72B896003E782D /* AppBuyListModel.m in Sources */,
 				60B5A36F1C520B3900E4C7BB /* MineController.m in Sources */,
 				F267B9941C96C4BD00B169F3 /* HomeGetRedPocketCView.m in Sources */,
