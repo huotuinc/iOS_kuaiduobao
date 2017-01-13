@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>huataiyimeikuaiduobao</string>
+				<string>com.huotu.zhouhuan</string>
 			</array>
 		</dict>
 		<dict>
@@ -37,7 +37,7 @@
 				<string>tencent1105404306</string>
 				<string>wb447434972</string>
 				<string>wb447434972</string>
-				<string>wx6b0a63c6daa7dc0e</string>
+				<string>wx3874952f0a87c007</string>
 			</array>
 		</dict>
 	</array>
@@ -77,6 +77,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>需要您的同意,才能访问相机</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>需要您的同意,才能访问相册</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

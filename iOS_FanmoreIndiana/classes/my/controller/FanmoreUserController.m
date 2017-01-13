@@ -281,7 +281,9 @@
             photoImage = [info objectForKey:UIImagePickerControllerOriginalImage];
         }
     }
-    //    [self.logo setImage:photoImage forState:UIControlStateNormal];
+    
+    //头像
+    [self.logo setImage:photoImage forState:UIControlStateNormal];
     NSData *data = nil;
     if (UIImagePNGRepresentation(photoImage) == nil) {
         

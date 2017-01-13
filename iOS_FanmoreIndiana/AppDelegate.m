@@ -50,7 +50,7 @@
      }
     
     [UserLoginTool loginRequestGet:@"init" parame:nil success:^(id json) {
-//         NSLog(@"%@",json);
+         LWLog(@"%@",json);
         if ([json[@"systemResultCode"] intValue] == 1 && [json[@"resultCode"] intValue]==1) {
             GlobalModel *global = [GlobalModel mj_objectWithKeyValues:json[@"resultData"][@"global"]];
             NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -60,7 +60,7 @@
             if (![json[@"resultData"][@"user"] isKindOfClass:[NSNull class]]) {
                 
                 UserModel *user = [UserModel mj_objectWithKeyValues:json[@"resultData"][@"user"]];
-//                NSLog(@"userModel: %@",user);
+//                LWLog(@"userModel: %@",user);
                 
                 NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
                 NSString *fileName = [path stringByAppendingPathComponent:UserInfo];
@@ -221,7 +221,7 @@
  */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     
-//     NSLog(@"%@",deviceToken);
+//     LWLog(@"%@",deviceToken);
     NSString * aa = [deviceToken hexadecimalString] ;
     //    NSString * urlstr = [MainUrl stringByAppendingPathComponent:@"updateDeviceToken"];
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
@@ -287,10 +287,10 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-//            NSLog(@"resultStatus = %@",resultDic[@"resultStatus"]);
+//            LWLog(@"resultStatus = %@",resultDic[@"resultStatus"]);
             if([resultDic[@"resultStatus"] intValue] == 9000){
                 
-//                NSLog(@"跳转支付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
+//                LWLog(@"跳转支付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
                 
 //                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
 //                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];
@@ -317,7 +317,7 @@
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url
                                                   standbyCallback:^(NSDictionary *resultDic) {
             if([resultDic[@"resultStatus"] intValue] == 9000){
-//                NSLog(@"跳转支/付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
+//                LWLog(@"跳转支/付宝钱包进行支付，处理支付结果跳转支付宝钱包进行支付，处理支付结果");
 
                 [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccess object:nil];
 //                [[NSNotificationCenter defaultCenter] postNotificationName:payMoneySuccessView object:nil];

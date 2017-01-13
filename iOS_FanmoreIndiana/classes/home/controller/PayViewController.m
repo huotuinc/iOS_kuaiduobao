@@ -68,6 +68,8 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //是否在审核
     NSString * appExamineString = [[NSUserDefaults standardUserDefaults] stringForKey:AppExamine];
     if ([appExamineString isEqualToString:@"1"]) {
         _whichPay = 1;
@@ -79,20 +81,34 @@ static NSInteger _whichPay ;  //支付类型 0微信 1支付宝 2用户余额
     _WeiPayDone = NO;
     
     
-    if ([appExamineString isEqualToString:@"1"]) {
+    if ([appExamineString isEqualToString:@"1"]) { //在审核
         if ([WXApi isWXAppInstalled]) {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付"]];
         }else {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"支付宝支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式"]];
         }
     } else {
         if ([WXApi isWXAppInstalled]) {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付",@"支付宝支付",@"夺宝币支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付",@"夺宝币支付"]];
         }else {
-            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"支付宝支付",@"夺宝币支付"]];
+            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"夺宝币支付"]];
         }
     }
 
+    
+//    if ([appExamineString isEqualToString:@"1"]) { //在审核
+//        if ([WXApi isWXAppInstalled]) {
+//            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付",@"支付宝支付"]];
+//        }else {
+//            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"支付宝支付"]];
+//        }
+//    } else {
+//        if ([WXApi isWXAppInstalled]) {
+//            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"微信支付",@"支付宝支付",@"夺宝币支付"]];
+//        }else {
+//            _titleArray = [NSMutableArray arrayWithArray:@[@"红包折扣",@"夺宝币支付",@"其他支付方式",@"支付宝支付",@"夺宝币支付"]];
+//        }
+//    }
     
 
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payUpdateUserInfo) name:payMoneySuccess object:nil];

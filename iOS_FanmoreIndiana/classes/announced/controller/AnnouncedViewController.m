@@ -36,6 +36,10 @@ static NSString *cellABMain=@"cellABMain";
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     self.view.backgroundColor=COLOR_BACK_MAIN;
     [self.navigationItem changeNavgationBarTitle:@"最新揭晓"];
+    
+    
+     self.collectionView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 20);
+    
     [self getOpenList ];
     [self createTimer];
 }
@@ -48,6 +52,8 @@ static NSString *cellABMain=@"cellABMain";
     [self createCollectionView];
     
 
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+   
 
 }
 - (void)registerBackgoundNotification

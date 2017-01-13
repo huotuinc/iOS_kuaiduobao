@@ -34,7 +34,7 @@
     self.name.text = model.title;
     self.joinId.text = [NSString stringWithFormat:@"参与期号：%@", model.issueId];
     self.person.text = [NSString stringWithFormat:@"总需：%@", model.toAmount];
-    self.luckyNum.text = [NSString stringWithFormat:@"幸运号码：%@", model.luckyNumber];
+    self.luckyNum.text = [NSString stringWithFormat:@"%@", model.luckyNumber];
     self.joinCount.text = [NSString stringWithFormat:@"本期参与：%@人次", model.amount];
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];

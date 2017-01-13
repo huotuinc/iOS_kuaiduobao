@@ -62,8 +62,8 @@
 #define QQappSecret @"g8YpilkHWIZgARvG"
 
 /**微信*/ 
-#define WeiXinAppID @"wx6b0a63c6daa7dc0e"
-#define WeiXinAppSecret @"0cdac1454cea320d9cee52d06717522a"
+#define WeiXinAppID @"wx3874952f0a87c007"
+#define WeiXinAppSecret @"5cc9edab52c949109fe95d3682e55b42"
 
 
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
@@ -74,7 +74,7 @@
 
 
 //服务器正式地址
-#define MKMainUrl @"www.kdbkdb.cn/app"
+#define MKMainUrl @"www.jsdbao.com/app"
 
 
 /**时间*/

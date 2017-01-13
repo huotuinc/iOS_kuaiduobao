@@ -23,6 +23,9 @@
 
     [_buttonAll setBackgroundImage:[UIImage imageNamed:@"recharge_icon_choose_none"] forState:UIControlStateNormal];
     [_buttonAll setBackgroundImage:[UIImage imageNamed:@"recharge_icon_choose"] forState:UIControlStateSelected];
+    
+    
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)drawRect:(CGRect)rect{

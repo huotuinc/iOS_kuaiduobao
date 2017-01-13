@@ -40,20 +40,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title =@"消息中心";
+     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+    self.navigationItem.title =@"消息中心";
     //集成刷新控件
     [self setupRefresh];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView removeSpaces];
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
 //    [self setClearBackground];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+   
     
     self.tabBarController.tabBar.hidden =YES;
     
@@ -62,6 +66,8 @@
     
     [self.tableView layoutIfNeeded];
     
+    
+//    self.tableView.frame = CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT);
     [self getNewMoreData];
 }
 

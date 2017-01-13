@@ -8,6 +8,7 @@
 #import "RechargeCell.h"
 #import "RechargeController.h"
 #import "PutModel.h"
+#import "PayController.h"
 
 @interface RechargeController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -21,6 +22,10 @@ static NSString *rechargeIdentify = @"rechargeIdentify";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    self.navigationItem.title = @"充值记录";
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -40,6 +45,28 @@ static NSString *rechargeIdentify = @"rechargeIdentify";
     [self.tableView registerNib:[UINib nibWithNibName:@"RechargeCell" bundle:nil] forCellReuseIdentifier:rechargeIdentify];
     [self.tableView removeSpaces];
     [self setupRefresh];
+    
+    
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@"cz"]
+                      forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(GotoSettings)
+     forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(0, 0, 25, 25);
+    
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = menuButton;
+   
+}
+
+
+/**去充值中心*/
+- (void)GotoSettings{
+    
+    PayController * vc =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PayController"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

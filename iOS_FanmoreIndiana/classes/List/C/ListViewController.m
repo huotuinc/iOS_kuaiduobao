@@ -808,7 +808,7 @@ static NSInteger selectAllCount = 1;
         totlePrice += price*[model.userBuyAmount floatValue];
 
     }
-    _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计%.2fd夺宝币",totlePrice];
+    _bottomView.labelMoney.text = [NSString stringWithFormat:@"总计%.2f夺宝币",totlePrice];
 }
 
 

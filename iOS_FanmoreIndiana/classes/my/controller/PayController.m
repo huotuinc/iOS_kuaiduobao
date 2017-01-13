@@ -33,6 +33,9 @@ static NSString *payIdentify = @"payIdentifty";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    self.navigationItem.title = @"充值中心";
     self.tabBarController.tabBar.hidden = YES;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -182,7 +185,7 @@ static NSString *payIdentify = @"payIdentifty";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

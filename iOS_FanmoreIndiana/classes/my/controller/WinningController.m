@@ -28,7 +28,7 @@ static NSString *winningIdentify = @"winningIdentify";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"中奖记录";
+    self.navigationItem.title = @"中奖记录";
     
     self.winningArray = [NSMutableArray array];
     

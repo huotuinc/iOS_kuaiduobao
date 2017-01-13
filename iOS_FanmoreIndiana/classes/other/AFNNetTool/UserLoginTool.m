@@ -43,9 +43,11 @@
     MKNetworkOperation *op = [engine operationWithPath:urlStr params:paramsOption httpMethod:@"GET"];
     
     [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        LWLog(@"%@",completedOperation.responseJSON);
         success(completedOperation.responseJSON);
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         failure(error);
+         LWLog(@"%@",error.description);
     }];
     
     [engine enqueueOperation:op];
